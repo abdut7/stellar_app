@@ -1,3 +1,4 @@
+import 'package:base_project/View/LoginPages/WelcomePage/WelcomePageUi.dart';
 import 'package:base_project/features/setup/login/view/login_screen.dart';
 import 'package:base_project/utils/extensions.dart';
 import 'package:flutter/foundation.dart';
@@ -50,7 +51,8 @@ class MyApp extends StatelessWidget {
           ],
           theme: appLightTheme,
           locale: context.watch<LanguageProvider>().locale,
-          initialRoute: LoginScreen.routeName,
+          //initialRoute: LoginScreen.routeName,
+          initialRoute: WelcomePageUi.routeName,
 
           // initialRoute: SplashScreen.routeName,
           onGenerateRoute: onAppGenerateRoute(),
@@ -70,3 +72,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+
+
