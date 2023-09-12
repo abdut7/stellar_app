@@ -3,19 +3,23 @@ import 'dart:io';
 
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SImages.dart';
+import 'package:base_project/functions/get_current_location.dart';
 import 'package:base_project/models/api_models/signup_model.dart';
 import 'package:base_project/providers/auth_providers/sign_up_provider.dart';
 import 'package:base_project/services/api_services/auth_services.dart';
 import 'package:base_project/widgets/custom_elevated_button.dart';
 import 'package:base_project/widgets/login_signup_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controllers/api_controllers/signup_controllers.dart';
+import '../../../functions/location_permission.dart';
 import '../../../functions/pick_image.dart';
+import '../OtpVerification/OtpVerificationUi.dart';
 
 class SignUpWithMobileUi extends StatefulWidget {
   static const routeName = '/SignUpWithMobileUi';
@@ -47,6 +51,12 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
     birthDayController.dispose();
     // TODO: implement dispose
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    requestLocationPermission();
+    super.initState();
   }
 
   DateTime birthDate = DateTime.now();
@@ -207,40 +217,48 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
               const SizedBox(
                 height: 50,
               ),
-              Obx(() => signupController.isLoading.value
-                  ? Center(
-                      child: LoadingAnimationWidget.threeRotatingDots(
-                        color: Colors.white,
-                        size: 40,
-                      ),
-                    )
-                  : CustomElevatedButton(
-                      text: 'Accept and Continue',
-                      textColor: SColors.color4,
-                      foregroundColor: SColors.color4,
-                      backgroundColor: SColors.color12,
-                      onPressed: () async {
-                        String base64String = '';
-                        if (pickedImage != null) {
-                          List<int> imageBytes =
-                              await File(pickedImage!.path).readAsBytes();
-                          base64String = base64Encode(imageBytes);
-                        }
-                        SignupModel signupModel = SignupModel(
-                            username: usernameController.text,
-                            filePath: base64String,
-                            fullName: fullNameController.text,
-                            email: emailController.text,
-                            birthday: birthDayController.text,
-                            region: regionController.text,
-                            phoneNumber: phoneNumberController.text,
-                            password: passwordController.text,
-                            coordinates: ["0", "0"]);
-                        print(signupModel.toString());
-                        AuthServices().signupUser(signupModel);
+              Obx(
+                () => signupController.isLoading.value
+                    ? Center(
+                        child: LoadingAnimationWidget.threeRotatingDots(
+                          color: Colors.white,
+                          size: 40,
+                        ),
+                      )
+                    : CustomElevatedButton(
+                        text: 'Accept and Continue',
+                        textColor: SColors.color4,
+                        foregroundColor: SColors.color4,
+                        backgroundColor: SColors.color12,
+                        onPressed: () async {
+                          signupController.isLoading(true);
+                          String base64String = '';
+                          if (pickedImage != null) {
+                            List<int> imageBytes =
+                                await File(pickedImage!.path).readAsBytes();
+                            base64String = base64Encode(imageBytes);
+                          }
+                          Position pos = await getCurrentLocation();
+                          print(pos);
 
-                        //  Navigator.pushNamed(context, OtpVerificationUi.routeName);
-                      })),
+                          SignupModel signupModel = SignupModel(
+                              username: usernameController.text,
+                              filePath: base64String,
+                              fullName: fullNameController.text,
+                              email: emailController.text,
+                              birthday: birthDayController.text,
+                              region: regionController.text,
+                              phoneNumber: phoneNumberController.text,
+                              password: passwordController.text,
+                              coordinates: [
+                                pos.latitude.toString(),
+                                pos.longitude.toString()
+                              ]);
+                          AuthServices().signupUser(signupModel);
+
+                          //  Navigator.pushNamed(context, OtpVerificationUi.routeName);
+                        }),
+              ),
               const SizedBox(
                 height: 25,
               ),
