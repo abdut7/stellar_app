@@ -7,10 +7,12 @@ class LoginTextField extends StatefulWidget {
   final String labelText;
   final TextEditingController controller;
   final bool IsPassword;
+  final bool isBirthday;
 
   const LoginTextField({
     Key? key,
     this.IsPassword = false,
+    this.isBirthday = false,
     required this.keyboardType,
     this.suffixIcon,
     required this.labelText,
@@ -49,21 +51,54 @@ class _LoginTextFieldState extends State<LoginTextField> {
   }
 
   Widget textField(TextEditingController controller) {
+    DateTime selectedDate = DateTime.now();
+
+    Future<void> selectDate(BuildContext context) async {
+      final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(1900),
+        lastDate: DateTime.now(),
+      );
+      if (picked != null && picked != selectedDate) {
+        setState(() {
+          selectedDate = picked;
+          controller.text =
+              "${selectedDate.day}-${selectedDate.month}-${selectedDate.year}";
+        });
+      }
+    }
+
     return Container(
-      child: TextFormField(
-        obscureText: widget.IsPassword,
-        controller: controller,
-        keyboardType: widget.keyboardType,
-        cursorColor: SColors.color11,
-        style: TextStyle(
-          color: SColors.color3,
-          fontSize: 16,
-          fontWeight: FontWeight.w400,
-          letterSpacing: 0.50,
-        ),
-        autocorrect: true,
-        decoration: buildInputDecoration(),
-      ),
+      child: widget.isBirthday
+          ? Container(
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
+              child: TextFormField(
+                  readOnly: true, // Prevent manual editing
+                  onTap: () => selectDate(context), // Show date picker on tap
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    labelText: 'Select Date',
+                    hintText: 'Choose a date',
+                    prefixIcon: Icon(Icons.calendar_today),
+                  ),
+                  controller: controller),
+            )
+          : TextFormField(
+              obscureText: widget.IsPassword,
+              controller: controller,
+              keyboardType: widget.keyboardType,
+              cursorColor: SColors.color11,
+              style: TextStyle(
+                color: SColors.color3,
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                letterSpacing: 0.50,
+              ),
+              autocorrect: true,
+              decoration: buildInputDecoration(),
+            ),
     );
   }
 

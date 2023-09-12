@@ -23,6 +23,10 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController fullNameController = TextEditingController();
 
+  TextEditingController birthDayController = TextEditingController();
+
+  DateTime birthDate = DateTime.now();
+
   Widget termsOfServiceText() {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -109,8 +113,11 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
                   controller: emailController,
                   keyboardType: TextInputType.emailAddress,
                   labelText: 'Email'),
-              // LoginTextField(
-              //     keyboardType: TextInputType.text, labelText: 'Birthday'),
+              LoginTextField(
+                  controller: birthDayController,
+                  isBirthday: true,
+                  keyboardType: TextInputType.text,
+                  labelText: 'Birthday'),
               LoginTextField(
                 controller: regionController,
                 keyboardType: TextInputType.text,
