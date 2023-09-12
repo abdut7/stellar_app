@@ -15,6 +15,14 @@ class SignUpWithMobileUi extends StatefulWidget {
 }
 
 class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
+  TextEditingController usernameController = TextEditingController();
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController regionController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController fullNameController = TextEditingController();
+
   Widget termsOfServiceText() {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -35,8 +43,8 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
     );
   }
 
-  Widget _buildTitle(){
-    return  Text(
+  Widget _buildTitle() {
+    return Text(
       'Sign Up with Mobile ',
       style: TextStyle(
           color: SColors.color3,
@@ -71,29 +79,63 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 50,),
-                 _buildTitle(),
-                  const SizedBox(height: 50,),
-                  GestureDetector(onTap: () {}, child: Image(image: AssetImage(SImages.image3,)))],
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  _buildTitle(),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  GestureDetector(
+                      onTap: () {},
+                      child: Image(
+                          image: AssetImage(
+                        SImages.image3,
+                      )))
+                ],
               ),
-              const SizedBox(height: 30,),
-              const LoginTextField(keyboardType: TextInputType.text, labelText: 'User Name'),
-              const SizedBox(height: 15,),
-              const LoginTextField(keyboardType: TextInputType.emailAddress, labelText: 'Email'),
-              const SizedBox(height: 15,),
-              const LoginTextField(keyboardType: TextInputType.text, labelText: 'Birthday'),
-              const SizedBox(height: 15,),
-              const LoginTextField(
-                keyboardType: TextInputType.text, labelText: 'Region',
-                suffixIcon: Icon(Icons.arrow_forward_ios, size: 20,),
+              const SizedBox(
+                height: 20,
               ),
-              const SizedBox(height: 15,),
-              const LoginTextField(keyboardType: TextInputType.phone, labelText: 'Phone'),
-              const SizedBox(height: 15,),
-              const LoginTextField(keyboardType: TextInputType.visiblePassword, labelText: 'Password'),
-              const SizedBox(height: 30,),
+              LoginTextField(
+                  controller: usernameController,
+                  keyboardType: TextInputType.text,
+                  labelText: 'User Name'),
+              LoginTextField(
+                  controller: fullNameController,
+                  keyboardType: TextInputType.text,
+                  labelText: 'Full Name'),
+              LoginTextField(
+                  controller: emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  labelText: 'Email'),
+              // LoginTextField(
+              //     keyboardType: TextInputType.text, labelText: 'Birthday'),
+              LoginTextField(
+                controller: regionController,
+                keyboardType: TextInputType.text,
+                labelText: 'Region',
+                suffixIcon: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 20,
+                ),
+              ),
+              LoginTextField(
+                  controller: phoneNumberController,
+                  keyboardType: TextInputType.phone,
+                  labelText: 'Phone'),
+              LoginTextField(
+                  IsPassword: true,
+                  controller: passwordController,
+                  keyboardType: TextInputType.visiblePassword,
+                  labelText: 'Password'),
+              const SizedBox(
+                height: 30,
+              ),
               termsOfServiceText(),
-              const SizedBox(height: 50,),
+              const SizedBox(
+                height: 50,
+              ),
               CustomElevatedButton(
                   text: 'Accept and Continue',
                   textColor: SColors.color4,
@@ -102,7 +144,9 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
                   onPressed: () {
                     Navigator.pushNamed(context, OtpVerificationUi.routeName);
                   }),
-              const SizedBox(height: 25,),
+              const SizedBox(
+                height: 25,
+              ),
             ],
           )),
     );

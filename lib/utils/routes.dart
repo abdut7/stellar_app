@@ -1,5 +1,9 @@
 import 'package:base_project/View/Chat/CreateNewChat/CreateNewChatUi.dart';
 import 'package:base_project/View/Chat/HomeChat/HomeChatUi.dart';
+import 'package:base_project/View/Chat/HomeChat/sub/Case4/sub/EditProfile/EditProfileUi.dart';
+import 'package:base_project/View/Chat/HomeChat/sub/Case4/sub/Favorites/Favorites.dart';
+import 'package:base_project/View/Chat/HomeChat/sub/Case4/sub/Settings/SettingsUi.dart';
+import 'package:base_project/View/Chat/HomeChat/sub/Case4/sub/StickerGallery/StickerGallery.dart';
 import 'package:base_project/View/Chat/NewChat/NewChatUi.dart';
 import 'package:base_project/View/Contact/AddContact/AddContactUi.dart';
 import 'package:base_project/View/LoginPages/LoginWithMobile/LoginWithMobileUi.dart';
@@ -7,6 +11,9 @@ import 'package:base_project/View/LoginPages/OtpVerification/OtpVerificationUi.d
 import 'package:base_project/View/LoginPages/SignUpOptions/SignUpOptionsUi.dart';
 import 'package:base_project/View/LoginPages/SignUpWithMobile/SignUpWithMobileUi.dart';
 import 'package:base_project/View/LoginPages/WelcomePage/WelcomePageUi.dart';
+import 'package:base_project/View/MoneyPayment/MoneyPaymentUi.dart';
+import 'package:base_project/View/QRScan/Scanning/ScanningUi.dart';
+import 'package:base_project/View/QRScan/TakeScan/TakeScanUi.dart';
 import 'package:base_project/features/setup/login/view/login_screen.dart';
 import 'package:base_project/features/setup/splashscreen/view/splashscreen.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +31,14 @@ Map<String, Widget Function(BuildContext context)> appRoutes() => {
       NewChatUi.routeName:(context)=> const NewChatUi(),
       AddContactUi.routeName:(context)=> const AddContactUi(),
       HomeChatUi.routeName:(context)=>  HomeChatUi(),
+      MoneyPaymentUi.routeName:(context)=> const MoneyPaymentUi(),
+      TakeScanUi.routeName:(context)=> const TakeScanUi(),
+      ScanningUi.routeName:(context)=> const ScanningUi(),
+      FavoritesScreen.routeName:(context)=> FavoritesScreen(),
+      StickerGalleryScreen.routeName:(context)=>  StickerGalleryScreen(),
+      SettingsUi.routeName:(context)=>  const SettingsUi(),
+      EditProfileUi.routeName:(context)=>  const EditProfileUi(),
+
 
 
     };

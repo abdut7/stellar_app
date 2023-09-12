@@ -1,5 +1,8 @@
 import 'package:base_project/View/Chat/NewChat/NewChatUi.dart';
 import 'package:base_project/View/Contact/AddContact/AddContactUi.dart';
+import 'package:base_project/View/MoneyPayment/MoneyPaymentUi.dart';
+import 'package:base_project/View/QRScan/Scanning/ScanningUi.dart';
+import 'package:base_project/View/QRScan/TakeScan/TakeScanUi.dart';
 import 'package:base_project/widgets/custom_popup_menu_item.dart';
 import 'package:base_project/widgets/search_text_field.dart';
 import 'package:base_project/widgets/welcome_chat.dart';
@@ -73,10 +76,10 @@ class _Case1State extends State<Case1> {
                           Navigator.pushNamed(context, AddContactUi.routeName);
                           break;
                         case 'scan':
-                          //Navigator.pushNamed(context, NewChatUi.routeName);
+                          Navigator.pushNamed(context, TakeScanUi.routeName);
                           break;
                         case 'money':
-                          //Navigator.pushNamed(context, NewChatUi.routeName);
+                          Navigator.pushNamed(context, MoneyPaymentUi.routeName);
                           break;
                       }
                     },

@@ -24,7 +24,7 @@ class _AddContactUiState extends State< AddContactUi> {
       ),
       centerTitle: true,
       leading: IconButton(
-        icon: const Icon(Icons.cancel),
+        icon: Icon(Icons.cancel,color: SColors.color3,),
         onPressed: () {
           Navigator.pop(context);
         },
