@@ -1,9 +1,13 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SImages.dart';
 import 'package:base_project/View/Chat/CreateNewChat/CreateNewChatUi.dart';
+import 'package:base_project/services/api_services/auth_services.dart';
 import 'package:base_project/widgets/custom_elevated_button.dart';
 import 'package:base_project/widgets/login_signup_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../controllers/api_controllers/login_with_phone_controller.dart';
 
 class LoginWithMobileUi extends StatefulWidget {
   static const routeName = '/LoginWithMobileUi ';
@@ -43,6 +47,9 @@ class _LoginWithMobileUiState extends State<LoginWithMobileUi> {
 
   @override
   Widget build(BuildContext context) {
+    LoginWithPhoneNumberConteroller login =
+        Get.put(LoginWithPhoneNumberConteroller());
+
     return Scaffold(
       backgroundColor: SColors.color13,
       appBar: AppBar(
@@ -109,7 +116,8 @@ class _LoginWithMobileUiState extends State<LoginWithMobileUi> {
                 foregroundColor: SColors.color4,
                 backgroundColor: SColors.color12,
                 onPressed: () {
-                  Navigator.pushNamed(context, CreateNewChatUi.routeName);
+                  AuthServices().loginService(phoneController.text);
+                  // Navigator.pushNamed(context, CreateNewChatUi.routeName);
                 }),
             const SizedBox(
               height: 60,

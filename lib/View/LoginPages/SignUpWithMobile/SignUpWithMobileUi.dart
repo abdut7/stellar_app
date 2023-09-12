@@ -239,7 +239,6 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
                             base64String = base64Encode(imageBytes);
                           }
                           Position pos = await getCurrentLocation();
-                          print(pos);
 
                           SignupModel signupModel = SignupModel(
                               username: usernameController.text,
@@ -255,8 +254,6 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
                                 pos.longitude.toString()
                               ]);
                           AuthServices().signupUser(signupModel);
-
-                          //  Navigator.pushNamed(context, OtpVerificationUi.routeName);
                         }),
               ),
               const SizedBox(
