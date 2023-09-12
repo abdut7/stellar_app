@@ -1,9 +1,21 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SImages.dart';
-import 'package:base_project/View/LoginPages/OtpVerification/OtpVerificationUi.dart';
+import 'package:base_project/models/api_models/signup_model.dart';
+import 'package:base_project/providers/auth_providers/sign_up_provider.dart';
+import 'package:base_project/services/api_services/auth_services.dart';
 import 'package:base_project/widgets/custom_elevated_button.dart';
 import 'package:base_project/widgets/login_signup_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:provider/provider.dart';
+
+import '../../../controllers/api_controllers/signup_controllers.dart';
+import '../../../functions/pick_image.dart';
 
 class SignUpWithMobileUi extends StatefulWidget {
   static const routeName = '/SignUpWithMobileUi';
@@ -15,15 +27,27 @@ class SignUpWithMobileUi extends StatefulWidget {
 }
 
 class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
+  SignupController signupController = Get.put(SignupController());
   TextEditingController usernameController = TextEditingController();
-
   TextEditingController emailController = TextEditingController();
   TextEditingController regionController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController fullNameController = TextEditingController();
-
   TextEditingController birthDayController = TextEditingController();
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    emailController.dispose();
+    regionController.dispose();
+    phoneNumberController.dispose();
+    passwordController.dispose();
+    fullNameController.dispose();
+    birthDayController.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   DateTime birthDate = DateTime.now();
 
@@ -58,6 +82,9 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
     );
   }
 
+  ImagePicker picker = ImagePicker();
+  XFile? pickedImage;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,11 +118,48 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
                     height: 50,
                   ),
                   GestureDetector(
-                      onTap: () {},
-                      child: Image(
-                          image: AssetImage(
-                        SImages.image3,
-                      )))
+                    onTap: () async {
+                      pickedImage =
+                          await picker.pickImage(source: ImageSource.gallery);
+                      setState(() {});
+                    },
+                    child: pickedImage == null
+                        ? const Stack(
+                            alignment: Alignment.bottomRight,
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.grey,
+                                radius: 30,
+                                child: Icon(
+                                  Icons.person,
+                                  color: Colors.white,
+                                  size: 30,
+                                ),
+                              ),
+                              CircleAvatar(
+                                  backgroundColor:
+                                      Color.fromRGBO(87, 87, 87, 1),
+                                  radius: 10,
+                                  child: Center(
+                                    child: Icon(
+                                      Icons.add,
+                                      size: 10,
+                                    ),
+                                  ))
+                            ],
+                          )
+                        : CircleAvatar(
+                            radius: 30,
+                            child: ClipOval(
+                              child: Image.file(
+                                File(pickedImage!.path),
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                  )
                 ],
               ),
               const SizedBox(
@@ -122,7 +186,7 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
                 controller: regionController,
                 keyboardType: TextInputType.text,
                 labelText: 'Region',
-                suffixIcon: Icon(
+                suffixIcon: const Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
                 ),
@@ -143,14 +207,40 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
               const SizedBox(
                 height: 50,
               ),
-              CustomElevatedButton(
-                  text: 'Accept and Continue',
-                  textColor: SColors.color4,
-                  foregroundColor: SColors.color4,
-                  backgroundColor: SColors.color12,
-                  onPressed: () {
-                    Navigator.pushNamed(context, OtpVerificationUi.routeName);
-                  }),
+              Obx(() => signupController.isLoading.value
+                  ? Center(
+                      child: LoadingAnimationWidget.threeRotatingDots(
+                        color: Colors.white,
+                        size: 40,
+                      ),
+                    )
+                  : CustomElevatedButton(
+                      text: 'Accept and Continue',
+                      textColor: SColors.color4,
+                      foregroundColor: SColors.color4,
+                      backgroundColor: SColors.color12,
+                      onPressed: () async {
+                        String base64String = '';
+                        if (pickedImage != null) {
+                          List<int> imageBytes =
+                              await File(pickedImage!.path).readAsBytes();
+                          base64String = base64Encode(imageBytes);
+                        }
+                        SignupModel signupModel = SignupModel(
+                            username: usernameController.text,
+                            filePath: base64String,
+                            fullName: fullNameController.text,
+                            email: emailController.text,
+                            birthday: birthDayController.text,
+                            region: regionController.text,
+                            phoneNumber: phoneNumberController.text,
+                            password: passwordController.text,
+                            coordinates: ["0", "0"]);
+                        print(signupModel.toString());
+                        AuthServices().signupUser(signupModel);
+
+                        //  Navigator.pushNamed(context, OtpVerificationUi.routeName);
+                      })),
               const SizedBox(
                 height: 25,
               ),

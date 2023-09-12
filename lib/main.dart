@@ -1,11 +1,13 @@
 import 'package:base_project/View/LoginPages/WelcomePage/WelcomePageUi.dart';
 import 'package:base_project/features/setup/login/view/login_screen.dart';
+import 'package:base_project/providers/auth_providers/sign_up_provider.dart';
 import 'package:base_project/utils/extensions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -33,10 +35,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => LanguageProvider(),
         ),
+        ChangeNotifierProvider(create: (context) => SignUpProvider()),
       ],
       builder: (context, child) => ScreenUtilInit(
         designSize: const Size(428, 926),
-        builder: (context, child) => MaterialApp(
+        builder: (context, child) => GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Project Name',
           localizationsDelegates: const [
