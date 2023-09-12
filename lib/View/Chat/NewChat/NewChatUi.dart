@@ -1,6 +1,7 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
 import 'package:base_project/View/Chat/HomeChat/HomeChatUi.dart';
+import 'package:base_project/widgets/appbarContainer.dart';
 import 'package:base_project/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -22,27 +23,8 @@ class _NewChatUiState extends State<NewChatUi> {
     });
   }
 
-  AppBar _buildAppBar() {
-    return AppBar(
-      title: Text(
-        'NEW CHAT',
-        style: TextStyle(
-          color: SColors.color3,
-          fontSize: 12,
-          fontWeight: FontWeight.w700,
-        ),
-      ),
-      centerTitle: true,
-      leading: IconButton(
-        icon: const Icon(Icons.cancel,color: Colors.black,),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
-    );
-  }
 
-  Widget _buildTitleAndButton(String text, Function() onPress) {
+  Widget _buildTitleAndButton(String text, Function()? onPress) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Row(
@@ -107,11 +89,19 @@ class _NewChatUiState extends State<NewChatUi> {
           const SizedBox(width: 15),
           Text(
             labelText, style: TextStyle(
-              color: SColors.color3, fontSize: 14, fontWeight: FontWeight.w400,
+              color: SColors.color3, fontSize: 14, fontWeight: FontWeight.w500,
             ),
           )
         ],
       ),
+    );
+  }
+  Widget buildSelectOneMoreText(){
+    return  Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: Text(
+        'SELECT ONE OR MORE CONTACTS',
+        style: TextStyle(color: SColors.color3, fontSize: 14, fontWeight: FontWeight.w500,),),
     );
   }
 
@@ -119,12 +109,12 @@ class _NewChatUiState extends State<NewChatUi> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: SColors.color4,
-      appBar: _buildAppBar(),
       body: ListView(
         children: [
+         AppBarContainer(labelText: 'New Chat'),
           const SearchTextField(),
-          const SizedBox(height: 20),
-          _buildTitleAndButton('SELECT ONE OR MORE CONTACTS', () {}),
+          const SizedBox(height: 15,),
+         buildSelectOneMoreText(),
           _buildTitleAndButton('JOIN PRIVATE GROUP', () {}),
           const SizedBox(height: 30),
           _buildCustomRow(0, 'RAJMOHAN CHOZHIATH'),

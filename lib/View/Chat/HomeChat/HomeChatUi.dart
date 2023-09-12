@@ -1,5 +1,8 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
+import 'package:base_project/View/Chat/HomeChat/sub/Case2/Case2.dart';
+import 'package:base_project/View/Chat/HomeChat/sub/Case4/Case4.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:base_project/View/Chat/HomeChat/sub/Case1/Case1.dart';
@@ -66,10 +69,17 @@ class _HomeChatUiState extends State<HomeChatUi> {
       case 0:
         return const Case1();
       case 1:
+        return const Case2();
       case 2:
+        return Container();
       case 3:
+        return const Case4();
       default:
         return Container();
     }
   }
 }
+
+
+
+

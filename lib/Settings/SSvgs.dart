@@ -19,5 +19,16 @@ class SSvgs {
   static String get sv15 => "assets/Svgs/15.svg";
   static String get sv16 => "assets/Svgs/16.svg";
   static String get sv17 => "assets/Svgs/17.svg";
+  static String get sv18 => "assets/Svgs/18.svg";
+  static String get sv19 => "assets/Svgs/19.svg";
+  static String get sv20 => "assets/Svgs/20.svg";
+  static String get sv21 => "assets/Svgs/21.svg";
+  static String get sv22 => "assets/Svgs/22.svg";
+  static String get sv23 => "assets/Svgs/23.svg";
+  static String get sv24 => "assets/Svgs/24.svg";
+  static String get sv25 => "assets/Svgs/25.svg";
+  static String get sv26 => "assets/Svgs/26.svg";
+  static String get sv27 => "assets/Svgs/27.svg";
+  static String get sv28 => "assets/Svgs/28.svg";
 
 }

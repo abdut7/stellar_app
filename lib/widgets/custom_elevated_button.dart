@@ -27,7 +27,7 @@ class _CustomElevatedButtonState extends State<CustomElevatedButton> {
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: ElevatedButton(
         onPressed: widget.onPressed,
-        child: Text(widget.text, style: TextStyle(color: widget.textColor)),
+        child: Text(widget.text, style: TextStyle(color: widget.textColor,)),
         style: ElevatedButton.styleFrom(
           backgroundColor: widget.backgroundColor,
           foregroundColor: widget.foregroundColor,

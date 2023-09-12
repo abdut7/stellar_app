@@ -1,12 +1,12 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:flutter/material.dart';
 
-class LoginTextField extends StatefulWidget {
+class EditProfileTextField extends StatefulWidget {
   final TextInputType keyboardType;
   final Widget? suffixIcon;
   final String labelText;
 
-  const LoginTextField({
+  const EditProfileTextField({
     Key? key,
     required this.keyboardType,
     this.suffixIcon,
@@ -14,16 +14,16 @@ class LoginTextField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<LoginTextField> createState() => _LoginTextFieldState();
+  State<EditProfileTextField> createState() => _EditProfileTextFieldState();
 }
 
-class _LoginTextFieldState extends State<LoginTextField> {
+class _EditProfileTextFieldState extends State<EditProfileTextField> {
   InputDecoration buildInputDecoration() {
     return InputDecoration(
       border: InputBorder.none,
       contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
       filled: true,
-      fillColor: SColors.color4,
+      fillColor: SColors.color14,
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide.none,
         borderRadius: BorderRadius.circular(10),
@@ -48,7 +48,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
     return Container(
       child: TextFormField(
         keyboardType: widget.keyboardType,
-        cursorColor: SColors.color11,
+        cursorColor: SColors.color3,
         style: TextStyle(
           color: SColors.color3,
           fontSize: 16,
@@ -73,7 +73,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
               widget.labelText,
               style:  TextStyle(
                 color: SColors.color3,
-                fontSize: 11,
+                fontSize: 12,
                 fontWeight: FontWeight.w600,
               ),
             ),
