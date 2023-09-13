@@ -6,6 +6,7 @@ import 'package:base_project/widgets/custom_elevated_button.dart';
 import 'package:base_project/widgets/login_signup_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../controllers/api_controllers/login_with_phone_controller.dart';
 
@@ -47,7 +48,7 @@ class _LoginWithMobileUiState extends State<LoginWithMobileUi> {
 
   @override
   Widget build(BuildContext context) {
-    LoginWithPhoneNumberConteroller login =
+    LoginWithPhoneNumberConteroller loginController =
         Get.put(LoginWithPhoneNumberConteroller());
 
     return Scaffold(
@@ -98,11 +99,12 @@ class _LoginWithMobileUiState extends State<LoginWithMobileUi> {
               height: 75,
             ),
             CustomElevatedButton(
-                text: 'OTP Verification',
-                textColor: SColors.color12,
-                foregroundColor: SColors.color11,
-                backgroundColor: SColors.color4,
-                onPressed: () {}),
+              text: 'OTP Verification',
+              textColor: SColors.color12,
+              foregroundColor: SColors.color11,
+              backgroundColor: SColors.color4,
+              onPressed: () {},
+            ),
             const SizedBox(
               height: 75,
             ),
@@ -110,15 +112,22 @@ class _LoginWithMobileUiState extends State<LoginWithMobileUi> {
             const SizedBox(
               height: 10,
             ),
-            CustomElevatedButton(
-                text: 'Sign Up',
-                textColor: SColors.color4,
-                foregroundColor: SColors.color4,
-                backgroundColor: SColors.color12,
-                onPressed: () {
-                  AuthServices().loginService(phoneController.text);
-                  // Navigator.pushNamed(context, CreateNewChatUi.routeName);
-                }),
+            Obx(() => loginController.isLoading.value
+                ? Center(
+                    child: LoadingAnimationWidget.threeRotatingDots(
+                      color: Colors.white,
+                      size: 40,
+                    ),
+                  )
+                : CustomElevatedButton(
+                    text: 'Sign Up',
+                    textColor: SColors.color4,
+                    foregroundColor: SColors.color4,
+                    backgroundColor: SColors.color12,
+                    onPressed: () {
+                      AuthServices().loginService(phoneController.text);
+                      // Navigator.pushNamed(context, CreateNewChatUi.routeName);
+                    })),
             const SizedBox(
               height: 60,
             ),

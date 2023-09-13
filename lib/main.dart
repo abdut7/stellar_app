@@ -1,7 +1,6 @@
 import 'package:base_project/View/LoginPages/WelcomePage/WelcomePageUi.dart';
-import 'package:base_project/features/setup/login/view/login_screen.dart';
+import 'package:base_project/View/splash/spalash_screen.dart';
 import 'package:base_project/providers/auth_providers/sign_up_provider.dart';
-import 'package:base_project/utils/extensions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,9 +10,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'features/setup/splashscreen/view/splashscreen.dart';
 import 'providers/language_provider.dart';
-import 'utils/interceptors.dart';
 import 'utils/localization.dart';
 import 'utils/routes.dart';
 import 'utils/themes.dart';
@@ -40,6 +37,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) => ScreenUtilInit(
         designSize: const Size(428, 926),
         builder: (context, child) => GetMaterialApp(
+          home: SplashScreen(),
           debugShowCheckedModeBanner: false,
           title: 'Project Name',
           localizationsDelegates: const [
@@ -55,7 +53,7 @@ class MyApp extends StatelessWidget {
           theme: appLightTheme,
           locale: context.watch<LanguageProvider>().locale,
           //initialRoute: LoginScreen.routeName,
-          initialRoute: WelcomePageUi.routeName,
+          initialRoute: SplashScreen.routeName,
 
           // initialRoute: SplashScreen.routeName,
           onGenerateRoute: onAppGenerateRoute(),

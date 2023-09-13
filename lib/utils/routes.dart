@@ -15,13 +15,13 @@ import 'package:base_project/View/MoneyPayment/MoneyPaymentUi.dart';
 import 'package:base_project/View/QRScan/Scanning/ScanningUi.dart';
 import 'package:base_project/View/QRScan/TakeScan/TakeScanUi.dart';
 import 'package:base_project/features/setup/login/view/login_screen.dart';
-import 'package:base_project/features/setup/splashscreen/view/splashscreen.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
+
+import '../View/splash/spalash_screen.dart';
 
 Map<String, Widget Function(BuildContext context)> appRoutes() => {
       SplashScreen.routeName: (context) => const SplashScreen(),
-      LoginScreen.routeName:(context) => const LoginScreen(),
+      // LoginScreen.routeName:(context) => const LoginScreen(),
       WelcomePageUi.routeName:(context) => const WelcomePageUi(),
       SignUpOptionsUi.routeName:(context)=> const SignUpOptionsUi(),
       SignUpWithMobileUi.routeName:(context)=> const SignUpWithMobileUi(),
