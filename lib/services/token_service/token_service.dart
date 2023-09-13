@@ -20,7 +20,7 @@ Future<void> authenticateUser() async {
   if (token == null) {
     Get.off(() => const WelcomePageUi());
   } else {
-    Get.off(() => HomeChatUi());
+    Get.off(() => const HomeChatUi());
   }
 }
 

@@ -1,5 +1,6 @@
 import 'package:base_project/View/Chat/NewChat/NewChatUi.dart';
 import 'package:base_project/View/Contact/AddContact/AddContactUi.dart';
+import 'package:base_project/View/Contact/show_contacts_screen.dart';
 import 'package:base_project/View/MoneyPayment/MoneyPaymentUi.dart';
 import 'package:base_project/View/QRScan/Scanning/ScanningUi.dart';
 import 'package:base_project/View/QRScan/TakeScan/TakeScanUi.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
 import 'package:base_project/widgets/home_chat_listtile.dart';
+import 'package:get/get.dart';
 
 class Case1 extends StatefulWidget {
   const Case1({Key? key}) : super(key: key);
@@ -20,12 +22,15 @@ class Case1 extends StatefulWidget {
 }
 
 class _Case1State extends State<Case1> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: SColors.color4,
-      appBar: AppBar(backgroundColor: SColors.color12, toolbarHeight: 0, elevation: 0,),
+      appBar: AppBar(
+        backgroundColor: SColors.color12,
+        toolbarHeight: 0,
+        elevation: 0,
+      ),
       body: ListView(
         children: [
           Container(
@@ -37,7 +42,9 @@ class _Case1State extends State<Case1> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(25),
-                  child: SvgPicture.asset(SSvgs.sv07,),
+                  child: SvgPicture.asset(
+                    SSvgs.sv07,
+                  ),
                 ),
                 InkWell(
                   onTap: () {},
@@ -45,30 +52,47 @@ class _Case1State extends State<Case1> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                    itemBuilder: (BuildContext context) =>
+                        <PopupMenuEntry<String>>[
                       CustomPopupMenuItem(
                         value: 'new_chat',
-                        icon: SvgPicture.asset(SSvgs.sv17, width: 20, height: 20,),
+                        icon: SvgPicture.asset(
+                          SSvgs.sv17,
+                          width: 20,
+                          height: 20,
+                        ),
                         text: 'New Chat',
                       ),
                       CustomPopupMenuItem(
                         value: 'add_contact',
-                        icon: SvgPicture.asset(SSvgs.sv14, width: 20, height: 20,),
+                        icon: SvgPicture.asset(
+                          SSvgs.sv14,
+                          width: 20,
+                          height: 20,
+                        ),
                         text: 'Add Contact',
                       ),
                       CustomPopupMenuItem(
                         value: 'scan',
-                        icon: SvgPicture.asset(SSvgs.sv16, width: 20, height: 20,),
+                        icon: SvgPicture.asset(
+                          SSvgs.sv16,
+                          width: 20,
+                          height: 20,
+                        ),
                         text: 'Scan',
                       ),
                       CustomPopupMenuItem(
                         value: 'money',
-                        icon: SvgPicture.asset(SSvgs.sv15, width: 20, height: 20,),
+                        icon: SvgPicture.asset(
+                          SSvgs.sv15,
+                          width: 20,
+                          height: 20,
+                        ),
                         text: 'Money',
                       ),
                     ],
                     onSelected: (String choice) {
-                      switch(choice) {
+                      switch (choice) {
                         case 'new_chat':
                           Navigator.pushNamed(context, NewChatUi.routeName);
                           break;
@@ -79,15 +103,22 @@ class _Case1State extends State<Case1> {
                           Navigator.pushNamed(context, TakeScanUi.routeName);
                           break;
                         case 'money':
-                          Navigator.pushNamed(context, MoneyPaymentUi.routeName);
+                          Navigator.pushNamed(
+                              context, MoneyPaymentUi.routeName);
                           break;
                       }
                     },
-                    icon: SvgPicture.asset(SSvgs.sv08, width: 30, height: 30,),
+                    icon: SvgPicture.asset(
+                      SSvgs.sv08,
+                      width: 30,
+                      height: 30,
+                    ),
                     color: SColors.color11,
                   ),
-                ),],),),
-
+                ),
+              ],
+            ),
+          ),
           const SizedBox(height: 25),
           const SearchTextField(),
           const SizedBox(height: 25),
@@ -112,15 +143,19 @@ class _Case1State extends State<Case1> {
       floatingActionButton: Container(
         width: 70,
         height: 70,
-        decoration:  BoxDecoration(shape: BoxShape.circle, color: SColors.color13),
+        decoration:
+            BoxDecoration(shape: BoxShape.circle, color: SColors.color13),
         child: IconButton(
-          icon: const Icon(Icons.message, color: Colors.white, size: 40,),
-          onPressed: () {},
+          icon: const Icon(
+            Icons.message,
+            color: Colors.white,
+            size: 40,
+          ),
+          onPressed: () {
+            Get.to(() => ShowContactsScreen());
+          },
         ),
       ),
     );
   }
 }
-
-
-

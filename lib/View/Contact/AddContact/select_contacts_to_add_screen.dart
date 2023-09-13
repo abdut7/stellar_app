@@ -1,7 +1,9 @@
 import 'package:base_project/functions/get_contacts.dart';
+import 'package:base_project/services/api_services/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:base_project/controllers/contacts_controller.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../models/api_models/available_contacts_model.dart';
 
@@ -76,17 +78,28 @@ class _SelectContactsState extends State<SelectContacts> {
                             .availableContactsModel.value!.arrList.length),
         floatingActionButton: selectedId.isEmpty
             ? null
-            : Container(
-                width: Get.width * 0.5,
-                height: 70,
-                decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(20)),
-                child: const Center(
-                  child: Text(
-                    "Add Contacts",
-                    style: TextStyle(color: Colors.white),
-                  ),
+            : GestureDetector(
+                onTap: () {
+                  ContactServiceApi.createContact(selectedId);
+                },
+                child: Container(
+                  width: Get.width * 0.5,
+                  height: 70,
+                  decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Obx(() {
+                    return Center(
+                        child: contactsController.creatingContact.value
+                            ? LoadingAnimationWidget.threeRotatingDots(
+                                color: Colors.white,
+                                size: 40,
+                              )
+                            : Text(
+                                "Add Contacts",
+                                style: TextStyle(color: Colors.white),
+                              ));
+                  }),
                 ),
               ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
