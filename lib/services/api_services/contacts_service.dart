@@ -32,7 +32,6 @@ class ContactServiceApi {
 
       contactsController.isGettingFromServer(false);
     } catch (e) {
-      print(e);
       contactsController.isErrorOccured(true);
       contactsController.isGettingFromServer(false);
     }
