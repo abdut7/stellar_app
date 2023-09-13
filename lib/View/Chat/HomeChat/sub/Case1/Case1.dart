@@ -86,7 +86,8 @@ class _Case1State extends State<Case1> {
                     icon: SvgPicture.asset(SSvgs.sv08, width: 30, height: 30,),
                     color: SColors.color11,
                   ),
-                ),],),),
+                ),
+              ],),),
 
           const SizedBox(height: 25),
           const SearchTextField(),
