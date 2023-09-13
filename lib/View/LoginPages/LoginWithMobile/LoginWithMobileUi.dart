@@ -14,8 +14,11 @@ class LoginWithMobileUi extends StatefulWidget {
 }
 
 class _LoginWithMobileUiState extends State<LoginWithMobileUi> {
-  Widget _buildTitle(){
-    return  const Text(
+  TextEditingController regionController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+
+  Widget _buildTitle() {
+    return const Text(
       'Log in with Mobile ',
       textAlign: TextAlign.center,
       style: TextStyle(
@@ -25,8 +28,9 @@ class _LoginWithMobileUiState extends State<LoginWithMobileUi> {
       ),
     );
   }
-  Widget _buildSubTitles(String text){
-    return  Text(
+
+  Widget _buildSubTitles(String text) {
+    return Text(
       text,
       textAlign: TextAlign.center,
       style: TextStyle(
@@ -36,6 +40,7 @@ class _LoginWithMobileUiState extends State<LoginWithMobileUi> {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,44 +63,62 @@ class _LoginWithMobileUiState extends State<LoginWithMobileUi> {
         ),
         child: ListView(
           children: [
-            const SizedBox(height: 50,),
+            const SizedBox(
+              height: 50,
+            ),
             _buildTitle(),
-            const SizedBox(height: 70,),
-            const LoginTextField(
+            const SizedBox(
+              height: 70,
+            ),
+            LoginTextField(
+              controller: regionController,
               keyboardType: TextInputType.text,
               labelText: 'REGION',
-              suffixIcon: Icon(Icons.arrow_forward_ios,size: 20,),
+              suffixIcon: Icon(
+                Icons.arrow_forward_ios,
+                size: 20,
+              ),
             ),
-            const SizedBox(height: 15,),
-            const LoginTextField(
+            const SizedBox(
+              height: 15,
+            ),
+            LoginTextField(
+              controller: phoneController,
               keyboardType: TextInputType.number,
               labelText: 'PHONE',
             ),
-            const SizedBox(height: 75,),
+            const SizedBox(
+              height: 75,
+            ),
             CustomElevatedButton(
                 text: 'OTP Verification',
                 textColor: SColors.color12,
                 foregroundColor: SColors.color11,
                 backgroundColor: SColors.color4,
-                onPressed: (){}
+                onPressed: () {}),
+            const SizedBox(
+              height: 75,
             ),
-            const SizedBox(height: 75,),
             _buildSubTitles('Log in with Mobile '),
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             CustomElevatedButton(
                 text: 'Sign Up',
                 textColor: SColors.color4,
                 foregroundColor: SColors.color4,
                 backgroundColor: SColors.color12,
-                onPressed: (){
+                onPressed: () {
                   Navigator.pushNamed(context, CreateNewChatUi.routeName);
-                }
+                }),
+            const SizedBox(
+              height: 60,
             ),
-            const SizedBox(height: 60,),
-             _buildSubTitles('The above number is used for login verification',),
+            _buildSubTitles(
+              'The above number is used for login verification',
+            ),
           ],
         ),
-
       ),
     );
   }

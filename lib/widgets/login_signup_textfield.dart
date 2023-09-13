@@ -5,12 +5,16 @@ class LoginTextField extends StatefulWidget {
   final TextInputType keyboardType;
   final Widget? suffixIcon;
   final String labelText;
+  final TextEditingController controller;
+  final bool IsPassword;
 
   const LoginTextField({
     Key? key,
+    this.IsPassword = false,
     required this.keyboardType,
     this.suffixIcon,
     required this.labelText,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -44,9 +48,11 @@ class _LoginTextFieldState extends State<LoginTextField> {
     );
   }
 
-  Widget textField() {
+  Widget textField(TextEditingController controller) {
     return Container(
       child: TextFormField(
+        obscureText: widget.IsPassword,
+        controller: controller,
         keyboardType: widget.keyboardType,
         cursorColor: SColors.color11,
         style: TextStyle(
@@ -71,7 +77,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
             width: 70,
             child: Text(
               widget.labelText,
-              style:  TextStyle(
+              style: TextStyle(
                 color: SColors.color3,
                 fontSize: 11,
                 fontWeight: FontWeight.w600,
@@ -81,7 +87,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: textField(),
+              child: textField(widget.controller),
             ),
           ),
         ],
