@@ -1,3 +1,4 @@
+import 'package:base_project/View/Chat/HomeChat/HomeChatUi.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,7 +12,6 @@ Future<void> storeJwtToken(String jwtToken) async {
 
 Future<String?> getJwtToken() async {
   final prefs = await SharedPreferences.getInstance();
-  prefs.clear();
   return prefs.getString('jwt_token');
 }
 
@@ -20,7 +20,7 @@ Future<void> authenticateUser() async {
   if (token == null) {
     Get.off(() => const WelcomePageUi());
   } else {
-    Get.off(() => CreateNewChatUi());
+    Get.off(() => HomeChatUi());
   }
 }
 
