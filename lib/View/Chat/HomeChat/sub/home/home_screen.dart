@@ -7,6 +7,7 @@ import 'package:base_project/View/QRScan/TakeScan/TakeScanUi.dart';
 import 'package:base_project/widgets/custom_popup_menu_item.dart';
 import 'package:base_project/widgets/search_text_field.dart';
 import 'package:base_project/widgets/welcome_chat.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:base_project/Settings/SColors.dart';
@@ -14,14 +15,14 @@ import 'package:base_project/Settings/SSvgs.dart';
 import 'package:base_project/widgets/home_chat_listtile.dart';
 import 'package:get/get.dart';
 
-class Case1 extends StatefulWidget {
-  const Case1({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<Case1> createState() => _Case1State();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _Case1State extends State<Case1> {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +74,12 @@ class _Case1State extends State<Case1> {
                         ),
                         ontap: () {
                           // print("tapped");
-                          Get.to(() => const AddContactUi());
+                          // Navigator.push(
+                          //     context,
+                          //     CupertinoPageRoute(
+                          //         builder: (builder) => AddContactUi()));
+                          Get.to(() => const AddContactUi(),
+                              fullscreenDialog: false);
                         },
                         text: 'Add Contact',
                       ),

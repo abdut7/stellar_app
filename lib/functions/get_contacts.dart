@@ -27,7 +27,11 @@ Future<void> getContacts() async {
     }
   }
 
-  contactsController.contactList(contactPhoneNumber.toList());
+  contactsController.contactList(
+    contactPhoneNumber.toList(),
+  );
   contactsController.isFetchingContacts(false);
-  ContactServiceApi.contactService(contactPhoneNumber.toList());
+  ContactServiceApi.contactService(
+    contactPhoneNumber.toList(),
+  );
 }

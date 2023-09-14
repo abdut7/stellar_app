@@ -1,4 +1,6 @@
+import 'package:base_project/View/Chat/chat_screen/chat_screen.dart';
 import 'package:base_project/View/LoginPages/WelcomePage/WelcomePageUi.dart';
+import 'package:base_project/View/base_bottom_nav/bottom_nav.dart';
 import 'package:base_project/View/splash/spalash_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
     );
     return GetMaterialApp(
-      home: SplashScreen(),
+      home: ChatScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

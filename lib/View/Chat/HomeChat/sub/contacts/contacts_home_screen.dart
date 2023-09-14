@@ -1,5 +1,7 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
+import 'package:base_project/View/Chat/HomeChat/HomeChatUi.dart';
+import 'package:base_project/View/Chat/chat_screen/chat_screen.dart';
 import 'package:base_project/widgets/appbarContainer.dart';
 import 'package:base_project/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
@@ -10,14 +12,14 @@ import '../../../../../controllers/contacts_controller.dart';
 import '../../../../../models/api_models/get_contacts_model.dart';
 import '../../../../../services/api_services/contacts_service.dart';
 
-class Case2 extends StatefulWidget {
-  const Case2({Key? key}) : super(key: key);
+class ContactsHomeScreen extends StatefulWidget {
+  const ContactsHomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<Case2> createState() => _Case2State();
+  State<ContactsHomeScreen> createState() => _ContactsHomeScreenState();
 }
 
-class _Case2State extends State<Case2> {
+class _ContactsHomeScreenState extends State<ContactsHomeScreen> {
   void initState() {
     ContactServiceApi.getContacts();
     super.initState();
@@ -82,7 +84,9 @@ class _Case2State extends State<Case2> {
                 ),
                 customTile(
                   'Stellar Chat Team',
-                  () {},
+                  () {
+                    
+                  },
                   SSvgs.sv23,
                 ),
                 Padding(
@@ -121,6 +125,11 @@ class _Case2State extends State<Case2> {
                                           .arrList[index]
                                           .objUser[0];
                                       return ListTile(
+                                        onTap: () {
+                                          Get.to(() => ChatScreen(
+                                                // user: data,
+                                              ));
+                                        },
                                         leading: CircleAvatar(
                                           radius: 50,
                                           backgroundImage:
