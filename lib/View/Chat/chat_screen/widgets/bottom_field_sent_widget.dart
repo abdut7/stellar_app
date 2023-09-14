@@ -28,9 +28,10 @@ class ChatBottomFieldSent extends StatelessWidget {
               ),
               child: Row(
                 children: <Widget>[
-                  const Expanded(
+                  Expanded(
                     child: TextField(
-                      decoration: InputDecoration(
+                      controller: controller,
+                      decoration: const InputDecoration(
                         hintText: 'Start typing...',
                         border: InputBorder.none,
                       ),
