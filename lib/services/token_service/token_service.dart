@@ -2,7 +2,6 @@ import 'package:base_project/View/Chat/HomeChat/HomeChatUi.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../View/Chat/CreateNewChat/CreateNewChatUi.dart';
 import '../../View/LoginPages/WelcomePage/WelcomePageUi.dart';
 
 Future<void> storeJwtToken(String jwtToken) async {

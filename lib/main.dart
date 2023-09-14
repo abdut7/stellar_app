@@ -1,19 +1,11 @@
 import 'package:base_project/View/LoginPages/WelcomePage/WelcomePageUi.dart';
 import 'package:base_project/View/splash/spalash_screen.dart';
-import 'package:base_project/providers/auth_providers/sign_up_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import 'providers/language_provider.dart';
-import 'utils/localization.dart';
-import 'utils/routes.dart';
-import 'utils/themes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,49 +19,9 @@ class MyApp extends StatelessWidget {
     SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
     );
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => LanguageProvider(),
-        ),
-        ChangeNotifierProvider(create: (context) => SignUpProvider()),
-      ],
-      builder: (context, child) => ScreenUtilInit(
-        designSize: const Size(428, 926),
-        builder: (context, child) => GetMaterialApp(
-          home: SplashScreen(),
-          debugShowCheckedModeBanner: false,
-          title: 'Project Name',
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: const [
-            Locale('en', ''),
-            Locale('ja', ''),
-          ],
-          theme: appLightTheme,
-          locale: context.watch<LanguageProvider>().locale,
-          //initialRoute: LoginScreen.routeName,
-          initialRoute: SplashScreen.routeName,
-
-          // initialRoute: SplashScreen.routeName,
-          onGenerateRoute: onAppGenerateRoute(),
-          routes: appRoutes(),
-          builder: (context, child) {
-            LanguageProvider.initContext(context);
-            Localization.init(context);
-
-            // if (kDebugMode) {
-            //   StackTrace.current.toString().log('', true);
-            //   child = AppStackInterceptorBuilder(child: child!);
-            // }
-            return child!;
-          },
-        ),
-      ),
+    return GetMaterialApp(
+      home: SplashScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

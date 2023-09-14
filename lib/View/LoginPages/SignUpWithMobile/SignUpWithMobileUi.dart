@@ -5,7 +5,6 @@ import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SImages.dart';
 import 'package:base_project/functions/get_current_location.dart';
 import 'package:base_project/models/api_models/signup_model.dart';
-import 'package:base_project/providers/auth_providers/sign_up_provider.dart';
 import 'package:base_project/services/api_services/auth_services.dart';
 import 'package:base_project/widgets/custom_elevated_button.dart';
 import 'package:base_project/widgets/login_signup_textfield.dart';

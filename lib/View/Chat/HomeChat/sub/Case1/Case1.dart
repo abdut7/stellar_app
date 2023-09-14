@@ -61,6 +61,7 @@ class _Case1State extends State<Case1> {
                           width: 20,
                           height: 20,
                         ),
+                        ontap: () {},
                         text: 'New Chat',
                       ),
                       CustomPopupMenuItem(
@@ -70,6 +71,10 @@ class _Case1State extends State<Case1> {
                           width: 20,
                           height: 20,
                         ),
+                        ontap: () {
+                          // print("tapped");
+                          Get.to(() => const AddContactUi());
+                        },
                         text: 'Add Contact',
                       ),
                       CustomPopupMenuItem(
@@ -79,6 +84,7 @@ class _Case1State extends State<Case1> {
                           width: 20,
                           height: 20,
                         ),
+                        ontap: () {},
                         text: 'Scan',
                       ),
                       CustomPopupMenuItem(
@@ -88,6 +94,7 @@ class _Case1State extends State<Case1> {
                           width: 20,
                           height: 20,
                         ),
+                        ontap: () {},
                         text: 'Money',
                       ),
                     ],
@@ -95,9 +102,6 @@ class _Case1State extends State<Case1> {
                       switch (choice) {
                         case 'new_chat':
                           Navigator.pushNamed(context, NewChatUi.routeName);
-                          break;
-                        case 'add_contact':
-                          Navigator.pushNamed(context, AddContactUi.routeName);
                           break;
                         case 'scan':
                           Navigator.pushNamed(context, TakeScanUi.routeName);
@@ -152,7 +156,7 @@ class _Case1State extends State<Case1> {
             size: 40,
           ),
           onPressed: () {
-            Get.to(() => ShowContactsScreen());
+            Get.to(() => const ShowContactsScreen());
           },
         ),
       ),
