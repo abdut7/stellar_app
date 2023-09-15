@@ -1,8 +1,7 @@
 import 'package:base_project/View/Chat/NewChat/NewChatUi.dart';
 import 'package:base_project/View/Contact/AddContact/AddContactUi.dart';
-import 'package:base_project/View/Contact/show_contacts_screen.dart';
+import 'package:base_project/View/Contact/show_contact/show_contacts_screen.dart';
 import 'package:base_project/View/MoneyPayment/MoneyPaymentUi.dart';
-import 'package:base_project/View/QRScan/Scanning/ScanningUi.dart';
 import 'package:base_project/View/QRScan/TakeScan/TakeScanUi.dart';
 import 'package:base_project/widgets/custom_popup_menu_item.dart';
 import 'package:base_project/widgets/search_text_field.dart';

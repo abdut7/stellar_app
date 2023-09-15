@@ -12,7 +12,6 @@ class ContactServiceApi {
   static Future<void> contactService(List<String> contacts) async {
     ContactsController contactsController = Get.find();
     contactsController.isGettingFromServer(true);
-    print(contacts.contains('+91 80787 77004'));
     Dio dio = Dio();
     String url = ApiRoutes.baseUrl + ApiRoutes.getStellarContacts;
     Map<String, dynamic> header = await getHeader();
@@ -25,7 +24,6 @@ class ContactServiceApi {
       );
       AvailableContactsModel availableContactsModel =
           AvailableContactsModel.fromJson(res.data);
-      print(res.data);
 
       if (availableContactsModel.statusCode == 200) {
         contactsController.availableContactsModel(availableContactsModel);
@@ -36,14 +34,12 @@ class ContactServiceApi {
 
       contactsController.isGettingFromServer(false);
     } catch (e) {
-      print(e);
       contactsController.isErrorOccured(true);
       contactsController.isGettingFromServer(false);
     }
   }
 
   static Future<void> createContact(List<String> selectedId) async {
-    print(selectedId);
     ContactsController contactsController = Get.find();
     contactsController.errorCreatingContact(false);
     contactsController.creatingContactDone(false);
@@ -63,7 +59,7 @@ class ContactServiceApi {
         showCustomSnackbar(
             title: "Contacs added",
             message: "Successfully added ${selectedId.length} contacts");
-        Get.off(() => HomeChatUi());
+        Get.off(() => const HomeChatUi());
       }
     } catch (e) {
       contactsController.errorCreatingContact(true);
@@ -80,6 +76,7 @@ class ContactServiceApi {
     Map<String, dynamic> header = await getHeader();
     try {
       Response res = await dio.post(url, options: Options(headers: header));
+      print(res);
       GetContactsModel model = GetContactsModel.fromJson(res.data);
       contactsController.getContactsModel(null);
       contactsController.getContactsModel(model);

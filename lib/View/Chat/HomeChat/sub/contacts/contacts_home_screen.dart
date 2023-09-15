@@ -72,25 +72,23 @@ class _ContactsHomeScreenState extends State<ContactsHomeScreen> {
                   () {},
                   SSvgs.sv20,
                 ),
-                customTile(
-                  'Tags',
-                  () {},
-                  SSvgs.sv21,
-                ),
-                customTile(
-                  'File Transfer',
-                  () {},
-                  SSvgs.sv22,
-                ),
+                // customTile(
+                //   'Tags',
+                //   () {},
+                //   SSvgs.sv21,
+                // ),
+                // customTile(
+                //   'File Transfer',
+                //   () {},
+                //   SSvgs.sv22,
+                // ),
                 customTile(
                   'Stellar Chat Team',
-                  () {
-                    
-                  },
+                  () {},
                   SSvgs.sv23,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Text(
                     "Your Contacts",
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -127,7 +125,7 @@ class _ContactsHomeScreenState extends State<ContactsHomeScreen> {
                                       return ListTile(
                                         onTap: () {
                                           Get.to(() => ChatScreen(
-                                                // user: data,
+                                                user: data,
                                               ));
                                         },
                                         leading: CircleAvatar(

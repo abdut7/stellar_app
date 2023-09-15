@@ -5,4 +5,5 @@ class ApiRoutes {
   static String getStellarContacts = "/get_user";
   static String createContact = "/create_contact";
   static String getContacts = "/get_contact";
+  static String createGroup = "/create_group";
 }

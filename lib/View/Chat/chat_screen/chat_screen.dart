@@ -4,9 +4,11 @@ import 'package:base_project/View/Chat/chat_screen/widgets/chat_bubble.dart';
 import 'package:flutter/material.dart';
 
 import 'model/message_model.dart';
+import '../../../../../models/api_models/get_contacts_model.dart';
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({super.key});
+  final ObjUser user;
+  const ChatScreen({super.key, required this.user});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -21,9 +23,9 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const ChatAppBarTitleWidget(
+        title: ChatAppBarTitleWidget(
           isOnline: false,
-          name: "Joel",
+          name: widget.user.strFullName,
         ),
         actions: <Widget>[
           IconButton(
