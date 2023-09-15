@@ -16,6 +16,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controllers/api_controllers/signup_controllers.dart';
+import '../../../functions/image_to_base.dart';
 import '../../../functions/location_permission.dart';
 import '../../../functions/pick_image.dart';
 import '../OtpVerification/OtpVerificationUi.dart';
@@ -232,10 +233,9 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
                         onPressed: () async {
                           signupController.isLoading(true);
                           String base64String = '';
+
                           if (pickedImage != null) {
-                            List<int> imageBytes =
-                                await File(pickedImage!.path).readAsBytes();
-                            base64String = base64Encode(imageBytes);
+                            base64String = await imageToBase(pickedImage!.path);
                           }
                           Position pos = await getCurrentLocation();
 

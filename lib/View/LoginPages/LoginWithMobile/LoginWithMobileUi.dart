@@ -1,6 +1,5 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SImages.dart';
-import 'package:base_project/View/Chat/CreateNewChat/CreateNewChatUi.dart';
 import 'package:base_project/services/api_services/auth_services.dart';
 import 'package:base_project/widgets/custom_elevated_button.dart';
 import 'package:base_project/widgets/login_signup_textfield.dart';

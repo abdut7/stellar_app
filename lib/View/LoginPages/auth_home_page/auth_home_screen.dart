@@ -1,8 +1,12 @@
+import 'package:base_project/View/LoginPages/LoginWithMobile/login_with_mobile_screen.dart';
+import 'package:base_project/View/LoginPages/auth_home_page/show_signup_model_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../LoginWithMobile/LoginWithMobileUi.dart';
-import '../SignUpOptions/SignUpOptionsUi.dart';
+import '../../../Settings/SColors.dart';
+import '../../../Settings/SSvgs.dart';
+import '../../../widgets/custom_signup_option_buttons.dart';
+import '../SignUpWithMobile/SignUpWithMobileUi.dart';
 
 class AuthHomeScreen extends StatelessWidget {
   const AuthHomeScreen({super.key});
@@ -25,7 +29,7 @@ class AuthHomeScreen extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Get.to(() => const LoginWithMobileUi());
+              Get.to(() => LoginWithMobileNumberScreen());
             },
             child: Container(
               width: Get.width * 0.4,
@@ -41,7 +45,7 @@ class AuthHomeScreen extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Get.to(() => const SignUpOptionsUi());
+              showSignupModelBottomSheet(context);
             },
             child: Container(
               width: Get.width * 0.4,

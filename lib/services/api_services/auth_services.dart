@@ -72,8 +72,10 @@ class AuthServices {
     Dio dio = Dio();
     Map<String, dynamic> body = {"strMobileNo": phoneNumber};
     String path = ApiRoutes.baseUrl + ApiRoutes.phoneNumberLogin;
+
     try {
       Response res = await dio.post(path, data: body);
+      print(res);
       if (res.statusCode == 200) {
         LoginSuccessModel model = LoginSuccessModel.fromJson(res.data);
         login.loginModel(model);
@@ -83,7 +85,8 @@ class AuthServices {
         );
       }
       login.isLoading(false);
-    } on Exception {
+    } catch (e) {
+      print(e);
       showCustomSnackbar(
           title: "Error", message: "An error occured while logging in");
       login.isLoading(false);
