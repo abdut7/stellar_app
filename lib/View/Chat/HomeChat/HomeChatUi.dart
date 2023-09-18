@@ -1,14 +1,15 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
-import 'package:base_project/View/Chat/HomeChat/sub/Case2/Case2.dart';
+import 'package:base_project/View/Chat/HomeChat/sub/contacts/contacts_home_screen.dart';
 import 'package:base_project/View/Chat/HomeChat/sub/Case4/Case4.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:base_project/View/Chat/HomeChat/sub/Case1/Case1.dart';
+import 'package:base_project/View/Chat/HomeChat/sub/home/home_screen.dart';
 
 class HomeChatUi extends StatefulWidget {
   static const routeName = '/HomeChatUi';
+
+  const HomeChatUi({super.key});
   @override
   _HomeChatUiState createState() => _HomeChatUiState();
 }
@@ -26,11 +27,16 @@ class _HomeChatUiState extends State<HomeChatUi> {
     return Container(
       padding: const EdgeInsets.all(15.0),
       decoration: _currentIndex == index
-          ? BoxDecoration(shape: BoxShape.circle, color: SColors.color12,)
+          ? BoxDecoration(
+              shape: BoxShape.circle,
+              color: SColors.color12,
+            )
           : null,
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: [SvgPicture.asset(svgAssetPath),],
+        children: [
+          SvgPicture.asset(svgAssetPath),
+        ],
       ),
     );
   }
@@ -67,9 +73,9 @@ class _HomeChatUiState extends State<HomeChatUi> {
   Widget _getBody() {
     switch (_currentIndex) {
       case 0:
-        return const Case1();
+        return const HomeScreen();
       case 1:
-        return const Case2();
+        return const ContactsHomeScreen();
       case 2:
         return Container();
       case 3:
@@ -79,7 +85,3 @@ class _HomeChatUiState extends State<HomeChatUi> {
     }
   }
 }
-
-
-
-

@@ -9,7 +9,6 @@ void showCustomSnackbar({
     title,
     message,
     duration: duration,
-
     borderRadius: 10, // Adjust the border radius
     isDismissible: true, // Snackbar can be dismissed by tapping it
   );

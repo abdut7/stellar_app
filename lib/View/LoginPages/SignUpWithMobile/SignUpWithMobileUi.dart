@@ -5,7 +5,6 @@ import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SImages.dart';
 import 'package:base_project/functions/get_current_location.dart';
 import 'package:base_project/models/api_models/signup_model.dart';
-import 'package:base_project/providers/auth_providers/sign_up_provider.dart';
 import 'package:base_project/services/api_services/auth_services.dart';
 import 'package:base_project/widgets/custom_elevated_button.dart';
 import 'package:base_project/widgets/login_signup_textfield.dart';
@@ -17,6 +16,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controllers/api_controllers/signup_controllers.dart';
+import '../../../functions/image_to_base.dart';
 import '../../../functions/location_permission.dart';
 import '../../../functions/pick_image.dart';
 import '../OtpVerification/OtpVerificationUi.dart';
@@ -233,10 +233,9 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
                         onPressed: () async {
                           signupController.isLoading(true);
                           String base64String = '';
+
                           if (pickedImage != null) {
-                            List<int> imageBytes =
-                                await File(pickedImage!.path).readAsBytes();
-                            base64String = base64Encode(imageBytes);
+                            base64String = await imageToBase(pickedImage!.path);
                           }
                           Position pos = await getCurrentLocation();
 

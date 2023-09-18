@@ -12,16 +12,26 @@ Future<void> getContacts() async {
   if (await Permission.contacts.request().isGranted) {
     contacts = await ContactsService.getContacts();
   }
-  List<String> contactPhoneNumber = [];
+  Set<String> contactPhoneNumber = {};
   for (Contact contact in contacts) {
     if (contact.phones != null) {
       for (Item phone in contact.phones!) {
-        contactPhoneNumber.add(phone.value ?? '');
+        if (phone.value != null) {
+          String filterdVal = phone.value!.replaceAll(RegExp(r'[^\d]'), '');
+          if (filterdVal.length == 12) {
+            filterdVal = filterdVal.substring(2);
+          }
+          contactPhoneNumber.add(filterdVal);
+        }
       }
     }
   }
 
-  contactsController.contactList(contactPhoneNumber);
+  contactsController.contactList(
+    contactPhoneNumber.toList(),
+  );
   contactsController.isFetchingContacts(false);
-  ContactServiceApi.contactService(contactPhoneNumber);
+  ContactServiceApi.contactService(
+    contactPhoneNumber.toList(),
+  );
 }

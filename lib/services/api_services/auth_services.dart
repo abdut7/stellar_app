@@ -1,16 +1,14 @@
+import 'package:base_project/View/Chat/HomeChat/HomeChatUi.dart';
 import 'package:base_project/controllers/api_controllers/login_with_phone_controller.dart';
 import 'package:base_project/controllers/api_controllers/signup_controllers.dart';
 import 'package:base_project/functions/show_snackbar.dart';
 import 'package:base_project/models/api_models/login_success_model.dart';
 import 'package:base_project/models/api_models/signup_model.dart';
-import 'package:base_project/providers/auth_providers/sign_up_provider.dart';
 import 'package:base_project/services/api_routes/api_routes.dart';
 import 'package:base_project/services/token_service/token_service.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response;
 
-import '../../View/Chat/CreateNewChat/CreateNewChatUi.dart';
 import '../../View/LoginPages/OtpVerification/OtpVerificationUi.dart';
 
 class AuthServices {
@@ -74,18 +72,21 @@ class AuthServices {
     Dio dio = Dio();
     Map<String, dynamic> body = {"strMobileNo": phoneNumber};
     String path = ApiRoutes.baseUrl + ApiRoutes.phoneNumberLogin;
+
     try {
       Response res = await dio.post(path, data: body);
+      print(res);
       if (res.statusCode == 200) {
         LoginSuccessModel model = LoginSuccessModel.fromJson(res.data);
         login.loginModel(model);
         storeJwtToken(model.strToken);
         Get.off(
-          () => const CreateNewChatUi(),
+          () => HomeChatUi(),
         );
       }
       login.isLoading(false);
-    } on Exception {
+    } catch (e) {
+      print(e);
       showCustomSnackbar(
           title: "Error", message: "An error occured while logging in");
       login.isLoading(false);
