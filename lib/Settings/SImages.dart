@@ -6,5 +6,6 @@ class SImages {
   static String get image3 => "assets/Images/03.png";
   static String get image4 => "assets/Images/04.png";
   static String get image5 => "assets/Images/05.png";
+  static String get vectorBackground => "assets/Images/vector_background.png";
 
 }
