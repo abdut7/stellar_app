@@ -58,7 +58,7 @@ class _ConfirmGroupDetailsScreenState extends State<ConfirmGroupDetailsScreen> {
                         const SizedBox(
                           width: 10,
                         ),
-                        Text(widget.userModelList[index].strName)
+                        Text(widget.userModelList[index].strFullName)
                       ],
                     );
                   },
