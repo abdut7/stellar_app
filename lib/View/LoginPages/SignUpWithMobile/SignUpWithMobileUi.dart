@@ -172,9 +172,7 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20,),
               LoginTextField(
                   controller: usernameController,
                   keyboardType: TextInputType.text,
