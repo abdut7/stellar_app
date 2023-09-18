@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 class CustomPopupMenuItem<T> extends PopupMenuItem<T> {
-  final Widget icon;
+  final Widget? icon;
   final String text;
 
   CustomPopupMenuItem({
     required T value,
-    required this.icon,
+    this.icon,
     required this.text,
   }) : super(
     value: value,
