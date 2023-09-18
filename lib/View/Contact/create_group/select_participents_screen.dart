@@ -72,22 +72,25 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
                             itemBuilder: (context, index) {
                               ObjUser user = contactsController.getContactsModel
                                   .value!.arrList[index].objUser[0];
+                              ArrList arrList = contactsController
+                                  .getContactsModel.value!.arrList[index];
 
                               return GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    if (selectedUsers.contains(user.id)) {
-                                      selectedUsers.remove(user.id);
+                                    if (selectedUsers.contains(arrList.id)) {
+                                      selectedUsers.remove(arrList.id);
                                       selectedUserModel.remove(user);
                                     } else {
-                                      selectedUsers.add(user.id);
+                                      selectedUsers.add(arrList.id);
                                       selectedUserModel.add(user);
                                     }
                                   });
                                 },
                                 child: AddUserGroupTileWidget(
                                     user: user,
-                                    isSelcted: selectedUsers.contains(user.id)),
+                                    isSelcted:
+                                        selectedUsers.contains(arrList.id)),
                               );
                             },
                             separatorBuilder: (context, index) =>

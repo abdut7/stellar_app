@@ -1,4 +1,4 @@
-import 'package:base_project/View/Chat/HomeChat/HomeChatUi.dart';
+import 'package:base_project/View/base_bottom_nav/bottom_nav.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,7 +19,7 @@ Future<void> authenticateUser() async {
   if (token == null) {
     Get.off(() => const AuthHomeScreen());
   } else {
-    Get.off(() => const HomeChatUi());
+    Get.off(() => const BaseBottomNavigation());
   }
 }
 

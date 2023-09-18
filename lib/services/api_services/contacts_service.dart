@@ -78,6 +78,7 @@ class ContactServiceApi {
       Response res = await dio.post(url, options: Options(headers: header));
       print(res);
       GetContactsModel model = GetContactsModel.fromJson(res.data);
+      print(model.toString());
       contactsController.getContactsModel(null);
       contactsController.getContactsModel(model);
       contactsController.isGetContactLoading(false);
