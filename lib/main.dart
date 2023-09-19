@@ -1,4 +1,5 @@
 import 'package:base_project/View/LoginPages/SignUpWithMobile/sign_up_with_mobile_screen.dart';
+import 'package:base_project/View/help/help_article_screen.dart';
 import 'package:base_project/View/splash/spalash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
     );
-    return  const GetMaterialApp(
+    return  const  GetMaterialApp(
       home: SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
