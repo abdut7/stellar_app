@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:base_project/Settings/SColors.dart';
+import 'package:base_project/controllers/api_controllers/signup_controllers.dart';
 import 'package:base_project/functions/location_permission.dart';
 import 'package:base_project/services/api_services/auth_services.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +19,7 @@ class SignUpWithMobileScreen extends StatefulWidget {
 }
 
 class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
+  SignupController signupController = Get.put(SignupController());
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController regionController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
@@ -93,12 +97,30 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                                 style: TextStyle(color: Color.fromRGBO(0, 51, 142, 1), fontSize: 26, fontWeight: FontWeight.w800,),),
                               const SizedBox(width: 10),
                               GestureDetector(
-                                  onTap: () async {},
-                                  child: Image.asset(
+                                  onTap: () async {
+                                    pickedImage =
+                                    await picker.pickImage(source: ImageSource.gallery);
+                                    setState(() {});
+                                  },
+                                  child:  pickedImage == null?
+                                  Image.asset(
                                     SImages.image2,
                                     height: 85,
                                     width: 85,
-                                  ),),],),
+                                  ): CircleAvatar(
+                                    radius: 40,
+                                    child: ClipOval(
+                                      child: Image.file(
+                                        File(pickedImage!.path),
+                                        width: 80,
+                                        height: 80,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                              ),
+                            ],
+                          ),
                           const SizedBox(height: 20),
                           LoginTextField(
                             controller: usernameController,
@@ -130,6 +152,8 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                           const SizedBox(
                             height: 30,
                           ),
+
+
                           Center(
                             child: GestureDetector(
                               onTap: () {
@@ -148,6 +172,8 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                                         color: Color.fromRGBO(159, 196, 232, 1)),
                                   ),),),),
                           ),],),),),
+
+
                   Container(
                       height: 70,
                       width: Get.width * 0.8,
