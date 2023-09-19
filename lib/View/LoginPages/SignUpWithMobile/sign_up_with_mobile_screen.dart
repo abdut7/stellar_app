@@ -76,7 +76,11 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                         color: const Color.fromRGBO(153, 199, 255, 1),
                         boxShadow: const [
                           BoxShadow(
-                            color: Colors.black, offset: Offset(0.0, 0.0), blurRadius: 0.0, spreadRadius: 0.0,), //BoxS
+                            color: Colors.black,
+                            offset: Offset(0.0, 0.0),
+                            blurRadius: 0.0,
+                            spreadRadius: 0.0,
+                          ), //BoxS
                         ],
                         borderRadius: BorderRadius.circular(20)),
                     child: Padding(
@@ -84,21 +88,35 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(height: 20,),
+                          const SizedBox(
+                            height: 20,
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               const Text(
                                 "Sign Up\nwith Mobile",
-                                style: TextStyle(color: Color.fromRGBO(0, 51, 142, 1), fontSize: 26, fontWeight: FontWeight.w800,),),
+                                style: TextStyle(
+                                  color: Color.fromRGBO(0, 51, 142, 1),
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
                               const SizedBox(width: 10),
                               GestureDetector(
-                                  onTap: () async {},
-                                  child: Image.asset(
-                                    SImages.image2,
-                                    height: 85,
-                                    width: 85,
-                                  ),),],),
+                                onTap: () async {
+                                  pickedImage = await picker.pickImage(
+                                      source: ImageSource.gallery);
+                                  setState(() {});
+                                },
+                                child: Image.asset(
+                                  SImages.image2,
+                                  height: 85,
+                                  width: 85,
+                                ),
+                              ),
+                            ],
+                          ),
                           const SizedBox(height: 20),
                           LoginTextField(
                             controller: usernameController,
@@ -133,7 +151,8 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                           Center(
                             child: GestureDetector(
                               onTap: () {
-                                AuthServices().loginService(phoneNumberController.text);
+                                AuthServices()
+                                    .loginService(phoneNumberController.text);
                               },
                               child: Container(
                                 width: Get.width * 0.7,
@@ -144,37 +163,59 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                                 child: const Center(
                                   child: Text(
                                     "OTP Verification",
-                                    style: TextStyle(fontSize: 14,
-                                        color: Color.fromRGBO(159, 196, 232, 1)),
-                                  ),),),),
-                          ),],),),),
-                  Container(
-                      height: 70,
-                      width: Get.width * 0.8,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.vertical(
-                          bottom: Radius.circular(20),
-                        ),
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          //showSignupModelBottomSheet(context);
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Have a account?',
-                              style: TextStyle(color: SColors.color9, fontSize: 12, fontWeight: FontWeight.w500,
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        color:
+                                            Color.fromRGBO(159, 196, 232, 1)),
+                                  ),
+                                ),
                               ),
                             ),
-                            Text(
-                              "Sign In", style: TextStyle(
-                                  color: SColors.color3, fontWeight: FontWeight.bold),
-                            ),],),)),],
-              ),),),
-        ),),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 70,
+                    width: Get.width * 0.8,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.vertical(
+                        bottom: Radius.circular(20),
+                      ),
+                    ),
+                    child: GestureDetector(
+                      onTap: () {
+                        //showSignupModelBottomSheet(context);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Have a account?',
+                            style: TextStyle(
+                              color: SColors.color9,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Text(
+                            "Sign In",
+                            style: TextStyle(
+                                color: SColors.color3,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

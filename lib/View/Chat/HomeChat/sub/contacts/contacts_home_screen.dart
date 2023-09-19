@@ -2,6 +2,7 @@ import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
 import 'package:base_project/View/Chat/HomeChat/HomeChatUi.dart';
 import 'package:base_project/View/Chat/chat_screen/chat_screen.dart';
+import 'package:base_project/services/token_service/token_service.dart';
 import 'package:base_project/widgets/appbarContainer.dart';
 import 'package:base_project/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
@@ -123,9 +124,11 @@ class _ContactsHomeScreenState extends State<ContactsHomeScreen> {
                                           .arrList[index]
                                           .objUser[0];
                                       return ListTile(
-                                        onTap: () {
+                                        onTap: () async {
+                                          String? token = await getJwtToken();
                                           Get.to(() => ChatScreen(
                                                 user: data,
+                                                token: token!,
                                               ));
                                         },
                                         leading: CircleAvatar(

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../controllers/contacts_controller.dart';
 import '../../../models/api_models/get_contacts_model.dart';
+import '../../../services/token_service/token_service.dart';
 import '../../Chat/chat_screen/chat_screen.dart';
 
 class ListContactsWidget extends StatelessWidget {
@@ -20,28 +21,24 @@ class ListContactsWidget extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           ObjUser data = contactsController
-              .getContactsModel
-              .value!
-              .arrList[index]
-              .objUser[0];
+              .getContactsModel.value!.arrList[index].objUser[0];
           return ListTile(
-            onTap: () {
+            onTap: () async {
+              String? token = await getJwtToken();
               Get.to(() => ChatScreen(
                     user: data,
+                    token: token!,
                   ));
             },
             leading: CircleAvatar(
               radius: 50,
-              backgroundImage:
-                  NetworkImage(data.strProfileUrl),
+              backgroundImage: NetworkImage(data.strProfileUrl),
             ),
             title: Text(data.strFullName),
             subtitle: Text(data.strMobileNo),
           );
         },
-        separatorBuilder: (context, index) =>
-            const Divider(),
-        itemCount: contactsController
-            .getContactsModel.value!.arrList.length);
+        separatorBuilder: (context, index) => const Divider(),
+        itemCount: contactsController.getContactsModel.value!.arrList.length);
   }
 }

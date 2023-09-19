@@ -22,6 +22,7 @@ class ContactServiceApi {
         data: body,
         options: Options(headers: header),
       );
+      print(res);
       AvailableContactsModel availableContactsModel =
           AvailableContactsModel.fromJson(res.data);
 
@@ -34,6 +35,7 @@ class ContactServiceApi {
 
       contactsController.isGettingFromServer(false);
     } catch (e) {
+      print(e);
       contactsController.isErrorOccured(true);
       contactsController.isGettingFromServer(false);
     }

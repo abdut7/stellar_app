@@ -77,15 +77,17 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
 
                               return GestureDetector(
                                 onTap: () {
-                                  setState(() {
-                                    if (selectedUsers.contains(arrList.id)) {
-                                      selectedUsers.remove(arrList.id);
-                                      selectedUserModel.remove(user);
-                                    } else {
-                                      selectedUsers.add(arrList.id);
-                                      selectedUserModel.add(user);
-                                    }
-                                  });
+                                  setState(
+                                    () {
+                                      if (selectedUsers.contains(arrList.id)) {
+                                        selectedUsers.remove(arrList.id);
+                                        selectedUserModel.remove(user);
+                                      } else {
+                                        selectedUsers.add(arrList.id);
+                                        selectedUserModel.add(user);
+                                      }
+                                    },
+                                  );
                                 },
                                 child: AddUserGroupTileWidget(
                                     user: user,
