@@ -52,15 +52,18 @@ class ArrList {
 
 class ObjUser {
   ObjUser({
+    required this.id,
     required this.strFullName,
     required this.strMobileNo,
     required this.strProfileUrl,
   });
+  late final String id;
   late final String strFullName;
   late final String strMobileNo;
   late final String strProfileUrl;
 
   ObjUser.fromJson(Map<String, dynamic> json) {
+    id = json['_id'];
     strFullName = json['strFullName'];
     strMobileNo = json['strMobileNo'];
     strProfileUrl = json['strProfileUrl'];
@@ -68,6 +71,7 @@ class ObjUser {
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
+    _data['_id'] = id;
     _data['strFullName'] = strFullName;
     _data['strMobileNo'] = strMobileNo;
     _data['strProfileUrl'] = strProfileUrl;

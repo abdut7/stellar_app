@@ -28,6 +28,7 @@ class ListContactsWidget extends StatelessWidget {
               Get.to(() => ChatScreen(
                     user: data,
                     token: token!,
+                    chatId: data.id
                   ));
             },
             leading: CircleAvatar(

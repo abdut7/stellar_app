@@ -1,15 +1,16 @@
+import 'package:base_project/utils/uid.dart';
 import 'package:flutter/material.dart';
 
-import '../model/message_model.dart';
+import '../../../../models/private_chat/private_chat_model.dart';
 
 class ChatBubble extends StatelessWidget {
-  final Message message;
+  final PrivateMessageModel message;
 
   ChatBubble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
-    final isSent = message.isSent;
+    final isSent = message.strUserId == globalUid;
     final alignment =
         isSent ? CrossAxisAlignment.end : CrossAxisAlignment.start;
     final color = isSent ? const Color(0xFF243E87) : Colors.grey;
@@ -34,7 +35,7 @@ class ChatBubble extends StatelessWidget {
             ),
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              message.text,
+              message.strMessage,
               style: const TextStyle(color: Colors.white),
             ),
           ),
@@ -44,13 +45,13 @@ class ChatBubble extends StatelessWidget {
                 isSent ? MainAxisAlignment.end : MainAxisAlignment.start,
             children: <Widget>[
               Text(
-                '${message.timestamp.hour}:${message.timestamp.minute}',
+                message.strCreatedTime,
                 style: const TextStyle(color: Colors.grey),
               ),
               const SizedBox(width: 4.0),
               if (isSent)
                 Icon(
-                  message.isDelivered ? Icons.done_all : Icons.done,
+                  true ? Icons.done_all : Icons.done,
                   color: Colors.grey,
                   size: 16.0,
                 ),

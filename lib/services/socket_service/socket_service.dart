@@ -1,3 +1,4 @@
+import 'package:base_project/services/token_service/token_service.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
 class SocketService {
@@ -15,13 +16,12 @@ class SocketService {
   }
 
   void initializeSocket(String serverUrl, String token) {
+    getUid();
     _socket = io.io(
       serverUrl,
       io.OptionBuilder()
           .setTransports(['websocket']).setQuery({'token': token}).build(),
     );
-
-    
 
     _socket.onConnect((_) {
       print('Connected to the Socket.io server');

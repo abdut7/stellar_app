@@ -127,9 +127,9 @@ class _ContactsHomeScreenState extends State<ContactsHomeScreen> {
                                         onTap: () async {
                                           String? token = await getJwtToken();
                                           Get.to(() => ChatScreen(
-                                                user: data,
-                                                token: token!,
-                                              ));
+                                              user: data,
+                                              token: token!,
+                                              chatId: data.id));
                                         },
                                         leading: CircleAvatar(
                                           radius: 50,

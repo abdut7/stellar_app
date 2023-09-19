@@ -1,17 +1,23 @@
 import 'package:base_project/View/Chat/chat_screen/widgets/bottom_field_sent_widget.dart';
 import 'package:base_project/View/Chat/chat_screen/widgets/chat_appbar_title_widget.dart';
 import 'package:base_project/View/Chat/chat_screen/widgets/chat_bubble.dart';
-import 'package:base_project/services/api_routes/api_routes.dart';
+import 'package:base_project/controllers/private_chat_controller.dart';
+import 'package:base_project/services/api_services/chat_message_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'model/message_model.dart';
 import '../../../../../models/api_models/get_contacts_model.dart';
-import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class ChatScreen extends StatefulWidget {
+  final String chatId;
   final ObjUser user;
   final String token;
-  const ChatScreen({super.key, required this.user, required this.token});
+  const ChatScreen(
+      {super.key,
+      required this.user,
+      required this.token,
+      required this.chatId});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -19,35 +25,23 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  late IO.Socket _socket;
   final List<Message> messages = [];
   TextEditingController controller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _socket = IO.io(
-      'https://8536-2409-40f4-6-a1b1-d9fd-2e9f-1dcf-f95e.ngrok-free.app/',
-      IO.OptionBuilder().setTransports(['websocket']).setQuery(
-          {'token': widget.token}).build(),
-    );
-    _connectSocket();
-  }
-
-  _connectSocket() {
-    _socket.onConnect((data) => print('Connection established'));
-    _socket.onConnectError((data) => print('Connect Error: $data'));
-    _socket.onDisconnect((data) => print('Socket.IO server disconnected'));
+    ChatMessageService.getMessages(widget.chatId);
   }
 
   @override
   void dispose() {
     super.dispose();
-    _socket.disconnected;
   }
 
   @override
   Widget build(BuildContext context) {
+    PrivateChatController chatController = Get.put(PrivateChatController());
     return Scaffold(
       appBar: AppBar(
         title: ChatAppBarTitleWidget(
@@ -77,17 +71,22 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       body: Column(
         children: <Widget>[
-          Expanded(
-            child: ListView.builder(
-              reverse: true,
-              itemCount: messages.length,
-              itemBuilder: (context, index) {
-                final reversedIndex = messages.length - 1 - index;
-                final message = messages[reversedIndex];
-                return ChatBubble(message: message);
-              },
-            ),
-          ),
+          Obx(() {
+            return Expanded(
+              child: ListView.builder(
+                reverse: true,
+                itemCount: chatController.messageList.length,
+                itemBuilder: (context, index) {
+                  final reversedIndex =
+                      chatController.messageList.length - 1 - index;
+                  return ChatBubble(
+                    message:
+                        chatController.messageList.elementAt(reversedIndex),
+                  );
+                },
+              ),
+            );
+          }),
           ChatBottomFieldSent(
               controller: controller,
               onsent: () {

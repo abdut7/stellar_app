@@ -80,6 +80,7 @@ class AuthServices {
         LoginSuccessModel model = LoginSuccessModel.fromJson(res.data);
         login.loginModel(model);
         storeJwtToken(model.strToken);
+        storeUid(model.id);
         Get.off(
           () => HomeChatUi(),
         );
