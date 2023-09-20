@@ -91,8 +91,13 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
     if (value.length != 10) {
       return 'Phone number must be 10 digits long';
     }
+    if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+      return 'Enter a valid phone number';
+    }
     return null;
   }
+
+
 
   String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
