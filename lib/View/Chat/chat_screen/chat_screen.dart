@@ -95,7 +95,7 @@ class _ChatScreenState extends State<ChatScreen> {
               controller: controller,
               onsent: () {
                 if (controller.text.isNotEmpty) {
-                  PrivateChatService.sentPersonalMessage(
+                  PrivateChatService.sentPersonalTextMessage(
                       widget.chatId, controller.text.trim());
                   chatController.messageList.add(PrivateMessageModel(
                       id: "",
@@ -107,6 +107,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       strIconURL: "",
                       strCreatedTime:
                           DateFormat('HH:mm').format(DateTime.now())));
+                  controller.clear();
                 }
               },
               onCamera: () {},

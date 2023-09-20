@@ -1,4 +1,5 @@
 import 'package:base_project/View/base_bottom_nav/bottom_nav.dart';
+import 'package:base_project/services/api_routes/api_routes.dart';
 import 'package:base_project/utils/uid.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,7 +24,7 @@ Future<void> authenticateUser() async {
   } else {
     final socketService = SocketService();
     socketService.initializeSocket(
-      'https://8536-2409-40f4-6-a1b1-d9fd-2e9f-1dcf-f95e.ngrok-free.app/',
+      ApiRoutes.socketBaseUrl,
       token,
     );
     Get.off(() => const BaseBottomNavigation());
