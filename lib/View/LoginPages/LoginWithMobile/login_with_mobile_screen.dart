@@ -112,6 +112,9 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                               if (value.length != 10) {
                                 return 'Invalid phone \n number';
                               }
+                              if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                                return 'Enter a valid\n phone number';
+                              }
                               return null;
                             },
                             onSaved: (val) {
