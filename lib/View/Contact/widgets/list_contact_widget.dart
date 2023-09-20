@@ -24,11 +24,8 @@ class ListContactsWidget extends StatelessWidget {
               .getContactsModel.value!.arrList[index].objUser[0];
           return ListTile(
             onTap: () async {
-              String? token = await getJwtToken();
               Get.to(() => ChatScreen(
-                    user: data,
-                    token: token!,
-                    chatId: data.id
+                fullName: data.strFullName,                    chatId: data.id
                   ));
             },
             leading: CircleAvatar(

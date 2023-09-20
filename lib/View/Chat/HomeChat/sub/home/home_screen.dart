@@ -9,6 +9,7 @@ import 'package:base_project/Settings/SColors.dart';
 import 'package:get/get.dart';
 
 import '../../../../../controllers/api_controllers/chat_history_controller.dart';
+import '../../../chat_screen/chat_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -50,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             } else if (chatHistoryController.errorOccured.value) {
               return const Center(
-                child: Text("Erroro occured while loading chat"),
+                child: Text("Error occured while loading chat"),
               );
             } else if (chatHistoryController.chatHistoryList.isEmpty) {
               return const Center(
@@ -64,12 +65,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (context, index) {
                   ChatHistoryList data =
                       chatHistoryController.chatHistoryList[index];
-                  return ChatListItem(
-                    avatarUrl: data.strIconURL,
-                    message: "Message",
-                    name: data.strName,
-                    time: "02:33",
-                    unreadCount: 3,
+                  return GestureDetector(
+                    onTap: () {},
+                    child: ChatListItem(
+                      chatId: data.id,
+                      avatarUrl: data.strIconURL,
+                      message: "Message",
+                      name: data.strName,
+                      time: "02:33",
+                      unreadCount: 3,
+                      ontap: () {
+                        if (data.strType == "private") {
+                          Get.to(() => ChatScreen(
+                              fullName: data.strName, chatId: data.id));
+                        }
+                      },
+                    ),
                   );
                 },
                 separatorBuilder: (context, index) => const Divider(),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../../chat_screen/chat_screen.dart';
 
 class ChatListItem extends StatelessWidget {
   final String name;
@@ -6,6 +9,8 @@ class ChatListItem extends StatelessWidget {
   final String time;
   final int unreadCount;
   final String avatarUrl;
+  final String chatId;
+  final VoidCallback ontap;
 
   const ChatListItem({
     required this.name,
@@ -13,6 +18,8 @@ class ChatListItem extends StatelessWidget {
     required this.time,
     required this.unreadCount,
     required this.avatarUrl,
+    required this.chatId,
+    required this.ontap,
   });
 
   @override
@@ -54,6 +61,7 @@ class ChatListItem extends StatelessWidget {
       ),
       onTap: () {
         // Handle tapping on the chat list tile
+        ontap();
       },
     );
   }

@@ -11,17 +11,11 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import 'model/message_model.dart';
-import '../../../../../models/api_models/get_contacts_model.dart';
 
 class ChatScreen extends StatefulWidget {
   final String chatId;
-  final ObjUser user;
-  final String token;
-  const ChatScreen(
-      {super.key,
-      required this.user,
-      required this.token,
-      required this.chatId});
+  final String fullName;
+  const ChatScreen({super.key, required this.chatId, required this.fullName});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -50,7 +44,7 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         title: ChatAppBarTitleWidget(
           isOnline: false,
-          name: widget.user.strFullName,
+          name: widget.fullName,
         ),
         actions: <Widget>[
           IconButton(
@@ -97,16 +91,19 @@ class _ChatScreenState extends State<ChatScreen> {
                 if (controller.text.isNotEmpty) {
                   PrivateChatService.sentPersonalTextMessage(
                       widget.chatId, controller.text.trim());
-                  chatController.messageList.add(PrivateMessageModel(
+                  chatController.messageList.add(
+                    PrivateMessageModel(
                       id: "",
                       strUserId: globalUid!,
                       strType: "private",
                       strMessageType: "text",
                       strMessage: controller.text.trim(),
                       strName: "strName",
-                      strIconURL: "",
-                      strCreatedTime:
-                          DateFormat('HH:mm').format(DateTime.now())));
+                      strCreatedTime: DateFormat('HH:mm').format(
+                        DateTime.now(),
+                      ),
+                    ),
+                  );
                   controller.clear();
                 }
               },
