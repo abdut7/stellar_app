@@ -5,6 +5,7 @@ import 'package:get/get.dart' hide Response;
 import '../../controllers/api_controllers/chat_history_controller.dart';
 import '../../functions/get_header.dart';
 import '../api_routes/api_routes.dart';
+import '../socket_service/chat_history_socket_service.dart';
 
 class ChatHistoryServiceApi {
   static Future<void> getChatHistory() async {
@@ -26,6 +27,7 @@ class ChatHistoryServiceApi {
       print(e);
       chatHistoryController.errorOccured(true);
     } finally {
+      ChatHistorySocketService.chatHistorySocketService();
       chatHistoryController.isLoading(false);
     }
   }

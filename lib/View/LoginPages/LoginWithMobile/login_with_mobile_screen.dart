@@ -116,11 +116,9 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                             },
                             onSaved: (val) {
                               phone = val!;
-                              },
+                            },
                           ),
-                          const SizedBox(
-                            height: 75,
-                          ),
+                          Spacer(),
                           Center(
                             child: GestureDetector(
                               onTap: () async {
@@ -155,7 +153,8 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                                     )),
                               ),
                             ),
-                          )
+                          ),
+                          Spacer(),
                         ],
                       ),
                     ),

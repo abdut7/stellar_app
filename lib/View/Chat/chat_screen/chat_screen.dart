@@ -12,28 +12,30 @@ import 'package:intl/intl.dart';
 
 import 'model/message_model.dart';
 
-class ChatScreen extends StatefulWidget {
+class PrivateChatScreen extends StatefulWidget {
   final String chatId;
   final String fullName;
-  const ChatScreen({super.key, required this.chatId, required this.fullName});
+  const PrivateChatScreen(
+      {super.key, required this.chatId, required this.fullName});
 
   @override
   // ignore: library_private_types_in_public_api
-  _ChatScreenState createState() => _ChatScreenState();
+  _PrivateChatScreenState createState() => _PrivateChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _PrivateChatScreenState extends State<PrivateChatScreen> {
   final List<Message> messages = [];
   TextEditingController controller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    ChatMessageService.getMessages(widget.chatId);
+    ChatMessageService.getMessages(chatId: widget.chatId, type: "private");
   }
 
   @override
   void dispose() {
+    print("dispose run");
     super.dispose();
   }
 
