@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       unreadCount: 3,
                       ontap: () {
                         if (data.strType == "private") {
-                          Get.to(() => ChatScreen(
+                          Get.to(() => PrivateChatScreen(
                               fullName: data.strName, chatId: data.id));
                         }
                       },

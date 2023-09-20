@@ -24,7 +24,7 @@ class ListContactsWidget extends StatelessWidget {
               .getContactsModel.value!.arrList[index].objUser[0];
           return ListTile(
             onTap: () async {
-              Get.to(() => ChatScreen(
+              Get.to(() => PrivateChatScreen(
                 fullName: data.strFullName,                    chatId: data.id
                   ));
             },
