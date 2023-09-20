@@ -204,7 +204,7 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
                   keyboardType: TextInputType.phone,
                   labelText: 'Phone'),
               LoginTextField(
-                  IsPassword: true,
+                  isPassword: true,
                   controller: passwordController,
                   keyboardType: TextInputType.visiblePassword,
                   labelText: 'Password'),
