@@ -2,10 +2,12 @@ import 'package:base_project/View/LoginPages/auth_home_page/show_signup_model_sh
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:base_project/services/api_services/auth_services.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../../../Settings/SImages.dart';
 import '../../../controllers/api_controllers/login_with_phone_controller.dart';
 import '../../../widgets/login_signup_textfield.dart';
 
+// ignore: must_be_immutable
 class LoginWithMobileNumberScreen extends StatelessWidget {
   LoginWithMobileNumberScreen({super.key});
 
@@ -19,10 +21,11 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-            gradient: LinearGradient(colors: [
-          Color.fromRGBO(0, 51, 142, 1),
-          Color.fromRGBO(153, 199, 255, 1),
-        ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+          gradient: LinearGradient(colors: [
+            Color.fromRGBO(0, 51, 142, 1),
+            Color.fromRGBO(153, 199, 255, 1),
+          ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+        ),
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -36,7 +39,7 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
               children: [
                 Container(
                   width: Get.width * 0.8,
-                  height: Get.height * 0.45,
+                  height: Get.height * 0.5,
                   decoration: BoxDecoration(
                       color: const Color.fromRGBO(153, 199, 255, 1),
                       boxShadow: const [
@@ -96,23 +99,34 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                         Center(
                           child: GestureDetector(
                             onTap: () {
+                              //todo: Validation
+                              if (phoneNumberController.text.length != 10) {
+                                print("invalid phone number");
+                                return;
+                              }
                               AuthServices()
                                   .loginService(phoneNumberController.text);
                             },
                             child: Container(
                               width: Get.width * 0.5,
-                              height: 70,
+                              height: 50,
                               decoration: BoxDecoration(
                                   color: const Color.fromRGBO(0, 51, 142, 1),
                                   borderRadius: BorderRadius.circular(12)),
-                              child: const Center(
-                                child: Text(
-                                  "Sent OTP",
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      color: Color.fromRGBO(159, 196, 232, 1)),
-                                ),
-                              ),
+                              child: Obx(() => Center(
+                                    child: loginController.isLoading.value
+                                        ? LoadingAnimationWidget.beat(
+                                            color: Colors.white,
+                                            size: 20,
+                                          )
+                                        : const Text(
+                                            "Sent OTP",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Color.fromRGBO(
+                                                    159, 196, 232, 1)),
+                                          ),
+                                  )),
                             ),
                           ),
                         )

@@ -6,12 +6,12 @@ class LoginTextField extends StatefulWidget {
   final Widget? suffixIcon;
   final String labelText;
   final TextEditingController controller;
-  final bool IsPassword;
+  final bool isPassword;
   final bool isBirthday;
 
   const LoginTextField({
     Key? key,
-    this.IsPassword = false,
+    this.isPassword = false,
     this.isBirthday = false,
     required this.keyboardType,
     this.suffixIcon,
@@ -86,7 +86,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
                   controller: controller),
             )
           : TextFormField(
-              obscureText: widget.IsPassword,
+              obscureText: widget.isPassword,
               controller: controller,
               keyboardType: widget.keyboardType,
               cursorColor: SColors.color11,

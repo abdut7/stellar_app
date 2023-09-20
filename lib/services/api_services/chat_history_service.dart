@@ -23,6 +23,7 @@ class ChatHistoryServiceApi {
       ChatHistoryModel model = ChatHistoryModel.fromJson(response.data);
       chatHistoryController.chatHistoryList(model.chatHistoryList);
     } catch (e) {
+      print(e);
       chatHistoryController.errorOccured(true);
     } finally {
       chatHistoryController.isLoading(false);

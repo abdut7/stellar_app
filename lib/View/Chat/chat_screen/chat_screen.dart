@@ -2,9 +2,13 @@ import 'package:base_project/View/Chat/chat_screen/widgets/bottom_field_sent_wid
 import 'package:base_project/View/Chat/chat_screen/widgets/chat_appbar_title_widget.dart';
 import 'package:base_project/View/Chat/chat_screen/widgets/chat_bubble.dart';
 import 'package:base_project/controllers/private_chat_controller.dart';
+import 'package:base_project/models/private_chat/private_chat_model.dart';
 import 'package:base_project/services/api_services/chat_message_service.dart';
+import 'package:base_project/services/socket_service/private_chat_service.dart';
+import 'package:base_project/utils/uid.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import 'model/message_model.dart';
 import '../../../../../models/api_models/get_contacts_model.dart';
@@ -90,10 +94,20 @@ class _ChatScreenState extends State<ChatScreen> {
           ChatBottomFieldSent(
               controller: controller,
               onsent: () {
-                setState(() {
-                  messages.add(Message(controller.text));
-                });
-                controller.clear();
+                if (controller.text.isNotEmpty) {
+                  PrivateChatService.sentPersonalMessage(
+                      widget.chatId, controller.text.trim());
+                  chatController.messageList.add(PrivateMessageModel(
+                      id: "",
+                      strUserId: globalUid!,
+                      strType: "private",
+                      strMessageType: "text",
+                      strMessage: controller.text.trim(),
+                      strName: "strName",
+                      strIconURL: "",
+                      strCreatedTime:
+                          DateFormat('HH:mm').format(DateTime.now())));
+                }
               },
               onCamera: () {},
               onAttach: () {})

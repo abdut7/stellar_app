@@ -1,8 +1,6 @@
 class ApiRoutes {
-  static String baseUrl =
-      "https://5d91-2409-40f4-6-a1b1-d9fd-2e9f-1dcf-f95e.ngrok-free.app";
-  static String socketChatBaseUrl =
-      "https://8536-2409-40f4-6-a1b1-d9fd-2e9f-1dcf-f95e.ngrok-free.app";
+  static String baseUrl = "http://13.126.105.188:4100";
+  static String socketChatBaseUrl = "http://13.126.105.188:4110";
   static String createUser = "/create_user";
   static String phoneNumberLogin = "/login_user";
   static String getStellarContacts = "/get_user";
