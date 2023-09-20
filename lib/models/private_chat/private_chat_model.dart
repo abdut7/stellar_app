@@ -35,7 +35,6 @@ class PrivateMessageModel {
     required this.strMessageType,
     required this.strMessage,
     required this.strName,
-    required this.strIconURL,
     required this.strCreatedTime,
   });
   late final String id;
@@ -44,7 +43,6 @@ class PrivateMessageModel {
   late final String strMessageType;
   late final String strMessage;
   late final String strName;
-  late final String strIconURL;
   late final String strCreatedTime;
   
   PrivateMessageModel.fromJson(Map<String, dynamic> json){
@@ -54,7 +52,6 @@ class PrivateMessageModel {
     strMessageType = json['strMessageType'];
     strMessage = json['strMessage'];
     strName = json['strName'];
-    strIconURL = json['strIconURL'];
     strCreatedTime = json['strCreatedTime'];
   }
 
@@ -66,7 +63,6 @@ class PrivateMessageModel {
     _data['strMessageType'] = strMessageType;
     _data['strMessage'] = strMessage;
     _data['strName'] = strName;
-    _data['strIconURL'] = strIconURL;
     _data['strCreatedTime'] = strCreatedTime;
     return _data;
   }

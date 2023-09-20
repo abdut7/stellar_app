@@ -97,8 +97,11 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
                             },
                             separatorBuilder: (context, index) =>
                                 const Divider(),
-                            itemCount:
-                                10, // Replace with your actual item count
+                            itemCount: contactsController
+                                .getContactsModel
+                                .value!
+                                .arrList
+                                .length, // Replace with your actual item count
                           ),
                         ],
                       ),
