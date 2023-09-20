@@ -19,7 +19,6 @@ Future<dynamic> showSignupModelBottomSheet(BuildContext context) {
       return Container(
         height: 400,
         decoration: const BoxDecoration(
-          color: Colors.amber,
           image: DecorationImage(
             fit: BoxFit.cover,
             scale: 2,

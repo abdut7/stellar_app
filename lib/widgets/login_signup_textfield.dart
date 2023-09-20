@@ -8,6 +8,9 @@ class LoginTextField extends StatefulWidget {
   final TextEditingController controller;
   final bool isPassword;
   final bool isBirthday;
+  final String? Function(String? val)? validator;
+  final Function(String? val)? onSaved;
+  final Function(String val)? onChanged;
 
   const LoginTextField({
     Key? key,
@@ -16,7 +19,7 @@ class LoginTextField extends StatefulWidget {
     required this.keyboardType,
     this.suffixIcon,
     required this.labelText,
-    required this.controller,
+    required this.controller, this.validator, this.onSaved, this.onChanged,
   }) : super(key: key);
 
   @override
@@ -86,6 +89,9 @@ class _LoginTextFieldState extends State<LoginTextField> {
                   controller: controller),
             )
           : TextFormField(
+              onChanged: widget.onChanged,
+              onSaved: widget.onSaved,
+              validator: widget.validator,
               obscureText: widget.isPassword,
               controller: controller,
               keyboardType: widget.keyboardType,

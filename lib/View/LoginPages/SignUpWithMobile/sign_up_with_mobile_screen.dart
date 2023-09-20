@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:base_project/Settings/SColors.dart';
+import 'package:base_project/controllers/api_controllers/signup_controllers.dart';
 import 'package:base_project/functions/location_permission.dart';
 import 'package:base_project/services/api_services/auth_services.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +19,7 @@ class SignUpWithMobileScreen extends StatefulWidget {
 }
 
 class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
+  SignupController signupController = Get.put(SignupController());
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController regionController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
@@ -33,7 +37,6 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
     passwordController.dispose();
     fullNameController.dispose();
     birthDayController.dispose();
-    // TODO: implement dispose
     super.dispose();
   }
 
@@ -48,14 +51,78 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
   ImagePicker picker = ImagePicker();
   XFile? pickedImage;
 
+  String? validateUserName(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Username is required';
+    }
+    return null;
+  }
+
+  String? validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Email is required';
+    }
+    String emailRegex = r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$';
+    RegExp regex = RegExp(emailRegex);
+    if (!regex.hasMatch(value)) {
+      return 'Enter a valid email address';
+    }
+    return null;
+  }
+
+  String? validateBirthday(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Birthday is required';
+    }
+    return null;
+  }
+
+  String? validateRegion(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Region is required';
+    }
+    return null;
+  }
+
+  String? validatePhoneNumber(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Phone number is required';
+    }
+    if (value.length != 10) {
+      return 'Phone number must be 10 digits long';
+    }
+    return null;
+  }
+
+  String? validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Password is required';
+    }
+    if (value.length < 8) {
+      return 'Password must be at least 8 characters long';
+    }
+    return null;
+  }
+
+  bool validateForm() {
+    return _formKey.currentState!.validate();
+  }
+
+  final _formKey = GlobalKey<FormState>();
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-            gradient: LinearGradient(colors: [
-          Color.fromRGBO(0, 51, 142, 1),
-          Color.fromRGBO(153, 199, 255, 1),
-        ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+          gradient: LinearGradient(
+            colors: [
+              Color.fromRGBO(0, 51, 142, 1),
+              Color.fromRGBO(153, 199, 255, 1),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -66,13 +133,15 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
           child: Center(
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: Get.width * 0.9,
-                    height: Get.height * 0.75,
-                    decoration: BoxDecoration(
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: Get.width * 0.9,
+                      //height: Get.height * 0.9,
+                      decoration: BoxDecoration(
                         color: const Color.fromRGBO(153, 199, 255, 1),
                         boxShadow: const [
                           BoxShadow(
@@ -80,137 +149,167 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                             offset: Offset(0.0, 0.0),
                             blurRadius: 0.0,
                             spreadRadius: 0.0,
-                          ), //BoxS
+                          ),
                         ],
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
                           const SizedBox(
-                            height: 20,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              const Text(
-                                "Sign Up\nwith Mobile",
-                                style: TextStyle(
-                                  color: Color.fromRGBO(0, 51, 142, 1),
-                                  fontSize: 26,
-                                  fontWeight: FontWeight.w800,
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            const Text(
+                              "Sign Up\nwith Mobile",
+                              style: TextStyle(
+                                color: Color.fromRGBO(0, 51, 142, 1),
+                                fontSize: 26,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            GestureDetector(
+                              onTap: () async {
+                                pickedImage =
+                                await picker.pickImage(source: ImageSource.gallery);
+                                setState(() {});
+                              },
+                              child: pickedImage == null
+                                  ? Image.asset(
+                                SImages.image2,
+                                height: 85,
+                                width: 85,
+                              )
+                                  : CircleAvatar(
+                                radius: 40,
+                                child: ClipOval(
+                                  child: Image.file(
+                                    File(pickedImage!.path),
+                                    width: 80,
+                                    height: 80,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                              const SizedBox(width: 10),
-                              GestureDetector(
-                                onTap: () async {
-                                  pickedImage = await picker.pickImage(
-                                      source: ImageSource.gallery);
-                                  setState(() {});
-                                },
-                                child: Image.asset(
-                                  SImages.image2,
-                                  height: 85,
-                                  width: 85,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 20),
-                          LoginTextField(
-                            controller: usernameController,
-                            keyboardType: TextInputType.text,
-                            labelText: 'User Name',
-                          ),
-                          LoginTextField(
-                              controller: emailController,
-                              keyboardType: TextInputType.emailAddress,
-                              labelText: 'Email'),
-                          LoginTextField(
-                            controller: birthDayController,
-                            keyboardType: TextInputType.text,
-                            labelText: 'Birthday',
-                            isBirthday: true,
-                          ),
-                          LoginTextField(
-                              controller: regionController,
-                              keyboardType: TextInputType.text,
-                              labelText: 'Region'),
-                          LoginTextField(
-                              controller: phoneNumberController,
-                              keyboardType: TextInputType.phone,
-                              labelText: 'Phone'),
-                          LoginTextField(
+                            )],
+                            ),
+                            const SizedBox(height: 20),
+                            LoginTextField(
                               controller: usernameController,
                               keyboardType: TextInputType.text,
-                              labelText: 'Password'),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Center(
-                            child: GestureDetector(
-                              onTap: () {
-                                AuthServices()
-                                    .loginService(phoneNumberController.text);
-                              },
-                              child: Container(
-                                width: Get.width * 0.7,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                    color: const Color.fromRGBO(0, 51, 142, 1),
-                                    borderRadius: BorderRadius.circular(12)),
-                                child: const Center(
-                                  child: Text(
-                                    "OTP Verification",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color:
-                                            Color.fromRGBO(159, 196, 232, 1)),
+                              labelText: 'User Name',
+                              validator: validateUserName,
+                            ),
+                            LoginTextField(
+                              controller: emailController,
+                              keyboardType: TextInputType.emailAddress,
+                              labelText: 'Email',
+                              validator: validateEmail,
+                            ),
+                            LoginTextField(
+                              controller: birthDayController,
+                              keyboardType: TextInputType.text,
+                              labelText: 'Birthday',
+                              isBirthday: true,
+                              validator: validateBirthday,
+                            ),
+                            LoginTextField(
+                              controller: regionController,
+                              keyboardType: TextInputType.text,
+                              labelText: 'Region',
+                              validator: validateRegion,
+                            ),
+                            LoginTextField(
+                              controller: phoneNumberController,
+                              keyboardType: TextInputType.phone,
+                              labelText: 'Phone',
+                              validator: validatePhoneNumber,
+                            ),
+                            LoginTextField(
+                              controller: passwordController,
+                              keyboardType: TextInputType.text,
+                              labelText: 'Password',
+                              validator: validatePassword,
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Center(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    if (validateForm()) {
+                                      AuthServices()
+                                          .loginService(phoneNumberController.text);
+                                    }
+                                  },
+                                  child: Container(
+                                    width: Get.width * 0.7,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: const Color.fromRGBO(0, 51, 142, 1),
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        "OTP Verification",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Color.fromRGBO(159, 196, 232, 1),
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    height: 70,
-                    width: Get.width * 0.8,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.vertical(
-                        bottom: Radius.circular(20),
+                    Container(
+                      height: 70,
+                      width: Get.width * 0.8,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.vertical(
+                          bottom: Radius.circular(20),
+                        ),
                       ),
-                    ),
-                    child: GestureDetector(
-                      onTap: () {
-                        //showSignupModelBottomSheet(context);
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Have a account?',
-                            style: TextStyle(
-                              color: SColors.color9,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
+                      child: GestureDetector(
+                        onTap: () {
+                          //showSignupModelBottomSheet(context);
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Have an account?',
+                              style: TextStyle(
+                                color: SColors.color9,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                          Text(
-                            "Sign In",
-                            style: TextStyle(
+                            Text(
+                              "Sign In",
+                              style: TextStyle(
                                 color: SColors.color3,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
