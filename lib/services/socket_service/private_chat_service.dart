@@ -14,4 +14,13 @@ class PrivateChatService {
       "strType": "private",
     });
   }
+
+  static void recievePersonalMessage() {
+    Socket socket = SocketService().socket;
+    print(socket.connected);
+    socket.on('get_message', (data) {
+      // Print the received message as a JSON string
+      print('Server says: ${data.toString()}');
+    });
+  }
 }
