@@ -1,6 +1,7 @@
 import 'package:base_project/View/chat/HomeChat/sub/home/widgets/chat_home_appbar_widget.dart';
 import 'package:base_project/View/chat/HomeChat/sub/home/widgets/chat_tile_widget.dart';
 import 'package:base_project/View/Contact/show_contact/show_contacts_screen.dart';
+import 'package:base_project/View/chat/group_chat/group_chat_screen.dart';
 import 'package:base_project/models/api_models/chat_history_model.dart';
 import 'package:base_project/services/api_services/chat_history_service.dart';
 import 'package:base_project/widgets/search_text_field.dart';
@@ -78,6 +79,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         if (data.strType == "private") {
                           Get.to(() => PrivateChatScreen(
                               fullName: data.strName, chatId: data.strChatId));
+                        } else if (data.strType == "group") {
+                          Get.to(() => GroupChatScreen());
                         }
                       },
                     ),

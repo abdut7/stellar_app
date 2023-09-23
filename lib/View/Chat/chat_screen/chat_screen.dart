@@ -1,4 +1,3 @@
-import 'package:base_project/View/chat/chat_screen/widgets/bottom_field_sent_widget.dart';
 import 'package:base_project/View/chat/chat_screen/widgets/chat_appbar_title_widget.dart';
 import 'package:base_project/View/chat/chat_screen/widgets/chat_bubble.dart';
 import 'package:base_project/controllers/private_chat_controller.dart';
@@ -10,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../widgets/bottom_field_sent_widget.dart';
 import 'model/message_model.dart';
 
 class PrivateChatScreen extends StatefulWidget {
