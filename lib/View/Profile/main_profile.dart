@@ -1,8 +1,10 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SImages.dart';
 import 'package:base_project/Settings/SSvgs.dart';
+import 'package:base_project/View/Profile/qr/qr_screen.dart';
 import 'package:base_project/View/Profile/widget/tile.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MainProfile extends StatefulWidget {
   const MainProfile({Key? key}) : super(key: key);
@@ -62,7 +64,9 @@ class _MainProfileState extends State<MainProfile> {
                   top: 10,
                   right: 10,
                   child: GestureDetector(
-                    onTap: (){},
+                    onTap: (){
+                      Get.to(QRScreen());
+                    },
                     child: Icon(Icons.qr_code, color: SColors.color4, size: 30,),
                   ),
                 ),

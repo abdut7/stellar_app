@@ -127,7 +127,7 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
                             svgAsset: SSvgs.sv06,
                             assetColor: SColors.color4,
                             circleAvatarBackgroundColor:  SColors.color12,
-                            title: 'Add Contact',
+                            title: 'New Contact',
                             trailingIcon: GestureDetector(
                               onTap: (){},
                                 child: Icon(Icons.qr_code,color: SColors.color3,)),
