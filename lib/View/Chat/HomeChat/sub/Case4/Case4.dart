@@ -1,7 +1,7 @@
-import 'package:base_project/View/Chat/HomeChat/sub/Case4/sub/EditProfile/EditProfileUi.dart';
-import 'package:base_project/View/Chat/HomeChat/sub/Case4/sub/Favorites/Favorites.dart';
-import 'package:base_project/View/Chat/HomeChat/sub/Case4/sub/Settings/SettingsUi.dart';
-import 'package:base_project/View/Chat/HomeChat/sub/Case4/sub/StickerGallery/StickerGallery.dart';
+import 'package:base_project/View/chat/HomeChat/sub/Case4/sub/EditProfile/EditProfileUi.dart';
+import 'package:base_project/View/chat/HomeChat/sub/Case4/sub/Favorites/Favorites.dart';
+import 'package:base_project/View/chat/HomeChat/sub/Case4/sub/Settings/SettingsUi.dart';
+import 'package:base_project/View/chat/HomeChat/sub/Case4/sub/StickerGallery/StickerGallery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

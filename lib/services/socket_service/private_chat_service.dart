@@ -1,5 +1,9 @@
+import 'package:base_project/controllers/private_chat_controller.dart';
 import 'package:base_project/services/socket_service/socket_service.dart';
+import 'package:get/get.dart';
 import 'package:socket_io_client/socket_io_client.dart';
+
+import '../../models/private_chat/private_chat_model.dart';
 
 class PrivateChatService {
   static void sentPersonalTextMessage(String chatId, String message) {
@@ -15,12 +19,4 @@ class PrivateChatService {
     });
   }
 
-  static void recievePersonalMessage() {
-    Socket socket = SocketService().socket;
-    print(socket.connected);
-    socket.on('get_message', (data) {
-      // Print the received message as a JSON string
-      print('Server says: ${data.toString()}');
-    });
-  }
 }

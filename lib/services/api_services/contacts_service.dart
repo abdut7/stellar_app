@@ -5,7 +5,7 @@ import 'package:base_project/models/api_models/get_contacts_model.dart';
 import 'package:base_project/services/api_routes/api_routes.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
-import '../../View/Chat/HomeChat/HomeChatUi.dart';
+import '../../View/chat/HomeChat/HomeChatUi.dart';
 import '/controllers/contacts_controller.dart';
 
 class ContactServiceApi {

@@ -3,7 +3,7 @@ import 'package:base_project/View/Profile/main_profile.dart';
 import 'package:base_project/View/base_bottom_nav/widgets/bottom_nav_icon_widget.dart';
 import 'package:flutter/material.dart';
 import '../../Settings/SSvgs.dart';
-import '../Chat/HomeChat/sub/contacts/contacts_home_screen.dart';
+import '../chat/HomeChat/sub/contacts/contacts_home_screen.dart';
 
 class BaseBottomNavigation extends StatefulWidget {
   const BaseBottomNavigation({super.key});

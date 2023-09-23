@@ -50,7 +50,7 @@ class ChatBubble extends StatelessWidget {
               ),
               const SizedBox(width: 4.0),
               if (isSent)
-                Icon(
+                const Icon(
                   true ? Icons.done_all : Icons.done,
                   color: Colors.grey,
                   size: 16.0,

@@ -1,5 +1,5 @@
 import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/View/LoginPages/auth_home_page/show_signup_model_sheet.dart';
+import 'package:base_project/View/auth_screens/auth_home_page/show_signup_model_sheet.dart';
 import 'package:base_project/services/api_services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

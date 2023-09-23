@@ -1,8 +1,11 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
-import 'package:base_project/View/LoginPages/SignUpWithMobile/SignUpWithMobileUi.dart';
+import 'package:base_project/View/auth_screens/signup_with_mobile/SignUpWithMobileUi.dart';
 import 'package:base_project/widgets/custom_signup_option_buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../signup_with_mobile/sign_up_with_mobile_screen.dart';
 
 class SignUpOptionsUi extends StatefulWidget {
   static const routeName = '/SignUpOptionsUi';
@@ -13,12 +16,15 @@ class SignUpOptionsUi extends StatefulWidget {
 }
 
 class _SignUpOptionsUiState extends State<SignUpOptionsUi> {
-  Widget orText(){
-    return  const Center(
-      child: Text('or', style: TextStyle(
-        color: Colors.black, fontSize: 14,
-        fontWeight: FontWeight.w500,
-      ),
+  Widget orText() {
+    return const Center(
+      child: Text(
+        'or',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     );
   }
@@ -40,7 +46,8 @@ class _SignUpOptionsUiState extends State<SignUpOptionsUi> {
           const SizedBox(height: 50),
           CustomButton(
             onPressed: () {
-              Navigator.pushNamed(context, SignUpWithMobileUi.routeName);
+              Navigator.pop(context);
+              Get.to(() => SignUpWithMobileScreen());
             },
             text: 'SignUp With Phone',
             textColor: SColors.color3,
@@ -82,11 +89,11 @@ class _SignUpOptionsUiState extends State<SignUpOptionsUi> {
             prefixIcon: null,
             svgAssetPath: SSvgs.sv04,
           ),
-
         ],
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,5 +102,3 @@ class _SignUpOptionsUiState extends State<SignUpOptionsUi> {
     );
   }
 }
-
-

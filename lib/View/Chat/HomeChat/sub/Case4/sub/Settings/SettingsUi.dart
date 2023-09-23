@@ -1,5 +1,5 @@
 import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/View/Chat/HomeChat/sub/Case4/sub/EditProfile/EditProfileUi.dart';
+import 'package:base_project/View/chat/HomeChat/sub/Case4/sub/EditProfile/EditProfileUi.dart';
 import 'package:base_project/widgets/appbarContainer.dart';
 import 'package:flutter/material.dart';
 

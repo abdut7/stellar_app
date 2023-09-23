@@ -4,7 +4,7 @@ import 'package:base_project/utils/uid.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../View/LoginPages/auth_home_page/auth_home_screen.dart';
+import '../../View/auth_screens/auth_home_page/auth_home_screen.dart';
 import '../socket_service/socket_service.dart';
 
 Future<void> storeJwtToken(String jwtToken) async {
