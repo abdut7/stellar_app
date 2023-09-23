@@ -1,8 +1,8 @@
 import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/Settings/SImages.dart';
 import 'package:base_project/Settings/SSvgs.dart';
 import 'package:base_project/View/Profile/qr/qr_screen.dart';
 import 'package:base_project/View/Profile/widget/tile.dart';
+import 'package:base_project/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,6 +16,7 @@ class MainProfile extends StatefulWidget {
 class _MainProfileState extends State<MainProfile> {
   @override
   Widget build(BuildContext context) {
+    UserController controller = Get.find();
     return SafeArea(
       child: Scaffold(
         backgroundColor: SColors.color4,
@@ -27,22 +28,14 @@ class _MainProfileState extends State<MainProfile> {
                   height: 300,
                   child: Stack(
                     children: <Widget>[
-                      Image.asset(
-                        SImages.profileBackground,
-                        fit: BoxFit.cover,
-                        height: double.infinity,
-                        width: double.infinity,
-                      ),
+                      Image.network(
+                        controller.userDetailsModel.value!.strProfileUrl, fit: BoxFit.cover, width: Get.width , height: Get.width ,),
                       Positioned(
                         top: 250,
                         left: 20,
                         child: Text(
-                          'Rajmohan Chozhiath',
-                          style: TextStyle(
-                            color: SColors.color11,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w800,
-                          ),
+                          controller.userDetailsModel.value!.strName,
+                          style: TextStyle(color: SColors.color11, fontSize: 15, fontWeight: FontWeight.w800,),
                         ),
                       ),
                       Positioned(
@@ -50,10 +43,7 @@ class _MainProfileState extends State<MainProfile> {
                         left: 20,
                         child: Text(
                           'Online',
-                          style: TextStyle(
-                            color: SColors.color11,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
+                          style: TextStyle(color: SColors.color11, fontSize: 13, fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
@@ -66,25 +56,16 @@ class _MainProfileState extends State<MainProfile> {
                   bottom: 0,
                   child: GestureDetector(
                     onTap: () {},
-                    child: Icon(
-                      Icons.add_a_photo_outlined,
-                      color: SColors.color9,
-                      size: 30,
-                    ),
-                  ),
+                    child: Icon(Icons.add_a_photo_outlined, color: SColors.color9, size: 30,),),
                 ),
                 Positioned(
                   top: 10,
                   right: 10,
                   child: GestureDetector(
                     onTap: () {
-                      Get.to(() => QRScreen());
+                      Get.to(() => const QRScreen());
                     },
-                    child: Icon(
-                      Icons.qr_code,
-                      color: SColors.color4,
-                      size: 30,
-                    ),
+                    child: Icon(Icons.qr_code, color: SColors.color4, size: 30,),
                   ),
                 ),
               ],
@@ -134,12 +115,7 @@ class _MainProfileState extends State<MainProfile> {
                     onTap: () {},
                     child: Text(
                       'Delete My Account',
-                      style: TextStyle(
-                        color: SColors.color11,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                      style: TextStyle(color: SColors.color11, fontSize: 15, fontWeight: FontWeight.w600,)),
                   ),
                   const SizedBox(
                     height: 10,
@@ -148,11 +124,7 @@ class _MainProfileState extends State<MainProfile> {
                     onTap: () {},
                     child: Text(
                       'LOG OUT',
-                      style: TextStyle(
-                        color: SColors.color17,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style: TextStyle(color: SColors.color17, fontSize: 16, fontWeight: FontWeight.w500,),
                     ),
                   ),
                   const SizedBox(
@@ -163,18 +135,10 @@ class _MainProfileState extends State<MainProfile> {
                     children: [
                       Text(
                         'Blocked User',
-                        style: TextStyle(
-                          color: SColors.color3,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400,
-                        ),
+                        style: TextStyle(color: SColors.color3, fontSize: 15, fontWeight: FontWeight.w400,),
                       ),
                       Text(
-                        '22',
-                        style: TextStyle(
-                          color: SColors.color11,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
+                        '22', style: TextStyle(color: SColors.color11, fontSize: 10, fontWeight: FontWeight.w400,
                         ),
                       )
                     ],
