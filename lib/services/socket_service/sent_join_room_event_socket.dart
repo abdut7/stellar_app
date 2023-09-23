@@ -1,4 +1,3 @@
-import 'package:base_project/services/socket_service/private_chat_service.dart';
 import 'package:base_project/services/socket_service/socket_service.dart';
 
 void sentRoomJoinSocket({required String chatId, required String type}) {
@@ -7,7 +6,6 @@ void sentRoomJoinSocket({required String chatId, required String type}) {
     'strChatId': chatId,
     'strType': type,
   });
-  PrivateChatService.recievePersonalMessage();
 }
 
 void sentRoomLeftSocket() {}

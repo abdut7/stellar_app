@@ -25,8 +25,7 @@ class ListContactsWidget extends StatelessWidget {
           return ListTile(
             onTap: () async {
               Get.to(() => PrivateChatScreen(
-                fullName: data.strFullName,                    chatId: data.id
-                  ));
+                  fullName: data.strFullName, chatId: data.id));
             },
             leading: CircleAvatar(
               radius: 50,

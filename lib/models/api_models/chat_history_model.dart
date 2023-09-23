@@ -30,18 +30,19 @@ class ChatHistoryModel {
 }
 
 class ChatHistoryList {
-  ChatHistoryList({
-    required this.id,
-    required this.strType,
-    required this.strChatId,
-    required this.strName,
-    required this.strIconURL,
-  });
+  ChatHistoryList(
+      {required this.id,
+      required this.strType,
+      required this.strChatId,
+      required this.strName,
+      required this.strIconURL,
+      required this.strMessage});
   late final String id;
   late final String strType;
   late final String strChatId;
   late final String strName;
   late final String strIconURL;
+  late final String strMessage;
 
   ChatHistoryList.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
@@ -49,6 +50,7 @@ class ChatHistoryList {
     strChatId = json['strChatId'];
     strName = json['strName'];
     strIconURL = json['strIconURL'];
+    strMessage = json['strMessage'];
   }
 
   Map<String, dynamic> toJson() {
@@ -59,5 +61,10 @@ class ChatHistoryList {
     _data['strName'] = strName;
     _data['strIconURL'] = strIconURL;
     return _data;
+  }
+
+  @override
+  String toString() {
+    return 'ChatHistoryList{id: $id, strType: $strType, strChatId: $strChatId, strName: $strName, strIconURL: $strIconURL}';
   }
 }

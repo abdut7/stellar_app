@@ -70,14 +70,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: ChatListItem(
                       chatId: data.id,
                       avatarUrl: data.strIconURL,
-                      message: "Message",
+                      message: data.strMessage,
                       name: data.strName,
                       time: "02:33",
                       unreadCount: 3,
                       ontap: () {
                         if (data.strType == "private") {
                           Get.to(() => PrivateChatScreen(
-                              fullName: data.strName, chatId: data.id));
+                              fullName: data.strName, chatId: data.strChatId));
                         }
                       },
                     ),

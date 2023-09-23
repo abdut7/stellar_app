@@ -93,19 +93,7 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                 if (controller.text.isNotEmpty) {
                   PrivateChatService.sentPersonalTextMessage(
                       widget.chatId, controller.text.trim());
-                  chatController.messageList.add(
-                    PrivateMessageModel(
-                      id: "",
-                      strUserId: globalUid!,
-                      strType: "private",
-                      strMessageType: "text",
-                      strMessage: controller.text.trim(),
-                      strName: "strName",
-                      strCreatedTime: DateFormat('HH:mm').format(
-                        DateTime.now(),
-                      ),
-                    ),
-                  );
+
                   controller.clear();
                 }
               },
