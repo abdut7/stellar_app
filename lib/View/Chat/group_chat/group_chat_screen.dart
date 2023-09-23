@@ -24,7 +24,7 @@ class GroupChatScreen extends StatelessWidget {
         title: GestureDetector(
           onTap: () {
             Get.to(() => GroupInfoScreen(
-                  chatHistoryList: chatHistoryList,
+                  chatId: chatHistoryList.strChatId,
                 ));
           },
           child: Row(
@@ -34,13 +34,13 @@ class GroupChatScreen extends StatelessWidget {
                 radius: 20.0, // Adjust the size of the circle avatar as needed
               ),
               const SizedBox(width: 10.0),
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Group Name',
-                    style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                    chatHistoryList.strName,
+                    style: const TextStyle(
+                        fontSize: 18.0, fontWeight: FontWeight.bold),
                   ),
                   // Text(
                   //   'User 1, User 2',

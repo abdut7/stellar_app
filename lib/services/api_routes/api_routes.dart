@@ -10,4 +10,5 @@ class ApiRoutes {
   static String getChatHistory = "/get_chat_history";
   static String getPrivateMessage = "/get_messages";
   static String getUserById = "/get_user_by_id";
+  static String getGroupDetails = "/get_group_details";
 }
