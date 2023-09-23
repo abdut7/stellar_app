@@ -22,43 +22,45 @@ class GroupChatBubble extends StatelessWidget {
             ? CrossAxisAlignment.start
             : CrossAxisAlignment.end,
         children: [
-          Text(
-            senderName,
-            style: TextStyle(
-              fontSize: 12.0,
-              color: Colors.grey,
-            ),
-          ),
+          alignment == BubbleAlignment.right
+              ? const SizedBox()
+              : Text(
+                  senderName,
+                  style: const TextStyle(
+                    fontSize: 12.0,
+                    color: Colors.grey,
+                  ),
+                ),
           Container(
-            margin: EdgeInsets.symmetric(vertical: 4.0),
-            padding: EdgeInsets.all(8.0),
+            margin: const EdgeInsets.symmetric(vertical: 4.0),
+            padding: const EdgeInsets.all(8.0),
             decoration: BoxDecoration(
               color: alignment == BubbleAlignment.left
                   ? Colors.white
-                  : Color(0xFFE9F4FF),
+                  : const Color(0xFFE9F4FF),
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(12.0),
-                topRight: Radius.circular(12.0),
+                topLeft: const Radius.circular(12.0),
+                topRight: const Radius.circular(12.0),
                 bottomLeft: alignment == BubbleAlignment.right
-                    ? Radius.circular(12.0)
-                    : Radius.circular(0.0),
+                    ? const Radius.circular(12.0)
+                    : const Radius.circular(0.0),
                 bottomRight: alignment == BubbleAlignment.left
-                    ? Radius.circular(12.0)
-                    : Radius.circular(0.0),
+                    ? const Radius.circular(12.0)
+                    : const Radius.circular(0.0),
               ),
               boxShadow: alignment == BubbleAlignment.left
                   ? [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.25),
                         blurRadius: 2.0,
-                        offset: Offset(1.0, 1.0),
+                        offset: const Offset(1.0, 1.0),
                       ),
                     ]
                   : [],
             ),
             child: Text(
               message,
-              style: TextStyle(fontSize: 16.0),
+              style: const TextStyle(fontSize: 16.0),
             ),
           ),
         ],
