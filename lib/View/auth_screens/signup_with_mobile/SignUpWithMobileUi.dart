@@ -81,17 +81,6 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
     );
   }
 
-  Widget _buildTitle() {
-    return Text(
-      'Sign Up with Mobile ',
-      style: TextStyle(
-          color: SColors.color3,
-          fontSize: 17,
-          fontWeight: FontWeight.w800,
-          letterSpacing: 0.20),
-    );
-  }
-
   ImagePicker picker = ImagePicker();
   XFile? pickedImage;
 
@@ -123,7 +112,14 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
                   const SizedBox(
                     height: 50,
                   ),
-                  _buildTitle(),
+                  Text(
+                    'Sign Up with Mobile ',
+                    style: TextStyle(
+                        color: SColors.color3,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: 0.20),
+                  ),
                   const SizedBox(
                     height: 50,
                   ),
@@ -172,11 +168,13 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
                   )
                 ],
               ),
-              const SizedBox(height: 20,),
-              LoginTextField(
-                  controller: usernameController,
-                  keyboardType: TextInputType.text,
-                  labelText: 'User Name'),
+              const SizedBox(
+                height: 20,
+              ),
+              // LoginTextField(
+              //     controller: usernameController,
+              //     keyboardType: TextInputType.text,
+              //     labelText: 'User Name'),
               LoginTextField(
                   controller: fullNameController,
                   keyboardType: TextInputType.text,

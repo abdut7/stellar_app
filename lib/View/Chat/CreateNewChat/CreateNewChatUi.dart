@@ -1,5 +1,5 @@
 import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/View/Chat/NewChat/NewChatUi.dart';
+import 'package:base_project/View/chat/NewChat/NewChatUi.dart';
 import 'package:base_project/widgets/search_text_field.dart';
 import 'package:base_project/widgets/welcome_chat.dart';
 import 'package:flutter/material.dart';

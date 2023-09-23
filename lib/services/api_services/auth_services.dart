@@ -1,4 +1,4 @@
-import 'package:base_project/View/Chat/HomeChat/HomeChatUi.dart';
+import 'package:base_project/View/chat/HomeChat/HomeChatUi.dart';
 import 'package:base_project/controllers/api_controllers/login_with_phone_controller.dart';
 import 'package:base_project/controllers/api_controllers/signup_controllers.dart';
 import 'package:base_project/functions/show_snackbar.dart';
@@ -9,7 +9,7 @@ import 'package:base_project/services/token_service/token_service.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 
-import '../../View/LoginPages/OtpVerification/OtpVerificationUi.dart';
+import '../../View/auth_screens/OtpVerification/OtpVerificationUi.dart';
 
 class AuthServices {
   //user signup

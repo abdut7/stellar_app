@@ -1,13 +1,13 @@
 import 'package:base_project/Settings/SImages.dart';
-import 'package:base_project/View/LoginPages/LoginWithMobile/login_with_mobile_screen.dart';
-import 'package:base_project/View/LoginPages/auth_home_page/show_signup_model_sheet.dart';
+import 'package:base_project/View/auth_screens/LoginWithMobile/login_with_mobile_screen.dart';
+import 'package:base_project/View/auth_screens/auth_home_page/show_signup_model_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../Settings/SColors.dart';
 import '../../../Settings/SSvgs.dart';
 import '../../../widgets/custom_signup_option_buttons.dart';
-import '../SignUpWithMobile/SignUpWithMobileUi.dart';
+import '../signup_with_mobile/SignUpWithMobileUi.dart';
 
 class AuthHomeScreen extends StatelessWidget {
   const AuthHomeScreen({super.key});

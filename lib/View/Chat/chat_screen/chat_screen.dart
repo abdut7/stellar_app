@@ -1,6 +1,6 @@
-import 'package:base_project/View/Chat/chat_screen/widgets/bottom_field_sent_widget.dart';
-import 'package:base_project/View/Chat/chat_screen/widgets/chat_appbar_title_widget.dart';
-import 'package:base_project/View/Chat/chat_screen/widgets/chat_bubble.dart';
+import 'package:base_project/View/chat/chat_screen/widgets/bottom_field_sent_widget.dart';
+import 'package:base_project/View/chat/chat_screen/widgets/chat_appbar_title_widget.dart';
+import 'package:base_project/View/chat/chat_screen/widgets/chat_bubble.dart';
 import 'package:base_project/controllers/private_chat_controller.dart';
 import 'package:base_project/models/private_chat/private_chat_model.dart';
 import 'package:base_project/services/api_services/chat_message_service.dart';

@@ -1,6 +1,6 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
-import 'package:base_project/View/Chat/HomeChat/HomeChatUi.dart';
+import 'package:base_project/View/chat/HomeChat/HomeChatUi.dart';
 import 'package:base_project/widgets/appbarContainer.dart';
 import 'package:base_project/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';

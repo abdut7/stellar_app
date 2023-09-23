@@ -1,5 +1,5 @@
-import 'package:base_project/View/Chat/HomeChat/sub/home/widgets/chat_home_appbar_widget.dart';
-import 'package:base_project/View/Chat/HomeChat/sub/home/widgets/chat_tile_widget.dart';
+import 'package:base_project/View/chat/HomeChat/sub/home/widgets/chat_home_appbar_widget.dart';
+import 'package:base_project/View/chat/HomeChat/sub/home/widgets/chat_tile_widget.dart';
 import 'package:base_project/View/Contact/show_contact/show_contacts_screen.dart';
 import 'package:base_project/models/api_models/chat_history_model.dart';
 import 'package:base_project/services/api_services/chat_history_service.dart';

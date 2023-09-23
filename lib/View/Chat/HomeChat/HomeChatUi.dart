@@ -1,10 +1,10 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
-import 'package:base_project/View/Chat/HomeChat/sub/contacts/contacts_home_screen.dart';
-import 'package:base_project/View/Chat/HomeChat/sub/Case4/Case4.dart';
+import 'package:base_project/View/chat/HomeChat/sub/contacts/contacts_home_screen.dart';
+import 'package:base_project/View/chat/HomeChat/sub/Case4/Case4.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:base_project/View/Chat/HomeChat/sub/home/home_screen.dart';
+import 'package:base_project/View/chat/HomeChat/sub/home/home_screen.dart';
 
 class HomeChatUi extends StatefulWidget {
   static const routeName = '/HomeChatUi';

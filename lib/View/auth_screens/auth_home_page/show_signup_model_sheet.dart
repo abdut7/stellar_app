@@ -1,10 +1,11 @@
+import 'package:base_project/View/auth_screens/signup_with_mobile/sign_up_with_mobile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../Settings/SColors.dart';
 import '../../../Settings/SSvgs.dart';
 import '../../../widgets/custom_signup_option_buttons.dart';
-import '../SignUpWithMobile/SignUpWithMobileUi.dart';
+import '../signup_with_mobile/SignUpWithMobileUi.dart';
 
 Future<dynamic> showSignupModelBottomSheet(BuildContext context) {
   return showModalBottomSheet(
@@ -35,7 +36,7 @@ Future<dynamic> showSignupModelBottomSheet(BuildContext context) {
             const SizedBox(height: 50),
             CustomButton(
               onPressed: () {
-                Get.to(() => SignUpWithMobileUi());
+                Get.to(() => SignUpWithMobileScreen());
               },
               text: 'SignUp With Phone',
               textColor: SColors.color3,

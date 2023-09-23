@@ -5,10 +5,15 @@ import 'package:base_project/controllers/api_controllers/signup_controllers.dart
 import 'package:base_project/functions/location_permission.dart';
 import 'package:base_project/services/api_services/auth_services.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../Settings/SImages.dart';
+import '../../../functions/get_current_location.dart';
+import '../../../functions/image_to_base.dart';
+import '../../../models/api_models/signup_model.dart';
 import '../../../widgets/login_signup_textfield.dart';
 
 class SignUpWithMobileScreen extends StatefulWidget {
@@ -97,8 +102,6 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
     return null;
   }
 
-
-
   String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
       return 'Password is required';
@@ -163,45 +166,46 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                          const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            const Text(
-                              "Sign Up\nwith Mobile",
-                              style: TextStyle(
-                                color: Color.fromRGBO(0, 51, 142, 1),
-                                fontSize: 26,
-                                fontWeight: FontWeight.w800,
-                              ),
+                            const SizedBox(
+                              height: 20,
                             ),
-                            const SizedBox(width: 10),
-                            GestureDetector(
-                              onTap: () async {
-                                pickedImage =
-                                await picker.pickImage(source: ImageSource.gallery);
-                                setState(() {});
-                              },
-                              child: pickedImage == null
-                                  ? Image.asset(
-                                SImages.image2,
-                                height: 85,
-                                width: 85,
-                              )
-                                  : CircleAvatar(
-                                radius: 40,
-                                child: ClipOval(
-                                  child: Image.file(
-                                    File(pickedImage!.path),
-                                    width: 80,
-                                    height: 80,
-                                    fit: BoxFit.cover,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                const Text(
+                                  "Sign Up\nwith Mobile",
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(0, 51, 142, 1),
+                                    fontSize: 26,
+                                    fontWeight: FontWeight.w800,
                                   ),
                                 ),
-                              ),
-                            )],
+                                const SizedBox(width: 10),
+                                GestureDetector(
+                                  onTap: () async {
+                                    pickedImage = await picker.pickImage(
+                                        source: ImageSource.gallery);
+                                    setState(() {});
+                                  },
+                                  child: pickedImage == null
+                                      ? Image.asset(
+                                          SImages.image2,
+                                          height: 85,
+                                          width: 85,
+                                        )
+                                      : CircleAvatar(
+                                          radius: 40,
+                                          child: ClipOval(
+                                            child: Image.file(
+                                              File(pickedImage!.path),
+                                              width: 80,
+                                              height: 80,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                )
+                              ],
                             ),
                             const SizedBox(height: 20),
                             LoginTextField(
@@ -250,27 +254,77 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                                 child: GestureDetector(
                                   onTap: () {
                                     if (validateForm()) {
-                                      AuthServices()
-                                          .loginService(phoneNumberController.text);
+                                      AuthServices().loginService(
+                                          phoneNumberController.text);
                                     }
                                   },
-                                  child: Container(
-                                    width: Get.width * 0.7,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: const Color.fromRGBO(0, 51, 142, 1),
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: const Center(
-                                      child: Text(
-                                        "OTP Verification",
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: Color.fromRGBO(159, 196, 232, 1),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                                  child:
+                                      Obx(() => signupController.isLoading.value
+                                          ? Center(
+                                              child: LoadingAnimationWidget
+                                                  .threeRotatingDots(
+                                                color: Colors.white,
+                                                size: 40,
+                                              ),
+                                            )
+                                          : GestureDetector(
+                                              onTap: () async {
+                                                signupController
+                                                    .isLoading(true);
+                                                String base64String = '';
+
+                                                if (pickedImage != null) {
+                                                  base64String =
+                                                      await imageToBase(
+                                                          pickedImage!.path);
+                                                }
+                                                Position pos =
+                                                    await getCurrentLocation();
+
+                                                SignupModel signupModel = SignupModel(
+                                                    username:
+                                                        usernameController.text,
+                                                    filePath: base64String,
+                                                    fullName:
+                                                        fullNameController.text,
+                                                    email: emailController.text,
+                                                    birthday:
+                                                        birthDayController.text,
+                                                    region:
+                                                        regionController.text,
+                                                    phoneNumber:
+                                                        phoneNumberController
+                                                            .text,
+                                                    password:
+                                                        passwordController.text,
+                                                    coordinates: [
+                                                      pos.latitude.toString(),
+                                                      pos.longitude.toString()
+                                                    ]);
+                                                AuthServices()
+                                                    .signupUser(signupModel);
+                                              },
+                                              child: Container(
+                                                width: Get.width * 0.7,
+                                                height: 50,
+                                                decoration: BoxDecoration(
+                                                  color: const Color.fromRGBO(
+                                                      0, 51, 142, 1),
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                ),
+                                                child: const Center(
+                                                  child: Text(
+                                                    "OTP Verification",
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Color.fromRGBO(
+                                                          159, 196, 232, 1),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            )),
                                 ),
                               ),
                             ),
