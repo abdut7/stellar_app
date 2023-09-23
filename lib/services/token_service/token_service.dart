@@ -1,5 +1,8 @@
 import 'package:base_project/View/base_bottom_nav/bottom_nav.dart';
+import 'package:base_project/controllers/user_controller.dart';
+import 'package:base_project/models/api_models/user_details_model.dart';
 import 'package:base_project/services/api_routes/api_routes.dart';
+import 'package:base_project/services/api_services/user_details_service.dart';
 import 'package:base_project/utils/uid.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,10 +21,18 @@ Future<String?> getJwtToken() async {
 }
 
 Future<void> authenticateUser() async {
+  UserController userController = Get.put(UserController());
   String? token = await getJwtToken();
   if (token == null) {
     Get.off(() => const AuthHomeScreen());
   } else {
+    UserDetailsModel? userDetailsModel =
+        await GetUserDetailsService.getUserDetails();
+    if (userDetailsModel == null) {
+      Get.off(() => const AuthHomeScreen());
+      return;
+    }
+    userController.userDetailsModel(userDetailsModel);
     final socketService = SocketService();
     socketService.initializeSocket(
       ApiRoutes.socketBaseUrl,
