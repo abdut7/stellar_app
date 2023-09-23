@@ -8,6 +8,7 @@ Color get hintTextColor => const Color(0xFFAFAEAE);
 Color get colorPrimary => const Color(0xFF2E3192);
 Color get colorDisabledButton => const Color(0xFFAFAEAE);
 Color get colorBorderGrey => const Color(0xFFC2C2C2);
+Color get secondaryColor => const Color.fromRGBO(159, 196, 232, 1);
 
 Color get colorRed => const Color(0xFFFF0000);
 Color get colorWhite => const Color(0xFFFFFFFF);

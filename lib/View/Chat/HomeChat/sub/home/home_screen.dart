@@ -80,7 +80,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           Get.to(() => PrivateChatScreen(
                               fullName: data.strName, chatId: data.strChatId));
                         } else if (data.strType == "group") {
-                          Get.to(() => GroupChatScreen());
+                          Get.to(() => GroupChatScreen(
+                                chatHistoryList: data,
+                              ));
                         }
                       },
                     ),
