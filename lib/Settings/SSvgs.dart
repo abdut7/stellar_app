@@ -34,5 +34,6 @@ class SSvgs {
   static String get vectorBackground => "assets/Svgs/vector_background.svg";
   static String get addIcon => "assets/Svgs/add_icon.svg";
   static String get addLogo => "assets/Svgs/app_logo.svg";
+  static String get channelLogo => "assets/Svgs/channelLogo.svg";
 
 }
