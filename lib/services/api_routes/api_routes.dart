@@ -11,4 +11,6 @@ class ApiRoutes {
   static String getPrivateMessage = "/get_messages";
   static String getUserById = "/get_user_by_id";
   static String getGroupDetails = "/get_group_details";
+  static String getGroupMessage = "/get_messages";
+  static String uploadBase64 = "/file_base64_upload";
 }

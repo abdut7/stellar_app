@@ -1,10 +1,10 @@
+import 'package:base_project/services/api_services/group_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../models/group_chat/group_details_model.dart';
-import '../../../../services/api_services/group_details_service.dart';
 import '../../../../utils/colors.dart';
 
 class GroupInfoScreen extends StatelessWidget {
@@ -36,7 +36,7 @@ class GroupInfoScreen extends StatelessWidget {
         ],
       ),
       body: FutureBuilder<GroupDetailsResponseModel?>(
-          future: GroupDetailsService.getGroupDetails(groupId: chatId),
+          future: GroupServices.getGroupDetails(groupId: chatId),
           builder:
               (context, AsyncSnapshot<GroupDetailsResponseModel?> snapshot) {
             if (!snapshot.hasData || snapshot.data == null) {

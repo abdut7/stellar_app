@@ -9,12 +9,14 @@ class PrivateMessageJsonModel {
   late final String message;
   late final int statusCode;
   late final List<PrivateMessageModel> privateMessageModelList;
-  
-  PrivateMessageJsonModel.fromJson(Map<String, dynamic> json){
+
+  PrivateMessageJsonModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     message = json['message'];
     statusCode = json['statusCode'];
-    privateMessageModelList = List.from(json['arrList']).map((e)=>PrivateMessageModel.fromJson(e)).toList();
+    privateMessageModelList = List.from(json['arrList'])
+        .map((e) => PrivateMessageModel.fromJson(e))
+        .toList();
   }
 
   Map<String, dynamic> toJson() {
@@ -22,21 +24,21 @@ class PrivateMessageJsonModel {
     _data['success'] = success;
     _data['message'] = message;
     _data['statusCode'] = statusCode;
-    _data['arrList'] = privateMessageModelList.map((e)=>e.toJson()).toList();
+    _data['arrList'] = privateMessageModelList.map((e) => e.toJson()).toList();
     return _data;
   }
 }
 
 class PrivateMessageModel {
-  PrivateMessageModel({
-    required this.id,
-    required this.strUserId,
-    required this.strType,
-    required this.strMessageType,
-    required this.strMessage,
-    required this.strName,
-    required this.strCreatedTime,
-  });
+  PrivateMessageModel(
+      {required this.id,
+      required this.strUserId,
+      required this.strType,
+      required this.strMessageType,
+      required this.strMessage,
+      required this.strName,
+      required this.strCreatedTime,
+      required this.strUrl});
   late final String id;
   late final String strUserId;
   late final String strType;
@@ -44,8 +46,9 @@ class PrivateMessageModel {
   late final String strMessage;
   late final String strName;
   late final String strCreatedTime;
-  
-  PrivateMessageModel.fromJson(Map<String, dynamic> json){
+  late final String strUrl;
+
+  PrivateMessageModel.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
     strUserId = json['strUserId'];
     strType = json['strType'];
@@ -53,6 +56,7 @@ class PrivateMessageModel {
     strMessage = json['strMessage'];
     strName = json['strName'];
     strCreatedTime = json['strCreatedTime'];
+    strUrl = json.containsKey('strUrl') ? json['strUrl'] : '';
   }
 
   Map<String, dynamic> toJson() {

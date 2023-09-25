@@ -20,7 +20,6 @@ class ChatMessageService {
     try {
       Response response =
           await dio.post(url, data: body, options: Options(headers: header));
-
       PrivateMessageJsonModel model =
           PrivateMessageJsonModel.fromJson(response.data);
       chatController.messageList.clear();

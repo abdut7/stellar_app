@@ -4,16 +4,29 @@ import 'package:base_project/View/chat/widgets/bottom_field_sent_widget.dart';
 import 'package:base_project/controllers/group_chat_controller.dart';
 import 'package:base_project/models/api_models/chat_history_model.dart';
 import 'package:base_project/models/group_chat/group_message_model.dart';
+import 'package:base_project/services/api_services/group_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // ignore: must_be_immutable
-class GroupChatScreen extends StatelessWidget {
+class GroupChatScreen extends StatefulWidget {
   final ChatHistoryList chatHistoryList;
   GroupChatScreen({super.key, required this.chatHistoryList});
 
+  @override
+  State<GroupChatScreen> createState() => _GroupChatScreenState();
+}
+
+class _GroupChatScreenState extends State<GroupChatScreen> {
   TextEditingController messageConteroller = TextEditingController();
+
   GroupChatController groupChatController = Get.put(GroupChatController());
+
+  @override
+  void initState() {
+    super.initState();
+    GroupServices.getGroupMessage(groupId: widget.chatHistoryList.strChatId);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +37,14 @@ class GroupChatScreen extends StatelessWidget {
         title: GestureDetector(
           onTap: () {
             Get.to(() => GroupInfoScreen(
-                  chatId: chatHistoryList.strChatId,
+                  chatId: widget.chatHistoryList.strChatId,
                 ));
           },
           child: Row(
             children: [
               CircleAvatar(
-                backgroundImage: NetworkImage(chatHistoryList.strIconURL),
+                backgroundImage:
+                    NetworkImage(widget.chatHistoryList.strIconURL),
                 radius: 20.0, // Adjust the size of the circle avatar as needed
               ),
               const SizedBox(width: 10.0),
@@ -38,7 +52,7 @@ class GroupChatScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    chatHistoryList.strName,
+                    widget.chatHistoryList.strName,
                     style: const TextStyle(
                         fontSize: 18.0, fontWeight: FontWeight.bold),
                   ),
@@ -65,10 +79,12 @@ class GroupChatScreen extends StatelessWidget {
           // Chat messages
           Obx(() {
             if (groupChatController.isErrorOccured.value) {
-              return const Center(child: Text("Error occured while loading"));
+              return const Expanded(
+                  child: Center(child: Text("Error occured while loading")));
             }
             if (groupChatController.isLoading.value) {
-              return const Center(child: CircularProgressIndicator());
+              return const Expanded(
+                  child: Center(child: CircularProgressIndicator()));
             }
 
             if (groupChatController.groupMessageList.isEmpty) {

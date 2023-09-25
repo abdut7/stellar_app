@@ -7,8 +7,10 @@ import 'package:base_project/services/socket_service/private_chat_service.dart';
 import 'package:base_project/utils/uid.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
+import '../../../functions/pick_image.dart';
 import '../widgets/bottom_field_sent_widget.dart';
 import 'model/message_model.dart';
 
@@ -97,7 +99,13 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                   controller.clear();
                 }
               },
-              onCamera: () {},
+              onCamera: () async {
+                XFile? image = await pickImageFromGallery();
+                if (image != null) {
+                  PrivateChatService.sentPersonalImageMessage(
+                      widget.chatId, image);
+                }
+              },
               onAttach: () {})
         ],
       ),
