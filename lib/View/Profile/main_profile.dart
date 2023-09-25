@@ -79,7 +79,7 @@ class _MainProfileState extends State<MainProfile> {
                 svgAsset: SSvgs.sv25,
                 trailingIcon: Icons.arrow_forward_ios),
             CustomListTilee(
-                text: 'Moments',
+                text: 'Flicks',
                 onTap: () {},
                 svgAsset: SSvgs.sv26,
                 trailingIcon: Icons.arrow_forward_ios),
