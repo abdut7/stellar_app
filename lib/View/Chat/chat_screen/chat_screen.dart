@@ -1,9 +1,11 @@
 import 'package:base_project/View/chat/chat_screen/widgets/chat_appbar_title_widget.dart';
 import 'package:base_project/View/chat/chat_screen/widgets/chat_bubble.dart';
+import 'package:base_project/View/chat/chat_screen/widgets/show_attachment.dart';
 import 'package:base_project/controllers/private_chat_controller.dart';
 import 'package:base_project/services/api_services/chat_message_service.dart';
 import 'package:base_project/services/socket_service/private_chat_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -72,17 +74,22 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
         children: <Widget>[
           Obx(() {
             return Expanded(
-              child: ListView.builder(
-                reverse: true,
-                itemCount: chatController.messageList.length,
-                itemBuilder: (context, index) {
-                  final reversedIndex =
-                      chatController.messageList.length - 1 - index;
-                  return ChatBubble(
-                    message:
-                        chatController.messageList.elementAt(reversedIndex),
-                  );
-                },
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  ListView.builder(
+                    reverse: true,
+                    itemCount: chatController.messageList.length,
+                    itemBuilder: (context, index) {
+                      final reversedIndex =
+                          chatController.messageList.length - 1 - index;
+                      return ChatBubble(
+                        message:
+                            chatController.messageList.elementAt(reversedIndex),
+                      );
+                    },
+                  ),
+                ],
               ),
             );
           }),
@@ -97,13 +104,43 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                 }
               },
               onCamera: () async {
-                XFile? image = await pickImageFromGallery();
+                XFile? image = await pickImageFromGalleryOrCamera(
+                    source: ImageSource.camera);
                 if (image != null) {
                   PrivateChatService.sentPersonalImageMessage(
                       widget.chatId, image);
                 }
               },
-              onAttach: () {})
+              onAttach: () {
+                show_attachment(
+                  context,
+                  (index) async {
+                    //if index = 0 =>Send Files
+                    //if index = 1 =>Camera
+                    if (index == 1) {
+                      XFile? image = await pickImageFromGalleryOrCamera(
+                          source: ImageSource.camera);
+                      if (image != null) {
+                        PrivateChatService.sentPersonalImageMessage(
+                            widget.chatId, image);
+                      }
+                    }
+                    //if index = 2 =>Gallary
+                    if (index == 2) {
+                      XFile? image = await pickImageFromGalleryOrCamera(
+                          source: ImageSource.gallery);
+                      if (image != null) {
+                        PrivateChatService.sentPersonalImageMessage(
+                            widget.chatId, image);
+                      }
+                    }
+                    //if index = 3 =>Location
+                    //if index = 4 =>Contacts
+                    //if index = 5 =>Audio
+                    Navigator.pop(context);
+                  },
+                );
+              })
         ],
       ),
     );
