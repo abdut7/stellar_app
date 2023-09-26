@@ -38,7 +38,7 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
           backgroundColor: SColors.color12,
           leading: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: SvgPicture.asset(SSvgs.addLogo,),),
+            child: SvgPicture.asset(SSvgs.appLogo,),),
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
