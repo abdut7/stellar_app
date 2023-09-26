@@ -1,8 +1,11 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
 import 'package:base_project/View/Profile/edit_profile/edit_profile.dart';
+import 'package:base_project/View/Profile/public_profile/public_profile.dart';
+import 'package:base_project/View/Profile/widget/about_me_text.dart';
 import 'package:base_project/View/Profile/widget/custom_grid_view.dart';
 import 'package:base_project/View/Profile/widget/profile_buttons.dart';
+import 'package:base_project/View/Profile/widget/profile_status.dart';
 import 'package:base_project/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -68,11 +71,14 @@ class _MainProfileState extends State<MainProfile> {
               const SizedBox(height: 10,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
-                child:Row(
-                  children: [
-                    customProfileStats('09', 'Posts'), customProfileStats('23', 'Following'), customProfileStats('293', 'Followers'),
-                  ],
-                ),
+                child:
+                  Row(
+                    children: [
+              ProfileStatus(count: '09', label: 'Posts'),
+              ProfileStatus(count: '23', label: 'Following'),
+              ProfileStatus(count: '293', label: 'Followers'),
+            ],
+          ),
               ),
               const SizedBox(height: 30,),
               Row(
@@ -83,26 +89,18 @@ class _MainProfileState extends State<MainProfile> {
                 ],
               ),
               const SizedBox(height: 20,),
-              customDescriptionWidget(),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Divider(color: SColors.color9,thickness: 1,),
-              ),
+              const AboutMeText(),
+              Padding(padding: const EdgeInsets.symmetric(horizontal: 25), child: Divider(color: SColors.color9,thickness: 1,),),
               TabBar(
                indicatorColor: SColors.color9,
                 tabs: [
                   Tab(
-                    icon: SvgPicture.asset(
-                        SSvgs.flicksLogo, width: 30,
-                        height: 30,
+                    icon: SvgPicture.asset(SSvgs.flicksLogo, width: 30, height: 30,
                       color: selectedTabIndex == 0 ? null : Colors.grey,
                     ),
                   ),
                   Tab(
-                    icon: SvgPicture.asset(
-                        SSvgs.channelLogo,
-                        width: 30,
-                      height: 30,
+                    icon: SvgPicture.asset(SSvgs.channelLogo, width: 30, height: 30,
                     color: selectedTabIndex == 1 ? null : Colors.grey,),
                   ),
                 ],
@@ -115,8 +113,7 @@ class _MainProfileState extends State<MainProfile> {
           child: IndexedStack(
               index: selectedTabIndex,
               children: [
-                Visibility(visible: selectedTabIndex == 0, child:CustomGridView(icon: Icons.photo,)
-                ),
+                Visibility(visible: selectedTabIndex == 0, child:CustomGridView(icon: Icons.photo,)),
                 Visibility(visible: selectedTabIndex == 1, child: CustomGridView()
                 ),
               ]
@@ -128,55 +125,5 @@ class _MainProfileState extends State<MainProfile> {
       )
     );
   }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-Widget customProfileStats(String count, String label) {
-  return Expanded(
-    child: Column(
-      children: [
-        Text(
-          count,
-          style:  TextStyle(color: SColors.color3, fontSize: 14, fontWeight: FontWeight.w600,),),
-        Text(
-          label,
-          style: TextStyle(color: SColors.color3, fontSize: 11, fontWeight: FontWeight.w400,),
-        ),
-      ],
-    ),
-  );
-}
-Widget customDescriptionWidget() {
-  return  Padding(
-    padding:  const EdgeInsets.symmetric(horizontal: 30),
-    child: Text.rich(
-      TextSpan(
-        children: [
-          TextSpan(
-            text: 'About Me\n',
-            style: TextStyle(
-              color: SColors.color3, fontSize: 12, fontWeight: FontWeight.w800,
-            ),
-          ),
-          TextSpan(
-            text: 'The availability of low-cost flights and last minute internet deals means that cheap holidays are far easier to come by than they used to be, but it can still take a bit of shopping around to get the best discounts.',
-            style: TextStyle(
-              color: SColors.color3, fontSize: 11, fontWeight: FontWeight.w400,),
-          ),
-        ],
-      ),
-    ),
-  );
 }
 

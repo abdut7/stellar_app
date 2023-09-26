@@ -116,7 +116,8 @@ void showBottomSheet(BuildContext context, String action) {
                   style: TextStyle(color: SColors.color3, fontSize: 15, fontWeight: FontWeight.w600,),),
               ),
             const SizedBox(height: 25,),
-            ProfileButton(buttonText: 'Continue', onPressed: (){}),
+            if (action != 'photo') // Condition to exclude "Continue" button for action 'photo'
+              ProfileButton(buttonText: 'Continue', onPressed: (){}),
             if (action == 'photo')
               Column(
                 children: [
@@ -141,6 +142,7 @@ void showBottomSheet(BuildContext context, String action) {
     },
   );
 }
+
 
 
 

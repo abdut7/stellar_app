@@ -12,5 +12,8 @@ class SImages {
   static String get likeButton=> "assets/Images/likeButton.png";
   static String get dislikeButton=> "assets/Images/dislikeButton.png";
   static String get heartIcon=> "assets/Images/heartIcon.png";
+  static String get msgIcon=> "assets/Images/msgIcon.png";
+  static String get callIcon=> "assets/Images/callIcon.png";
+  static String get videoIcon=> "assets/Images/videoIcon.png";
 
 }
