@@ -64,7 +64,7 @@ class _ProfileTextFieldState extends State<ProfileTextField> {
         letterSpacing: 0.2,
       ),
       autocorrect: true,
-      maxLines: widget.maxLines, // Use the provided maxLines or leave it null (default behavior)
+      maxLines: widget.maxLines,
       decoration: buildInputDecoration(widget.head),
     );
   }
@@ -72,16 +72,26 @@ class _ProfileTextFieldState extends State<ProfileTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      padding: const EdgeInsets.all(5.0),
+      child: Row(
         children: [
-          textFieldHeading(headingText: widget.head),
-          const SizedBox(height: 5),
-          textField(),
-          const SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: SizedBox(
+              width: 100,
+              child: textFieldHeading(headingText: widget.head),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: textField(),
+            ),
+          ),
         ],
       ),
-    );
+    )
+
+    ;
   }
 }
