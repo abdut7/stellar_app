@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
     );
     return const GetMaterialApp(
-      home: ChannelViewScreen(),
+      home: SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
