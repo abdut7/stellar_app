@@ -14,7 +14,9 @@ class BaseBottomNavigation extends StatefulWidget {
 
 List<Widget> screenList = [
   const HomeScreen(),
-  const ContactsHomeScreen(),
+  // const ContactsHomeScreen(),
+  Container(),
+  Container(),
   Container(),
   const MainProfile(),
 ];
@@ -33,15 +35,21 @@ class _BaseBottomNavigationState extends State<BaseBottomNavigation> {
               label: "Home"),
           BottomNavigationBarItem(
               icon: BottomNavIconWidget(
-                  svgPath: SSvgs.sv11, isSelected: selectedIndex == 1),
-              label: "Contacts"),
-          BottomNavigationBarItem(
-              icon: BottomNavIconWidget(
-                  svgPath: SSvgs.sv12, isSelected: selectedIndex == 2),
+                  svgPath: SSvgs.sv12, isSelected: selectedIndex == 1),
               label: "Discovery"),
           BottomNavigationBarItem(
               icon: BottomNavIconWidget(
-                  svgPath: SSvgs.sv10, isSelected: selectedIndex == 3),
+                  svgPath: SSvgs.bottomNavAddIcon,
+                  isSelected: selectedIndex == 2),
+              label: "Add"),
+          BottomNavigationBarItem(
+              icon: BottomNavIconWidget(
+                  svgPath: SSvgs.bottomNavNotificationIcon,
+                  isSelected: selectedIndex == 3),
+              label: "Notification"),
+          BottomNavigationBarItem(
+              icon: BottomNavIconWidget(
+                  svgPath: SSvgs.sv10, isSelected: selectedIndex == 4),
               label: "Profile"),
         ],
         currentIndex: selectedIndex,
