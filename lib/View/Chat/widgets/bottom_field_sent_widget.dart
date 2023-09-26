@@ -1,10 +1,15 @@
+import 'dart:io';
+
+import 'package:base_project/services/socket_service/private_chat_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class ChatBottomFieldSent extends StatefulWidget {
+  final String chatId;
   final TextEditingController controller;
   final VoidCallback onsent;
   final VoidCallback onCamera;
@@ -15,6 +20,7 @@ class ChatBottomFieldSent extends StatefulWidget {
     required this.onsent,
     required this.onCamera,
     required this.onAttach,
+    required this.chatId,
   });
 
   @override
@@ -23,8 +29,44 @@ class ChatBottomFieldSent extends StatefulWidget {
 
 bool isVoice = true;
 bool isRecording = false;
+FlutterSoundRecorder? _soundRecorder;
+bool isRecorderInit = false;
 
 class _ChatBottomFieldSentState extends State<ChatBottomFieldSent> {
+  @override
+  void initState() {
+    _soundRecorder = FlutterSoundRecorder();
+    openAudio();
+    super.initState();
+  }
+
+  void openAudio() async {
+    final status = await Permission.microphone.request();
+    if (status != PermissionStatus.granted) {
+      throw RecordingPermissionException('Mic permission not allowed!');
+    }
+    await _soundRecorder!.openRecorder();
+    isRecorderInit = true;
+  }
+
+  void recordAndSent({required bool startRecording}) async {
+    var tempDir = await getTemporaryDirectory();
+    var path = '${tempDir.path}/flutter_sound.aac';
+    if (!isRecorderInit) {
+      return;
+    }
+    if (!startRecording) {
+      await _soundRecorder!.stopRecorder();
+      PrivateChatService.sentPersonalVoiceMessage(
+          chatId: widget.chatId, path: path);
+      // sendFileMessage(File(path), MessageEnum.audio);
+    } else {
+      await _soundRecorder!.startRecorder(
+        toFile: path,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -105,6 +147,7 @@ class _ChatBottomFieldSentState extends State<ChatBottomFieldSent> {
                     setState(() {
                       isRecording = false;
                     });
+                    recordAndSent(startRecording: false);
                   },
                   child: SizedBox(
                     height: 40,
@@ -121,14 +164,16 @@ class _ChatBottomFieldSentState extends State<ChatBottomFieldSent> {
               : GestureDetector(
                   onTap: () async {
                     if (isVoice) {
-                      var status = await Permission.microphone.request();
-                      if (status != PermissionStatus.granted) {
-                        throw RecordingPermissionException(
-                            'Microphone permission not granted');
-                      }
+                      // var status = await Permission.microphone.request();
+                      // if (status != PermissionStatus.granted) {
+                      //   throw RecordingPermissionException(
+                      //       'Microphone permission not granted');
+                      // }
+
                       setState(() {
                         isRecording = true;
                       });
+                      recordAndSent(startRecording: true);
                     } else {
                       widget.onsent();
                       setState(() {

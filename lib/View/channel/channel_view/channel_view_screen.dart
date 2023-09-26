@@ -21,16 +21,28 @@ class _ChannelViewScreenState extends State<ChannelViewScreen> {
       body: ListView(
         children: [
           const VideoCardChannelView(),
-      const SizedBox(height: 10,),
-      Padding(
-        padding:const  EdgeInsets.symmetric(horizontal: 25), child: Divider(color: SColors.color9,),),
+          const SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: Divider(
+              color: SColors.color9,
+            ),
+          ),
           const Tile1(),
-          Padding(padding:const  EdgeInsets.symmetric(horizontal: 25), child: Divider(color: SColors.color9,),),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: Divider(
+              color: SColors.color9,
+            ),
+          ),
           const MainTile(),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           const VideoCard(),
           const VideoCard(),
-
         ],
       ),
     );

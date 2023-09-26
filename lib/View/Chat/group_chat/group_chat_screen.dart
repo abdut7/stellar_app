@@ -112,6 +112,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
 
           // Message input field
           ChatBottomFieldSent(
+            chatId: widget.chatHistoryList.id,
             controller: messageConteroller,
             onsent: () {},
             onCamera: () {},

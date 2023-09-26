@@ -15,7 +15,7 @@ class GroupServices {
       List<String> userIdList, String groupName, XFile? groupFile) async {
     String baseImage = "";
     if (groupFile != null) {
-      baseImage = await imageToBase(groupFile.path);
+      baseImage = await filePathToBase(groupFile.path);
     }
 
     String url = ApiRoutes.baseUrl + ApiRoutes.createGroup;

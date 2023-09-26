@@ -94,6 +94,7 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
             );
           }),
           ChatBottomFieldSent(
+              chatId: widget.chatId,
               controller: controller,
               onsent: () async {
                 if (controller.text.isNotEmpty) {

@@ -275,7 +275,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
 
                                                 if (pickedImage != null) {
                                                   base64String =
-                                                      await imageToBase(
+                                                      await filePathToBase(
                                                           pickedImage!.path);
                                                 }
                                                 Position pos =

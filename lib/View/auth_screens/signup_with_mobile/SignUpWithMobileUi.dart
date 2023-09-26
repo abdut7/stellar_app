@@ -231,7 +231,7 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
                           String base64String = '';
 
                           if (pickedImage != null) {
-                            base64String = await imageToBase(pickedImage!.path);
+                            base64String = await filePathToBase(pickedImage!.path);
                           }
                           Position pos = await getCurrentLocation();
 

@@ -1,9 +1,13 @@
-import 'package:audio_wave_url_package/voice_message_package.dart';
+import 'dart:io';
+
 import 'package:base_project/utils/uid.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:path/path.dart';
 import '../../../../models/private_chat/private_chat_model.dart';
+import 'package:voice_message_package/voice_message_package.dart';
 
 class ChatBubble extends StatelessWidget {
   final PrivateMessageModel message;
@@ -57,13 +61,8 @@ class ChatBubble extends StatelessWidget {
                               const Icon(Icons.error),
                         ))
                     : message.strMessageType == "voice"
-                        ? VoiceMessage(
-                            header: {},
-                            audioSrc: 'YOUR_AUDIO_URL',
-                            played: false, // To show played badge or not.
-                            me: true, // Set message side.
-                            onPlay: () {}, // Do something when voice played.
-                          )
+                        ? VoiceMailWidget(message: message)
+                        // SizedBox()
                         : const SizedBox(),
           ),
           const SizedBox(height: 4.0),
@@ -88,4 +87,50 @@ class ChatBubble extends StatelessWidget {
       ),
     );
   }
+}
+
+class VoiceMailWidget extends StatelessWidget {
+  const VoiceMailWidget({
+    super.key,
+    required this.message,
+  });
+
+  final PrivateMessageModel message;
+
+  @override
+  Widget build(BuildContext context) {
+    return VoiceMessage(
+      // showDuration: true,
+      audioFile: getFile(message.strUrl),
+      // played: false, // To show played badge or not.
+      me: true, // Set message side.
+      onPlay: () {}, // Do something when voice played.
+    );
+    return FutureBuilder(
+      future: getFile(message.strUrl),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return VoiceMessage(
+            // showDuration: true,
+            audioSrc: message.strUrl,
+            // played: false, // To show played badge or not.
+            me: true, // Set message side.
+            onPlay: () {}, // Do something when voice played.
+          );
+        }
+        return VoiceMessage(
+          // showDuration: true,
+          audioFile: getFile(message.strUrl),
+          // played: false, // To show played badge or not.
+          me: true, // Set message side.
+          onPlay: () {}, // Do something when voice played.
+        );
+      },
+    );
+  }
+}
+
+Future<File> getFile(String url) async {
+  File file = await DefaultCacheManager().getSingleFile(url);
+  return file;
 }

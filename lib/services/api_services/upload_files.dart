@@ -3,11 +3,18 @@ import 'package:dio/dio.dart';
 import '../../functions/get_header.dart';
 import '../api_routes/api_routes.dart';
 
-Future<String?> uploadFiles({required String base64File}) async {
+Future<String?> uploadFiles({
+  required String base64File,
+  String? fileExtension,
+}) async {
   Dio dio = Dio();
   String path = ApiRoutes.baseUrl + ApiRoutes.uploadBase64;
   Map<String, dynamic> header = await getHeader();
+
   Map<String, dynamic> body = {"strFileBase64": base64File};
+  if (fileExtension != null) {
+    body = {"strFileBase64": base64File, "strFileExtension": fileExtension};
+  }
   try {
     Response res =
         await dio.post(path, options: Options(headers: header), data: body);
