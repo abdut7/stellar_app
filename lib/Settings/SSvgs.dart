@@ -38,5 +38,7 @@ class SSvgs {
   static String get channelLogo => "assets/Svgs/channelLogo.svg";
   static String get flicksLogo => "assets/Svgs/flicksLogo.svg";
   static String get shareIcon => "assets/Svgs/shareIcon.svg";
-
+  static String get bottomNavNotificationIcon =>
+      "assets/Svgs/notifiacation_bottom_nav_icon.svg";
+  static String get bottomNavAddIcon => "assets/Svgs/bottom_nav_add.svg";
 }
