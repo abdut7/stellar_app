@@ -30,10 +30,13 @@ class SSvgs {
   static String get sv26 => "assets/Svgs/26.svg";
   static String get sv27 => "assets/Svgs/27.svg";
   static String get sv28 => "assets/Svgs/28.svg";
+  static String get sv29 => "assets/Svgs/29.svg";
   static String get appLogoAndName => "assets/Svgs/app_logo_and_name.svg";
   static String get vectorBackground => "assets/Svgs/vector_background.svg";
   static String get addIcon => "assets/Svgs/add_icon.svg";
   static String get addLogo => "assets/Svgs/app_logo.svg";
   static String get channelLogo => "assets/Svgs/channelLogo.svg";
+  static String get flicksLogo => "assets/Svgs/flicksLogo.svg";
+  static String get shareIcon => "assets/Svgs/shareIcon.svg";
 
 }

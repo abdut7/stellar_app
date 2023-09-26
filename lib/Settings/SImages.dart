@@ -8,5 +8,9 @@ class SImages {
   static String get image5 => "assets/Images/05.png";
   static String get vectorBackground => "assets/Images/vector_background.png";
   static String get profileBackground => "assets/Images/profileBackground.png";
+  static String get shareIcon=> "assets/Images/shareIcon.png";
+  static String get likeButton=> "assets/Images/likeButton.png";
+  static String get dislikeButton=> "assets/Images/dislikeButton.png";
+  static String get heartIcon=> "assets/Images/heartIcon.png";
 
 }
