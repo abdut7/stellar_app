@@ -1,3 +1,4 @@
+import 'package:audio_wave_url_package/voice_message_package.dart';
 import 'package:base_project/utils/uid.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -48,13 +49,22 @@ class ChatBubble extends StatelessWidget {
                           fit: BoxFit.cover,
                           imageUrl: message.strUrl,
                           progressIndicatorBuilder:
-                              (context, url, downloadProgress) =>
-                                  CircularProgressIndicator(
-                                      value: downloadProgress.progress),
+                              (context, url, downloadProgress) => Center(
+                            child: CircularProgressIndicator(
+                                value: downloadProgress.progress),
+                          ),
                           errorWidget: (context, url, error) =>
                               const Icon(Icons.error),
                         ))
-                    : const SizedBox(),
+                    : message.strMessageType == "voice"
+                        ? VoiceMessage(
+                            header: {},
+                            audioSrc: 'YOUR_AUDIO_URL',
+                            played: false, // To show played badge or not.
+                            me: true, // Set message side.
+                            onPlay: () {}, // Do something when voice played.
+                          )
+                        : const SizedBox(),
           ),
           const SizedBox(height: 4.0),
           Row(

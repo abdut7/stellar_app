@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lottie/lottie.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-class ChatBottomFieldSent extends StatelessWidget {
+class ChatBottomFieldSent extends StatefulWidget {
   final TextEditingController controller;
   final VoidCallback onsent;
   final VoidCallback onCamera;
   final VoidCallback onAttach;
-  const ChatBottomFieldSent(
-      {super.key,
-      required this.controller,
-      required this.onsent,
-      required this.onCamera,
-      required this.onAttach});
+  const ChatBottomFieldSent({
+    super.key,
+    required this.controller,
+    required this.onsent,
+    required this.onCamera,
+    required this.onAttach,
+  });
 
+  @override
+  State<ChatBottomFieldSent> createState() => _ChatBottomFieldSentState();
+}
+
+bool isVoice = true;
+bool isRecording = false;
+
+class _ChatBottomFieldSentState extends State<ChatBottomFieldSent> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,7 +42,19 @@ class ChatBottomFieldSent extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     child: TextField(
-                      controller: controller,
+                      onChanged: (v) {
+                        if (v.isEmpty && !isVoice) {
+                          setState(() {
+                            isVoice = true;
+                          });
+                        }
+                        if (v.isNotEmpty && isVoice) {
+                          setState(() {
+                            isVoice = false;
+                          });
+                        }
+                      },
+                      controller: widget.controller,
                       decoration: const InputDecoration(
                         hintText: 'Start typing...',
                         border: InputBorder.none,
@@ -39,7 +63,7 @@ class ChatBottomFieldSent extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      onAttach();
+                      widget.onAttach();
                     },
                     child: SvgPicture.string(
                         """<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -52,7 +76,7 @@ class ChatBottomFieldSent extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      onCamera();
+                      widget.onCamera();
                     },
                     child: SvgPicture.string(
                         """<svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -75,27 +99,65 @@ class ChatBottomFieldSent extends StatelessWidget {
           const SizedBox(
             width: 10,
           ),
-          GestureDetector(
-            onTap: () {
-              onsent();
-            },
-            child: Container(
-              width: 40,
-              height: 40,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Color(0xFF9FC4E8), // Button background color
-              ),
-              child: Center(
-                child: SvgPicture.string(
-                  """<svg width="20" height="20" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          isRecording
+              ? GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isRecording = false;
+                    });
+                  },
+                  child: SizedBox(
+                    height: 40,
+                    width: 40,
+                    child: Lottie.asset(
+                      'assets/lottie/mic_recording.json',
+                      height: 200,
+                      width: 200,
+                      fit: BoxFit.cover,
+                      animate: true,
+                    ),
+                  ),
+                )
+              : GestureDetector(
+                  onTap: () async {
+                    if (isVoice) {
+                      var status = await Permission.microphone.request();
+                      if (status != PermissionStatus.granted) {
+                        throw RecordingPermissionException(
+                            'Microphone permission not granted');
+                      }
+                      setState(() {
+                        isRecording = true;
+                      });
+                    } else {
+                      widget.onsent();
+                      setState(() {
+                        isVoice = true;
+                      });
+                    }
+                  },
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFF9FC4E8), // Button background color
+                    ),
+                    child: Center(
+                      child: isVoice
+                          ? const Icon(
+                              Icons.mic,
+                              color: Colors.white,
+                            )
+                          : SvgPicture.string(
+                              """<svg width="20" height="20" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M25.9349 13.9999C25.9349 14.8516 25.3854 15.6099 24.4299 16.0883L5.27324 25.6666C4.80657 25.8999 4.35157 26.0166 3.93157 26.0166C3.32374 26.0166 2.78824 25.7599 2.44874 25.3061C2.15824 24.9083 1.87824 24.2199 2.21657 23.0999L4.37491 15.9016C4.44491 15.6916 4.49157 15.4361 4.51491 15.1666H16.3332C16.9749 15.1666 17.4999 14.6416 17.4999 13.9999C17.4999 13.3583 16.9749 12.8333 16.3332 12.8333H4.51491C4.49041 12.5649 4.44374 12.3083 4.37491 12.0983L2.21657 4.89994C1.87824 3.77994 2.15824 3.09161 2.44991 2.69494C3.02157 1.92494 4.10657 1.74994 5.27324 2.33328L24.4311 11.9116C25.3866 12.3899 25.9349 13.1483 25.9349 13.9999Z" fill="white"/>
                   </svg>
                   """,
+                            ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
         ],
       ),
     );

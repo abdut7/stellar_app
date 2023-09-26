@@ -1,14 +1,11 @@
 import 'package:base_project/View/chat/chat_screen/widgets/chat_appbar_title_widget.dart';
 import 'package:base_project/View/chat/chat_screen/widgets/chat_bubble.dart';
 import 'package:base_project/controllers/private_chat_controller.dart';
-import 'package:base_project/models/private_chat/private_chat_model.dart';
 import 'package:base_project/services/api_services/chat_message_service.dart';
 import 'package:base_project/services/socket_service/private_chat_service.dart';
-import 'package:base_project/utils/uid.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 
 import '../../../functions/pick_image.dart';
 import '../widgets/bottom_field_sent_widget.dart';
@@ -91,7 +88,7 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
           }),
           ChatBottomFieldSent(
               controller: controller,
-              onsent: () {
+              onsent: () async {
                 if (controller.text.isNotEmpty) {
                   PrivateChatService.sentPersonalTextMessage(
                       widget.chatId, controller.text.trim());
