@@ -1,7 +1,7 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/View/channel/channel_home_screen/widgets/video_card.dart';
 import 'package:base_project/View/channel/channel_view/widgets/tile1.dart';
-import 'package:base_project/View/channel/channel_view/widgets/tile2.dart';
+import 'package:base_project/View/comment_view/tile2.dart';
 import 'package:base_project/View/channel/channel_view/widgets/video_card_channel_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +26,7 @@ class _ChannelViewScreenState extends State<ChannelViewScreen> {
         padding:const  EdgeInsets.symmetric(horizontal: 25), child: Divider(color: SColors.color9,),),
           const Tile1(),
           Padding(padding:const  EdgeInsets.symmetric(horizontal: 25), child: Divider(color: SColors.color9,),),
-          const Tile2(),
+          const MainTile(),
           const SizedBox(height: 10,),
           const VideoCard(),
           const VideoCard(),

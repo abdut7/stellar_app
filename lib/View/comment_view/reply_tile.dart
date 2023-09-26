@@ -12,7 +12,7 @@ class _Tile3State extends State<ReplyTile> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 35),
+      padding: const EdgeInsets.symmetric(horizontal: 30),
       child: ListTile(
         leading: Container(
           width: 40,
@@ -26,6 +26,18 @@ class _Tile3State extends State<ReplyTile> {
         title: Text(
           'No Pressue',
           style: TextStyle(color: SColors.color8, fontSize: 13, fontWeight: FontWeight.w400,),
+        ),
+        subtitle: Row(
+          children: [
+            Text(
+              'View replies (4)',
+              style: TextStyle(color:  SColors.color9, fontSize: 11, fontWeight: FontWeight.w600,),
+            ),
+            IconButton(
+              icon: const Icon(Icons.arrow_drop_down, size: 20),
+              onPressed: () {},
+            ),
+          ],
         ),
         trailing:
         Row(
