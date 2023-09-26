@@ -6,6 +6,7 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:path/path.dart';
+import '../../../../functions/get_cached_file_from_url.dart';
 import '../../../../models/private_chat/private_chat_model.dart';
 import 'package:voice_message_package/voice_message_package.dart';
 
@@ -28,7 +29,7 @@ class ChatBubble extends StatelessWidget {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-              color: color,
+              color: message.strMessageType == "voice" ? null : color,
               borderRadius: BorderRadius.only(
                   bottomRight: !isSent
                       ? const Radius.circular(10)
@@ -39,7 +40,7 @@ class ChatBubble extends StatelessWidget {
                   topLeft: const Radius.circular(10),
                   topRight: const Radius.circular(10)),
             ),
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(2),
             child: message.strMessageType == "text"
                 ? Text(
                     message.strMessage,
@@ -49,19 +50,37 @@ class ChatBubble extends StatelessWidget {
                     ? SizedBox(
                         height: Get.width * 0.4,
                         width: Get.width * 0.6,
-                        child: CachedNetworkImage(
-                          fit: BoxFit.cover,
-                          imageUrl: message.strUrl,
-                          progressIndicatorBuilder:
-                              (context, url, downloadProgress) => Center(
-                            child: CircularProgressIndicator(
-                                value: downloadProgress.progress),
+                        child: Padding(
+                          padding: message.strMessageType == "text"
+                              ? const EdgeInsets.all(8)
+                              : message.strMessageType == "image"
+                                  ? const EdgeInsets.all(2.0)
+                                  : EdgeInsets.all(0),
+                          child: CachedNetworkImage(
+                            fit: BoxFit.cover,
+                            imageUrl: message.strUrl,
+                            progressIndicatorBuilder:
+                                (context, url, downloadProgress) => Center(
+                              child: CircularProgressIndicator(
+                                  value: downloadProgress.progress),
+                            ),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
                           ),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
                         ))
                     : message.strMessageType == "voice"
-                        ? VoiceMailWidget(message: message)
+                        ? VoiceMessage(
+                            audioFile: getFile(message.strUrl),
+                            audioSrc: message.strUrl,
+                            me: isSent,
+                            onPlay: () {},
+                            contactFgColor: Colors.indigo,
+                            mePlayIconColor: Colors.white,
+                            contactPlayIconColor: Colors.white,
+                            meFgColor: Color.fromRGBO(0, 51, 142, 1),
+                            contactBgColor: Color.fromRGBO(233, 244, 255, 1),
+                            meBgColor: Color.fromRGBO(233, 244, 255, 1),
+                          )
                         // SizedBox()
                         : const SizedBox(),
           ),
@@ -87,50 +106,4 @@ class ChatBubble extends StatelessWidget {
       ),
     );
   }
-}
-
-class VoiceMailWidget extends StatelessWidget {
-  const VoiceMailWidget({
-    super.key,
-    required this.message,
-  });
-
-  final PrivateMessageModel message;
-
-  @override
-  Widget build(BuildContext context) {
-    return VoiceMessage(
-      // showDuration: true,
-      audioFile: getFile(message.strUrl),
-      // played: false, // To show played badge or not.
-      me: true, // Set message side.
-      onPlay: () {}, // Do something when voice played.
-    );
-    return FutureBuilder(
-      future: getFile(message.strUrl),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          return VoiceMessage(
-            // showDuration: true,
-            audioSrc: message.strUrl,
-            // played: false, // To show played badge or not.
-            me: true, // Set message side.
-            onPlay: () {}, // Do something when voice played.
-          );
-        }
-        return VoiceMessage(
-          // showDuration: true,
-          audioFile: getFile(message.strUrl),
-          // played: false, // To show played badge or not.
-          me: true, // Set message side.
-          onPlay: () {}, // Do something when voice played.
-        );
-      },
-    );
-  }
-}
-
-Future<File> getFile(String url) async {
-  File file = await DefaultCacheManager().getSingleFile(url);
-  return file;
 }
