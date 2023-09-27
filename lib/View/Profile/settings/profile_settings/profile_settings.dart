@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
 import 'package:base_project/View/Profile/qr/qr_screen.dart';
-import 'package:base_project/View/Profile/widget/tile.dart';
+import 'package:base_project/View/Profile/widget/profile_settings_tile.dart';
 import 'package:base_project/controllers/user_controller.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -91,15 +91,10 @@ class _ProfileSettingsState extends State<ProfileSettings> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GestureDetector(
-                  onTap: () {},
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 45),
-                    child: Text(
-                        'Settings',
-                        style: TextStyle(color: SColors.color11, fontSize: 18, fontWeight: FontWeight.w600,)),
-                  ),
-                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 45),
+                  child: Text(
+                      'Settings', style: TextStyle(color: SColors.color11, fontSize: 18, fontWeight: FontWeight.w600,)),),
                 const SizedBox(height: 15,),
                 GestureDetector(
                   onTap: () {},

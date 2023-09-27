@@ -85,7 +85,7 @@ class _MainProfileState extends State<MainProfile> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                  ProfileButton(buttonText: 'Edit Profile', onPressed: (){Get.to(()=>const EditProfile());}),
-                  ProfileButton(buttonText: 'Settings', onPressed: (){})
+                  ProfileButton(buttonText: 'Settings', onPressed: (){Get.to(()=>const PrivacySettings());})
                 ],
               ),
               const SizedBox(height: 20,),
