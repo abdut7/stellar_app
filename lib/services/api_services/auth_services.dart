@@ -8,7 +8,7 @@ import 'package:base_project/services/token_service/token_service.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 
-import '../../View/auth_screens/OtpVerification/OtpVerificationUi.dart';
+import '../../View/auth_screens/OtpVerification/otp_verification_screen.dart';
 
 class AuthServices {
   //user signup
