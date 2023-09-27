@@ -7,6 +7,11 @@ import 'package:base_project/View/Profile/widget/about_me_text.dart';
 import 'package:base_project/View/Profile/widget/custom_grid_view.dart';
 import 'package:base_project/View/Profile/widget/profile_buttons.dart';
 import 'package:base_project/View/Profile/widget/profile_status.dart';
+import 'package:base_project/View/profile/edit_profile/edit_profile.dart';
+import 'package:base_project/View/profile/widget/about_me_text.dart';
+import 'package:base_project/View/profile/widget/custom_grid_view.dart';
+import 'package:base_project/View/profile/widget/profile_buttons.dart';
+import 'package:base_project/View/profile/widget/profile_status.dart';
 import 'package:base_project/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -87,7 +92,7 @@ class _MainProfileState extends State<MainProfile> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                  ProfileButton(buttonText: 'Edit Profile', onPressed: (){Get.to(()=>const EditProfile());}),
-                  ProfileButton(buttonText: 'Settings', onPressed: (){})
+                  ProfileButton(buttonText: 'Settings', onPressed: (){Get.to(()=>const PrivacySettings());})
                 ],
               ),
               const SizedBox(height: 20,),
