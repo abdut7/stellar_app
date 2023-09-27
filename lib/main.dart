@@ -1,5 +1,4 @@
-import 'package:base_project/View/channel/channel_home_screen/channel_home_screen.dart';
-import 'package:base_project/View/channel/channel_view/channel_view_screen.dart';
+
 import 'package:base_project/View/splash/spalash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

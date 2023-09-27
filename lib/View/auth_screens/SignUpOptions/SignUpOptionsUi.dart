@@ -1,6 +1,5 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
-import 'package:base_project/View/auth_screens/signup_with_mobile/SignUpWithMobileUi.dart';
 import 'package:base_project/widgets/custom_signup_option_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

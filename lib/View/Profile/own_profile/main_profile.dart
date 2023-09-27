@@ -43,6 +43,7 @@ class _MainProfileState extends State<MainProfile> {
                               colors: [Colors.transparent, Colors.black.withOpacity(0.9)],
                               stops: [0.0, 0.5], begin: Alignment.bottomLeft, end: Alignment.topCenter,).createShader(bounds);
                           },
+                          
                           blendMode: BlendMode.dstIn,
                           child:
                           Image.network(
@@ -76,8 +77,8 @@ class _MainProfileState extends State<MainProfile> {
                   Row(
                     children: [
               ProfileStatus(count: '09', label: 'Posts'),
-              ProfileStatus(count: '23', label: 'Following'),
-              ProfileStatus(count: '293', label: 'Followers'),
+              ProfileStatus(count: "${controller.userDetailsModel.value!.followingCount}", label: 'Following'),
+              ProfileStatus(count: "${controller.userDetailsModel.value!.followersCount}", label: 'Followers'),
             ],
           ),
               ),

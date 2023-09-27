@@ -5,7 +5,6 @@ import 'package:base_project/controllers/private_chat_controller.dart';
 import 'package:base_project/services/api_services/chat_message_service.dart';
 import 'package:base_project/services/socket_service/private_chat_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 

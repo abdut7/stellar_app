@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import '../../../controllers/contacts_controller.dart';
 import '../../../models/api_models/get_contacts_model.dart';
-import '../../../services/token_service/token_service.dart';
 import '../../chat/chat_screen/chat_screen.dart';
 
 class ListContactsWidget extends StatelessWidget {

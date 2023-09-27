@@ -19,6 +19,8 @@ class UserDetailsModel {
     required this.location,
     required this.strCreatedTime,
     required this.strOTPToken,
+    required this.followersCount,
+    required this.followingCount,
   });
   late final bool success;
   late final String message;
@@ -39,8 +41,10 @@ class UserDetailsModel {
   late final Location location;
   late final String strCreatedTime;
   late final String strOTPToken;
-  
-  UserDetailsModel.fromJson(Map<String, dynamic> json){
+  late final int followersCount;
+  late final int followingCount;
+
+  UserDetailsModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     message = json['message'];
     statusCode = json['statusCode'];
@@ -60,6 +64,8 @@ class UserDetailsModel {
     location = Location.fromJson(json['location']);
     strCreatedTime = json['strCreatedTime'];
     strOTPToken = json['strOTPToken'];
+    followersCount = json['followersCount'];
+    followingCount = json['followingCount'];
   }
 
   Map<String, dynamic> toJson() {
@@ -83,6 +89,8 @@ class UserDetailsModel {
     _data['location'] = location.toJson();
     _data['strCreatedTime'] = strCreatedTime;
     _data['strOTPToken'] = strOTPToken;
+    _data['followersCount'] = followersCount;
+    _data['followingCount'] = followingCount;
     return _data;
   }
 }
@@ -94,8 +102,8 @@ class Location {
   });
   late final String type;
   late final List<double> coordinates;
-  
-  Location.fromJson(Map<String, dynamic> json){
+
+  Location.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     coordinates = List.castFrom<dynamic, double>(json['coordinates']);
   }

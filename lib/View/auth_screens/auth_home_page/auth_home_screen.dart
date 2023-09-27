@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../Settings/SColors.dart';
-import '../../../Settings/SSvgs.dart';
-import '../../../widgets/custom_signup_option_buttons.dart';
-import '../signup_with_mobile/SignUpWithMobileUi.dart';
+
 
 class AuthHomeScreen extends StatelessWidget {
   const AuthHomeScreen({super.key});

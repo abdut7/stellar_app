@@ -1,11 +1,11 @@
 import 'package:base_project/Settings/SImages.dart';
-import 'package:base_project/View/Profile/widget/about_me_text.dart';
-import 'package:base_project/View/Profile/widget/contact_through_options.dart';
-import 'package:base_project/View/Profile/widget/profile_status.dart';
+import 'package:base_project/View/profile/widget/about_me_text.dart';
+import 'package:base_project/View/profile/widget/contact_through_options.dart';
+import 'package:base_project/View/profile/widget/profile_status.dart';
 import 'package:flutter/material.dart';
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
-import 'package:base_project/View/Profile/widget/custom_grid_view.dart';
+import 'package:base_project/View/profile/widget/custom_grid_view.dart';
 import 'package:base_project/controllers/user_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';

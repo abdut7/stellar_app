@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../../../chat_screen/chat_screen.dart';
 
 class ChatListItem extends StatelessWidget {
   final String name;
