@@ -38,9 +38,11 @@ class AuthServices {
       Response response = await dio.post(path, data: body);
       if (response.statusCode == 200) {
         signupController.isSignupSuccess(true);
-        Get.to(() => const OtpVerificationUi(
-              otpToken: "",
-            ));
+
+        String strOtpToken = response.data['strOTPToken'];
+        Get.to(
+          () => OtpVerificationUi(otpToken: strOtpToken),
+        );
       } else {
         signupController.isSignupSuccess(false);
       }
