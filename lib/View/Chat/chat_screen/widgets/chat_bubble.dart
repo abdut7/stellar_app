@@ -1,11 +1,7 @@
-import 'dart:io';
-
 import 'package:base_project/utils/uid.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:path/path.dart';
 import '../../../../functions/get_cached_file_from_url.dart';
 import '../../../../models/private_chat/private_chat_model.dart';
 import 'package:voice_message_package/voice_message_package.dart';
@@ -94,12 +90,11 @@ class ChatBubble extends StatelessWidget {
                 style: const TextStyle(color: Colors.grey),
               ),
               const SizedBox(width: 4.0),
-              if (isSent)
-                const Icon(
-                  true ? Icons.done_all : Icons.done,
-                  color: Colors.grey,
-                  size: 16.0,
-                ),
+              Icon(
+                isSent ? Icons.done_all : Icons.done,
+                color: Colors.grey,
+                size: 16.0,
+              ),
             ],
           ),
         ],

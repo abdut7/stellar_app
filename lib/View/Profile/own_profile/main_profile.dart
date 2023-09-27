@@ -1,11 +1,10 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
-import 'package:base_project/View/Profile/edit_profile/edit_profile.dart';
-import 'package:base_project/View/Profile/public_profile/public_profile.dart';
-import 'package:base_project/View/Profile/widget/about_me_text.dart';
-import 'package:base_project/View/Profile/widget/custom_grid_view.dart';
-import 'package:base_project/View/Profile/widget/profile_buttons.dart';
-import 'package:base_project/View/Profile/widget/profile_status.dart';
+import 'package:base_project/View/profile/edit_profile/edit_profile.dart';
+import 'package:base_project/View/profile/widget/about_me_text.dart';
+import 'package:base_project/View/profile/widget/custom_grid_view.dart';
+import 'package:base_project/View/profile/widget/profile_buttons.dart';
+import 'package:base_project/View/profile/widget/profile_status.dart';
 import 'package:base_project/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -42,6 +41,7 @@ class _MainProfileState extends State<MainProfile> {
                               colors: [Colors.transparent, Colors.black.withOpacity(0.9)],
                               stops: [0.0, 0.5], begin: Alignment.bottomLeft, end: Alignment.topCenter,).createShader(bounds);
                           },
+                          
                           blendMode: BlendMode.dstIn,
                           child:
                           Image.network(
@@ -75,8 +75,8 @@ class _MainProfileState extends State<MainProfile> {
                   Row(
                     children: [
               ProfileStatus(count: '09', label: 'Posts'),
-              ProfileStatus(count: '23', label: 'Following'),
-              ProfileStatus(count: '293', label: 'Followers'),
+              ProfileStatus(count: "${controller.userDetailsModel.value!.followingCount}", label: 'Following'),
+              ProfileStatus(count: "${controller.userDetailsModel.value!.followersCount}", label: 'Followers'),
             ],
           ),
               ),

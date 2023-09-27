@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:base_project/services/socket_service/private_chat_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/public/flutter_sound_recorder.dart';
