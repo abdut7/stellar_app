@@ -43,4 +43,8 @@ class SSvgs {
   static String get bottomNavAddIcon => "assets/Svgs/bottom_nav_add.svg";
   static String get forwardIcon => "assets/Svgs/forwardIcon.svg";
   static String get editIcon => "assets/Svgs/editIcon.svg";
+  static String get radar => "assets/Svgs/radar.svg";
+  static String get invite => "assets/Svgs/invite.svg";
+  static String get qr => "assets/Svgs/qr.svg";
+  static String get myContactt => "assets/Svgs/myContactt.svg";
 }

@@ -1,5 +1,6 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
+import 'package:base_project/View/Profile/settings/privacy_settings/privacy_settings.dart';
 import 'package:base_project/View/profile/edit_profile/edit_profile.dart';
 import 'package:base_project/View/profile/widget/about_me_text.dart';
 import 'package:base_project/View/profile/widget/custom_grid_view.dart';
@@ -85,7 +86,7 @@ class _MainProfileState extends State<MainProfile> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                  ProfileButton(buttonText: 'Edit Profile', onPressed: (){Get.to(()=>const EditProfile());}),
-                  ProfileButton(buttonText: 'Settings', onPressed: (){Get.to(()=>const PrivacySettings());})
+                  ProfileButton(buttonText: 'Settings', onPressed: (){})
                 ],
               ),
               const SizedBox(height: 20,),

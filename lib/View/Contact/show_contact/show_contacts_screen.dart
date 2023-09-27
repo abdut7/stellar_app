@@ -1,6 +1,6 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
-import 'package:base_project/View/Contact/AddContact/AddContactUi.dart';
+import 'package:base_project/View/Contact/add_contact/add_contact.dart';
 import 'package:base_project/View/Contact/create_group/create_group_screen.dart';
 import 'package:base_project/View/Contact/show_contact/widget/show_contact_tile.dart';
 import 'package:base_project/View/Contact/widgets/list_contact_widget.dart';
