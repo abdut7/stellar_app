@@ -1,4 +1,3 @@
-
 import 'package:base_project/View/splash/spalash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
