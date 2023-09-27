@@ -42,4 +42,5 @@ class SSvgs {
       "assets/Svgs/notifiacation_bottom_nav_icon.svg";
   static String get bottomNavAddIcon => "assets/Svgs/bottom_nav_add.svg";
   static String get forwardIcon => "assets/Svgs/forwardIcon.svg";
+  static String get editIcon => "assets/Svgs/editIcon.svg";
 }

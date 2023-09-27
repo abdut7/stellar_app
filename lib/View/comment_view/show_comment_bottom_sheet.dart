@@ -1,5 +1,5 @@
 import 'package:base_project/View/comment_view/reply_tile.dart';
-import 'package:base_project/View/comment_view/tile2.dart';
+import 'package:base_project/View/comment_view/main_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
