@@ -1,13 +1,11 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SImages.dart';
 import 'package:base_project/Settings/SSvgs.dart';
-import 'package:base_project/View/base_bottom_nav/bottom_nav.dart';
 import 'package:base_project/services/api_services/auth_services.dart';
 import 'package:base_project/widgets/custom_elevated_button.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 
 class OtpVerificationUi extends StatefulWidget {
   static const routeName = '/OtpVerificationUi ';

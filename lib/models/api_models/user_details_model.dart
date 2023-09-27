@@ -63,7 +63,7 @@ class UserDetailsModel {
     strBirthday = json['strBirthday'];
     location = Location.fromJson(json['location']);
     strCreatedTime = json['strCreatedTime'];
-    strOTPToken = json['strOTPToken'];
+    strOTPToken = json['strOTPToken'] ?? '';
     followersCount = json['followersCount'];
     followingCount = json['followingCount'];
   }

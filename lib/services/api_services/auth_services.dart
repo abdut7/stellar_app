@@ -1,4 +1,3 @@
-import 'package:base_project/View/base_bottom_nav/bottom_nav.dart';
 import 'package:base_project/controllers/api_controllers/login_with_phone_controller.dart';
 import 'package:base_project/controllers/api_controllers/signup_controllers.dart';
 import 'package:base_project/functions/show_snackbar.dart';

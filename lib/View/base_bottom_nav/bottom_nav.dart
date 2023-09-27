@@ -1,7 +1,6 @@
 import 'package:base_project/View/Chat/HomeChat/sub/home/home_screen.dart';
 import 'package:base_project/View/profile/own_profile/main_profile.dart';
 import 'package:base_project/View/base_bottom_nav/widgets/bottom_nav_icon_widget.dart';
-import 'package:base_project/View/profile/public_profile/public_profile.dart';
 import 'package:flutter/material.dart';
 import '../../Settings/SSvgs.dart';
 
@@ -17,8 +16,7 @@ List<Widget> screenList = [
   // const ContactsHomeScreen(),
   Container(),
   Container(),
-  // Container(),
-  PublicProfileScreen(uid: ""),
+  Container(),
   const MainProfile(),
 ];
 
