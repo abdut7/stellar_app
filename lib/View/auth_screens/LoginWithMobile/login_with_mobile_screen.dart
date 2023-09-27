@@ -149,9 +149,10 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                                           : const Text(
                                               "OTP Verification",
                                               style: TextStyle(
-                                                  fontSize: 14,
-                                                  color: Color.fromRGBO(
-                                                      159, 196, 232, 1)),
+                                                fontSize: 14,
+                                                color: Color.fromRGBO(
+                                                    159, 196, 232, 1),
+                                              ),
                                             ),
                                     )),
                               ),

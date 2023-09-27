@@ -2,6 +2,7 @@ import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SImages.dart';
 import 'package:base_project/Settings/SSvgs.dart';
 import 'package:base_project/View/base_bottom_nav/bottom_nav.dart';
+import 'package:base_project/services/api_services/auth_services.dart';
 import 'package:base_project/widgets/custom_elevated_button.dart';
 
 import 'package:flutter/material.dart';
@@ -10,11 +11,14 @@ import 'package:get/get.dart';
 
 class OtpVerificationUi extends StatefulWidget {
   static const routeName = '/OtpVerificationUi ';
-  const OtpVerificationUi({Key? key}) : super(key: key);
+  const OtpVerificationUi({Key? key, required this.otpToken}) : super(key: key);
+  final String otpToken;
 
   @override
   State<OtpVerificationUi> createState() => _OtpVerificationUiState();
 }
+
+TextEditingController otp_controller = TextEditingController();
 
 class _OtpVerificationUiState extends State<OtpVerificationUi> {
   Widget _buildTitle() {
@@ -40,6 +44,7 @@ class _OtpVerificationUiState extends State<OtpVerificationUi> {
         ),
       ),
       child: TextField(
+        controller: otp_controller,
         keyboardType: TextInputType.number,
         style: TextStyle(
           color: SColors.color3,
@@ -101,7 +106,8 @@ class _OtpVerificationUiState extends State<OtpVerificationUi> {
                 foregroundColor: SColors.color4,
                 backgroundColor: SColors.color12,
                 onPressed: () {
-                  Get.offAll(() => BaseBottomNavigation());
+                  AuthServices.otpVerificationService(
+                      otp: otp_controller.text, otpToken: widget.otpToken);
                 }),
           ],
         ),

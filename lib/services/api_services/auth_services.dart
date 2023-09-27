@@ -1,4 +1,4 @@
-import 'package:base_project/View/chat/HomeChat/HomeChatUi.dart';
+import 'package:base_project/View/base_bottom_nav/bottom_nav.dart';
 import 'package:base_project/controllers/api_controllers/login_with_phone_controller.dart';
 import 'package:base_project/controllers/api_controllers/signup_controllers.dart';
 import 'package:base_project/functions/show_snackbar.dart';
@@ -38,7 +38,9 @@ class AuthServices {
       Response response = await dio.post(path, data: body);
       if (response.statusCode == 200) {
         signupController.isSignupSuccess(true);
-        Get.to(() => const OtpVerificationUi());
+        Get.to(() => const OtpVerificationUi(
+              otpToken: "",
+            ));
       } else {
         signupController.isSignupSuccess(false);
       }
@@ -77,20 +79,45 @@ class AuthServices {
       Response res = await dio.post(path, data: body);
       print(res);
       if (res.statusCode == 200) {
-        LoginSuccessModel model = LoginSuccessModel.fromJson(res.data);
-        login.loginModel(model);
-        storeJwtToken(model.strToken);
-        storeUid(model.id);
-        Get.off(
-          () => HomeChatUi(),
+        print(res.data);
+        // LoginSuccessModel model = LoginSuccessModel.fromJson(res.data);
+        // login.loginModel(model);
+        // storeJwtToken(model.strToken);
+        // storeUid(model.id);
+
+        String strOtpToken = res.data['strOTPToken'];
+        Get.to(
+          () => OtpVerificationUi(otpToken: strOtpToken),
         );
       }
       login.isLoading(false);
     } catch (e) {
       print(e);
-      showCustomSnackbar(
-          title: "Error", message: "An error occured while logging in");
+      showCustomSnackbar(title: "Error", message: "Invalid Phone Number");
       login.isLoading(false);
+    }
+  }
+
+  static Future<void> otpVerificationService(
+      {required String otp, required String otpToken}) async {
+    LoginWithPhoneNumberConteroller login = Get.find();
+
+    Dio dio = Dio();
+    Map<String, dynamic> body = {"strOTPToken": otpToken, "strOTP": otp};
+    String path = ApiRoutes.baseUrl + ApiRoutes.verifyOtp;
+    try {
+      Response res = await dio.post(path, data: body);
+      if (res.statusCode == 200) {
+        LoginSuccessModel model = LoginSuccessModel.fromJson(res.data);
+        login.loginModel(model);
+        storeJwtToken(model.strToken);
+        storeUid(model.id);
+        authenticateUser();
+      } else {
+        showCustomSnackbar(title: "Error", message: "Invalid OTP");
+      }
+    } catch (e) {
+      showCustomSnackbar(title: "Error", message: "Invalid OTP");
     }
   }
 }

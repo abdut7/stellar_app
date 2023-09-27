@@ -13,4 +13,5 @@ class ApiRoutes {
   static String getGroupDetails = "/get_group_details";
   static String getGroupMessage = "/get_messages";
   static String uploadBase64 = "/file_base64_upload";
+  static String verifyOtp = "/otp_vrify";
 }

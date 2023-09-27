@@ -17,6 +17,7 @@ Future<void> storeJwtToken(String jwtToken) async {
 
 Future<String?> getJwtToken() async {
   final prefs = await SharedPreferences.getInstance();
+  // prefs.clear();
   return prefs.getString('jwt_token');
 }
 
