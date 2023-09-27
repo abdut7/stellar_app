@@ -1,6 +1,5 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
-<<<<<<< HEAD
 import 'package:base_project/View/Profile/edit_profile/edit_profile.dart';
 import 'package:base_project/View/Profile/public_profile/public_profile.dart';
 import 'package:base_project/View/Profile/settings/privacy_settings/privacy_settings.dart';
@@ -8,13 +7,11 @@ import 'package:base_project/View/Profile/widget/about_me_text.dart';
 import 'package:base_project/View/Profile/widget/custom_grid_view.dart';
 import 'package:base_project/View/Profile/widget/profile_buttons.dart';
 import 'package:base_project/View/Profile/widget/profile_status.dart';
-=======
 import 'package:base_project/View/profile/edit_profile/edit_profile.dart';
 import 'package:base_project/View/profile/widget/about_me_text.dart';
 import 'package:base_project/View/profile/widget/custom_grid_view.dart';
 import 'package:base_project/View/profile/widget/profile_buttons.dart';
 import 'package:base_project/View/profile/widget/profile_status.dart';
->>>>>>> 3ced40edefdce3c22c05be2de9b7e936fba49f0a
 import 'package:base_project/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
