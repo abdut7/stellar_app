@@ -1,7 +1,6 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SImages.dart';
 import 'package:base_project/Settings/SSvgs.dart';
-import 'package:base_project/View/auth_screens/LoginWithMobile/LoginWithMobileUi.dart';
 import 'package:base_project/View/base_bottom_nav/bottom_nav.dart';
 import 'package:base_project/widgets/custom_elevated_button.dart';
 

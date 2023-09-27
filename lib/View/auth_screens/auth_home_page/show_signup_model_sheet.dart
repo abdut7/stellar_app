@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import '../../../Settings/SColors.dart';
 import '../../../Settings/SSvgs.dart';
 import '../../../widgets/custom_signup_option_buttons.dart';
-import '../signup_with_mobile/SignUpWithMobileUi.dart';
 
 Future<dynamic> showSignupModelBottomSheet(BuildContext context) {
   return showModalBottomSheet(

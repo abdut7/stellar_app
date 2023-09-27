@@ -2,7 +2,6 @@ import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SImages.dart';
 import 'package:base_project/widgets/custom_elevated_button.dart';
 import 'package:base_project/widgets/edit_profile_textfield.dart';
-import 'package:base_project/widgets/login_signup_textfield.dart';
 import 'package:flutter/material.dart';
 class EditProfileUi extends StatefulWidget {
   static const routeName = '/EditProfileUi';

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:base_project/Settings/SColors.dart';
@@ -13,13 +12,11 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:provider/provider.dart';
 
 import '../../../controllers/api_controllers/signup_controllers.dart';
 import '../../../functions/image_to_base.dart';
 import '../../../functions/location_permission.dart';
-import '../../../functions/pick_image.dart';
-import '../OtpVerification/OtpVerificationUi.dart';
+
 
 class SignUpWithMobileUi extends StatefulWidget {
   static const routeName = '/SignUpWithMobileUi';

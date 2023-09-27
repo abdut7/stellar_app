@@ -1,6 +1,5 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/View/Contact/AddContact/select_contacts_to_add_screen.dart';
-import 'package:base_project/functions/get_contacts.dart';
 import 'package:base_project/widgets/custom_listtile.dart';
 import 'package:base_project/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
