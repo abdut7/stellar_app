@@ -40,7 +40,7 @@ class _CustomListTileeState extends State<CustomListTilee> {
           trailing: Icon(
             widget.trailingIcon,
             color: SColors.color3,
-            size: 20,
+            size: 12,
           ),
         ),
       ),
