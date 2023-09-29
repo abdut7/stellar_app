@@ -4,9 +4,7 @@ import 'package:base_project/utils/uid.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import '../../../../functions/get_cached_file_from_url.dart';
 import '../../../../models/private_chat/private_chat_model.dart';
-import 'package:voice_message_package/voice_message_package.dart';
 
 class ChatBubble extends StatelessWidget {
   final PrivateMessageModel message;
@@ -42,9 +40,12 @@ class ChatBubble extends StatelessWidget {
             ),
             padding: const EdgeInsets.all(2),
             child: message.strMessageType == "text"
-                ? Text(
-                    message.strMessage,
-                    style: const TextStyle(color: Colors.white),
+                ? Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      message.strMessage,
+                      style: const TextStyle(color: Colors.white),
+                    ),
                   )
                 : message.strMessageType == "image"
                     ? SizedBox(
