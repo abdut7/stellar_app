@@ -1,5 +1,6 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
+import 'package:base_project/View/create_post/flicks_upload_new_post/upload_new_post.dart';
 import 'package:base_project/View/profile/edit_profile/edit_profile.dart';
 import 'package:base_project/View/profile/widget/about_me_text.dart';
 import 'package:base_project/View/profile/widget/custom_grid_view.dart';
