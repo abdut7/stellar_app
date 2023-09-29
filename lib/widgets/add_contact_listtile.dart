@@ -25,6 +25,9 @@ class _AddContactListTileState extends State<AddContactListTile> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: ListTile(
+        onTap: () {
+          widget.onPressed();
+        },
         leading: SvgPicture.asset(
           widget.svgAssetPath,
         ),
