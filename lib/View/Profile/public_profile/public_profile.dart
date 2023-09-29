@@ -12,8 +12,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class PublicProfileScreen extends StatefulWidget {
-  const PublicProfileScreen({Key? key, required this.uid}) : super(key: key);
+  final bool isFromChatScreen;
+
   final String uid;
+
+  const PublicProfileScreen(
+      {super.key, required this.uid, this.isFromChatScreen = false});
 
   @override
   State<PublicProfileScreen> createState() => _PublicProfileScreenState();
@@ -115,8 +119,15 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 80),
                     child: Row(
                       children: [
-                        ContactThrough(
-                            svgAsset: SImages.msgIcon, label: 'Message'),
+                        GestureDetector(
+                          onTap: () {
+                            if (widget.isFromChatScreen) {
+                              Get.back();
+                            }
+                          },
+                          child: ContactThrough(
+                              svgAsset: SImages.msgIcon, label: 'Message'),
+                        ),
                         ContactThrough(
                             svgAsset: SImages.callIcon, label: 'Call'),
                         ContactThrough(
@@ -131,7 +142,9 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: Row(
                       children: [
-                        ProfileStatus(count: '61', label: 'Posts'),
+                        ProfileStatus(
+                            count: "${snapshot.data!.intPostCount}",
+                            label: 'Posts'),
                         ProfileStatus(
                             count: "${snapshot.data!.followingCount}",
                             label: 'Following'),
@@ -156,9 +169,11 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                             color: const Color.fromRGBO(0, 51, 142, 1),
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: const Center(
+                          child: Center(
                             child: Text(
-                              'Follow',
+                              snapshot.data!.isFollowing
+                                  ? "Following"
+                                  : 'Follow',
                               style: TextStyle(
                                   fontSize: 14,
                                   color: Color.fromRGBO(159, 196, 232, 1)),

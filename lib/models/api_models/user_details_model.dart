@@ -21,6 +21,11 @@ class UserDetailsModel {
     required this.strOTPToken,
     required this.followersCount,
     required this.followingCount,
+    required this.isFollowing,
+    required this.isFollower,
+    required this.isBlocked,
+    required this.intPostCount,
+    required this.intFlickCount,
   });
   late final bool success;
   late final String message;
@@ -43,6 +48,11 @@ class UserDetailsModel {
   late final String strOTPToken;
   late final int followersCount;
   late final int followingCount;
+  late final bool isFollowing;
+  late final bool isFollower;
+  late final bool isBlocked;
+  late final int intPostCount;
+  late final int intFlickCount;
 
   UserDetailsModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
@@ -63,9 +73,14 @@ class UserDetailsModel {
     strBirthday = json['strBirthday'];
     location = Location.fromJson(json['location']);
     strCreatedTime = json['strCreatedTime'];
-    strOTPToken = json['strOTPToken'] ?? '';
+    strOTPToken = json['strOTPToken'];
     followersCount = json['followersCount'];
     followingCount = json['followingCount'];
+    isFollowing = json['isFollowing'];
+    isFollower = json['isFollower'];
+    isBlocked = json['isBlocked'];
+    intPostCount = json['intPostCount'];
+    intFlickCount = json['intFlickCount'];
   }
 
   Map<String, dynamic> toJson() {
@@ -91,6 +106,11 @@ class UserDetailsModel {
     _data['strOTPToken'] = strOTPToken;
     _data['followersCount'] = followersCount;
     _data['followingCount'] = followingCount;
+    _data['isFollowing'] = isFollowing;
+    _data['isFollower'] = isFollower;
+    _data['isBlocked'] = isBlocked;
+    _data['intPostCount'] = intPostCount;
+    _data['intFlickCount'] = intFlickCount;
     return _data;
   }
 }
