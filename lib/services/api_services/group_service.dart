@@ -80,7 +80,7 @@ class GroupServices {
     try {
       Response res =
           await dio.post(path, options: Options(headers: header), data: body);
-      // print("Message res: ${res}");
+      print("Message res: ${res}");
     } catch (e) {
       print("error");
       print(e);

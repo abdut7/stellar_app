@@ -14,4 +14,9 @@ class ApiRoutes {
   static String getGroupMessage = "/get_messages";
   static String uploadBase64 = "/file_base64_upload";
   static String verifyOtp = "/otp_vrify";
+  static String followUser = "/follow_user";
+  static String unFollowUser = "/un_follow_user";
+  static String blockUser = "/create_block_user";
+  static String unBlockUser = "/unblock_user";
+  static String getBlockedUserList = "/get_blocked_users";
 }

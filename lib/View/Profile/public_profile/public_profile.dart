@@ -1,7 +1,7 @@
 import 'package:base_project/Settings/SImages.dart';
+import 'package:base_project/View/profile/public_profile/widgets/follow_details_widget.dart';
 import 'package:base_project/View/profile/widget/about_me_text.dart';
 import 'package:base_project/View/profile/widget/contact_through_options.dart';
-import 'package:base_project/View/profile/widget/profile_status.dart';
 import 'package:base_project/models/api_models/user_details_model.dart';
 import 'package:base_project/services/api_services/public_profile_service.dart';
 import 'package:flutter/material.dart';
@@ -131,54 +131,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                   const SizedBox(
                     height: 25,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Row(
-                      children: [
-                        ProfileStatus(
-                            count: "${snapshot.data!.intPostCount}",
-                            label: 'Posts'),
-                        ProfileStatus(
-                            count: "${snapshot.data!.followingCount}",
-                            label: 'Following'),
-                        ProfileStatus(
-                            count: "${snapshot.data!.followersCount}",
-                            label: 'Followers'),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.7,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color: const Color.fromRGBO(0, 51, 142, 1),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Center(
-                            child: Text(
-                              snapshot.data!.isFollowing
-                                  ? "Following"
-                                  : 'Follow',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  color: Color.fromRGBO(159, 196, 232, 1)),
-                            ),
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                          onTap: () {},
-                          child: SvgPicture.asset(SSvgs.forwardIcon))
-                    ],
-                  ),
+                  FollowDetailsWidget(model: snapshot.data!, uid: widget.uid),
                   const SizedBox(
                     height: 20,
                   ),
