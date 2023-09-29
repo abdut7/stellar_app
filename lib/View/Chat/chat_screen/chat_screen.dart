@@ -1,5 +1,6 @@
 import 'package:base_project/View/chat/chat_screen/widgets/chat_appbar_title_widget.dart';
 import 'package:base_project/View/chat/chat_screen/widgets/chat_bubble.dart';
+import 'package:base_project/View/chat/chat_screen/widgets/report_and_bloc_sheet_widget.dart';
 import 'package:base_project/View/chat/chat_screen/widgets/show_attachment.dart';
 import 'package:base_project/View/profile/public_profile/public_profile.dart';
 import 'package:base_project/controllers/private_chat_controller.dart';
@@ -22,6 +23,7 @@ class PrivateChatScreen extends StatefulWidget {
   @override
   // ignore: library_private_types_in_public_api
   _PrivateChatScreenState createState() => _PrivateChatScreenState();
+  final isBlocked = false;
 }
 
 class _PrivateChatScreenState extends State<PrivateChatScreen> {
@@ -73,7 +75,7 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
           IconButton(
             icon: const Icon(Icons.more_vert_rounded),
             onPressed: () {
-              // Handle more
+              showBlockAndReportBottomSheet(context, widget.chatId);
             },
           ),
         ],
