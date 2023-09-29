@@ -26,7 +26,9 @@ import 'package:flutter_svg/flutter_svg.dart';
               height: 40,
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: SColors.color9, image: DecorationImage(image: NetworkImage(''),
+                  color: SColors.color9, image: DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage('https://img.freepik.com/premium-photo/woman-holding-camera-with-word-canon-front_853645-1568.jpg?w=1380',),
               )
               ),
             ),

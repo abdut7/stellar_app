@@ -18,7 +18,7 @@ class _Tile1State extends State<Tile1> {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: SColors.color9,
-          image: const DecorationImage(image: NetworkImage('URL_TO_YOUR_IMAGE'),fit: BoxFit.cover),
+          image: const DecorationImage(image: NetworkImage('https://img.freepik.com/premium-photo/woman-holding-camera-with-word-canon-front_853645-1568.jpg?w=1380'),fit: BoxFit.cover),
         ),
       ),
       title: Text(

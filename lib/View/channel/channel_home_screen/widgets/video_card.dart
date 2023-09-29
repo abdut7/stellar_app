@@ -31,7 +31,8 @@ class _VideoCardState extends State<VideoCard> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           color: SColors.color8,
-                          image: const DecorationImage(image: NetworkImage(''), fit: BoxFit.fill)
+                          image: const DecorationImage(
+                              image: NetworkImage('https://img.freepik.com/premium-photo/woman-holding-camera-with-word-canon-front_853645-1568.jpg?w=1380'), fit: BoxFit.cover)
                       ),
                     ),
                     Positioned(
@@ -54,7 +55,9 @@ class _VideoCardState extends State<VideoCard> {
                     Container(
                       width: 40,
                       height: 40,
-                      decoration:  BoxDecoration(shape: BoxShape.circle, color: SColors.color9, image: DecorationImage(image: NetworkImage(''),)
+                      decoration:  BoxDecoration(shape: BoxShape.circle, color: SColors.color9, image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage('https://img.freepik.com/premium-photo/woman-holding-camera-with-word-canon-front_853645-1568.jpg?w=1380'),)
                       ),
                     ),
                     const SizedBox(width: 12,),
