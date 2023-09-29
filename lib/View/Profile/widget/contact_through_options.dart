@@ -14,25 +14,23 @@ class ContactThrough extends StatefulWidget {
 class _ContactThroughState extends State<ContactThrough> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        children: [
-          Image.asset(
-            widget.svgAsset,
-            width: 40,
-            height: 40,
+    return Column(
+      children: [
+        Image.asset(
+          widget.svgAsset,
+          width: 40,
+          height: 40,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          widget.label,
+          style: TextStyle(
+            color: SColors.color3,
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
           ),
-          const SizedBox(height: 8),
-          Text(
-            widget.label,
-            style: TextStyle(
-              color: SColors.color3,
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

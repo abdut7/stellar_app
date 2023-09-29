@@ -121,7 +121,6 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                           child: ContactThrough(
                               svgAsset: SImages.msgIcon, label: 'Message'),
                         ),
-                        const SizedBox(width:15 ,),
                         ContactThrough(
                             svgAsset: SImages.callIcon, label: 'Call'),
                         ContactThrough(
