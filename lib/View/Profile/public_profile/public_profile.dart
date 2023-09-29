@@ -76,15 +76,19 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                 ),
                               ),
                             ),
-                            Positioned(
-                              bottom: 30,
-                              left: 120,
-                              child: Text(
-                                'PHONE NUMBER : ${snapshot.data!.strMobileNo}',
-                                style: TextStyle(
-                                  color: SColors.color3,
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w600,
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Positioned(
+                                bottom: 40,
+                                left: 0,
+                                right: 0,
+                                child: Text(
+                                  'PHONE NUMBER : ${snapshot.data!.strMobileNo}',
+                                  style: TextStyle(
+                                    color: SColors.color3,
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ),
                             ),

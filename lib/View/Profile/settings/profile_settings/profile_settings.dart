@@ -1,4 +1,5 @@
 import 'package:base_project/View/profile/settings/privacy_settings/privacy_settings.dart';
+import 'package:base_project/services/token_service/token_service.dart';
 import 'package:flutter/material.dart';
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
@@ -177,21 +178,16 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   height: 20,
                 ),
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 45),
-                      child: Text('Help ',
-                          style: TextStyle(
-                            color: SColors.color11,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                          )),
-                    ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 45),
+                    child: Text('Help ',
+                        style: TextStyle(
+                          color: SColors.color11,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        )),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  const SizedBox(height: 10,),
                   GestureDetector(
                     onTap: () {},
                     child: Padding(
@@ -206,9 +202,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
+                  const SizedBox(height: 15,),
                   GestureDetector(
                     onTap: () {},
                     child: Padding(
@@ -223,9 +217,56 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 15,),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 60),
+                      child: Text(
+                        'Privacy Policy',
+                        style: TextStyle(
+                          color: SColors.color3,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                  ),
                 ]),
-              ],
-            )
+                const SizedBox(height: 20,),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 45),
+                    child: Text('Delete My Account ',
+                        style: TextStyle(
+                          color: SColors.color11,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        )),
+
+                  ),
+                  const SizedBox(height: 10,),
+                   Padding(
+                    padding:  const EdgeInsets.symmetric(horizontal: 45),
+                    child: GestureDetector(
+                      onTap: (){
+                        logoutUser();
+                      },
+                      child: Text(
+                        'LOG OUT',
+                        style: TextStyle(color: SColors.color17, fontSize: 16, fontWeight: FontWeight.w600,),),
+                    ),),
+                  const SizedBox(height: 10,),
+                  GestureDetector(
+                    onTap: (){},
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 45),
+                        child: Text('Delete My Account', style: TextStyle(color: SColors.color17, fontSize: 16, fontWeight: FontWeight.w600,),),
+                      )),
+
+    ],),],),
+            const SizedBox(height: 50,),
+
           ],
         ),
       ),
