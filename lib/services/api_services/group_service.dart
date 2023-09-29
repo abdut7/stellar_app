@@ -68,6 +68,7 @@ class GroupServices {
   // get Group Messages
 
   static Future<void> getGroupMessage({required String groupId}) async {
+    print("Getting group message");
     GroupChatController chatController = Get.put(GroupChatController());
     chatController.isErrorOccured(false);
     chatController.groupMessageList.clear();
@@ -79,7 +80,7 @@ class GroupServices {
     try {
       Response res =
           await dio.post(path, options: Options(headers: header), data: body);
-      print(res);
+      // print("Message res: ${res}");
     } catch (e) {
       print("error");
       print(e);

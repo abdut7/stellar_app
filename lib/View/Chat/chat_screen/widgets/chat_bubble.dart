@@ -1,3 +1,5 @@
+import 'package:base_project/View/chat/group_chat/widgets/voice_chat_bubble.dart';
+import 'package:base_project/controllers/user_controller.dart';
 import 'package:base_project/utils/uid.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,6 +15,8 @@ class ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserController controller = Get.find();
+
     final isSent = message.strUserId == globalUid;
     final alignment =
         isSent ? CrossAxisAlignment.end : CrossAxisAlignment.start;
@@ -65,19 +69,11 @@ class ChatBubble extends StatelessWidget {
                           ),
                         ))
                     : message.strMessageType == "voice"
-                        ? VoiceMessage(
-                            audioFile: getFile(message.strUrl),
-                            audioSrc: message.strUrl,
-                            me: isSent,
-                            onPlay: () {},
-                            contactFgColor: Colors.indigo,
-                            mePlayIconColor: Colors.white,
-                            contactPlayIconColor: Colors.white,
-                            meFgColor: Color.fromRGBO(0, 51, 142, 1),
-                            contactBgColor: Color.fromRGBO(233, 244, 255, 1),
-                            meBgColor: Color.fromRGBO(233, 244, 255, 1),
+                        ? AudioMessageBubble(
+                            audioUrl: message.strUrl,
+                            isSender: message.strUserId ==
+                                controller.userDetailsModel.value!.id,
                           )
-                        // SizedBox()
                         : const SizedBox(),
           ),
           const SizedBox(height: 4.0),
