@@ -47,7 +47,10 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
       appBar: AppBar(
         title: GestureDetector(
           onTap: () {
-            Get.to(() => PublicProfileScreen(uid: widget.chatId));
+            Get.to(() => PublicProfileScreen(
+                  uid: widget.chatId,
+                  isFromChatScreen: true,
+                ));
           },
           child: ChatAppBarTitleWidget(
             isOnline: false,
