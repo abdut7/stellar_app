@@ -19,4 +19,5 @@ class ApiRoutes {
   static String blockUser = "/create_block_user";
   static String unBlockUser = "/unblock_user";
   static String getBlockedUserList = "/get_blocked_users";
+  static String updateUser = "/update_user";
 }

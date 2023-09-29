@@ -1,8 +1,9 @@
 import 'package:base_project/Settings/SColors.dart';
 import 'package:base_project/Settings/SSvgs.dart';
-import 'package:base_project/services/api_services/account_services.dart';
+import 'package:base_project/View/profile/settings/privacy_settings/blocked_user_screen/blocked_users_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class PrivacySettings extends StatefulWidget {
   const PrivacySettings({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class _PrivacySettingsState extends State<PrivacySettings> {
   Widget customRow(String title, String suffixText) {
     return GestureDetector(
       onTap: () {
-        AccountServices.getBlockedUserList();
+        Get.to(() => BlockedUsersScreen());
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

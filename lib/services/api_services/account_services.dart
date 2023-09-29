@@ -1,4 +1,5 @@
 import 'package:base_project/functions/get_header.dart';
+import 'package:base_project/models/api_models/blocked_user_model.dart';
 import 'package:base_project/services/api_routes/api_routes.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -89,7 +90,7 @@ class AccountServices {
   }
   //get blocked user list
 
-  static Future<bool> getBlockedUserList() async {
+  static Future<List<BlockedUsers>?> getBlockedUserList() async {
     Dio dio = Dio();
     String path = ApiRoutes.baseUrl + ApiRoutes.getBlockedUserList;
     Map<String, dynamic> header = await getHeader();
@@ -98,12 +99,36 @@ class AccountServices {
         path,
         options: Options(headers: header),
       );
-      print(res);
-
-      return true;
+      BlockedUsersResponseModel model =
+          BlockedUsersResponseModel.fromJson(res.data);
+      return model.blockedUsers;
     } catch (e) {
       print(e);
+      return null;
+    }
+  }
 
+  static Future<bool> updateUserProfile(
+      {required String name,
+      required String username,
+      required String uid,
+      required String aboutMe}) async {
+    Dio dio = Dio();
+    String path = ApiRoutes.baseUrl + ApiRoutes.updateUser;
+    Map<String, dynamic> data = {
+      "strName": name,
+      "strFullName": username,
+      "_id": uid,
+      "strAbout": aboutMe
+    };
+    print(data);
+    Map<String, dynamic> header = await getHeader();
+    try {
+      Response res =
+          await dio.post(path, options: Options(headers: header), data: data);
+      print(res);
+      return true;
+    } catch (e) {
       return false;
     }
   }

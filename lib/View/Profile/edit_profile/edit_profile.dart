@@ -3,6 +3,8 @@ import 'package:base_project/Settings/SSvgs.dart';
 import 'package:base_project/View/profile/widget/profile_buttons.dart';
 import 'package:base_project/View/profile/widget/profile_text_field.dart';
 import 'package:base_project/controllers/user_controller.dart';
+import 'package:base_project/services/api_services/account_services.dart';
+import 'package:base_project/services/token_service/token_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -15,6 +17,19 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController aboutMeController = TextEditingController();
+  UserController userController = Get.find();
+  @override
+  void initState() {
+    // TODO: implement initState
+    nameController.text = userController.userDetailsModel.value!.strFullName;
+    userNameController.text = userController.userDetailsModel.value!.strName;
+    // aboutMeController.text = userController.userDetailsModel.value!.;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     UserController controller = Get.find();
@@ -25,7 +40,12 @@ class _EditProfileState extends State<EditProfile> {
         elevation: 0,
         title: Text(
           'Edit Profile',
-          style: TextStyle(color: SColors.color11, fontSize: 18, fontWeight: FontWeight.w700,),),
+          style: TextStyle(
+            color: SColors.color11,
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
         backgroundColor: SColors.color12,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -40,52 +60,118 @@ class _EditProfileState extends State<EditProfile> {
                 margin: const EdgeInsets.only(top: 50),
                 width: 100,
                 height: 100,
-                decoration: ShapeDecoration(color: SColors.color4, shape: const CircleBorder(),),
+                decoration: ShapeDecoration(
+                  color: SColors.color4,
+                  shape: const CircleBorder(),
+                ),
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
                     ClipOval(
                       child: Image.network(
-                        controller.userDetailsModel.value!.strProfileUrl, width: 100, height: 100, fit: BoxFit.cover,
+                        controller.userDetailsModel.value!.strProfileUrl,
+                        width: 100,
+                        height: 100,
+                        fit: BoxFit.cover,
                       ),
                     ),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         showBottomSheet(context, 'photo');
                       },
-                      child:  Icon(Icons.camera_alt_outlined, color: SColors.color3,),
-                    ),],),
+                      child: Icon(
+                        Icons.camera_alt_outlined,
+                        color: SColors.color3,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               Text(
                 'Change Photo',
-                style: TextStyle(color: SColors.color3, fontSize: 14, fontWeight: FontWeight.w600,),)
+                style: TextStyle(
+                  color: SColors.color3,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                ),
+              )
             ],
           ),
-          const SizedBox(height: 20,),
-          const ProfileTextField(keyboardType: TextInputType.text, head: 'Name',),
-          const ProfileTextField(keyboardType: TextInputType.text, head: 'Username',),
-          const ProfileTextField(keyboardType: TextInputType.multiline, maxLines: 5, head: 'About me',),
-           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25), child: Divider(thickness: 1, color: SColors.color3,),),
-          const SizedBox(height: 15,),
+          const SizedBox(
+            height: 20,
+          ),
+          ProfileTextField(
+            keyboardType: TextInputType.text,
+            head: 'Name',
+            controller: nameController,
+          ),
+          ProfileTextField(
+            keyboardType: TextInputType.text,
+            head: 'Username',
+            controller: userNameController,
+          ),
+          ProfileTextField(
+            keyboardType: TextInputType.multiline,
+            maxLines: 5,
+            head: 'About me',
+            controller: aboutMeController,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: Divider(
+              thickness: 1,
+              color: SColors.color3,
+            ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Privacy and Settings', style: TextStyle(color: SColors.color3, fontSize: 15, fontWeight: FontWeight.w500,),),
+                  'Privacy and Settings',
+                  style: TextStyle(
+                    color: SColors.color3,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
                 GestureDetector(
-                  onTap: (){},
-                    child: const Icon(Icons.arrow_forward_ios,size: 20,))
+                    onTap: () {},
+                    child: const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                    ))
               ],
             ),
           ),
-          const SizedBox(height: 70,),
-          Padding(padding: const EdgeInsets.symmetric(horizontal: 50),
-            child:
-            ProfileButton(buttonText: 'Update', onPressed: (){showBottomSheet(context, 'profile');}),
+          const SizedBox(
+            height: 70,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50),
+            child: ProfileButton(
+                buttonText: 'Update',
+                onPressed: () async {
+                  bool isSuccess = await AccountServices.updateUserProfile(
+                      uid: userController.userDetailsModel.value!.id,
+                      aboutMe: aboutMeController.text,
+                      name: nameController.text,
+                      username: userNameController.text);
+
+                  if (isSuccess) {
+                    getUserDetailsonRefresh();
+                    Get.back();
+                  }
+
+                  // showBottomSheet(context, 'profile');
+                }),
           )
         ],
       ),
@@ -113,11 +199,19 @@ void showBottomSheet(BuildContext context, String action) {
                 padding: const EdgeInsets.only(top: 25),
                 child: Text(
                   'Profile Updated',
-                  style: TextStyle(color: SColors.color3, fontSize: 15, fontWeight: FontWeight.w600,),),
+                  style: TextStyle(
+                    color: SColors.color3,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ),
-            const SizedBox(height: 25,),
-            if (action != 'photo') // Condition to exclude "Continue" button for action 'photo'
-              ProfileButton(buttonText: 'Continue', onPressed: (){}),
+            const SizedBox(
+              height: 25,
+            ),
+            if (action !=
+                'photo') // Condition to exclude "Continue" button for action 'photo'
+              ProfileButton(buttonText: 'Continue', onPressed: () {}),
             if (action == 'photo')
               Column(
                 children: [
@@ -125,7 +219,11 @@ void showBottomSheet(BuildContext context, String action) {
                     onTap: () {},
                     child: Text(
                       'Upload Photo',
-                      style: TextStyle(color: SColors.color12, fontSize: 17, fontWeight: FontWeight.w400,),
+                      style: TextStyle(
+                        color: SColors.color12,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 15.0),
@@ -133,7 +231,13 @@ void showBottomSheet(BuildContext context, String action) {
                     onTap: () {},
                     child: Text(
                       'Take Photo',
-                      style: TextStyle(color: SColors.color12, fontSize: 17, fontWeight: FontWeight.w400,),),),
+                      style: TextStyle(
+                        color: SColors.color12,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
                 ],
               ),
           ],
@@ -142,8 +246,3 @@ void showBottomSheet(BuildContext context, String action) {
     },
   );
 }
-
-
-
-
-

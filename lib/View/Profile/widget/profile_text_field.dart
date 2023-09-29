@@ -5,12 +5,14 @@ class ProfileTextField extends StatefulWidget {
   final String head;
   final TextInputType keyboardType;
   final int? maxLines;
+  final TextEditingController controller;
 
   const ProfileTextField({
     Key? key,
     required this.head,
     required this.keyboardType,
     this.maxLines,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -32,7 +34,7 @@ class _ProfileTextFieldState extends State<ProfileTextField> {
   InputDecoration buildInputDecoration(String hText) {
     return InputDecoration(
       border: InputBorder.none,
-      contentPadding:  EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+      contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
       filled: true,
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide.none,
@@ -55,6 +57,7 @@ class _ProfileTextFieldState extends State<ProfileTextField> {
 
   Widget textField() {
     return TextFormField(
+      controller: widget.controller,
       keyboardType: widget.keyboardType,
       cursorColor: SColors.color8,
       style: TextStyle(
@@ -90,8 +93,6 @@ class _ProfileTextFieldState extends State<ProfileTextField> {
           ),
         ],
       ),
-    )
-
-    ;
+    );
   }
 }

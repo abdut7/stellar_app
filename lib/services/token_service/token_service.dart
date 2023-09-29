@@ -49,6 +49,13 @@ Future<void> authenticateUser() async {
   }
 }
 
+Future<void> getUserDetailsonRefresh() async {
+  UserController userController = Get.put(UserController());
+  UserDetailsModel? userDetailsModel =
+      await GetUserDetailsService.getUserDetails();
+  userController.userDetailsModel(userDetailsModel);
+}
+
 Future<void> storeUid(String uid) async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.setString('uid', uid);
