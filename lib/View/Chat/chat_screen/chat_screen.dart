@@ -1,6 +1,7 @@
 import 'package:base_project/View/chat/chat_screen/widgets/chat_appbar_title_widget.dart';
 import 'package:base_project/View/chat/chat_screen/widgets/chat_bubble.dart';
 import 'package:base_project/View/chat/chat_screen/widgets/show_attachment.dart';
+import 'package:base_project/View/profile/public_profile/public_profile.dart';
 import 'package:base_project/controllers/private_chat_controller.dart';
 import 'package:base_project/services/api_services/chat_message_service.dart';
 import 'package:base_project/services/socket_service/private_chat_service.dart';
@@ -44,9 +45,14 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
     PrivateChatController chatController = Get.put(PrivateChatController());
     return Scaffold(
       appBar: AppBar(
-        title: ChatAppBarTitleWidget(
-          isOnline: false,
-          name: widget.fullName,
+        title: GestureDetector(
+          onTap: () {
+            Get.to(() => PublicProfileScreen(uid: widget.chatId));
+          },
+          child: ChatAppBarTitleWidget(
+            isOnline: false,
+            name: widget.fullName,
+          ),
         ),
         actions: <Widget>[
           IconButton(

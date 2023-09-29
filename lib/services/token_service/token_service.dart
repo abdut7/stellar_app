@@ -21,6 +21,12 @@ Future<String?> getJwtToken() async {
   return prefs.getString('jwt_token');
 }
 
+Future<void> logoutUser() async {
+  final prefs = await SharedPreferences.getInstance();
+  prefs.clear();
+  Get.offAll(() => const AuthHomeScreen());
+}
+
 Future<void> authenticateUser() async {
   UserController userController = Get.put(UserController());
   String? token = await getJwtToken();
