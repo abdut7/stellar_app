@@ -42,75 +42,67 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
               length: 2,
               child: ListView(
                 children: <Widget>[
-                  Stack(
-                    children: <Widget>[
-                      SizedBox(
-                        height: 250,
-                        child: Stack(
-                          children: <Widget>[
-                            ShaderMask(
-                              shaderCallback: (Rect bounds) {
-                                return LinearGradient(
-                                  colors: [
-                                    Colors.transparent,
-                                    Colors.black.withOpacity(0.9)
-                                  ],
-                                  stops: [0.0, 0.5],
-                                  begin: Alignment.bottomLeft,
-                                  end: Alignment.topCenter,
-                                ).createShader(bounds);
-                              },
-                              blendMode: BlendMode.dstIn,
-                              child: Image.network(
-                                snapshot.data!.strProfileUrl,
-                                fit: BoxFit.fill,
-                                width: Get.width,
-                                height: Get.width,
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 50,
-                              left: 180,
-                              child: Text(
-                                snapshot.data!.strName,
-                                style: TextStyle(
-                                  color: SColors.color3,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Positioned(
-                                bottom: 40,
-                                left: 0,
-                                right: 0,
-                                child: Text(
-                                  'PHONE NUMBER : ${snapshot.data!.strMobileNo}',
-                                  style: TextStyle(
-                                    color: SColors.color3,
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+                  SizedBox(
+                    height: 250,
+                    child: Stack(
+                      children: <Widget>[
+                        ShaderMask(
+                          shaderCallback: (Rect bounds) {
+                            return LinearGradient(
+                              colors: [
+                                Colors.transparent,
+                                Colors.black.withOpacity(0.9)
+                              ],
+                              stops: [0.0, 0.5],
+                              begin: Alignment.bottomLeft,
+                              end: Alignment.topCenter,
+                            ).createShader(bounds);
+                          },
+                          blendMode: BlendMode.dstIn,
+                          child: Image.network(
+                            snapshot.data!.strProfileUrl,
+                            fit: BoxFit.fill,
+                            width: Get.width,
+                            height: Get.width,
+                          ),
                         ),
-                      ),
-                      Positioned(
-                        top: 10,
-                        right: 10,
-                        child: GestureDetector(
-                            onTap: () {},
-                            child: Icon(
-                              Icons.more_vert,
-                              color: SColors.color12,
-                              size: 30,
-                            )),
-                      ),
-                    ],
+                        Positioned(
+                          bottom: 50,
+                          left: 180,
+                          child: Text(
+                            snapshot.data!.strName,
+                            style: TextStyle(
+                              color: SColors.color3,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 40,
+                          left: 120,
+                          child: Text(
+                            'PHONE NUMBER : ${snapshot.data!.strMobileNo}',
+                            style: TextStyle(
+                              color: SColors.color3,
+                              fontSize: 11,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 10,
+                          right: 10,
+                          child: GestureDetector(
+                              onTap: () {},
+                              child: Icon(
+                                Icons.more_vert,
+                                color: SColors.color12,
+                                size: 30,
+                              )),
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 15,
@@ -118,6 +110,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 80),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         GestureDetector(
                           onTap: () {
@@ -128,6 +121,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                           child: ContactThrough(
                               svgAsset: SImages.msgIcon, label: 'Message'),
                         ),
+                        const SizedBox(width:15 ,),
                         ContactThrough(
                             svgAsset: SImages.callIcon, label: 'Call'),
                         ContactThrough(

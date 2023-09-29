@@ -1,3 +1,4 @@
+import 'package:base_project/View/create_post/flicks_upload_new_post/upload_new_post.dart';
 import 'package:base_project/View/splash/spalash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

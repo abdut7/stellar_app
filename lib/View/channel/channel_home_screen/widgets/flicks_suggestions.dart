@@ -15,6 +15,7 @@ class _FlickSuggestionsState extends State<FlickSuggestions> {
       height: 150,
       margin:  const EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
+        image: DecorationImage(image: NetworkImage('https://img.freepik.com/premium-photo/woman-holding-camera-with-word-canon-front_853645-1568.jpg?w=1380'),fit: BoxFit.cover),
         borderRadius: BorderRadius.circular(10), // Circular border radius
         color: SColors.color9,
       ),

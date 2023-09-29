@@ -24,7 +24,7 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
                     height: 175,
                     decoration: BoxDecoration(
                         color: SColors.color8,
-                        image: const DecorationImage(image: NetworkImage('thumbnail'), fit: BoxFit.fill)
+                        image: const DecorationImage(image: NetworkImage('https://img.freepik.com/premium-photo/woman-holding-camera-with-word-canon-front_853645-1568.jpg?w=1380'), fit: BoxFit.cover)
                     ),
                   ),
                   Positioned(
