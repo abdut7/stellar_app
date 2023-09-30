@@ -9,12 +9,14 @@ class GroupMessageResponseModel {
   late final String message;
   late final int statusCode;
   late final List<GroupMessageModel> groupMessageModel;
-  
-  GroupMessageResponseModel.fromJson(Map<String, dynamic> json){
+
+  GroupMessageResponseModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     message = json['message'];
     statusCode = json['statusCode'];
-    groupMessageModel = List.from(json['arrList']).map((e)=>GroupMessageModel.fromJson(e)).toList();
+    groupMessageModel = List.from(json['arrList'])
+        .map((e) => GroupMessageModel.fromJson(e))
+        .toList();
   }
 
   Map<String, dynamic> toJson() {
@@ -22,22 +24,22 @@ class GroupMessageResponseModel {
     _data['success'] = success;
     _data['message'] = message;
     _data['statusCode'] = statusCode;
-    _data['arrList'] = groupMessageModel.map((e)=>e.toJson()).toList();
+    _data['arrList'] = groupMessageModel.map((e) => e.toJson()).toList();
     return _data;
   }
 }
 
 class GroupMessageModel {
-  GroupMessageModel({
-    required this.id,
-    required this.strUserId,
-    required this.strType,
-    required this.strMessage,
-    required this.strMessageType,
-    required this.strName,
-    required this.strIconURL,
-    required this.strCreatedTime,
-  });
+  GroupMessageModel(
+      {required this.id,
+      required this.strUserId,
+      required this.strType,
+      required this.strMessage,
+      required this.strMessageType,
+      required this.strName,
+      required this.strIconURL,
+      required this.strCreatedTime,
+      required this.strUrl});
   late final String id;
   late final String strUserId;
   late final String strType;
@@ -46,16 +48,18 @@ class GroupMessageModel {
   late final String strName;
   late final String strIconURL;
   late final String strCreatedTime;
-  
-  GroupMessageModel.fromJson(Map<String, dynamic> json){
-  id = json['_id'];
+  late final String strUrl;
+
+  GroupMessageModel.fromJson(Map<String, dynamic> json) {
+    id = json['_id'];
     strUserId = json['strUserId'];
     strType = json['strType'];
     strMessage = json['strMessage'];
     strMessageType = json['strMessageType'];
     strName = json['strName'];
-    strIconURL = json['strIconURL']??"";
+    strIconURL = json['strIconURL'] ?? "";
     strCreatedTime = json['strCreatedTime'];
+    strUrl = json['strUrl'] ?? "";
   }
 
   Map<String, dynamic> toJson() {

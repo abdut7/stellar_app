@@ -44,6 +44,7 @@ class ChatHistorySocketService {
     socketService.socket.on('get_group_message', (data) {
       GroupChatController chatController = Get.put(GroupChatController());
       print("Recieved the group message back");
+      print(data);
       GroupMessageModel model = GroupMessageModel.fromJson(data);
       chatController.groupMessageList.add(model);
     });

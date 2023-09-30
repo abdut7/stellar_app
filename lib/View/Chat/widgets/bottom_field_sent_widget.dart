@@ -1,4 +1,4 @@
-import 'package:base_project/services/socket_service/private_chat_service.dart';
+import 'package:base_project/services/socket_service/group_chat_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:flutter_svg/svg.dart';
@@ -12,6 +12,7 @@ class ChatBottomFieldSent extends StatefulWidget {
   final VoidCallback onsent;
   final VoidCallback onCamera;
   final VoidCallback onAttach;
+  final bool isGroup;
   const ChatBottomFieldSent({
     super.key,
     required this.controller,
@@ -19,6 +20,7 @@ class ChatBottomFieldSent extends StatefulWidget {
     required this.onCamera,
     required this.onAttach,
     required this.chatId,
+    this.isGroup = false,
   });
 
   @override
@@ -55,8 +57,7 @@ class _ChatBottomFieldSentState extends State<ChatBottomFieldSent> {
     }
     if (!startRecording) {
       await _soundRecorder!.stopRecorder();
-      PrivateChatService.sentPersonalVoiceMessage(
-          chatId: widget.chatId, path: path);
+      GroupChatService.sentGroupVoiceMessage(chatId: widget.chatId, path: path);
       // sendFileMessage(File(path), MessageEnum.audio);
     } else {
       await _soundRecorder!.startRecorder(
