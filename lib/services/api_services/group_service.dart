@@ -1,6 +1,7 @@
 import 'package:base_project/controllers/group_chat_controller.dart';
 import 'package:base_project/functions/image_to_base.dart';
 import 'package:base_project/functions/show_snackbar.dart';
+import 'package:base_project/models/group_chat/group_message_model.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:image_picker/image_picker.dart';
@@ -68,7 +69,6 @@ class GroupServices {
   // get Group Messages
 
   static Future<void> getGroupMessage({required String groupId}) async {
-    print("Getting group message");
     GroupChatController chatController = Get.put(GroupChatController());
     chatController.isErrorOccured(false);
     chatController.groupMessageList.clear();
@@ -80,10 +80,13 @@ class GroupServices {
     try {
       Response res =
           await dio.post(path, options: Options(headers: header), data: body);
-      print("Message res: ${res}");
+      GroupMessageResponseModel model =
+          GroupMessageResponseModel.fromJson(res.data);
+      chatController.groupMessageList(model.groupMessageModel);
     } catch (e) {
-      print("error");
-      print(e);
+      chatController.isErrorOccured(true);
+    } finally {
+      chatController.isLoading(false);
     }
   }
 }
