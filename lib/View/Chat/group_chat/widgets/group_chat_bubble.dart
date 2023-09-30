@@ -39,8 +39,10 @@ class GroupChatBubble extends StatelessWidget {
                   ),
                 ),
           Container(
-            margin: const EdgeInsets.symmetric(vertical: 4.0),
-            padding: const EdgeInsets.all(8.0),
+            margin: EdgeInsets.symmetric(
+                vertical: message.strMessageType == "voice" ? 0 : 4),
+            padding:
+                EdgeInsets.all(message.strMessageType == "voice" ? 0 : 8.0),
             decoration: message.strMessageType == "voice"
                 ? null
                 : BoxDecoration(
@@ -72,7 +74,7 @@ class GroupChatBubble extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       message.strMessage,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                     ),
                   )
                 : message.strMessageType == "image"
@@ -105,6 +107,10 @@ class GroupChatBubble extends StatelessWidget {
                           )
                         : const SizedBox(),
           ),
+          Text(
+            message.strCreatedTime,
+            style: const TextStyle(color: Colors.grey, fontSize: 8),
+          )
         ],
       ),
     );

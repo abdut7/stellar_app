@@ -62,8 +62,9 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
       alignment: widget.isSender ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
         width: Get.width * 0.6,
-        margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-        padding: const EdgeInsets.all(8.0),
+        margin: const EdgeInsets.symmetric(
+          vertical: 4.0,
+        ),
         decoration: BoxDecoration(
           color: widget.isSender
               ? const Color.fromRGBO(233, 244, 255, 1)
