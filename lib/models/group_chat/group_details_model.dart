@@ -76,8 +76,8 @@ class GroupUser {
   GroupUser.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
     strUserId = json['strUserId'];
-    isAdmin = json['isAdmin'];
-    isCreatedUser = json['isCreatedUser'];
+    isAdmin = json['isAdmin'] ?? false;
+    isCreatedUser = json['isCreatedUser'] ?? false;
     strGroupId = json['strGroupId'];
     strFullName = json['strFullName'];
     strMobileNo = json['strMobileNo'];
