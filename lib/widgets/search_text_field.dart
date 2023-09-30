@@ -1,5 +1,7 @@
 import 'package:base_project/Settings/SColors.dart';
+import 'package:base_project/services/api_services/contacts_service.dart';
 import 'package:flutter/material.dart';
+
 class SearchTextField extends StatefulWidget {
   const SearchTextField({Key? key}) : super(key: key);
 
@@ -11,7 +13,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
       child: TextFormField(
         cursorColor: SColors.color12,
         decoration: InputDecoration(
@@ -31,6 +33,12 @@ class _SearchTextFieldState extends State<SearchTextField> {
         ),
         style: TextStyle(color: SColors.color3, fontSize: 15),
         textAlign: TextAlign.center,
+        onChanged: (val) {
+          if (val.isEmpty) {
+            ContactServiceApi.getContacts();
+          }
+          ContactServiceApi.searchContacts(val);
+        },
       ),
     );
   }
