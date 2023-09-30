@@ -1,3 +1,4 @@
+import 'package:base_project/View/Chat/search/search.dart';
 import 'package:base_project/View/splash/spalash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
