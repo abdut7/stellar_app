@@ -5,6 +5,8 @@ import 'package:base_project/controllers/group_chat_controller.dart';
 import 'package:base_project/models/api_models/chat_history_model.dart';
 import 'package:base_project/models/group_chat/group_message_model.dart';
 import 'package:base_project/services/api_services/group_service.dart';
+import 'package:base_project/services/socket_service/group_chat_service.dart';
+import 'package:base_project/services/socket_service/private_chat_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -109,8 +111,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                       message: model.strMessage,
                       alignment: model.strName == 'you'
                           ? BubbleAlignment.right
-                          : BubbleAlignment
-                              .left, // Change to BubbleAlignment.right for the sender's messages
+                          : BubbleAlignment.left,
                     );
                   },
                 ));
@@ -120,7 +121,15 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
           ChatBottomFieldSent(
             chatId: widget.chatHistoryList.id,
             controller: messageConteroller,
-            onsent: () {},
+            onsent: () {
+              if (messageConteroller.text.isNotEmpty) {
+                GroupChatService.sentGroupTextMessage(
+                    widget.chatHistoryList.strChatId,
+                    messageConteroller.text.trim());
+
+                messageConteroller.clear();
+              }
+            },
             onCamera: () {},
             onAttach: () {},
           )

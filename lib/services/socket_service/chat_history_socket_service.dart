@@ -1,5 +1,7 @@
 // import 'package:base_project/controllers/api_controllers/chat_history_controller.dart';
 // import 'package:base_project/models/api_models/chat_history_model.dart';
+import 'package:base_project/controllers/group_chat_controller.dart';
+import 'package:base_project/models/group_chat/group_message_model.dart';
 import 'package:base_project/services/socket_service/socket_service.dart';
 import 'package:get/get.dart';
 
@@ -31,11 +33,19 @@ class ChatHistorySocketService {
       },
     );
 
-    //socket for updating chats
+    //socket for updating private chats
     socketService.socket.on('get_message', (data) {
       print("Recieved the message back");
       PrivateMessageModel model = PrivateMessageModel.fromJson(data);
       chatController.messageList.add(model);
+    });
+
+    //socket for updating goup chats
+    socketService.socket.on('get_group_message', (data) {
+      GroupChatController chatController = Get.put(GroupChatController());
+      print("Recieved the group message back");
+      GroupMessageModel model = GroupMessageModel.fromJson(data);
+      chatController.groupMessageList.add(model);
     });
   }
 }

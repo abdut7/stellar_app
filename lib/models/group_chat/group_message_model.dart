@@ -54,7 +54,7 @@ class GroupMessageModel {
     strMessage = json['strMessage'];
     strMessageType = json['strMessageType'];
     strName = json['strName'];
-    strIconURL = json['strIconURL'];
+    strIconURL = json['strIconURL']??"";
     strCreatedTime = json['strCreatedTime'];
   }
 
