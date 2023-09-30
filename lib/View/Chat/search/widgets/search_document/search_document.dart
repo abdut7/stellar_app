@@ -13,12 +13,14 @@ class SearchDocumentScreen extends StatelessWidget {
     return ListView(
       children: [
         SearchDocumentListTile(
+          onPressed: (){},
             fileType: 'membership.pdf',
             fileSize: '10-Pages- 1mb -PDF',
             time: '12:O6 pm',
             svgAssetPath: SSvgs.pdfLogo),
         divider(),
         SearchDocumentListTile(
+          onPressed: (){},
             fileType: 'audio.mp3',
             fileSize: '3 mb - mp3',
             time: '11:35 am',
@@ -26,6 +28,7 @@ class SearchDocumentScreen extends StatelessWidget {
         ),
         divider(),
         SearchDocumentListTile(
+            onPressed: (){},
             fileType: 'Roastersheet.pdf',
             fileSize: '15-Pages- 8mb -PDF',
             time: '11:O6 am',
@@ -33,6 +36,7 @@ class SearchDocumentScreen extends StatelessWidget {
         ),
         divider(),
         SearchDocumentListTile(
+            onPressed: (){},
             fileType: 'onam.jpg',
             fileSize: '8mb -PDF',
             time: '11:O5 am',
@@ -40,6 +44,7 @@ class SearchDocumentScreen extends StatelessWidget {
         ),
         divider(),
         SearchDocumentListTile(
+          onPressed: (){},
           fileType: 'audio.mp3',
           fileSize: '3 mb - mp3',
           time: '11:35 am',
@@ -47,6 +52,7 @@ class SearchDocumentScreen extends StatelessWidget {
         ),
         divider(),
         SearchDocumentListTile(
+            onPressed: (){},
             fileType: 'Roastersheet.pdf',
             fileSize: '15-Pages- 8mb -PDF',
             time: '11:O6 am',

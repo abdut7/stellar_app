@@ -7,8 +7,9 @@ class SearchAudioListTile extends StatefulWidget {
   final String fileType;
   final String fileSize;
   final String time;
+  final Function()? onPressed;
 
-  SearchAudioListTile({required this.fileType, required this.fileSize, required this.time});
+  SearchAudioListTile({required this.fileType, required this.fileSize, required this.time, this.onPressed});
 
   @override
   _SearchAudioListTileState createState() => _SearchAudioListTileState();
@@ -18,7 +19,7 @@ class _SearchAudioListTileState extends State<SearchAudioListTile> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () {},
+      onTap: widget.onPressed,
       leading: SvgPicture.asset(SSvgs.audioLogo), // Make sure SSvgs.audioLogo is defined
       title: Text(
         widget.fileType,

@@ -22,12 +22,14 @@ class _SearchAudioScreenState extends State<SearchAudioScreen> {
       body: ListView(
         children: [
          SearchAudioListTile(
+             onPressed: (){},
              fileType: 'audio.mp3',
              fileSize: '3 mb - mp3',
              time: '11:35 am'
          ),
           divider(),
           SearchAudioListTile(
+            onPressed: (){},
               fileType: 'audio.mp3',
               fileSize: '4 mb - mp3',
               time: '11:25 am'
