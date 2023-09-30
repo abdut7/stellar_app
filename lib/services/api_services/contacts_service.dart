@@ -89,4 +89,37 @@ class ContactServiceApi {
       contactsController.isGetContactLoading(false);
     }
   }
+
+  static Future<void> searchContacts(String query) async {
+    ContactsController contactsController = Get.put(ContactsController());
+    contactsController.isGetContactErrorOccured(false);
+    contactsController.isGetContactLoading(true);
+
+    Dio dio = Dio();
+    String url = ApiRoutes.baseUrl + ApiRoutes.getStellarContacts;
+    Map<String, dynamic> header = await getHeader();
+    Map<String, String> data = {"strSearch": query};
+    Response res =
+        await dio.post(url, options: Options(headers: header), data: data);
+    print(res);
+    GetContactsModel model = GetContactsModel.fromJson(res.data);
+    print(model.toString());
+    contactsController.getContactsModel(null);
+    contactsController.getContactsModel(model);
+    contactsController.isGetContactLoading(false);
+    try {
+      Response res =
+          await dio.post(url, options: Options(headers: header), data: data);
+      print(res);
+      GetContactsModel model = GetContactsModel.fromJson(res.data);
+      print(model.toString());
+      contactsController.getContactsModel(null);
+      contactsController.getContactsModel(model);
+      contactsController.isGetContactLoading(false);
+    } catch (e) {
+      print(e);
+      contactsController.isGetContactErrorOccured(true);
+      contactsController.isGetContactLoading(false);
+    }
+  }
 }
