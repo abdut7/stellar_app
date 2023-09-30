@@ -1,3 +1,4 @@
+import 'package:base_project/View/chat/chat_screen/widgets/show_attachment.dart';
 import 'package:base_project/View/chat/group_chat/group_info/group_info_screen.dart';
 import 'package:base_project/View/chat/group_chat/widgets/group_chat_bubble.dart';
 import 'package:base_project/View/chat/widgets/bottom_field_sent_widget.dart';
@@ -8,6 +9,9 @@ import 'package:base_project/services/api_services/group_service.dart';
 import 'package:base_project/services/socket_service/group_chat_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+
+import '../../../functions/pick_image.dart';
 
 // ignore: must_be_immutable
 class GroupChatScreen extends StatefulWidget {
@@ -123,7 +127,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
 
           // Message input field
           ChatBottomFieldSent(
-            chatId: widget.chatHistoryList.id,
+            chatId: widget.chatHistoryList.strChatId,
             controller: messageConteroller,
             isGroup: true,
             onsent: () {
@@ -135,8 +139,47 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                 messageConteroller.clear();
               }
             },
-            onCamera: () {},
-            onAttach: () {},
+            onCamera: () async {
+              XFile? image = await pickImageFromGalleryOrCamera(
+                  source: ImageSource.camera);
+              if (image != null) {
+                GroupChatService.sentGroupImageMessage(
+                    widget.chatHistoryList.strChatId, image);
+              }
+            },
+            onAttach: () {
+              show_attachment(
+                context,
+                (index) async {
+                  //if index = 0 =>Send Files
+                  //if index = 1 =>Camera
+                  XFile? image = await pickImageFromGalleryOrCamera(
+                      source: index == 1
+                          ? ImageSource.camera
+                          : ImageSource.gallery);
+                  if (image != null) {
+                    GroupChatService.sentGroupImageMessage(
+                        widget.chatHistoryList.strChatId, image);
+                  }
+
+                  if (index == 1 || index == 2) {
+                    XFile? image = await pickImageFromGalleryOrCamera(
+                        source: index == 1
+                            ? ImageSource.camera
+                            : ImageSource.gallery);
+                    if (image != null) {
+                      GroupChatService.sentGroupImageMessage(
+                          widget.chatHistoryList.strChatId, image);
+                    }
+                  }
+
+                  //if index = 3 =>Location
+                  //if index = 4 =>Contacts
+                  //if index = 5 =>Audio
+                  Navigator.pop(context);
+                },
+              );
+            },
           )
         ],
       ),
