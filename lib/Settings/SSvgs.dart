@@ -47,4 +47,7 @@ class SSvgs {
   static String get invite => "assets/Svgs/invite.svg";
   static String get qr => "assets/Svgs/qr.svg";
   static String get myContactt => "assets/Svgs/myContactt.svg";
+  static String get audioLogo => "assets/Svgs/audioLogo.svg";
+  static String get pdfLogo => "assets/Svgs/pdfLogo.svg";
+  static String get jpgLogo => "assets/Svgs/jpgLogo.svg";
 }
