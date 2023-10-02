@@ -1,5 +1,5 @@
 import 'package:base_project/Settings/SSvgs.dart';
-import 'package:base_project/View/Chat/search/widgets/search_document/widgets/search_document_tile.dart';
+import 'package:base_project/View/chat/search/widgets/search_document/widgets/search_document_tile.dart';
 import 'package:flutter/material.dart';
 class SearchDocumentScreen extends StatelessWidget {
   Widget divider(){
