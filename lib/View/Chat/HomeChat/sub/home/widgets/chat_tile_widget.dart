@@ -21,9 +21,13 @@ class ChatListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (avatarUrl.contains("undefined") || avatarUrl.isEmpty) {}
     return ListTile(
       leading: CircleAvatar(
-        backgroundImage: NetworkImage(avatarUrl),
+        backgroundImage: NetworkImage(avatarUrl.contains("undefined") ||
+                avatarUrl.isEmpty
+            ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+            : avatarUrl),
         radius: 30, // Adjust the size of the avatar
       ),
       title: Text(name),

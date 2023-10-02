@@ -21,6 +21,7 @@ class ChatHistoryServiceApi {
     try {
       Response response =
           await dio.post(path, options: Options(headers: header));
+      print(response);
       ChatHistoryModel model = ChatHistoryModel.fromJson(response.data);
       chatHistoryController.chatHistoryList(model.chatHistoryList);
     } catch (e) {

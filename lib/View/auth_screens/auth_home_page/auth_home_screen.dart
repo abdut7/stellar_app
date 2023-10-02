@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 
 import '../../../Settings/SColors.dart';
 
-
 class AuthHomeScreen extends StatelessWidget {
   const AuthHomeScreen({super.key});
 
@@ -15,20 +14,20 @@ class AuthHomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(0, 51, 142, 1),
       body: Container(
-      decoration:  BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Color.fromRGBO(0, 10, 142, 0),
-            Color.fromRGBO(153, 199, 255, 1),
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromRGBO(0, 10, 142, 0),
+              Color.fromRGBO(153, 199, 255, 1),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+          image: DecorationImage(
+            image: AssetImage(SImages.vectorBackground),
+            fit: BoxFit.fill,
+          ),
         ),
-      image: DecorationImage(
-      image: AssetImage(SImages.vectorBackground),
-      fit: BoxFit.fill,
-      ),
-      ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -36,7 +35,8 @@ class AuthHomeScreen extends StatelessWidget {
               height: Get.height * 0.3,
             ),
             Center(
-              child: Image.asset("assets/Images/stellar_chat_icon_with_name.png"),
+              child:
+                  Image.asset("assets/Images/stellar_chat_icon_with_name.png"),
             ),
             SizedBox(
               height: Get.height * 0.2,
@@ -67,7 +67,11 @@ class AuthHomeScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: SColors.color12,
                     borderRadius: BorderRadius.circular(10)),
-                child: Center(child: Text("Sign Up",style: TextStyle(color: SColors.color4),)),
+                child: Center(
+                    child: Text(
+                  "Sign Up",
+                  style: TextStyle(color: SColors.color4),
+                )),
               ),
             )
           ],

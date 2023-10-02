@@ -53,8 +53,11 @@ class GroupInfoScreen extends StatelessWidget {
 
                     Center(
                       child: CircleAvatar(
-                        backgroundImage:
-                            NetworkImage(snapshot.data!.strIconURL),
+                        backgroundImage: NetworkImage(snapshot.data!.strIconURL
+                                    .contains("undefined") ||
+                                snapshot.data!.strIconURL.isEmpty
+                            ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                            : snapshot.data!.strIconURL),
                         radius:
                             50.0, // Adjust the size of the circle avatar as needed
                       ),

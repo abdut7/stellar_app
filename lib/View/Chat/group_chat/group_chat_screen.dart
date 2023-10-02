@@ -48,8 +48,11 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
           child: Row(
             children: [
               CircleAvatar(
-                backgroundImage:
-                    NetworkImage(widget.chatHistoryList.strIconURL),
+                backgroundImage: NetworkImage(widget.chatHistoryList.strIconURL
+                            .contains("undefined") ||
+                        widget.chatHistoryList.strIconURL.isEmpty
+                    ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                    : widget.chatHistoryList.strIconURL),
                 radius: 20.0, // Adjust the size of the circle avatar as needed
               ),
               const SizedBox(width: 10.0),

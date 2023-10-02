@@ -1,7 +1,6 @@
 // import 'package:base_project/controllers/api_controllers/chat_history_controller.dart';
 // import 'package:base_project/models/api_models/chat_history_model.dart';
 import 'package:base_project/controllers/group_chat_controller.dart';
-import 'package:base_project/models/api_models/chat_history_model.dart';
 import 'package:base_project/models/group_chat/group_message_model.dart';
 import 'package:base_project/services/socket_service/socket_service.dart';
 import 'package:get/get.dart';
@@ -21,7 +20,7 @@ class ChatHistorySocketService {
     socketService.socket.on(
       'chat_history',
       (data) {
-        // print(data);
+        print(data);
         print("Chat history updated");
         // ChatHistoryList newChatHistory = ChatHistoryList.fromJson(data);
         // for (var element in chatHistoryController.chatHistoryList) {

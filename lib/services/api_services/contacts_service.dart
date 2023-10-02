@@ -61,7 +61,7 @@ class ContactServiceApi {
     }
   }
 
-  static Future<void> getContacts() async {
+  static Future<void> getContacts({bool isSearch = false}) async {
     ContactsController contactsController = Get.put(ContactsController());
     contactsController.isGetContactErrorOccured(false);
     contactsController.isGetContactLoading(true);
@@ -82,8 +82,12 @@ class ContactServiceApi {
       for (var element in model.arrList) {
         userList.add(element);
       }
+      contactsController.phoneNumberUserList.clear();
       contactsController.phoneNumberUserList.addAll(userList);
       contactsController.isGetContactLoading(false);
+      if (isSearch) {
+        return;
+      }
 
       // contactsController.phoneNumberUserList.addAll(model.arrList)
       for (var element in model.arrList) {
@@ -111,22 +115,18 @@ class ContactServiceApi {
     String url = ApiRoutes.baseUrl + ApiRoutes.getStellarContacts;
     Map<String, dynamic> header = await getHeader();
     Map<String, String> data = {"strSearch": query};
-    Response res =
-        await dio.post(url, options: Options(headers: header), data: data);
-    print(res);
-    GetContactsModel model = GetContactsModel.fromJson(res.data);
-    print(model.toString());
-    contactsController.getContactsModel(null);
-    contactsController.getContactsModel(model);
-    contactsController.isGetContactLoading(false);
+    print(data);
     try {
       Response res =
           await dio.post(url, options: Options(headers: header), data: data);
-      print(res);
+      print("NUmber is: ${res.data["arrList"].length}");
       GetContactsModel model = GetContactsModel.fromJson(res.data);
-      print(model.toString());
-      contactsController.getContactsModel(null);
-      contactsController.getContactsModel(model);
+      List<Contact> userList = [];
+      for (var element in model.arrList) {
+        userList.add(element);
+      }
+      contactsController.phoneNumberUserList.clear();
+      contactsController.phoneNumberUserList.addAll(userList);
       contactsController.isGetContactLoading(false);
     } catch (e) {
       print(e);

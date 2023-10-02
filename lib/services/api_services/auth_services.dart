@@ -101,7 +101,8 @@ class AuthServices {
 
   static Future<void> otpVerificationService(
       {required String otp, required String otpToken}) async {
-    LoginWithPhoneNumberConteroller login = Get.find();
+    LoginWithPhoneNumberConteroller login =
+        Get.put(LoginWithPhoneNumberConteroller());
 
     Dio dio = Dio();
     Map<String, dynamic> body = {"strOTPToken": otpToken, "strOTP": otp};

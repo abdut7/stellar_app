@@ -34,9 +34,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
         style: TextStyle(color: SColors.color3, fontSize: 15),
         textAlign: TextAlign.center,
         onChanged: (val) {
-          if (val.isEmpty) {
-            ContactServiceApi.getContacts();
-          }
+          print(val.isEmpty);
           ContactServiceApi.searchContacts(val);
         },
       ),

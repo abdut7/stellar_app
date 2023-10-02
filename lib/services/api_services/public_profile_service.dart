@@ -9,6 +9,7 @@ class PublicProfileService {
     String path = ApiRoutes.baseUrl + ApiRoutes.getUserById;
     Map<String, dynamic> header = await getHeader();
     Map<String, String> body = {"strUserId": uid};
+    print(uid);
     try {
       Response res =
           await dio.post(path, options: Options(headers: header), data: body);

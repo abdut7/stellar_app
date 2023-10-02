@@ -18,7 +18,7 @@ class GetContactsModel {
         json['arrList'].map((contact) => Contact.fromJson(contact)),
       );
     }
-    
+
     return GetContactsModel(
       success: json['success'],
       message: json['message'],
@@ -49,7 +49,7 @@ class Contact {
       strFullName: json['strFullName'],
       strMobileNo: json['strMobileNo'],
       strEmail: json['strEmail'],
-      strProfileUrl: json['strProfileUrl'],
+      strProfileUrl: json['strProfileUrl'] ?? "",
     );
   }
 }
