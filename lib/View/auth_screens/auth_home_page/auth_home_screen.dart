@@ -1,13 +1,12 @@
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SImages.dart';
 import 'package:stellar_chat/View/auth_screens/LoginWithMobile/login_with_mobile_screen.dart';
 import 'package:stellar_chat/View/auth_screens/auth_home_page/show_signup_model_sheet.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../Settings/SColors.dart';
 
 class AuthHomeScreen extends StatelessWidget {
-  
   const AuthHomeScreen({super.key});
 
   @override
@@ -33,21 +32,21 @@ class AuthHomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: Get.height * 0.3,
+              height: MediaQuery.of(context).size.height * 0.3,
             ),
             Center(
               child:
                   Image.asset("assets/Images/stellar_chat_icon_with_name.png"),
             ),
             SizedBox(
-              height: Get.height * 0.2,
+              height: MediaQuery.of(context).size.height * 0.2,
             ),
             GestureDetector(
               onTap: () {
                 Get.to(() => LoginWithMobileNumberScreen());
               },
               child: Container(
-                width: Get.width * 0.7,
+                width: MediaQuery.of(context).size.width * 0.7,
                 height: 50,
                 decoration: BoxDecoration(
                     color: SColors.color11,
@@ -63,7 +62,7 @@ class AuthHomeScreen extends StatelessWidget {
                 showSignupModelBottomSheet(context);
               },
               child: Container(
-                width: Get.width * 0.7,
+                width: MediaQuery.of(context).size.width * 0.7,
                 height: 50,
                 decoration: BoxDecoration(
                     color: SColors.color12,
