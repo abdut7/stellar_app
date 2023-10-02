@@ -12,7 +12,7 @@ import '../../../models/api_models/get_contacts_model.dart';
 class ConfirmGroupDetailsScreen extends StatefulWidget {
   final XFile? groupIcon;
   final List<String> userIdList;
-  final List<RecievedPhoneUser> userModelList;
+  final List<Contact> userModelList;
   final String groupName;
   const ConfirmGroupDetailsScreen(
       {super.key,

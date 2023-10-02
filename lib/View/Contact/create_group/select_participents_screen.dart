@@ -24,7 +24,7 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
   }
 
   List<String> selectedUsers = [];
-  List<RecievedPhoneUser> selectedUserModel = [];
+  List<Contact> selectedUserModel = [];
 
   @override
   Widget build(BuildContext context) {
@@ -70,9 +70,9 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
-                              RecievedPhoneUser user = contactsController.getContactsModel
-                                  .value!.arrList[index].recievedPhoneUser[0];
-                              ArrList arrList = contactsController
+                              Contact user = contactsController
+                                  .getContactsModel.value!.arrList[index];
+                              Contact arrList = contactsController
                                   .getContactsModel.value!.arrList[index];
 
                               return GestureDetector(

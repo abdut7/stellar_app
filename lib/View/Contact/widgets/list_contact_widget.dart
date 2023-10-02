@@ -16,12 +16,12 @@ class ListContactsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(contactsController.phoneNumberUserList.length);
     return ListView.separated(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          RecievedPhoneUser data =
-              contactsController.phoneNumberUserList[index];
+          Contact data = contactsController.phoneNumberUserList[index];
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
@@ -48,6 +48,6 @@ class ListContactsWidget extends StatelessWidget {
         separatorBuilder: (context, index) => const Divider(
               color: Colors.white,
             ),
-        itemCount: contactsController.getContactsModel.value!.arrList.length);
+        itemCount: contactsController.phoneNumberUserList.length);
   }
 }

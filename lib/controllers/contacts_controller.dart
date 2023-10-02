@@ -15,7 +15,7 @@ class ContactsController extends GetxController {
   RxBool creatingContact = RxBool(false);
   RxBool creatingContactDone = RxBool(false);
   RxBool errorCreatingContact = RxBool(false);
-  RxList<RecievedPhoneUser> phoneNumberUserList = RxList([]);
+  RxList<Contact> phoneNumberUserList = RxList([]);
 
   //get contact api controllers
 

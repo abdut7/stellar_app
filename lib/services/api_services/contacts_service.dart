@@ -62,7 +62,7 @@ class ContactServiceApi {
         GetContactsModel model = GetContactsModel.fromJson(res.data);
         model.arrList.forEach((element) {
           contactsController.phoneNumberUserList
-              .add(element.recievedPhoneUser[0]);
+              .add(element);
         });
 
         // contactsController.creatingContact(false);
@@ -86,26 +86,7 @@ class ContactServiceApi {
     String url = ApiRoutes.baseUrl + ApiRoutes.getContacts;
     Map<String, dynamic> header = await getHeader();
     List<String> incomingContacts = [];
-    Response res = await dio.post(url, options: Options(headers: header));
-    print(res);
-    GetContactsModel model = GetContactsModel.fromJson(res.data);
-    print(model.toString());
-    contactsController.getContactsModel(null);
-    contactsController.getContactsModel(model);
-    //adding each contact to the phone number user list
-    List<RecievedPhoneUser> userList = [];
-    for (var element in model.arrList) {
-      userList.add(element.recievedPhoneUser[0]);
-    }
-    print("User list is: $userList");
-    contactsController.phoneNumberUserList.addAll(userList);
-
-    // contactsController.phoneNumberUserList.addAll(model.arrList)
-    contactsController.isGetContactLoading(false);
-    model.arrList.forEach((element) {
-      incomingContacts.add(element.recievedPhoneUser.first.strMobileNo);
-    });
-    contactsController.isGetContactLoading(false);
+    
     try {
       Response res = await dio.post(url, options: Options(headers: header));
       print(res);
@@ -114,9 +95,9 @@ class ContactServiceApi {
       contactsController.getContactsModel(null);
       contactsController.getContactsModel(model);
       //adding each contact to the phone number user list
-      List<RecievedPhoneUser> userList = [];
+      List<Contact> userList = [];
       for (var element in model.arrList) {
-        userList.add(element.recievedPhoneUser[0]);
+        userList.add(element);
       }
       print("User list is: $userList");
       contactsController.phoneNumberUserList.addAll(userList);
@@ -124,7 +105,7 @@ class ContactServiceApi {
       // contactsController.phoneNumberUserList.addAll(model.arrList)
       contactsController.isGetContactLoading(false);
       model.arrList.forEach((element) {
-        incomingContacts.add(element.recievedPhoneUser.first.strMobileNo);
+        incomingContacts.add(element.strMobileNo);
       });
       contactsController.isGetContactLoading(false);
     } catch (e) {
