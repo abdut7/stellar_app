@@ -9,12 +9,13 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../models/api_models/get_contacts_model.dart';
 
+// ignore: must_be_immutable
 class ConfirmGroupDetailsScreen extends StatefulWidget {
-  final XFile? groupIcon;
+  XFile? groupIcon;
   final List<String> userIdList;
   final List<Contact> userModelList;
   final String groupName;
-  const ConfirmGroupDetailsScreen(
+  ConfirmGroupDetailsScreen(
       {super.key,
       this.groupIcon,
       required this.userIdList,
@@ -27,6 +28,8 @@ class ConfirmGroupDetailsScreen extends StatefulWidget {
 }
 
 class _ConfirmGroupDetailsScreenState extends State<ConfirmGroupDetailsScreen> {
+  ImagePicker picker = ImagePicker();
+
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
@@ -34,37 +37,45 @@ class _ConfirmGroupDetailsScreenState extends State<ConfirmGroupDetailsScreen> {
         body: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        AddGroupIconWidget(
-          file: widget.groupIcon,
-        ),
         SizedBox(
-          height: Get.height * 0.5,
-          width: Get.width * 0.9,
-          child: Expanded(
-              child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    return Row(
-                      children: [
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        const CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          child: Icon(
-                            Icons.person,
-                            color: Colors.white,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(widget.userModelList[index].strFullName)
-                      ],
-                    );
-                  },
-                  separatorBuilder: (context, index) => const Divider(),
-                  itemCount: widget.userModelList.length)),
+          height: Get.height * 0.15,
         ),
+        GestureDetector(
+          onTap: () async {
+            widget.groupIcon =
+                await picker.pickImage(source: ImageSource.gallery);
+            if (widget.groupIcon != null) {
+              setState(() {});
+            }
+          },
+          child: AddGroupIconWidget(
+            file: widget.groupIcon,
+          ),
+        ),
+        Expanded(
+            child: ListView.separated(
+                itemBuilder: (context, index) {
+                  return Row(
+                    children: [
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      const CircleAvatar(
+                        backgroundColor: Colors.grey,
+                        child: Icon(
+                          Icons.person,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(widget.userModelList[index].strFullName)
+                    ],
+                  );
+                },
+                separatorBuilder: (context, index) => const Divider(),
+                itemCount: widget.userModelList.length)),
         GestureDetector(
           onTap: () async {
             setState(() {
@@ -105,7 +116,10 @@ class _ConfirmGroupDetailsScreenState extends State<ConfirmGroupDetailsScreen> {
                     ),
                   ),
           ),
-        )
+        ),
+        SizedBox(
+          height: Get.height * 0.1,
+        ),
       ],
     ));
   }

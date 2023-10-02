@@ -50,7 +50,11 @@ class _MainProfileState extends State<MainProfile> {
                         },
                         blendMode: BlendMode.dstIn,
                         child: Image.network(
-                          controller.userDetailsModel.value!.strProfileUrl,
+                          controller
+                                  .userDetailsModel.value!.strProfileUrl.isEmpty
+                              ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                              : controller
+                                  .userDetailsModel.value!.strProfileUrl,
                           fit: BoxFit.fill,
                           width: Get.width,
                           height: Get.width,

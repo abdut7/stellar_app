@@ -32,7 +32,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   child: Stack(
                     children: <Widget>[
                       Image.network(
-                        controller.userDetailsModel.value!.strProfileUrl,
+                        controller.userDetailsModel.value!.strProfileUrl.isEmpty
+                            ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                            : controller.userDetailsModel.value!.strProfileUrl,
                         fit: BoxFit.cover,
                         width: Get.width,
                         height: Get.width,

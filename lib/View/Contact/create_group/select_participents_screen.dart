@@ -39,7 +39,6 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
         () {
           if (contactsController.phoneNumberUserList.isNotEmpty &&
               !contactsController.isGetContactLoading.value) {
-            print("Reached here");
             myContact.clear();
             contactsController.phoneNumberUserList.forEach((incomingElement) {
               // Check if an element with the same ID exists in myContact
@@ -51,8 +50,6 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
                 myContact.add(incomingElement);
               }
             });
-
-            print(myContact.length);
           }
           return SizedBox(
             child: contactsController.isGetContactLoading.value
@@ -90,7 +87,7 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
                               itemBuilder: (context, index) {
                                 Contact user = myContact.elementAt(index);
 
-                                return GestureDetector(
+                                return InkWell(
                                   onTap: () {
                                     setState(
                                       () {
@@ -104,10 +101,13 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
                                       },
                                     );
                                   },
-                                  child: AddUserGroupTileWidget(
-                                      user: user,
-                                      isSelcted:
-                                          selectedUsers.contains(user.id)),
+                                  child: SizedBox(
+                                    height: 50,
+                                    child: AddUserGroupTileWidget(
+                                        user: user,
+                                        isSelcted:
+                                            selectedUsers.contains(user.id)),
+                                  ),
                                 );
                               },
                               separatorBuilder: (context, index) =>

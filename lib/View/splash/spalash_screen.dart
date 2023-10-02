@@ -33,14 +33,16 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            const SizedBox(),
             Center(
               child: SvgPicture.asset(
                 SSvgs.appLogoAndName,
               ),
             ),
-            const Align(
-              alignment: Alignment.bottomCenter,
+            const Padding(
+              padding: EdgeInsets.only(bottom: 16.0),
               child: Text(
                 'Welcome to Stellar App',
                 style: TextStyle(
