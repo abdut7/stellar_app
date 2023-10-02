@@ -20,7 +20,7 @@ class _CustomGridViewState extends State<CustomGridView> {
         crossAxisCount: 3,
         crossAxisSpacing: 0,
       ),
-      itemCount: 6,
+      itemCount: 30,
       itemBuilder: (BuildContext context, int index) {
         return Padding(
           padding: const EdgeInsets.all(10.0),

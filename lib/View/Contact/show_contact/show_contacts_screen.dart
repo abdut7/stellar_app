@@ -4,6 +4,7 @@ import 'package:stellar_chat/View/Contact/add_contact/add_contact.dart';
 import 'package:stellar_chat/View/Contact/create_group/create_group_screen.dart';
 import 'package:stellar_chat/View/Contact/show_contact/widget/show_contact_tile.dart';
 import 'package:stellar_chat/View/Contact/widgets/list_contact_widget.dart';
+import 'package:stellar_chat/View/contact/add_contact/scan_qr_code.dart';
 import 'package:stellar_chat/services/api_services/contacts_service.dart';
 import 'package:stellar_chat/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
@@ -146,7 +147,9 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
                 circleAvatarBackgroundColor: SColors.color12,
                 title: 'New Contact',
                 trailingIcon: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(() => QRScannerScreen());
+                    },
                     child: Icon(
                       Icons.qr_code,
                       color: SColors.color3,

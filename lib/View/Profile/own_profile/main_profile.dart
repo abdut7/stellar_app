@@ -30,70 +30,57 @@ class _MainProfileState extends State<MainProfile> {
         length: 2,
         child: ListView(
           children: <Widget>[
-            Stack(
-              children: <Widget>[
-                Container(
-                  height: 250,
-                  child: Stack(
-                    children: <Widget>[
-                      ShaderMask(
-                        shaderCallback: (Rect bounds) {
-                          return LinearGradient(
-                            colors: [
-                              Colors.transparent,
-                              Colors.black.withOpacity(0.9)
-                            ],
-                            stops: [0.0, 0.5],
-                            begin: Alignment.bottomLeft,
-                            end: Alignment.topCenter,
-                          ).createShader(bounds);
-                        },
-                        blendMode: BlendMode.dstIn,
-                        child: Image.network(
-                          controller
-                                  .userDetailsModel.value!.strProfileUrl.isEmpty
-                              ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                              : controller
-                                  .userDetailsModel.value!.strProfileUrl,
-                          fit: BoxFit.fill,
-                          width: Get.width,
-                          height: Get.width,
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 50,
-                        left: 180,
-                        child: Text(
-                          controller.userDetailsModel.value!.strName,
-                          style: TextStyle(
-                            color: SColors.color3,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 30,
-                        left: 120,
-                        child: Text(
-                          'PHONE NUMBER : ${controller.userDetailsModel.value!.strMobileNo}',
-                          style: TextStyle(
-                            color: SColors.color3,
-                            fontSize: 11,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ],
+            Container(
+              height: 250,
+              width: Get.width,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(
+                    controller.userDetailsModel.value!.strProfileUrl.isEmpty
+                        ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                        : controller.userDetailsModel.value!.strProfileUrl,
                   ),
                 ),
-                Positioned(
-                  top: 10,
-                  right: 10,
-                  child: GestureDetector(
-                      onTap: () {}, child: SvgPicture.asset(SSvgs.sv29)),
-                ),
-              ],
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                          onTap: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SvgPicture.asset(SSvgs.sv29),
+                          )),
+                    ],
+                  ),
+                  const Spacer(),
+                  Text(
+                    controller.userDetailsModel.value!.strName,
+                    style: TextStyle(
+                      color: SColors.color3,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'PHONE NUMBER : ${controller.userDetailsModel.value!.strMobileNo}',
+                    style: TextStyle(
+                      color: SColors.color3,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  )
+                ],
+              ),
             ),
             const SizedBox(
               height: 10,
@@ -128,7 +115,7 @@ class _MainProfileState extends State<MainProfile> {
                 ProfileButton(
                     buttonText: 'Settings',
                     onPressed: () {
-                      Get.to(() => ProfileSettings());
+                      Get.to(() => const ProfileSettings());
                     })
               ],
             ),
@@ -169,8 +156,9 @@ class _MainProfileState extends State<MainProfile> {
                 });
               },
             ),
+
             SizedBox(
-              height: 200,
+              // height: 200,
               child: IndexedStack(index: selectedTabIndex, children: [
                 Visibility(
                     visible: selectedTabIndex == 0,

@@ -3,6 +3,7 @@ import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/View/Contact/add_contact/select_contacts_to_add_screen.dart';
 import 'package:stellar_chat/View/contact/add_contact/friends_in_radar/friends_in_radar.dart';
 import 'package:stellar_chat/View/contact/add_contact/scan_qr_code.dart';
+import 'package:stellar_chat/View/contact/show_contact/show_contacts_screen.dart';
 import 'package:stellar_chat/widgets/add_contact_listtile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -75,7 +76,7 @@ class _AddContactUiState extends State<AddContactUi> {
               text: 'My Contact',
               subtitle: 'Add from mobile contact',
               onPressed: () {
-                Get.to(() => SelectContacts(controller: contactsController));
+                Get.to(() => const ShowContactsScreen());
               },
               svgAssetPath: SSvgs.myContactt),
         ],
