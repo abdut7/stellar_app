@@ -170,12 +170,11 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
             const SizedBox(
               height: 20,
             ),
-            Obx(() => contactsController.isGetContactLoading.value ||
-                    contactsController.getContactsModel.value == null
+            Obx(() => contactsController.isGetContactLoading.value
                 ? const Center(
                     child: CircularProgressIndicator(),
                   )
-                : contactsController.getContactsModel.value!.arrList.isEmpty
+                : contactsController.phoneNumberUserList.isEmpty
                     ? const Center(
                         child: Text("No Contacts added add now"),
                       )
