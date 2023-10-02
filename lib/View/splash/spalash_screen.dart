@@ -31,21 +31,14 @@ class _SplashScreenState extends State<SplashScreen> {
             image: AssetImage(SImages.vectorBackground), fit: BoxFit.fill,),),
         child: Stack(
           children: [
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [SvgPicture.asset(SSvgs.appLogoAndName,),],
-              ),
-            ),
-            const Positioned(
-              bottom: 16, left: 0, right: 0,
-              child: Center(
+            Center(child: SvgPicture.asset(SSvgs.appLogoAndName,),),
+            const Align(
+                alignment: Alignment.bottomCenter,
                 child: Text('Welcome to Stellar App', style: TextStyle(fontSize: 13,
                     color: Colors.white38, fontWeight: FontWeight.w700
                   ),
                 ),
               ),
-            ),
           ],
         ),
       ),
