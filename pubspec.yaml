@@ -70,6 +70,7 @@ dependencies:
   flutter_cache_manager: ^3.3.1
   flutter_otp_text_field: ^1.1.0+2
   qr_code_scanner: ^1.0.1
+  google_maps_flutter:
 
 
 dev_dependencies:
