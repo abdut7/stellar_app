@@ -31,27 +31,28 @@ class GetContactsModel {
 class ArrList {
   ArrList({
     required this.id,
-    required this.objUser,
+    required this.recievedPhoneUser,
   });
   late final String id;
-  late final List<ObjUser> objUser;
+  late final List<RecievedPhoneUser> recievedPhoneUser;
 
   ArrList.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
-    objUser =
-        List.from(json['objUser']).map((e) => ObjUser.fromJson(e)).toList();
+    recievedPhoneUser = List.from(json['objUser'])
+        .map((e) => RecievedPhoneUser.fromJson(e))
+        .toList();
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['_id'] = id;
-    _data['objUser'] = objUser.map((e) => e.toJson()).toList();
+    _data['objUser'] = recievedPhoneUser.map((e) => e.toJson()).toList();
     return _data;
   }
 }
 
-class ObjUser {
-  ObjUser({
+class RecievedPhoneUser {
+  RecievedPhoneUser({
     required this.id,
     required this.strFullName,
     required this.strMobileNo,
@@ -62,7 +63,7 @@ class ObjUser {
   late final String strMobileNo;
   late final String strProfileUrl;
 
-  ObjUser.fromJson(Map<String, dynamic> json) {
+  RecievedPhoneUser.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
     strFullName = json['strFullName'];
     strMobileNo = json['strMobileNo'];

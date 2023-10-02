@@ -21,7 +21,7 @@ class SelectContacts extends StatefulWidget {
 class _SelectContactsState extends State<SelectContacts> {
   @override
   void initState() {
-    getContacts();
+    getContactsFromPhone();
     super.initState();
   }
 

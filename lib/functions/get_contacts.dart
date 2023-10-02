@@ -1,11 +1,11 @@
-import 'package:base_project/services/api_services/contacts_service.dart';
+// import 'package:base_project/services/api_services/contacts_service.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../controllers/contacts_controller.dart';
 
-Future<void> getContacts() async {
+Future<List<String>> getContactsFromPhone() async {
   ContactsController contactsController = Get.find();
   contactsController.isFetchingContacts(true);
   List<Contact> contacts = [];
@@ -31,7 +31,8 @@ Future<void> getContacts() async {
     contactPhoneNumber.toList(),
   );
   contactsController.isFetchingContacts(false);
-  ContactServiceApi.contactService(
-    contactPhoneNumber.toList(),
-  );
+  return contactPhoneNumber.toList();
+  // ContactServiceApi.contactService(
+  //   contactPhoneNumber.toList(),
+  // );
 }

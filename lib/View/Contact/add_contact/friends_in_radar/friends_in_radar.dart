@@ -36,13 +36,13 @@ class _FriendsInRadarScreenState extends State<FriendsInRadarScreen> {
 
     map_controller.addOwnLocation(
         latlng: LatLng(position.latitude, position.longitude));
+    print("${position.latitude}, ${position.longitude}");
 
     return LatLng(position.latitude, position.longitude);
   }
 
   @override
   Widget build(BuildContext context) {
-    GoogleMapsController map_controller = Get.put(GoogleMapsController());
 
     return Scaffold(
         appBar: AppBar(

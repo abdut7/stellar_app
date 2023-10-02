@@ -10,7 +10,7 @@ class AddUserGroupTileWidget extends StatelessWidget {
     required this.isSelcted,
   });
 
-  final ObjUser user;
+  final RecievedPhoneUser user;
 
   @override
   Widget build(BuildContext context) {

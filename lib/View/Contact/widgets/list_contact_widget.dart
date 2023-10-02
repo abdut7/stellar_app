@@ -20,28 +20,34 @@ class ListContactsWidget extends StatelessWidget {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          ObjUser data = contactsController
-              .getContactsModel.value!.arrList[index].objUser[0];
+          RecievedPhoneUser data =
+              contactsController.phoneNumberUserList[index];
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
               onTap: () async {
                 Get.to(() => PrivateChatScreen(
-                  fullName: data.strFullName,                    chatId: data.id
-                    ));
+                    fullName: data.strFullName, chatId: data.id));
               },
               leading: CircleAvatar(
                 radius: 45,
                 backgroundImage: NetworkImage(data.strProfileUrl),
               ),
-              title: Text(data.strFullName,style: TextStyle(color: SColors.color3, fontSize: 17, fontWeight: FontWeight.w400,
-
-              ),),
+              title: Text(
+                data.strFullName,
+                style: TextStyle(
+                  color: SColors.color3,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
               subtitle: Text(data.strMobileNo),
             ),
           );
         },
-        separatorBuilder: (context, index) => const Divider(color: Colors.white,),
+        separatorBuilder: (context, index) => const Divider(
+              color: Colors.white,
+            ),
         itemCount: contactsController.getContactsModel.value!.arrList.length);
   }
 }

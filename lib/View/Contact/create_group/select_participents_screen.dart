@@ -24,7 +24,7 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
   }
 
   List<String> selectedUsers = [];
-  List<ObjUser> selectedUserModel = [];
+  List<RecievedPhoneUser> selectedUserModel = [];
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +70,8 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
-                              ObjUser user = contactsController.getContactsModel
-                                  .value!.arrList[index].objUser[0];
+                              RecievedPhoneUser user = contactsController.getContactsModel
+                                  .value!.arrList[index].recievedPhoneUser[0];
                               ArrList arrList = contactsController
                                   .getContactsModel.value!.arrList[index];
 

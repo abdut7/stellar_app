@@ -116,11 +116,12 @@ class _ContactsHomeScreenState extends State<ContactsHomeScreen> {
                                 SliverList(
                                   delegate: SliverChildBuilderDelegate(
                                     (BuildContext context, int index) {
-                                      ObjUser data = contactsController
-                                          .getContactsModel
-                                          .value!
-                                          .arrList[index]
-                                          .objUser[0];
+                                      RecievedPhoneUser data =
+                                          contactsController
+                                              .getContactsModel
+                                              .value!
+                                              .arrList[index]
+                                              .recievedPhoneUser[0];
                                       return ListTile(
                                         onTap: () async {
                                           Get.to(() => PrivateChatScreen(

@@ -1,3 +1,4 @@
+import 'package:base_project/functions/get_contacts.dart';
 import 'package:base_project/functions/get_header.dart';
 import 'package:base_project/functions/show_snackbar.dart';
 import 'package:base_project/models/api_models/available_contacts_model.dart';
@@ -41,30 +42,37 @@ class ContactServiceApi {
     }
   }
 
-  static Future<void> createContact(List<String> selectedId) async {
+  static Future<void> createContact(List<String> newPhoneNumber) async {
+    print(newPhoneNumber);
     ContactsController contactsController = Get.find();
-    contactsController.errorCreatingContact(false);
-    contactsController.creatingContactDone(false);
+    // contactsController.errorCreatingContact(false);
+    // contactsController.creatingContactDone(false);
 
-    contactsController.creatingContact(true);
+    // contactsController.creatingContact(true);
 
     Dio dio = Dio();
     String url = ApiRoutes.baseUrl + ApiRoutes.createContact;
     Map<String, dynamic> header = await getHeader();
-    Map<String, dynamic> body = {"arrContactIds": selectedId};
+    Map<String, dynamic> body = {"arrContacts": newPhoneNumber};
     try {
       Response res =
           await dio.post(url, options: Options(headers: header), data: body);
       if (res.statusCode == 200) {
-        contactsController.creatingContact(false);
-        contactsController.creatingContactDone(true);
-        showCustomSnackbar(
-            title: "Contacs added",
-            message: "Successfully added ${selectedId.length} contacts");
-        Get.off(() => const HomeChatUi());
+        GetContactsModel model = GetContactsModel.fromJson(res.data);
+        model.arrList.forEach((element) {
+          contactsController.phoneNumberUserList
+              .add(element.recievedPhoneUser[0]);
+        });
+
+        // contactsController.creatingContact(false);
+        // contactsController.creatingContactDone(true);
+        // showCustomSnackbar(
+        //     title: "Contacs added",
+        //     message: "Successfully added ${newPhoneNumber.length} contacts");
+        // Get.off(() => const HomeChatUi());
       }
     } catch (e) {
-      contactsController.errorCreatingContact(true);
+      // contactsController.errorCreatingContact(true);
     }
   }
 
@@ -76,6 +84,7 @@ class ContactServiceApi {
     Dio dio = Dio();
     String url = ApiRoutes.baseUrl + ApiRoutes.getContacts;
     Map<String, dynamic> header = await getHeader();
+    List<String> incomingContacts = [];
     try {
       Response res = await dio.post(url, options: Options(headers: header));
       print(res);
@@ -83,11 +92,24 @@ class ContactServiceApi {
       print(model.toString());
       contactsController.getContactsModel(null);
       contactsController.getContactsModel(model);
+      //adding each contact to the phone number user list
+      for (var element in model.arrList) {
+        contactsController.phoneNumberUserList
+            .add(element.recievedPhoneUser[0]);
+      }
+      // contactsController.phoneNumberUserList.addAll(model.arrList)
       contactsController.isGetContactLoading(false);
+      model.arrList.forEach((element) {
+        incomingContacts.add(element.recievedPhoneUser.first.strMobileNo);
+      });
     } catch (e) {
       contactsController.isGetContactErrorOccured(true);
       contactsController.isGetContactLoading(false);
     }
+
+    List<String> phoneContacts = await getContactsFromPhone();
+    phoneContacts.removeWhere((element) => incomingContacts.contains(element));
+    ContactServiceApi.createContact(phoneContacts);
   }
 
   static Future<void> searchContacts(String query) async {
