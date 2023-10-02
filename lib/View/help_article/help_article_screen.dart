@@ -1,39 +1,48 @@
-
-import 'package:base_project/View/help_article/widgets/bullet_list.dart';
-import 'package:base_project/View/help_article/widgets/like_dislike_button.dart';
-import 'package:base_project/View/help_article/widgets/number_list.dart';
+import 'package:stellar_chat/View/help_article/widgets/bullet_list.dart';
+import 'package:stellar_chat/View/help_article/widgets/like_dislike_button.dart';
+import 'package:stellar_chat/View/help_article/widgets/number_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/Settings/SSvgs.dart';
-
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SSvgs.dart';
 
 class HelpArticleScreen extends StatelessWidget {
-
   Widget _buildTitle(String text) {
     return Text(
       text,
-      style: TextStyle(color: SColors.color3, fontSize: 20, fontWeight: FontWeight.w800,),
+      style: TextStyle(
+        color: SColors.color3,
+        fontSize: 20,
+        fontWeight: FontWeight.w800,
+      ),
     );
   }
 
-  Widget _buildSubtitle(String text, {double fontSize = 12, FontWeight fontWeight = FontWeight.w500}) {
+  Widget _buildSubtitle(String text,
+      {double fontSize = 12, FontWeight fontWeight = FontWeight.w500}) {
     return Text(
       text,
-      style: TextStyle(color: SColors.color3, fontSize: fontSize, fontWeight: fontWeight,),
+      style: TextStyle(
+        color: SColors.color3,
+        fontSize: fontSize,
+        fontWeight: fontWeight,
+      ),
     );
   }
+
   Widget _buildNumberedList(List<String> items) {
     return NumberList(items);
   }
+
   Widget _buildBulletList(List<String> items) {
     return BulletList(items);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: SColors.color4,
-      appBar:  AppBar(
+      appBar: AppBar(
         toolbarHeight: 70,
         elevation: 0,
         title: Text(
@@ -51,14 +60,20 @@ class HelpArticleScreen extends StatelessWidget {
         ),
         actions: <Widget>[
           PopupMenuButton<String>(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0),),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
             color: SColors.color11,
             onSelected: (String result) {
               if (result == 'openInBrowser') {
                 // Handle opening in browser here
               }
             },
-            icon: Icon(Icons.more_vert,size: 35,color: SColors.color11,),
+            icon: Icon(
+              Icons.more_vert,
+              size: 35,
+              color: SColors.color11,
+            ),
             itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
               const PopupMenuItem<String>(
                 value: 'openInBrowser',
@@ -68,11 +83,10 @@ class HelpArticleScreen extends StatelessWidget {
           ),
         ],
       ),
-
-        body: ListView(
+      body: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -117,30 +131,39 @@ class HelpArticleScreen extends StatelessWidget {
                 const SizedBox(height: 15),
                 const Text(
                     "5. If the phone number doesn't use Stellar Chat, tap Share invite link to invite the phone number to chat on Stellar Chat.",
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
-                const SizedBox(height: 30,),
+                    style:
+                        TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+                const SizedBox(
+                  height: 30,
+                ),
                 Column(
                   children: [
                     Text(
                       'Does this answer your question?',
-                      style: TextStyle(color: SColors.color3, fontSize: 12,fontWeight: FontWeight.w700), textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: SColors.color3,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700),
+                      textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 15),
                     const Text(
                       'Your response is anonymous and helps us improve our help resources .',
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         LikeDislikeButton(
-                          circleColor: Colors.green, iconData: Icons.thumb_up,
+                          circleColor: Colors.green,
+                          iconData: Icons.thumb_up,
                           onPressed: () {},
                         ),
-
                         const SizedBox(width: 20),
                         LikeDislikeButton(
-                          circleColor: Colors.red, iconData: Icons.thumb_down,
+                          circleColor: Colors.red,
+                          iconData: Icons.thumb_down,
                           onPressed: () {},
                         ),
                       ],
@@ -148,10 +171,19 @@ class HelpArticleScreen extends StatelessWidget {
                     const SizedBox(height: 15),
                     Text(
                       'Help for something else? Contact Stellar Chat Support',
-                      style: TextStyle(color: SColors.color3, fontSize: 10, fontWeight: FontWeight.w500,), textAlign: TextAlign.center,
-                    ),],),
+                      style: TextStyle(
+                        color: SColors.color3,
+                        fontSize: 10,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
                 const SizedBox(height: 50),
-              ],),),
+              ],
+            ),
+          ),
         ],
       ),
     );

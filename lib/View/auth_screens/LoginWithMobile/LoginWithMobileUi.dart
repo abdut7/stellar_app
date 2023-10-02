@@ -1,8 +1,8 @@
-import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/Settings/SImages.dart';
-import 'package:base_project/services/api_services/auth_services.dart';
-import 'package:base_project/widgets/custom_elevated_button.dart';
-import 'package:base_project/widgets/login_signup_textfield.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SImages.dart';
+import 'package:stellar_chat/services/api_services/auth_services.dart';
+import 'package:stellar_chat/widgets/custom_elevated_button.dart';
+import 'package:stellar_chat/widgets/login_signup_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';

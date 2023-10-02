@@ -1,5 +1,5 @@
-import 'package:base_project/controllers/private_chat_controller.dart';
-import 'package:base_project/models/private_chat/private_chat_model.dart';
+import 'package:stellar_chat/controllers/private_chat_controller.dart';
+import 'package:stellar_chat/models/private_chat/private_chat_model.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 

@@ -1,4 +1,4 @@
-import 'package:base_project/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -7,7 +7,8 @@ class STSTile extends StatefulWidget {
   final String text;
   final VoidCallback onPressed;
 
-  STSTile({required this.svgAsset, required this.text, required this.onPressed});
+  STSTile(
+      {required this.svgAsset, required this.text, required this.onPressed});
 
   @override
   State<STSTile> createState() => _STSTileState();
@@ -20,11 +21,16 @@ class _STSTileState extends State<STSTile> {
       padding: const EdgeInsets.all(10.0),
       child: ListTile(
         leading: SvgPicture.asset(widget.svgAsset),
-        title: Text(widget.text,
+        title: Text(
+          widget.text,
           style: TextStyle(
-            color: SColors.color3, fontSize: 14, fontWeight: FontWeight.w400,),),
+            color: SColors.color3,
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
         trailing: IconButton(
-          icon: Icon(Icons.arrow_forward_ios, color:  SColors.color3, size: 15),
+          icon: Icon(Icons.arrow_forward_ios, color: SColors.color3, size: 15),
           onPressed: widget.onPressed,
         ),
       ),

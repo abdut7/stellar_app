@@ -1,7 +1,7 @@
-import 'package:base_project/functions/get_contacts.dart';
-import 'package:base_project/services/api_services/contacts_service.dart';
+import 'package:stellar_chat/functions/get_contacts.dart';
+import 'package:stellar_chat/services/api_services/contacts_service.dart';
 import 'package:flutter/material.dart';
-import 'package:base_project/controllers/contacts_controller.dart';
+import 'package:stellar_chat/controllers/contacts_controller.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 

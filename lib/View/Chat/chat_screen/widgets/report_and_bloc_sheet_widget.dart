@@ -1,4 +1,4 @@
-import 'package:base_project/services/api_services/account_services.dart';
+import 'package:stellar_chat/services/api_services/account_services.dart';
 import 'package:flutter/material.dart';
 
 showBlockAndReportBottomSheet(BuildContext context, String id) {

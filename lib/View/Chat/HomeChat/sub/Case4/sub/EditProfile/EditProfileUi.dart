@@ -1,8 +1,9 @@
-import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/Settings/SImages.dart';
-import 'package:base_project/widgets/custom_elevated_button.dart';
-import 'package:base_project/widgets/edit_profile_textfield.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SImages.dart';
+import 'package:stellar_chat/widgets/custom_elevated_button.dart';
+import 'package:stellar_chat/widgets/edit_profile_textfield.dart';
 import 'package:flutter/material.dart';
+
 class EditProfileUi extends StatefulWidget {
   static const routeName = '/EditProfileUi';
   const EditProfileUi({Key? key}) : super(key: key);
@@ -12,11 +13,12 @@ class EditProfileUi extends StatefulWidget {
 }
 
 class _EditProfileUiState extends State<EditProfileUi> {
-  Widget editPhoto(Function () onpress){
-    return  GestureDetector(
+  Widget editPhoto(Function() onpress) {
+    return GestureDetector(
         onTap: onpress,
         child: Center(child: Image(image: AssetImage(SImages.image2))));
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,24 +28,41 @@ class _EditProfileUiState extends State<EditProfileUi> {
         centerTitle: true,
         title: Text(
           'EDIT PROFILE',
-          style: TextStyle(color: SColors.color3, fontSize: 13, fontWeight: FontWeight.w500,
+          style: TextStyle(
+            color: SColors.color3,
+            fontSize: 13,
+            fontWeight: FontWeight.w500,
           ),
         ),
         leading: IconButton(
-          icon: Icon(Icons.cancel_rounded,color: SColors.color3,),
+          icon: Icon(
+            Icons.cancel_rounded,
+            color: SColors.color3,
+          ),
           onPressed: () {},
         ),
       ),
       body: ListView(
         children: [
-          const SizedBox(height: 50,),
-         editPhoto(() {}),
-          const SizedBox(height: 50,),
-          const EditProfileTextField(keyboardType: TextInputType.text, labelText: 'USERNAME'),
-          const EditProfileTextField(keyboardType: TextInputType.emailAddress, labelText: 'EMAIL ID'),
-          const EditProfileTextField(keyboardType: TextInputType.phone, labelText: 'PHONE'),
-          const EditProfileTextField(keyboardType: TextInputType.visiblePassword, labelText: 'PASSWORD'),
-          const SizedBox(height: 150,),
+          const SizedBox(
+            height: 50,
+          ),
+          editPhoto(() {}),
+          const SizedBox(
+            height: 50,
+          ),
+          const EditProfileTextField(
+              keyboardType: TextInputType.text, labelText: 'USERNAME'),
+          const EditProfileTextField(
+              keyboardType: TextInputType.emailAddress, labelText: 'EMAIL ID'),
+          const EditProfileTextField(
+              keyboardType: TextInputType.phone, labelText: 'PHONE'),
+          const EditProfileTextField(
+              keyboardType: TextInputType.visiblePassword,
+              labelText: 'PASSWORD'),
+          const SizedBox(
+            height: 150,
+          ),
           CustomElevatedButton(
             text: 'Update',
             textColor: SColors.color4,
@@ -72,17 +91,15 @@ class _EditProfileUiState extends State<EditProfileUi> {
                           textColor: SColors.color4,
                           foregroundColor: SColors.color4,
                           backgroundColor: SColors.color12,
-                          onPressed: (){
+                          onPressed: () {
                             Navigator.of(context).pop();
-                          }
-                      )
+                          })
                     ],
                   );
                 },
               );
             },
           ),
-
         ],
       ),
     );

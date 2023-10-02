@@ -1,10 +1,10 @@
-import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/Settings/SSvgs.dart';
-import 'package:base_project/View/profile/widget/profile_buttons.dart';
-import 'package:base_project/View/profile/widget/profile_text_field.dart';
-import 'package:base_project/controllers/user_controller.dart';
-import 'package:base_project/services/api_services/account_services.dart';
-import 'package:base_project/services/token_service/token_service.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SSvgs.dart';
+import 'package:stellar_chat/View/profile/widget/profile_buttons.dart';
+import 'package:stellar_chat/View/profile/widget/profile_text_field.dart';
+import 'package:stellar_chat/controllers/user_controller.dart';
+import 'package:stellar_chat/services/api_services/account_services.dart';
+import 'package:stellar_chat/services/token_service/token_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';

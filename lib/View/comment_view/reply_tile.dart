@@ -1,6 +1,7 @@
-import 'package:base_project/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 class ReplyTile extends StatefulWidget {
   const ReplyTile({Key? key}) : super(key: key);
 
@@ -20,18 +21,27 @@ class _Tile3State extends State<ReplyTile> {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: SColors.color9,
-            image: const DecorationImage(image: NetworkImage('URL_TO_YOUR_IMAGE'),fit: BoxFit.cover),
+            image: const DecorationImage(
+                image: NetworkImage('URL_TO_YOUR_IMAGE'), fit: BoxFit.cover),
           ),
         ),
         title: Text(
           'No Pressue',
-          style: TextStyle(color: SColors.color8, fontSize: 13, fontWeight: FontWeight.w400,),
+          style: TextStyle(
+            color: SColors.color8,
+            fontSize: 13,
+            fontWeight: FontWeight.w400,
+          ),
         ),
         subtitle: Row(
           children: [
             Text(
               'View replies (4)',
-              style: TextStyle(color:  SColors.color9, fontSize: 11, fontWeight: FontWeight.w600,),
+              style: TextStyle(
+                color: SColors.color9,
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+              ),
             ),
             IconButton(
               icon: const Icon(Icons.arrow_drop_down, size: 20),
@@ -39,13 +49,16 @@ class _Tile3State extends State<ReplyTile> {
             ),
           ],
         ),
-        trailing:
-        Row(
+        trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               '22h',
-              style: TextStyle(color:  SColors.color9, fontSize: 13, fontWeight: FontWeight.w500,),
+              style: TextStyle(
+                color: SColors.color9,
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+              ),
             ),
             Column(
               children: [
@@ -54,13 +67,15 @@ class _Tile3State extends State<ReplyTile> {
                   onPressed: () {},
                 ),
                 Expanded(
-                  child: Text('20.2K', style: TextStyle(fontSize: 8, color: SColors.color8),),
+                  child: Text(
+                    '20.2K',
+                    style: TextStyle(fontSize: 8, color: SColors.color8),
+                  ),
                 )
               ],
             )
           ],
         ),
-
       ),
     );
   }

@@ -1,8 +1,8 @@
-import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/Settings/SSvgs.dart';
-import 'package:base_project/View/chat/HomeChat/HomeChatUi.dart';
-import 'package:base_project/widgets/appbarContainer.dart';
-import 'package:base_project/widgets/search_text_field.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SSvgs.dart';
+import 'package:stellar_chat/View/chat/HomeChat/HomeChatUi.dart';
+import 'package:stellar_chat/widgets/appbarContainer.dart';
+import 'package:stellar_chat/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -23,7 +23,6 @@ class _NewChatUiState extends State<NewChatUi> {
     });
   }
 
-
   Widget _buildTitleAndButton(String text, Function()? onPress) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -32,7 +31,12 @@ class _NewChatUiState extends State<NewChatUi> {
         children: [
           Text(
             text,
-            style: TextStyle(color: SColors.color3, fontSize: 14, fontWeight: FontWeight.w500,),),
+            style: TextStyle(
+              color: SColors.color3,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
           IconButton(
             icon: const Icon(Icons.arrow_forward_ios, size: 15),
             onPressed: onPress,
@@ -50,7 +54,8 @@ class _NewChatUiState extends State<NewChatUi> {
       child: Stack(
         children: [
           Positioned(
-            top: 26, right: 20,
+            top: 26,
+            right: 20,
             child: ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, HomeChatUi.routeName);
@@ -88,20 +93,29 @@ class _NewChatUiState extends State<NewChatUi> {
           ),
           const SizedBox(width: 15),
           Text(
-            labelText, style: TextStyle(
-              color: SColors.color3, fontSize: 14, fontWeight: FontWeight.w500,
+            labelText,
+            style: TextStyle(
+              color: SColors.color3,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
             ),
           )
         ],
       ),
     );
   }
-  Widget buildSelectOneMoreText(){
-    return  Padding(
+
+  Widget buildSelectOneMoreText() {
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Text(
         'SELECT ONE OR MORE CONTACTS',
-        style: TextStyle(color: SColors.color3, fontSize: 14, fontWeight: FontWeight.w500,),),
+        style: TextStyle(
+          color: SColors.color3,
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
     );
   }
 
@@ -111,10 +125,12 @@ class _NewChatUiState extends State<NewChatUi> {
       backgroundColor: SColors.color4,
       body: ListView(
         children: [
-         AppBarContainer(labelText: 'New Chat'),
+          AppBarContainer(labelText: 'New Chat'),
           const SearchTextField(),
-          const SizedBox(height: 15,),
-         buildSelectOneMoreText(),
+          const SizedBox(
+            height: 15,
+          ),
+          buildSelectOneMoreText(),
           _buildTitleAndButton('JOIN PRIVATE GROUP', () {}),
           const SizedBox(height: 30),
           _buildCustomRow(0, 'RAJMOHAN CHOZHIATH'),

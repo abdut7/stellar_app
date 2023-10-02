@@ -1,4 +1,4 @@
-import 'package:base_project/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
 
 class ServiceAgreement extends StatefulWidget {
@@ -18,7 +18,11 @@ class _ServiceAgreementState extends State<ServiceAgreement> {
           child: Text(
             'QUICK PAY NOT ENABLED. AFTER ENABLING,\nDISPLAY CODE TO CASHIER TO QUICK PAY',
             textAlign: TextAlign.center,
-            style: TextStyle(color: SColors.color3, fontSize: 12, fontWeight: FontWeight.w400,),
+            style: TextStyle(
+              color: SColors.color3,
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ),
         const SizedBox(height: 20),
@@ -32,17 +36,26 @@ class _ServiceAgreementState extends State<ServiceAgreement> {
                 setState(() {
                   isSelected = !isSelected;
                 });
-                },),
+              },
+            ),
             Text.rich(
               TextSpan(
                 children: [
                   TextSpan(
                     text: 'YOU HAVE READ AND AGREE TO THE\n',
-                    style: TextStyle(color: SColors.color9, fontSize: 10, fontWeight: FontWeight.w400,),
+                    style: TextStyle(
+                      color: SColors.color9,
+                      fontSize: 10,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                   TextSpan(
                     text: 'PAYMENT USED SERVICE AGREEMENT',
-                    style: TextStyle(color: SColors.color9, fontSize: 10, fontWeight: FontWeight.w600,),
+                    style: TextStyle(
+                      color: SColors.color9,
+                      fontSize: 10,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ],
               ),

@@ -1,4 +1,4 @@
-import 'package:base_project/View/auth_screens/signup_with_mobile/sign_up_with_mobile_screen.dart';
+import 'package:stellar_chat/View/auth_screens/signup_with_mobile/sign_up_with_mobile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

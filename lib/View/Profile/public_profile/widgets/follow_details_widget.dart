@@ -1,6 +1,6 @@
-import 'package:base_project/Settings/SSvgs.dart';
-import 'package:base_project/View/profile/widget/profile_status.dart';
-import 'package:base_project/services/api_services/account_services.dart';
+import 'package:stellar_chat/Settings/SSvgs.dart';
+import 'package:stellar_chat/View/profile/widget/profile_status.dart';
+import 'package:stellar_chat/services/api_services/account_services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 

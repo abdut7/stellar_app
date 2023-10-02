@@ -1,4 +1,4 @@
-import 'package:base_project/services/socket_service/group_chat_service.dart';
+import 'package:stellar_chat/services/socket_service/group_chat_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:flutter_svg/svg.dart';

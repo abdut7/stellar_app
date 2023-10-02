@@ -1,5 +1,5 @@
-import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/Settings/SSvgs.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -18,10 +18,7 @@ class _Section1State extends State<Section1> {
       width: double.infinity,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-           SColors.color11,
-           SColors.color12
-          ],
+          colors: [SColors.color11, SColors.color12],
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
         ),
@@ -36,7 +33,9 @@ class _Section1State extends State<Section1> {
             top: 350,
             left: 50,
             width: MediaQuery.of(context).size.width - 100,
-            child: SvgPicture.asset(SSvgs.sv01,),
+            child: SvgPicture.asset(
+              SSvgs.sv01,
+            ),
           ),
         ],
       ),

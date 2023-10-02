@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/controllers/api_controllers/signup_controllers.dart';
-import 'package:base_project/functions/location_permission.dart';
-import 'package:base_project/services/api_services/auth_services.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/controllers/api_controllers/signup_controllers.dart';
+import 'package:stellar_chat/functions/location_permission.dart';
+import 'package:stellar_chat/services/api_services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';

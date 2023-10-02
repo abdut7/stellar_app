@@ -1,8 +1,8 @@
-import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/View/auth_screens/LoginWithMobile/LoginWithMobileUi.dart';
-import 'package:base_project/View/auth_screens/SignUpOptions/SignUpOptionsUi.dart';
-import 'package:base_project/View/auth_screens/WelcomePage/sub/Section1.dart';
-import 'package:base_project/widgets/custom_elevated_button.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/View/auth_screens/LoginWithMobile/LoginWithMobileUi.dart';
+import 'package:stellar_chat/View/auth_screens/SignUpOptions/SignUpOptionsUi.dart';
+import 'package:stellar_chat/View/auth_screens/WelcomePage/sub/Section1.dart';
+import 'package:stellar_chat/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

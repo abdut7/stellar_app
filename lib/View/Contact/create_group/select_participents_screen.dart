@@ -1,5 +1,5 @@
-import 'package:base_project/View/Contact/create_group/confirm_group_details_screen.dart';
-import 'package:base_project/View/Contact/create_group/widgets/add_user_group_tile_widget.dart';
+import 'package:stellar_chat/View/Contact/create_group/confirm_group_details_screen.dart';
+import 'package:stellar_chat/View/Contact/create_group/widgets/add_user_group_tile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';

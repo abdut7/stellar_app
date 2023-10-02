@@ -1,4 +1,4 @@
-import 'package:base_project/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
 
 class ResendButton extends StatefulWidget {
@@ -21,11 +21,20 @@ class _ResendButtonState extends State<ResendButton> {
               title: Text(
                 'VERIFICATION OTP RESEND TO',
                 textAlign: TextAlign.center,
-                style: TextStyle(color: SColors.color3, fontSize: 12, fontWeight: FontWeight.w500,),),
+                style: TextStyle(
+                  color: SColors.color3,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
               content: Text(
                 '+971 - ** *** **35',
                 textAlign: TextAlign.center,
-                style: TextStyle(color: SColors.color3, fontSize: 15, fontWeight: FontWeight.w600,),
+                style: TextStyle(
+                  color: SColors.color3,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
               backgroundColor: SColors.color11,
               actions: <Widget>[
@@ -37,13 +46,22 @@ class _ResendButtonState extends State<ResendButton> {
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.5,
                       height: 45,
-                      decoration: BoxDecoration(color: SColors.color12, borderRadius: BorderRadius.circular(12),),
-                      child:  Center(
+                      decoration: BoxDecoration(
+                        color: SColors.color12,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Center(
                         child: Text(
                           'Continue',
-                          style: TextStyle(color:SColors.color4, fontSize: 17, fontWeight: FontWeight.w400,
-                          ),),),
-                    ),),
+                          style: TextStyle(
+                            color: SColors.color4,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             );
@@ -52,7 +70,13 @@ class _ResendButtonState extends State<ResendButton> {
       },
       child: Text(
         'Resend',
-        style: TextStyle(color: SColors.color4, fontSize: 12, fontWeight: FontWeight.w800, height: 0,),),
+        style: TextStyle(
+          color: SColors.color4,
+          fontSize: 12,
+          fontWeight: FontWeight.w800,
+          height: 0,
+        ),
+      ),
     );
   }
 }

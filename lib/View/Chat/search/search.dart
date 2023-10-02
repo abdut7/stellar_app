@@ -1,10 +1,9 @@
-import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/View/Chat/search/widgets/search_audio/search_audio.dart';
-import 'package:base_project/View/Chat/search/widgets/search_chat/search_chat.dart';
-import 'package:base_project/View/Chat/search/widgets/search_document/search_document.dart';
-import 'package:base_project/View/Chat/search/widgets/search_media/search_media.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/View/Chat/search/widgets/search_audio/search_audio.dart';
+import 'package:stellar_chat/View/Chat/search/widgets/search_chat/search_chat.dart';
+import 'package:stellar_chat/View/Chat/search/widgets/search_document/search_document.dart';
+import 'package:stellar_chat/View/Chat/search/widgets/search_media/search_media.dart';
 import 'package:flutter/material.dart';
-
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -56,7 +55,11 @@ class _SearchScreenState extends State<SearchScreen> {
         centerTitle: true,
         leading: IconButton(
           onPressed: () {},
-          icon: Icon(Icons.arrow_back_ios, color: SColors.color4, size: 18,),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: SColors.color4,
+            size: 18,
+          ),
         ),
       ),
       body: Column(
@@ -68,62 +71,119 @@ class _SearchScreenState extends State<SearchScreen> {
               child: Row(
                 children: [
                   GestureDetector(
-                    onTap: () {_changePage(0);},
-                    child: Container(
-                      width: 112, height: 26,
-                      margin: const EdgeInsets.all(5),
-                      decoration: ShapeDecoration(
-                        color: _currentPage == 0 ? SColors.color9.withOpacity(0.6) : SColors.color9.withOpacity(0.2),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7),),),
-                      child: Center(
-                        child: Text(
-                          'Chat', style: TextStyle(color: SColors.color3, overflow: TextOverflow.ellipsis, fontSize: 10, fontWeight: FontWeight.w500,),),),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {_changePage(1);},
+                    onTap: () {
+                      _changePage(0);
+                    },
                     child: Container(
                       width: 112,
                       height: 26,
                       margin: const EdgeInsets.all(5),
                       decoration: ShapeDecoration(
-                        color: _currentPage == 1 ? SColors.color9.withOpacity(0.6) : SColors.color9.withOpacity(0.2),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7),),
-                      ),
-                      child: Center(
-                        child: Text('Media', style: TextStyle(color: SColors.color3, overflow: TextOverflow.ellipsis, fontSize: 10, fontWeight: FontWeight.w500,),),),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {_changePage(2);},
-                    child: Container(
-                      width: 112,
-                      height: 26,
-                      margin: const EdgeInsets.all(5),
-                      decoration: ShapeDecoration(
-                        color: _currentPage == 2 ? SColors.color9.withOpacity(0.6) : SColors.color9.withOpacity(0.2),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7),),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Audio', style: TextStyle(color: SColors.color3, overflow: TextOverflow.ellipsis, fontSize: 10, fontWeight: FontWeight.w500,),),),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {_changePage(3);},
-                    child: Container(
-                      width: 75,
-                      height: 25,
-                      margin: const EdgeInsets.all(5),
-                      decoration: ShapeDecoration(
-                        color: _currentPage == 3 ? SColors.color9.withOpacity(0.6) : SColors.color9.withOpacity(0.2),
+                        color: _currentPage == 0
+                            ? SColors.color9.withOpacity(0.6)
+                            : SColors.color9.withOpacity(0.2),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(7),
                         ),
                       ),
                       child: Center(
                         child: Text(
-                          'Document', style: TextStyle(color: SColors.color3, overflow: TextOverflow.ellipsis, fontSize: 10, fontWeight: FontWeight.w500,),),),
+                          'Chat',
+                          style: TextStyle(
+                            color: SColors.color3,
+                            overflow: TextOverflow.ellipsis,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      _changePage(1);
+                    },
+                    child: Container(
+                      width: 112,
+                      height: 26,
+                      margin: const EdgeInsets.all(5),
+                      decoration: ShapeDecoration(
+                        color: _currentPage == 1
+                            ? SColors.color9.withOpacity(0.6)
+                            : SColors.color9.withOpacity(0.2),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Media',
+                          style: TextStyle(
+                            color: SColors.color3,
+                            overflow: TextOverflow.ellipsis,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      _changePage(2);
+                    },
+                    child: Container(
+                      width: 112,
+                      height: 26,
+                      margin: const EdgeInsets.all(5),
+                      decoration: ShapeDecoration(
+                        color: _currentPage == 2
+                            ? SColors.color9.withOpacity(0.6)
+                            : SColors.color9.withOpacity(0.2),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Audio',
+                          style: TextStyle(
+                            color: SColors.color3,
+                            overflow: TextOverflow.ellipsis,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      _changePage(3);
+                    },
+                    child: Container(
+                      width: 75,
+                      height: 25,
+                      margin: const EdgeInsets.all(5),
+                      decoration: ShapeDecoration(
+                        color: _currentPage == 3
+                            ? SColors.color9.withOpacity(0.6)
+                            : SColors.color9.withOpacity(0.2),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Document',
+                          style: TextStyle(
+                            color: SColors.color3,
+                            overflow: TextOverflow.ellipsis,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -131,7 +191,8 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ),
           Expanded(
-            child: PageView(controller: _pageController,
+            child: PageView(
+              controller: _pageController,
               onPageChanged: (int page) {
                 setState(() {
                   _currentPage = page;
@@ -150,4 +211,3 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
-

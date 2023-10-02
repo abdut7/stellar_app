@@ -1,5 +1,5 @@
-import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/widgets/appbarContainer.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/widgets/appbarContainer.dart';
 import 'package:flutter/material.dart';
 
 class FavoritesScreen extends StatefulWidget {
@@ -33,7 +33,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       children: List.generate(21, (index) {
         return Center(
           child: GestureDetector(
-            onTap: (){},
+            onTap: () {},
             child: Container(
               width: 58,
               height: 58,

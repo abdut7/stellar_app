@@ -1,4 +1,4 @@
-import 'package:base_project/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
 
 class LoginTextField extends StatefulWidget {
@@ -19,7 +19,10 @@ class LoginTextField extends StatefulWidget {
     required this.keyboardType,
     this.suffixIcon,
     required this.labelText,
-    required this.controller, this.validator, this.onSaved, this.onChanged,
+    required this.controller,
+    this.validator,
+    this.onSaved,
+    this.onChanged,
   }) : super(key: key);
 
   @override

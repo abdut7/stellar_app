@@ -1,8 +1,8 @@
-// import 'package:base_project/controllers/api_controllers/chat_history_controller.dart';
-// import 'package:base_project/models/api_models/chat_history_model.dart';
-import 'package:base_project/controllers/group_chat_controller.dart';
-import 'package:base_project/models/group_chat/group_message_model.dart';
-import 'package:base_project/services/socket_service/socket_service.dart';
+// import 'package:stellar_chat/controllers/api_controllers/chat_history_controller.dart';
+// import 'package:stellar_chat/models/api_models/chat_history_model.dart';
+import 'package:stellar_chat/controllers/group_chat_controller.dart';
+import 'package:stellar_chat/models/group_chat/group_message_model.dart';
+import 'package:stellar_chat/services/socket_service/socket_service.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/private_chat_controller.dart';

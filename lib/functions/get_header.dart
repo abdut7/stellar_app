@@ -1,4 +1,4 @@
-import 'package:base_project/services/token_service/token_service.dart';
+import 'package:stellar_chat/services/token_service/token_service.dart';
 
 Future<Map<String, dynamic>> getHeader() async {
   String? token = await getJwtToken();

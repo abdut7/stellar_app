@@ -1,4 +1,4 @@
-import 'package:base_project/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

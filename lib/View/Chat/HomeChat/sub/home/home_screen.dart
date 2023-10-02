@@ -1,12 +1,12 @@
-import 'package:base_project/View/chat/HomeChat/sub/home/widgets/chat_home_appbar_widget.dart';
-import 'package:base_project/View/chat/HomeChat/sub/home/widgets/chat_tile_widget.dart';
-import 'package:base_project/View/Contact/show_contact/show_contacts_screen.dart';
-import 'package:base_project/View/chat/group_chat/group_chat_screen.dart';
-import 'package:base_project/models/api_models/chat_history_model.dart';
-import 'package:base_project/services/api_services/chat_history_service.dart';
-import 'package:base_project/widgets/search_text_field.dart';
+import 'package:stellar_chat/View/chat/HomeChat/sub/home/widgets/chat_home_appbar_widget.dart';
+import 'package:stellar_chat/View/chat/HomeChat/sub/home/widgets/chat_tile_widget.dart';
+import 'package:stellar_chat/View/Contact/show_contact/show_contacts_screen.dart';
+import 'package:stellar_chat/View/chat/group_chat/group_chat_screen.dart';
+import 'package:stellar_chat/models/api_models/chat_history_model.dart';
+import 'package:stellar_chat/services/api_services/chat_history_service.dart';
+import 'package:stellar_chat/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:base_project/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:get/get.dart';
 
 import '../../../../../controllers/api_controllers/chat_history_controller.dart';

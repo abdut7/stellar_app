@@ -1,4 +1,4 @@
-import 'package:base_project/View/profile/public_profile/public_profile.dart';
+import 'package:stellar_chat/View/profile/public_profile/public_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';

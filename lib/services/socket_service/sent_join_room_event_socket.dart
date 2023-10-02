@@ -1,4 +1,4 @@
-import 'package:base_project/services/socket_service/socket_service.dart';
+import 'package:stellar_chat/services/socket_service/socket_service.dart';
 
 void sentRoomJoinSocket({required String chatId, required String type}) {
   SocketService socketService = SocketService();

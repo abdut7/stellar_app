@@ -1,13 +1,13 @@
-import 'package:base_project/Settings/SImages.dart';
-import 'package:base_project/View/profile/public_profile/widgets/follow_details_widget.dart';
-import 'package:base_project/View/profile/widget/about_me_text.dart';
-import 'package:base_project/View/profile/widget/contact_through_options.dart';
-import 'package:base_project/models/api_models/user_details_model.dart';
-import 'package:base_project/services/api_services/public_profile_service.dart';
+import 'package:stellar_chat/Settings/SImages.dart';
+import 'package:stellar_chat/View/profile/public_profile/widgets/follow_details_widget.dart';
+import 'package:stellar_chat/View/profile/widget/about_me_text.dart';
+import 'package:stellar_chat/View/profile/widget/contact_through_options.dart';
+import 'package:stellar_chat/models/api_models/user_details_model.dart';
+import 'package:stellar_chat/services/api_services/public_profile_service.dart';
 import 'package:flutter/material.dart';
-import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/Settings/SSvgs.dart';
-import 'package:base_project/View/profile/widget/custom_grid_view.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SSvgs.dart';
+import 'package:stellar_chat/View/profile/widget/custom_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 

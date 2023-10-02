@@ -1,6 +1,6 @@
-import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/View/auth_screens/auth_home_page/show_signup_model_sheet.dart';
-import 'package:base_project/services/api_services/auth_services.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/View/auth_screens/auth_home_page/show_signup_model_sheet.dart';
+import 'package:stellar_chat/services/api_services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';

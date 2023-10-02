@@ -1,6 +1,6 @@
-import 'package:base_project/functions/image_to_base.dart';
-import 'package:base_project/services/api_services/upload_files.dart';
-import 'package:base_project/services/socket_service/socket_service.dart';
+import 'package:stellar_chat/functions/image_to_base.dart';
+import 'package:stellar_chat/services/api_services/upload_files.dart';
+import 'package:stellar_chat/services/socket_service/socket_service.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:socket_io_client/socket_io_client.dart';
 

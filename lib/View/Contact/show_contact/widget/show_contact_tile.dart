@@ -1,4 +1,4 @@
-import 'package:base_project/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -9,7 +9,7 @@ class Tile extends StatefulWidget {
   final Widget? trailingIcon;
   final String title;
 
-  Tile ({
+  Tile({
     required this.svgAsset,
     required this.assetColor,
     required this.circleAvatarBackgroundColor,
@@ -34,17 +34,28 @@ class _TileState extends State<Tile> {
               radius: 25,
               backgroundColor: widget.circleAvatarBackgroundColor,
               child: SvgPicture.asset(
-                widget.svgAsset, color: widget.assetColor,),
+                widget.svgAsset,
+                color: widget.assetColor,
+              ),
             ),
             CircleAvatar(
               backgroundColor: SColors.color11,
               radius: 10,
-              child: Icon(Icons.add,size: 15,color: SColors.color4,),
+              child: Icon(
+                Icons.add,
+                size: 15,
+                color: SColors.color4,
+              ),
             )
           ],
         ),
-        title: Text(widget.title, style: const TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400,
-        ),
+        title: Text(
+          widget.title,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+          ),
         ),
         trailing: widget.trailingIcon,
       ),

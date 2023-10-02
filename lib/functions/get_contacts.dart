@@ -1,4 +1,4 @@
-// import 'package:base_project/services/api_services/contacts_service.dart';
+// import 'package:stellar_chat/services/api_services/contacts_service.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';

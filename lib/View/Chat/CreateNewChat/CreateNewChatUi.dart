@@ -1,9 +1,8 @@
-import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/View/chat/NewChat/NewChatUi.dart';
-import 'package:base_project/widgets/search_text_field.dart';
-import 'package:base_project/widgets/welcome_chat.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/View/chat/NewChat/NewChatUi.dart';
+import 'package:stellar_chat/widgets/search_text_field.dart';
+import 'package:stellar_chat/widgets/welcome_chat.dart';
 import 'package:flutter/material.dart';
-
 
 class CreateNewChatUi extends StatefulWidget {
   static const routeName = '/CreateNewChatUi';
@@ -37,7 +36,10 @@ class _CreateNewChatUiState extends State<CreateNewChatUi> {
       elevation: 0,
       actions: <Widget>[
         IconButton(
-          icon: const Icon(Icons.add,color: Colors.black,),
+          icon: const Icon(
+            Icons.add,
+            color: Colors.black,
+          ),
           onPressed: () {
             Navigator.pushNamed(context, NewChatUi.routeName);
           },
@@ -46,7 +48,6 @@ class _CreateNewChatUiState extends State<CreateNewChatUi> {
     );
   }
 
-
   Widget buildInviteFriendsRow() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -54,13 +55,19 @@ class _CreateNewChatUiState extends State<CreateNewChatUi> {
         Text(
           'INVITE FRIENDS TO REGISTER',
           textAlign: TextAlign.center,
-          style: TextStyle(color: SColors.color3,
-            fontSize: 10, fontWeight: FontWeight.w600,
+          style: TextStyle(
+            color: SColors.color3,
+            fontSize: 10,
+            fontWeight: FontWeight.w600,
           ),
         ),
         IconButton(
-          icon: const Icon(Icons.arrow_forward_ios, size: 10,),
-          color: SColors.color3, onPressed: () {},
+          icon: const Icon(
+            Icons.arrow_forward_ios,
+            size: 10,
+          ),
+          color: SColors.color3,
+          onPressed: () {},
         ),
       ],
     );

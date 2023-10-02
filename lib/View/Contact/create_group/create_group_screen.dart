@@ -1,6 +1,6 @@
-import 'package:base_project/View/Contact/create_group/select_participents_screen.dart';
-import 'package:base_project/View/Contact/create_group/widgets/add_group_icon_widget.dart';
-import 'package:base_project/functions/show_snackbar.dart';
+import 'package:stellar_chat/View/Contact/create_group/select_participents_screen.dart';
+import 'package:stellar_chat/View/Contact/create_group/widgets/add_group_icon_widget.dart';
+import 'package:stellar_chat/functions/show_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';

@@ -1,5 +1,5 @@
-import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/services/api_services/contacts_service.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/services/api_services/contacts_service.dart';
 import 'package:flutter/material.dart';
 
 class SearchTextField extends StatefulWidget {

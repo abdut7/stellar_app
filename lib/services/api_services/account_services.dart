@@ -1,6 +1,6 @@
-import 'package:base_project/functions/get_header.dart';
-import 'package:base_project/models/api_models/blocked_user_model.dart';
-import 'package:base_project/services/api_routes/api_routes.dart';
+import 'package:stellar_chat/functions/get_header.dart';
+import 'package:stellar_chat/models/api_models/blocked_user_model.dart';
+import 'package:stellar_chat/services/api_routes/api_routes.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response;

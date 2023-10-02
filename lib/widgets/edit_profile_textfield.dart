@@ -1,4 +1,4 @@
-import 'package:base_project/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
 
 class EditProfileTextField extends StatefulWidget {
@@ -71,7 +71,7 @@ class _EditProfileTextFieldState extends State<EditProfileTextField> {
             width: 70,
             child: Text(
               widget.labelText,
-              style:  TextStyle(
+              style: TextStyle(
                 color: SColors.color3,
                 fontSize: 12,
                 fontWeight: FontWeight.w600,

@@ -1,5 +1,5 @@
-import 'package:base_project/models/api_models/blocked_user_model.dart';
-import 'package:base_project/services/api_services/account_services.dart';
+import 'package:stellar_chat/models/api_models/blocked_user_model.dart';
+import 'package:stellar_chat/services/api_services/account_services.dart';
 import 'package:flutter/material.dart';
 
 class BlockedUsersScreen extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:base_project/models/api_models/chat_history_model.dart';
+import 'package:stellar_chat/models/api_models/chat_history_model.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 

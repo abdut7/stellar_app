@@ -1,5 +1,5 @@
-import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/View/profile/qr/my_qr_code_tab/my_qr_code_tab.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/View/profile/qr/my_qr_code_tab/my_qr_code_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

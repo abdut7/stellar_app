@@ -1,11 +1,12 @@
-import 'package:base_project/View/chat/chat_screen/chat_screen.dart';
-import 'package:base_project/View/contact/add_contact/friends_in_radar/functions/get_radius.dart';
-import 'package:base_project/View/profile/public_profile/public_profile.dart';
-import 'package:base_project/controllers/google_map/google_map_controller.dart';
-import 'package:base_project/functions/get_header.dart';
-import 'package:base_project/functions/image_to_bitmap.dart';
-import 'package:base_project/models/api_models/get_nearby_model.dart';
-import 'package:base_project/services/api_routes/api_routes.dart';
+import 'package:stellar_chat/View/chat/chat_screen/chat_screen.dart';
+import 'package:stellar_chat/View/contact/add_contact/friends_in_radar/functions/get_radius.dart';
+import 'package:stellar_chat/View/profile/public_profile/public_profile.dart';
+import 'package:stellar_chat/controllers/google_map/google_map_controller.dart';
+import 'package:stellar_chat/functions/avathar_generator.dart';
+import 'package:stellar_chat/functions/get_header.dart';
+import 'package:stellar_chat/functions/image_to_bitmap.dart';
+import 'package:stellar_chat/models/api_models/get_nearby_model.dart';
+import 'package:stellar_chat/services/api_routes/api_routes.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -31,11 +32,14 @@ class GetNearbyContactsService {
       GetNearbyPeopleModel model = GetNearbyPeopleModel.fromJson(res.data);
       // ignore: avoid_function_literals_in_foreach_calls
       model.arrList.forEach((element) async {
+        List<BitmapDescriptor> bitmapList =
+            await avatharGenerator([element.strProfileUrl]);
         // BitmapDescriptor dis =
         //     await getBitmapDescriptorFromNetworkImage(element.strProfileUrl);
         gController.markerSet.add(
           Marker(
               markerId: MarkerId("${gController.markerSet.length}"),
+              icon: bitmapList.first,
               position: LatLng(element.location.coordinates.first,
                   element.location.coordinates.last),
               onTap: () {

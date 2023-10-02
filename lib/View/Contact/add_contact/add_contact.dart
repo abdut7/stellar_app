@@ -1,9 +1,9 @@
-import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/Settings/SSvgs.dart';
-import 'package:base_project/View/Contact/add_contact/select_contacts_to_add_screen.dart';
-import 'package:base_project/View/contact/add_contact/friends_in_radar/friends_in_radar.dart';
-import 'package:base_project/View/contact/add_contact/scan_qr_code.dart';
-import 'package:base_project/widgets/add_contact_listtile.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SSvgs.dart';
+import 'package:stellar_chat/View/Contact/add_contact/select_contacts_to_add_screen.dart';
+import 'package:stellar_chat/View/contact/add_contact/friends_in_radar/friends_in_radar.dart';
+import 'package:stellar_chat/View/contact/add_contact/scan_qr_code.dart';
+import 'package:stellar_chat/widgets/add_contact_listtile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';

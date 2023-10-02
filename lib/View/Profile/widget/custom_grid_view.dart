@@ -1,4 +1,4 @@
-import 'package:base_project/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
 
 class CustomGridView extends StatefulWidget {
@@ -16,15 +16,20 @@ class _CustomGridViewState extends State<CustomGridView> {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 0,),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        crossAxisSpacing: 0,
+      ),
       itemCount: 6,
       itemBuilder: (BuildContext context, int index) {
         return Padding(
           padding: const EdgeInsets.all(10.0),
           child: GestureDetector(
-            onTap: (){},
+            onTap: () {},
             child: Container(
-              child: widget.icon != null ? Icon(widget.icon, color: Colors.grey) : null,
+              child: widget.icon != null
+                  ? Icon(widget.icon, color: Colors.grey)
+                  : null,
               height: 80,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),

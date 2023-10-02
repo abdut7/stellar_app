@@ -1,6 +1,6 @@
-import 'package:base_project/View/chat/group_chat/widgets/voice_chat_bubble.dart';
-import 'package:base_project/controllers/user_controller.dart';
-import 'package:base_project/utils/uid.dart';
+import 'package:stellar_chat/View/chat/group_chat/widgets/voice_chat_bubble.dart';
+import 'package:stellar_chat/controllers/user_controller.dart';
+import 'package:stellar_chat/utils/uid.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';

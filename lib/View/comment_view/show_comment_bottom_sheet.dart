@@ -1,5 +1,5 @@
-import 'package:base_project/View/comment_view/reply_tile.dart';
-import 'package:base_project/View/comment_view/main_tile.dart';
+import 'package:stellar_chat/View/comment_view/reply_tile.dart';
+import 'package:stellar_chat/View/comment_view/main_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +8,7 @@ import '../../Settings/SColors.dart';
 void showCommentBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
-    shape:  const RoundedRectangleBorder(
+    shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
         top: Radius.circular(25),
       ),
@@ -32,9 +32,13 @@ void showCommentBottomSheet(BuildContext context) {
                       child: MainTile(),
                     ),
                     ReplyTile(),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     ReplyTile(),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     ReplyTile(),
                     Padding(
                       padding: EdgeInsets.all(10.0),
@@ -66,7 +70,10 @@ void showCommentBottomSheet(BuildContext context) {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           IconButton(
-                            icon:  Icon(CupertinoIcons.at,color: SColors.color11,),
+                            icon: Icon(
+                              CupertinoIcons.at,
+                              color: SColors.color11,
+                            ),
                             onPressed: () {},
                           ),
                           IconButton(
@@ -82,9 +89,13 @@ void showCommentBottomSheet(BuildContext context) {
             ],
           ),
           Positioned(
-            top: 0, right: 10,
+            top: 0,
+            right: 10,
             child: IconButton(
-              icon: Icon(Icons.cancel_outlined,color: SColors.color3,),
+              icon: Icon(
+                Icons.cancel_outlined,
+                color: SColors.color3,
+              ),
               onPressed: () {},
             ),
           ),

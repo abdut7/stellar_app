@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/Settings/SImages.dart';
-import 'package:base_project/functions/get_current_location.dart';
-import 'package:base_project/models/api_models/signup_model.dart';
-import 'package:base_project/services/api_services/auth_services.dart';
-import 'package:base_project/widgets/custom_elevated_button.dart';
-import 'package:base_project/widgets/login_signup_textfield.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SImages.dart';
+import 'package:stellar_chat/functions/get_current_location.dart';
+import 'package:stellar_chat/models/api_models/signup_model.dart';
+import 'package:stellar_chat/services/api_services/auth_services.dart';
+import 'package:stellar_chat/widgets/custom_elevated_button.dart';
+import 'package:stellar_chat/widgets/login_signup_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -16,7 +16,6 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../../../controllers/api_controllers/signup_controllers.dart';
 import '../../../functions/image_to_base.dart';
 import '../../../functions/location_permission.dart';
-
 
 class SignUpWithMobileUi extends StatefulWidget {
   static const routeName = '/SignUpWithMobileUi';
@@ -228,7 +227,8 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
                           String base64String = '';
 
                           if (pickedImage != null) {
-                            base64String = await filePathToBase(pickedImage!.path);
+                            base64String =
+                                await filePathToBase(pickedImage!.path);
                           }
                           Position pos = await getCurrentLocation();
 

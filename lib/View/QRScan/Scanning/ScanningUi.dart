@@ -1,5 +1,5 @@
-import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/Settings/SImages.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SImages.dart';
 import 'package:flutter/material.dart';
 
 class ScanningUi extends StatefulWidget {
@@ -17,10 +17,14 @@ class _ScanningUiState extends State<ScanningUi> {
       onPressed: onPressed,
     );
   }
+
   Widget customBottomAppBar() {
     return BottomAppBar(
       color: SColors.color13,
-      child: const SizedBox(width: double.infinity, height: 85,),
+      child: const SizedBox(
+        width: double.infinity,
+        height: 85,
+      ),
     );
   }
 
@@ -28,9 +32,13 @@ class _ScanningUiState extends State<ScanningUi> {
     return Container(
       width: 80,
       height: 80,
-      decoration:  BoxDecoration(shape: BoxShape.circle, color: SColors.color14),
+      decoration: BoxDecoration(shape: BoxShape.circle, color: SColors.color14),
       child: IconButton(
-        icon:  Icon(Icons.qr_code_scanner, color: SColors.color4, size: 25,),
+        icon: Icon(
+          Icons.qr_code_scanner,
+          color: SColors.color4,
+          size: 25,
+        ),
         onPressed: onpress,
       ),
     );
@@ -75,7 +83,6 @@ class _ScanningUiState extends State<ScanningUi> {
       bottomNavigationBar: customBottomAppBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: customFloatingActionButton(() {}),
-
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:base_project/View/splash/spalash_screen.dart';
+import 'package:stellar_chat/View/splash/spalash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

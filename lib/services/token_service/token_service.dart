@@ -1,9 +1,9 @@
-import 'package:base_project/View/base_bottom_nav/bottom_nav.dart';
-import 'package:base_project/controllers/user_controller.dart';
-import 'package:base_project/models/api_models/user_details_model.dart';
-import 'package:base_project/services/api_routes/api_routes.dart';
-import 'package:base_project/services/api_services/user_details_service.dart';
-import 'package:base_project/utils/uid.dart';
+import 'package:stellar_chat/View/base_bottom_nav/bottom_nav.dart';
+import 'package:stellar_chat/controllers/user_controller.dart';
+import 'package:stellar_chat/models/api_models/user_details_model.dart';
+import 'package:stellar_chat/services/api_routes/api_routes.dart';
+import 'package:stellar_chat/services/api_services/user_details_service.dart';
+import 'package:stellar_chat/utils/uid.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

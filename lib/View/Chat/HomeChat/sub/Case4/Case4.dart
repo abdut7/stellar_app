@@ -1,14 +1,14 @@
-import 'package:base_project/View/chat/HomeChat/sub/Case4/sub/EditProfile/EditProfileUi.dart';
-import 'package:base_project/View/chat/HomeChat/sub/Case4/sub/Favorites/Favorites.dart';
-import 'package:base_project/View/chat/HomeChat/sub/Case4/sub/Settings/SettingsUi.dart';
-import 'package:base_project/View/chat/HomeChat/sub/Case4/sub/StickerGallery/StickerGallery.dart';
+import 'package:stellar_chat/View/chat/HomeChat/sub/Case4/sub/EditProfile/EditProfileUi.dart';
+import 'package:stellar_chat/View/chat/HomeChat/sub/Case4/sub/Favorites/Favorites.dart';
+import 'package:stellar_chat/View/chat/HomeChat/sub/Case4/sub/Settings/SettingsUi.dart';
+import 'package:stellar_chat/View/chat/HomeChat/sub/Case4/sub/StickerGallery/StickerGallery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:base_project/Settings/SColors.dart';
-import 'package:base_project/Settings/SSvgs.dart';
-import 'package:base_project/widgets/appbarContainer.dart';
-import 'package:base_project/widgets/tile_with_svg_title_suffix.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SSvgs.dart';
+import 'package:stellar_chat/widgets/appbarContainer.dart';
+import 'package:stellar_chat/widgets/tile_with_svg_title_suffix.dart';
 
 class Case4 extends StatefulWidget {
   const Case4({Key? key}) : super(key: key);
@@ -20,7 +20,8 @@ class Case4 extends StatefulWidget {
 class _Case4State extends State<Case4> {
   Widget buildProfileAvatar() {
     return CircleAvatar(
-      backgroundColor: SColors.color14, radius: 60,
+      backgroundColor: SColors.color14,
+      radius: 60,
       child: SvgPicture.asset(SSvgs.sv06, height: 75),
     );
   }
@@ -28,7 +29,11 @@ class _Case4State extends State<Case4> {
   Widget buildName(String name) {
     return Text(
       name,
-      style: TextStyle(color: SColors.color3, fontSize: 14, fontWeight: FontWeight.w600,),
+      style: TextStyle(
+        color: SColors.color3,
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+      ),
     );
   }
 
@@ -40,43 +45,65 @@ class _Case4State extends State<Case4> {
         children: [
           Text(
             text,
-            style: TextStyle(color: SColors.color3, fontSize: 14, fontWeight: FontWeight.w400,),),
+            style: TextStyle(
+              color: SColors.color3,
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
           Text(
             id,
-            style: TextStyle(color: SColors.color3, fontSize: 14, fontWeight: FontWeight.w500,),),
+            style: TextStyle(
+              color: SColors.color3,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         ],
       ),
     );
   }
 
-  Widget buildAddStatus(String text , Function() onpress) {
+  Widget buildAddStatus(String text, Function() onpress) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         IconButton(
-          icon:  Icon(Icons.add, size: 15, color: SColors.color3),
+          icon: Icon(Icons.add, size: 15, color: SColors.color3),
           onPressed: onpress,
         ),
         Text(
           text,
-          style: TextStyle(color: SColors.color3, fontSize: 12, fontWeight: FontWeight.w600,),
+          style: TextStyle(
+            color: SColors.color3,
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ],
     );
   }
 
-  Widget buildEditProfileButton(String text , Function() onpress) {
+  Widget buildEditProfileButton(String text, Function() onpress) {
     return SizedBox(
       height: 28,
       child: ElevatedButton(
         onPressed: onpress,
         child: Text(
-          text, style: TextStyle(color: SColors.color3, fontSize: 12, fontWeight: FontWeight.w700,),
+          text,
+          style: TextStyle(
+            color: SColors.color3,
+            fontSize: 12,
+            fontWeight: FontWeight.w700,
+          ),
         ),
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           backgroundColor: SColors.color14,
-          foregroundColor: SColors.color4, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8),),
+          foregroundColor: SColors.color4,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
         ),
       ),
     );
@@ -97,27 +124,35 @@ class _Case4State extends State<Case4> {
               children: [
                 buildName('NAME SURNAME'),
                 const SizedBox(height: 15),
-                buildStellarId('MY STELLAR CHAT ID       :', 'XXXX_XXXXXXX_XXX'),
-                buildAddStatus('STATUS',(){}),
+                buildStellarId(
+                    'MY STELLAR CHAT ID       :', 'XXXX_XXXXXXX_XXX'),
+                buildAddStatus('STATUS', () {}),
                 const SizedBox(height: 10),
-                buildEditProfileButton('EDIT PROFILE',(){
+                buildEditProfileButton('EDIT PROFILE', () {
                   Navigator.pushNamed(context, EditProfileUi.routeName);
                 }),
                 const SizedBox(height: 15),
-                STSTile(svgAsset: SSvgs.sv25, text: 'Favorites', onPressed: ()
-                {
-                  Navigator.pushNamed(context, FavoritesScreen.routeName);
-                }),
-
-                STSTile(svgAsset: SSvgs.sv26, text: 'Moments', onPressed: () {}),
-
-                STSTile(svgAsset: SSvgs.sv27, text: 'Sticker Gallery', onPressed: () {
-                  Navigator.pushNamed(context, StickerGalleryScreen.routeName);
-                }),
-
-                STSTile(svgAsset: SSvgs.sv28, text: 'Settings', onPressed: () {
-                  Navigator.pushNamed(context, SettingsUi.routeName);
-                }),
+                STSTile(
+                    svgAsset: SSvgs.sv25,
+                    text: 'Favorites',
+                    onPressed: () {
+                      Navigator.pushNamed(context, FavoritesScreen.routeName);
+                    }),
+                STSTile(
+                    svgAsset: SSvgs.sv26, text: 'Moments', onPressed: () {}),
+                STSTile(
+                    svgAsset: SSvgs.sv27,
+                    text: 'Sticker Gallery',
+                    onPressed: () {
+                      Navigator.pushNamed(
+                          context, StickerGalleryScreen.routeName);
+                    }),
+                STSTile(
+                    svgAsset: SSvgs.sv28,
+                    text: 'Settings',
+                    onPressed: () {
+                      Navigator.pushNamed(context, SettingsUi.routeName);
+                    }),
               ],
             ),
           ),
