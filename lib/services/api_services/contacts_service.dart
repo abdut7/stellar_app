@@ -43,12 +43,7 @@ class ContactServiceApi {
   }
 
   static Future<void> createContact(List<String> newPhoneNumber) async {
-    print(newPhoneNumber);
     ContactsController contactsController = Get.find();
-    // contactsController.errorCreatingContact(false);
-    // contactsController.creatingContactDone(false);
-
-    // contactsController.creatingContact(true);
 
     Dio dio = Dio();
     String url = ApiRoutes.baseUrl + ApiRoutes.createContact;
@@ -57,20 +52,11 @@ class ContactServiceApi {
     try {
       Response res =
           await dio.post(url, options: Options(headers: header), data: body);
-      print(res);
       if (res.statusCode == 200) {
         GetContactsModel model = GetContactsModel.fromJson(res.data);
-        model.arrList.forEach((element) {
-          contactsController.phoneNumberUserList
-              .add(element);
-        });
-
-        // contactsController.creatingContact(false);
-        // contactsController.creatingContactDone(true);
-        // showCustomSnackbar(
-        //     title: "Contacs added",
-        //     message: "Successfully added ${newPhoneNumber.length} contacts");
-        // Get.off(() => const HomeChatUi());
+        for (var element in model.arrList) {
+          contactsController.phoneNumberUserList.add(element);
+        }
       }
     } catch (e) {
       // contactsController.errorCreatingContact(true);
@@ -86,36 +72,35 @@ class ContactServiceApi {
     String url = ApiRoutes.baseUrl + ApiRoutes.getContacts;
     Map<String, dynamic> header = await getHeader();
     List<String> incomingContacts = [];
-    
+
     try {
+      // get contact from db
       Response res = await dio.post(url, options: Options(headers: header));
-      print(res);
       GetContactsModel model = GetContactsModel.fromJson(res.data);
-      print(model.toString());
-      contactsController.getContactsModel(null);
-      contactsController.getContactsModel(model);
+      // contactsController.getContactsModel(null);
+      // contactsController.getContactsModel(model);
       //adding each contact to the phone number user list
       List<Contact> userList = [];
       for (var element in model.arrList) {
         userList.add(element);
       }
-      print("User list is: $userList");
       contactsController.phoneNumberUserList.addAll(userList);
+      contactsController.isGetContactLoading(false);
 
       // contactsController.phoneNumberUserList.addAll(model.arrList)
-      contactsController.isGetContactLoading(false);
-      model.arrList.forEach((element) {
+      for (var element in model.arrList) {
         incomingContacts.add(element.strMobileNo);
-      });
-      contactsController.isGetContactLoading(false);
+      }
     } catch (e) {
       print(e);
       contactsController.isGetContactErrorOccured(true);
       contactsController.isGetContactLoading(false);
     }
-
+    //fetching contact from directory
     List<String> phoneContacts = await getContactsFromPhone();
+    // removing already existing contact
     phoneContacts.removeWhere((element) => incomingContacts.contains(element));
+    // pass the phone numbers to add to contact
     ContactServiceApi.createContact(phoneContacts);
   }
 

@@ -31,7 +31,9 @@ class ListContactsWidget extends StatelessWidget {
               },
               leading: CircleAvatar(
                 radius: 45,
-                backgroundImage: NetworkImage(data.strProfileUrl),
+                backgroundImage: NetworkImage(data.strProfileUrl.isEmpty
+                    ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                    : data.strProfileUrl),
               ),
               title: Text(
                 data.strFullName,
