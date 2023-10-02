@@ -1,12 +1,10 @@
 import 'package:base_project/functions/get_contacts.dart';
 import 'package:base_project/functions/get_header.dart';
-import 'package:base_project/functions/show_snackbar.dart';
 import 'package:base_project/models/api_models/available_contacts_model.dart';
 import 'package:base_project/models/api_models/get_contacts_model.dart';
 import 'package:base_project/services/api_routes/api_routes.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
-import '../../View/chat/HomeChat/HomeChatUi.dart';
 import '/controllers/contacts_controller.dart';
 
 class ContactServiceApi {

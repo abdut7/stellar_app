@@ -28,7 +28,7 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ContactsController contactsController = Get.find();
+    ContactsController contactsController = Get.put(ContactsController());
 
     return Scaffold(
       appBar: AppBar(

@@ -47,7 +47,7 @@ class _ContactsHomeScreenState extends State<ContactsHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ContactsController contactsController = Get.find();
+    ContactsController contactsController = Get.put(ContactsController());
     return Scaffold(
       backgroundColor: SColors.color4,
       body: SingleChildScrollView(

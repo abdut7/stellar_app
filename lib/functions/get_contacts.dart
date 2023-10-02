@@ -6,7 +6,7 @@ import 'package:permission_handler/permission_handler.dart';
 import '../controllers/contacts_controller.dart';
 
 Future<List<String>> getContactsFromPhone() async {
-  ContactsController contactsController = Get.find();
+  ContactsController contactsController = Get.put(ContactsController());
   contactsController.isFetchingContacts(true);
   List<Contact> contacts = [];
   if (await Permission.contacts.request().isGranted) {
