@@ -90,13 +90,10 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                             keyboardType: TextInputType.text,
                             labelText: 'REGION',
                             suffixIcon: Icon(
-                              Icons.arrow_drop_down,
+                              Icons.arrow_forward_ios,
                               size: 20,
                               color: SColors.color3,
                             ),
-                          ),
-                          const SizedBox(
-                            height: 15,
                           ),
                           LoginPhoneTextField(
                             controller: phoneNumberController,

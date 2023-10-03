@@ -150,8 +150,9 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const SizedBox(height: 75,),
                     Container(
-                      width: Get.width * 0.9,
+                      width: Get.width * 0.85,
                       //height: Get.height * 0.9,
                       decoration: BoxDecoration(
                         color: const Color.fromRGBO(153, 199, 255, 1),
@@ -330,7 +331,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                     ),
                     Container(
                       height: 70,
-                      width: Get.width * 0.8,
+                      width: Get.width * 0.78,
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.vertical(

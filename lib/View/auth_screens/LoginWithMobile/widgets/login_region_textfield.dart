@@ -122,7 +122,7 @@ class _LoginRegionTextFieldState extends State<LoginRegionTextField> {
                 fontWeight: FontWeight.w600,
               ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 5),
       textField(widget.controller),
         const SizedBox(height: 24),
       ],

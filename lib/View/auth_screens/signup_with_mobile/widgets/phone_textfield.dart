@@ -73,7 +73,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
                 children: [
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 16,vertical: 6),
-                    child: Text(countryCode?.dialCode ?? "+1",style: TextStyle(color: Colors.white),),
+                    child: Text(countryCode?.dialCode ?? "+91",style: TextStyle(color: Colors.white),),
                     decoration: BoxDecoration(color: SColors.color12),
                   ),
                 ],
@@ -116,7 +116,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(13.0),
+      padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 4),
       child: textField(widget.controller),
     );
   }

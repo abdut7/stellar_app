@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 
 class OtpVerificationUi extends StatefulWidget {
   static const routeName = '/OtpVerificationUi ';
-  const OtpVerificationUi({Key? key, required this.otpToken}) : super(key: key);
+  const   OtpVerificationUi({Key? key, required this.otpToken}) : super(key: key);
   final String otpToken;
 
   @override
@@ -30,13 +30,13 @@ class _OtpVerificationUiState extends State<OtpVerificationUi> {
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              gradient: const LinearGradient(colors: [
-                Color.fromRGBO(0, 1, 200, 0),
-                Color.fromRGBO(100, 170, 230, 1),
+              gradient:  LinearGradient(colors: [
+                SColors.color12,
+                SColors.color12
               ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
               image: DecorationImage(
                 image: AssetImage(SImages.image1),
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
               ),
             ),
             child: Center(
@@ -71,7 +71,7 @@ class _OtpVerificationUiState extends State<OtpVerificationUi> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 175),
+                  padding: const EdgeInsets.only(left: 172),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
