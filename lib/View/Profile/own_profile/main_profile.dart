@@ -30,69 +30,71 @@ class _MainProfileState extends State<MainProfile> {
         length: 2,
         child: ListView(
           children: <Widget>[
-            Obx(() => ShaderMask(
-              blendMode: BlendMode.srcATop,
-              shaderCallback: (Rect bounds) {
-                return LinearGradient(
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.center,
-                  colors: [Colors.white.withOpacity(0.5), Colors.transparent],
-                  stops: [0.1, 0.9],
-                ).createShader(bounds);
-              },
-              child: Container(
-                    height: 250,
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(
-                          controller.userDetailsModel.value!.strProfileUrl.isEmpty
-                              ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                              : controller.userDetailsModel.value!.strProfileUrl,
-                        ),
+            Obx(() => Container(
+                  height: 250,
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(
+                        controller.userDetailsModel.value!.strProfileUrl.isEmpty
+                            ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                            : controller.userDetailsModel.value!.strProfileUrl,
                       ),
                     ),
-                    child: Column(
-                      children: [
-                        Row(
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        width: Get.width,
+                        height: Get.height * 0.2,
+                        decoration: const BoxDecoration(
+                          // color: Colors.red,
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.white,
+                              Colors.transparent,
+                            ],
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                            stops: [
+                              0.0,
+                              5
+                            ], // Adjust the stops for the gradient effect
+                          ),
+                        ),
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            // GestureDetector(
-                            //     onTap: () {},
-                            //     child: Padding(
-                            //       padding: const EdgeInsets.all(8.0),
-                            //       child: SvgPicture.asset(SSvgs.sv29),
-                            //     )),
+                            Text(
+                              controller.userDetailsModel.value!.strName,
+                              style: TextStyle(
+                                color: SColors.color3,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'PHONE NUMBER : ${controller.userDetailsModel.value!.strMobileNo}',
+                              style: TextStyle(
+                                color: SColors.color3,
+                                fontSize: 11,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            )
                           ],
                         ),
-                        const Spacer(),
-                        Text(
-                          controller.userDetailsModel.value!.strName,
-                          style: TextStyle(
-                            color: SColors.color3,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          'PHONE NUMBER : ${controller.userDetailsModel.value!.strMobileNo}',
-                          style: TextStyle(
-                            color: SColors.color3,
-                            fontSize: 11,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        )
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-            )),
+                )),
             const SizedBox(
               height: 10,
             ),
