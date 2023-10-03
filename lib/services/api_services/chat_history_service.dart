@@ -21,11 +21,11 @@ class ChatHistoryServiceApi {
     try {
       Response response =
           await dio.post(path, options: Options(headers: header));
-      print(response);
+      // print(response);
       ChatHistoryModel model = ChatHistoryModel.fromJson(response.data);
       chatHistoryController.chatHistoryList(model.chatHistoryList);
     } catch (e) {
-      print(e);
+      // print(e);
       chatHistoryController.errorOccured(true);
     } finally {
       ChatHistorySocketService.chatHistorySocketService();

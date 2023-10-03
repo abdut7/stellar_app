@@ -2,6 +2,7 @@
 // import 'package:stellar_chat/models/api_models/chat_history_model.dart';
 import 'package:stellar_chat/controllers/group_chat_controller.dart';
 import 'package:stellar_chat/models/group_chat/group_message_model.dart';
+import 'package:stellar_chat/services/api_services/chat_history_service.dart';
 import 'package:stellar_chat/services/socket_service/socket_service.dart';
 import 'package:get/get.dart';
 
@@ -20,8 +21,7 @@ class ChatHistorySocketService {
     socketService.socket.on(
       'chat_history',
       (data) {
-        print(data);
-        print("Chat history updated");
+        ChatHistoryServiceApi.getChatHistory();
         // ChatHistoryList newChatHistory = ChatHistoryList.fromJson(data);
         // for (var element in chatHistoryController.chatHistoryList) {
         //   if (element.id == newChatHistory.id) {
