@@ -34,6 +34,11 @@ class _RegionTextFieldState extends State<RegionTextField> {
   InputDecoration buildInputDecoration() {
     return InputDecoration(
       hintText: widget.hintText,
+      hintStyle: TextStyle(
+        color: SColors.color9,
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+      ),
       border: InputBorder.none,
       contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
       filled: true,

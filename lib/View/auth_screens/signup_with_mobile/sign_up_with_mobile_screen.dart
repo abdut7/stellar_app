@@ -215,7 +215,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                               controller: usernameController,
                               keyboardType: TextInputType.text,
                               validator: validateUserName,
-                              hintText: 'User Name',
+                              hintText: 'User name',
                             ),
                             SignUpTextField(
                               controller: emailController,
@@ -228,7 +228,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                               keyboardType: TextInputType.text,
                               isBirthday: true,
                               validator: validateBirthday,
-                              hintText: 'User Name',
+                              hintText: 'Select Date',
                             ),
                             RegionTextField(
                               controller: regionController,
