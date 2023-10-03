@@ -111,29 +111,22 @@ class _LoginRegionTextFieldState extends State<LoginRegionTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
-      child: Row(
-        children: [
-          Container(
-            width: 44,
-            child: Text(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
               widget.labelText,
               style: TextStyle(
                 color: SColors.color3,
                 fontSize: 11,
                 fontWeight: FontWeight.w600,
               ),
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: textField(widget.controller),
-            ),
-          ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 8),
+      textField(widget.controller),
+        const SizedBox(height: 24),
+      ],
     );
+
   }
 }

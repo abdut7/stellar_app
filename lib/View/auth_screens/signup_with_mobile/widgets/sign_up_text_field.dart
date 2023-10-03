@@ -5,7 +5,8 @@ class SignUpTextField extends StatefulWidget {
   final TextInputType keyboardType;
   final Widget? prefixIcon; // Added prefixIcon argument
   final Widget? suffixIcon; // Added suffixIcon argument
-  final String labelText;
+  //final String labelText;
+  final String hintText;
   final TextEditingController controller;
   final bool isPassword;
   final bool isBirthday;
@@ -18,9 +19,10 @@ class SignUpTextField extends StatefulWidget {
     this.isPassword = false,
     this.isBirthday = false,
     required this.keyboardType,
-    this.prefixIcon, // Added prefixIcon argument
-    this.suffixIcon, // Added suffixIcon argument
-    required this.labelText,
+    this.prefixIcon,
+    this.suffixIcon,
+   // required this.labelText,
+    required this.hintText,
     required this.controller,
     this.validator,
     this.onSaved,
@@ -34,6 +36,7 @@ class SignUpTextField extends StatefulWidget {
 class _SignUpTextFieldState extends State<SignUpTextField> {
   InputDecoration buildInputDecoration() {
     return InputDecoration(
+      hintText: widget.hintText,
       border: InputBorder.none,
       contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
       filled: true,
@@ -115,29 +118,9 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Row(
-        children: [
-          Container(
-            width: 55,
-            child: Text(
-              widget.labelText,
-              style: TextStyle(
-                color: SColors.color3,
-                fontSize: 11,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(13.0),
-              child: textField(widget.controller),
-            ),
-          ),
-        ],
-      ),
+    return  Padding(
+      padding: const EdgeInsets.all(13.0),
+      child: textField(widget.controller),
     );
   }
 }

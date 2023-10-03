@@ -91,7 +91,7 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                             labelText: 'REGION',
                             suffixIcon: Icon(
                               Icons.arrow_drop_down,
-                              size: 15,
+                              size: 20,
                               color: SColors.color3,
                             ),
                           ),
