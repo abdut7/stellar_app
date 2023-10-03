@@ -45,11 +45,13 @@ class ContactServiceApi {
 
     Dio dio = Dio();
     String url = ApiRoutes.baseUrl + ApiRoutes.createContact;
+    print(url);
     Map<String, dynamic> header = await getHeader();
     Map<String, dynamic> body = {"arrContacts": newPhoneNumber};
     try {
       Response res =
           await dio.post(url, options: Options(headers: header), data: body);
+      print(res);
       if (res.statusCode == 200) {
         GetContactsModel model = GetContactsModel.fromJson(res.data);
         for (var element in model.arrList) {
@@ -58,6 +60,7 @@ class ContactServiceApi {
       }
     } catch (e) {
       // contactsController.errorCreatingContact(true);
+      print(e);
     }
   }
 
@@ -74,6 +77,7 @@ class ContactServiceApi {
     try {
       // get contact from db
       Response res = await dio.post(url, options: Options(headers: header));
+
       GetContactsModel model = GetContactsModel.fromJson(res.data);
       // contactsController.getContactsModel(null);
       // contactsController.getContactsModel(model);
@@ -103,6 +107,7 @@ class ContactServiceApi {
     // removing already existing contact
     phoneContacts.removeWhere((element) => incomingContacts.contains(element));
     // pass the phone numbers to add to contact
+    print(phoneContacts);
     ContactServiceApi.createContact(phoneContacts);
   }
 

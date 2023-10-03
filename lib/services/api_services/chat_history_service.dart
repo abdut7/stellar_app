@@ -8,11 +8,11 @@ import '../api_routes/api_routes.dart';
 import '../socket_service/chat_history_socket_service.dart';
 
 class ChatHistoryServiceApi {
-  static Future<void> getChatHistory() async {
+  static Future<void> getChatHistory({bool isRefresh = false}) async {
     ChatHistoryController chatHistoryController = Get.put(
       ChatHistoryController(),
     );
-    chatHistoryController.isLoading(true);
+    chatHistoryController.isLoading(!isRefresh);
     chatHistoryController.errorOccured(false);
     Dio dio = Dio();
     String path = ApiRoutes.baseUrl + ApiRoutes.getChatHistory;
@@ -21,11 +21,11 @@ class ChatHistoryServiceApi {
     try {
       Response response =
           await dio.post(path, options: Options(headers: header));
-      print(response);
+      // print(response);
       ChatHistoryModel model = ChatHistoryModel.fromJson(response.data);
       chatHistoryController.chatHistoryList(model.chatHistoryList);
     } catch (e) {
-      print(e);
+      // print(e);
       chatHistoryController.errorOccured(true);
     } finally {
       ChatHistorySocketService.chatHistorySocketService();

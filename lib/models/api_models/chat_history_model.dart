@@ -36,6 +36,7 @@ class ChatHistoryList {
       required this.strChatId,
       required this.strName,
       required this.strIconURL,
+      required this.strCreatedTime,
       required this.strMessage});
   late final String id;
   late final String strType;
@@ -43,6 +44,7 @@ class ChatHistoryList {
   late final String strName;
   late final String strIconURL;
   late final String strMessage;
+  late final String strCreatedTime;
 
   ChatHistoryList.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
@@ -51,6 +53,7 @@ class ChatHistoryList {
     strName = json['strName'];
     strIconURL = json['strIconURL'];
     strMessage = json['strMessage'];
+    strCreatedTime = json['strCreatedTime'];
   }
 
   Map<String, dynamic> toJson() {

@@ -1,5 +1,7 @@
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
+import 'package:stellar_chat/controllers/user_controller.dart';
 
 class AboutMeText extends StatefulWidget {
   const AboutMeText({Key? key}) : super(key: key);
@@ -11,6 +13,7 @@ class AboutMeText extends StatefulWidget {
 class _AboutMeTextState extends State<AboutMeText> {
   @override
   Widget build(BuildContext context) {
+    UserController userController = Get.find();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Text.rich(
@@ -25,8 +28,7 @@ class _AboutMeTextState extends State<AboutMeText> {
               ),
             ),
             TextSpan(
-              text:
-                  'The availability of low-cost flights and last minute internet deals means that cheap holidays are far easier to come by than they used to be, but it can still take a bit of shopping around to get the best discounts.',
+              text: userController.userDetailsModel.value!.strAbout,
               style: TextStyle(
                 color: SColors.color3,
                 fontSize: 11,

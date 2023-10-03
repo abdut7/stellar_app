@@ -121,10 +121,7 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(
-              height: 10,
-            ),
-            const SearchTextField(),
+            const SearchTextField(isFromContacts: true),
             GestureDetector(
               onTap: () {
                 Get.to(() => const CreateGroupScreen());

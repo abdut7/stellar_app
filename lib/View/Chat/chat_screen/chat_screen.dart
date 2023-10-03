@@ -36,11 +36,11 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
     ChatMessageService.getMessages(chatId: widget.chatId, type: "private");
   }
 
-  @override
-  void dispose() {
-    print("dispose run");
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   print("dispose run");
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +83,7 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
       body: Column(
         children: <Widget>[
           Obx(() {
+            print("Added new message");
             return Expanded(
               child: Stack(
                 alignment: Alignment.bottomCenter,

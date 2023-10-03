@@ -1,4 +1,6 @@
+import 'package:image_picker/image_picker.dart';
 import 'package:stellar_chat/functions/get_header.dart';
+import 'package:stellar_chat/functions/image_to_base.dart';
 import 'package:stellar_chat/models/api_models/blocked_user_model.dart';
 import 'package:stellar_chat/services/api_routes/api_routes.dart';
 import 'package:dio/dio.dart';
@@ -112,16 +114,30 @@ class AccountServices {
       {required String name,
       required String username,
       required String uid,
-      required String aboutMe}) async {
+      required String aboutMe,
+      XFile? image}) async {
     Dio dio = Dio();
     String path = ApiRoutes.baseUrl + ApiRoutes.updateUser;
-    Map<String, dynamic> data = {
-      "strName": name,
-      "strFullName": username,
-      "_id": uid,
-      "strAbout": aboutMe
-    };
-    print(data);
+    Map<String, dynamic> data;
+
+    if (image == null) {
+      data = {
+        "strName": username,
+        "strFullName": name,
+        "_id": uid,
+        "strAbout": aboutMe
+      };
+    } else {
+      String img = await filePathToBase(image.path);
+      data = {
+        "strName": username,
+        "strFullName": name,
+        "_id": uid,
+        "strAbout": aboutMe,
+        "strProfileBase64": img
+      };
+    }
+
     Map<String, dynamic> header = await getHeader();
     try {
       Response res =

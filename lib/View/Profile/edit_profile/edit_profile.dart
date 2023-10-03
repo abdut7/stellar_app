@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/View/profile/widget/profile_buttons.dart';
@@ -26,10 +29,14 @@ class _EditProfileState extends State<EditProfile> {
     // TODO: implement initState
     nameController.text = userController.userDetailsModel.value!.strFullName;
     userNameController.text = userController.userDetailsModel.value!.strName;
+    aboutMeController.text = userController.userDetailsModel.value!.strAbout;
+
     // aboutMeController.text = userController.userDetailsModel.value!.;
     super.initState();
   }
 
+  ImagePicker picker = ImagePicker();
+  XFile? pickedImage;
   @override
   Widget build(BuildContext context) {
     UserController controller = Get.find();
@@ -68,16 +75,69 @@ class _EditProfileState extends State<EditProfile> {
                   alignment: Alignment.center,
                   children: [
                     ClipOval(
-                      child: Image.network(
-                        controller.userDetailsModel.value!.strProfileUrl,
-                        width: 100,
-                        height: 100,
-                        fit: BoxFit.cover,
-                      ),
+                      child: pickedImage != null
+                          ? Image.file(
+                              File(pickedImage!.path),
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            )
+                          : Image.network(
+                              controller.userDetailsModel.value!.strProfileUrl
+                                      .isEmpty
+                                  ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                  : controller
+                                      .userDetailsModel.value!.strProfileUrl,
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
                     ),
                     GestureDetector(
                       onTap: () {
-                        showBottomSheet(context, 'photo');
+                        showModalBottomSheet<void>(
+                          context: context,
+                          shape: const RoundedRectangleBorder(
+                            // <-- SEE HERE
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(25.0),
+                            ),
+                          ),
+                          backgroundColor:
+                              const Color.fromRGBO(159, 196, 232, 1),
+                          builder: (BuildContext context) {
+                            return Wrap(
+                              children: <Widget>[
+                                ListTile(
+                                  leading: const Icon(Icons.photo_library),
+                                  title: const Text('Pick from Gallery'),
+                                  onTap: () async {
+                                    Navigator.of(context)
+                                        .pop(); // Close the bottom sheet
+                                    pickedImage = await picker.pickImage(
+                                        source: ImageSource.gallery);
+                                    if (pickedImage != null) {
+                                      setState(() {});
+                                    }
+                                  },
+                                ),
+                                ListTile(
+                                  leading: const Icon(Icons.photo_camera),
+                                  title: const Text('Take a Photo'),
+                                  onTap: () async {
+                                    Navigator.of(context)
+                                        .pop(); // Close the bottom sheet
+                                    pickedImage = await picker.pickImage(
+                                        source: ImageSource.camera);
+                                    if (pickedImage != null) {
+                                      setState(() {});
+                                    }
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
                       },
                       child: Icon(
                         Icons.camera_alt_outlined,
@@ -163,10 +223,11 @@ class _EditProfileState extends State<EditProfile> {
                       uid: userController.userDetailsModel.value!.id,
                       aboutMe: aboutMeController.text,
                       name: nameController.text,
-                      username: userNameController.text);
+                      username: userNameController.text,
+                      image: pickedImage);
 
                   if (isSuccess) {
-                    getUserDetailsonRefresh();
+                    await getUserDetailsonRefresh();
                     Get.back();
                   }
 

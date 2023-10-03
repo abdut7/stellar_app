@@ -1,4 +1,6 @@
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/View/profile/public_profile/public_profile.dart';
 import 'package:stellar_chat/View/profile/qr/my_qr_code_tab/my_qr_code_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,13 +26,15 @@ class _QRScreenState extends State<QRScreen> {
             backgroundColor: SColors.color4,
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios, color: SColors.color3),
-              onPressed: () {},
+              onPressed: () {
+                Get.back();
+              },
             ),
             actions: [
-              IconButton(
-                icon: Icon(Icons.more_vert, color: SColors.color12),
-                onPressed: () {},
-              ),
+              // IconButton(
+              //   icon: Icon(Icons.more_vert, color: SColors.color12),
+              //   onPressed: () {},
+              // ),
             ],
             title: Text(
               'QR Code',
@@ -60,11 +64,46 @@ class _QRScreenState extends State<QRScreen> {
   }
 }
 
-class ScanQRCodeTab extends StatelessWidget {
+class ScanQRCodeTab extends StatefulWidget {
+  @override
+  State<ScanQRCodeTab> createState() => _ScanQRCodeTabState();
+}
+
+class _ScanQRCodeTabState extends State<ScanQRCodeTab> {
+  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+
+  Barcode? result;
+
+  QRViewController? controller;
+
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Scan QR Code Tab'),
+      child: SizedBox(
+        width: Get.width * 0.6,
+        height: Get.width * 0.6,
+        child: QRView(
+          key: qrKey,
+          onQRViewCreated: _onQRViewCreated,
+        ),
+      ),
     );
+  }
+
+  void _onQRViewCreated(QRViewController controller) {
+    this.controller = controller;
+
+    controller.scannedDataStream.listen((scanData) {
+      result = scanData;
+      if (result != null && result!.code != null) {
+        Get.to(() => PublicProfileScreen(uid: result!.code!));
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
   }
 }

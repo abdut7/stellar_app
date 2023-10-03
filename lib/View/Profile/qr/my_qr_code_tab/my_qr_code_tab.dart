@@ -19,6 +19,7 @@ class _MyQRCodeTabState extends State<MyQRCodeTab> {
 
   @override
   Widget build(BuildContext context) {
+    print(controller.userDetailsModel.value!.strQRCodeUrls);
     return Container(
       height: double.infinity,
       width: double.infinity,
@@ -72,17 +73,28 @@ class _MyQRCodeTabState extends State<MyQRCodeTab> {
                           const SizedBox(
                             height: 30.0,
                           ),
-                          Container(
-                            width: Get.width * 0.5,
-                            height: Get.width * 0.5,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(controller
-                                    .userDetailsModel.value!.strProfileUrl),
-                              ),
-                            ),
-                          ),
+                          controller
+                                  .userDetailsModel.value!.strQRCodeUrls.isEmpty
+                              ? SizedBox(
+                                  width: Get.width * 0.5,
+                                  height: Get.width * 0.4,
+                                  child: const Center(
+                                    child: Text("QR CODE NOT AVAILABLE"),
+                                  ),
+                                )
+                              : Container(
+                                  width: Get.width * 0.5,
+                                  height: Get.width * 0.5,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(controller
+                                          .userDetailsModel
+                                          .value!
+                                          .strQRCodeUrls),
+                                    ),
+                                  ),
+                                ),
                         ],
                       ),
                     ),
