@@ -27,8 +27,9 @@ class _EditProfileState extends State<EditProfile> {
   @override
   void initState() {
     // TODO: implement initState
-    nameController.text = userController.userDetailsModel.value!.strFullName;
-    userNameController.text = userController.userDetailsModel.value!.strName;
+    nameController.text = userController.userDetailsModel.value!.strName;
+    userNameController.text =
+        userController.userDetailsModel.value!.strFullName;
     aboutMeController.text = userController.userDetailsModel.value!.strAbout;
 
     // aboutMeController.text = userController.userDetailsModel.value!.;

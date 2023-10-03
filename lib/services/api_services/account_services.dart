@@ -122,8 +122,8 @@ class AccountServices {
 
     if (image == null) {
       data = {
-        "strName": username,
-        "strFullName": name,
+        "strName": name,
+        "strFullName": username,
         "_id": uid,
         "strAbout": aboutMe
       };
