@@ -51,4 +51,8 @@ class SSvgs {
   static String get pdfLogo => "assets/Svgs/pdfLogo.svg";
   static String get jpgLogo => "assets/Svgs/jpgLogo.svg";
   static String get chatBtnIcon => "assets/Svgs/chatBtnIcon.svg";
+  static String get scanLogo => "assets/Svgs/scanLogo.svg";
+  static String get searchIcon => "assets/Svgs/searchIcon.svg";
+  static String get nearMeIcon => "assets/Svgs/nearMeIcon.svg";
+  static String get discoverBg => "assets/Svgs/discoverBg.svg";
 }

@@ -2,6 +2,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:stellar_chat/View/auth_screens/LoginWithMobile/LoginWithMobileUi.dart';
 import 'package:stellar_chat/View/auth_screens/LoginWithMobile/login_with_mobile_screen.dart';
 import 'package:stellar_chat/View/auth_screens/signup_with_mobile/sign_up_with_mobile_screen.dart';
+import 'package:stellar_chat/View/discover/discover_homescreen.dart';
 import 'package:stellar_chat/View/splash/spalash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
           Theme.of(context).textTheme,
         ),
       ),
-      home: const SplashScreen(),
+      home:  const SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

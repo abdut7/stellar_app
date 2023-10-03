@@ -1,5 +1,6 @@
 import 'package:stellar_chat/View/Chat/HomeChat/sub/home/home_screen.dart';
 import 'package:stellar_chat/View/channel/channel_home_screen/channel_home_screen.dart';
+import 'package:stellar_chat/View/discover/discover_homescreen.dart';
 import 'package:stellar_chat/View/profile/own_profile/main_profile.dart';
 import 'package:stellar_chat/View/base_bottom_nav/widgets/bottom_nav_icon_widget.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class BaseBottomNavigation extends StatefulWidget {
 List<Widget> screenList = [
   const HomeScreen(),
   // const ContactsHomeScreen(),
-  ChannelHomeScreen(),
+  DiscoverHomeScreen(),
   Container(),
   Container(),
   const MainProfile(),
