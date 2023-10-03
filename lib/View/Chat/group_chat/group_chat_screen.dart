@@ -64,19 +64,13 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                 radius: 20.0, // Adjust the size of the circle avatar as needed
               ),
               const SizedBox(width: 10.0),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.chatHistoryList.strName,
-                    style: const TextStyle(
-                        fontSize: 18.0, fontWeight: FontWeight.bold),
-                  ),
-                  // Text(
-                  //   'User 1, User 2',
-                  //   style: TextStyle(fontSize: 12.0),
-                  // ),
-                ],
+              Flexible(
+                child: Text(
+                  widget.chatHistoryList.strName,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                      fontSize: 18.0, fontWeight: FontWeight.bold),
+                ),
               ),
             ],
           ),
