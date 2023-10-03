@@ -134,7 +134,7 @@ class AccountServices {
         "strFullName": name,
         "_id": uid,
         "strAbout": aboutMe,
-        "strProfileUrl": img
+        "strProfileBase64": img
       };
     }
 

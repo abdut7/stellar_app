@@ -59,7 +59,7 @@ class ChatBubble extends StatelessWidget {
                               ? const EdgeInsets.all(8)
                               : message.strMessageType == "image"
                                   ? const EdgeInsets.all(2.0)
-                                  : EdgeInsets.all(0),
+                                  : const EdgeInsets.all(0),
                           child: CachedNetworkImage(
                             fit: BoxFit.cover,
                             imageUrl: message.strUrl,
@@ -89,7 +89,7 @@ class ChatBubble extends StatelessWidget {
                                           fit: BoxFit.cover,
                                           image:
                                               FileImage(File(message.strUrl)))),
-                                  child: Center(
+                                  child: const Center(
                                     child: CircularProgressIndicator(),
                                   ),
                                 ),
@@ -114,7 +114,7 @@ class ChatBubble extends StatelessWidget {
                     ),
                   ],
                 )
-              : SizedBox(),
+              : const SizedBox(),
         ],
       ),
     );

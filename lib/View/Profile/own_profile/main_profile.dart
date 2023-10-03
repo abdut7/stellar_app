@@ -30,58 +30,58 @@ class _MainProfileState extends State<MainProfile> {
         length: 2,
         child: ListView(
           children: <Widget>[
-            Container(
-              height: 250,
-              width: Get.width,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                    controller.userDetailsModel.value!.strProfileUrl.isEmpty
-                        ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                        : controller.userDetailsModel.value!.strProfileUrl,
+            Obx(() => Container(
+                  height: 250,
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(
+                        controller.userDetailsModel.value!.strProfileUrl.isEmpty
+                            ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                            : controller.userDetailsModel.value!.strProfileUrl,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                  child: Column(
                     children: [
-                      GestureDetector(
-                          onTap: () {},
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: SvgPicture.asset(SSvgs.sv29),
-                          )),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          GestureDetector(
+                              onTap: () {},
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SvgPicture.asset(SSvgs.sv29),
+                              )),
+                        ],
+                      ),
+                      const Spacer(),
+                      Text(
+                        controller.userDetailsModel.value!.strName,
+                        style: TextStyle(
+                          color: SColors.color3,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'PHONE NUMBER : ${controller.userDetailsModel.value!.strMobileNo}',
+                        style: TextStyle(
+                          color: SColors.color3,
+                          fontSize: 11,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      )
                     ],
                   ),
-                  const Spacer(),
-                  Text(
-                    controller.userDetailsModel.value!.strName,
-                    style: TextStyle(
-                      color: SColors.color3,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'PHONE NUMBER : ${controller.userDetailsModel.value!.strMobileNo}',
-                    style: TextStyle(
-                      color: SColors.color3,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  )
-                ],
-              ),
-            ),
+                )),
             const SizedBox(
               height: 10,
             ),
@@ -156,7 +156,6 @@ class _MainProfileState extends State<MainProfile> {
                 });
               },
             ),
-
             SizedBox(
               // height: 200,
               child: IndexedStack(index: selectedTabIndex, children: [
