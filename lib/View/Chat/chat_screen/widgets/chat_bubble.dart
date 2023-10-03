@@ -25,11 +25,11 @@ class ChatBubble extends StatelessWidget {
         isSent ? CrossAxisAlignment.end : CrossAxisAlignment.start;
     final color = isSent
         ? const Color.fromRGBO(233, 244, 255, 1)
-        : Color.fromRGBO(246, 245, 245, 1);
+        : const Color.fromRGBO(246, 245, 245, 1);
 
     final downColor = isSent
         ? const Color.fromRGBO(197, 229, 255, 1)
-        : Color.fromRGBO(224, 224, 224, 1);
+        : const Color.fromRGBO(224, 224, 224, 1);
 
     return Column(
       crossAxisAlignment: alignment,
@@ -44,21 +44,34 @@ class ChatBubble extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   color: message.strMessageType == "voice" ? null : color,
+                  boxShadow: null,
+                  // : [
+                  //     BoxShadow(
+                  //       color:
+                  //           Colors.grey.withOpacity(0.5), // BoxShadow color
+                  //       spreadRadius: 5, // Spread radius
+                  //       blurRadius: 7, // Blur radius
+                  //       offset: Offset(0, 3), // Offset from top left
+                  //     ),
+                  //   ],
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(10),
-                      bottomLeft:
-                          isSent ? Radius.circular(10) : Radius.circular(0),
-                      bottomRight:
-                          isSent ? Radius.circular(0) : Radius.circular(10)),
+                    topLeft: const Radius.circular(10),
+                    topRight: const Radius.circular(10),
+                    bottomLeft: isSent
+                        ? const Radius.circular(10)
+                        : const Radius.circular(0),
+                    bottomRight: isSent
+                        ? const Radius.circular(0)
+                        : const Radius.circular(10),
+                  ),
                 ),
                 padding: const EdgeInsets.all(2),
                 child: message.strMessageType == "text"
                     ? Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 24, vertical: 12),
+                            padding: const EdgeInsets.only(
+                                left: 24, top: 8, right: 24),
                             child: Container(
                               width: Get.width * 0.4,
                               child: Text(
@@ -73,7 +86,7 @@ class ChatBubble extends StatelessWidget {
                             width: Get.width * 0.6,
                             decoration: BoxDecoration(
                                 color: color,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     bottomLeft: Radius.circular(10))),
                             child: Row(
                               mainAxisAlignment: isSent
@@ -106,40 +119,49 @@ class ChatBubble extends StatelessWidget {
                     : message.strMessageType == "image"
                         ? GestureDetector(
                             onTap: () {
-                              Get.to(() =>
-                                  PhotoViewScreen(imageUrl: message.strUrl));
+                              Get.to(
+                                () => PhotoViewScreen(imageUrl: message.strUrl),
+                              );
                             },
                             child: Column(
                               children: [
                                 SizedBox(
-                                    height: Get.width * 0.4,
-                                    width: Get.width * 0.6,
-                                    child: Padding(
-                                      padding: message.strMessageType == "text"
-                                          ? const EdgeInsets.all(8)
-                                          : message.strMessageType == "image"
-                                              ? const EdgeInsets.all(0)
-                                              : const EdgeInsets.all(0),
-                                      child: CachedNetworkImage(
-                                        fit: BoxFit.cover,
-                                        imageUrl: message.strUrl,
-                                        progressIndicatorBuilder:
-                                            (context, url, downloadProgress) =>
-                                                Center(
-                                          child: CircularProgressIndicator(
-                                              value: downloadProgress.progress),
-                                        ),
-                                        errorWidget: (context, url, error) =>
-                                            const Icon(Icons.error),
+                                  height: Get.width * 0.4,
+                                  width: Get.width * 0.6,
+                                  child: Padding(
+                                    padding: message.strMessageType == "text"
+                                        ? const EdgeInsets.all(8)
+                                        : message.strMessageType == "image"
+                                            ? const EdgeInsets.all(0)
+                                            : const EdgeInsets.all(0),
+                                    child: CachedNetworkImage(
+                                      fit: BoxFit.cover,
+                                      imageUrl: message.strUrl,
+                                      progressIndicatorBuilder:
+                                          (context, url, downloadProgress) =>
+                                              Center(
+                                        child: CircularProgressIndicator(
+                                            value: downloadProgress.progress),
                                       ),
-                                    )),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
+                                    ),
+                                  ),
+                                ),
                                 Container(
                                   height: 15,
                                   width: Get.width * 0.6,
                                   decoration: BoxDecoration(
-                                      color: downColor,
-                                      borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(10))),
+                                    color: downColor,
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: isSent
+                                          ? Radius.circular(10)
+                                          : Radius.circular(0),
+                                      bottomRight: !isSent
+                                          ? Radius.circular(10)
+                                          : Radius.circular(0),
+                                    ),
+                                  ),
                                   child: Row(
                                     mainAxisAlignment: isSent
                                         ? MainAxisAlignment.end
@@ -182,10 +204,13 @@ class ChatBubble extends StatelessWidget {
                                       height: Get.width * 0.4,
                                       width: Get.width * 0.6,
                                       decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: FileImage(
-                                                  File(message.strUrl)))),
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: FileImage(
+                                            File(message.strUrl),
+                                          ),
+                                        ),
+                                      ),
                                       child: const Center(
                                         child: CircularProgressIndicator(),
                                       ),

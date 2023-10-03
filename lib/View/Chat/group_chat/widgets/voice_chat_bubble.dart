@@ -169,11 +169,16 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
             height: 15,
             width: Get.width * 0.6,
             decoration: BoxDecoration(
-                color: widget.isSender
-                    ? const Color.fromRGBO(197, 229, 255, 1)
-                    : const Color.fromRGBO(224, 224, 224, 1),
-                borderRadius:
-                    const BorderRadius.only(bottomLeft: Radius.circular(10))),
+              color: widget.isSender
+                  ? const Color.fromRGBO(197, 229, 255, 1)
+                  : const Color.fromRGBO(224, 224, 224, 1),
+              borderRadius: BorderRadius.only(
+                bottomLeft:
+                    widget.isSender ? Radius.circular(10) : Radius.circular(0),
+                bottomRight:
+                    !widget.isSender ? Radius.circular(10) : Radius.circular(0),
+              ),
+            ),
             child: Row(
               mainAxisAlignment: widget.isSender
                   ? MainAxisAlignment.end

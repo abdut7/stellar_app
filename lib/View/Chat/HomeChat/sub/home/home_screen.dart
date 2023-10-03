@@ -1,3 +1,4 @@
+import 'package:flutter_svg/svg.dart';
 import 'package:stellar_chat/View/chat/HomeChat/sub/home/widgets/chat_home_appbar_widget.dart';
 import 'package:stellar_chat/View/chat/HomeChat/sub/home/widgets/chat_tile_widget.dart';
 import 'package:stellar_chat/View/Contact/show_contact/show_contacts_screen.dart';
@@ -105,20 +106,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      floatingActionButton: Container(
-        width: 70,
-        height: 70,
-        decoration:
-            BoxDecoration(shape: BoxShape.circle, color: SColors.color13),
-        child: IconButton(
-          icon: const Icon(
-            Icons.message,
-            color: Colors.white,
-            size: 40,
-          ),
-          onPressed: () {
-            Get.to(() => const ShowContactsScreen());
-          },
+      floatingActionButton: InkWell(
+        onTap: () {
+          Get.to(() => const ShowContactsScreen());
+        },
+        child: Container(
+          width: 70,
+          height: 70,
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: SColors.color13,
+              image: DecorationImage(
+                  image: AssetImage('assets/Images/all_contacts_icon.png'))),
         ),
       ),
     );
