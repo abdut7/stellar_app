@@ -36,19 +36,29 @@ class ChatHistorySocketService {
 
     //socket for updating private chats
     socketService.socket.on('get_message', (data) {
-      print("Recieved the message back");
+      // print("Recieved the message back");
       PrivateMessageModel model = PrivateMessageModel.fromJson(data);
-      chatController.messageList.add(model);
-      print("Hello");
+      bool alreadyExist =
+          chatController.messageList.any((element) => element.id == model.id);
+      if (!alreadyExist) {
+        chatController.messageList.add(model);
+      }
     });
 
     //socket for updating goup chats
     socketService.socket.on('get_group_message', (data) {
       GroupChatController chatController = Get.put(GroupChatController());
-      print("Recieved the group message back");
-      print(data);
+      // print("Recieved the group message back");
+      // print(data);
       GroupMessageModel model = GroupMessageModel.fromJson(data);
-      chatController.groupMessageList.add(model);
+      // Check if a model with the same id already exists in the list
+      bool alreadyExists = chatController.groupMessageList
+          .any((existingModel) => existingModel.id == model.id);
+      // chatController.groupMessageList.add(model);
+      if (!alreadyExists) {
+        // If the model doesn't exist in the list, add it
+        chatController.groupMessageList.add(model);
+      }
     });
   }
 }
