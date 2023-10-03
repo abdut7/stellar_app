@@ -50,7 +50,7 @@ class ChatHistoryList {
     id = json['_id'];
     strType = json['strType'];
     strChatId = json['strChatId'];
-    strName = json['strName'];
+    strName = json['strName']??"";
     strIconURL = json['strIconURL'];
     strMessage = json['strMessage'];
     strCreatedTime = json['strCreatedTime'];

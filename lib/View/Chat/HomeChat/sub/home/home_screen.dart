@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         chatId: data.id,
                         avatarUrl: data.strIconURL,
                         message: data.strMessage,
-                        name: data.strName,
+                        name: data.strName.isEmpty ? "Unknown" : data.strName,
                         time: data.strCreatedTime,
                         unreadCount: 0,
                         ontap: () {
