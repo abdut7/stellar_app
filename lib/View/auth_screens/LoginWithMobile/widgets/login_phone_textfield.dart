@@ -59,8 +59,10 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
               Row(
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16,vertical: 6),
-                    child: Text(countryCode?.dialCode ?? "+91",style: TextStyle(color: SColors.color3,fontWeight: FontWeight.w600),),
+                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 3),
+                    child: Text(countryCode?.dialCode ?? "+971",style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w300,
+                      letterSpacing: -0.18,
+                    ),),
                     decoration: BoxDecoration(color: SColors.color4),
                   ),
                   GestureDetector(
@@ -71,9 +73,11 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
                           countryCode = code;
                         });
                       },
-                      child: Icon(Icons.keyboard_arrow_down,color: SColors.color3,size: 30,))
+                      child: Icon(Icons.keyboard_arrow_down,color: SColors.color3,size: 25,)),
+
+                  Container(height: 25, width: 2, color: Colors.grey.withOpacity(0.5),)
                 ],
-              )
+              ),
             ],
           ),
         )
@@ -84,8 +88,9 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
   Widget textField(TextEditingController controller) {
     return GestureDetector(
       child: Container(
+        height: 35,
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(10)),
+            color: Colors.white, borderRadius: BorderRadius.circular(5)),
         child:  TextFormField(
           maxLines: 1,
           onChanged: widget.onChanged,
@@ -110,21 +115,24 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          widget.labelText,
-          style: TextStyle(
-            color: SColors.color3,
-            fontSize: 11,
-            fontWeight: FontWeight.w400,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.labelText,
+            style: TextStyle(
+              color: SColors.color3,
+              fontSize: 11,
+              fontWeight: FontWeight.w400,
+            ),
           ),
-        ),
-        const SizedBox(height: 8),
-        textField(widget.controller),
-        const SizedBox(height: 25),
-      ],
+          const SizedBox(height: 8),
+          textField(widget.controller),
+          const SizedBox(height: 25),
+        ],
+      ),
     );
   }
 }

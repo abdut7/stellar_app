@@ -125,11 +125,16 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+
         decoration:  BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(SImages.vectorBackground),
+            fit: BoxFit.cover,
+          ),
           gradient: LinearGradient(
             colors: [
               SColors.color12,
-              SColors.color12.withOpacity(0.8),
+              SColors.color12.withOpacity(0.9),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -150,9 +155,9 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 75,),
+                    const SizedBox(height: 60,),
                     Container(
-                      width: Get.width * 0.85,
+                      width: Get.width * 0.80,
                       //height: Get.height * 0.9,
                       decoration: BoxDecoration(
                         color: const Color.fromRGBO(153, 199, 255, 1),
@@ -255,7 +260,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                               hintText: 'Password',
                             ),
                             const SizedBox(
-                              height: 30,
+                              height: 20,
                             ),
                             Padding(
                               padding: const EdgeInsets.all(10.0),
@@ -302,22 +307,25 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                                           AuthServices()
                                               .signupUser(signupModel);
                                         },
-                                        child: Container(
-                                          width: Get.width * 0.7,
-                                          height: 50,
-                                          decoration: BoxDecoration(
-                                            color: const Color.fromRGBO(
-                                                0, 51, 142, 1),
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                          ),
-                                          child: const Center(
-                                            child: Text(
-                                              "OTP Verification",
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                color: Color.fromRGBO(
-                                                    159, 196, 232, 1),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Container(
+                                            width: Get.width * 0.6,
+                                            height: 40,
+                                            decoration: BoxDecoration(
+                                              color: const Color.fromRGBO(
+                                                  0, 51, 142, 1),
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                            ),
+                                            child: const Center(
+                                              child: Text(
+                                                "OTP Verification",
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                  color: Color.fromRGBO(
+                                                      159, 196, 232, 1),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -325,14 +333,23 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                                       )),
                               ),
                             ),
+
                           ],
                         ),
                       ),
                     ),
                     Container(
                       height: 70,
-                      width: Get.width * 0.78,
+                      width: Get.width * 0.7,
                       decoration: const BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.white,
+                              spreadRadius: 0,
+                              blurRadius: 0,
+                              offset: Offset(0,5)
+                          )
+                        ],
                         color: Colors.white,
                         borderRadius: BorderRadius.vertical(
                           bottom: Radius.circular(20),
