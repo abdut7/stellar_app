@@ -9,6 +9,7 @@ import 'package:stellar_chat/services/socket_service/private_chat_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:stellar_chat/services/socket_service/sent_join_room_event_socket.dart';
 
 import '../../../functions/pick_image.dart';
 import '../widgets/bottom_field_sent_widget.dart';
@@ -42,7 +43,7 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
 
   @override
   void dispose() {
-    print("dispose run");
+    sentRoomLeftSocket(chatId: widget.chatId, type: "private");
     PrivateChatController chatController = Get.put(PrivateChatController());
     chatController.messageList.clear();
     super.dispose();

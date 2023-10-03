@@ -133,10 +133,12 @@ class _HomeScreenState extends State<HomeScreen> {
           width: 70,
           height: 70,
           decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: SColors.color13,
-              image: DecorationImage(
-                  image: AssetImage('assets/Images/all_contacts_icon.png'))),
+            shape: BoxShape.circle,
+            color: SColors.color13,
+            image: const DecorationImage(
+              image: AssetImage('assets/Images/all_contacts_icon.png'),
+            ),
+          ),
         ),
 >>>>>>> 5d729a85e35038f3e8087ccccde7fd468286ec2a
       ),
