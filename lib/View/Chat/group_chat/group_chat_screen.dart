@@ -10,6 +10,7 @@ import 'package:stellar_chat/services/socket_service/group_chat_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:stellar_chat/services/socket_service/sent_join_room_event_socket.dart';
 
 import '../../../functions/pick_image.dart';
 
@@ -36,6 +37,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
   @override
   void dispose() {
     groupChatController.groupMessageList.clear();
+    sentRoomLeftSocket(chatId: widget.chatHistoryList.strChatId, type: "group");
     super.dispose();
   }
 

@@ -8,4 +8,11 @@ void sentRoomJoinSocket({required String chatId, required String type}) {
   });
 }
 
-void sentRoomLeftSocket() {}
+void sentRoomLeftSocket({required String chatId, required String type}) {
+  SocketService socketService = SocketService();
+  socketService.socket.emit('left_room', {
+    'strChatId': chatId,
+    'strType': type,
+  });
+  print("left success");
+}
