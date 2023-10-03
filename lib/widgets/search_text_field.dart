@@ -3,7 +3,9 @@ import 'package:stellar_chat/services/api_services/contacts_service.dart';
 import 'package:flutter/material.dart';
 
 class SearchTextField extends StatefulWidget {
-  const SearchTextField({Key? key}) : super(key: key);
+  const SearchTextField({Key? key, this.isFromContacts = false})
+      : super(key: key);
+  final bool isFromContacts;
 
   @override
   State<SearchTextField> createState() => _SearchTextFieldState();
@@ -34,8 +36,9 @@ class _SearchTextFieldState extends State<SearchTextField> {
         style: TextStyle(color: SColors.color3, fontSize: 15),
         textAlign: TextAlign.center,
         onChanged: (val) {
-          print(val.isEmpty);
-          ContactServiceApi.searchContacts(val);
+          if (widget.isFromContacts) {
+            ContactServiceApi.searchContacts(val);
+          }
         },
       ),
     );
