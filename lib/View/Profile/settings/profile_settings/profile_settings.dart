@@ -245,7 +245,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   ),
                 ]),
                 const SizedBox(
-                  height: 20,
+                  height: 35,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

@@ -51,27 +51,28 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
           borderRadius: BorderRadius.circular(10),
         ),
         prefixIcon: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15,vertical: 6),
-          margin: EdgeInsets.symmetric(horizontal: 8),
+          padding: EdgeInsets.symmetric(horizontal: 0,vertical: 6),
+          margin: EdgeInsets.symmetric(horizontal: 5),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              GestureDetector(
-                onTap: () async {
-                  final code = await countryPicker.showPicker(context: context);
-                  setState(() {
-                    countryCode =code;
-                  });
-                },
-                child: Row(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 16,vertical: 6),
-                      child: Text(countryCode?.dialCode ?? "+91",style: TextStyle(color: Colors.white),),
-                      decoration: BoxDecoration(color: SColors.color12),
-                    ),
-                  ],
-                ),
+              Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16,vertical: 6),
+                    child: Text(countryCode?.dialCode ?? "+91",style: TextStyle(color: SColors.color3,fontWeight: FontWeight.w600),),
+                    decoration: BoxDecoration(color: SColors.color4),
+                  ),
+                  GestureDetector(
+                      onTap: () async {
+                        final code = await countryPicker.showPicker(
+                            context: context);
+                        setState(() {
+                          countryCode = code;
+                        });
+                      },
+                      child: Icon(Icons.keyboard_arrow_down,color: SColors.color3,size: 30,))
+                ],
               )
             ],
           ),
