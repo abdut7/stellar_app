@@ -73,17 +73,28 @@ class _MyQRCodeTabState extends State<MyQRCodeTab> {
                           const SizedBox(
                             height: 30.0,
                           ),
-                          Container(
-                            width: Get.width * 0.5,
-                            height: Get.width * 0.5,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(controller
-                                    .userDetailsModel.value!.strQRCodeUrls),
-                              ),
-                            ),
-                          ),
+                          controller
+                                  .userDetailsModel.value!.strQRCodeUrls.isEmpty
+                              ? SizedBox(
+                                  width: Get.width * 0.5,
+                                  height: Get.width * 0.4,
+                                  child: const Center(
+                                    child: Text("QR CODE NOT AVAILABLE"),
+                                  ),
+                                )
+                              : Container(
+                                  width: Get.width * 0.5,
+                                  height: Get.width * 0.5,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(controller
+                                          .userDetailsModel
+                                          .value!
+                                          .strQRCodeUrls),
+                                    ),
+                                  ),
+                                ),
                         ],
                       ),
                     ),
