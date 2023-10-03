@@ -49,9 +49,9 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             const ChatHomeAppbarWidget(),
-            const SizedBox(height: 25),
+            // const SizedBox(height: 8),
             const SearchTextField(),
-            const SizedBox(height: 25),
+            // const SizedBox(height: 8),
             Obx(() {
               if (chatHistoryController.isLoading.value) {
                 return const Center(
