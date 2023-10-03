@@ -34,6 +34,12 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
   }
 
   @override
+  void dispose() {
+    groupChatController.groupMessageList.clear();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

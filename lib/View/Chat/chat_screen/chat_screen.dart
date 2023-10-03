@@ -40,11 +40,13 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
     ChatMessageService.getMessages(chatId: widget.chatId, type: "private");
   }
 
-  // @override
-  // void dispose() {
-  //   print("dispose run");
-  //   super.dispose();
-  // }S
+  @override
+  void dispose() {
+    print("dispose run");
+    PrivateChatController chatController = Get.put(PrivateChatController());
+    chatController.messageList.clear();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

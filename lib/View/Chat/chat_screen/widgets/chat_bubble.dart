@@ -16,7 +16,6 @@ class ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(message.strName);
     UserController controller = Get.find();
 
     final isSent =

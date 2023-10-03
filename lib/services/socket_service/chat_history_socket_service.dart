@@ -39,7 +39,7 @@ class ChatHistorySocketService {
       print("Recieved the message back");
       PrivateMessageModel model = PrivateMessageModel.fromJson(data);
       chatController.messageList.add(model);
-      
+      print("Hello");
     });
 
     //socket for updating goup chats
