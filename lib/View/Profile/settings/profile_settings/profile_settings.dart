@@ -1,3 +1,4 @@
+import 'package:stellar_chat/View/help_article/help_article_screen.dart';
 import 'package:stellar_chat/View/profile/settings/privacy_settings/privacy_settings.dart';
 import 'package:stellar_chat/services/token_service/token_service.dart';
 import 'package:flutter/material.dart';
@@ -193,11 +194,13 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                     height: 10,
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(() => HelpArticleScreen());
+                    },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 60),
                       child: Text(
-                        'Ask A Question',
+                        'Find Contacts',
                         style: TextStyle(
                           color: SColors.color3,
                           fontSize: 16,
