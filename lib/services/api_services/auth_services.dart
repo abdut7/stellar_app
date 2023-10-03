@@ -46,13 +46,6 @@ class AuthServices {
         signupController.isSignupSuccess(false);
       }
       signupController.isLoading(false);
-      Get.snackbar(
-        'Error Signin',
-        "Please retry",
-        duration: const Duration(seconds: 3), // Snackbar duration
-        isDismissible:
-            true, // Whether the Snackbar can be dismissed by tapping outside
-      );
     } catch (e) {
       print(e);
       Get.snackbar(
