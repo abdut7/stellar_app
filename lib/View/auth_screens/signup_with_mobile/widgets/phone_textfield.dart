@@ -72,7 +72,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
               child: Row(
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16,vertical: 6),
+                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 2),
                     child: Text(countryCode?.dialCode ?? "+91",style: TextStyle(color: Colors.white),),
                     decoration: BoxDecoration(color: SColors.color12),
                   ),
@@ -89,8 +89,9 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
   Widget textField(TextEditingController controller) {
     return GestureDetector(
       child: Container(
+        height: 35,
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(10)),
+            color: Colors.white, borderRadius: BorderRadius.circular(5)),
         child:  TextFormField(
           maxLines: 1,
           onChanged: widget.onChanged,
@@ -116,7 +117,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 4),
       child: textField(widget.controller),
     );
   }

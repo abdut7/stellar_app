@@ -28,9 +28,13 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(SImages.vectorBackground),
+            fit: BoxFit.cover,
+          ),
           gradient: LinearGradient(colors: [
             SColors.color12,
-            SColors.color12.withOpacity(0.8),
+            SColors.color12.withOpacity(0.80),
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
         child: Form(
@@ -134,8 +138,8 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                                 }
                               },
                               child: Container(
-                                width: Get.width * 0.5,
-                                height: 50,
+                                width: Get.width * 0.6,
+                                height: 40,
                                 decoration: BoxDecoration(
                                     color: const Color.fromRGBO(0, 51, 142, 1),
                                     borderRadius: BorderRadius.circular(12)),
@@ -165,7 +169,15 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                   Container(
                       height: 70,
                       width: Get.width * 0.7,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.white,
+                            spreadRadius: 0,
+                            blurRadius: 0,
+                            offset: Offset(0,5)
+                          )
+                        ],
                         color: Colors.white,
                         borderRadius: BorderRadius.vertical(
                           bottom: Radius.circular(20),
@@ -175,7 +187,7 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                         onTap: () {
                           showSignupModelBottomSheet(context);
                         },
-                        child: const Row(
+                        child:  Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text("Don't have an account?",style: TextStyle(
@@ -188,12 +200,12 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                               "Sign Up",
                               style: TextStyle(
                                 fontSize: 16,
-                                  color: Colors.black,
+                                  color: SColors.color3,
                                   fontWeight: FontWeight.w800),
                             )
                           ],
                         ),
-                      ))
+                      )),
                 ],
               ),
             ),

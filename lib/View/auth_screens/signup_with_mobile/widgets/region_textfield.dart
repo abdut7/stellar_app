@@ -97,8 +97,9 @@ class _RegionTextFieldState extends State<RegionTextField> {
 
   Widget textField(TextEditingController controller) {
     return Container(
+      height: 35,
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(10)),
+          color: Colors.white, borderRadius: BorderRadius.circular(5)),
       child:  TextFormField(
         onChanged: widget.onChanged,
         onSaved: widget.onSaved,
@@ -120,7 +121,7 @@ class _RegionTextFieldState extends State<RegionTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 4),
       child: textField(widget.controller),
     );
   }

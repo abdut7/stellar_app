@@ -89,8 +89,9 @@ class _LoginRegionTextFieldState extends State<LoginRegionTextField> {
 
   Widget textField(TextEditingController controller) {
     return Container(
+      height: 35,
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(10)),
+          color: Colors.white, borderRadius: BorderRadius.circular(5)),
       child:  TextFormField(
         onChanged: widget.onChanged,
         onSaved: widget.onSaved,
@@ -111,21 +112,24 @@ class _LoginRegionTextFieldState extends State<LoginRegionTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-              widget.labelText,
-              style: TextStyle(
-                color: SColors.color3,
-                fontSize: 11,
-                fontWeight: FontWeight.w400,
-              ),
-        ),
-        const SizedBox(height: 5),
-      textField(widget.controller),
-        const SizedBox(height: 24),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+                widget.labelText,
+                style: TextStyle(
+                  color: SColors.color3,
+                  fontSize: 11,
+                  fontWeight: FontWeight.w400,
+                ),
+          ),
+          const SizedBox(height: 5),
+        textField(widget.controller),
+          const SizedBox(height: 24),
+        ],
+      ),
     );
 
   }
