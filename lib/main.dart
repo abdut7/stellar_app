@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
     );
-    return  const GetMaterialApp(
+    return const GetMaterialApp(
       home: SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
