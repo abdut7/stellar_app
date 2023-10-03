@@ -16,28 +16,28 @@ class _AboutMeTextState extends State<AboutMeText> {
     UserController userController = Get.find();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: Text.rich(
-        TextSpan(
-          children: [
+      child: Obx(() => Text.rich(
             TextSpan(
-              text: 'About Me\n',
-              style: TextStyle(
-                color: SColors.color3,
-                fontSize: 12,
-                fontWeight: FontWeight.w800,
-              ),
+              children: [
+                TextSpan(
+                  text: 'About Me\n',
+                  style: TextStyle(
+                    color: SColors.color3,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                TextSpan(
+                  text: userController.userDetailsModel.value!.strAbout,
+                  style: TextStyle(
+                    color: SColors.color3,
+                    fontSize: 11,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
             ),
-            TextSpan(
-              text: userController.userDetailsModel.value!.strAbout,
-              style: TextStyle(
-                color: SColors.color3,
-                fontSize: 11,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-          ],
-        ),
-      ),
+          )),
     );
   }
 }
