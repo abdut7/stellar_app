@@ -57,6 +57,10 @@ class ContactServiceApi {
         for (var element in model.arrList) {
           contactsController.phoneNumberUserList.add(element);
         }
+        if (model.arrList.isNotEmpty) {
+          // todo
+          ContactServiceApi.getContacts();
+        }
       }
     } catch (e) {
       // contactsController.errorCreatingContact(true);

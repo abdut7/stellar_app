@@ -97,8 +97,8 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
     if (value == null || value.isEmpty) {
       return 'Phone number is required';
     }
-    if (value.length != 10 || value.length != 9) {
-      return 'Phone number must be 10 or 9 digits long';
+    if (value.length != 10) {
+      return 'Phone number must be 10  digits long';
     }
     if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
       return 'Enter a valid phone number';
