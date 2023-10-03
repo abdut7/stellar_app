@@ -106,13 +106,13 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                             },
                             validator: (String? value) {
                               if (value == null || value.isEmpty) {
-                                return 'Phone number is \nrequired';
+                                return 'Phone number is required';
                               }
                               if (value.length != 10) {
-                                return 'Invalid phone \n number';
+                                return 'Invalid phone number';
                               }
                               if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
-                                return 'Enter a valid\n phone number';
+                                return 'Enter a valid phone number';
                               }
                               return null;
                             },
