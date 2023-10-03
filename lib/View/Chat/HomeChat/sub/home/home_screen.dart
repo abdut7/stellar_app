@@ -108,23 +108,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-<<<<<<< HEAD
-      floatingActionButton: Container(
-        width: 80,
-        height: 80,
-        decoration:
-            BoxDecoration(shape: BoxShape.circle, color: SColors.color13),
-        child: 
-          GestureDetector(
-            onTap: (){
-              Get.to(() => const ShowContactsScreen());
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(14.0),
-              child: SvgPicture.asset(SSvgs.chatBtnIcon),
-            ),
-          ),
-=======
       floatingActionButton: InkWell(
         onTap: () {
           Get.to(() => const ShowContactsScreen());
@@ -140,7 +123,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
->>>>>>> 5d729a85e35038f3e8087ccccde7fd468286ec2a
       ),
     );
   }
