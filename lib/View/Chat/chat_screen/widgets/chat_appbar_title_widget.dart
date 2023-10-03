@@ -26,36 +26,16 @@ class ChatAppBarTitleWidget extends StatelessWidget {
                 ),
               )
             : CircleAvatar(
-                backgroundImage: NetworkImage(
-                    profileImage!), // Replace with the user's image
+                backgroundImage: NetworkImage(profileImage!),
                 radius: 20,
               ),
         const SizedBox(width: 8.0),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              name, // Replace with the user's name
-              style: const TextStyle(fontSize: 16),
-            ),
-            // Row(
-            //   children: <Widget>[
-            //     Container(
-            //       width: 8,
-            //       height: 8,
-            //       decoration: BoxDecoration(
-            //         shape: BoxShape.circle,
-            //         color: isOnline ? Colors.green : Colors.red,
-            //       ),
-            //     ),
-            //     const SizedBox(width: 4.0),
-            //     Text(
-            //       isOnline ? 'Online' : 'Offline',
-            //       style: const TextStyle(fontSize: 12, color: Colors.grey),
-            //     ),
-            //   ],
-            // ),
-          ],
+        Flexible(
+          child: Text(
+            name,
+            style: const TextStyle(fontSize: 16),
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
       ],
     );

@@ -160,7 +160,6 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                     },
                   ),
                   SizedBox(
-                    height: 200,
                     child: IndexedStack(index: selectedTabIndex, children: [
                       Visibility(
                           visible: selectedTabIndex == 0,
