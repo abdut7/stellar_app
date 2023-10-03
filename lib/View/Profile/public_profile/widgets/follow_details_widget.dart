@@ -18,8 +18,8 @@ class FollowDetailsWidget extends StatefulWidget {
 
   @override
   State<FollowDetailsWidget> createState() => _FollowDetailsWidgetState();
-  late int following;
-  late bool isFollowing;
+  late int following = 0;
+  late bool isFollowing = false;
 }
 
 class _FollowDetailsWidgetState extends State<FollowDetailsWidget> {

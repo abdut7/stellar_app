@@ -1,4 +1,5 @@
 import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/services/api_services/chat_history_service.dart';
 import 'package:stellar_chat/services/api_services/contacts_service.dart';
 import 'package:flutter/material.dart';
 
@@ -41,6 +42,12 @@ class _SearchTextFieldState extends State<SearchTextField> {
               ContactServiceApi.getContacts();
             } else {
               ContactServiceApi.searchContacts(val);
+            }
+          } else {
+            if (val.isEmpty) {
+              ChatHistoryServiceApi.getChatHistory();
+            } else {
+              ChatHistoryServiceApi.getChatHistorySearch(val: val);
             }
           }
         },

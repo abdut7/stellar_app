@@ -22,23 +22,41 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Scan QR",
-            style: TextStyle(color: Colors.black),
-          ),
-          backgroundColor: Colors.white,
+      backgroundColor: Colors.transparent,
+      appBar: AppBar(
+        title: const Text(
+          "Scan QR",
+          style: TextStyle(color: Colors.black),
         ),
-        body: Center(
-          child: SizedBox(
-            width: Get.width * 0.6,
-            height: Get.width * 0.6,
-            child: QRView(
-              key: qrKey,
-              onQRViewCreated: _onQRViewCreated,
+        backgroundColor: Colors.white,
+      ),
+      body: Stack(
+        children: [
+          QRView(
+            key: qrKey,
+            onQRViewCreated: _onQRViewCreated,
+            overlay: QrScannerOverlayShape(
+              borderColor: Color.fromRGBO(0, 51, 142, 1),
+              borderRadius: 10,
+              borderLength: 30,
+              borderWidth: 10,
+              cutOutSize: MediaQuery.of(context).size.width * 0.7,
             ),
           ),
-        ));
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.transparent),
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   void _onQRViewCreated(QRViewController controller) {
