@@ -66,13 +66,13 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                     ],
                   ),
                 ),
-                Positioned(
-                  top: 280,
-                  right: 60,
-                  bottom: 0,
-                  child: GestureDetector(
-                      onTap: () {}, child: SvgPicture.asset(SSvgs.editIcon)),
-                ),
+                // Positioned(
+                //   top: 280,
+                //   right: 60,
+                //   bottom: 0,
+                //   child: GestureDetector(
+                //       onTap: () {}, child: SvgPicture.asset(SSvgs.editIcon)),
+                // ),
                 Positioned(
                   top: 10,
                   right: 10,

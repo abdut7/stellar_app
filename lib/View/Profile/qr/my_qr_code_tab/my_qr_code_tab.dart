@@ -19,6 +19,7 @@ class _MyQRCodeTabState extends State<MyQRCodeTab> {
 
   @override
   Widget build(BuildContext context) {
+    print(controller.userDetailsModel.value!.strQRCodeUrls);
     return Container(
       height: double.infinity,
       width: double.infinity,
@@ -79,7 +80,7 @@ class _MyQRCodeTabState extends State<MyQRCodeTab> {
                               image: DecorationImage(
                                 fit: BoxFit.cover,
                                 image: NetworkImage(controller
-                                    .userDetailsModel.value!.strProfileUrl),
+                                    .userDetailsModel.value!.strQRCodeUrls),
                               ),
                             ),
                           ),
