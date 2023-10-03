@@ -106,20 +106,19 @@ class _MyQRCodeTabState extends State<MyQRCodeTab> {
                   width: circleRadius + 8,
                   height: circleRadius + 8,
                   decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.grey.shade300,
-                    border: Border.all(
-                      color: SColors.color4,
-                      width: 10.0,
-                    ),
-                  ),
-                  child: Center(
-                    child: SvgPicture.asset(
-                      SSvgs.sv06,
-                      fit: BoxFit.cover,
-                      width: 60,
-                    ),
-                  ),
+                      shape: BoxShape.circle,
+                      color: Colors.grey.shade300,
+                      border: Border.all(
+                        color: SColors.color4,
+                        width: 10.0,
+                      ),
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(controller
+                                  .userDetailsModel.value!.strProfileUrl.isEmpty
+                              ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                              : controller
+                                  .userDetailsModel.value!.strProfileUrl))),
                 ),
               ],
             ),
