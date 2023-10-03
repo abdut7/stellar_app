@@ -244,6 +244,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                               keyboardType: TextInputType.text,
                               labelText: 'Password',
                               validator: validatePassword,
+                              isPassword: true,
                             ),
                             const SizedBox(
                               height: 30,
