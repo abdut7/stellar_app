@@ -91,6 +91,8 @@ class GetNearbyContactsService {
                                         GestureDetector(
                                             onTap: () {
                                               Get.to(() => PrivateChatScreen(
+                                                    imageUrl:
+                                                        element.strProfileUrl,
                                                     chatId: element.id,
                                                     fullName:
                                                         element.strFullName,

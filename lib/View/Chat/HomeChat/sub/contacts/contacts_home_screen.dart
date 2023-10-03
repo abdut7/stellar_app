@@ -123,6 +123,7 @@ class _ContactsHomeScreenState extends State<ContactsHomeScreen> {
                                       return ListTile(
                                         onTap: () async {
                                           Get.to(() => PrivateChatScreen(
+                                              imageUrl: data.strProfileUrl,
                                               fullName: data.strFullName,
                                               chatId: data.id));
                                         },

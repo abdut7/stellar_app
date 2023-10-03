@@ -70,47 +70,84 @@ class GroupChatBubble extends StatelessWidget {
                         : [],
                   ),
             child: message.strMessageType == "text"
-                ? Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      message.strMessage,
-                      style: const TextStyle(color: Colors.black),
+                ? Container(
+                    width: Get.width * 0.5,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            message.strMessage,
+                            style: const TextStyle(color: Colors.black),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                message.strCreatedTime,
+                                style: const TextStyle(
+                                    color: Colors.grey, fontSize: 8),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   )
                 : message.strMessageType == "image"
-                    ? SizedBox(
-                        height: Get.width * 0.4,
-                        width: Get.width * 0.6,
-                        child: Padding(
-                          padding: message.strMessageType == "text"
-                              ? const EdgeInsets.all(8)
-                              : message.strMessageType == "image"
-                                  ? const EdgeInsets.all(2.0)
-                                  : const EdgeInsets.all(0),
-                          child: CachedNetworkImage(
-                            fit: BoxFit.cover,
-                            imageUrl: message.strUrl,
-                            progressIndicatorBuilder:
-                                (context, url, downloadProgress) => Center(
-                              child: CircularProgressIndicator(
-                                  value: downloadProgress.progress),
+                    ? Column(
+                        children: [
+                          SizedBox(
+                              height: Get.width * 0.4,
+                              width: Get.width * 0.6,
+                              child: Padding(
+                                padding: message.strMessageType == "text"
+                                    ? const EdgeInsets.all(8)
+                                    : message.strMessageType == "image"
+                                        ? const EdgeInsets.all(2.0)
+                                        : const EdgeInsets.all(0),
+                                child: CachedNetworkImage(
+                                  fit: BoxFit.cover,
+                                  imageUrl: message.strUrl,
+                                  progressIndicatorBuilder:
+                                      (context, url, downloadProgress) =>
+                                          Center(
+                                    child: CircularProgressIndicator(
+                                        value: downloadProgress.progress),
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error),
+                                ),
+                              )),
+                          SizedBox(
+                            width: Get.width * 0.5,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  message.strCreatedTime,
+                                  style: const TextStyle(
+                                      color: Colors.grey, fontSize: 8),
+                                ),
+                              ],
                             ),
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
-                          ),
-                        ))
+                          )
+                        ],
+                      )
                     : message.strMessageType == "voice"
                         ? AudioMessageBubble(
                             audioUrl: message.strUrl,
                             isSender: message.strUserId ==
                                 controller.userDetailsModel.value!.id,
+                            createdTime: message.strCreatedTime,
                           )
                         : const SizedBox(),
           ),
-          Text(
-            message.strCreatedTime,
-            style: const TextStyle(color: Colors.grey, fontSize: 8),
-          )
         ],
       ),
     );

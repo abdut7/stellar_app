@@ -33,25 +33,21 @@ class ChatBubble extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               color: message.strMessageType == "voice" ? null : color,
-              borderRadius: BorderRadius.only(
-                  bottomRight: !isSent
-                      ? const Radius.circular(10)
-                      : const Radius.circular(0),
-                  bottomLeft: isSent
-                      ? const Radius.circular(10)
-                      : const Radius.circular(0),
-                  topLeft: const Radius.circular(10),
-                  topRight: const Radius.circular(10)),
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
             padding: const EdgeInsets.all(2),
             child: message.strMessageType == "text"
                 ? Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-                    child: Text(
-                      message.strMessage,
-                      style:
-                          const TextStyle(color: Color.fromRGBO(87, 87, 87, 1)),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 12),
+                    child: Container(
+                      width: Get.width * 0.4,
+                      child: Text(
+                        message.strMessage,
+                        style: const TextStyle(
+                            color: Color.fromRGBO(87, 87, 87, 1)),
+                      ),
                     ),
                   )
                 : message.strMessageType == "image"
@@ -84,6 +80,7 @@ class ChatBubble extends StatelessWidget {
                       )
                     : message.strMessageType == "voice"
                         ? AudioMessageBubble(
+                            createdTime: message.strCreatedTime,
                             audioUrl: message.strUrl,
                             isSender: message.strUserId ==
                                 controller.userDetailsModel.value!.id,
@@ -106,23 +103,38 @@ class ChatBubble extends StatelessWidget {
                               )
                             : const SizedBox(),
           ),
-          const SizedBox(height: 4.0),
+          // const SizedBox(height: 4.0),
           message.strMessageType != "sentingImage"
-              ? Row(
-                  mainAxisAlignment:
-                      isSent ? MainAxisAlignment.end : MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      message.strCreatedTime,
-                      style: const TextStyle(color: Colors.grey),
-                    ),
-                    const SizedBox(width: 4.0),
-                    Icon(
-                      isSent ? Icons.done_all : Icons.done,
-                      color: Colors.grey,
-                      size: 16.0,
-                    ),
-                  ],
+              ? Container(
+                  decoration: BoxDecoration(
+                      color: isSent
+                          ? const Color.fromRGBO(197, 229, 255, 1)
+                          : const Color.fromRGBO(224, 224, 224, 1),
+                      borderRadius: const BorderRadius.vertical(
+                          bottom: Radius.circular(10))),
+                  width: message.strUrl.isEmpty
+                      ? Get.width * 0.5 + 2
+                      : Get.width * 0.6,
+                  child: Row(
+                    mainAxisAlignment: isSent
+                        ? MainAxisAlignment.end
+                        : MainAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 2.0),
+                        child: Text(
+                          message.strCreatedTime,
+                          style: const TextStyle(color: Colors.grey),
+                        ),
+                      ),
+                      const SizedBox(width: 4.0),
+                      Icon(
+                        isSent ? Icons.done_all : Icons.done,
+                        color: Colors.grey,
+                        size: 16.0,
+                      ),
+                    ],
+                  ),
                 )
               : const SizedBox(),
         ],
