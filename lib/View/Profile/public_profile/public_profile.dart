@@ -42,65 +42,55 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
               length: 2,
               child: ListView(
                 children: <Widget>[
-                  SizedBox(
+                  Container(
                     height: 250,
-                    child: Stack(
-                      children: <Widget>[
-                        ShaderMask(
-                          shaderCallback: (Rect bounds) {
-                            return LinearGradient(
-                              colors: [
-                                Colors.transparent,
-                                Colors.black.withOpacity(0.9)
-                              ],
-                              stops: [0.0, 0.5],
-                              begin: Alignment.bottomLeft,
-                              end: Alignment.topCenter,
-                            ).createShader(bounds);
-                          },
-                          blendMode: BlendMode.dstIn,
-                          child: Image.network(
-                            snapshot.data!.strProfileUrl,
-                            fit: BoxFit.fill,
-                            width: Get.width,
-                            height: Get.width,
+                    width: Get.width,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(
+                          snapshot.data!.strProfileUrl.isEmpty
+                              ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                              : snapshot.data!.strProfileUrl,
+                        ),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            GestureDetector(
+                                onTap: () {},
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SvgPicture.asset(SSvgs.sv29),
+                                )),
+                          ],
+                        ),
+                        const Spacer(),
+                        Text(
+                          snapshot.data!.strName,
+                          style: TextStyle(
+                            color: SColors.color3,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
                           ),
                         ),
-                        Positioned(
-                          bottom: 50,
-                          left: 180,
-                          child: Text(
-                            snapshot.data!.strName,
-                            style: TextStyle(
-                              color: SColors.color3,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w800,
-                            ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'PHONE NUMBER : ${snapshot.data!.strMobileNo}',
+                          style: TextStyle(
+                            color: SColors.color3,
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
-                        Positioned(
-                          bottom: 40,
-                          left: 120,
-                          child: Text(
-                            'PHONE NUMBER : ${snapshot.data!.strMobileNo}',
-                            style: TextStyle(
-                              color: SColors.color3,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          top: 10,
-                          right: 10,
-                          child: GestureDetector(
-                              onTap: () {},
-                              child: Icon(
-                                Icons.more_vert,
-                                color: SColors.color12,
-                                size: 30,
-                              )),
-                        ),
+                        const SizedBox(
+                          height: 10,
+                        )
                       ],
                     ),
                   ),
