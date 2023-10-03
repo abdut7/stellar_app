@@ -72,6 +72,8 @@ dependencies:
   qr_code_scanner: ^1.0.1
   google_maps_flutter:
   http: ^0.13.6
+  intl_phone_field: ^3.2.0
+  fl_country_code_picker: ^0.1.5
 
 
 dev_dependencies:

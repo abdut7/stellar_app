@@ -1,4 +1,6 @@
 import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/View/auth_screens/LoginWithMobile/widgets/login_phone_textfield.dart';
+import 'package:stellar_chat/View/auth_screens/LoginWithMobile/widgets/login_region_textfield.dart';
 import 'package:stellar_chat/View/auth_screens/auth_home_page/show_signup_model_sheet.dart';
 import 'package:stellar_chat/services/api_services/auth_services.dart';
 import 'package:flutter/material.dart';
@@ -83,12 +85,12 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                           const SizedBox(
                             height: 20,
                           ),
-                          LoginTextField(
+                          LoginRegionTextField(
                             controller: regionController,
                             keyboardType: TextInputType.text,
                             labelText: 'REGION',
                             suffixIcon: Icon(
-                              Icons.arrow_forward_ios,
+                              Icons.arrow_drop_down,
                               size: 15,
                               color: SColors.color3,
                             ),
@@ -96,7 +98,7 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                           const SizedBox(
                             height: 15,
                           ),
-                          LoginTextField(
+                          LoginPhoneTextField(
                             controller: phoneNumberController,
                             keyboardType: TextInputType.number,
                             labelText: 'PHONE',
