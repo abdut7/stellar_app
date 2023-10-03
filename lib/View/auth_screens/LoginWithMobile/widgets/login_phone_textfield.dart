@@ -118,7 +118,7 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
           style: TextStyle(
             color: SColors.color3,
             fontSize: 11,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w400,
           ),
         ),
         const SizedBox(height: 8),

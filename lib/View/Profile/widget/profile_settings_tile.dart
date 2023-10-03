@@ -33,7 +33,7 @@ class _CustomListTileeState extends State<CustomListTilee> {
             widget.text,
             style: TextStyle(
               color: SColors.color3,
-              fontSize: 14,
+              fontSize: 16,
               fontWeight: FontWeight.w400,
             ),
           ),

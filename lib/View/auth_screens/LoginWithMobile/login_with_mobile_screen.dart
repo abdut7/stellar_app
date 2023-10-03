@@ -27,10 +27,10 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
         Get.put(LoginWithPhoneNumberConteroller());
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(colors: [
-            Color.fromRGBO(0, 51, 142, 1),
-            Color.fromRGBO(153, 199, 255, 1),
+            SColors.color12,
+            SColors.color12.withOpacity(0.8),
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
         child: Form(
@@ -73,14 +73,14 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                             style: TextStyle(
                                 color: Color.fromRGBO(0, 51, 142, 1),
                                 fontSize: 26,
-                                fontWeight: FontWeight.w800),
+                                fontWeight: FontWeight.w900),
                           ),
                           const Text(
                             "with Mobile",
                             style: TextStyle(
                                 color: Color.fromRGBO(0, 51, 142, 1),
                                 fontSize: 26,
-                                fontWeight: FontWeight.w800),
+                                fontWeight: FontWeight.w900),
                           ),
                           const SizedBox(
                             height: 20,
@@ -178,12 +178,18 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Don't have an account?"),
+                            Text("Don't have an account?",style: TextStyle(
+                              color: Color(0xFF606060),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                            ),),
+                             SizedBox(width: 5,),
                             Text(
                               "Sign Up",
                               style: TextStyle(
+                                fontSize: 16,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.bold),
+                                  fontWeight: FontWeight.w800),
                             )
                           ],
                         ),

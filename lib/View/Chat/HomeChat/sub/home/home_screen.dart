@@ -1,3 +1,5 @@
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/View/chat/HomeChat/sub/home/widgets/chat_home_appbar_widget.dart';
 import 'package:stellar_chat/View/chat/HomeChat/sub/home/widgets/chat_tile_widget.dart';
 import 'package:stellar_chat/View/Contact/show_contact/show_contacts_screen.dart';
@@ -106,20 +108,20 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: Container(
-        width: 70,
-        height: 70,
+        width: 80,
+        height: 80,
         decoration:
             BoxDecoration(shape: BoxShape.circle, color: SColors.color13),
-        child: IconButton(
-          icon: const Icon(
-            Icons.message,
-            color: Colors.white,
-            size: 40,
+        child: 
+          GestureDetector(
+            onTap: (){
+              Get.to(() => const ShowContactsScreen());
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(14.0),
+              child: SvgPicture.asset(SSvgs.chatBtnIcon),
+            ),
           ),
-          onPressed: () {
-            Get.to(() => const ShowContactsScreen());
-          },
-        ),
       ),
     );
   }

@@ -125,11 +125,11 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration:  BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromRGBO(0, 51, 142, 1),
-              Color.fromRGBO(153, 199, 255, 1),
+              SColors.color12,
+              SColors.color12.withOpacity(0.8),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -177,12 +177,12 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                const Text(
+                                 Text(
                                   "Sign Up\nwith Mobile",
                                   style: TextStyle(
-                                    color: Color.fromRGBO(0, 51, 142, 1),
+                                    color: SColors.color12,
                                     fontSize: 26,
-                                    fontWeight: FontWeight.w800,
+                                    fontWeight: FontWeight.w900,
                                   ),
                                 ),
                                 const SizedBox(width: 10),
@@ -351,14 +351,16 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                               style: TextStyle(
                                 color: SColors.color9,
                                 fontSize: 12,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w400,
                               ),
                             ),
+                            const SizedBox(width: 5,),
                             Text(
                               "Sign In",
                               style: TextStyle(
+                                fontSize: 16,
                                 color: SColors.color3,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w800,
                               ),
                             ),
                           ],
