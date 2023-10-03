@@ -1,32 +1,32 @@
 class UserDetailsModel {
-  UserDetailsModel({
-    required this.success,
-    required this.message,
-    required this.statusCode,
-    required this.id,
-    required this.chrStatus,
-    required this.strName,
-    required this.strFullName,
-    required this.strRegion,
-    required this.strMobileNo,
-    required this.strEmail,
-    required this.strSignupMethode,
-    required this.strQRCodeUrls,
-    required this.strType,
-    required this.strProfileUrl,
-    required this.strHashPassword,
-    required this.strBirthday,
-    required this.location,
-    required this.strCreatedTime,
-    required this.strOTPToken,
-    required this.followersCount,
-    required this.followingCount,
-    required this.isFollowing,
-    required this.isFollower,
-    required this.isBlocked,
-    required this.intPostCount,
-    required this.intFlickCount,
-  });
+  UserDetailsModel(
+      {required this.success,
+      required this.message,
+      required this.statusCode,
+      required this.id,
+      required this.chrStatus,
+      required this.strName,
+      required this.strFullName,
+      required this.strRegion,
+      required this.strMobileNo,
+      required this.strEmail,
+      required this.strSignupMethode,
+      required this.strQRCodeUrls,
+      required this.strType,
+      required this.strProfileUrl,
+      required this.strHashPassword,
+      required this.strBirthday,
+      required this.location,
+      required this.strCreatedTime,
+      required this.strOTPToken,
+      required this.followersCount,
+      required this.followingCount,
+      required this.isFollowing,
+      required this.isFollower,
+      required this.isBlocked,
+      required this.intPostCount,
+      required this.intFlickCount,
+      required this.strAbout});
   late final bool success;
   late final String message;
   late final int statusCode;
@@ -53,6 +53,7 @@ class UserDetailsModel {
   late final bool isBlocked;
   late final int intPostCount;
   late final int intFlickCount;
+  late final String strAbout;
 
   UserDetailsModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
@@ -81,6 +82,7 @@ class UserDetailsModel {
     isBlocked = json['isBlocked'];
     intPostCount = json['intPostCount'];
     intFlickCount = json['intFlickCount'];
+    strAbout = json['strAbout'] ?? "";
   }
 
   Map<String, dynamic> toJson() {
