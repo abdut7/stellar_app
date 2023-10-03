@@ -1,6 +1,9 @@
 import 'dart:io';
 
 import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/View/auth_screens/signup_with_mobile/widgets/phone_textfield.dart';
+import 'package:stellar_chat/View/auth_screens/signup_with_mobile/widgets/region_textfield.dart';
+import 'package:stellar_chat/View/auth_screens/signup_with_mobile/widgets/sign_up_text_field.dart';
 import 'package:stellar_chat/controllers/api_controllers/signup_controllers.dart';
 import 'package:stellar_chat/functions/location_permission.dart';
 import 'package:stellar_chat/services/api_services/auth_services.dart';
@@ -208,38 +211,40 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                               ],
                             ),
                             const SizedBox(height: 20),
-                            LoginTextField(
+                            SignUpTextField(
                               controller: usernameController,
                               keyboardType: TextInputType.text,
                               labelText: 'User Name',
                               validator: validateUserName,
                             ),
-                            LoginTextField(
+                            SignUpTextField(
                               controller: emailController,
                               keyboardType: TextInputType.emailAddress,
                               labelText: 'Email',
                               validator: validateEmail,
                             ),
-                            LoginTextField(
+                            SignUpTextField(
                               controller: birthDayController,
                               keyboardType: TextInputType.text,
                               labelText: 'Birthday',
                               isBirthday: true,
                               validator: validateBirthday,
                             ),
-                            LoginTextField(
+                            RegionTextField(
                               controller: regionController,
                               keyboardType: TextInputType.text,
                               labelText: 'Region',
                               validator: validateRegion,
+                              suffixIcon: Icon(Icons.arrow_drop_down,),
                             ),
-                            LoginTextField(
+                            PhoneTextField(
                               controller: phoneNumberController,
                               keyboardType: TextInputType.phone,
                               labelText: 'Phone',
                               validator: validatePhoneNumber,
+
                             ),
-                            LoginTextField(
+                            SignUpTextField(
                               controller: passwordController,
                               keyboardType: TextInputType.text,
                               labelText: 'Password',

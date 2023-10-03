@@ -1,9 +1,10 @@
-import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
 
-class LoginTextField extends StatefulWidget {
+class SignUpTextField extends StatefulWidget {
   final TextInputType keyboardType;
-  final Widget? suffixIcon;
+  final Widget? prefixIcon; // Added prefixIcon argument
+  final Widget? suffixIcon; // Added suffixIcon argument
   final String labelText;
   final TextEditingController controller;
   final bool isPassword;
@@ -12,12 +13,13 @@ class LoginTextField extends StatefulWidget {
   final Function(String? val)? onSaved;
   final Function(String val)? onChanged;
 
-  const LoginTextField({
+  const SignUpTextField({
     Key? key,
     this.isPassword = false,
     this.isBirthday = false,
     required this.keyboardType,
-    this.suffixIcon,
+    this.prefixIcon, // Added prefixIcon argument
+    this.suffixIcon, // Added suffixIcon argument
     required this.labelText,
     required this.controller,
     this.validator,
@@ -26,16 +28,16 @@ class LoginTextField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<LoginTextField> createState() => _LoginTextFieldState();
+  State<SignUpTextField> createState() => _SignUpTextFieldState();
 }
 
-class _LoginTextFieldState extends State<LoginTextField> {
+class _SignUpTextFieldState extends State<SignUpTextField> {
   InputDecoration buildInputDecoration() {
     return InputDecoration(
       border: InputBorder.none,
       contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
       filled: true,
-      fillColor: SColors.color4,
+      fillColor: Colors.white, // Changed fillColor to white for visibility
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide.none,
         borderRadius: BorderRadius.circular(10),
@@ -52,7 +54,8 @@ class _LoginTextFieldState extends State<LoginTextField> {
         borderSide: BorderSide.none,
         borderRadius: BorderRadius.circular(10),
       ),
-      suffixIcon: widget.suffixIcon,
+      prefixIcon: widget.prefixIcon, // Added prefixIcon
+      suffixIcon: widget.suffixIcon, // Added suffixIcon
     );
   }
 
@@ -70,7 +73,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
         setState(() {
           selectedDate = picked;
           controller.text =
-              "${selectedDate.day}-${selectedDate.month}-${selectedDate.year}";
+          "${selectedDate.day}-${selectedDate.month}-${selectedDate.year}";
         });
       }
     }
@@ -78,46 +81,46 @@ class _LoginTextFieldState extends State<LoginTextField> {
     return Container(
       child: widget.isBirthday
           ? Container(
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
-              child: TextFormField(
-                  readOnly: true,
-                  onTap: () => selectDate(context),
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                    labelText: 'Select Date',
-                    hintText: 'Choose a date',
-                    prefixIcon: Icon(Icons.calendar_today),
-                  ),
-                  controller: controller),
-            )
-          : TextFormField(
-              onChanged: widget.onChanged,
-              onSaved: widget.onSaved,
-              validator: widget.validator,
-              obscureText: widget.isPassword,
-              controller: controller,
-              keyboardType: widget.keyboardType,
-              cursorColor: SColors.color11,
-              style: TextStyle(
-                color: SColors.color3,
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-              ),
-              autocorrect: true,
-              decoration: buildInputDecoration(),
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(10)),
+        child: TextFormField(
+            readOnly: true, // Prevent manual editing
+            onTap: () => selectDate(context), // Show date picker on tap
+            decoration: const InputDecoration(
+              border: InputBorder.none,
+              labelText: 'Select Date',
+              hintText: 'Choose a date',
+              prefixIcon: Icon(Icons.calendar_today),
             ),
+            controller: controller),
+      )
+          : TextFormField(
+        onChanged: widget.onChanged,
+        onSaved: widget.onSaved,
+        validator: widget.validator,
+        obscureText: widget.isPassword,
+        controller: controller,
+        keyboardType: widget.keyboardType,
+        cursorColor: Colors.black,
+        style: TextStyle(
+          color: SColors.color3,
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+        ),
+        autocorrect: true,
+        decoration: buildInputDecoration(),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         children: [
           Container(
-            width: 44,
+            width: 55,
             child: Text(
               widget.labelText,
               style: TextStyle(
@@ -129,7 +132,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(5.0),
+              padding: const EdgeInsets.all(13.0),
               child: textField(widget.controller),
             ),
           ),
@@ -138,3 +141,5 @@ class _LoginTextFieldState extends State<LoginTextField> {
     );
   }
 }
+
+
