@@ -21,7 +21,32 @@ class ChatHistoryServiceApi {
     try {
       Response response =
           await dio.post(path, options: Options(headers: header));
-      print(response);
+      ChatHistoryModel model = ChatHistoryModel.fromJson(response.data);
+      chatHistoryController.chatHistoryList(model.chatHistoryList);
+    } catch (e) {
+      print(e);
+      chatHistoryController.errorOccured(true);
+    } finally {
+      ChatHistorySocketService.chatHistorySocketService();
+      chatHistoryController.isLoading(false);
+    }
+  }
+
+  static Future<void> getChatHistorySearch({required String val}) async {
+    ChatHistoryController chatHistoryController = Get.put(
+      ChatHistoryController(),
+    );
+    chatHistoryController.isLoading(true);
+    chatHistoryController.errorOccured(false);
+    Dio dio = Dio();
+    String path = ApiRoutes.baseUrl + ApiRoutes.chatHistorySearch;
+    Map<String, dynamic> header = await getHeader();
+    Map<String, dynamic> data = {"strSearch": val};
+
+    try {
+      Response response =
+          await dio.post(path, options: Options(headers: header), data: data);
+
       ChatHistoryModel model = ChatHistoryModel.fromJson(response.data);
       chatHistoryController.chatHistoryList(model.chatHistoryList);
     } catch (e) {
