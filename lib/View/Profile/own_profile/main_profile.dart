@@ -48,12 +48,12 @@ class _MainProfileState extends State<MainProfile> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          GestureDetector(
-                              onTap: () {},
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: SvgPicture.asset(SSvgs.sv29),
-                              )),
+                          // GestureDetector(
+                          //     onTap: () {},
+                          //     child: Padding(
+                          //       padding: const EdgeInsets.all(8.0),
+                          //       child: SvgPicture.asset(SSvgs.sv29),
+                          //     )),
                         ],
                       ),
                       const Spacer(),
