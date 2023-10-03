@@ -8,10 +8,8 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../../../models/api_models/available_contacts_model.dart';
 
 class SelectContacts extends StatefulWidget {
-  final ContactsController controller;
   const SelectContacts({
     Key? key,
-    required this.controller,
   }) : super(key: key);
 
   @override
@@ -74,8 +72,8 @@ class _SelectContactsState extends State<SelectContacts> {
                           );
                         },
                         separatorBuilder: (context, index) => const Divider(),
-                        itemCount: contactsController
-                            .availableContactsModel.value!.arrList.length),
+                        itemCount:
+                            contactsController.phoneNumberUserList.length),
         floatingActionButton: selectedId.isEmpty
             ? null
             : GestureDetector(

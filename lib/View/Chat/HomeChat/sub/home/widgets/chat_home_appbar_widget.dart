@@ -2,6 +2,9 @@ import 'package:stellar_chat/View/Contact/add_contact/add_contact.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:stellar_chat/View/contact/add_contact/scan_qr_code.dart';
+import 'package:stellar_chat/View/contact/add_contact/select_contacts_to_add_screen.dart';
+import 'package:stellar_chat/View/contact/show_contact/show_contacts_screen.dart';
 
 import '../../../../../../Settings/SColors.dart';
 import '../../../../../../Settings/SSvgs.dart';
@@ -41,7 +44,10 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                     width: 20,
                     height: 20,
                   ),
-                  ontap: () {},
+                  ontap: () {
+                    Get.back();
+                    Get.to(() => const ShowContactsScreen());
+                  },
                   text: 'New Chat',
                 ),
                 CustomPopupMenuItem(
@@ -57,6 +63,7 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                     //     context,
                     //     CupertinoPageRoute(
                     //         builder: (builder) => AddContactUi()));
+                    Get.back();
                     Get.to(() => const AddContactUi(), fullscreenDialog: false);
                   },
                   text: 'Add Contact',
@@ -68,7 +75,10 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                     width: 20,
                     height: 20,
                   ),
-                  ontap: () {},
+                  ontap: () {
+                    Get.back();
+                    Get.to(() => QRScannerScreen());
+                  },
                   text: 'Scan',
                 ),
                 CustomPopupMenuItem(
