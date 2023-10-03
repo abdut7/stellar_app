@@ -5,8 +5,12 @@ import 'package:get/get.dart';
 class AudioMessageBubble extends StatefulWidget {
   final String audioUrl;
   final bool isSender;
+  final String createdTime;
 
-  AudioMessageBubble({required this.audioUrl, required this.isSender});
+  AudioMessageBubble(
+      {required this.audioUrl,
+      required this.isSender,
+      required this.createdTime});
 
   @override
   _AudioMessageBubbleState createState() => _AudioMessageBubbleState();
@@ -58,18 +62,18 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
   @override
   Widget build(BuildContext context) {
     final BorderRadius borderRadius = BorderRadius.only(
-      bottomLeft: Radius.circular(widget.isSender ? 16.0 : 0),
-      bottomRight: Radius.circular(widget.isSender ? 0 : 16.0),
+      bottomLeft: Radius.circular(0),
+      bottomRight: Radius.circular(0),
       topLeft: const Radius.circular(16.0),
       topRight: const Radius.circular(16.0),
     );
 
     return Align(
-      alignment: widget.isSender ? Alignment.centerRight : Alignment.centerLeft,
+      alignment: widget.isSender ? Alignment.topRight : Alignment.topLeft,
       child: Container(
         width: Get.width * 0.6,
-        margin: const EdgeInsets.symmetric(
-          vertical: 4.0,
+        margin: const EdgeInsets.only(
+          top: 4.0,
         ),
         decoration: BoxDecoration(
           color: widget.isSender
@@ -145,6 +149,16 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
             Text(
               '${completedDuration.inMinutes}:${(completedDuration.inSeconds % 60).toString().padLeft(2, '0')} / ${totalDuration.inMinutes}:${(totalDuration.inSeconds % 60).toString().padLeft(2, '0')}',
               style: const TextStyle(color: Colors.black),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              widget.createdTime,
+              style: const TextStyle(color: Colors.grey, fontSize: 8),
+            ),
+            SizedBox(
+              height: 6,
             ),
           ],
         ),

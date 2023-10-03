@@ -17,8 +17,12 @@ import 'model/message_model.dart';
 class PrivateChatScreen extends StatefulWidget {
   final String chatId;
   final String fullName;
+  final String imageUrl;
   const PrivateChatScreen(
-      {super.key, required this.chatId, required this.fullName});
+      {super.key,
+      required this.chatId,
+      required this.fullName,
+      required this.imageUrl});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -40,14 +44,16 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
   // void dispose() {
   //   print("dispose run");
   //   super.dispose();
-  // }
+  // }S
 
   @override
   Widget build(BuildContext context) {
     PrivateChatController chatController = Get.put(PrivateChatController());
     return Scaffold(
       appBar: AppBar(
-        title: GestureDetector(
+        backgroundColor: Color.fromRGBO(159, 196, 232, 1),
+        elevation: 0,
+        title: InkWell(
           onTap: () {
             Get.to(() => PublicProfileScreen(
                   uid: widget.chatId,
@@ -55,6 +61,7 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                 ));
           },
           child: ChatAppBarTitleWidget(
+            profileImage: widget.imageUrl.isEmpty ? null : widget.imageUrl,
             isOnline: false,
             name: widget.fullName,
           ),

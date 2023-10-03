@@ -9,7 +9,7 @@ import '/controllers/contacts_controller.dart';
 
 class ContactServiceApi {
   static Future<void> contactService(List<String> contacts) async {
-    ContactsController contactsController = Get.find();
+    ContactsController contactsController = Get.put(ContactsController());
     contactsController.isGettingFromServer(true);
     Dio dio = Dio();
     String url = ApiRoutes.baseUrl + ApiRoutes.getStellarContacts;
@@ -41,7 +41,7 @@ class ContactServiceApi {
   }
 
   static Future<void> createContact(List<String> newPhoneNumber) async {
-    ContactsController contactsController = Get.find();
+    ContactsController contactsController = Get.put(ContactsController());
 
     Dio dio = Dio();
     String url = ApiRoutes.baseUrl + ApiRoutes.createContact;

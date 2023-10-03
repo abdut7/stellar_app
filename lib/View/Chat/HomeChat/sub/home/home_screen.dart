@@ -85,6 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ontap: () {
                           if (data.strType == "private") {
                             Get.to(() => PrivateChatScreen(
+                                imageUrl: data.strIconURL,
                                 fullName: data.strName,
                                 chatId: data.strChatId));
                           } else if (data.strType == "group") {

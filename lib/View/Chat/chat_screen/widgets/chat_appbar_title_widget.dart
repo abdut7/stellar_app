@@ -38,23 +38,23 @@ class ChatAppBarTitleWidget extends StatelessWidget {
               name, // Replace with the user's name
               style: const TextStyle(fontSize: 16),
             ),
-            Row(
-              children: <Widget>[
-                Container(
-                  width: 8,
-                  height: 8,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: isOnline ? Colors.green : Colors.red,
-                  ),
-                ),
-                const SizedBox(width: 4.0),
-                Text(
-                  isOnline ? 'Online' : 'Offline',
-                  style: const TextStyle(fontSize: 12, color: Colors.grey),
-                ),
-              ],
-            ),
+            // Row(
+            //   children: <Widget>[
+            //     Container(
+            //       width: 8,
+            //       height: 8,
+            //       decoration: BoxDecoration(
+            //         shape: BoxShape.circle,
+            //         color: isOnline ? Colors.green : Colors.red,
+            //       ),
+            //     ),
+            //     const SizedBox(width: 4.0),
+            //     Text(
+            //       isOnline ? 'Online' : 'Offline',
+            //       style: const TextStyle(fontSize: 12, color: Colors.grey),
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ],
