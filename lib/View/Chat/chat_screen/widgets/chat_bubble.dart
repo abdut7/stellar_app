@@ -23,7 +23,7 @@ class ChatBubble extends StatelessWidget {
         message.strName == 'You' || message.strMessageType == "sentingImage";
     final alignment =
         isSent ? CrossAxisAlignment.end : CrossAxisAlignment.start;
-    final color = isSent ? const Color(0xFF243E87) : Colors.grey;
+    final color = isSent ? const Color.fromRGBO(233, 244, 255, 1) : Colors.grey;
 
     return Container(
       margin: const EdgeInsets.all(8.0),
@@ -46,10 +46,12 @@ class ChatBubble extends StatelessWidget {
             padding: const EdgeInsets.all(2),
             child: message.strMessageType == "text"
                 ? Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
                     child: Text(
                       message.strMessage,
-                      style: const TextStyle(color: Colors.white),
+                      style:
+                          const TextStyle(color: Color.fromRGBO(87, 87, 87, 1)),
                     ),
                   )
                 : message.strMessageType == "image"

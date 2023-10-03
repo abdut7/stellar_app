@@ -27,7 +27,7 @@ class _SelectContactsState extends State<SelectContacts> {
 
   @override
   Widget build(BuildContext context) {
-    ContactsController contactsController = Get.find();
+    ContactsController contactsController = Get.put(ContactsController());
 
     return Obx(
       () => Scaffold(

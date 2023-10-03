@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:stellar_chat/controllers/contacts_controller.dart';
 import 'package:stellar_chat/controllers/private_chat_controller.dart';
 import 'package:stellar_chat/functions/image_to_base.dart';
 import 'package:stellar_chat/models/private_chat/private_chat_model.dart';
@@ -53,6 +54,7 @@ class PrivateChatService {
       "strUrl": fileUrl
     });
     chatController.messageList.removeLast();
+    
   }
 
   static void sentPersonalVoiceMessage(
