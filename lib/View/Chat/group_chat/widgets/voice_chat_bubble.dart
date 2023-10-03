@@ -47,6 +47,12 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
         }
       });
     });
+    @override
+    void dispose() {
+      audioPlayer.stop();
+      audioPlayer.dispose();
+      super.dispose();
+    }
   }
 
   @override
@@ -144,12 +150,5 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    audioPlayer.stop();
-    // audioPlayer.dispose();
-    super.dispose();
   }
 }
