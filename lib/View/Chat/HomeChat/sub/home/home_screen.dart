@@ -27,6 +27,11 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  Future<void> refreshChatHistory() async {
+    // Refresh chat history data when the user pulls down
+    await ChatHistoryServiceApi.getChatHistory();
+  }
+
   @override
   Widget build(BuildContext context) {
     ChatHistoryController chatHistoryController = Get.put(
@@ -39,61 +44,65 @@ class _HomeScreenState extends State<HomeScreen> {
         toolbarHeight: 0,
         elevation: 0,
       ),
-      body: Column(
-        children: [
-          const ChatHomeAppbarWidget(),
-          const SizedBox(height: 25),
-          const SearchTextField(),
-          const SizedBox(height: 25),
-          Obx(() {
-            if (chatHistoryController.isLoading.value) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (chatHistoryController.errorOccured.value) {
-              return const Center(
-                child: Text("Error occured while loading chat"),
-              );
-            } else if (chatHistoryController.chatHistoryList.isEmpty) {
-              return const Center(
-                child: Text("No Chat Exist"),
-              );
-            }
+      body: RefreshIndicator(
+        onRefresh: refreshChatHistory,
+        child: Column(
+          children: [
+            const ChatHomeAppbarWidget(),
+            const SizedBox(height: 25),
+            const SearchTextField(),
+            const SizedBox(height: 25),
+            Obx(() {
+              if (chatHistoryController.isLoading.value) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (chatHistoryController.errorOccured.value) {
+                return const Center(
+                  child: Text("Error occured while loading chat"),
+                );
+              } else if (chatHistoryController.chatHistoryList.isEmpty) {
+                return const Center(
+                  child: Text("No Chat Exist"),
+                );
+              }
 
-            return Expanded(
-              child: ListView.separated(
-                padding: EdgeInsets.zero,
-                itemBuilder: (context, index) {
-                  ChatHistoryList data =
-                      chatHistoryController.chatHistoryList[index];
-                  return GestureDetector(
-                    onTap: () {},
-                    child: ChatListItem(
-                      chatId: data.id,
-                      avatarUrl: data.strIconURL,
-                      message: data.strMessage,
-                      name: data.strName,
-                      time: "02:33",
-                      unreadCount: 3,
-                      ontap: () {
-                        if (data.strType == "private") {
-                          Get.to(() => PrivateChatScreen(
-                              fullName: data.strName, chatId: data.strChatId));
-                        } else if (data.strType == "group") {
-                          Get.to(() => GroupChatScreen(
-                                chatHistoryList: data,
-                              ));
-                        }
-                      },
-                    ),
-                  );
-                },
-                separatorBuilder: (context, index) => const Divider(),
-                itemCount: chatHistoryController.chatHistoryList.length,
-              ),
-            );
-          })
-        ],
+              return Expanded(
+                child: ListView.separated(
+                  padding: EdgeInsets.zero,
+                  itemBuilder: (context, index) {
+                    ChatHistoryList data =
+                        chatHistoryController.chatHistoryList[index];
+                    return GestureDetector(
+                      onTap: () {},
+                      child: ChatListItem(
+                        chatId: data.id,
+                        avatarUrl: data.strIconURL,
+                        message: data.strMessage,
+                        name: data.strName,
+                        time: "02:33",
+                        unreadCount: 3,
+                        ontap: () {
+                          if (data.strType == "private") {
+                            Get.to(() => PrivateChatScreen(
+                                fullName: data.strName,
+                                chatId: data.strChatId));
+                          } else if (data.strType == "group") {
+                            Get.to(() => GroupChatScreen(
+                                  chatHistoryList: data,
+                                ));
+                          }
+                        },
+                      ),
+                    );
+                  },
+                  separatorBuilder: (context, index) => const Divider(),
+                  itemCount: chatHistoryController.chatHistoryList.length,
+                ),
+              );
+            })
+          ],
+        ),
       ),
       floatingActionButton: Container(
         width: 70,

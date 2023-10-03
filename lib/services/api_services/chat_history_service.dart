@@ -8,11 +8,11 @@ import '../api_routes/api_routes.dart';
 import '../socket_service/chat_history_socket_service.dart';
 
 class ChatHistoryServiceApi {
-  static Future<void> getChatHistory() async {
+  static Future<void> getChatHistory({bool isRefresh = false}) async {
     ChatHistoryController chatHistoryController = Get.put(
       ChatHistoryController(),
     );
-    chatHistoryController.isLoading(true);
+    chatHistoryController.isLoading(!isRefresh);
     chatHistoryController.errorOccured(false);
     Dio dio = Dio();
     String path = ApiRoutes.baseUrl + ApiRoutes.getChatHistory;
