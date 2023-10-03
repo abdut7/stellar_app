@@ -4,7 +4,7 @@ import 'package:stellar_chat/Settings/SColors.dart';
 
 class PhoneTextField extends StatefulWidget {
   final TextInputType keyboardType;
-  final String labelText;
+  final String hintText;
   final TextEditingController controller;
   final String? Function(String? val)? validator;
   final Function(String? val)? onSaved;
@@ -13,7 +13,7 @@ class PhoneTextField extends StatefulWidget {
   const PhoneTextField({
     Key? key,
     required this.keyboardType,
-    required this.labelText,
+    required this.hintText,
     required this.controller,
     this.validator,
     this.onSaved,
@@ -30,6 +30,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
 
   InputDecoration buildInputDecoration() {
     return InputDecoration(
+      hintText: widget.hintText,
       border: InputBorder.none,
       contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
       filled: true,
@@ -110,28 +111,8 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Row(
-        children: [
-          Container(
-            width: 55,
-            child: Text(
-              widget.labelText,
-              style: TextStyle(
-                color: SColors.color3,
-                fontSize: 11,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(13.0),
-              child: textField(widget.controller),
-            ),
-          ),
-        ],
-      ),
+      padding: const EdgeInsets.all(13.0),
+      child: textField(widget.controller),
     );
   }
 }

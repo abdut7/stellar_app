@@ -4,7 +4,8 @@ import 'package:stellar_chat/Settings/SColors.dart';
 class RegionTextField extends StatefulWidget {
   final TextInputType keyboardType;
   final Widget? suffixIcon;
-  final String labelText;
+  //final String labelText;
+  final String hintText;
   final TextEditingController controller;
   final String? Function(String? val)? validator;
   final Function(String? val)? onSaved;
@@ -14,7 +15,8 @@ class RegionTextField extends StatefulWidget {
     Key? key,
     required this.keyboardType,
     this.suffixIcon,
-    required this.labelText,
+   // required this.labelText,
+    required this.hintText,
     required this.controller,
     this.validator,
     this.onSaved,
@@ -31,6 +33,7 @@ class _RegionTextFieldState extends State<RegionTextField> {
 
   InputDecoration buildInputDecoration() {
     return InputDecoration(
+      hintText: widget.hintText,
       border: InputBorder.none,
       contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
       filled: true,
@@ -112,28 +115,8 @@ class _RegionTextFieldState extends State<RegionTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Row(
-        children: [
-          Container(
-            width: 55,
-            child: Text(
-              widget.labelText,
-              style: TextStyle(
-                color: SColors.color3,
-                fontSize: 11,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(13.0),
-              child: textField(widget.controller),
-            ),
-          ),
-        ],
-      ),
+      padding: const EdgeInsets.all(13.0),
+      child: textField(widget.controller),
     );
   }
 }

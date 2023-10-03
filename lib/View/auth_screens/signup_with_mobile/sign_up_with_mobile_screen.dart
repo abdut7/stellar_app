@@ -214,42 +214,42 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                             SignUpTextField(
                               controller: usernameController,
                               keyboardType: TextInputType.text,
-                              labelText: 'User Name',
                               validator: validateUserName,
+                              hintText: 'User Name',
                             ),
                             SignUpTextField(
                               controller: emailController,
                               keyboardType: TextInputType.emailAddress,
-                              labelText: 'Email',
                               validator: validateEmail,
+                              hintText: 'Email',
                             ),
                             SignUpTextField(
                               controller: birthDayController,
                               keyboardType: TextInputType.text,
-                              labelText: 'Birthday',
                               isBirthday: true,
                               validator: validateBirthday,
+                              hintText: 'User Name',
                             ),
                             RegionTextField(
                               controller: regionController,
                               keyboardType: TextInputType.text,
-                              labelText: 'Region',
+                              hintText: 'Region',
                               validator: validateRegion,
                               suffixIcon: Icon(Icons.arrow_drop_down,),
                             ),
                             PhoneTextField(
                               controller: phoneNumberController,
                               keyboardType: TextInputType.phone,
-                              labelText: 'Phone',
+                              hintText: 'Phone Number',
                               validator: validatePhoneNumber,
 
                             ),
                             SignUpTextField(
                               controller: passwordController,
                               keyboardType: TextInputType.text,
-                              labelText: 'Password',
                               validator: validatePassword,
                               isPassword: true,
+                              hintText: 'Password',
                             ),
                             const SizedBox(
                               height: 30,
