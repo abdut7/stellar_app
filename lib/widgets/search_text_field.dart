@@ -37,7 +37,11 @@ class _SearchTextFieldState extends State<SearchTextField> {
         textAlign: TextAlign.center,
         onChanged: (val) {
           if (widget.isFromContacts) {
-            ContactServiceApi.searchContacts(val);
+            if (val.isEmpty) {
+              ContactServiceApi.getContacts();
+            } else {
+              ContactServiceApi.searchContacts(val);
+            }
           }
         },
       ),

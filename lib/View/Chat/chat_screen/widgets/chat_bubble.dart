@@ -19,8 +19,8 @@ class ChatBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     UserController controller = Get.find();
 
-    final isSent =
-        message.strName == 'You' || message.strMessageType == "sentingImage";
+    final isSent = (message.strUserId == controller.userDetailsModel.value!.id) ||
+        message.strMessageType == "sentingImage";
     final alignment =
         isSent ? CrossAxisAlignment.end : CrossAxisAlignment.start;
     final color = isSent

@@ -70,6 +70,7 @@ class GroupServices {
   // get Group Messages
 
   static Future<void> getGroupMessage({required String groupId}) async {
+    print("group id is $groupId");
     GroupChatController chatController = Get.put(GroupChatController());
     chatController.isErrorOccured(false);
     chatController.groupMessageList.clear();
@@ -77,7 +78,8 @@ class GroupServices {
     Dio dio = Dio();
     String path = ApiRoutes.baseUrl + ApiRoutes.getGroupMessage;
     Map<String, dynamic> header = await getHeader();
-    Map<String, dynamic> body = {"strGroupId": groupId};
+    Map<String, dynamic> body = {"strChatId": groupId, "strType": "group"};
+    print(body);
     try {
       Response res =
           await dio.post(path, options: Options(headers: header), data: body);

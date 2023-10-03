@@ -54,14 +54,14 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
             const SizedBox(
               height: 5,
             ),
-            Text(
-              '675 Contacts',
-              style: TextStyle(
-                color: SColors.color11,
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
+            // Text(
+            //   '675 Contacts',
+            //   style: TextStyle(
+            //     color: SColors.color11,
+            //     fontSize: 12,
+            //     fontWeight: FontWeight.w400,
+            //   ),
+            // ),
           ],
         ),
         actions: <Widget>[
@@ -145,7 +145,9 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
                 title: 'New Contact',
                 trailingIcon: GestureDetector(
                     onTap: () {
-                      Get.to(() => QRScannerScreen());
+                      Get.to(
+                        () => QRScannerScreen(),
+                      );
                     },
                     child: Icon(
                       Icons.qr_code,
@@ -170,16 +172,18 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
             const SizedBox(
               height: 20,
             ),
-            Obx(() => contactsController.isGetContactLoading.value
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : contactsController.phoneNumberUserList.isEmpty
-                    ? const Center(
-                        child: Text("No Contacts added add now"),
-                      )
-                    : ListContactsWidget(
-                        contactsController: contactsController)),
+            Obx(
+              () => contactsController.isGetContactLoading.value
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : contactsController.phoneNumberUserList.isEmpty
+                      ? const Center(
+                          child: Text("No Contacts added add now"),
+                        )
+                      : ListContactsWidget(
+                          contactsController: contactsController),
+            ),
           ],
         ),
       ),

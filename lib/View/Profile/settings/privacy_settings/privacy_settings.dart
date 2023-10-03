@@ -84,7 +84,7 @@ class _PrivacySettingsState extends State<PrivacySettings> {
                 const SizedBox(
                   height: 18,
                 ),
-                customRow('Blocked User', '22'),
+                customRow('Blocked User', ''),
                 const SizedBox(
                   height: 18,
                 ),

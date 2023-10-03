@@ -26,6 +26,7 @@ class GroupChatService {
     if (fileUrl == null) {
       return;
     }
+
     socket.emit('send_message', {
       'strChatId': chatId,
       'strMessage': "",
