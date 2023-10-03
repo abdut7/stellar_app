@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/View/auth_screens/LoginWithMobile/login_with_mobile_screen.dart';
 import 'package:stellar_chat/View/auth_screens/signup_with_mobile/widgets/phone_textfield.dart';
 import 'package:stellar_chat/View/auth_screens/signup_with_mobile/widgets/region_textfield.dart';
 import 'package:stellar_chat/View/auth_screens/signup_with_mobile/widgets/sign_up_text_field.dart';
@@ -96,8 +97,8 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
     if (value == null || value.isEmpty) {
       return 'Phone number is required';
     }
-    if (value.length != 10) {
-      return 'Phone number must be 10 digits long';
+    if (value.length != 10 || value.length != 9) {
+      return 'Phone number must be 10 or 9 digits long';
     }
     if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
       return 'Enter a valid phone number';
@@ -235,14 +236,15 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                               keyboardType: TextInputType.text,
                               hintText: 'Region',
                               validator: validateRegion,
-                              suffixIcon: Icon(Icons.arrow_drop_down,),
+                              suffixIcon: Icon(
+                                Icons.arrow_drop_down,
+                              ),
                             ),
                             PhoneTextField(
                               controller: phoneNumberController,
                               keyboardType: TextInputType.phone,
                               hintText: 'Phone Number',
                               validator: validatePhoneNumber,
-
                             ),
                             SignUpTextField(
                               controller: passwordController,
@@ -257,81 +259,69 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                             Padding(
                               padding: const EdgeInsets.all(10.0),
                               child: Center(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    if (validateForm()) {
-                                      AuthServices().loginService(
-                                          phoneNumberController.text);
-                                    }
-                                  },
-                                  child:
-                                      Obx(() => signupController.isLoading.value
-                                          ? Center(
-                                              child: LoadingAnimationWidget
-                                                  .threeRotatingDots(
-                                                color: Colors.white,
-                                                size: 40,
-                                              ),
-                                            )
-                                          : GestureDetector(
-                                              onTap: () async {
-                                                signupController
-                                                    .isLoading(true);
-                                                String base64String = '';
+                                child: Obx(() => signupController
+                                        .isLoading.value
+                                    ? Center(
+                                        child: LoadingAnimationWidget
+                                            .threeRotatingDots(
+                                          color: Colors.white,
+                                          size: 40,
+                                        ),
+                                      )
+                                    : GestureDetector(
+                                        onTap: () async {
+                                          if (!validateForm()) {
+                                            return;
+                                          }
+                                          // return;
+                                          signupController.isLoading(true);
+                                          String base64String = '';
 
-                                                if (pickedImage != null) {
-                                                  base64String =
-                                                      await filePathToBase(
-                                                          pickedImage!.path);
-                                                }
-                                                Position pos =
-                                                    await getCurrentLocation();
+                                          if (pickedImage != null) {
+                                            base64String = await filePathToBase(
+                                                pickedImage!.path);
+                                          }
+                                          Position pos =
+                                              await getCurrentLocation();
 
-                                                SignupModel signupModel = SignupModel(
-                                                    username:
-                                                        usernameController.text,
-                                                    filePath: base64String,
-                                                    fullName:
-                                                        fullNameController.text,
-                                                    email: emailController.text,
-                                                    birthday:
-                                                        birthDayController.text,
-                                                    region:
-                                                        regionController.text,
-                                                    phoneNumber:
-                                                        phoneNumberController
-                                                            .text,
-                                                    password:
-                                                        passwordController.text,
-                                                    coordinates: [
-                                                      pos.latitude.toString(),
-                                                      pos.longitude.toString()
-                                                    ]);
-                                                AuthServices()
-                                                    .signupUser(signupModel);
-                                              },
-                                              child: Container(
-                                                width: Get.width * 0.7,
-                                                height: 50,
-                                                decoration: BoxDecoration(
-                                                  color: const Color.fromRGBO(
-                                                      0, 51, 142, 1),
-                                                  borderRadius:
-                                                      BorderRadius.circular(12),
-                                                ),
-                                                child: const Center(
-                                                  child: Text(
-                                                    "OTP Verification",
-                                                    style: TextStyle(
-                                                      fontSize: 14,
-                                                      color: Color.fromRGBO(
-                                                          159, 196, 232, 1),
-                                                    ),
-                                                  ),
-                                                ),
+                                          SignupModel signupModel = SignupModel(
+                                              username: usernameController.text,
+                                              filePath: base64String,
+                                              fullName: fullNameController.text,
+                                              email: emailController.text,
+                                              birthday: birthDayController.text,
+                                              region: regionController.text,
+                                              phoneNumber:
+                                                  phoneNumberController.text,
+                                              password: passwordController.text,
+                                              coordinates: [
+                                                pos.latitude.toString(),
+                                                pos.longitude.toString()
+                                              ]);
+                                          AuthServices()
+                                              .signupUser(signupModel);
+                                        },
+                                        child: Container(
+                                          width: Get.width * 0.7,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                            color: const Color.fromRGBO(
+                                                0, 51, 142, 1),
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                          ),
+                                          child: const Center(
+                                            child: Text(
+                                              "OTP Verification",
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                color: Color.fromRGBO(
+                                                    159, 196, 232, 1),
                                               ),
-                                            )),
-                                ),
+                                            ),
+                                          ),
+                                        ),
+                                      )),
                               ),
                             ),
                           ],
@@ -350,6 +340,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                       child: GestureDetector(
                         onTap: () {
                           //showSignupModelBottomSheet(context);
+                          Get.to(LoginWithMobileNumberScreen());
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
