@@ -80,8 +80,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         avatarUrl: data.strIconURL,
                         message: data.strMessage,
                         name: data.strName,
-                        time: "02:33",
-                        unreadCount: 3,
+                        time: data.strCreatedTime,
+                        unreadCount: 0,
                         ontap: () {
                           if (data.strType == "private") {
                             Get.to(() => PrivateChatScreen(
