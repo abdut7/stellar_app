@@ -67,7 +67,7 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
                   children: [
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 16,vertical: 6),
-                      child: Text(countryCode?.dialCode ?? "+1",style: TextStyle(color: Colors.white),),
+                      child: Text(countryCode?.dialCode ?? "+91",style: TextStyle(color: Colors.white),),
                       decoration: BoxDecoration(color: SColors.color12),
                     ),
                   ],
