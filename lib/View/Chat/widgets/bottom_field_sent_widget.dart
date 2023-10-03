@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:stellar_chat/services/socket_service/private_chat_service.dart';
 
 class ChatBottomFieldSent extends StatefulWidget {
   final String chatId;
@@ -57,7 +58,14 @@ class _ChatBottomFieldSentState extends State<ChatBottomFieldSent> {
     }
     if (!startRecording) {
       await _soundRecorder!.stopRecorder();
-      GroupChatService.sentGroupVoiceMessage(chatId: widget.chatId, path: path);
+      if (widget.isGroup) {
+        GroupChatService.sentGroupVoiceMessage(
+            chatId: widget.chatId, path: path);
+      } else {
+        PrivateChatService.sentPersonalVoiceMessage(
+            chatId: widget.chatId, path: path);
+      }
+
       // sendFileMessage(File(path), MessageEnum.audio);
     } else {
       await _soundRecorder!.startRecorder(

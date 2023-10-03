@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:stellar_chat/controllers/private_chat_controller.dart';
 import 'package:stellar_chat/functions/image_to_base.dart';
 import 'package:stellar_chat/models/private_chat/private_chat_model.dart';
+import 'package:stellar_chat/services/api_services/chat_message_service.dart';
 import 'package:stellar_chat/services/api_services/upload_files.dart';
 import 'package:stellar_chat/services/socket_service/socket_service.dart';
 import 'package:image_picker/image_picker.dart';
@@ -72,5 +73,6 @@ class PrivateChatService {
       "strType": "private",
       "strUrl": fileUrl,
     });
+    // ChatMessageService.getMessages(chatId: chatId, type: "private");
   }
 }
