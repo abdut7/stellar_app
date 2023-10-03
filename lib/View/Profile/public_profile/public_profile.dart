@@ -178,7 +178,30 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const AboutMeText(),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'About Me\n',
+                              style: TextStyle(
+                                color: SColors.color3,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                            TextSpan(
+                              text: snapshot.data!.strAbout,
+                              style: TextStyle(
+                                color: SColors.color3,
+                                fontSize: 11,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Divider(
