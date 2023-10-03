@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:stellar_chat/View/chat/group_chat/widgets/voice_chat_bubble.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/utils/uid.dart';
@@ -15,7 +17,8 @@ class ChatBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     UserController controller = Get.find();
 
-    final isSent = message.strUserId == globalUid;
+    final isSent = message.strUserId == globalUid ||
+        message.strMessageType == "sentingImage";
     final alignment =
         isSent ? CrossAxisAlignment.end : CrossAxisAlignment.start;
     final color = isSent ? const Color(0xFF243E87) : Colors.grey;
@@ -75,25 +78,43 @@ class ChatBubble extends StatelessWidget {
                             isSender: message.strUserId ==
                                 controller.userDetailsModel.value!.id,
                           )
-                        : const SizedBox(),
+                        : message.strMessageType == "sentingImage"
+                            ? Padding(
+                                padding: const EdgeInsets.all(2.0),
+                                child: Container(
+                                  height: Get.width * 0.4,
+                                  width: Get.width * 0.6,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image:
+                                              FileImage(File(message.strUrl)))),
+                                  child: Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                ),
+                              )
+                            : const SizedBox(),
           ),
           const SizedBox(height: 4.0),
-          Row(
-            mainAxisAlignment:
-                isSent ? MainAxisAlignment.end : MainAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                message.strCreatedTime,
-                style: const TextStyle(color: Colors.grey),
-              ),
-              const SizedBox(width: 4.0),
-              Icon(
-                isSent ? Icons.done_all : Icons.done,
-                color: Colors.grey,
-                size: 16.0,
-              ),
-            ],
-          ),
+          message.strMessageType != "sentingImage"
+              ? Row(
+                  mainAxisAlignment:
+                      isSent ? MainAxisAlignment.end : MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      message.strCreatedTime,
+                      style: const TextStyle(color: Colors.grey),
+                    ),
+                    const SizedBox(width: 4.0),
+                    Icon(
+                      isSent ? Icons.done_all : Icons.done,
+                      color: Colors.grey,
+                      size: 16.0,
+                    ),
+                  ],
+                )
+              : SizedBox(),
         ],
       ),
     );
