@@ -112,8 +112,8 @@ class AuthServices {
       if (res.statusCode == 200) {
         LoginSuccessModel model = LoginSuccessModel.fromJson(res.data);
         login.loginModel(model);
-        storeJwtToken(model.strToken);
-        storeUid(model.id);
+        await storeJwtToken(model.strToken);
+        await storeUid(model.id);
         authenticateUser();
       } else {
         showCustomSnackbar(title: "Error", message: "Invalid OTP");

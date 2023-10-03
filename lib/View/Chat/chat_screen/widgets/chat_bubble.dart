@@ -16,10 +16,11 @@ class ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(message.strName);
     UserController controller = Get.find();
 
-    final isSent = message.strUserId == globalUid ||
-        message.strMessageType == "sentingImage";
+    final isSent =
+        message.strName == 'You' || message.strMessageType == "sentingImage";
     final alignment =
         isSent ? CrossAxisAlignment.end : CrossAxisAlignment.start;
     final color = isSent ? const Color(0xFF243E87) : Colors.grey;
