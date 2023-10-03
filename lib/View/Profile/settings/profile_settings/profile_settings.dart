@@ -81,11 +81,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                     onTap: () {
                       Get.to(() => const QRScreen());
                     },
-                    child: Icon(
-                      Icons.qr_code,
-                      color: SColors.color4,
-                      size: 30,
-                    ),
+                    child: 
+                      SvgPicture.asset(SSvgs.qr,color: SColors.color4,height: 25,)
                   ),
                 ),
               ],

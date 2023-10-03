@@ -74,7 +74,6 @@ class _ResendButtonState extends State<ResendButton> {
           color: SColors.color4,
           fontSize: 12,
           fontWeight: FontWeight.w800,
-          height: 0,
         ),
       ),
     );

@@ -32,7 +32,8 @@ class _OtpVerificationUiState extends State<OtpVerificationUi> {
             decoration: BoxDecoration(
               gradient:  LinearGradient(colors: [
                 SColors.color12,
-                SColors.color12
+                SColors.color12,
+                SColors.color4.withOpacity(0.0)
               ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
               image: DecorationImage(
                 image: AssetImage(SImages.image1),
@@ -121,7 +122,7 @@ class _OtpVerificationUiState extends State<OtpVerificationUi> {
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: '00:30',
+                        text: '00:30 ',
                         style: TextStyle(
                           color: SColors.color4,
                           fontSize: 10,

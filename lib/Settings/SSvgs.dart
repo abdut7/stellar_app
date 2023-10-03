@@ -50,4 +50,5 @@ class SSvgs {
   static String get audioLogo => "assets/Svgs/audioLogo.svg";
   static String get pdfLogo => "assets/Svgs/pdfLogo.svg";
   static String get jpgLogo => "assets/Svgs/jpgLogo.svg";
+  static String get chatBtnIcon => "assets/Svgs/chatBtnIcon.svg";
 }

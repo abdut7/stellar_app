@@ -24,7 +24,7 @@ class _ProfileTextFieldState extends State<ProfileTextField> {
     return Text(
       headingText!,
       style: TextStyle(
-        fontSize: 13,
+        fontSize: 14,
         color: SColors.color3,
         fontWeight: FontWeight.w600,
       ),
@@ -63,7 +63,7 @@ class _ProfileTextFieldState extends State<ProfileTextField> {
       style: TextStyle(
         color: SColors.color3,
         fontWeight: FontWeight.w500,
-        fontSize: 17,
+        fontSize: 15,
         letterSpacing: 0.2,
       ),
       autocorrect: true,

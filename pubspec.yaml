@@ -54,7 +54,7 @@ dependencies:
   fluttertoast: ^8.2.1
   encrypt: ^5.0.1
   flutter_secure_storage: ^9.0.0
-  # google_fonts: ^5.1.0
+  google_fonts:
   loading_animation_widget: ^1.2.0+4
   get: ^4.6.5
   image_picker: ^1.0.4

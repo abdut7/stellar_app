@@ -119,7 +119,7 @@ class _LoginRegionTextFieldState extends State<LoginRegionTextField> {
               style: TextStyle(
                 color: SColors.color3,
                 fontSize: 11,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w400,
               ),
         ),
         const SizedBox(height: 5),
