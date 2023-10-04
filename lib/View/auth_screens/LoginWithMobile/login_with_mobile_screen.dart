@@ -56,14 +56,14 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: const Color.fromRGBO(153, 199, 255, 1),
                         boxShadow: [
-                          BoxShadow(
-                            color:
-                                Colors.black.withOpacity(0.5), // Shadow color
-                            spreadRadius: 5, // Spread radius
-                            blurRadius: 7, // Blur radius
-                            offset: Offset(1,
-                                0), // Offset to control the position of the shadow
-                          ),
+                          // BoxShadow(
+                          //   color:
+                          //       Colors.black.withOpacity(0.5), // Shadow color
+                          //   spreadRadius: 5, // Spread radius
+                          //   blurRadius: 7, // Blur radius
+                          //   offset: Offset(1,
+                          //       0), // Offset to control the position of the shadow
+                          // ),
                         ],
                         borderRadius: BorderRadius.circular(20)),
                     child: Padding(
