@@ -10,6 +10,7 @@ import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:stellar_chat/services/api_services/user_details_service.dart';
 
 class MainProfile extends StatefulWidget {
   const MainProfile({Key? key}) : super(key: key);
@@ -26,162 +27,169 @@ class _MainProfileState extends State<MainProfile> {
     return SafeArea(
         child: Scaffold(
       backgroundColor: SColors.color4,
-      body: DefaultTabController(
-        length: 2,
-        child: ListView(
-          children: <Widget>[
-            Obx(() => Container(
-                  height: 250,
-                  width: Get.width,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(
-                        controller.userDetailsModel.value!.strProfileUrl.isEmpty
-                            ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                            : controller.userDetailsModel.value!.strProfileUrl,
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await GetUserDetailsService.getUserDetails();
+        },
+        child: DefaultTabController(
+          length: 2,
+          child: ListView(
+            children: <Widget>[
+              Obx(() => Container(
+                    height: 250,
+                    width: Get.width,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(
+                          controller
+                                  .userDetailsModel.value!.strProfileUrl.isEmpty
+                              ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                              : controller
+                                  .userDetailsModel.value!.strProfileUrl,
+                        ),
                       ),
                     ),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        width: Get.width,
-                        height: Get.height * 0.2,
-                        decoration: const BoxDecoration(
-                          // color: Colors.red,
-                          gradient: LinearGradient(
-                            colors: [
-                              Colors.white,
-                              Colors.transparent,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          width: Get.width,
+                          height: Get.height * 0.2,
+                          decoration: const BoxDecoration(
+                            // color: Colors.red,
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.white,
+                                Colors.transparent,
+                              ],
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                              stops: [
+                                0.0,
+                                5
+                              ], // Adjust the stops for the gradient effect
+                            ),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                controller.userDetailsModel.value!.strName,
+                                style: TextStyle(
+                                  color: SColors.color3,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                'PHONE NUMBER : ${controller.userDetailsModel.value!.strMobileNo}',
+                                style: TextStyle(
+                                  color: SColors.color3,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              )
                             ],
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter,
-                            stops: [
-                              0.0,
-                              5
-                            ], // Adjust the stops for the gradient effect
                           ),
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              controller.userDetailsModel.value!.strName,
-                              style: TextStyle(
-                                color: SColors.color3,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w800,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              'PHONE NUMBER : ${controller.userDetailsModel.value!.strMobileNo}',
-                              style: TextStyle(
-                                color: SColors.color3,
-                                fontSize: 11,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                )),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
+                      ],
+                    ),
+                  )),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Row(
+                  children: [
+                    ProfileStatus(count: '09', label: 'Posts'),
+                    ProfileStatus(
+                        count:
+                            "${controller.userDetailsModel.value!.followingCount}",
+                        label: 'Following'),
+                    ProfileStatus(
+                        count:
+                            "${controller.userDetailsModel.value!.followersCount}",
+                        label: 'Followers'),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ProfileStatus(count: '09', label: 'Posts'),
-                  ProfileStatus(
-                      count:
-                          "${controller.userDetailsModel.value!.followingCount}",
-                      label: 'Following'),
-                  ProfileStatus(
-                      count:
-                          "${controller.userDetailsModel.value!.followersCount}",
-                      label: 'Followers'),
+                  ProfileButton(
+                      buttonText: 'Edit Profile',
+                      onPressed: () {
+                        Get.to(() => const EditProfile());
+                      }),
+                  ProfileButton(
+                      buttonText: 'Settings',
+                      onPressed: () {
+                        Get.to(() => const ProfileSettings());
+                      })
                 ],
               ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ProfileButton(
-                    buttonText: 'Edit Profile',
-                    onPressed: () {
-                      Get.to(() => const EditProfile());
-                    }),
-                ProfileButton(
-                    buttonText: 'Settings',
-                    onPressed: () {
-                      Get.to(() => const ProfileSettings());
-                    })
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const AboutMeText(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Divider(
-                color: SColors.color9,
-                thickness: 1,
+              const SizedBox(
+                height: 20,
               ),
-            ),
-            TabBar(
-              indicatorColor: SColors.color9,
-              tabs: [
-                Tab(
-                  icon: SvgPicture.asset(
-                    SSvgs.flicksLogo,
-                    width: 30,
-                    height: 30,
-                    color: selectedTabIndex == 0 ? null : Colors.grey,
-                  ),
+              const AboutMeText(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Divider(
+                  color: SColors.color9,
+                  thickness: 1,
                 ),
-                Tab(
-                  icon: SvgPicture.asset(
-                    SSvgs.channelLogo,
-                    width: 30,
-                    height: 30,
-                    color: selectedTabIndex == 1 ? null : Colors.grey,
+              ),
+              TabBar(
+                indicatorColor: SColors.color9,
+                tabs: [
+                  Tab(
+                    icon: SvgPicture.asset(
+                      SSvgs.flicksLogo,
+                      width: 30,
+                      height: 30,
+                      color: selectedTabIndex == 0 ? null : Colors.grey,
+                    ),
                   ),
-                ),
-              ],
-              onTap: (index) {
-                setState(() {
-                  selectedTabIndex = index;
-                });
-              },
-            ),
-            SizedBox(
-              // height: 200,
-              child: IndexedStack(index: selectedTabIndex, children: [
-                Visibility(
-                    visible: selectedTabIndex == 0,
-                    child: CustomGridView(
-                      icon: Icons.photo,
-                    )),
-                Visibility(
-                    visible: selectedTabIndex == 1, child: CustomGridView()),
-              ]),
-            ),
-          ],
+                  Tab(
+                    icon: SvgPicture.asset(
+                      SSvgs.channelLogo,
+                      width: 30,
+                      height: 30,
+                      color: selectedTabIndex == 1 ? null : Colors.grey,
+                    ),
+                  ),
+                ],
+                onTap: (index) {
+                  setState(() {
+                    selectedTabIndex = index;
+                  });
+                },
+              ),
+              SizedBox(
+                // height: 200,
+                child: IndexedStack(index: selectedTabIndex, children: [
+                  Visibility(
+                      visible: selectedTabIndex == 0,
+                      child: CustomGridView(
+                        icon: Icons.photo,
+                      )),
+                  Visibility(
+                      visible: selectedTabIndex == 1, child: CustomGridView()),
+                ]),
+              ),
+            ],
+          ),
         ),
       ),
     ));

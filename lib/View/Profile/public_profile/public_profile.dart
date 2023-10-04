@@ -24,257 +24,269 @@ class PublicProfileScreen extends StatefulWidget {
 }
 
 class _PublicProfileScreenState extends State<PublicProfileScreen> {
+  UserDetailsModel? userDetailsModel;
   int selectedTabIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
       backgroundColor: SColors.color4,
-      body: FutureBuilder(
-          future: PublicProfileService().getPublicProfileData(uid: widget.uid),
-          builder: (context, AsyncSnapshot<UserDetailsModel?> snapshot) {
-            if (!snapshot.hasData || snapshot.data == null) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            return DefaultTabController(
-              length: 2,
-              child: ListView(
-                children: <Widget>[
-                  Container(
-                    height: 250,
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(
-                          snapshot.data!.strProfileUrl.isEmpty
-                              ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                              : snapshot.data!.strProfileUrl,
+      body: RefreshIndicator(
+        onRefresh: () async {
+          userDetailsModel = await PublicProfileService()
+              .getPublicProfileData(uid: widget.uid);
+          // setState(() {});
+        },
+        child: FutureBuilder(
+            future:
+                PublicProfileService().getPublicProfileData(uid: widget.uid),
+            builder: (context, AsyncSnapshot<UserDetailsModel?> snapshot) {
+              if (!snapshot.hasData || snapshot.data == null) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              userDetailsModel = snapshot.data;
+              return DefaultTabController(
+                length: 2,
+                child: ListView(
+                  children: <Widget>[
+                    Container(
+                        height: 250,
+                        width: Get.width,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                              userDetailsModel!.strProfileUrl.isEmpty
+                                  ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                  : userDetailsModel!.strProfileUrl,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-
-                    child:
-                    Stack(
-                      children: [
-
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                        child: Stack(
                           children: [
-                            Row(
+                            Column(
                               mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    GestureDetector(
+                                        onTap: () {
+                                          showBottomSheet(context, 'profile');
+                                        },
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 28),
+                                          child: SvgPicture.asset(
+                                            SSvgs.moreVertz,
+                                            width: 10,
+                                            height: 22,
+                                          ),
+                                        )),
+                                  ],
+                                ),
+                                Container(
+                                  width: Get.width,
+                                  height: Get.height * 0.2,
+                                  decoration: const BoxDecoration(
+                                    // color: Colors.red,
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Colors.white,
+                                        Colors.transparent,
+                                      ],
+                                      begin: Alignment.bottomCenter,
+                                      end: Alignment.topCenter,
+                                      stops: [
+                                        0.0,
+                                        5
+                                      ], // Adjust the stops for the gradient effect
+                                    ),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      GestureDetector(
-                                          onTap: () {
-                                            showBottomSheet(context, 'profile');
-                                          },
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(right: 28,bottom: 25),
-                                            child: SvgPicture.asset(SSvgs.moreVertz,width: 10,height: 22,),
-                                          )),
+                                      Text(
+                                        userDetailsModel!.strName,
+                                        style: TextStyle(
+                                          color: SColors.color3,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        'PHONE NUMBER : ${userDetailsModel!.strMobileNo}',
+                                        style: TextStyle(
+                                          color: SColors.color3,
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      )
                                     ],
                                   ),
-                            Container(
-                              width: Get.width,
-                              height: Get.height * 0.2,
-                              decoration: const BoxDecoration(
-                                // color: Colors.red,
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Colors.white,
-                                    Colors.transparent,
-                                  ],
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter,
-                                  stops: [
-                                    0.0,
-                                    5
-                                  ], // Adjust the stops for the gradient effect
+                                ),
+                              ],
+                            ),
+                          ],
+                        )
+
+                        // Column(
+                        //   children: [
+                        //     Row(
+                        //       mainAxisAlignment: MainAxisAlignment.end,
+                        //       children: [
+                        //         GestureDetector(
+                        //             onTap: () {},
+                        //             child: Padding(
+                        //               padding: const EdgeInsets.all(8.0),
+                        //               child: SvgPicture.asset(SSvgs.sv29),
+                        //             )),
+                        //       ],
+                        //     ),
+                        //     const Spacer(),
+                        //     Text(
+                        //       userDetailsModel!.strName,
+                        //       style: TextStyle(
+                        //         color: SColors.color3,
+                        //         fontSize: 14,
+                        //         fontWeight: FontWeight.w800,
+                        //       ),
+                        //     ),
+                        //     const SizedBox(
+                        //       height: 10,
+                        //     ),
+                        //     Text(
+                        //       'PHONE NUMBER : ${userDetailsModel!.strMobileNo}',
+                        //       style: TextStyle(
+                        //         color: SColors.color3,
+                        //         fontSize: 11,
+                        //         fontWeight: FontWeight.w600,
+                        //       ),
+                        //     ),
+                        //     const SizedBox(
+                        //       height: 10,
+                        //     )
+                        //   ],
+                        // ),
+                        ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 80),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              if (widget.isFromChatScreen) {
+                                Get.back();
+                              }
+                            },
+                            child: ContactThrough(
+                                svgAsset: SImages.msgIcon, label: 'Message'),
+                          ),
+                          ContactThrough(
+                              svgAsset: SImages.callIcon, label: 'Call'),
+                          ContactThrough(
+                              svgAsset: SImages.videoIcon, label: 'Video'),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    FollowDetailsWidget(
+                        model: userDetailsModel!, uid: widget.uid),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'About Me\n',
+                                style: TextStyle(
+                                  color: SColors.color3,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w800,
                                 ),
                               ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    snapshot.data!.strName,
-                                    style: TextStyle(
-                                      color: SColors.color3,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w800,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'PHONE NUMBER : ${snapshot.data!.strMobileNo}',
-                                    style: TextStyle(
-                                      color: SColors.color3,
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  )
-                                ],
+                              TextSpan(
+                                text: userDetailsModel!.strAbout,
+                                style: TextStyle(
+                                  color: SColors.color3,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25),
+                      child: Divider(
+                        color: SColors.color3,
+                        thickness: 1,
+                      ),
+                    ),
+                    TabBar(
+                      indicatorColor: SColors.color9,
+                      tabs: [
+                        Tab(
+                          icon: SvgPicture.asset(
+                            SSvgs.flicksLogo,
+                            width: 30,
+                            height: 30,
+                            color: selectedTabIndex == 0 ? null : Colors.grey,
+                          ),
+                        ),
+                        Tab(
+                          icon: SvgPicture.asset(
+                            SSvgs.channelLogo,
+                            width: 30,
+                            height: 30,
+                            color: selectedTabIndex == 1 ? null : Colors.grey,
+                          ),
                         ),
                       ],
-                    )
-
-                    // Column(
-                    //   children: [
-                    //     Row(
-                    //       mainAxisAlignment: MainAxisAlignment.end,
-                    //       children: [
-                    //         GestureDetector(
-                    //             onTap: () {},
-                    //             child: Padding(
-                    //               padding: const EdgeInsets.all(8.0),
-                    //               child: SvgPicture.asset(SSvgs.sv29),
-                    //             )),
-                    //       ],
-                    //     ),
-                    //     const Spacer(),
-                    //     Text(
-                    //       snapshot.data!.strName,
-                    //       style: TextStyle(
-                    //         color: SColors.color3,
-                    //         fontSize: 14,
-                    //         fontWeight: FontWeight.w800,
-                    //       ),
-                    //     ),
-                    //     const SizedBox(
-                    //       height: 10,
-                    //     ),
-                    //     Text(
-                    //       'PHONE NUMBER : ${snapshot.data!.strMobileNo}',
-                    //       style: TextStyle(
-                    //         color: SColors.color3,
-                    //         fontSize: 11,
-                    //         fontWeight: FontWeight.w600,
-                    //       ),
-                    //     ),
-                    //     const SizedBox(
-                    //       height: 10,
-                    //     )
-                    //   ],
-                    // ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 80),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            if (widget.isFromChatScreen) {
-                              Get.back();
-                            }
-                          },
-                          child: ContactThrough(
-                              svgAsset: SImages.msgIcon, label: 'Message'),
-                        ),
-                        ContactThrough(
-                            svgAsset: SImages.callIcon, label: 'Call'),
-                        ContactThrough(
-                            svgAsset: SImages.videoIcon, label: 'Video'),
-                      ],
+                      onTap: (index) {
+                        setState(() {
+                          selectedTabIndex = index;
+                        });
+                      },
                     ),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  FollowDetailsWidget(model: snapshot.data!, uid: widget.uid),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Text.rich(
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'About Me\n',
-                              style: TextStyle(
-                                color: SColors.color3,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w800,
-                              ),
-                            ),
-                            TextSpan(
-                              text: snapshot.data!.strAbout,
-                              style: TextStyle(
-                                color: SColors.color3,
-                                fontSize: 11,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
-                    child: Divider(
-                      color: SColors.color3,
-                      thickness: 1,
+                    SizedBox(
+                      child: IndexedStack(index: selectedTabIndex, children: [
+                        Visibility(
+                            visible: selectedTabIndex == 0,
+                            child: CustomGridView(
+                              icon: Icons.photo,
+                            )),
+                        Visibility(
+                            visible: selectedTabIndex == 1,
+                            child: CustomGridView()),
+                      ]),
                     ),
-                  ),
-                  TabBar(
-                    indicatorColor: SColors.color9,
-                    tabs: [
-                      Tab(
-                        icon: SvgPicture.asset(
-                          SSvgs.flicksLogo,
-                          width: 30,
-                          height: 30,
-                          color: selectedTabIndex == 0 ? null : Colors.grey,
-                        ),
-                      ),
-                      Tab(
-                        icon: SvgPicture.asset(
-                          SSvgs.channelLogo,
-                          width: 30,
-                          height: 30,
-                          color: selectedTabIndex == 1 ? null : Colors.grey,
-                        ),
-                      ),
-                    ],
-                    onTap: (index) {
-                      setState(() {
-                        selectedTabIndex = index;
-                      });
-                    },
-                  ),
-                  SizedBox(
-                    child: IndexedStack(index: selectedTabIndex, children: [
-                      Visibility(
-                          visible: selectedTabIndex == 0,
-                          child: CustomGridView(
-                            icon: Icons.photo,
-                          )),
-                      Visibility(
-                          visible: selectedTabIndex == 1,
-                          child: CustomGridView()),
-                    ]),
-                  ),
-                ],
-              ),
-            );
-          }),
+                  ],
+                ),
+              );
+            }),
+      ),
     ));
-    
-    
   }
 }
+
 void showBottomSheet(BuildContext context, String action) {
   showModalBottomSheet(
     context: context,
@@ -286,27 +298,27 @@ void showBottomSheet(BuildContext context, String action) {
     ),
     builder: (BuildContext context) {
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-              GestureDetector(
-                onTap: (){},
-                child: Text(
-                  'Block',
-                  style: TextStyle(
-                    color: SColors.color12,
-                    fontSize: 10,
-                    fontWeight: FontWeight.w500,
-                  ),
+            GestureDetector(
+              onTap: () {},
+              child: Text(
+                'Block',
+                style: TextStyle(
+                  color: SColors.color12,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
+            ),
             const SizedBox(
               height: 25,
             ),
             GestureDetector(
-              onTap: (){},
+              onTap: () {},
               child: Text(
                 'Report',
                 style: TextStyle(
@@ -316,7 +328,6 @@ void showBottomSheet(BuildContext context, String action) {
                 ),
               ),
             ),
-
           ],
         ),
       );
