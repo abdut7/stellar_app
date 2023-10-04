@@ -90,7 +90,6 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
           color: Colors.white, borderRadius: BorderRadius.circular(8)),
       child: widget.isBirthday
           ? Container(
-<<<<<<< HEAD
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(8)),
               child: TextFormField(
@@ -109,23 +108,6 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
                   ),
                   controller: controller),
             )
-=======
-        decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(8)),
-        child: TextFormField(
-            readOnly: true, // Prevent manual editing
-            onTap: () => selectDate(context), // Show date picker on tap
-            decoration: buildInputDecoration(),
-
-            // const InputDecoration(
-            //   border: InputBorder.none,
-            //   hintText: 'Select Date',
-            //   hintStyle: TextStyle(color: Color(0xFFABA8A8), fontSize: 10, fontWeight: FontWeight.w600,),
-            //   prefixIcon: Icon(Icons.calendar_today),
-            // ),
-            controller: controller),
-      )
->>>>>>> 27d1740fd79c0af69f389a20d29507e6fd09e5d6
           : TextFormField(
               onChanged: widget.onChanged,
               onSaved: widget.onSaved,
