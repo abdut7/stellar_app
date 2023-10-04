@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/View/auth_screens/LoginWithMobile/login_with_mobile_screen.dart';
+import 'package:stellar_chat/View/auth_screens/LoginWithMobile/widgets/login_phone_textfield.dart';
 import 'package:stellar_chat/View/auth_screens/signup_with_mobile/widgets/phone_textfield.dart';
 import 'package:stellar_chat/View/auth_screens/signup_with_mobile/widgets/region_textfield.dart';
 import 'package:stellar_chat/View/auth_screens/signup_with_mobile/widgets/sign_up_text_field.dart';
@@ -125,8 +126,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-
-        decoration:  BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(SImages.vectorBackground),
             fit: BoxFit.cover,
@@ -155,7 +155,9 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 100,),
+                    const SizedBox(
+                      height: 100,
+                    ),
                     Container(
                       width: Get.width * 0.80,
                       //height: Get.height * 0.9,
@@ -182,7 +184,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                 Text(
+                                Text(
                                   "Sign Up\nwith Mobile",
                                   style: TextStyle(
                                     color: SColors.color12,
@@ -298,7 +300,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                                               birthday: birthDayController.text,
                                               region: regionController.text,
                                               phoneNumber:
-                                                  phoneNumberController.text,
+                                                  "${publiccountryCode == null ? "+91" : publiccountryCode!.dialCode.toString()}${phoneNumberController.text}",
                                               password: passwordController.text,
                                               coordinates: [
                                                 pos.latitude.toString(),
@@ -333,7 +335,6 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                                       )),
                               ),
                             ),
-
                           ],
                         ),
                       ),
@@ -347,8 +348,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                               color: Colors.white,
                               spreadRadius: 0,
                               blurRadius: 0,
-                              offset: Offset(0,5)
-                          )
+                              offset: Offset(0, 5))
                         ],
                         color: Colors.white,
                         borderRadius: BorderRadius.vertical(
@@ -371,7 +371,9 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                            const SizedBox(width: 5,),
+                            const SizedBox(
+                              width: 5,
+                            ),
                             Text(
                               "Sign In",
                               style: TextStyle(

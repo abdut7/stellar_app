@@ -1,6 +1,7 @@
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/View/auth_screens/LoginWithMobile/widgets/login_phone_textfield.dart';
 
 class PhoneTextField extends StatefulWidget {
   final TextInputType keyboardType;
@@ -26,7 +27,7 @@ class PhoneTextField extends StatefulWidget {
 
 class _PhoneTextFieldState extends State<PhoneTextField> {
   final countryPicker = const FlCountryCodePicker();
-  CountryCode?countryCode;
+
 
   InputDecoration buildInputDecoration() {
     return InputDecoration(
@@ -66,14 +67,14 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
               onTap: () async {
                 final code = await countryPicker.showPicker(context: context);
                 setState(() {
-                  countryCode =code;
+                  publiccountryCode =code;
                 });
               },
               child: Row(
                 children: [
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 10,vertical: 2),
-                    child: Text(countryCode?.dialCode ?? "+91",style: TextStyle(color: Colors.white),),
+                    child: Text(publiccountryCode?.dialCode ?? "+91",style: TextStyle(color: Colors.white),),
                     decoration: BoxDecoration(color: SColors.color12),
                   ),
                 ],
