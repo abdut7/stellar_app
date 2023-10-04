@@ -20,6 +20,12 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
   GlobalKey<FormState> _key = GlobalKey();
   String phone = '';
   bool isIssues = false;
+  String? validateRegion(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Region is required';
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,6 +104,7 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                             height: 50,
                           ),
                           LoginRegionTextField(
+                            //validator: validateRegion,
                             controller: regionController,
                             keyboardType: TextInputType.text,
                             labelText: 'REGION',
