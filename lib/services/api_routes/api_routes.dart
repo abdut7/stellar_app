@@ -21,4 +21,5 @@ class ApiRoutes {
   static String getBlockedUserList = "/get_blocked_users";
   static String updateUser = "/update_user";
   static String chatHistorySearch = "/get_chat_history";
+  static String exitGroup = "/exit_group";
 }

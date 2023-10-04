@@ -47,10 +47,10 @@ class ChatHistoryList {
   late final String strCreatedTime;
 
   ChatHistoryList.fromJson(Map<String, dynamic> json) {
-    id = json['_id'];
+    id = json['_id'] ?? "";
     strType = json['strType'];
     strChatId = json['strChatId'];
-    strName = json['strName']??"";
+    strName = json['strName'] ?? "";
     strIconURL = json['strIconURL'];
     strMessage = json['strMessage'];
     strCreatedTime = json['strCreatedTime'];

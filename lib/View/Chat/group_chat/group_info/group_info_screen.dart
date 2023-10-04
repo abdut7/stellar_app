@@ -1,5 +1,6 @@
 import 'package:stellar_chat/View/profile/public_profile/public_profile.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
+import 'package:stellar_chat/services/api_services/chat_history_service.dart';
 import 'package:stellar_chat/services/api_services/group_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -227,9 +228,38 @@ class GroupInfoScreen extends StatelessWidget {
                         const SizedBox(
                           width: 10,
                         ),
-                        const Text(
-                          "Exit Group",
-                          style: TextStyle(color: Colors.red),
+                        InkWell(
+                          onTap: () async {
+                            if (resModel.strCreatedId ==
+                                    controller.userDetailsModel.value!.id &&
+                                resModel.intParticipants > 1) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                      'You cannot exit the group because you created it.'),
+                                ),
+                              );
+                              return;
+                            }
+
+                            //exit group here
+                            // call exit group api here
+                            bool isExitSuccess =
+                                await GroupServices.exitGroup(chatId);
+                            if (isExitSuccess) {
+                              await ChatHistoryServiceApi.getChatHistory();
+                              Get.back();
+                              Get.back();
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text('Succesfully Exited'),
+                              ));
+                            }
+                          },
+                          child: const Text(
+                            "Exit Group",
+                            style: TextStyle(color: Colors.red),
+                          ),
                         )
                       ],
                     ),

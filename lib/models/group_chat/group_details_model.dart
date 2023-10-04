@@ -1,16 +1,16 @@
 class GroupDetailsResponseModel {
-  GroupDetailsResponseModel({
-    required this.success,
-    required this.message,
-    required this.statusCode,
-    required this.strGroupName,
-    required this.strCreatedTime,
-    required this.strDiscription,
-    required this.strIconURL,
-    required this.strCreatedBy,
-    required this.intParticipants,
-    required this.groupUser,
-  });
+  GroupDetailsResponseModel(
+      {required this.success,
+      required this.message,
+      required this.statusCode,
+      required this.strGroupName,
+      required this.strCreatedTime,
+      required this.strDiscription,
+      required this.strIconURL,
+      required this.strCreatedBy,
+      required this.intParticipants,
+      required this.groupUser,
+      required this.strCreatedId});
   late final bool success;
   late final String message;
   late final int statusCode;
@@ -20,6 +20,7 @@ class GroupDetailsResponseModel {
   late final String strIconURL;
   late final String strCreatedBy;
   late final int intParticipants;
+  late final String strCreatedId;
   late final List<GroupUser> groupUser;
 
   GroupDetailsResponseModel.fromJson(Map<String, dynamic> json) {
@@ -31,6 +32,7 @@ class GroupDetailsResponseModel {
     strDiscription = json['strDiscription'];
     strIconURL = json['strIconURL'];
     strCreatedBy = json['strCreatedBy'];
+    strCreatedId = json['strCreatedId']??"";
     intParticipants = json['intParticipants'];
     groupUser = List.from(json['arrUserList'])
         .map((e) => GroupUser.fromJson(e))

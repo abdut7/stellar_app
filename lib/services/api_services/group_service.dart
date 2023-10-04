@@ -94,4 +94,22 @@ class GroupServices {
       chatController.isLoading(false);
     }
   }
+
+  static Future<bool> exitGroup(String id) async {
+    Dio dio = Dio();
+    String path = ApiRoutes.baseUrl + ApiRoutes.exitGroup;
+    print(path);
+    Map<String, dynamic> header = await getHeader();
+    Map<String, dynamic> body = {
+      "_id": id,
+    };
+    try {
+      Response response =
+          await dio.post(path, options: Options(headers: header), data: body);
+      return true;
+    } on Exception catch (e) {
+      // TODO
+      return false;
+    }
+  }
 }
