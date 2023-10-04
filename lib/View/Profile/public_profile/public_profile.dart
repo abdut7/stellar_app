@@ -71,7 +71,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                             showBottomSheet(context, 'profile');
                                           },
                                           child: Padding(
-                                            padding: const EdgeInsets.only(right: 28),
+                                            padding: const EdgeInsets.only(right: 28,bottom: 25),
                                             child: SvgPicture.asset(SSvgs.moreVertz,width: 10,height: 22,),
                                           )),
                                     ],
