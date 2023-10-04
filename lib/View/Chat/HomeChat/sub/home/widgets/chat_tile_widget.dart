@@ -30,11 +30,10 @@ class ChatListItem extends StatelessWidget {
             : avatarUrl),
         radius: 30, // Adjust the size of the avatar
       ),
-      title: Flexible(
-          child: Text(
+      title: Text(
         name,
         overflow: TextOverflow.ellipsis,
-      )),
+      ),
       subtitle: Row(
         children: [
           const Icon(
