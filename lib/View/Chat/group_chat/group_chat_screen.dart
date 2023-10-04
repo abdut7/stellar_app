@@ -4,6 +4,7 @@ import 'package:stellar_chat/View/chat/group_chat/widgets/group_chat_bubble.dart
 import 'package:stellar_chat/View/chat/widgets/bottom_field_sent_widget.dart';
 import 'package:stellar_chat/View/chat/widgets/sent_contact/pick_contact_screen.dart';
 import 'package:stellar_chat/controllers/group_chat_controller.dart';
+import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/models/api_models/chat_history_model.dart';
 import 'package:stellar_chat/models/group_chat/group_message_model.dart';
 import 'package:stellar_chat/services/api_services/group_service.dart';
@@ -44,6 +45,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    UserController userController = Get.find();
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -122,7 +124,8 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                     senderName: model.strName,
                     // message: model.strMessage,
                     message: model,
-                    alignment: model.strName == 'you'
+                    alignment: model.strUserId !=
+                            userController.userDetailsModel.value!.id
                         ? BubbleAlignment.left
                         : BubbleAlignment.right,
                   );
