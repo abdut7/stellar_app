@@ -79,56 +79,59 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
         setState(() {
           selectedDate = picked;
           controller.text =
-          "${selectedDate.day}-${selectedDate.month}-${selectedDate.year}";
+              "${selectedDate.day}-${selectedDate.month}-${selectedDate.year}";
         });
       }
     }
 
     return Container(
       height: 35,
-      decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(8)),
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(8)),
       child: widget.isBirthday
           ? Container(
-        decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(8)),
-        child: TextFormField(
-            readOnly: true, // Prevent manual editing
-            onTap: () => selectDate(context), // Show date picker on tap
-            decoration: const InputDecoration(
-              border: InputBorder.none,
-              labelText: 'Select Date',
-              labelStyle: TextStyle(color: Color(0xFFABA8A8), fontSize: 10, fontWeight: FontWeight.w600,),
-              hintText: 'Choose a date',
-              prefixIcon: Icon(Icons.calendar_today),
-            ),
-            controller: controller),
-      )
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(8)),
+              child: TextFormField(
+                  readOnly: true, // Prevent manual editing
+                  onTap: () => selectDate(context), // Show date picker on tap
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    // labelText: 'Select Date',
+                    labelStyle: TextStyle(
+                      color: Color(0xFFABA8A8),
+                      fontSize: 10,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    hintText: 'Choose a date',
+                    prefixIcon: Icon(Icons.calendar_today),
+                  ),
+                  controller: controller),
+            )
           : TextFormField(
-        onChanged: widget.onChanged,
-        onSaved: widget.onSaved,
-        validator: widget.validator,
-        obscureText: widget.isPassword,
-        controller: controller,
-        keyboardType: widget.keyboardType,
-        cursorColor: Colors.black,
-        style: TextStyle(
-          color: SColors.color3,
-          fontSize: 16,
-          fontWeight: FontWeight.w400,
-        ),
-        autocorrect: true,
-        decoration: buildInputDecoration(),
-      ),
+              onChanged: widget.onChanged,
+              onSaved: widget.onSaved,
+              validator: widget.validator,
+              obscureText: widget.isPassword,
+              controller: controller,
+              keyboardType: widget.keyboardType,
+              cursorColor: Colors.black,
+              style: TextStyle(
+                color: SColors.color3,
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),
+              autocorrect: true,
+              decoration: buildInputDecoration(),
+            ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 6),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 6),
       child: textField(widget.controller),
     );
   }
 }
-
-

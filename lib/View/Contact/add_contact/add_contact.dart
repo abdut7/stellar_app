@@ -1,9 +1,11 @@
+import 'package:share_plus/share_plus.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/View/Contact/add_contact/select_contacts_to_add_screen.dart';
 import 'package:stellar_chat/View/contact/add_contact/friends_in_radar/friends_in_radar.dart';
 import 'package:stellar_chat/View/contact/add_contact/scan_qr_code.dart';
 import 'package:stellar_chat/View/contact/show_contact/show_contacts_screen.dart';
+import 'package:stellar_chat/functions/share_or_copy.dart';
 import 'package:stellar_chat/widgets/add_contact_listtile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -54,7 +56,10 @@ class _AddContactUiState extends State<AddContactUi> {
           AddContactListTile(
             text: 'Invite Friends',
             subtitle: 'Invite friends to chat using the app!',
-            onPressed: () {},
+            onPressed: () {
+              Share.share('check out stellar chat https://stellarchat.com',
+                  subject: 'Come connect me on Stellar chat');
+            },
             svgAssetPath: SSvgs.invite,
           ),
           AddContactListTile(

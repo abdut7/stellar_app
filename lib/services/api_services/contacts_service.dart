@@ -41,6 +41,7 @@ class ContactServiceApi {
   }
 
   static Future<void> createContact(List<String> newPhoneNumber) async {
+    print(newPhoneNumber);
     ContactsController contactsController = Get.put(ContactsController());
 
     Dio dio = Dio();

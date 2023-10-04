@@ -244,7 +244,9 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                               keyboardType: TextInputType.text,
                               hintText: 'Region',
                               validator: validateRegion,
-                              suffixIcon: Icon(Icons.arrow_drop_down,),
+                              suffixIcon: Icon(
+                                Icons.arrow_drop_down,
+                              ),
                             ),
                             PhoneTextField(
                               controller: phoneNumberController,
@@ -298,13 +300,14 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                                               birthday: birthDayController.text,
                                               region: regionController.text,
                                               phoneNumber:
-                                                  "${publiccountryCode == null ? "+91" : publiccountryCode!.dialCode.toString()}${phoneNumberController.text}",
+                                                  // "${publiccountryCode == null ? "+91" : publiccountryCode!.dialCode.toString()}${phoneNumberController.text}"
+                                                  phoneNumberController.text,
                                               password: passwordController.text,
                                               coordinates: [
                                                 pos.latitude.toString(),
                                                 pos.longitude.toString()
                                               ]);
-                                          print(signupModel.toString());
+                                          // print(signupModel.toString());
                                           AuthServices()
                                               .signupUser(signupModel);
                                         },

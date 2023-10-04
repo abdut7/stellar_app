@@ -153,7 +153,9 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                                   isIssues = false;
                                   _key.currentState!.save();
                                   AuthServices().loginService(
-                                      "$countryCode${phoneNumberController.text}");
+                                      phoneNumberController.text
+                                      // "$countryCode${phoneNumberController.text}"
+                                      );
                                 } else {
                                   isIssues = true;
                                 }
