@@ -63,20 +63,6 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-<<<<<<< HEAD
-            Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-                  child: Text(
-                    publiccountryCode?.dialCode ?? "+91",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w300,
-                      letterSpacing: -0.18,
-                    ),
-=======
             GestureDetector(
               onTap: () async {
                 final code = await countryPicker.showPicker(context: context);
@@ -90,7 +76,6 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
                     padding: EdgeInsets.symmetric(horizontal: 10,vertical: 2),
                     child: Text(publiccountryCode?.dialCode ?? "+91",style: TextStyle(color: Colors.white),),
                     decoration: BoxDecoration(color: SColors.color12),
->>>>>>> fc339e30b45b7d4f975f308bbdd2f80edafe7ae2
                   ),
                   decoration: BoxDecoration(color: SColors.color4),
                 ),
