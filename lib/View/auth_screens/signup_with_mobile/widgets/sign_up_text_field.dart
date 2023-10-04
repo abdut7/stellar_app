@@ -95,17 +95,8 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
               child: TextFormField(
                   readOnly: true, // Prevent manual editing
                   onTap: () => selectDate(context), // Show date picker on tap
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                    // labelText: 'Select Date',
-                    labelStyle: TextStyle(
-                      color: Color(0xFFABA8A8),
-                      fontSize: 10,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    hintText: 'Choose a date',
-                    prefixIcon: Icon(Icons.calendar_today),
-                  ),
+                  decoration:
+                  buildInputDecoration(),
                   controller: controller),
             )
           : TextFormField(
