@@ -1,3 +1,4 @@
+import 'package:stellar_chat/View/profile/public_profile/public_profile.dart';
 import 'package:stellar_chat/services/api_services/group_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -177,12 +178,26 @@ class GroupInfoScreen extends StatelessWidget {
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) => ListTile(
+                              onTap: () {
+                                if (resModel.groupUser[index].isCreatedUser) {
+                                  print("Creeated user");
+                                  return;
+                                }
+                                Get.to(() => PublicProfileScreen(
+                                    uid: resModel.groupUser[index].strUserId));
+                              },
                               leading: CircleAvatar(
                                 backgroundImage: NetworkImage(
                                     resModel.groupUser[index].strProfileIcon),
                               ),
                               title:
                                   Text(resModel.groupUser[index].strFullName),
+                              trailing: resModel.groupUser[index].isAdmin
+                                  ? const Text(
+                                      "Admin",
+                                      style: TextStyle(color: Colors.green),
+                                    )
+                                  : const SizedBox(),
                             ),
                         separatorBuilder: (context, index) => const Divider(),
                         itemCount: resModel.groupUser.length),

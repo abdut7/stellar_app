@@ -20,6 +20,7 @@ class FollowDetailsWidget extends StatefulWidget {
   State<FollowDetailsWidget> createState() => _FollowDetailsWidgetState();
   late int following = 0;
   late bool isFollowing = false;
+  late int followers = 0;
 }
 
 class _FollowDetailsWidgetState extends State<FollowDetailsWidget> {
@@ -30,6 +31,7 @@ class _FollowDetailsWidgetState extends State<FollowDetailsWidget> {
     super.initState();
     widget.following = widget.model.followingCount;
     widget.isFollowing = widget.model.isFollowing;
+    widget.followers = widget.model.followersCount;
   }
 
   @override
@@ -43,8 +45,7 @@ class _FollowDetailsWidgetState extends State<FollowDetailsWidget> {
               ProfileStatus(
                   count: "${widget.model.intPostCount}", label: 'Posts'),
               ProfileStatus(count: "${widget.following}", label: 'Following'),
-              ProfileStatus(
-                  count: "${widget.model.followersCount}", label: 'Followers'),
+              ProfileStatus(count: "${widget.followers}", label: 'Followers'),
             ],
           ),
         ),
@@ -62,7 +63,7 @@ class _FollowDetailsWidgetState extends State<FollowDetailsWidget> {
                     if (value) {
                       setState(() {
                         widget.isFollowing = false;
-                        widget.following -= 1;
+                        widget.followers -= 1;
                       });
                     }
                   });
@@ -71,7 +72,7 @@ class _FollowDetailsWidgetState extends State<FollowDetailsWidget> {
                     if (value) {
                       setState(() {
                         widget.isFollowing = true;
-                        widget.following += 1;
+                        widget.followers += 1;
                       });
                     }
                   });
