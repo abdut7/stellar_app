@@ -1,4 +1,5 @@
 import 'package:stellar_chat/View/profile/public_profile/public_profile.dart';
+import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/services/api_services/group_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,6 +15,7 @@ class GroupInfoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserController controller = Get.find();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -179,7 +181,8 @@ class GroupInfoScreen extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) => ListTile(
                               onTap: () {
-                                if (resModel.groupUser[index].isCreatedUser) {
+                                if (resModel.groupUser[index].strUserId ==
+                                    controller.userDetailsModel.value!.id) {
                                   print("Creeated user");
                                   return;
                                 }
