@@ -69,7 +69,7 @@ class AccountServices {
     Dio dio = Dio();
     String path = ApiRoutes.baseUrl + ApiRoutes.unBlockUser;
     Map<String, dynamic> header = await getHeader();
-    Map<String, String> body = {"strFollowingUserId": id};
+    Map<String, String> body = {"strUserId": id};
     try {
       await dio.post(path, options: Options(headers: header), data: body);
       Get.snackbar(

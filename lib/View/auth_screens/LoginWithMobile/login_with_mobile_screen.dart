@@ -55,13 +55,15 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                     height: Get.height * 0.5,
                     decoration: BoxDecoration(
                         color: const Color.fromRGBO(153, 199, 255, 1),
-                        boxShadow: const [
+                        boxShadow: [
                           BoxShadow(
-                            color: Colors.black,
-                            offset: Offset(0.0, 0.0),
-                            blurRadius: 0.0,
-                            spreadRadius: 0.0,
-                          ), //BoxS
+                            color:
+                                Colors.black.withOpacity(0.5), // Shadow color
+                            spreadRadius: 5, // Spread radius
+                            blurRadius: 7, // Blur radius
+                            offset: Offset(1,
+                                0), // Offset to control the position of the shadow
+                          ),
                         ],
                         borderRadius: BorderRadius.circular(20)),
                     child: Padding(
@@ -172,11 +174,10 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.white,
-                            spreadRadius: 0,
-                            blurRadius: 0,
-                            offset: Offset(0,5)
-                          )
+                              color: Colors.white,
+                              spreadRadius: 0,
+                              blurRadius: 0,
+                              offset: Offset(0, 5))
                         ],
                         color: Colors.white,
                         borderRadius: BorderRadius.vertical(
@@ -187,19 +188,24 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                         onTap: () {
                           showSignupModelBottomSheet(context);
                         },
-                        child:  Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Don't have an account?",style: TextStyle(
-                              color: Color(0xFF606060),
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                            ),),
-                             SizedBox(width: 5,),
+                            Text(
+                              "Don't have an account?",
+                              style: TextStyle(
+                                color: Color(0xFF606060),
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
                             Text(
                               "Sign Up",
                               style: TextStyle(
-                                fontSize: 16,
+                                  fontSize: 16,
                                   color: SColors.color3,
                                   fontWeight: FontWeight.w800),
                             )
