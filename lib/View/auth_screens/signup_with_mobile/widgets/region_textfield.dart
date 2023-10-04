@@ -97,7 +97,7 @@ class _RegionTextFieldState extends State<RegionTextField> {
     return Container(
       height: 35,
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(5)),
+          color: Colors.white, borderRadius: BorderRadius.circular(8)),
       child:  TextFormField(
         readOnly: true,
         onChanged: widget.onChanged,

@@ -91,7 +91,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
       child: Container(
         height: 35,
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(5)),
+            color: Colors.white, borderRadius: BorderRadius.circular(8)),
         child:  TextFormField(
           maxLines: 1,
           onChanged: widget.onChanged,

@@ -86,11 +86,11 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
 
     return Container(
       height: 35,
-      decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(5)),
+      decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(8)),
       child: widget.isBirthday
           ? Container(
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(5)),
+            color: Colors.white, borderRadius: BorderRadius.circular(8)),
         child: TextFormField(
             readOnly: true, // Prevent manual editing
             onTap: () => selectDate(context), // Show date picker on tap
