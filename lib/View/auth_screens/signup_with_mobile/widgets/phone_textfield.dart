@@ -77,8 +77,6 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
                     child: Text(publiccountryCode?.dialCode ?? "+91",style: TextStyle(color: Colors.white),),
                     decoration: BoxDecoration(color: SColors.color12),
                   ),
-                  decoration: BoxDecoration(color: SColors.color4),
-                ),
                 GestureDetector(
                     onTap: () async {
                       final code =
@@ -101,6 +99,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
                 ),
                 const SizedBox(width: 5,),
               ],
+            ),
             ),
           ],
         ),

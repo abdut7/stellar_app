@@ -5,7 +5,7 @@ class SignUpTextField extends StatefulWidget {
   final TextInputType keyboardType;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
-  final String hintText;
+  final String? hintText;
   final TextEditingController controller;
   final bool isPassword;
   final bool isBirthday;
@@ -20,7 +20,7 @@ class SignUpTextField extends StatefulWidget {
     required this.keyboardType,
     this.prefixIcon,
     this.suffixIcon,
-    required this.hintText,
+     this.hintText,
     required this.controller,
     this.validator,
     this.onSaved,
@@ -94,13 +94,14 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
         child: TextFormField(
             readOnly: true, // Prevent manual editing
             onTap: () => selectDate(context), // Show date picker on tap
-            decoration: const InputDecoration(
-              border: InputBorder.none,
-              labelText: 'Select Date',
-              labelStyle: TextStyle(color: Color(0xFFABA8A8), fontSize: 10, fontWeight: FontWeight.w600,),
-              hintText: 'Choose a date',
-              prefixIcon: Icon(Icons.calendar_today),
-            ),
+            decoration: buildInputDecoration(),
+
+            // const InputDecoration(
+            //   border: InputBorder.none,
+            //   hintText: 'Select Date',
+            //   hintStyle: TextStyle(color: Color(0xFFABA8A8), fontSize: 10, fontWeight: FontWeight.w600,),
+            //   prefixIcon: Icon(Icons.calendar_today),
+            // ),
             controller: controller),
       )
           : TextFormField(
