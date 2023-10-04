@@ -34,7 +34,7 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
           ),
           gradient: LinearGradient(colors: [
             SColors.color12,
-            SColors.color12.withOpacity(0.80),
+            SColors.color12.withOpacity(0.8),
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
         child: Form(
@@ -56,40 +56,46 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: const Color.fromRGBO(153, 199, 255, 1),
                         boxShadow: [
-                          BoxShadow(
-                            color:
-                                Colors.black.withOpacity(0.5), // Shadow color
-                            spreadRadius: 5, // Spread radius
-                            blurRadius: 7, // Blur radius
-                            offset: Offset(1,
-                                0), // Offset to control the position of the shadow
-                          ),
+                          // BoxShadow(
+                          //   color:
+                          //       Colors.black.withOpacity(0.5), // Shadow color
+                          //   spreadRadius: 5, // Spread radius
+                          //   blurRadius: 7, // Blur radius
+                          //   offset: Offset(1,
+                          //       0), // Offset to control the position of the shadow
+                          // ),
                         ],
                         borderRadius: BorderRadius.circular(20)),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 24, right: 24),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(
-                            height: 20,
+                            height: 30,
                           ),
-                          const Text(
-                            "Login",
-                            style: TextStyle(
-                                color: Color.fromRGBO(0, 51, 142, 1),
-                                fontSize: 26,
-                                fontWeight: FontWeight.w900),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: const Text(
+                              "Login",
+                              style: TextStyle(
+                                  color: Color.fromRGBO(0, 51, 142, 1),
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.w900),
+                            ),
                           ),
-                          const Text(
-                            "with Mobile",
-                            style: TextStyle(
-                                color: Color.fromRGBO(0, 51, 142, 1),
-                                fontSize: 26,
-                                fontWeight: FontWeight.w900),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: const Text(
+                              "with Mobile",
+                              style: TextStyle(
+                                  color: Color.fromRGBO(0, 51, 142, 1),
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.w900),
+                            ),
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 50,
                           ),
                           LoginRegionTextField(
                             controller: regionController,
@@ -97,7 +103,7 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                             labelText: 'REGION',
                             suffixIcon: Icon(
                               Icons.arrow_forward_ios,
-                              size: 20,
+                              size: 18,
                               color: SColors.color3,
                             ),
                           ),
@@ -141,7 +147,7 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                               },
                               child: Container(
                                 width: Get.width * 0.6,
-                                height: 40,
+                                height: 43,
                                 decoration: BoxDecoration(
                                     color: const Color.fromRGBO(0, 51, 142, 1),
                                     borderRadius: BorderRadius.circular(12)),

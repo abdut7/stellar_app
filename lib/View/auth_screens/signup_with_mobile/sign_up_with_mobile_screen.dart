@@ -134,7 +134,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
           gradient: LinearGradient(
             colors: [
               SColors.color12,
-              SColors.color12.withOpacity(0.9),
+              SColors.color12.withOpacity(0.8),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -155,7 +155,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 60,),
+                    const SizedBox(height: 100,),
                     Container(
                       width: Get.width * 0.80,
                       //height: Get.height * 0.9,
@@ -177,7 +177,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const SizedBox(
-                              height: 20,
+                              height: 30,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -217,7 +217,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                                 )
                               ],
                             ),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 45),
                             SignUpTextField(
                               controller: usernameController,
                               keyboardType: TextInputType.text,
@@ -308,7 +308,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                                               .signupUser(signupModel);
                                         },
                                         child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
+                                          padding: const EdgeInsets.all(12.0),
                                           child: Container(
                                             width: Get.width * 0.6,
                                             height: 40,
