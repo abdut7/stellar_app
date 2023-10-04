@@ -2,6 +2,7 @@ import 'package:stellar_chat/View/chat/chat_screen/widgets/show_attachment.dart'
 import 'package:stellar_chat/View/chat/group_chat/group_info/group_info_screen.dart';
 import 'package:stellar_chat/View/chat/group_chat/widgets/group_chat_bubble.dart';
 import 'package:stellar_chat/View/chat/widgets/bottom_field_sent_widget.dart';
+import 'package:stellar_chat/View/chat/widgets/sent_contact/pick_contact_screen.dart';
 import 'package:stellar_chat/controllers/group_chat_controller.dart';
 import 'package:stellar_chat/models/api_models/chat_history_model.dart';
 import 'package:stellar_chat/models/group_chat/group_message_model.dart';
@@ -176,6 +177,12 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                       GroupChatService.sentGroupImageMessage(
                           widget.chatHistoryList.strChatId, image);
                     }
+                  }
+                  if (index == 4) {
+                    await Get.to(() => PickContactFromPhoneToSent(
+                          chatId: widget.chatHistoryList.strChatId,
+                          isGroup: true,
+                        ));
                   }
 
                   //if index = 3 =>Location

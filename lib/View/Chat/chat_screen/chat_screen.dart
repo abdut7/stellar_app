@@ -2,6 +2,7 @@ import 'package:stellar_chat/View/chat/chat_screen/widgets/chat_appbar_title_wid
 import 'package:stellar_chat/View/chat/chat_screen/widgets/chat_bubble.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/report_and_bloc_sheet_widget.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/show_attachment.dart';
+import 'package:stellar_chat/View/chat/widgets/sent_contact/pick_contact_screen.dart';
 import 'package:stellar_chat/View/profile/public_profile/public_profile.dart';
 import 'package:stellar_chat/controllers/private_chat_controller.dart';
 import 'package:stellar_chat/services/api_services/chat_message_service.dart';
@@ -155,6 +156,12 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                         PrivateChatService.sentPersonalImageMessage(
                             widget.chatId, image);
                       }
+                    }
+                    if (index == 4) {
+                      await Get.to(() => PickContactFromPhoneToSent(
+                            chatId: widget.chatId,
+                            isGroup: false,
+                          ));
                     }
                     //if index = 3 =>Location
                     //if index = 4 =>Contacts

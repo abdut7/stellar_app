@@ -54,7 +54,6 @@ class PrivateChatService {
       "strUrl": fileUrl
     });
     chatController.messageList.removeLast();
-    
   }
 
   static void sentPersonalVoiceMessage(
@@ -76,5 +75,23 @@ class PrivateChatService {
       "strUrl": fileUrl,
     });
     // ChatMessageService.getMessages(chatId: chatId, type: "private");
+  }
+
+  static void sentPersonalContactMessage(
+      {required String chatId,
+      required List numbers,
+      required String name}) async {
+    Socket socket = SocketService().socket;
+    //convert message to base64
+
+    socket.emit('send_message', {
+      'strChatId': chatId,
+      'strMessage': "",
+      "strMessageType": "contact",
+      "strType": "private",
+      "strUrl": "",
+      "arrContactNumbers": numbers[0].toString(),
+      "strContactName": name
+    });
   }
 }
