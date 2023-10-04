@@ -183,6 +183,12 @@ class GroupInfoScreen extends StatelessWidget {
                               ),
                               title:
                                   Text(resModel.groupUser[index].strFullName),
+                              trailing: resModel.groupUser[index].isAdmin
+                                  ? Text(
+                                      "Admin",
+                                      style: TextStyle(color: Colors.green),
+                                    )
+                                  : SizedBox(),
                             ),
                         separatorBuilder: (context, index) => const Divider(),
                         itemCount: resModel.groupUser.length),

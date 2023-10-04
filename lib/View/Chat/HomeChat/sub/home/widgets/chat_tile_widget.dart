@@ -30,7 +30,11 @@ class ChatListItem extends StatelessWidget {
             : avatarUrl),
         radius: 30, // Adjust the size of the avatar
       ),
-      title: Text(name),
+      title: Flexible(
+          child: Text(
+        name,
+        overflow: TextOverflow.ellipsis,
+      )),
       subtitle: Row(
         children: [
           const Icon(
@@ -39,7 +43,12 @@ class ChatListItem extends StatelessWidget {
             color: Colors.grey,
           ),
           const SizedBox(width: 4),
-          Text(message),
+          Flexible(
+            child: Text(
+              message,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
         ],
       ),
       trailing: Column(
