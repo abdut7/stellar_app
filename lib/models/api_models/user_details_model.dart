@@ -59,8 +59,8 @@ class UserDetailsModel {
     success = json['success'];
     message = json['message'];
     statusCode = json['statusCode'];
-    id = json['_id'];
-    chrStatus = json['chrStatus'];
+    id = json['_id'] ?? "";
+    chrStatus = json['chrStatus'] ?? "";
     strName = json['strName'];
     strFullName = json['strFullName'];
     strRegion = json['strRegion'];
