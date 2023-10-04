@@ -3,9 +3,8 @@ import 'package:stellar_chat/Settings/SColors.dart';
 
 class SignUpTextField extends StatefulWidget {
   final TextInputType keyboardType;
-  final Widget? prefixIcon; // Added prefixIcon argument
-  final Widget? suffixIcon; // Added suffixIcon argument
-  //final String labelText;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
   final String hintText;
   final TextEditingController controller;
   final bool isPassword;
@@ -21,7 +20,6 @@ class SignUpTextField extends StatefulWidget {
     required this.keyboardType,
     this.prefixIcon,
     this.suffixIcon,
-   // required this.labelText,
     required this.hintText,
     required this.controller,
     this.validator,
@@ -88,7 +86,7 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
 
     return Container(
       height: 35,
-      //decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
+      decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(5)),
       child: widget.isBirthday
           ? Container(
         decoration: BoxDecoration(
@@ -99,6 +97,7 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
             decoration: const InputDecoration(
               border: InputBorder.none,
               labelText: 'Select Date',
+              labelStyle: TextStyle(color: Color(0xFFABA8A8), fontSize: 10, fontWeight: FontWeight.w600,),
               hintText: 'Choose a date',
               prefixIcon: Icon(Icons.calendar_today),
             ),
@@ -126,7 +125,7 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
   @override
   Widget build(BuildContext context) {
     return  Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 6),
       child: textField(widget.controller),
     );
   }

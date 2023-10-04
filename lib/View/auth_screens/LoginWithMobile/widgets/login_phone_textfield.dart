@@ -1,5 +1,6 @@
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 
 class LoginPhoneTextField extends StatefulWidget {
@@ -52,7 +53,7 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
         ),
         prefixIcon: Container(
           padding: EdgeInsets.symmetric(horizontal: 0,vertical: 6),
-          margin: EdgeInsets.symmetric(horizontal: 5),
+          margin: EdgeInsets.symmetric(horizontal: 0),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -73,9 +74,11 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
                           countryCode = code;
                         });
                       },
-                      child: Icon(Icons.keyboard_arrow_down,color: SColors.color3,size: 25,)),
+                      child: Icon(Icons.keyboard_arrow_down,color: SColors.color3,size: 28,)),
+                  const SizedBox(width: 5,),
 
-                  Container(height: 25, width: 2, color: Colors.grey.withOpacity(0.5),)
+                  Container(
+                    width: 2, color: Colors.grey.withOpacity(0.5),)
                 ],
               ),
             ],
@@ -90,7 +93,7 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
       child: Container(
         height: 35,
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(5)),
+            color: Colors.white, borderRadius: BorderRadius.circular(8)),
         child:  TextFormField(
           maxLines: 1,
           onChanged: widget.onChanged,
@@ -116,7 +119,7 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 18),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

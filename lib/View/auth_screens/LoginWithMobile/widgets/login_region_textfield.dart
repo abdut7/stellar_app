@@ -91,8 +91,9 @@ class _LoginRegionTextFieldState extends State<LoginRegionTextField> {
     return Container(
       height: 35,
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(5)),
+          color: Colors.white, borderRadius: BorderRadius.circular(8)),
       child:  TextFormField(
+        readOnly: true,
         onChanged: widget.onChanged,
         onSaved: widget.onSaved,
         validator: widget.validator,
@@ -113,7 +114,7 @@ class _LoginRegionTextFieldState extends State<LoginRegionTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 18),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -127,7 +128,7 @@ class _LoginRegionTextFieldState extends State<LoginRegionTextField> {
           ),
           const SizedBox(height: 5),
         textField(widget.controller),
-          const SizedBox(height: 24),
+          const SizedBox(height: 20),
         ],
       ),
     );

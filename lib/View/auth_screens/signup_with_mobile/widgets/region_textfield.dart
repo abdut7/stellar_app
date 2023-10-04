@@ -4,7 +4,6 @@ import 'package:stellar_chat/Settings/SColors.dart';
 class RegionTextField extends StatefulWidget {
   final TextInputType keyboardType;
   final Widget? suffixIcon;
-  //final String labelText;
   final String hintText;
   final TextEditingController controller;
   final String? Function(String? val)? validator;
@@ -15,7 +14,6 @@ class RegionTextField extends StatefulWidget {
     Key? key,
     required this.keyboardType,
     this.suffixIcon,
-   // required this.labelText,
     required this.hintText,
     required this.controller,
     this.validator,
@@ -28,7 +26,7 @@ class RegionTextField extends StatefulWidget {
 }
 
 class _RegionTextFieldState extends State<RegionTextField> {
-  List<String> regions = ['INDIA', 'UAE']; // List of available regions
+  List<String> regions = ['INDIA', 'UAE'];
   String? selectedRegion;
 
   InputDecoration buildInputDecoration() {
@@ -101,6 +99,7 @@ class _RegionTextFieldState extends State<RegionTextField> {
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(5)),
       child:  TextFormField(
+        readOnly: true,
         onChanged: widget.onChanged,
         onSaved: widget.onSaved,
         validator: widget.validator,
@@ -121,7 +120,7 @@ class _RegionTextFieldState extends State<RegionTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 6),
       child: textField(widget.controller),
     );
   }

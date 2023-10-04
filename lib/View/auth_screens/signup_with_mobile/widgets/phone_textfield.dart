@@ -57,7 +57,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
         borderRadius: BorderRadius.circular(10),
       ),
       prefixIcon: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15,vertical: 6),
+        padding: EdgeInsets.symmetric(horizontal: 4,vertical: 6),
         margin: EdgeInsets.symmetric(horizontal: 8),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -117,7 +117,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 6),
       child: textField(widget.controller),
     );
   }

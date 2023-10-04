@@ -56,57 +56,76 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                       ),
                     ),
 
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                    child:
+                    Stack(
                       children: [
-                        Container(
-                          width: Get.width,
-                          height: Get.height * 0.2,
-                          decoration: const BoxDecoration(
-                            // color: Colors.red,
-                            gradient: LinearGradient(
-                              colors: [
-                                Colors.white,
-                                Colors.transparent,
-                              ],
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                              stops: [
-                                0.0,
-                                5
-                              ], // Adjust the stops for the gradient effect
+
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      GestureDetector(
+                                          onTap: () {
+                                            showBottomSheet(context, 'profile');
+                                          },
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(right: 28),
+                                            child: SvgPicture.asset(SSvgs.moreVertz,width: 10,height: 22,),
+                                          )),
+                                    ],
+                                  ),
+                            Container(
+                              width: Get.width,
+                              height: Get.height * 0.2,
+                              decoration: const BoxDecoration(
+                                // color: Colors.red,
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Colors.white,
+                                    Colors.transparent,
+                                  ],
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                  stops: [
+                                    0.0,
+                                    5
+                                  ], // Adjust the stops for the gradient effect
+                                ),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    snapshot.data!.strName,
+                                    style: TextStyle(
+                                      color: SColors.color3,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w800,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    'PHONE NUMBER : ${snapshot.data!.strMobileNo}',
+                                    style: TextStyle(
+                                      color: SColors.color3,
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                snapshot.data!.strName,
-                                style: TextStyle(
-                                  color: SColors.color3,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                'PHONE NUMBER : ${snapshot.data!.strMobileNo}',
-                                style: TextStyle(
-                                  color: SColors.color3,
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              )
-                            ],
-                          ),
+                          ],
                         ),
                       ],
-                    ),
+                    )
 
                     // Column(
                     //   children: [
@@ -252,5 +271,55 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
             );
           }),
     ));
+    
+    
   }
+}
+void showBottomSheet(BuildContext context, String action) {
+  showModalBottomSheet(
+    context: context,
+    backgroundColor: SColors.color11,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(25),
+      ),
+    ),
+    builder: (BuildContext context) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+              GestureDetector(
+                onTap: (){},
+                child: Text(
+                  'Block',
+                  style: TextStyle(
+                    color: SColors.color12,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            const SizedBox(
+              height: 25,
+            ),
+            GestureDetector(
+              onTap: (){},
+              child: Text(
+                'Report',
+                style: TextStyle(
+                  color: SColors.color12,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+
+          ],
+        ),
+      );
+    },
+  );
 }
