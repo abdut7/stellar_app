@@ -3,6 +3,7 @@ import 'package:stellar_chat/View/profile/public_profile/widgets/follow_details_
 import 'package:stellar_chat/View/profile/widget/about_me_text.dart';
 import 'package:stellar_chat/View/profile/widget/contact_through_options.dart';
 import 'package:stellar_chat/models/api_models/user_details_model.dart';
+import 'package:stellar_chat/services/api_services/account_services.dart';
 import 'package:stellar_chat/services/api_services/public_profile_service.dart';
 import 'package:flutter/material.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
@@ -74,7 +75,8 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                   children: [
                                     GestureDetector(
                                         onTap: () {
-                                          showBottomSheet(context, 'profile');
+                                          showBottomSheet(context, 'profile',
+                                              userDetailsModel!);
                                         },
                                         child: Padding(
                                           padding:
@@ -287,7 +289,8 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
   }
 }
 
-void showBottomSheet(BuildContext context, String action) {
+void showBottomSheet(
+    BuildContext context, String action, UserDetailsModel model) {
   showModalBottomSheet(
     context: context,
     backgroundColor: SColors.color11,
@@ -304,9 +307,16 @@ void showBottomSheet(BuildContext context, String action) {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             GestureDetector(
-              onTap: () {},
+              onTap: () async {
+                if (model.isBlocked) {
+                  AccountServices.unBlockUser(model.id);
+                } else {
+                  AccountServices.blockUser(model.id);
+                }
+                Navigator.pop(context);
+              },
               child: Text(
-                'Block',
+                model.isBlocked ? "Unblock" : 'Block',
                 style: TextStyle(
                   color: SColors.color12,
                   fontSize: 10,
@@ -318,7 +328,15 @@ void showBottomSheet(BuildContext context, String action) {
               height: 25,
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.pop(context);
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text("User Reported"),
+                  ),
+                );
+              },
               child: Text(
                 'Report',
                 style: TextStyle(

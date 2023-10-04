@@ -304,6 +304,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                                                 pos.latitude.toString(),
                                                 pos.longitude.toString()
                                               ]);
+                                          print(signupModel.toString());
                                           AuthServices()
                                               .signupUser(signupModel);
                                         },
