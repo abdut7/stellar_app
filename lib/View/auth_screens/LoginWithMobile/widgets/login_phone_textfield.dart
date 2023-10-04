@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 
+CountryCode? publiccountryCode;
+
 class LoginPhoneTextField extends StatefulWidget {
   final TextInputType keyboardType;
   final String labelText;
@@ -27,7 +29,6 @@ class LoginPhoneTextField extends StatefulWidget {
 
 class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
   final countryPicker = const FlCountryCodePicker();
-  CountryCode?countryCode;
 
   InputDecoration buildInputDecoration() {
     return InputDecoration(
@@ -52,7 +53,7 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
           borderRadius: BorderRadius.circular(10),
         ),
         prefixIcon: Container(
-          padding: EdgeInsets.symmetric(horizontal: 0,vertical: 6),
+          padding: EdgeInsets.symmetric(horizontal: 0, vertical: 6),
           margin: EdgeInsets.symmetric(horizontal: 0),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -60,33 +61,44 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
               Row(
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 3),
-                    child: Text(countryCode?.dialCode ?? "+971",style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w300,
-                      letterSpacing: -0.18,
-                    ),),
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                    child: Text(
+                      publiccountryCode?.dialCode ?? "+91",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w300,
+                        letterSpacing: -0.18,
+                      ),
+                    ),
                     decoration: BoxDecoration(color: SColors.color4),
                   ),
                   GestureDetector(
                       onTap: () async {
-                        final code = await countryPicker.showPicker(
-                            context: context);
+                        final code =
+                            await countryPicker.showPicker(context: context);
                         setState(() {
-                          countryCode = code;
+                          publiccountryCode = code;
                         });
                       },
-                      child: Icon(Icons.keyboard_arrow_down,color: SColors.color3,size: 28,)),
-                  const SizedBox(width: 5,),
-
+                      child: Icon(
+                        Icons.keyboard_arrow_down,
+                        color: SColors.color3,
+                        size: 28,
+                      )),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   Container(
-                    width: 2, color: Colors.grey.withOpacity(0.5),)
+                    width: 2,
+                    color: Colors.grey.withOpacity(0.5),
+                  )
                 ],
               ),
             ],
           ),
-        )
-    );
+        ));
   }
-
 
   Widget textField(TextEditingController controller) {
     return GestureDetector(
@@ -94,7 +106,7 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
         height: 35,
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(8)),
-        child:  TextFormField(
+        child: TextFormField(
           maxLines: 1,
           onChanged: widget.onChanged,
           onSaved: widget.onSaved,
@@ -107,10 +119,8 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
             fontSize: 16,
             fontWeight: FontWeight.w400,
           ),
-
           autocorrect: true,
           decoration: buildInputDecoration(),
-
         ),
       ),
     );

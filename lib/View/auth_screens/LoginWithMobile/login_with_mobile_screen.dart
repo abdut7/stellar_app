@@ -136,11 +136,17 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                           Center(
                             child: GestureDetector(
                               onTap: () async {
+                                // code to get and append country code
+                                //publiccountry code is used
+                                String countryCode = publiccountryCode == null
+                                    ? "+91"
+                                    : publiccountryCode!.dialCode.toString();
+
                                 if (_key.currentState!.validate()) {
                                   isIssues = false;
                                   _key.currentState!.save();
-                                  AuthServices()
-                                      .loginService(phoneNumberController.text);
+                                  AuthServices().loginService(
+                                      "$countryCode${phoneNumberController.text}");
                                 } else {
                                   isIssues = true;
                                 }
