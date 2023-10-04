@@ -1,4 +1,5 @@
 import 'package:stellar_chat/View/chat/group_chat/widgets/voice_chat_bubble.dart';
+import 'package:stellar_chat/View/chat/widgets/photo_view_widget.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/models/group_chat/group_message_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -108,28 +109,35 @@ class GroupChatBubble extends StatelessWidget {
                 : message.strMessageType == "image"
                     ? Column(
                         children: [
-                          SizedBox(
-                              height: Get.width * 0.4,
-                              width: Get.width * 0.6,
-                              child: Padding(
-                                padding: message.strMessageType == "text"
-                                    ? const EdgeInsets.all(8)
-                                    : message.strMessageType == "image"
-                                        ? const EdgeInsets.all(2.0)
-                                        : const EdgeInsets.all(0),
-                                child: CachedNetworkImage(
-                                  fit: BoxFit.cover,
-                                  imageUrl: message.strUrl,
-                                  progressIndicatorBuilder:
-                                      (context, url, downloadProgress) =>
-                                          Center(
-                                    child: CircularProgressIndicator(
-                                        value: downloadProgress.progress),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(
+                                () => PhotoViewScreen(imageUrl: message.strUrl),
+                              );
+                            },
+                            child: SizedBox(
+                                height: Get.width * 0.4,
+                                width: Get.width * 0.6,
+                                child: Padding(
+                                  padding: message.strMessageType == "text"
+                                      ? const EdgeInsets.all(8)
+                                      : message.strMessageType == "image"
+                                          ? const EdgeInsets.all(2.0)
+                                          : const EdgeInsets.all(0),
+                                  child: CachedNetworkImage(
+                                    fit: BoxFit.cover,
+                                    imageUrl: message.strUrl,
+                                    progressIndicatorBuilder:
+                                        (context, url, downloadProgress) =>
+                                            Center(
+                                      child: CircularProgressIndicator(
+                                          value: downloadProgress.progress),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
                                   ),
-                                  errorWidget: (context, url, error) =>
-                                      const Icon(Icons.error),
-                                ),
-                              )),
+                                )),
+                          ),
                           SizedBox(
                             width: Get.width * 0.5,
                             child: Row(
