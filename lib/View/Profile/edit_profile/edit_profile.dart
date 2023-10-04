@@ -29,13 +29,16 @@ class _EditProfileState extends State<EditProfile> {
     // TODO: implement initState
     nameController.text = userController.userDetailsModel.value!.strName;
     userNameController.text =
-        userController.userDetailsModel.value!.strFullName;
+        userController.userDetailsModel.value!.strFullName.isEmpty
+            ? userController.userDetailsModel.value!.strName
+            : userController.userDetailsModel.value!.strFullName;
     aboutMeController.text = userController.userDetailsModel.value!.strAbout;
 
     // aboutMeController.text = userController.userDetailsModel.value!.;
     super.initState();
   }
 
+  bool isLoading = false;
   ImagePicker picker = ImagePicker();
   XFile? pickedImage;
   @override
@@ -218,8 +221,11 @@ class _EditProfileState extends State<EditProfile> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50),
             child: ProfileButton(
-                buttonText: 'Update',
+                buttonText: isLoading ? "Updating..." : 'Update',
                 onPressed: () async {
+                  setState(() {
+                    isLoading = true;
+                  });
                   bool isSuccess = await AccountServices.updateUserProfile(
                       uid: userController.userDetailsModel.value!.id,
                       aboutMe: aboutMeController.text,

@@ -1,6 +1,6 @@
 class ApiRoutes {
-  static String baseUrl = "http://13.126.105.188:4100";
-  static String socketBaseUrl = "http://13.126.105.188:4110";
+  static String baseUrl = "http://157.175.82.0:4100";
+  static String socketBaseUrl = "http://157.175.82.0:4110";
   static String createUser = "/create_user";
   static String phoneNumberLogin = "/login_user";
   static String getStellarContacts = "/get_user";
