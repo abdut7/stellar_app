@@ -238,6 +238,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                               isBirthday: true,
                               validator: validateBirthday,
                               hintText: 'Select Date',
+                              prefixIcon: Icon(Icons.calendar_today),
                             ),
                             RegionTextField(
                               controller: regionController,
