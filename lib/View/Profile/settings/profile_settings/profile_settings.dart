@@ -143,7 +143,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         style: TextStyle(
                           color: SColors.color3,
                           fontSize: 16,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     )),
@@ -159,8 +159,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         'Dark Mode',
                         style: TextStyle(
                           color: SColors.color3,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                       IgnorePointer(
@@ -201,7 +201,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         style: TextStyle(
                           color: SColors.color3,
                           fontSize: 16,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
@@ -218,7 +218,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         style: TextStyle(
                           color: SColors.color3,
                           fontSize: 16,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
@@ -235,7 +235,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         style: TextStyle(
                           color: SColors.color3,
                           fontSize: 16,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
