@@ -3,6 +3,8 @@ import 'package:stellar_chat/View/Contact/create_group/widgets/add_user_group_ti
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:stellar_chat/utils/colors.dart';
+import 'package:stellar_chat/widgets/search_text_field.dart';
 
 import '../../../controllers/contacts_controller.dart';
 import '../../../models/api_models/get_contacts_model.dart';
@@ -34,91 +36,90 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Select Members"),
+        backgroundColor: colorPrimary,
       ),
-      body: Obx(
-        () {
-          if (contactsController.phoneNumberUserList.isNotEmpty &&
-              !contactsController.isGetContactLoading.value) {
-            myContact.clear();
-            contactsController.phoneNumberUserList.forEach((incomingElement) {
-              // Check if an element with the same ID exists in myContact
-              bool alreadyExists =
-                  myContact.any((element) => element.id == incomingElement.id);
+      body: Column(
+        children: [
+          SearchTextField(
+            isFromContacts: true,
+          ),
+          Obx(
+            () {
+              if (contactsController.phoneNumberUserList.isNotEmpty &&
+                  !contactsController.isGetContactLoading.value) {
+                myContact.clear();
+                contactsController.phoneNumberUserList
+                    .forEach((incomingElement) {
+                  // Check if an element with the same ID exists in myContact
+                  bool alreadyExists = myContact
+                      .any((element) => element.id == incomingElement.id);
 
-              if (!alreadyExists) {
-                // If it doesn't exist, add it to myContact
-                myContact.add(incomingElement);
+                  if (!alreadyExists) {
+                    // If it doesn't exist, add it to myContact
+                    myContact.add(incomingElement);
+                  }
+                });
               }
-            });
-          }
-          return SizedBox(
-            child: contactsController.isGetContactLoading.value
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : contactsController.phoneNumberUserList.isEmpty
+              return SizedBox(
+                child: contactsController.isGetContactLoading.value
                     ? const Center(
-                        child: Text("No Contacts added add now"),
+                        child: CircularProgressIndicator(),
                       )
-                    : SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 10),
-                            Center(
-                              child: Container(
-                                width: Get.width * 0.9,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: const Center(
-                                  child: Text("Search"),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            ListView.separated(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                Contact user = myContact.elementAt(index);
+                    : contactsController.phoneNumberUserList.isEmpty
+                        ? const Center(
+                            child: Text("No Contacts added add now"),
+                          )
+                        : SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 10),
+                                //search here
 
-                                return InkWell(
-                                  onTap: () {
-                                    setState(
-                                      () {
-                                        if (selectedUsers.contains(user.id)) {
-                                          selectedUsers.remove(user.id);
-                                          selectedUserModel.remove(user);
-                                        } else {
-                                          selectedUsers.add(user.id);
-                                          selectedUserModel.add(user);
-                                        }
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                ListView.separated(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemBuilder: (context, index) {
+                                    Contact user = myContact.elementAt(index);
+
+                                    return InkWell(
+                                      onTap: () {
+                                        setState(
+                                          () {
+                                            if (selectedUsers
+                                                .contains(user.id)) {
+                                              selectedUsers.remove(user.id);
+                                              selectedUserModel.remove(user);
+                                            } else {
+                                              selectedUsers.add(user.id);
+                                              selectedUserModel.add(user);
+                                            }
+                                          },
+                                        );
                                       },
+                                      child: SizedBox(
+                                        height: 50,
+                                        child: AddUserGroupTileWidget(
+                                            user: user,
+                                            isSelcted: selectedUsers
+                                                .contains(user.id)),
+                                      ),
                                     );
                                   },
-                                  child: SizedBox(
-                                    height: 50,
-                                    child: AddUserGroupTileWidget(
-                                        user: user,
-                                        isSelcted:
-                                            selectedUsers.contains(user.id)),
-                                  ),
-                                );
-                              },
-                              separatorBuilder: (context, index) =>
-                                  const Divider(),
-                              itemCount: myContact.length,
+                                  separatorBuilder: (context, index) =>
+                                      const Divider(),
+                                  itemCount: myContact.length,
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-          );
-        },
+                          ),
+              );
+            },
+          ),
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: selectedUsers.isNotEmpty
