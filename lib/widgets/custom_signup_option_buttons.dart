@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 class CustomButton extends StatefulWidget {
   final String text;
   final Color textColor;
+  final Color? svgColor;
   final Color backgroundColor;
   final Color foregroundColor;
   final IconData? prefixIcon;
@@ -15,6 +16,7 @@ class CustomButton extends StatefulWidget {
     required this.textColor,
     required this.backgroundColor,
     this.prefixIcon,
+  this.svgColor,
     this.svgAssetPath,
     required this.onPressed, required this.foregroundColor,
   });
@@ -27,9 +29,9 @@ class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 60),
+      padding: const EdgeInsets.symmetric(horizontal: 70),
       child: SizedBox(
-        height: 38,
+        height: 40,
         child: ElevatedButton(
           onPressed: widget.onPressed,
           style: ElevatedButton.styleFrom(
@@ -40,7 +42,7 @@ class _CustomButtonState extends State<CustomButton> {
             ),
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               if (widget.prefixIcon != null)
                 Icon(
@@ -48,11 +50,12 @@ class _CustomButtonState extends State<CustomButton> {
                   size: 20,
                   color: Colors.black,
                 )
-              else if (widget.svgAssetPath != null) // Check if there's an SVG asset path
+              else if (widget.svgAssetPath != null)
                 SvgPicture.asset(
                   widget.svgAssetPath!,
                   width: 20,
                   height: 20,
+                  color: widget.svgColor,
                 ),
               Text(
                 widget.text,
@@ -60,7 +63,7 @@ class _CustomButtonState extends State<CustomButton> {
                 style: TextStyle(
                   fontSize: 13,
                   color: widget.textColor,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w500,
                   letterSpacing: 0.40,
                 ),
               ),

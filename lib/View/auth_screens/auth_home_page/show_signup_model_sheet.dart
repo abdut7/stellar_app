@@ -1,3 +1,4 @@
+import 'package:stellar_chat/View/auth_screens/auth_home_page/widget/sign_up_with_phone_Button.dart';
 import 'package:stellar_chat/View/auth_screens/signup_with_mobile/sign_up_with_mobile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,11 +34,11 @@ Future<dynamic> showSignupModelBottomSheet(BuildContext context) {
         child: ListView(
           children: [
             const SizedBox(height: 50),
-            CustomButton(
+            SignUpWithPhoneButton(
               onPressed: () {
                 Get.to(() => SignUpWithMobileScreen());
               },
-              text: 'SignUp With Phone',
+              text: 'SignUp With Mobile',
               textColor: SColors.color3,
               backgroundColor: SColors.color4,
               foregroundColor: SColors.color11,
@@ -45,7 +46,20 @@ Future<dynamic> showSignupModelBottomSheet(BuildContext context) {
               svgAssetPath: null,
             ),
             const SizedBox(height: 30),
-            Divider(thickness: 1, color: SColors.color3),
+            const Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 40), child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(child: Divider(color: Colors.black, thickness: 1, height: 1,),),
+                  Padding(
+                    padding:  EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text('or',
+                      style: TextStyle(fontSize: 12, color: Colors.black, fontWeight: FontWeight.w500,),),),
+                  Expanded(
+                    child: Divider(color: Colors.black, height: 1, thickness: 1,),
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(height: 30),
             CustomButton(
               onPressed: () {},
@@ -61,17 +75,18 @@ Future<dynamic> showSignupModelBottomSheet(BuildContext context) {
               onPressed: () {},
               text: 'Sign Up With Facebook',
               textColor: Colors.white,
-              backgroundColor: SColors.color3,
+              backgroundColor: const Color(0xff3b5998),
               foregroundColor: SColors.color4,
               prefixIcon: null,
               svgAssetPath: SSvgs.sv03,
+              svgColor: Colors.white,
             ),
             const SizedBox(height: 30),
             CustomButton(
               onPressed: () {},
               text: 'Sign Up With Google',
               textColor: Colors.white,
-              backgroundColor: SColors.color3,
+              backgroundColor: Colors.blueAccent,
               foregroundColor: SColors.color4,
               prefixIcon: null,
               svgAssetPath: SSvgs.sv04,
