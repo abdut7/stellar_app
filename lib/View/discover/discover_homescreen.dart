@@ -28,14 +28,14 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
             fit: BoxFit.cover,
           ),
         ),
-        child: ListView(
+        child: Column(
           children: [
             Stack(
               children: [
                 const TopSection(),
                 Container(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 45, vertical: 210),
+                    //margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 210),
+                    margin: const EdgeInsets.only(left: 45,right: 45,top: 210),
                     width: double.infinity,
                     decoration: ShapeDecoration(
                       color: SColors.color4,
@@ -73,8 +73,8 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                       ),
                     )),
                 Container(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 45, vertical: 380),
+                    //margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 380),
+                    margin: const EdgeInsets.only(left: 45,right: 45,top: 380),
                     width: double.infinity,
                     decoration: ShapeDecoration(
                       color: SColors.color4,
@@ -100,8 +100,8 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                           }),
                     )),
                 Container(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 45, vertical: 480),
+                    //margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 480),
+                    margin: const EdgeInsets.only(left: 45,right: 45,top: 480),
                     width: double.infinity,
                     decoration: ShapeDecoration(
                       color: SColors.color4,
