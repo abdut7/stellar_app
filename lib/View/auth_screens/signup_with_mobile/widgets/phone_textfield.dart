@@ -72,10 +72,9 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
               },
               child: Row(
                 children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 2),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 2),
                     child: Text(publiccountryCode?.dialCode ?? "+91",style: TextStyle(color: Colors.black),),
-                    decoration: BoxDecoration(color: SColors.color4),
                   ),
                 GestureDetector(
                     onTap: () async {
@@ -93,10 +92,10 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
                 const SizedBox(
                   width: 5,
                 ),
-                Container(
-                  width: 2,
-                  color: Colors.grey.withOpacity(0.5),
-                ),
+                // Container(
+                //   width: 2,
+                //   color: Colors.grey.withOpacity(0.5),
+                // ),
                 const SizedBox(width: 5,),
               ],
             ),

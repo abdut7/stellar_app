@@ -58,11 +58,11 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-                    child: Text(
+              Padding(
+                padding: const EdgeInsets.only(left: 6),
+                child: Row(
+                  children: [
+                    Text(
                       publiccountryCode?.dialCode ?? "+91",
                       style: TextStyle(
                         color: Colors.black,
@@ -71,34 +71,31 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
                         letterSpacing: -0.18,
                       ),
                     ),
-                    decoration: BoxDecoration(color: SColors.color4),
-                  ),
-                  GestureDetector(
-                      onTap: () async {
-                        final code =
-                            await countryPicker.showPicker(context: context);
-                        setState(() {
-                          publiccountryCode = code;
-                        });
-                      },
-                      child: Icon(
-                        Icons.keyboard_arrow_down,
-                        color: SColors.color3,
-                        size: 28,
-                      )),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Container(
-                    width: 2,
-                    color: Colors.grey.withOpacity(0.5),
-                  )
-                ],
+                    GestureDetector(
+                        onTap: () async {
+                          final code =
+                              await countryPicker.showPicker(context: context);
+                          setState(() {
+                            publiccountryCode = code;
+                          });
+                        },
+                        child: Icon(
+                          Icons.keyboard_arrow_down,
+                          color: SColors.color3,
+                          size: 28,
+                        )),
+
+                    const SizedBox(width: 5),
+                    // Container(width: 1, color: Colors.grey.withOpacity(0.3),
+                    // )
+                  ],
+                ),
               ),
             ],
           ),
         ));
   }
+
 
   Widget textField(TextEditingController controller) {
     return GestureDetector(
@@ -122,7 +119,9 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
           autocorrect: true,
           decoration: buildInputDecoration(),
         ),
+
       ),
+
     );
   }
 
