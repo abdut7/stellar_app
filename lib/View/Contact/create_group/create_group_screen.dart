@@ -1,3 +1,7 @@
+import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/View/Contact/create_group/select_participents_screen.dart';
 import 'package:stellar_chat/View/Contact/create_group/widgets/add_group_icon_widget.dart';
 import 'package:stellar_chat/functions/show_snackbar.dart';
@@ -21,70 +25,110 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Create Group"),
+        toolbarHeight: 70,
+        elevation: 0,
+        title: Text(
+          'New Group',
+          style: TextStyle(color: SColors.color11, fontSize: 18, fontWeight: FontWeight.w700,),),
+        backgroundColor: SColors.color12,
+        leading: Padding(padding: const EdgeInsets.all(8.0), child: SvgPicture.asset(SSvgs.appLogo),
+        ),
       ),
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            GestureDetector(
-              onTap: () async {
-                pickedImage =
-                    await picker.pickImage(source: ImageSource.gallery);
-                if (pickedImage != null) {
-                  setState(() {});
-                }
-              },
-              child: AddGroupIconWidget(file: pickedImage),
-            ),
-            Center(
-              child: Container(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 90),
+                child: GestureDetector(
+                  onTap: () async {
+                    pickedImage =
+                        await picker.pickImage(source: ImageSource.gallery);
+                    if (pickedImage != null) {
+                      setState(() {});
+                    }
+                  },
+                  child: AddGroupIconWidget(file: pickedImage),
+                ),
+              ),
+              const SizedBox(height: 45,),
+              Container(
                 width: Get.width * 0.8,
-                height: 60,
+                height: 45,
                 decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: Colors.grey.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(10)),
-                child: Center(
-                  child: TextField(
-                    controller: groupNameController,
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Enter Group name",
-                        prefix: SizedBox(
-                          width: 20,
-                        )),
-                  ),
+                child: TextField(
+                  controller: groupNameController,
+                  decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      hintText: " Group Name",
+                      hintStyle: TextStyle(
+                        color: Colors.black,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      prefix: SizedBox(width: 20,)),
                 ),
               ),
-            ),
-            GestureDetector(
-              onTap: () {
-                if (groupNameController.text.isEmpty) {
-                  showCustomSnackbar(
-                      title: "Invalid Group Name",
-                      message: "Please enter a valid name to continue");
-                  return;
-                }
-                Get.to(() => SelectGroupParticipents(
-                      grpName: groupNameController.text,
-                      image: pickedImage,
-                    ));
-              },
-              child: Container(
-                width: Get.width * 0.6,
-                height: 60,
-                decoration: BoxDecoration(
-                    color: const Color.fromRGBO(0, 51, 142, 1),
-                    borderRadius: BorderRadius.circular(10)),
-                child: const Center(
-                  child: Text(
-                    "Accept and Continue",
-                    style: TextStyle(color: Color.fromRGBO(159, 196, 232, 1)),
+              const SizedBox(height: 35,),
+               Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Group Permission',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Icon(Icons.arrow_forward_ios, size: 16,color: Colors.black,),
+                    ],
+                  ),
+                )
+
+              ),
+
+              const SizedBox(height: 220,),
+
+              GestureDetector(
+                onTap: () {
+                  if (groupNameController.text.isEmpty) {
+                    showCustomSnackbar(
+                        title: "Invalid Group Name",
+                        message: "Please enter a valid name to continue");
+                    return;
+                  }
+                  Get.to(() => SelectGroupParticipents(
+                        grpName: groupNameController.text,
+                        image: pickedImage,
+                      ));
+                },
+                child: Container(
+                  width: Get.width * 0.5,
+                  height: 45,
+                  decoration: BoxDecoration(
+                      color: const Color.fromRGBO(0, 51, 142, 1),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const Center(
+                    child: Text(
+                      "Add Participants",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                          fontSize: 17,
+                          color: Color.fromRGBO(159, 196, 232, 1)),
+                    ),
                   ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
