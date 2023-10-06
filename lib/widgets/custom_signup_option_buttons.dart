@@ -38,36 +38,39 @@ class _CustomButtonState extends State<CustomButton> {
             backgroundColor: widget.backgroundColor,
             foregroundColor: widget.foregroundColor,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(5),
             ),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              if (widget.prefixIcon != null)
-                Icon(
-                  widget.prefixIcon,
-                  size: 20,
-                  color: Colors.black,
-                )
-              else if (widget.svgAssetPath != null)
-                SvgPicture.asset(
-                  widget.svgAssetPath!,
-                  width: 20,
-                  height: 20,
-                  color: widget.svgColor,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                if (widget.prefixIcon != null)
+                  Icon(
+                    widget.prefixIcon,
+                    size: 20,
+                    color: Colors.black,
+                  )
+                else if (widget.svgAssetPath != null)
+                  SvgPicture.asset(
+                    widget.svgAssetPath!,
+                    width: 20,
+                    height: 20,
+                    color: widget.svgColor,
+                  ),
+                Text(
+                  widget.text,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: widget.textColor,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 0.40,
+                  ),
                 ),
-              Text(
-                widget.text,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 13,
-                  color: widget.textColor,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 0.40,
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

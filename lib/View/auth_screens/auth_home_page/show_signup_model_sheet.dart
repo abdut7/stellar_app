@@ -51,7 +51,7 @@ Future<dynamic> showSignupModelBottomSheet(BuildContext context) {
                 children: [
                   Expanded(child: Divider(color: Colors.black, thickness: 1, height: 1,),),
                   Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: 8.0),
+                    padding:  EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text('or',
                       style: TextStyle(fontSize: 12, color: Colors.black, fontWeight: FontWeight.w500,),),),
                   Expanded(
