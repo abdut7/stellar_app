@@ -16,18 +16,19 @@ class _SearchTextFieldState extends State<SearchTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: TextFormField(
         cursorColor: SColors.color12,
         decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(vertical: 8),
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           filled: true,
           fillColor: Colors.grey[300],
-          hintText: 'SEARCH',
-          hintStyle: TextStyle(
-            color: SColors.color9,
-            fontSize: 13,
-            fontWeight: FontWeight.w700,
+          hintText: 'Search',
+          hintStyle: const TextStyle(
+            color: Color.fromRGBO(171, 169, 169, 1),
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
@@ -35,7 +36,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
           ),
         ),
         style: TextStyle(color: SColors.color3, fontSize: 15),
-        textAlign: TextAlign.center,
+        // textAlign: TextAlign.center,
         onChanged: (val) {
           if (widget.isFromContacts) {
             if (val.isEmpty) {
