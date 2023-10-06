@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter_svg/svg.dart';
 import 'package:stellar_chat/View/chat/group_chat/widgets/voice_chat_bubble.dart';
 import 'package:stellar_chat/View/chat/widgets/photo_view_widget.dart';
+import 'package:stellar_chat/controllers/audio_player_controller.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,6 +17,7 @@ class ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AudioController audioController = Get.put(AudioController());
     UserController controller = Get.find();
     // print(message.strUserId);
     // print(controller.userDetailsModel.value!.id);
@@ -220,6 +222,7 @@ class ChatBubble extends StatelessWidget {
                                 )
                               : message.strMessageType == "voice"
                                   ? AudioMessageBubble(
+                                      audioController: audioController,
                                       createdTime: message.strCreatedTime,
                                       audioUrl: message.strUrl,
                                       isSender: isSent,

@@ -14,7 +14,7 @@ class AudioController extends GetxController {
       // The same audio is already playing, do nothing
       return;
     }
-    // isPlaying(false);
+    isPlaying(false);
 
     // Stop the currently playing audio (if any)
     await stopAudio();
@@ -23,6 +23,7 @@ class AudioController extends GetxController {
     await audioPlayer.play(UrlSource(audioUrl));
 
     currentlyPlayingAudioUrl = audioUrl;
+    isPlaying(true);
 
     // Update audio state and notify listeners
     audioPlayer.onPlayerStateChanged.listen((PlayerState state) {
@@ -48,6 +49,7 @@ class AudioController extends GetxController {
     audioPlayerState.value = PlayerState.stopped;
     audioPlayerPosition.value = Duration.zero;
     audioTotalDuration.value = Duration.zero;
+    isPlaying(false);
     update();
   }
 

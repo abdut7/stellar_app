@@ -9,23 +9,19 @@ class AudioMessageBubble extends StatefulWidget {
   final String audioUrl;
   final bool isSender;
   final String createdTime;
+  final AudioController audioController;
 
   AudioMessageBubble(
       {required this.audioUrl,
       required this.isSender,
-      required this.createdTime});
+      required this.createdTime,
+      required this.audioController});
 
   @override
   _AudioMessageBubbleState createState() => _AudioMessageBubbleState();
 }
 
 class _AudioMessageBubbleState extends State<AudioMessageBubble> {
-  final AudioController audioController = Get.put(AudioController());
-  PlayerState audioPlayerState = PlayerState.stopped;
-  Duration totalDuration = const Duration();
-  Duration completedDuration = const Duration();
-  double sliderValue = 0.0;
-
   @override
   void initState() {
     super.initState();
@@ -56,6 +52,7 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
     }
   }
 
+  Duration duration = Duration.zero;
   @override
   Widget build(BuildContext context) {
     BorderRadius borderRadius = const BorderRadius.only(
@@ -88,15 +85,16 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
               children: <Widget>[
                 Obx(
                   () {
-                    final audioState = audioController.audioPlayerState.value;
+                    // final audioState =
+                    //     widget.audioController.audioPlayerState.value;
                     final audioPosition =
-                        audioController.audioPlayerPosition.value;
+                        widget.audioController.audioPlayerPosition.value;
                     final totalDuration =
-                        audioController.audioTotalDuration.value;
+                        widget.audioController.audioTotalDuration.value;
                     final isPlaying =
-                        audioController.currentlyPlayingAudioUrl ==
+                        widget.audioController.currentlyPlayingAudioUrl ==
                                 widget.audioUrl &&
-                            audioState == PlayerState.playing;
+                            widget.audioController.isPlaying.value;
                     return SizedBox(
                       height: 65,
                       child: Row(
@@ -120,13 +118,15 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
                               color: Colors.black,
                             ),
                             onPressed: () {
-                              if (audioController.currentlyPlayingAudioUrl ==
+                              if (widget.audioController
+                                      .currentlyPlayingAudioUrl ==
                                   widget.audioUrl) {
                                 // This audio is already playing, pause it
-                                audioController.stopAudio();
+                                widget.audioController.stopAudio();
                               } else {
                                 // Play this audio
-                                audioController.playAudio(widget.audioUrl);
+                                widget.audioController
+                                    .playAudio(widget.audioUrl);
                               }
 
                               // stopAudio();
@@ -155,7 +155,7 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
                                     isPlaying ? audioPosition : Duration.zero,
                                 total: totalDuration,
                                 onSeek: (duration) {
-                                  audioController.seekAudio(duration);
+                                  widget.audioController.seekAudio(duration);
                                 },
                               ),
                             ),
