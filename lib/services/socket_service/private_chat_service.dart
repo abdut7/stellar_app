@@ -56,7 +56,7 @@ class PrivateChatService {
     chatController.messageList.removeLast();
   }
 
-  static void sentPersonalVoiceMessage(
+  static Future<void> sentPersonalVoiceMessage(
       {required String chatId, required String path}) async {
     Socket socket = SocketService().socket;
     //convert message to base64

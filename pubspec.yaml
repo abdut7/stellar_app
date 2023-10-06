@@ -65,7 +65,7 @@ dependencies:
   socket_io_client: ^2.0.3+1
   lottie: ^2.6.0
   flutter_sound: ^9.2.13
-  voice_message_package: ^1.0.41
+  # voice_message_package: ^1.0.41
   audioplayers:
   flutter_cache_manager: ^3.3.1
   flutter_otp_text_field: ^1.1.0+2
@@ -78,6 +78,11 @@ dependencies:
   alphabet_list_scroll_view: ^2.0.0
   share_plus: ^7.1.0
   dotted_border: ^2.1.0
+  social_media_recorder: ^1.0.0
+  just_audio: ^0.9.35
+  voice_message_package: ^1.0.41
+  audio_video_progress_bar: ^2.0.0
+
 
 
 dev_dependencies:

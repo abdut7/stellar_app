@@ -1,3 +1,4 @@
+import 'package:stellar_chat/functions/delete_audio_file.dart';
 import 'package:stellar_chat/functions/image_to_base.dart';
 import 'package:stellar_chat/services/api_services/upload_files.dart';
 import 'package:stellar_chat/services/socket_service/socket_service.dart';
@@ -41,6 +42,7 @@ class GroupChatService {
     Socket socket = SocketService().socket;
     //convert message to base64
     String audioAsBase = await filePathToBase(path);
+    clearFile(path);
     //upload and take link
     String? fileUrl =
         await uploadFiles(fileExtension: 'aac', base64File: audioAsBase);
@@ -56,7 +58,7 @@ class GroupChatService {
     });
   }
 
-    static void sentGroupContactMessage(
+  static void sentGroupContactMessage(
       {required String chatId,
       required List numbers,
       required String name}) async {

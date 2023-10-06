@@ -2,6 +2,45 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<!-- Added by Joel -->
+	<!-- ImagePicker -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow access to your phone's photo library</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow access your phone's camera</string>
+	<!-- GeoLocator -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs access to location when open.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app needs access to location when in the background.</string>
+	<!-- file picker -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow access to your phone's photo library</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow access your phone's camera</string>
+	<!-- Contact service -->
+	<key>NSContactsUsageDescription</key>
+	<string>Allow access to your phone's contacts</string>
+	<!-- Flutter sound -->
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Allow access to your phone's microphone</string>
+	<!-- QR code scanner -->
+	<key>NSCameraUsageDescription</key>
+	<string>Allow access to your phone's camera</string>
+	<!-- Google map -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Need location when in use</string>
+	<!-- Share plus -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow access to your phone's photo library</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow access your phone's camera</string>
+	<key>NSFileCoordinationUsageDescription</key>
+	<string>Allow access to your phone's files</string>
+	<!-- social media recorder -->
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We need to access to the microphone to record audio file</string>
+	<!-- Added by Joel till Here -->
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
