@@ -113,6 +113,7 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
                           color: Colors.black,
                         ),
                         onPressed: () {
+                          print(widget.audioUrl);
                           if (audioPlayerState == PlayerState.playing) {
                             audioPlayer.pause();
                           } else {

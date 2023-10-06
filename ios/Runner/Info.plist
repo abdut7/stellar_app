@@ -37,6 +37,9 @@
 	<string>Allow access your phone's camera</string>
 	<key>NSFileCoordinationUsageDescription</key>
 	<string>Allow access to your phone's files</string>
+	<!-- social media recorder -->
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We need to access to the microphone to record audio file</string>
 	<!-- Added by Joel till Here -->
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
