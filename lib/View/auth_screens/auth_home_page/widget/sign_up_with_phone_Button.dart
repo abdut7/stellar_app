@@ -32,13 +32,13 @@ class _SignUpWithPhoneButtonState extends State<SignUpWithPhoneButton> {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-            borderRadius: BorderRadius.circular(8)),
-        height: 55,
+            borderRadius: BorderRadius.circular(10)),
+        height: 52,
 
         child: SizedBox(
           height: 50,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(5.0),
             child: ElevatedButton(
               onPressed: widget.onPressed,
               style: ElevatedButton.styleFrom(
@@ -49,32 +49,35 @@ class _SignUpWithPhoneButtonState extends State<SignUpWithPhoneButton> {
                   side: BorderSide(color: Colors.black), // Add this line for border
                 ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  if (widget.prefixIcon != null)
-                    Icon(
-                      widget.prefixIcon,
-                      size: 20,
-                      color: Colors.black,
-                    )
-                  else if (widget.svgAssetPath != null)
-                    SvgPicture.asset(
-                      widget.svgAssetPath!,
-                      width: 20,
-                      height: 20,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    if (widget.prefixIcon != null)
+                      Icon(
+                        widget.prefixIcon,
+                        size: 20,
+                        color: Colors.black,
+                      )
+                    else if (widget.svgAssetPath != null)
+                      SvgPicture.asset(
+                        widget.svgAssetPath!,
+                        width: 20,
+                        height: 20,
+                      ),
+                    Text(
+                      widget.text,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: widget.textColor,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 0.40,
+                      ),
                     ),
-                  Text(
-                    widget.text,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: widget.textColor,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: 0.40,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
