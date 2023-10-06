@@ -367,11 +367,11 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Have an account?',
+                              'Have a account?',
                               style: TextStyle(
                                 color: SColors.color9,
                                 fontSize: 12,
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             const SizedBox(

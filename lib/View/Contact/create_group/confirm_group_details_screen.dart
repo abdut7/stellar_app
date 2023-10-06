@@ -1,3 +1,6 @@
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/View/Contact/create_group/widgets/add_group_icon_widget.dart';
 import 'package:stellar_chat/View/base_bottom_nav/bottom_nav.dart';
 import 'package:stellar_chat/functions/show_snackbar.dart';
@@ -34,12 +37,21 @@ class _ConfirmGroupDetailsScreenState extends State<ConfirmGroupDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        SizedBox(
-          height: Get.height * 0.15,
+      backgroundColor: SColors.color4,
+        appBar: AppBar(
+          toolbarHeight: 70,
+          elevation: 0,
+          title: Text(
+            'New Group',
+            style: TextStyle(color: SColors.color11, fontSize: 18, fontWeight: FontWeight.w700,),),
+          backgroundColor: SColors.color12,
+          leading: Padding(padding: const EdgeInsets.all(8.0), child: SvgPicture.asset(SSvgs.appLogo),
+          ),
         ),
+        body: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: Get.height * 0.05,),
         GestureDetector(
           onTap: () async {
             widget.groupIcon =
@@ -52,29 +64,71 @@ class _ConfirmGroupDetailsScreenState extends State<ConfirmGroupDetailsScreen> {
             file: widget.groupIcon,
           ),
         ),
+        const SizedBox(height: 15,),
+        const Center(
+          child: Text(
+            'Group Name',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 17,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+        const SizedBox(height: 30,),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                '40/128 MEMBERS',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w500,
+                  height: 0,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 40,),
         Expanded(
             child: ListView.separated(
+              physics: const AlwaysScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return Row(
-                    children: [
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      const CircleAvatar(
-                        backgroundColor: Colors.grey,
-                        child: Icon(
-                          Icons.person,
-                          color: Colors.white,
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 80),
+                    child: Row(
+                      children: [
+                        const SizedBox(
+                          width: 20,
                         ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(widget.userModelList[index].strFullName)
-                    ],
+                         CircleAvatar(
+                           radius: 18,
+                          backgroundColor: Colors.grey.withOpacity(0.4),
+                          child: Icon(
+                            Icons.person,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(widget.userModelList[index].strFullName,
+                        style:  const TextStyle(
+                          color: Colors.black,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                        ),)
+                      ],
+                    ),
                   );
                 },
-                separatorBuilder: (context, index) => const Divider(),
+                separatorBuilder: (context, index) => const Divider(thickness: 0,color: Colors.white,),
                 itemCount: widget.userModelList.length)),
         GestureDetector(
           onTap: () async {
@@ -95,31 +149,35 @@ class _ConfirmGroupDetailsScreenState extends State<ConfirmGroupDetailsScreen> {
               isLoading = false;
             });
           },
-          child: Container(
-            width: Get.width * 0.6,
-            height: 70,
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.circular(10),
+          child: Center(
+            child: Container(
+              width: Get.width * 0.7,
+              height: 45,
+              decoration: BoxDecoration(
+                color: SColors.color12,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: isLoading
+                  ? Center(
+                      child: LoadingAnimationWidget.threeRotatingDots(
+                        color: Colors.white,
+                        size: 40,
+                      ),
+                    )
+                  :  Center(
+                      child: Text(
+                        "Create New Group",
+                        style: TextStyle(
+                          color: SColors.color11,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
             ),
-            child: isLoading
-                ? Center(
-                    child: LoadingAnimationWidget.threeRotatingDots(
-                      color: Colors.white,
-                      size: 40,
-                    ),
-                  )
-                : const Center(
-                    child: Text(
-                      "Create New Group",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
           ),
         ),
-        SizedBox(
-          height: Get.height * 0.1,
-        ),
+        SizedBox(height: Get.height * 0.1),
       ],
     ));
   }

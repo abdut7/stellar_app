@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/View/auth_screens/LoginWithMobile/widgets/login_phone_textfield.dart';
 import 'package:stellar_chat/View/auth_screens/LoginWithMobile/widgets/login_region_textfield.dart';
@@ -87,7 +88,8 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                               style: TextStyle(
                                   color: Color.fromRGBO(0, 51, 142, 1),
                                   fontSize: 26,
-                                  fontWeight: FontWeight.w900),
+                                  fontWeight: FontWeight.w900
+                                ),
                             ),
                           ),
                           Padding(

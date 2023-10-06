@@ -1,3 +1,6 @@
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/View/Contact/create_group/confirm_group_details_screen.dart';
 import 'package:stellar_chat/View/Contact/create_group/widgets/add_user_group_tile_widget.dart';
 import 'package:flutter/material.dart';
@@ -35,14 +38,31 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Select Members"),
-        backgroundColor: colorPrimary,
+        toolbarHeight: 70,
+        elevation: 0,
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'New Group',
+              style: TextStyle(color: SColors.color11, fontSize: 18, fontWeight: FontWeight.w700,),),
+            Text(
+              'Add Participants',
+              style: TextStyle(
+                color: SColors.color11,
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: SColors.color12,
+        leading: Padding(padding: const EdgeInsets.all(8.0), child: SvgPicture.asset(SSvgs.appLogo),
+        ),
       ),
       body: Column(
         children: [
-          SearchTextField(
-            isFromContacts: true,
-          ),
+          const SearchTextField(isFromContacts: true,),
           Obx(
             () {
               if (contactsController.phoneNumberUserList.isNotEmpty &&
@@ -73,12 +93,10 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const SizedBox(height: 10),
+                                //const SizedBox(height: 5),
                                 //search here
 
-                                const SizedBox(
-                                  height: 20,
-                                ),
+                                //const SizedBox(height: 20,),
                                 ListView.separated(
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
@@ -110,7 +128,7 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
                                     );
                                   },
                                   separatorBuilder: (context, index) =>
-                                      const Divider(),
+                                      const Divider(thickness: 0,color: Colors.white,),
                                   itemCount: myContact.length,
                                 ),
                               ],
@@ -121,7 +139,7 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
           ),
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: selectedUsers.isNotEmpty
           ? GestureDetector(
               onTap: () {
@@ -133,14 +151,19 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
                     ));
               },
               child: Container(
-                width: Get.width * 0.5,
-                height: 60,
+               // width: Get.width * 0.5,
+                width: 55,
+                height: 55,
                 decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(10)),
-                child: const Center(
-                  child: Text("Next"),
-                ),
+                    color: SColors.color11,
+                    borderRadius: BorderRadius.circular(30)),
+                child:  Center(
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 30.0,
+                    color: Colors.white,
+                  ),
+                )
               ),
             )
           : const SizedBox(),
