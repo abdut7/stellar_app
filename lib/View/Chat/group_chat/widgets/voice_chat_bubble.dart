@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:stellar_chat/controllers/audio_player_controller.dart';
 
 class AudioMessageBubble extends StatefulWidget {
   final String audioUrl;
@@ -19,7 +20,7 @@ class AudioMessageBubble extends StatefulWidget {
 }
 
 class _AudioMessageBubbleState extends State<AudioMessageBubble> {
-  late AudioPlayer audioPlayer;
+  final AudioController audioController = Get.put(AudioController());
   PlayerState audioPlayerState = PlayerState.stopped;
   Duration totalDuration = const Duration();
   Duration completedDuration = const Duration();
@@ -28,43 +29,36 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
   @override
   void initState() {
     super.initState();
-    audioPlayer = AudioPlayer();
 
-    audioPlayer.onPlayerStateChanged.listen((PlayerState state) {
-      setState(() {
-        audioPlayerState = state;
-      });
-    });
+    // audioPlayer.onPlayerStateChanged.listen((PlayerState state) {
+    //   setState(() {
+    //     audioPlayerState = state;
+    //   });
+    // });
 
-    audioPlayer.onDurationChanged.listen((Duration duration) {
-      setState(() {
-        totalDuration = duration;
-      });
-    });
+    // audioPlayer.onDurationChanged.listen((Duration duration) {
+    //   setState(() {
+    //     totalDuration = duration;
+    //   });
+    // });
 
-    audioPlayer.onPositionChanged.listen((Duration duration) {
-      setState(() {
-        completedDuration = duration;
-        if (totalDuration.inMilliseconds > 0) {
-          sliderValue =
-              completedDuration.inMilliseconds / totalDuration.inMilliseconds;
-        } else {
-          sliderValue = 0.0;
-        }
-      });
-    });
+    // audioPlayer.onPositionChanged.listen((Duration duration) {
+    //   setState(() {
+    //     completedDuration = duration;
+    //   });
+    // });
 
     @override
     void dispose() {
-      audioPlayer.stop();
-      audioPlayer.dispose();
+      // audioPlayer.stop();
+      // audioPlayer.dispose();
       super.dispose();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final BorderRadius borderRadius = const BorderRadius.only(
+    BorderRadius borderRadius = const BorderRadius.only(
       bottomLeft: Radius.circular(0),
       bottomRight: Radius.circular(0),
       topLeft: Radius.circular(16.0),
@@ -92,60 +86,87 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
                   : CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                SizedBox(
-                  height: 65,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 8, top: 8, bottom: 8),
-                        child: CircleAvatar(
-                          backgroundColor: Color.fromRGBO(0, 51, 142, 1),
-                          child: Icon(
-                            Icons.headphones,
-                            color: Colors.white,
+                Obx(
+                  () {
+                    final audioState = audioController.audioPlayerState.value;
+                    final audioPosition =
+                        audioController.audioPlayerPosition.value;
+                    final totalDuration =
+                        audioController.audioTotalDuration.value;
+                    final isPlaying =
+                        audioController.currentlyPlayingAudioUrl ==
+                                widget.audioUrl &&
+                            audioState == PlayerState.playing;
+                    return SizedBox(
+                      height: 65,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Padding(
+                            padding:
+                                EdgeInsets.only(left: 8, top: 8, bottom: 8),
+                            child: CircleAvatar(
+                              backgroundColor: Color.fromRGBO(0, 51, 142, 1),
+                              child: Icon(
+                                Icons.headphones,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      IconButton(
-                        icon: Icon(
-                          audioPlayerState == PlayerState.playing
-                              ? Icons.pause
-                              : Icons.play_arrow,
-                          color: Colors.black,
-                        ),
-                        onPressed: () {
-                          // stopAudio();
-                          if (audioPlayerState == PlayerState.playing) {
-                            audioPlayer.pause();
-                          } else {
-                            audioPlayer.play(UrlSource(widget.audioUrl));
-                          }
-                        },
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 16, top: 16),
-                          child: ProgressBar(
-                            barHeight: 3,
-                            thumbRadius: 7,
-                            progressBarColor: Color.fromRGBO(0, 51, 142, 1),
-                            baseBarColor: Color.fromRGBO(156, 156, 156, 1),
-                            thumbColor: Color.fromRGBO(0, 51, 142, 1),
-                            progress: completedDuration,
-                            total: totalDuration,
-                            onSeek: (duration) {
-                              audioPlayer.seek(duration);
+                          IconButton(
+                            icon: Icon(
+                              isPlaying ? Icons.pause : Icons.play_arrow,
+                              color: Colors.black,
+                            ),
+                            onPressed: () {
+                              if (audioController.currentlyPlayingAudioUrl ==
+                                  widget.audioUrl) {
+                                // This audio is already playing, pause it
+                                audioController.stopAudio();
+                              } else {
+                                // Play this audio
+                                audioController.playAudio(widget.audioUrl);
+                              }
+
+                              // stopAudio();
+                              // if (audioState == PlayerState.playing) {
+                              //   audioPlayer.pause();
+                              // } else {
+                              //   audioPlayer.play(
+                              //     UrlSource(widget.audioUrl),
+                              //   );
+                              // }
                             },
                           ),
-                        ),
+                          Expanded(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 16, top: 16),
+                              child: ProgressBar(
+                                barHeight: 3,
+                                thumbRadius: 7,
+                                progressBarColor:
+                                    const Color.fromRGBO(0, 51, 142, 1),
+                                baseBarColor:
+                                    const Color.fromRGBO(156, 156, 156, 1),
+                                thumbColor: const Color.fromRGBO(0, 51, 142, 1),
+                                progress:
+                                    isPlaying ? audioPosition : Duration.zero,
+                                total: totalDuration,
+                                onSeek: (duration) {
+                                  audioController.seekAudio(duration);
+                                },
+                              ),
+                            ),
+                          ),
+                          // const SizedBox(
+                          //   width: 8,
+                          // ),
+                        ],
                       ),
-                      // const SizedBox(
-                      //   width: 8,
-                      // ),
-                    ],
-                  ),
+                    );
+                  },
                 ),
                 // Text(
                 //   '${completedDuration.inMinutes}:${(completedDuration.inSeconds % 60).toString().padLeft(2, '0')} / ${totalDuration.inMinutes}:${(totalDuration.inSeconds % 60).toString().padLeft(2, '0')}',
@@ -166,10 +187,12 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
                   ? const Color.fromRGBO(197, 229, 255, 1)
                   : const Color.fromRGBO(224, 224, 224, 1),
               borderRadius: BorderRadius.only(
-                bottomLeft:
-                    widget.isSender ? Radius.circular(10) : Radius.circular(0),
-                bottomRight:
-                    !widget.isSender ? Radius.circular(10) : Radius.circular(0),
+                bottomLeft: widget.isSender
+                    ? const Radius.circular(10)
+                    : const Radius.circular(0),
+                bottomRight: !widget.isSender
+                    ? const Radius.circular(10)
+                    : const Radius.circular(0),
               ),
             ),
             child: Row(
@@ -192,7 +215,7 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
 <path d="M10.0001 0.608279C9.96049 0.754513 9.867 0.862565 9.76101 0.96672C8.46205 2.24516 7.16379 3.52447 5.86622 4.80464C5.59903 5.06984 5.31596 5.06438 5.05215 4.7888C4.91726 4.64802 4.78106 4.5088 4.64695 4.36724C4.43393 4.1423 4.42976 3.83503 4.63549 3.63685C4.84122 3.43867 5.14721 3.4501 5.36622 3.67166L5.50684 3.81477C5.88314 3.42516 6.24903 3.03243 6.62846 2.65399C7.45241 1.83295 8.28861 1.02412 9.1084 0.198928C9.4209 -0.115617 9.9032 0.0308762 9.98575 0.40672C9.98911 0.415977 9.99376 0.42472 9.99955 0.432694L10.0001 0.608279Z" fill="#00338E"/>
 </svg>
 """)
-                    : SizedBox(),
+                    : const SizedBox(),
                 const SizedBox(
                   width: 8,
                 )
@@ -204,9 +227,9 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
     );
   }
 
-  void stopAudio() {
-    if (audioPlayerState == PlayerState.playing) {
-      audioPlayer.stop();
-    }
-  }
+  // void stopAudio() {
+  //   if (audioPlayerState == PlayerState.playing) {
+  //     audioPlayer.stop();
+  //   }
+  // }
 }
