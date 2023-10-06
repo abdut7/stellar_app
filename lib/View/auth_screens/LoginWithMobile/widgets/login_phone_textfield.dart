@@ -85,9 +85,11 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
                           size: 28,
                         )),
 
-                    const SizedBox(width: 5),
-                    // Container(width: 1, color: Colors.grey.withOpacity(0.3),
-                    // )
+                    // const SizedBox(width: 5),
+                    VerticalDivider(
+                      thickness: 2,
+                      color: Colors.grey.withOpacity(0.4),
+                    ),
                   ],
                 ),
               ),

@@ -44,6 +44,7 @@ class _OtpVerificationUiState extends State<OtpVerificationUi> {
               child: Image.asset(
                 SImages.vectorBackground,
                 fit: BoxFit.cover,
+                color: Colors.white12,
               ),
             ),
           ),
@@ -89,7 +90,7 @@ class _OtpVerificationUiState extends State<OtpVerificationUi> {
                   ),
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 40,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -134,7 +135,7 @@ class _OtpVerificationUiState extends State<OtpVerificationUi> {
                         style: TextStyle(
                           color: SColors.color4,
                           fontSize: 10,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],

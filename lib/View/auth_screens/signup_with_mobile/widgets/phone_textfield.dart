@@ -92,10 +92,10 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
                 const SizedBox(
                   width: 5,
                 ),
-                // Container(
-                //   width: 2,
-                //   color: Colors.grey.withOpacity(0.5),
-                // ),
+                  VerticalDivider(
+                    thickness: 2,
+                    color: Colors.grey.withOpacity(0.4),
+                  ),
                 const SizedBox(width: 5,),
               ],
             ),

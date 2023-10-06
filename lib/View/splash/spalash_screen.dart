@@ -28,8 +28,8 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(SImages.vectorBackground),
-            fit: BoxFit.fill,
+            image: AssetImage(SImages.vectorBackground,),
+            fit: BoxFit.cover,
           ),
         ),
         child: Column(

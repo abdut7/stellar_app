@@ -53,7 +53,7 @@ class _LoginRegionTextFieldState extends State<LoginRegionTextField> {
       ),
       suffixIcon: GestureDetector(
         onTap: () {
-          showRegionMenu(context);
+           //showRegionMenu(context);
         },
         child: widget.suffixIcon,
       ),
@@ -94,6 +94,9 @@ class _LoginRegionTextFieldState extends State<LoginRegionTextField> {
           color: Colors.white, borderRadius: BorderRadius.circular(8)),
       child:  TextFormField(
         readOnly: true,
+        onTap: (){
+          showRegionMenu(context);
+        },
         onChanged: widget.onChanged,
         onSaved: widget.onSaved,
         validator: widget.validator,
@@ -127,7 +130,8 @@ class _LoginRegionTextFieldState extends State<LoginRegionTextField> {
                 ),
           ),
           const SizedBox(height: 5),
-        textField(widget.controller),
+        GestureDetector(
+            child: textField(widget.controller)),
           const SizedBox(height: 20),
         ],
       ),
