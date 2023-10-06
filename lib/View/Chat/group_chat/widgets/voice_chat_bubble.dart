@@ -1,3 +1,4 @@
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_svg/svg.dart';
@@ -52,6 +53,7 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
         }
       });
     });
+
     @override
     void dispose() {
       audioPlayer.stop();
@@ -91,9 +93,10 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 SizedBox(
-                  height: 50,
+                  height: 65,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Padding(
                         padding: EdgeInsets.only(left: 8, top: 8, bottom: 8),
@@ -113,7 +116,7 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
                           color: Colors.black,
                         ),
                         onPressed: () {
-                          print(widget.audioUrl);
+                          // stopAudio();
                           if (audioPlayerState == PlayerState.playing) {
                             audioPlayer.pause();
                           } else {
@@ -122,30 +125,19 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
                         },
                       ),
                       Expanded(
-                        child: GestureDetector(
-                          onHorizontalDragUpdate: (details) {
-                            // Handle swipe gestures for fast-forwarding
-                            final double screenWidth =
-                                MediaQuery.of(context).size.width;
-                            final double dragDistance =
-                                details.primaryDelta ?? 0.0;
-
-                            setState(() {
-                              final double newSliderValue =
-                                  (sliderValue + (dragDistance / screenWidth))
-                                      .clamp(0.0, 1.0);
-                              sliderValue = newSliderValue;
-                              final double newPosition =
-                                  newSliderValue * totalDuration.inMilliseconds;
-                              audioPlayer.seek(
-                                  Duration(milliseconds: newPosition.round()));
-                            });
-                          },
-                          child: LinearProgressIndicator(
-                            value: sliderValue,
-                            valueColor: const AlwaysStoppedAnimation<Color>(
-                                Color.fromRGBO(0, 51, 142, 1)),
-                            backgroundColor: Colors.grey[400],
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 16, top: 16),
+                          child: ProgressBar(
+                            barHeight: 3,
+                            thumbRadius: 7,
+                            progressBarColor: Color.fromRGBO(0, 51, 142, 1),
+                            baseBarColor: Color.fromRGBO(156, 156, 156, 1),
+                            thumbColor: Color.fromRGBO(0, 51, 142, 1),
+                            progress: completedDuration,
+                            total: totalDuration,
+                            onSeek: (duration) {
+                              audioPlayer.seek(duration);
+                            },
                           ),
                         ),
                       ),
@@ -210,5 +202,11 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
         ],
       ),
     );
+  }
+
+  void stopAudio() {
+    if (audioPlayerState == PlayerState.playing) {
+      audioPlayer.stop();
+    }
   }
 }
