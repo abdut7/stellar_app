@@ -17,40 +17,43 @@ class _SearchTextFieldState extends State<SearchTextField> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-      child: TextFormField(
-        cursorColor: SColors.color12,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(vertical: 8),
-          filled: true,
-          fillColor: Colors.grey[300],
-          hintText: 'SEARCH',
-          hintStyle: TextStyle(
-            color: SColors.color9,
-            fontSize: 13,
-            fontWeight: FontWeight.w700,
+      child: SizedBox(
+        height: 40,
+        child: TextFormField(
+          cursorColor: SColors.color12,
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.symmetric(vertical: 8),
+            filled: true,
+            fillColor: Colors.grey[300],
+            hintText: 'Search',
+            hintStyle: TextStyle(
+              color: SColors.color9,
+              fontSize: 13,
+              fontWeight: FontWeight.w700,
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide.none,
+            ),
           ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
-            borderSide: BorderSide.none,
-          ),
+          style: TextStyle(color: SColors.color3, fontSize: 15),
+          textAlign: TextAlign.center,
+          onChanged: (val) {
+            if (widget.isFromContacts) {
+              if (val.isEmpty) {
+                ContactServiceApi.getContacts();
+              } else {
+                ContactServiceApi.searchContacts(val);
+              }
+            } else {
+              if (val.isEmpty) {
+                ChatHistoryServiceApi.getChatHistory();
+              } else {
+                ChatHistoryServiceApi.getChatHistorySearch(val: val);
+              }
+            }
+          },
         ),
-        style: TextStyle(color: SColors.color3, fontSize: 15),
-        textAlign: TextAlign.center,
-        onChanged: (val) {
-          if (widget.isFromContacts) {
-            if (val.isEmpty) {
-              ContactServiceApi.getContacts();
-            } else {
-              ContactServiceApi.searchContacts(val);
-            }
-          } else {
-            if (val.isEmpty) {
-              ChatHistoryServiceApi.getChatHistory();
-            } else {
-              ChatHistoryServiceApi.getChatHistorySearch(val: val);
-            }
-          }
-        },
       ),
     );
   }
