@@ -23,7 +23,7 @@ class ListContactsWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           Contact data = contactsController.phoneNumberUserList[index];
           return Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 25),
             child: ListTile(
               onTap: () async {
                 Get.to(() => PrivateChatScreen(
@@ -31,18 +31,28 @@ class ListContactsWidget extends StatelessWidget {
                     fullName: data.strFullName,
                     chatId: data.id));
               },
-              leading: CircleAvatar(
-                radius: 45,
-                backgroundImage: NetworkImage(data.strProfileUrl.isEmpty
-                    ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-                    : data.strProfileUrl),
+              leading:Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                      data.strProfileUrl.isEmpty
+                          ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                          : data.strProfileUrl,
+                    ),
+                  ),
+                ),
               ),
+
               title: Text(
                 data.strFullName,
                 style: TextStyle(
                   color: SColors.color3,
                   fontSize: 17,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
               subtitle: Text(data.strMobileNo),
