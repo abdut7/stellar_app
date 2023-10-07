@@ -35,7 +35,7 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                 const TopSection(),
                 Container(
                     //margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 210),
-                    margin: const EdgeInsets.only(left: 45,right: 45,top: 210),
+                    margin: const EdgeInsets.only(left: 45,right: 45,top: 235),
                     width: double.infinity,
                     decoration: ShapeDecoration(
                       color: SColors.color4,
@@ -59,10 +59,13 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                               title: 'Flicks',
                               svgAsset: SSvgs.flicksLogo,
                               onTap: () {}),
-                          const Divider(
-                            thickness: 2,
-                            color: Colors.black12,
+                           const Padding(
+                             padding: EdgeInsets.symmetric(horizontal: 15),
+                             child: Divider(
+                              thickness: 2,
+                              color: Colors.black12,
                           ),
+                           ),
                           DiscoverListTile(
                               title: 'Channel',
                               svgAsset: SSvgs.channelLogo,
@@ -74,7 +77,7 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                     )),
                 Container(
                     //margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 380),
-                    margin: const EdgeInsets.only(left: 45,right: 45,top: 380),
+                    margin: const EdgeInsets.only(left: 45,right: 45,top: 400),
                     width: double.infinity,
                     decoration: ShapeDecoration(
                       color: SColors.color4,
@@ -101,7 +104,7 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                     )),
                 Container(
                     //margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 480),
-                    margin: const EdgeInsets.only(left: 45,right: 45,top: 480),
+                    margin: const EdgeInsets.only(left: 45,right: 45,top: 500),
                     width: double.infinity,
                     decoration: ShapeDecoration(
                       color: SColors.color4,
@@ -127,10 +130,13 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                               onTap: () {
                                 Get.to(() => FriendsInRadarScreen());
                               }),
-                          const Divider(
-                            thickness: 2,
-                            color: Colors.black12,
+                           Padding(
+                             padding: const EdgeInsets.symmetric(horizontal: 15),
+                             child: Divider(
+                              thickness: 2,
+                              color: Colors.black12,
                           ),
+                           ),
                           DiscoverListTile(
                               title: 'Search',
                               svgAsset: SSvgs.searchIcon,
