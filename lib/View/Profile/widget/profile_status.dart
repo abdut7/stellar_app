@@ -21,8 +21,8 @@ class _ProfileStatusState extends State<ProfileStatus> {
             widget.count,
             style: TextStyle(
               color: SColors.color3,
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
             ),
           ),
           Text(
@@ -30,7 +30,7 @@ class _ProfileStatusState extends State<ProfileStatus> {
             style: TextStyle(
               color: SColors.color3,
               fontSize: 11,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ],

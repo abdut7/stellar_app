@@ -9,6 +9,7 @@ class CustomButton extends StatefulWidget {
   final Color foregroundColor;
   final IconData? prefixIcon;
   final String? svgAssetPath;
+  final String? imageAssetPath; // New property for image asset
   final void Function() onPressed;
 
   CustomButton({
@@ -16,9 +17,11 @@ class CustomButton extends StatefulWidget {
     required this.textColor,
     required this.backgroundColor,
     this.prefixIcon,
-  this.svgColor,
+    this.svgColor,
     this.svgAssetPath,
-    required this.onPressed, required this.foregroundColor,
+    this.imageAssetPath, // New property for image asset
+    required this.onPressed,
+    required this.foregroundColor,
   });
 
   @override
@@ -55,10 +58,16 @@ class _CustomButtonState extends State<CustomButton> {
                 else if (widget.svgAssetPath != null)
                   SvgPicture.asset(
                     widget.svgAssetPath!,
-                    width: 20,
+                    width: 30,
                     height: 20,
                     color: widget.svgColor,
-                  ),
+                  )
+                else if (widget.imageAssetPath != null) // Check if image asset is provided
+                    Image.asset(
+                      widget.imageAssetPath!,
+                      width: 30,
+                      height: 20,
+                    ),
                 Text(
                   widget.text,
                   textAlign: TextAlign.center,

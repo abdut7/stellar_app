@@ -1,3 +1,4 @@
+import 'package:stellar_chat/Settings/SImages.dart';
 import 'package:stellar_chat/View/auth_screens/auth_home_page/widget/sign_up_with_phone_Button.dart';
 import 'package:stellar_chat/View/auth_screens/signup_with_mobile/sign_up_with_mobile_screen.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +79,7 @@ Future<dynamic> showSignupModelBottomSheet(BuildContext context) {
               backgroundColor: const Color(0xff3b5998),
               foregroundColor: SColors.color4,
               prefixIcon: null,
-              svgAssetPath: SSvgs.sv03,
+              imageAssetPath: SImages.facebook,
               svgColor: Colors.white,
             ),
             const SizedBox(height: 30),
@@ -89,7 +90,7 @@ Future<dynamic> showSignupModelBottomSheet(BuildContext context) {
               backgroundColor: Colors.blueAccent,
               foregroundColor: SColors.color4,
               prefixIcon: null,
-              svgAssetPath: SSvgs.sv04,
+              imageAssetPath: SImages.signGoogle,
             ),
           ],
         ),

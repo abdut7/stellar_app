@@ -80,7 +80,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                         },
                                         child: Padding(
                                           padding:
-                                              const EdgeInsets.only(right: 28),
+                                              const EdgeInsets.only(right: 28,bottom: 28),
                                           child: SvgPicture.asset(
                                             SSvgs.moreVertz,
                                             width: 10,
@@ -115,7 +115,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                         style: TextStyle(
                                           color: SColors.color3,
                                           fontSize: 14,
-                                          fontWeight: FontWeight.w800,
+                                          fontWeight: FontWeight.w900,
                                         ),
                                       ),
                                       const SizedBox(
@@ -126,7 +126,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                         style: TextStyle(
                                           color: SColors.color3,
                                           fontSize: 11,
-                                          fontWeight: FontWeight.w700,
+                                          fontWeight: FontWeight.w800,
                                         ),
                                       ),
                                       const SizedBox(
@@ -180,10 +180,10 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                         // ),
                         ),
                     const SizedBox(
-                      height: 15,
+                      height: 25,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 80),
+                      padding: const EdgeInsets.symmetric(horizontal: 90),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -212,7 +212,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                       height: 20,
                     ),
                     Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        padding: const EdgeInsets.symmetric(horizontal: 35),
                         child: Text.rich(
                           TextSpan(
                             children: [
@@ -221,7 +221,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                 style: TextStyle(
                                   color: SColors.color3,
                                   fontSize: 12,
-                                  fontWeight: FontWeight.w800,
+                                  fontWeight: FontWeight.w900,
                                 ),
                               ),
                               TextSpan(
@@ -229,21 +229,22 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                 style: TextStyle(
                                   color: SColors.color3,
                                   fontSize: 11,
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ],
                           ),
                         )),
+                    const SizedBox(height: 10,),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25),
+                      padding: const EdgeInsets.symmetric(horizontal: 35),
                       child: Divider(
                         color: SColors.color3,
                         thickness: 1,
                       ),
                     ),
                     TabBar(
-                      indicatorColor: SColors.color9,
+                      indicatorColor: SColors.color9.withOpacity(0.5),
                       tabs: [
                         Tab(
                           icon: SvgPicture.asset(
@@ -319,8 +320,8 @@ void showBottomSheet(
                 model.isBlocked ? "Unblock" : 'Block',
                 style: TextStyle(
                   color: SColors.color12,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 11,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),
@@ -341,8 +342,8 @@ void showBottomSheet(
                 'Report',
                 style: TextStyle(
                   color: SColors.color12,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 11,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),

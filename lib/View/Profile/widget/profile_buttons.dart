@@ -20,11 +20,11 @@ class _ProfileButtonState extends State<ProfileButton> {
     return GestureDetector(
       onTap: widget.onPressed,
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.4,
-        height: 40,
+        width: MediaQuery.of(context).size.width * 0.35,
+        height: 32,
         decoration: BoxDecoration(
           color: const Color.fromRGBO(0, 51, 142, 1),
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(8),
         ),
         child: Center(
           child: Text(

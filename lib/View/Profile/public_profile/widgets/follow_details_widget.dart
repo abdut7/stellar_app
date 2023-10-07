@@ -80,10 +80,10 @@ class _FollowDetailsWidgetState extends State<FollowDetailsWidget> {
               },
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.7,
-                height: 40,
+                height: 35,
                 decoration: BoxDecoration(
                   color: const Color.fromRGBO(0, 51, 142, 1),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(9),
                 ),
                 child: Center(
                   child: Text(
