@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:stellar_chat/View/help_article/help_article_screen.dart';
 import 'package:stellar_chat/View/profile/settings/privacy_settings/privacy_settings.dart';
 import 'package:stellar_chat/services/token_service/token_service.dart';
@@ -51,7 +52,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                           style: TextStyle(
                             color: SColors.color11,
                             fontSize: 15,
-                            fontWeight: FontWeight.w800,
+                            fontWeight: FontWeight.w900,
                           ),
                         ),
                       ),
@@ -63,7 +64,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                           style: TextStyle(
                             color: SColors.color11,
                             fontSize: 13,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),
@@ -99,7 +100,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
               text: 'Favorites',
               onTap: () {},
               svgAsset: SSvgs.sv25,
-              trailingIcon: Icons.arrow_forward_ios,
+              //trailingIcon: Icons.arrow_forward_ios,
             ),
             Column(
               children: [
@@ -107,7 +108,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                     text: 'Sticker Gallery',
                     onTap: () {},
                     svgAsset: SSvgs.sv27,
-                    trailingIcon: Icons.arrow_forward_ios),
+                    //trailingIcon: Icons.arrow_forward_ios
+                ),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
@@ -168,13 +170,18 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          Switch(
-                            value: darkThemeController.isDarkTheme.value,
-                            onChanged: (bool newValue) {
-                              darkThemeController.switchTheme();
-                            },
-                            activeColor: SColors.color11,
+                          Transform.scale(
+                            scale: 0.7,
+                            child: CupertinoSwitch(
+                              value: darkThemeController.isDarkTheme.value,
+                              onChanged: (bool newValue) {
+                                darkThemeController.switchTheme();
+                              },
+                              activeColor: SColors.color11,
+
+                            ),
                           ),
+
                         ],
                       ),
                     )),
@@ -192,7 +199,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         )),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 15,
                   ),
                   GestureDetector(
                     onTap: () {
@@ -261,7 +268,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                           )),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 15,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 45),
@@ -280,7 +287,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       ),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 15,
                     ),
                     GestureDetector(
                         onTap: () {},

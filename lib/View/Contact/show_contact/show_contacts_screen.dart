@@ -66,6 +66,7 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
         ),
         actions: <Widget>[
           PopupMenuButton<int>(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             color: SColors.color11, // Change this to your desired color
             onSelected: (value) {
               // Handle the option selected
@@ -163,9 +164,9 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
               child: Text(
                 'Contacts On Phone',
                 style: TextStyle(
-                  color: SColors.color8,
+                  color: SColors.color9,
                   fontSize: 13,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ),

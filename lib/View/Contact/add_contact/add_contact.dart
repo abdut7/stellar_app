@@ -51,11 +51,11 @@ class _AddContactUiState extends State<AddContactUi> {
       body: ListView(
         children: [
           const SizedBox(
-            height: 60,
+            height: 30,
           ),
           AddContactListTile(
             text: 'Invite Friends',
-            subtitle: 'Invite friends to chat using the app!',
+            subtitle: 'Invite friends to chat using the app',
             onPressed: () {
               Share.share('check out stellar chat https://stellarchat.com',
                   subject: 'Come connect me on Stellar chat');
@@ -72,7 +72,7 @@ class _AddContactUiState extends State<AddContactUi> {
           ),
           AddContactListTile(
               text: 'Use QR Code',
-              subtitle: 'Scan a friends Code',
+              subtitle: 'Scan your QR code',
               onPressed: () {
                 Get.to(() => QRScannerScreen());
               },

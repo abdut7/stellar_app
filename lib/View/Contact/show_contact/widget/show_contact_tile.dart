@@ -31,7 +31,7 @@ class _TileState extends State<Tile> {
           alignment: Alignment.bottomRight,
           children: [
             CircleAvatar(
-              radius: 25,
+              radius: 20,
               backgroundColor: widget.circleAvatarBackgroundColor,
               child: SvgPicture.asset(
                 widget.svgAsset,
@@ -54,7 +54,7 @@ class _TileState extends State<Tile> {
           style: const TextStyle(
             color: Colors.black,
             fontSize: 14,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w500,
           ),
         ),
         trailing: widget.trailingIcon,
