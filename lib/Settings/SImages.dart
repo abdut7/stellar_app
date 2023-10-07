@@ -16,5 +16,7 @@ class SImages {
   static String get callIcon=> "assets/Images/callIcon.png";
   static String get videoIcon=> "assets/Images/videoIcon.png";
   static String get bgDiscover=> "assets/Images/bgDiscover.png";
+  static String get facebook=> "assets/Images/facebook.png";
+  static String get signGoogle=> "assets/Images/signGoogle.png";
 
 }
