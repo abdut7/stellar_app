@@ -10,6 +10,7 @@ class GroupDetailsResponseModel {
       required this.strCreatedBy,
       required this.intParticipants,
       required this.groupUser,
+      required this.isAdmin,
       required this.strCreatedId});
   late final bool success;
   late final String message;
@@ -21,6 +22,7 @@ class GroupDetailsResponseModel {
   late final String strCreatedBy;
   late final int intParticipants;
   late final String strCreatedId;
+  late final bool isAdmin;
   late final List<GroupUser> groupUser;
 
   GroupDetailsResponseModel.fromJson(Map<String, dynamic> json) {
@@ -31,8 +33,9 @@ class GroupDetailsResponseModel {
     strCreatedTime = json['strCreatedTime'];
     strDiscription = json['strDiscription'];
     strIconURL = json['strIconURL'];
+    isAdmin = json['isAdmin'] ?? false;
     strCreatedBy = json['strCreatedBy'];
-    strCreatedId = json['strCreatedId']??"";
+    strCreatedId = json['strCreatedId'] ?? "";
     intParticipants = json['intParticipants'];
     groupUser = List.from(json['arrUserList'])
         .map((e) => GroupUser.fromJson(e))

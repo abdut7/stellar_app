@@ -22,4 +22,7 @@ class ApiRoutes {
   static String updateUser = "/update_user";
   static String chatHistorySearch = "/get_chat_history";
   static String exitGroup = "/exit_group";
+  static String removeUserFromGroup = "/exit_group";
+  static String updateGroup = "/update_group";
+
 }
