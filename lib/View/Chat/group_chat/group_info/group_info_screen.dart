@@ -96,31 +96,40 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                       height: 20,
                     ),
                     //Add button
-                    Center(
-                      child: Column(
-                        children: [
-                          Stack(
-                            alignment: Alignment.bottomRight,
-                            children: [
-                              CircleAvatar(
-                                backgroundColor: colorPrimary,
-                                child: const Icon(Icons.person),
-                              ),
-                              CircleAvatar(
-                                radius: 7,
-                                backgroundColor: secondaryColor,
-                                child: const Icon(
-                                  Icons.add,
-                                  size: 7,
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(SelectGroupParticipents(
+                          groupId: widget.chatId,
+                          grpName: resModel.strGroupName,
+                          isCreatedGroup: true,
+                        ));
+                      },
+                      child: Center(
+                        child: Column(
+                          children: [
+                            Stack(
+                              alignment: Alignment.bottomRight,
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: colorPrimary,
+                                  child: const Icon(Icons.person),
                                 ),
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          const Text("Add")
-                        ],
+                                CircleAvatar(
+                                  radius: 7,
+                                  backgroundColor: secondaryColor,
+                                  child: const Icon(
+                                    Icons.add,
+                                    size: 7,
+                                  ),
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            const Text("Add")
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -265,7 +274,10 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                     );
                                     if (result) {
                                       showCustomSnackbar(
-                                          title: "Made Admin Succesfully",
+                                          title:
+                                              resModel.groupUser[index].isAdmin
+                                                  ? "Removed admin succesfuly"
+                                                  : "Made Admin Succesfully",
                                           message: "");
                                       setState(() {});
                                     } else {
