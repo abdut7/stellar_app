@@ -26,10 +26,12 @@ class GroupChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      final AudioController audioController = Get.put(AudioController());
+    final AudioController audioController = Get.put(AudioController());
     print(message.strType);
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: message.strMessageType == "tag"
+          ? const EdgeInsets.all(4.0)
+          : const EdgeInsets.all(8.0),
       child: Column(
         crossAxisAlignment: alignment == BubbleAlignment.left
             ? CrossAxisAlignment.start
@@ -37,10 +39,10 @@ class GroupChatBubble extends StatelessWidget {
                 ? CrossAxisAlignment.center
                 : CrossAxisAlignment.end,
         children: [
-          alignment == BubbleAlignment.right
+          alignment == BubbleAlignment.right || message.strMessageType == "tag"
               ? const SizedBox()
               : Text(
-                  message.strMessageType == "tag" ? "" : senderName,
+                  senderName,
                   style: const TextStyle(
                     fontSize: 12.0,
                     color: Colors.grey,
@@ -48,9 +50,14 @@ class GroupChatBubble extends StatelessWidget {
                 ),
           Container(
             margin: EdgeInsets.symmetric(
-                vertical: message.strMessageType == "voice" ? 0 : 4),
-            padding:
-                EdgeInsets.all(message.strMessageType == "voice" ? 0 : 8.0),
+                vertical: message.strMessageType == "voice" ||
+                        message.strMessageType == "tag"
+                    ? 0
+                    : 4),
+            padding: EdgeInsets.all(message.strMessageType == "voice" ||
+                    message.strMessageType == "tag"
+                ? 0
+                : 8.0),
             decoration: message.strMessageType == "voice"
                 ? null
                 : BoxDecoration(
@@ -81,20 +88,20 @@ class GroupChatBubble extends StatelessWidget {
                         : [],
                   ),
             child: message.strMessageType == "text"
-                ? Container(
+                ? SizedBox(
                     width: Get.width * 0.5,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(0.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(
-                            message.strMessage,
-                            style: const TextStyle(color: Colors.black),
-                          ),
-                          SizedBox(
-                            height: 10,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(
+                              message.strMessage,
+                              style: const TextStyle(color: Colors.black),
+                            ),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -102,7 +109,9 @@ class GroupChatBubble extends StatelessWidget {
                               Text(
                                 message.strCreatedTime,
                                 style: const TextStyle(
-                                    color: Colors.grey, fontSize: 8),
+                                    color: Color.fromRGBO(87, 87, 87, 1),
+                                    fontSize: 6,
+                                    fontWeight: FontWeight.w400),
                               ),
                             ],
                           )
@@ -150,7 +159,7 @@ class GroupChatBubble extends StatelessWidget {
                                 Text(
                                   message.strCreatedTime,
                                   style: const TextStyle(
-                                      color: Colors.grey, fontSize: 8),
+                                      color: Colors.grey, fontSize: 6),
                                 ),
                               ],
                             ),
@@ -159,7 +168,7 @@ class GroupChatBubble extends StatelessWidget {
                       )
                     : message.strMessageType == "voice"
                         ? AudioMessageBubble(
-                          audioController: audioController,
+                            audioController: audioController,
                             audioUrl: message.strUrl,
                             isSender: message.strUserId ==
                                 controller.userDetailsModel.value!.id,
@@ -167,9 +176,26 @@ class GroupChatBubble extends StatelessWidget {
                           )
                         : message.strMessageType == "tag"
                             ? Center(
-                                child: Text(
-                                  message.strMessage,
-                                  style: TextStyle(color: Colors.black),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: const Color.fromRGBO(
+                                          233, 244, 255, 1),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  width: Get.width * 0.7,
+                                  child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12.0),
+                                      child: Text(
+                                        message.strMessage,
+                                        style: const TextStyle(
+                                            fontSize: 9,
+                                            fontWeight: FontWeight.w700,
+                                            color:
+                                                Color.fromRGBO(0, 51, 142, 1)),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               )
                             : const SizedBox(),

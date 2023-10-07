@@ -124,7 +124,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                     senderName: model.strName,
                     // message: model.strMessage,
                     message: model,
-                    alignment: model.strUserId !=
+                    alignment: model.strUserId ==
                             userController.userDetailsModel.value!.id
                         ? BubbleAlignment.left
                         : BubbleAlignment.right,
