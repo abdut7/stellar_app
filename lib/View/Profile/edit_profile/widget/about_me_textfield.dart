@@ -1,13 +1,13 @@
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
 
-class ProfileTextField extends StatefulWidget {
+class ProfileTextField2 extends StatefulWidget {
   final String head;
   final TextInputType keyboardType;
   final int? maxLines;
   final TextEditingController controller;
 
-  const ProfileTextField({
+  const ProfileTextField2({
     Key? key,
     required this.head,
     required this.keyboardType,
@@ -16,17 +16,20 @@ class ProfileTextField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<ProfileTextField> createState() => _ProfileTextFieldState();
+  State<ProfileTextField2> createState() => _ProfileTextField2State();
 }
 
-class _ProfileTextFieldState extends State<ProfileTextField> {
+class _ProfileTextField2State extends State<ProfileTextField2> {
   Widget textFieldHeading({String? headingText}) {
-    return Text(
-      headingText!,
-      style: TextStyle(
-        fontSize: 14,
-        color: SColors.color3,
-        fontWeight: FontWeight.w600,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 80),
+      child: Text(
+        headingText!,
+        style: TextStyle(
+          fontSize: 14,
+          color: SColors.color3,
+          fontWeight: FontWeight.w600,
+        ),
       ),
     );
   }
@@ -58,7 +61,7 @@ class _ProfileTextFieldState extends State<ProfileTextField> {
   Widget textField() {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10),
-      height: 25,
+      //height: 25,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.grey.withOpacity(0.1)),
       child: TextFormField(
         controller: widget.controller,

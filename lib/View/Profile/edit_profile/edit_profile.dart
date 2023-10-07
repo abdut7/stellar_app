@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
+import 'package:stellar_chat/View/Profile/edit_profile/widget/about_me_textfield.dart';
+import 'package:stellar_chat/View/Profile/edit_profile/widget/profile_update_button.dart';
 import 'package:stellar_chat/View/profile/widget/profile_buttons.dart';
 import 'package:stellar_chat/View/profile/widget/profile_text_field.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
@@ -68,7 +70,7 @@ class _EditProfileState extends State<EditProfile> {
           Column(
             children: [
               Container(
-                margin: const EdgeInsets.only(top: 50),
+                margin: const EdgeInsets.only(top: 30),
                 width: 100,
                 height: 100,
                 decoration: ShapeDecoration(
@@ -113,8 +115,12 @@ class _EditProfileState extends State<EditProfile> {
                             return Wrap(
                               children: <Widget>[
                                 ListTile(
-                                  leading: const Icon(Icons.photo_library),
-                                  title: const Text('Pick from Gallery'),
+                                  leading:  Icon(Icons.photo_library,color: SColors.color12,),
+                                  title:  Text('Pick from Gallery',style: TextStyle(
+                                    color: SColors.color12,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500,
+                                  ),),
                                   onTap: () async {
                                     Navigator.of(context)
                                         .pop(); // Close the bottom sheet
@@ -126,8 +132,12 @@ class _EditProfileState extends State<EditProfile> {
                                   },
                                 ),
                                 ListTile(
-                                  leading: const Icon(Icons.photo_camera),
-                                  title: const Text('Take a Photo'),
+                                  leading:  Icon(Icons.photo_camera,color: SColors.color12,),
+                                  title:  Text('Take a Photo',style: TextStyle(
+                                    color: SColors.color12,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500,
+                                  ),),
                                   onTap: () async {
                                     Navigator.of(context)
                                         .pop(); // Close the bottom sheet
@@ -145,7 +155,8 @@ class _EditProfileState extends State<EditProfile> {
                       },
                       child: Icon(
                         Icons.camera_alt_outlined,
-                        color: SColors.color3,
+                        color: SColors.color12,
+                        size: 35,
                       ),
                     ),
                   ],
@@ -159,13 +170,13 @@ class _EditProfileState extends State<EditProfile> {
                 style: TextStyle(
                   color: SColors.color3,
                   fontSize: 14,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w700,
                 ),
               )
             ],
           ),
           const SizedBox(
-            height: 20,
+            height: 40,
           ),
           ProfileTextField(
             keyboardType: TextInputType.text,
@@ -177,50 +188,51 @@ class _EditProfileState extends State<EditProfile> {
             head: 'Username',
             controller: userNameController,
           ),
-          ProfileTextField(
+          ProfileTextField2(
             keyboardType: TextInputType.multiline,
             maxLines: 5,
             head: 'About me',
             controller: aboutMeController,
           ),
+          const SizedBox(height: 15,),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
+            padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Divider(
-              thickness: 1,
+              thickness: 0.8,
               color: SColors.color3,
             ),
           ),
           const SizedBox(
             height: 15,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Privacy and Settings',
-                  style: TextStyle(
-                    color: SColors.color3,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                GestureDetector(
-                    onTap: () {},
-                    child: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 20,
-                    ))
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 70,
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 30),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       Text(
+          //         'Privacy and Settings',
+          //         style: TextStyle(
+          //           color: SColors.color3,
+          //           fontSize: 15,
+          //           fontWeight: FontWeight.w500,
+          //         ),
+          //       ),
+          //       GestureDetector(
+          //           onTap: () {},
+          //           child: const Icon(
+          //             Icons.arrow_forward_ios,
+          //             size: 20,
+          //           ))
+          //     ],
+          //   ),
+          // ),
+           SizedBox(
+            height: Get.height*0.2,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50),
-            child: ProfileButton(
+            child: ProfileUpdateButton(
                 buttonText: isLoading ? "Updating..." : 'Update',
                 onPressed: () async {
                   setState(() {
