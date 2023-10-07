@@ -36,17 +36,17 @@ class _AddContactListTileState extends State<AddContactListTile> {
           style: TextStyle(
             color: SColors.color3,
             fontSize: 14,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w900,
           ),
         ),
         subtitle: Text(
           widget.subtitle,
-          style: TextStyle(fontSize: 11, color: SColors.color3),
+          style: TextStyle(fontSize: 11, color: SColors.color3,fontWeight: FontWeight.w600),
         ),
         trailing: IconButton(
           icon: Icon(
             Icons.arrow_forward_ios,
-            size: 12,
+            size: 18,
             color: SColors.color3,
           ),
           onPressed: widget.onPressed,
