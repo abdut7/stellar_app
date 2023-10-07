@@ -57,4 +57,7 @@ class SSvgs {
   static String get discoverBg => "assets/Svgs/discoverBg.svg";
   static String get moreVertz => "assets/Svgs/moreVertz.svg";
   static String get newGroupProfile => "assets/Svgs/newGroupProfile.svg";
+  static String get facebookLogo => "assets/Svgs/facebookLogo.svg";
+  static String get googleLogo => "assets/Svgs/googleLogo.svg";
+  static String get google => "assets/Svgs/google.svg";
 }

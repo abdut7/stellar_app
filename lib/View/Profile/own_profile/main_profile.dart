@@ -106,7 +106,7 @@ class _MainProfileState extends State<MainProfile> {
                 height: 10,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
+                padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Row(
                   children: [
                     ProfileStatus(count: '09', label: 'Posts'),
@@ -124,34 +124,38 @@ class _MainProfileState extends State<MainProfile> {
               const SizedBox(
                 height: 30,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ProfileButton(
-                      buttonText: 'Edit Profile',
-                      onPressed: () {
-                        Get.to(() => const EditProfile());
-                      }),
-                  ProfileButton(
-                      buttonText: 'Settings',
-                      onPressed: () {
-                        Get.to(() => const ProfileSettings());
-                      })
-                ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ProfileButton(
+                        buttonText: 'Edit Profile',
+                        onPressed: () {
+                          Get.to(() => const EditProfile());
+                        }),
+                    ProfileButton(
+                        buttonText: 'Settings',
+                        onPressed: () {
+                          Get.to(() => const ProfileSettings());
+                        })
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 20,
               ),
               const AboutMeText(),
+              //const SizedBox(height: 10,),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Divider(
-                  color: SColors.color9,
+                  color: SColors.color3,
                   thickness: 1,
                 ),
               ),
               TabBar(
-                indicatorColor: SColors.color9,
+                indicatorColor: SColors.color9.withOpacity(0.4),
                 tabs: [
                   Tab(
                     icon: SvgPicture.asset(
@@ -176,18 +180,16 @@ class _MainProfileState extends State<MainProfile> {
                   });
                 },
               ),
-              SizedBox(
-                // height: 200,
-                child: IndexedStack(index: selectedTabIndex, children: [
-                  Visibility(
-                      visible: selectedTabIndex == 0,
-                      child: CustomGridView(
-                        icon: Icons.photo,
-                      )),
-                  Visibility(
-                      visible: selectedTabIndex == 1, child: CustomGridView()),
-                ]),
-              ),
+              const SizedBox(height: 10,),
+              IndexedStack(index: selectedTabIndex, children: [
+                Visibility(
+                    visible: selectedTabIndex == 0,
+                    child: CustomGridView(
+                      icon: Icons.photo,
+                    )),
+                Visibility(
+                    visible: selectedTabIndex == 1, child: CustomGridView()),
+              ]),
             ],
           ),
         ),

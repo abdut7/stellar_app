@@ -55,7 +55,7 @@ class _CustomButtonState extends State<CustomButton> {
                 else if (widget.svgAssetPath != null)
                   SvgPicture.asset(
                     widget.svgAssetPath!,
-                    width: 20,
+                    width: 30,
                     height: 20,
                     color: widget.svgColor,
                   ),
