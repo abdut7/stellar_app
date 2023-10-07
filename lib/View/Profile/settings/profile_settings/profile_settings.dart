@@ -100,7 +100,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
               text: 'Favorites',
               onTap: () {},
               svgAsset: SSvgs.sv25,
-              //trailingIcon: Icons.arrow_forward_ios,
+              // trailingIcon: Icons.arrow_forward_ios,
             ),
             Column(
               children: [
@@ -108,8 +108,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                     text: 'Sticker Gallery',
                     onTap: () {},
                     svgAsset: SSvgs.sv27,
-                    //trailingIcon: Icons.arrow_forward_ios
-                ),
+                    // trailingIcon: Icons.arrow_forward_ios
+                    ),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
@@ -178,10 +178,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                 darkThemeController.switchTheme();
                               },
                               activeColor: SColors.color11,
-
                             ),
                           ),
-
                         ],
                       ),
                     )),

@@ -195,8 +195,8 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                     ),
                                   ),
                                 )
-                              : SizedBox(),
-                          SizedBox(
+                              : const SizedBox(),
+                          const SizedBox(
                             height: 10,
                           ),
                         ],
@@ -255,7 +255,25 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                               .groupUser[index].strUserId),
                                     );
                                   },
-                                  makeGroupAdminCallback: () {},
+                                  makeGroupAdminCallback: () async {
+                                    bool result =
+                                        await GroupServices.makeGroupAdmin(
+                                      uid: resModel.groupUser[index].strUserId,
+                                      chatID: widget.chatId,
+                                      makeAdmin:
+                                          !resModel.groupUser[index].isAdmin,
+                                    );
+                                    if (result) {
+                                      showCustomSnackbar(
+                                          title: "Made Admin Succesfully",
+                                          message: "");
+                                      setState(() {});
+                                    } else {
+                                      showCustomSnackbar(
+                                          title: "Made Admin Failed",
+                                          message: "");
+                                    }
+                                  },
                                 );
                               },
                               leading: CircleAvatar(
