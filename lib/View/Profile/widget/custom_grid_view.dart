@@ -31,7 +31,7 @@ class _CustomGridViewState extends State<CustomGridView> {
               onTap: () {},
               child: Container(
                 child: widget.icon != null
-                    ? Icon(widget.icon, color: Colors.grey)
+                    ? Icon(widget.icon, color: Colors.grey.withOpacity(0.7),size: 40,)
                     : null,
                 height: 80,
                 decoration: BoxDecoration(

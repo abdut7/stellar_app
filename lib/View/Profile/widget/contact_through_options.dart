@@ -27,7 +27,7 @@ class _ContactThroughState extends State<ContactThrough> {
           style: TextStyle(
             color: SColors.color3,
             fontSize: 12,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ],
