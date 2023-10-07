@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/View/profile/settings/privacy_settings/blocked_user_screen/blocked_users_screen.dart';
@@ -140,14 +141,23 @@ class _PrivacySettingsState extends State<PrivacySettings> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  IgnorePointer(
-                    ignoring: true,
-                    child: Switch(
-                      value: false,
-                      onChanged: (bool newValue) {},
-                      activeColor: SColors.color11,
-                    ),
-                  ),
+            Transform.scale(
+              scale: 0.7,
+              child: CupertinoSwitch(
+                value: false,
+                onChanged: (bool newValue) {},
+                activeColor: SColors.color11,
+
+              ),
+            ),
+
+                  // IgnorePointer(
+                  //   ignoring: true,
+                  //   child: Switch(
+                  //     value: false,
+                  //     onChanged: (bool newValue) {},
+                  //     activeColor: SColors.color11,
+                  //   ),
                 ],
               ),
             ]),
