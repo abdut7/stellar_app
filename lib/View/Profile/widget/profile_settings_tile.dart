@@ -6,13 +6,11 @@ class CustomListTilee extends StatefulWidget {
   final String text;
   final Function() onTap;
   final String svgAsset;
-  //final IconData trailingIcon;
 
   CustomListTilee({
     required this.text,
     required this.onTap,
     required this.svgAsset,
-    //required this.trailingIcon,
   });
 
   @override
@@ -37,11 +35,7 @@ class _CustomListTileeState extends State<CustomListTilee> {
               fontWeight: FontWeight.w400,
             ),
           ),
-          // trailing: Icon(
-          //   widget.trailingIcon,
-          //   color: SColors.color3,
-          //   size: 12,
-          // ),
+
         ),
       ),
     );
