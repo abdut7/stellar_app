@@ -86,31 +86,31 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
               const SizedBox(
                 height: 35,
               ),
-              Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Group Permission',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
-                          color: Colors.black,
-                        ),
-                      ],
-                    ),
-                  )),
-              const SizedBox(
-                height: 220,
+              // Padding(
+              //     padding: const EdgeInsets.symmetric(horizontal: 40),
+              //     child: GestureDetector(
+              //       onTap: () {},
+              //       child: const Row(
+              //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //         children: [
+              //           Text(
+              //             'Group Permission',
+              //             style: TextStyle(
+              //               color: Colors.black,
+              //               fontSize: 14,
+              //               fontWeight: FontWeight.w500,
+              //             ),
+              //           ),
+              //           Icon(
+              //             Icons.arrow_forward_ios,
+              //             size: 16,
+              //             color: Colors.black,
+              //           ),
+              //         ],
+              //       ),
+              //     )),
+               SizedBox(
+                height: Get.height*0.26
               ),
               GestureDetector(
                 onTap: () {
