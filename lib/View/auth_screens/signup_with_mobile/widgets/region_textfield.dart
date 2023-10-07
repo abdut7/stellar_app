@@ -99,6 +99,9 @@ class _RegionTextFieldState extends State<RegionTextField> {
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(8)),
       child:  TextFormField(
+        onTap: (){
+          showRegionMenu(context);
+        },
         readOnly: true,
         onChanged: widget.onChanged,
         onSaved: widget.onSaved,

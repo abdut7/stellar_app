@@ -237,14 +237,14 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                               keyboardType: TextInputType.text,
                               isBirthday: true,
                               validator: validateBirthday,
-                              hintText: 'Select Date',
+                              hintText: 'Select DOB',
                               prefixIcon: Icon(Icons.calendar_today),
                             ),
                             RegionTextField(
                               controller: regionController,
                               keyboardType: TextInputType.text,
                               hintText: 'Region',
-                              //validator: validateRegion,
+                              validator: validateRegion,
                               suffixIcon: Icon(
                                 Icons.arrow_drop_down,
                               ),
