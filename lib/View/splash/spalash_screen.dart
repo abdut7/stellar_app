@@ -1,8 +1,10 @@
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SImages.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stellar_chat/controllers/contacts_controller.dart';
 
 import '../../services/token_service/token_service.dart';
 
@@ -15,6 +17,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  ContactsController contactsController = Get.put(ContactsController());
   @override
   void initState() {
     authenticateUser();
@@ -28,7 +31,9 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(SImages.vectorBackground,),
+            image: AssetImage(
+              SImages.vectorBackground,
+            ),
             fit: BoxFit.cover,
           ),
         ),

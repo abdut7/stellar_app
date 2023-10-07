@@ -6,6 +6,8 @@ import 'package:stellar_chat/View/Contact/create_group/widgets/add_user_group_ti
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:stellar_chat/functions/show_snackbar.dart';
+import 'package:stellar_chat/services/api_services/group_service.dart';
 import 'package:stellar_chat/utils/colors.dart';
 import 'package:stellar_chat/widgets/search_text_field.dart';
 
@@ -13,9 +15,16 @@ import '../../../controllers/contacts_controller.dart';
 import '../../../models/api_models/get_contacts_model.dart';
 
 class SelectGroupParticipents extends StatefulWidget {
+  final bool isCreatedGroup;
+  final String? groupId;
   final XFile? image;
   final String grpName;
-  const SelectGroupParticipents({super.key, this.image, required this.grpName});
+  const SelectGroupParticipents(
+      {super.key,
+      this.image,
+      required this.grpName,
+      this.isCreatedGroup = false,
+      this.groupId = ''});
 
   @override
   State<SelectGroupParticipents> createState() =>
@@ -33,7 +42,7 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
 
   @override
   Widget build(BuildContext context) {
-    ContactsController contactsController = Get.put(ContactsController());
+    ContactsController contactsController = Get.find();
     Set<Contact> myContact = {};
 
     return Scaffold(
@@ -44,8 +53,13 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'New Group',
-              style: TextStyle(color: SColors.color11, fontSize: 18, fontWeight: FontWeight.w700,),),
+              widget.isCreatedGroup ? widget.grpName : 'New Group',
+              style: TextStyle(
+                color: SColors.color11,
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
             Text(
               'Add Participants',
               style: TextStyle(
@@ -57,12 +71,16 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
           ],
         ),
         backgroundColor: SColors.color12,
-        leading: Padding(padding: const EdgeInsets.all(8.0), child: SvgPicture.asset(SSvgs.appLogo),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SvgPicture.asset(SSvgs.appLogo),
         ),
       ),
       body: Column(
         children: [
-          const SearchTextField(isFromContacts: true,),
+          const SearchTextField(
+            isFromContacts: true,
+          ),
           Obx(
             () {
               if (contactsController.phoneNumberUserList.isNotEmpty &&
@@ -85,7 +103,7 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
                     ? const Center(
                         child: CircularProgressIndicator(),
                       )
-                    : contactsController.phoneNumberUserList.isEmpty
+                    : myContact.isEmpty
                         ? const Center(
                             child: Text("No Contacts added add now"),
                           )
@@ -128,7 +146,10 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
                                     );
                                   },
                                   separatorBuilder: (context, index) =>
-                                      const Divider(thickness: 0,color: Colors.white,),
+                                      const Divider(
+                                    thickness: 0,
+                                    color: Colors.white,
+                                  ),
                                   itemCount: myContact.length,
                                 ),
                               ],
@@ -142,7 +163,23 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: selectedUsers.isNotEmpty
           ? GestureDetector(
-              onTap: () {
+              onTap: () async {
+                if (widget.isCreatedGroup) {
+                  bool isAdded = await GroupServices.addParticipents(
+                      uid: selectedUsers, chatID: widget.groupId!);
+                  if (isAdded) {
+                    Get.back();
+                    Get.back();
+                    showCustomSnackbar(
+                        title: "Success", message: "Users added succesfuly");
+                  } else {
+                    Get.back();
+                    showCustomSnackbar(
+                        title: "Adding participents failed",
+                        message: "Please try again");
+                  }
+                  return;
+                }
                 Get.to(() => ConfirmGroupDetailsScreen(
                       userIdList: selectedUsers,
                       userModelList: selectedUserModel,
@@ -151,20 +188,19 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
                     ));
               },
               child: Container(
-               // width: Get.width * 0.5,
-                width: 55,
-                height: 55,
-                decoration: BoxDecoration(
-                    color: SColors.color11,
-                    borderRadius: BorderRadius.circular(30)),
-                child:  Center(
-                  child: Icon(
-                    Icons.arrow_forward_ios,
-                    size: 30.0,
-                    color: Colors.white,
-                  ),
-                )
-              ),
+                  // width: Get.width * 0.5,
+                  width: 55,
+                  height: 55,
+                  decoration: BoxDecoration(
+                      color: SColors.color11,
+                      borderRadius: BorderRadius.circular(30)),
+                  child: Center(
+                    child: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 30.0,
+                      color: Colors.white,
+                    ),
+                  )),
             )
           : const SizedBox(),
     );

@@ -53,13 +53,14 @@ class GroupServices {
     Dio dio = Dio();
     String path = ApiRoutes.baseUrl + ApiRoutes.getGroupDetails;
     Map<String, dynamic> header = await getHeader();
+
     Map<String, dynamic> body = {"strGroupId": groupId};
     try {
       Response response =
           await dio.post(path, options: Options(headers: header), data: body);
-      print(response);
       GroupDetailsResponseModel model =
           GroupDetailsResponseModel.fromJson(response.data);
+      print(model.isAdmin);
       return model;
     } on Exception {
       // TODO
@@ -109,6 +110,34 @@ class GroupServices {
       return true;
     } on Exception catch (e) {
       // TODO
+      return false;
+    }
+  }
+
+  static Future<bool> removeUser(
+      {required String uid, required String chatID}) async {
+    Dio dio = Dio();
+    String path = ApiRoutes.baseUrl + ApiRoutes.removeUserFromGroup;
+    Map<String, dynamic> header = await getHeader();
+    Map<String, dynamic> body = {"_id": chatID, "strUserId": uid};
+    try {
+      await dio.post(path, options: Options(headers: header), data: body);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+    static Future<bool> addParticipents(
+      {required List<String> uid, required String chatID}) async {
+    Dio dio = Dio();
+    String path = ApiRoutes.baseUrl + ApiRoutes.updateGroup;
+    Map<String, dynamic> header = await getHeader();
+    Map<String, dynamic> body = {"_id": chatID, "arrUserIds": uid};
+    try {
+      await dio.post(path, options: Options(headers: header), data: body);
+      return true;
+    } catch (e) {
       return false;
     }
   }

@@ -29,9 +29,16 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
         elevation: 0,
         title: Text(
           'New Group',
-          style: TextStyle(color: SColors.color11, fontSize: 18, fontWeight: FontWeight.w700,),),
+          style: TextStyle(
+            color: SColors.color11,
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
         backgroundColor: SColors.color12,
-        leading: Padding(padding: const EdgeInsets.all(8.0), child: SvgPicture.asset(SSvgs.appLogo),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SvgPicture.asset(SSvgs.appLogo),
         ),
       ),
       body: SafeArea(
@@ -52,7 +59,9 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                   child: AddGroupIconWidget(file: pickedImage),
                 ),
               ),
-              const SizedBox(height: 45,),
+              const SizedBox(
+                height: 45,
+              ),
               Container(
                 width: Get.width * 0.8,
                 height: 45,
@@ -69,34 +78,40 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                         fontSize: 17,
                         fontWeight: FontWeight.w500,
                       ),
-                      prefix: SizedBox(width: 20,)),
+                      prefix: SizedBox(
+                        width: 20,
+                      )),
                 ),
               ),
-              const SizedBox(height: 35,),
-               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Group Permission',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Icon(Icons.arrow_forward_ios, size: 16,color: Colors.black,),
-                    ],
-                  ),
-                )
-
+              const SizedBox(
+                height: 35,
               ),
-
-              const SizedBox(height: 220,),
-
+              Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Group Permission',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 16,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
+                  )),
+              const SizedBox(
+                height: 220,
+              ),
               GestureDetector(
                 onTap: () {
                   if (groupNameController.text.isEmpty) {
@@ -120,7 +135,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                     child: Text(
                       "Add Participants",
                       style: TextStyle(
-                        fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w500,
                           fontSize: 17,
                           color: Color.fromRGBO(159, 196, 232, 1)),
                     ),
