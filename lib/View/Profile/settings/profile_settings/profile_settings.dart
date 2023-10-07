@@ -176,10 +176,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                 darkThemeController.switchTheme();
                               },
                               activeColor: SColors.color11,
-
                             ),
                           ),
-
                         ],
                       ),
                     )),

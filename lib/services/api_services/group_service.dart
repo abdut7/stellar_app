@@ -128,12 +128,32 @@ class GroupServices {
     }
   }
 
-    static Future<bool> addParticipents(
+  static Future<bool> addParticipents(
       {required List<String> uid, required String chatID}) async {
     Dio dio = Dio();
     String path = ApiRoutes.baseUrl + ApiRoutes.updateGroup;
     Map<String, dynamic> header = await getHeader();
     Map<String, dynamic> body = {"_id": chatID, "arrUserIds": uid};
+    try {
+      await dio.post(path, options: Options(headers: header), data: body);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  static Future<bool> makeGroupAdmin(
+      {required String uid,
+      required String chatID,
+      required bool makeAdmin}) async {
+    Dio dio = Dio();
+    String path = ApiRoutes.baseUrl + ApiRoutes.makeAdmin;
+    Map<String, dynamic> header = await getHeader();
+    Map<String, dynamic> body = {
+      "isAdmin": makeAdmin,
+      "strUserId": uid,
+      "strGroupId": chatID
+    };
     try {
       await dio.post(path, options: Options(headers: header), data: body);
       return true;

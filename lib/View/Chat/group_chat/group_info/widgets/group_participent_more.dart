@@ -69,24 +69,22 @@ void showParticipentsMoreBottomSheet(
                 viewUserCallback.call();
               },
             ),
-            isAdmin
-                ? const SizedBox()
-                : ListTile(
-                    title: const Text(
-                      'Make Group Admin',
-                      style: TextStyle(
-                        color: Color.fromRGBO(0, 51, 142, 1),
-                        fontFamily: 'Inter',
-                        fontSize: 11.0,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: 0.0,
-                      ),
-                    ),
-                    onTap: () {
-                      makeGroupAdminCallback.call();
-                      Navigator.pop(context);
-                    },
-                  ),
+            ListTile(
+              title: Text(
+                isAdmin ? "Remove Admin" : 'Make Group Admin',
+                style: const TextStyle(
+                  color: Color.fromRGBO(0, 51, 142, 1),
+                  fontFamily: 'Inter',
+                  fontSize: 11.0,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 0.0,
+                ),
+              ),
+              onTap: () {
+                makeGroupAdminCallback.call();
+                Navigator.pop(context);
+              },
+            ),
             ListTile(
               title: const Text(
                 'Remove User',
