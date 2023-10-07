@@ -5,8 +5,10 @@ import 'package:stellar_chat/View/chat/HomeChat/sub/home/widgets/chat_home_appba
 import 'package:stellar_chat/View/chat/HomeChat/sub/home/widgets/chat_tile_widget.dart';
 import 'package:stellar_chat/View/Contact/show_contact/show_contacts_screen.dart';
 import 'package:stellar_chat/View/chat/group_chat/group_chat_screen.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/models/api_models/chat_history_model.dart';
 import 'package:stellar_chat/services/api_services/chat_history_service.dart';
+import 'package:stellar_chat/utils/colors.dart';
 import 'package:stellar_chat/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
@@ -37,15 +39,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
+
     ChatHistoryController chatHistoryController = Get.put(
       ChatHistoryController(),
     );
     return RefreshIndicator(
       onRefresh: refreshChatHistory,
       child: Scaffold(
-        backgroundColor: SColors.color4,
+        backgroundColor: themeController.isDarkTheme.value
+            ? const Color.fromRGBO(25, 25, 25, 1)
+            : SColors.color4,
         appBar: AppBar(
-          backgroundColor: SColors.color12,
+          backgroundColor: themeController.isDarkTheme.value
+              ? const Color.fromRGBO(50, 50, 50, 1)
+              : SColors.color12,
           toolbarHeight: 0,
           elevation: 0,
         ),
@@ -118,7 +126,9 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 70,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: SColors.color13,
+              color: themeController.isDarkTheme.value
+                  ? const Color.fromRGBO(0, 51, 142, 1)
+                  : SColors.color13,
               image: const DecorationImage(
                 image: AssetImage('assets/Images/all_contacts_icon.png'),
               ),

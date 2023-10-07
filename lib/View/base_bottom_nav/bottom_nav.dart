@@ -1,8 +1,10 @@
+import 'package:get/get.dart';
 import 'package:stellar_chat/View/Chat/HomeChat/sub/home/home_screen.dart';
 import 'package:stellar_chat/View/discover/discover_homescreen.dart';
 import 'package:stellar_chat/View/profile/own_profile/main_profile.dart';
 import 'package:stellar_chat/View/base_bottom_nav/widgets/bottom_nav_icon_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import '../../Settings/SSvgs.dart';
 
 class BaseBottomNavigation extends StatefulWidget {
@@ -15,7 +17,7 @@ class BaseBottomNavigation extends StatefulWidget {
 List<Widget> screenList = [
   const HomeScreen(),
   // const ContactsHomeScreen(),
-  DiscoverHomeScreen(),
+  const DiscoverHomeScreen(),
   Container(),
   Container(),
   const MainProfile(),
@@ -25,11 +27,18 @@ class _BaseBottomNavigationState extends State<BaseBottomNavigation> {
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
+    ThemeController controller = Get.find();
     return Scaffold(
       body: screenList[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        showSelectedLabels: false, // Hide labels for selected items
+        showUnselectedLabels: false, // Hide labels for unselected items
         items: [
           BottomNavigationBarItem(
+              backgroundColor: controller.isDarkTheme.value
+                  ? const Color.fromRGBO(79, 79, 79, 1)
+                  : null,
               icon: BottomNavIconWidget(
                   svgPath: SSvgs.sv09, isSelected: selectedIndex == 0),
               label: "Home"),

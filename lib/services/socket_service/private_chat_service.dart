@@ -59,11 +59,13 @@ class PrivateChatService {
   static Future<void> sentPersonalVoiceMessage(
       {required String chatId, required String path}) async {
     Socket socket = SocketService().socket;
+
     //convert message to base64
     String imageAsBase = await filePathToBase(path);
+    print(imageAsBase);
     //upload and take link
     String? fileUrl =
-        await uploadFiles(fileExtension: 'aac', base64File: imageAsBase);
+        await uploadFiles(fileExtension: 'm4a', base64File: imageAsBase);
     if (fileUrl == null) {
       return;
     }

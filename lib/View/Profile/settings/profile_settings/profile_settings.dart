@@ -10,6 +10,8 @@ import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../controllers/theme_controller.dart';
+
 class ProfileSettings extends StatefulWidget {
   const ProfileSettings({Key? key}) : super(key: key);
 
@@ -18,6 +20,7 @@ class ProfileSettings extends StatefulWidget {
 }
 
 class _ProfileSettingsState extends State<ProfileSettings> {
+  final ThemeController darkThemeController = Get.find();
   @override
   Widget build(BuildContext context) {
     UserController controller = Get.find();
@@ -78,12 +81,14 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   top: 10,
                   right: 10,
                   child: GestureDetector(
-                    onTap: () {
-                      Get.to(() => const QRScreen());
-                    },
-                    child: 
-                      SvgPicture.asset(SSvgs.qr,color: SColors.color4,height: 25,)
-                  ),
+                      onTap: () {
+                        Get.to(() => const QRScreen());
+                      },
+                      child: SvgPicture.asset(
+                        SSvgs.qr,
+                        color: SColors.color4,
+                        height: 25,
+                      )),
                 ),
               ],
             ),
@@ -150,30 +155,29 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 const SizedBox(
                   height: 10,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 60),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Dark Mode',
-                        style: TextStyle(
-                          color: SColors.color3,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
+                Obx(() => Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 60),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Dark Mode',
+                            style: TextStyle(
+                              color: SColors.color3,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Switch(
+                            value: darkThemeController.isDarkTheme.value,
+                            onChanged: (bool newValue) {
+                              darkThemeController.switchTheme();
+                            },
+                            activeColor: SColors.color11,
+                          ),
+                        ],
                       ),
-                      IgnorePointer(
-                        ignoring: true,
-                        child: Switch(
-                          value: false,
-                          onChanged: (bool newValue) {},
-                          activeColor: SColors.color11,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                    )),
                 const SizedBox(
                   height: 20,
                 ),
