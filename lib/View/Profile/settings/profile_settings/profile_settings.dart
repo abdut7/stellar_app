@@ -83,7 +83,11 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   right: 10,
                   child: GestureDetector(
                       onTap: () {
-                        Get.to(() => const QRScreen());
+                        Get.to(
+                          () => const QRScreen(
+                            isFromSettings: true,
+                          ),
+                        );
                       },
                       child: SvgPicture.asset(
                         SSvgs.qr,
@@ -104,9 +108,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
             Column(
               children: [
                 CustomListTilee(
-                    text: 'Sticker Gallery',
-                    onTap: () {},
-                    svgAsset: SSvgs.sv27,
+                  text: 'Sticker Gallery',
+                  onTap: () {},
+                  svgAsset: SSvgs.sv27,
                 ),
                 Padding(
                   padding:

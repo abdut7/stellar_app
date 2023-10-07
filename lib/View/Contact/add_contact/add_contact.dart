@@ -5,6 +5,7 @@ import 'package:stellar_chat/View/Contact/add_contact/select_contacts_to_add_scr
 import 'package:stellar_chat/View/contact/add_contact/friends_in_radar/friends_in_radar.dart';
 import 'package:stellar_chat/View/contact/add_contact/scan_qr_code.dart';
 import 'package:stellar_chat/View/contact/show_contact/show_contacts_screen.dart';
+import 'package:stellar_chat/View/profile/qr/qr_screen.dart';
 import 'package:stellar_chat/functions/share_or_copy.dart';
 import 'package:stellar_chat/widgets/add_contact_listtile.dart';
 import 'package:flutter/material.dart';
@@ -74,7 +75,9 @@ class _AddContactUiState extends State<AddContactUi> {
               text: 'Use QR Code',
               subtitle: 'Scan your QR code',
               onPressed: () {
-                Get.to(() => QRScannerScreen());
+                Get.to(
+                  () => const QRScreen(),
+                );
               },
               svgAssetPath: SSvgs.qr),
           AddContactListTile(

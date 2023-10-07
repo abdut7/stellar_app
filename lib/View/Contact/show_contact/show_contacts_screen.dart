@@ -5,6 +5,7 @@ import 'package:stellar_chat/View/Contact/create_group/create_group_screen.dart'
 import 'package:stellar_chat/View/Contact/show_contact/widget/show_contact_tile.dart';
 import 'package:stellar_chat/View/Contact/widgets/list_contact_widget.dart';
 import 'package:stellar_chat/View/contact/add_contact/scan_qr_code.dart';
+import 'package:stellar_chat/View/profile/qr/qr_screen.dart';
 import 'package:stellar_chat/services/api_services/contacts_service.dart';
 import 'package:stellar_chat/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +67,8 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
         ),
         actions: <Widget>[
           PopupMenuButton<int>(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             color: SColors.color11, // Change this to your desired color
             onSelected: (value) {
               // Handle the option selected
@@ -147,7 +149,9 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
                 trailingIcon: GestureDetector(
                     onTap: () {
                       Get.to(
-                        () => QRScannerScreen(),
+                        () => const QRScreen(
+                          isFromSettings: false,
+                        ),
                       );
                     },
                     child: Icon(

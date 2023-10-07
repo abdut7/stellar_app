@@ -8,7 +8,8 @@ import 'package:get/get.dart';
 import '../../../controllers/user_controller.dart';
 
 class QRScreen extends StatefulWidget {
-  const QRScreen({Key? key}) : super(key: key);
+  final bool isFromSettings;
+  const QRScreen({Key? key, this.isFromSettings = false}) : super(key: key);
   @override
   State<QRScreen> createState() => _QRScreenState();
 }
@@ -56,7 +57,12 @@ class _QRScreenState extends State<QRScreen> {
             ),
           ),
           body: TabBarView(
-            children: [MyQRCodeTab(controller: controller), ScanQRCodeTab()],
+            children: widget.isFromSettings
+                ? [MyQRCodeTab(controller: controller), ScanQRCodeTab()]
+                : [
+                    ScanQRCodeTab(),
+                    MyQRCodeTab(controller: controller),
+                  ],
           ),
         ),
       ),
