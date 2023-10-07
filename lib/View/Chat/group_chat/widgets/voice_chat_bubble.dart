@@ -1,6 +1,5 @@
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:stellar_chat/controllers/audio_player_controller.dart';
@@ -128,15 +127,6 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
                                 widget.audioController
                                     .playAudio(widget.audioUrl);
                               }
-
-                              // stopAudio();
-                              // if (audioState == PlayerState.playing) {
-                              //   audioPlayer.pause();
-                              // } else {
-                              //   audioPlayer.play(
-                              //     UrlSource(widget.audioUrl),
-                              //   );
-                              // }
                             },
                           ),
                           Expanded(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
 class ChatListItem extends StatelessWidget {
   final String name;
@@ -23,6 +24,7 @@ class ChatListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     if (avatarUrl.contains("undefined") || avatarUrl.isEmpty) {}
     return ListTile(
       dense: true,
@@ -38,7 +40,10 @@ class ChatListItem extends StatelessWidget {
       ),
       title: Text(
         name,
-        style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+        style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 15,
+            color: themeController.isDarkTheme.value ? Colors.white : null),
         overflow: TextOverflow.ellipsis,
       ),
       subtitle: Row(
@@ -52,7 +57,11 @@ class ChatListItem extends StatelessWidget {
           Flexible(
             child: Text(
               message,
-              style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 13),
+              style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 13,
+                  color:
+                      themeController.isDarkTheme.value ? Colors.white : null),
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -64,7 +73,11 @@ class ChatListItem extends StatelessWidget {
       trailing: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Text(time),
+          Text(
+            time,
+            style: TextStyle(
+                color: themeController.isDarkTheme.value ? Colors.white : null),
+          ),
           if (unreadCount > 0)
             CircleAvatar(
               radius: 12,
