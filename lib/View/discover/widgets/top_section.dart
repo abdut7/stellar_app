@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 
@@ -14,7 +15,8 @@ class _TopSectionState extends State<TopSection > {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 280,
+      //height: 280,
+      height: Get.height*0.33,
       width: double.infinity,
       decoration: BoxDecoration(
         color: SColors.color11,
