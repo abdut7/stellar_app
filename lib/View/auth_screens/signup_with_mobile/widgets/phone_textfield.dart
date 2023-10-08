@@ -27,18 +27,32 @@ class PhoneTextField extends StatefulWidget {
 
 class _PhoneTextFieldState extends State<PhoneTextField> {
   final countryPicker = const FlCountryCodePicker();
+  double containerHeight = 35;
+
+  void _increaseContainerHeight() {
+    setState(() {
+      containerHeight = 50;
+    });
+  }
+
+  void _resetContainerHeight() {
+    setState(() {
+      containerHeight = 35;
+    });
+  }
 
 
-  InputDecoration buildInputDecoration() {
+  InputDecoration buildInputDecoration({double contentVerticalPadding = 15}) {
     return InputDecoration(
       hintText: widget.hintText,
       hintStyle: TextStyle(
         color: SColors.color9,
         fontSize: 12,
         fontWeight: FontWeight.w600,
+        height: containerHeight == 50 ? 4.5 : 1.0,
       ),
       border: InputBorder.none,
-      contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+      contentPadding:  EdgeInsets.symmetric(vertical: contentVerticalPadding, horizontal: 15),
       filled: true,
       fillColor: Colors.white,
       enabledBorder: OutlineInputBorder(
@@ -73,7 +87,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
               child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 2),
+                    padding: const EdgeInsets.only(left: 3),
                     child: Text(publiccountryCode?.dialCode ?? "+91",style: TextStyle(color: Colors.black),),
                   ),
                 GestureDetector(
@@ -89,14 +103,13 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
                       color: SColors.color3,
                       size: 28,
                     )),
-                const SizedBox(
-                  width: 5,
-                ),
-                  VerticalDivider(
-                    thickness: 2,
-                    color: Colors.grey.withOpacity(0.4),
+
+                  containerHeight == 50 ?  Padding(
+                    padding: EdgeInsets.all(7),
+                    child: VerticalDivider(thickness: 2, color: Colors.grey.withOpacity(0.4),),
+                  ) :  VerticalDivider(thickness: 2, color:Colors.grey.withOpacity(0.4),
                   ),
-                const SizedBox(width: 5,),
+                // const SizedBox(width: 5,),
               ],
             ),
             ),
@@ -109,14 +122,22 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
   Widget textField(TextEditingController controller) {
     return GestureDetector(
       child: Container(
-        height: 35,
+        height:containerHeight,
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(8)),
         child:  TextFormField(
           maxLines: 1,
           onChanged: widget.onChanged,
           onSaved: widget.onSaved,
-          validator: widget.validator,
+          validator: (val) {
+            final error = widget.validator!(val);
+            if (error != null) {
+              _increaseContainerHeight();
+            } else {
+              _resetContainerHeight();
+            }
+            return error;
+          },
           controller: controller,
           keyboardType: widget.keyboardType,
           cursorColor: Colors.black,
@@ -127,7 +148,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
           ),
 
           autocorrect: true,
-          decoration: buildInputDecoration(),
+          decoration:  buildInputDecoration(contentVerticalPadding: containerHeight == 50 ? 11 : 0,),
 
         ),
       ),

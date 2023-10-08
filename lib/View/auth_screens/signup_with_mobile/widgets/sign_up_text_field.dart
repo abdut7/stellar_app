@@ -32,18 +32,31 @@ class SignUpTextField extends StatefulWidget {
 }
 
 class _SignUpTextFieldState extends State<SignUpTextField> {
-  InputDecoration buildInputDecoration() {
+  double containerHeight = 35;
+  void _increaseContainerHeight() {
+    setState(() {
+      containerHeight = 50;
+    });
+  }
+
+  void _resetContainerHeight() {
+    setState(() {
+      containerHeight = 35;
+    });
+  }
+  InputDecoration buildInputDecoration({double contentVerticalPadding = 15}) {
     return InputDecoration(
       hintText: widget.hintText,
       hintStyle: TextStyle(
         color: SColors.color9,
         fontSize: 12,
         fontWeight: FontWeight.w600,
+        height: containerHeight == 50 ? 4.8 : 1.0,
       ),
       border: InputBorder.none,
-      contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+      contentPadding:  EdgeInsets.symmetric(vertical: contentVerticalPadding, horizontal: 15),
       filled: true,
-      fillColor: Colors.white, // Changed fillColor to white for visibility
+      fillColor: Colors.white,
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide.none,
         borderRadius: BorderRadius.circular(10),
@@ -60,8 +73,8 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
         borderSide: BorderSide.none,
         borderRadius: BorderRadius.circular(10),
       ),
-      prefixIcon: widget.prefixIcon, // Added prefixIcon
-      suffixIcon: widget.suffixIcon, // Added suffixIcon
+      prefixIcon: widget.prefixIcon,
+      suffixIcon: widget.suffixIcon,
     );
   }
 
@@ -85,7 +98,7 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
     }
 
     return Container(
-      height: 35,
+      height: containerHeight,
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(8)),
       child: widget.isBirthday
@@ -93,8 +106,8 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(8)),
               child: TextFormField(
-                  readOnly: true, // Prevent manual editing
-                  onTap: () => selectDate(context), // Show date picker on tap
+                  readOnly: true,
+                  onTap: () => selectDate(context),
                   decoration:
                   buildInputDecoration(),
                   controller: controller),
@@ -102,7 +115,15 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
           : TextFormField(
               onChanged: widget.onChanged,
               onSaved: widget.onSaved,
-              validator: widget.validator,
+              validator:  (val) {
+                final error = widget.validator!(val);
+                if (error != null) {
+                  _increaseContainerHeight();
+                } else {
+                  _resetContainerHeight();
+                }
+                return error;
+              },
               obscureText: widget.isPassword,
               controller: controller,
               keyboardType: widget.keyboardType,

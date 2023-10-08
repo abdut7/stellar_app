@@ -244,7 +244,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                               controller: regionController,
                               keyboardType: TextInputType.text,
                               hintText: 'Region',
-                              validator: validateRegion,
+                              //validator: validateRegion,
                               suffixIcon: Icon(
                                 Icons.arrow_drop_down,
                               ),

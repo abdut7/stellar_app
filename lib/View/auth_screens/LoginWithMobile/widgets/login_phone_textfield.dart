@@ -93,11 +93,10 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
                     },
                     child: Icon(Icons.keyboard_arrow_down, color: SColors.color3, size: 28,),
                   ),
-                  containerHeight == 50 ? const Padding(
+                  containerHeight == 50 ?  Padding(
                     padding: EdgeInsets.all(7),
-                    child: VerticalDivider(thickness: 1, color: Colors.grey,),
-                  ) : const VerticalDivider(thickness: 1, color: Colors.grey,
-                  ),
+                    child: VerticalDivider(thickness: 2, color: Colors.grey.withOpacity(0.4),),
+                  ) :  VerticalDivider(thickness: 2, color: Colors.grey.withOpacity(0.4)),
                 ],
               ),
             ),

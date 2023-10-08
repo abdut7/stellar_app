@@ -1,9 +1,10 @@
 import 'package:google_fonts/google_fonts.dart';
-import 'package:stellar_chat/View/splash/spalash_screen.dart';
+import 'package:stellar_chat/View/auth_screens/LoginWithMobile/login_with_mobile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stellar_chat/View/splash/spalash_screen.dart';
 import 'package:stellar_chat/controllers/theme_controller.dart';
 
 void main() async {
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
       themeMode: Get.find<ThemeController>().isDarkTheme.value
           ? ThemeMode.dark
           : ThemeMode.light,
-      home: const SplashScreen(),
+      home:  const SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
