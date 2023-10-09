@@ -39,9 +39,10 @@ class PrivateMessageModel {
       required this.strName,
       required this.strCreatedTime,
       required this.strContactName,
+        required this.strChatId,
       required this.strContactNumbers,
       required this.strUrl,
-      required this.strChatId});
+    });
   late final String id;
   late final String strUserId;
   late final String strType;

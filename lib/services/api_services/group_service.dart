@@ -90,6 +90,7 @@ class GroupServices {
       chatController.groupMessageList(model.groupMessageModel);
       sentRoomJoinSocket(chatId: groupId, type: 'group');
     } catch (e) {
+      print(e);
       chatController.isErrorOccured(true);
     } finally {
       chatController.isLoading(false);
