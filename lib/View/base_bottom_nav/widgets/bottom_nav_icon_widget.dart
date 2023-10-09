@@ -18,6 +18,7 @@ class BottomNavIconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeController themeController = Get.find();
     return Obx(() => CircleAvatar(
+        radius: 25,
         backgroundColor: !isSelected
             ? Colors.transparent
             : themeController.isDarkTheme.value

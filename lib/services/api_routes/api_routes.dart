@@ -25,4 +25,5 @@ class ApiRoutes {
   static String removeUserFromGroup = "/exit_group";
   static String updateGroup = "/update_group";
   static String makeAdmin = "/update_group_admin";
+  static String addParticipentsContacts = "/get_contacts_add_group";
 }

@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/services/api_services/account_services.dart';
 import 'package:flutter/material.dart';
@@ -78,6 +79,7 @@ showBlockAndReportBottomSheet(BuildContext context, String id) {
                 'OK',
                 () {
                   // Function to execute when the "Cancel" button is tapped.
+                  Get.back();
                 },
                 () async {
                   await AccountServices.blockUser(id);

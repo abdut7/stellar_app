@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -31,12 +32,20 @@ class ChatListItem extends StatelessWidget {
       contentPadding: const EdgeInsets.symmetric(horizontal: 10),
       horizontalTitleGap: 10,
       minVerticalPadding: 0,
-      leading: CircleAvatar(
-        backgroundImage: NetworkImage(avatarUrl.contains("undefined") ||
-                avatarUrl.isEmpty
+      leading: CachedNetworkImage(
+        imageUrl: avatarUrl.contains("undefined") || avatarUrl.isEmpty
             ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-            : avatarUrl),
-        radius: 25, // Adjust the size of the avatar
+            : avatarUrl,
+        imageBuilder: (context, imageProvider) => CircleAvatar(
+          backgroundImage: imageProvider,
+          radius: 25, // Adjust the size of the avatar
+        ),
+        placeholder: (context, url) => const CircleAvatar(
+          radius: 25,
+          backgroundColor: Colors.grey,
+        ), // Display a placeholder while loading
+        errorWidget: (context, url, error) => const Icon(
+            Icons.error), // Display an error icon if the image fails to load
       ),
       title: Text(
         name,
