@@ -25,7 +25,7 @@ class ChatBubble extends StatelessWidget {
 
     final isSent =
         (message.strUserId == controller.userDetailsModel.value!.id) ||
-            message.strMessageType == "sentingImage";
+            message.strMessageType.contains("senting");
     final alignment =
         isSent ? CrossAxisAlignment.end : CrossAxisAlignment.start;
     final color = isSent
@@ -55,14 +55,12 @@ class ChatBubble extends StatelessWidget {
                   : Container(
                       decoration: BoxDecoration(
                         color: message.strMessageType == "voice" ? null : color,
-                        boxShadow: !isSent
+                        boxShadow: !isSent && message.strMessageType != "voice"
                             ? [
                                 BoxShadow(
-                                  color: Colors.grey
-                                      .withOpacity(0.5), // BoxShadow color
-                                  spreadRadius: 1, // Spread radius
-                                  blurRadius: 1, // Blur radius
-                                  offset: Offset(0, 3), // Offset from top left
+                                  color: Colors.black.withOpacity(0.25),
+                                  blurRadius: 2.0,
+                                  offset: const Offset(1.0, 1.0),
                                 ),
                               ]
                             : null,

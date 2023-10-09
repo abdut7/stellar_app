@@ -1,3 +1,4 @@
+import 'package:flutter_svg/svg.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/chat_appbar_title_widget.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/chat_bubble.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/report_and_bloc_sheet_widget.dart';
@@ -55,6 +56,7 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
     PrivateChatController chatController = Get.put(PrivateChatController());
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Color.fromRGBO(159, 196, 232, 1),
         elevation: 0,
         title: InkWell(
@@ -135,18 +137,19 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                 }
               },
               onAttach: () {
-                show_attachment(
+                showChatAttachmentSheet(
                   context,
                   (index) async {
                     //if index = 0 =>Send Files
                     //if index = 1 =>Camera
                     if (index == 1) {
-                      XFile? image = await pickImageFromGalleryOrCamera(
-                          source: ImageSource.camera);
-                      if (image != null) {
-                        PrivateChatService.sentPersonalImageMessage(
-                            widget.chatId, image);
-                      }
+                      // XFile? image = await pickImageFromGalleryOrCamera(
+                      //     source: ImageSource.camera);
+                      // if (image != null) {
+                      //   PrivateChatService.sentPersonalImageMessage(
+                      //       widget.chatId, image);
+                      // }
+                      Navigator.pop(context);
                     }
                     //if index = 2 =>Gallary
                     if (index == 2) {
@@ -156,17 +159,20 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                         PrivateChatService.sentPersonalImageMessage(
                             widget.chatId, image);
                       }
+                      Navigator.pop(context);
                     }
                     if (index == 4) {
-                      await Get.to(() => PickContactFromPhoneToSent(
-                            chatId: widget.chatId,
-                            isGroup: false,
-                          ));
+                      await Get.to(
+                        () => PickContactFromPhoneToSent(
+                          chatId: widget.chatId,
+                          isGroup: false,
+                        ),
+                      );
                     }
+                    Navigator.pop(context);
                     //if index = 3 =>Location
                     //if index = 4 =>Contacts
                     //if index = 5 =>Audio
-                    Navigator.pop(context);
                   },
                 );
               })

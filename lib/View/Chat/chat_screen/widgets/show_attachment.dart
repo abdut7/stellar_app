@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-Future<dynamic> show_attachment(
+Future<dynamic> showChatAttachmentSheet(
     BuildContext context, void Function(int) onTap) {
   List<Map<String, String>> attachList = [
     {"name": "Send Files", "file": "assets/Svgs/send_files.svg"},
