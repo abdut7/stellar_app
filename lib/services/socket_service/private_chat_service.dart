@@ -30,15 +30,17 @@ class PrivateChatService {
     //upload and take link
     PrivateChatController chatController = Get.put(PrivateChatController());
     chatController.messageList.add(PrivateMessageModel(
-      id: "",
-      strCreatedTime: "",
-      strMessage: "",
-      strMessageType: "sentingImage",
-      strName: "",
-      strType: "",
-      strUrl: image.path,
-      strUserId: "",
-    ));
+        id: "",
+        strCreatedTime: "",
+        strMessage: "",
+        strMessageType: "sentingImage",
+        strName: "",
+        strType: "",
+        strUrl: image.path,
+        strUserId: "",
+        strContactName: "",
+        strContactNumbers: "",
+        strChatId: ""));
 
     String? fileUrl =
         await uploadFiles(fileExtension: null, base64File: imageAsBase);
@@ -83,7 +85,6 @@ class PrivateChatService {
       {required String chatId,
       required List numbers,
       required String name}) async {
-
     Socket socket = SocketService().socket;
     //convert message to base64
 

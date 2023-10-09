@@ -58,7 +58,7 @@ class _AddContactUiState extends State<AddContactUi> {
             text: 'Invite Friends',
             subtitle: 'Invite friends to chat using the app',
             onPressed: () {
-              Share.share('check out stellar chat https://stellarchat.com',
+              Share.share('check out stellar chat https://stellarchat.io',
                   subject: 'Come connect me on Stellar chat');
             },
             svgAssetPath: SSvgs.invite,
