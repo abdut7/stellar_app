@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -28,19 +29,29 @@ class ChatAppBarTitleWidget extends StatelessWidget {
               </svg>
               """),
         ),
-        profileImage == null
-            ? const CircleAvatar(
-                radius: 20,
-                backgroundColor: Colors.grey,
-                child: Icon(
-                  Icons.person,
-                  color: Colors.white,
-                ),
-              )
-            : CircleAvatar(
-                backgroundImage: NetworkImage(profileImage!),
-                radius: 20,
-              ),
+        CachedNetworkImage(
+          imageUrl: profileImage ?? "",
+          imageBuilder: (context, imageProvider) => CircleAvatar(
+            backgroundImage: imageProvider,
+            radius: 20,
+          ),
+          placeholder: (context, url) => const CircleAvatar(
+            radius: 20,
+            backgroundColor: Colors.grey,
+            child: Icon(
+              Icons.person,
+              color: Colors.white,
+            ),
+          ),
+          errorWidget: (context, url, error) => const CircleAvatar(
+            radius: 20,
+            backgroundColor: Colors.grey,
+            child: Icon(
+              Icons.error,
+              color: Colors.white,
+            ),
+          ),
+        ),
         const SizedBox(width: 8.0),
         Flexible(
           child: Text(
