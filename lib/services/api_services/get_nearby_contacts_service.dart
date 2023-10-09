@@ -32,6 +32,9 @@ class GetNearbyContactsService {
       GetNearbyPeopleModel model = GetNearbyPeopleModel.fromJson(res.data);
       // ignore: avoid_function_literals_in_foreach_calls
       model.arrList.forEach((element) async {
+        if (element.location.coordinates.isEmpty) {
+          return;
+        }
         List<BitmapDescriptor> bitmapList =
             await avatharGenerator([element.strProfileUrl]);
         // BitmapDescriptor dis =
