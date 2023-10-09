@@ -58,8 +58,8 @@ class _ProfileTextFieldState extends State<ProfileTextField> {
   Widget textField() {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10),
-      height: 25,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.grey.withOpacity(0.1)),
+      height: 28,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(4),color: Colors.grey.withOpacity(0.1)),
       child: TextFormField(
         controller: widget.controller,
         keyboardType: widget.keyboardType,

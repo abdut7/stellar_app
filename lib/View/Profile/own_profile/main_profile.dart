@@ -154,31 +154,34 @@ class _MainProfileState extends State<MainProfile> {
                   thickness: 1,
                 ),
               ),
-              TabBar(
-                indicatorColor: SColors.color9.withOpacity(0.4),
-                tabs: [
-                  Tab(
-                    icon: SvgPicture.asset(
-                      SSvgs.flicksLogo,
-                      width: 30,
-                      height: 30,
-                      color: selectedTabIndex == 0 ? null : Colors.grey,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: TabBar(
+                  indicatorColor: SColors.color9.withOpacity(0.4),
+                  tabs: [
+                    Tab(
+                      icon: SvgPicture.asset(
+                        SSvgs.flicksLogo,
+                        width: 30,
+                        height: 30,
+                        color: selectedTabIndex == 0 ? null : Colors.grey,
+                      ),
                     ),
-                  ),
-                  Tab(
-                    icon: SvgPicture.asset(
-                      SSvgs.channelLogo,
-                      width: 30,
-                      height: 30,
-                      color: selectedTabIndex == 1 ? null : Colors.grey,
+                    Tab(
+                      icon: SvgPicture.asset(
+                        SSvgs.channelLogo,
+                        width: 30,
+                        height: 30,
+                        color: selectedTabIndex == 1 ? null : Colors.grey,
+                      ),
                     ),
-                  ),
-                ],
-                onTap: (index) {
-                  setState(() {
-                    selectedTabIndex = index;
-                  });
-                },
+                  ],
+                  onTap: (index) {
+                    setState(() {
+                      selectedTabIndex = index;
+                    });
+                  },
+                ),
               ),
               const SizedBox(height: 10,),
               IndexedStack(index: selectedTabIndex, children: [

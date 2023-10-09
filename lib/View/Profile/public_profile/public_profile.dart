@@ -212,7 +212,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                       height: 20,
                     ),
                     Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 35),
+                        padding: const EdgeInsets.symmetric(horizontal: 28),
                         child: Text.rich(
                           TextSpan(
                             children: [
@@ -237,37 +237,40 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                         )),
                     const SizedBox(height: 10,),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 35),
+                      padding: const EdgeInsets.symmetric(horizontal: 28),
                       child: Divider(
                         color: SColors.color3,
                         thickness: 1,
                       ),
                     ),
-                    TabBar(
-                      indicatorColor: SColors.color9.withOpacity(0.5),
-                      tabs: [
-                        Tab(
-                          icon: SvgPicture.asset(
-                            SSvgs.flicksLogo,
-                            width: 30,
-                            height: 30,
-                            color: selectedTabIndex == 0 ? null : Colors.grey,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: TabBar(
+                        indicatorColor: SColors.color9.withOpacity(0.5),
+                        tabs: [
+                          Tab(
+                            icon: SvgPicture.asset(
+                              SSvgs.flicksLogo,
+                              width: 30,
+                              height: 30,
+                              color: selectedTabIndex == 0 ? null : Colors.grey,
+                            ),
                           ),
-                        ),
-                        Tab(
-                          icon: SvgPicture.asset(
-                            SSvgs.channelLogo,
-                            width: 30,
-                            height: 30,
-                            color: selectedTabIndex == 1 ? null : Colors.grey,
+                          Tab(
+                            icon: SvgPicture.asset(
+                              SSvgs.channelLogo,
+                              width: 30,
+                              height: 30,
+                              color: selectedTabIndex == 1 ? null : Colors.grey,
+                            ),
                           ),
-                        ),
-                      ],
-                      onTap: (index) {
-                        setState(() {
-                          selectedTabIndex = index;
-                        });
-                      },
+                        ],
+                        onTap: (index) {
+                          setState(() {
+                            selectedTabIndex = index;
+                          });
+                        },
+                      ),
                     ),
                     SizedBox(
                       child: IndexedStack(index: selectedTabIndex, children: [
@@ -307,6 +310,11 @@ void showBottomSheet(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 50),
+              child: Divider(thickness: 2, color: Color.fromRGBO(0, 51, 142, 0.5),),
+            ),
+            const SizedBox(height: 20,),
             GestureDetector(
               onTap: () async {
                 if (model.isBlocked) {
