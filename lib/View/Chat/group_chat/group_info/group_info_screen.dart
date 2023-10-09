@@ -99,11 +99,11 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                     resModel.isAdmin
                         ? GestureDetector(
                             onTap: () {
-                              Get.to(SelectGroupParticipents(
-                                groupId: widget.chatId,
-                                grpName: resModel.strGroupName,
-                                isCreatedGroup: true,
-                              ));
+                              Get.to(() => SelectGroupParticipents(
+                                    groupId: widget.chatId,
+                                    grpName: resModel.strGroupName,
+                                    isCreatedGroup: true,
+                                  ));
                             },
                             child: Center(
                               child: Column(
@@ -330,6 +330,15 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                         ),
                         InkWell(
                           onTap: () async {
+                            if (resModel.isAdmin) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                      'You cannot exit the group because you are an admin'),
+                                ),
+                              );
+                              return;
+                            }
                             if (resModel.strCreatedId ==
                                     controller.userDetailsModel.value!.id &&
                                 resModel.intParticipants > 1) {

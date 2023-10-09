@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/services/api_services/account_services.dart';
 import 'package:flutter/material.dart';
@@ -169,7 +170,11 @@ void showMuteNotificationSheet(BuildContext context) {
 void showSubBottomSheet({required BuildContext context, required String text1, required String text2, required String cancelText, required String okText, required VoidCallback onCancel, required VoidCallback onOk}) {
   showModalBottomSheet(
     backgroundColor: SColors.color11,
-    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(15.0),),),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(15.0),
+      ),
+    ),
     context: context,
     builder: (BuildContext context) {
       return Container(
@@ -178,7 +183,13 @@ void showSubBottomSheet({required BuildContext context, required String text1, r
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text(
-              text1, style: const TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w600,),),
+              text1,
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
             Text(
               text2,
               style: const TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w600,),),
@@ -190,7 +201,10 @@ void showSubBottomSheet({required BuildContext context, required String text1, r
                   onTap: onCancel,
                   child: Container(width: MediaQuery.of(context).size.width * 0.25,
                     height: 30,
-                    decoration: BoxDecoration(color: SColors.color11, borderRadius: BorderRadius.circular(9),),
+                    decoration: BoxDecoration(
+                      color: SColors.color11,
+                      borderRadius: BorderRadius.circular(9),
+                    ),
                     child: Center(
                       child: Text(cancelText, style: TextStyle(color: SColors.color12, fontSize: 17, fontWeight: FontWeight.w500,
                         ),
@@ -203,13 +217,22 @@ void showSubBottomSheet({required BuildContext context, required String text1, r
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.25,
                     height: 30,
-                    decoration: BoxDecoration(color: const Color.fromRGBO(0, 51, 142, 1), borderRadius: BorderRadius.circular(9),
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(0, 51, 142, 1),
+                      borderRadius: BorderRadius.circular(9),
                     ),
                     child: Center(
                       child: Text(okText, textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.w500,),),
                     ),
                   ),
-                ),],),],),);},);
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    },
+  );
 }
 
 Widget selectionRow( String text){
@@ -219,10 +242,19 @@ Widget selectionRow( String text){
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Container(
-          height: 14, width: 14, decoration: BoxDecoration(shape: BoxShape.circle, color: SColors.color11,),),
-        Text(text,style: TextStyle(fontSize: 12,fontWeight: FontWeight.w400,color: Colors.black),),
+          height: 14,
+          width: 14,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: SColors.color11,
+          ),
+        ),
+        Text(
+          text,
+          style: TextStyle(
+              fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black),
+        ),
       ],
     ),
   );
 }
-

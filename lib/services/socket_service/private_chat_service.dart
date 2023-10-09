@@ -30,15 +30,17 @@ class PrivateChatService {
     //upload and take link
     PrivateChatController chatController = Get.put(PrivateChatController());
     chatController.messageList.add(PrivateMessageModel(
-      id: "",
-      strCreatedTime: "",
-      strMessage: "",
-      strMessageType: "sentingImage",
-      strName: "",
-      strType: "",
-      strUrl: image.path,
-      strUserId: "",
-    ));
+        id: "",
+        strCreatedTime: "",
+        strMessage: "",
+        strMessageType: "sentingImage",
+        strName: "",
+        strType: "",
+        strUrl: image.path,
+        strUserId: "",
+        strContactName: "",
+        strContactNumbers: "",
+        strChatId: ""));
 
     String? fileUrl =
         await uploadFiles(fileExtension: null, base64File: imageAsBase);
@@ -92,7 +94,7 @@ class PrivateChatService {
       "strMessageType": "contact",
       "strType": "private",
       "strUrl": "",
-      "arrContactNumbers": numbers[0].toString(),
+      "strContactNumbers": numbers[0].toString(),
       "strContactName": name
     });
   }

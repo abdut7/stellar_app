@@ -169,6 +169,7 @@ class _ChatBottomFieldSentState extends State<ChatBottomFieldSent> {
 
         isVoice
             ? SocialMediaRecorder(
+                encode: AudioEncoderType.AAC,
                 recordIconWhenLockBackGroundColor: const Color(0xFF9FC4E8),
                 recordIconWhenLockedRecord: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -189,7 +190,7 @@ class _ChatBottomFieldSentState extends State<ChatBottomFieldSent> {
                     color: Colors.white,
                   ),
                 ),
-                radius: BorderRadius.circular(10),
+                radius: BorderRadius.circular(20),
                 sendRequestFunction: (soundFile, _) async {
                   if (widget.isGroup) {
                     GroupChatService.sentGroupVoiceMessage(
@@ -201,7 +202,6 @@ class _ChatBottomFieldSentState extends State<ChatBottomFieldSent> {
                     );
                   }
                 },
-                encode: AudioEncoderType.AAC,
               )
             : GestureDetector(
                 onTap: () {

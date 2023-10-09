@@ -62,7 +62,7 @@ class ContactDetailsScreen extends StatelessWidget {
                 chatId: chatId,
                 numbers: contact.phones!
                     .map(
-                      (item) => Text(item.value ?? ''),
+                      (item) => item.value ?? '',
                     )
                     .toList(),
                 name: contact.displayName ?? '');

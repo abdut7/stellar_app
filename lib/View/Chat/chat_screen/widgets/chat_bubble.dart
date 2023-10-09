@@ -1,7 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter_svg/svg.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:stellar_chat/View/chat/chat_screen/chat_screen.dart';
+import 'package:stellar_chat/View/chat/chat_screen/widgets/show_time_widget.dart';
 import 'package:stellar_chat/View/chat/group_chat/widgets/voice_chat_bubble.dart';
+import 'package:stellar_chat/View/chat/chat_screen/widgets/contact_message_bubble.dart';
 import 'package:stellar_chat/View/chat/widgets/photo_view_widget.dart';
 import 'package:stellar_chat/controllers/audio_player_controller.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
@@ -54,12 +58,17 @@ class ChatBubble extends StatelessWidget {
                     )
                   : Container(
                       decoration: BoxDecoration(
-                        color: message.strMessageType == "voice" ? null : color,
-                        boxShadow: !isSent && message.strMessageType != "voice"
+                        color: message.strMessageType == "voice" ||
+                                message.strMessageType == "contact"
+                            ? null
+                            : color,
+                        boxShadow: !isSent &&
+                                message.strMessageType != "voice" &&
+                                message.strMessageType != "contact"
                             ? [
                                 BoxShadow(
-                                  color: Colors.black.withOpacity(0.25),
-                                  blurRadius: 2.0,
+                                  color: Colors.black.withOpacity(0.2),
+                                  blurRadius: 1.0,
                                   offset: const Offset(1.0, 1.0),
                                 ),
                               ]
@@ -123,7 +132,7 @@ class ChatBubble extends StatelessWidget {
                             <path d="M10.0001 0.608279C9.96049 0.754513 9.867 0.862565 9.76101 0.96672C8.46205 2.24516 7.16379 3.52447 5.86622 4.80464C5.59903 5.06984 5.31596 5.06438 5.05215 4.7888C4.91726 4.64802 4.78106 4.5088 4.64695 4.36724C4.43393 4.1423 4.42976 3.83503 4.63549 3.63685C4.84122 3.43867 5.14721 3.4501 5.36622 3.67166L5.50684 3.81477C5.88314 3.42516 6.24903 3.03243 6.62846 2.65399C7.45241 1.83295 8.28861 1.02412 9.1084 0.198928C9.4209 -0.115617 9.9032 0.0308762 9.98575 0.40672C9.98911 0.415977 9.99376 0.42472 9.99955 0.432694L10.0001 0.608279Z" fill="#00338E"/>
                             </svg>
                             """)
-                                            : SizedBox(),
+                                            : const SizedBox(),
                                         const SizedBox(
                                           width: 8,
                                         )
@@ -177,11 +186,11 @@ class ChatBubble extends StatelessWidget {
                                           color: downColor,
                                           borderRadius: BorderRadius.only(
                                             bottomLeft: isSent
-                                                ? Radius.circular(10)
-                                                : Radius.circular(0),
+                                                ? const Radius.circular(10)
+                                                : const Radius.circular(0),
                                             bottomRight: !isSent
-                                                ? Radius.circular(10)
-                                                : Radius.circular(0),
+                                                ? const Radius.circular(10)
+                                                : const Radius.circular(0),
                                           ),
                                         ),
                                         child: Row(
@@ -208,7 +217,7 @@ class ChatBubble extends StatelessWidget {
 <path d="M10.0001 0.608279C9.96049 0.754513 9.867 0.862565 9.76101 0.96672C8.46205 2.24516 7.16379 3.52447 5.86622 4.80464C5.59903 5.06984 5.31596 5.06438 5.05215 4.7888C4.91726 4.64802 4.78106 4.5088 4.64695 4.36724C4.43393 4.1423 4.42976 3.83503 4.63549 3.63685C4.84122 3.43867 5.14721 3.4501 5.36622 3.67166L5.50684 3.81477C5.88314 3.42516 6.24903 3.03243 6.62846 2.65399C7.45241 1.83295 8.28861 1.02412 9.1084 0.198928C9.4209 -0.115617 9.9032 0.0308762 9.98575 0.40672C9.98911 0.415977 9.99376 0.42472 9.99955 0.432694L10.0001 0.608279Z" fill="#00338E"/>
 </svg>
 """)
-                                                : SizedBox(),
+                                                : const SizedBox(),
                                             const SizedBox(
                                               width: 8,
                                             )
@@ -225,27 +234,31 @@ class ChatBubble extends StatelessWidget {
                                       audioUrl: message.strUrl,
                                       isSender: isSent,
                                     )
-                                  : message.strMessageType == "sentingImage"
-                                      ? Padding(
-                                          padding: const EdgeInsets.all(2.0),
-                                          child: Container(
-                                            height: Get.width * 0.4,
-                                            width: Get.width * 0.6,
-                                            decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                fit: BoxFit.cover,
-                                                image: FileImage(
-                                                  File(message.strUrl),
+                                  : message.strMessageType == "contact"
+                                      ? ContactMessageBubble(
+                                          isSent: isSent, message: message)
+                                      : message.strMessageType == "sentingImage"
+                                          ? Padding(
+                                              padding:
+                                                  const EdgeInsets.all(2.0),
+                                              child: Container(
+                                                height: Get.width * 0.4,
+                                                width: Get.width * 0.6,
+                                                decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                    fit: BoxFit.cover,
+                                                    image: FileImage(
+                                                      File(message.strUrl),
+                                                    ),
+                                                  ),
+                                                ),
+                                                child: const Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
                                                 ),
                                               ),
-                                            ),
-                                            child: const Center(
-                                              child:
-                                                  CircularProgressIndicator(),
-                                            ),
-                                          ),
-                                        )
-                                      : const SizedBox(),
+                                            )
+                                          : const SizedBox(),
                     ),
               // const SizedBox(height: 4.0),
             ],

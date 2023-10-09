@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stellar_chat/View/Chat/group_chat/widgets/group_chat_options_bottomsheet.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/show_attachment.dart';
@@ -73,13 +74,23 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
               </svg>
               """),
               ),
-              CircleAvatar(
-                backgroundImage: NetworkImage(widget.chatHistoryList.strIconURL
+              CachedNetworkImage(
+                imageUrl: widget.chatHistoryList.strIconURL
                             .contains("undefined") ||
                         widget.chatHistoryList.strIconURL.isEmpty
                     ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                    : widget.chatHistoryList.strIconURL),
-                radius: 20.0, // Adjust the size of the circle avatar as needed
+                    : widget.chatHistoryList.strIconURL,
+                imageBuilder: (context, imageProvider) => CircleAvatar(
+                  backgroundImage: imageProvider,
+                  radius: 20,
+                  backgroundColor: Colors.grey,
+                ),
+                placeholder: (context, url) => const CircleAvatar(
+                  backgroundColor: Colors.grey,
+                  radius: 20,
+                  child: CircularProgressIndicator(),
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
               const SizedBox(width: 10.0),
               Flexible(

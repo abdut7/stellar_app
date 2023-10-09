@@ -143,12 +143,12 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                     //if index = 0 =>Send Files
                     //if index = 1 =>Camera
                     if (index == 1) {
-                      // XFile? image = await pickImageFromGalleryOrCamera(
-                      //     source: ImageSource.camera);
-                      // if (image != null) {
-                      //   PrivateChatService.sentPersonalImageMessage(
-                      //       widget.chatId, image);
-                      // }
+                      XFile? image = await pickImageFromGalleryOrCamera(
+                          source: ImageSource.camera);
+                      if (image != null) {
+                        PrivateChatService.sentPersonalImageMessage(
+                            widget.chatId, image);
+                      }
                       Navigator.pop(context);
                     }
                     //if index = 2 =>Gallary

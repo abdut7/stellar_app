@@ -37,6 +37,7 @@ class ChatHistorySocketService {
     //socket for updating private chats
     socketService.socket.on('get_message', (data) {
       print("Recieved the message back");
+      print(data);
       PrivateMessageModel model = PrivateMessageModel.fromJson(data);
       bool alreadyExist =
           chatController.messageList.any((element) => element.id == model.id);
@@ -47,6 +48,8 @@ class ChatHistorySocketService {
 
     //socket for updating goup chats
     socketService.socket.on('get_group_message', (data) {
+      print("Recieved group message back");
+      print(data);
       GroupChatController chatController = Get.put(GroupChatController());
       // print("Recieved the group message back");
       // print(data);

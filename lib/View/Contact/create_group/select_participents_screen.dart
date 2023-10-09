@@ -35,6 +35,9 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
   @override
   void initState() {
     super.initState();
+    if (widget.isCreatedGroup) {
+      GroupServices.getAddParticipentsContacts(groupId: widget.groupId!);
+    }
   }
 
   List<String> selectedUsers = [];
