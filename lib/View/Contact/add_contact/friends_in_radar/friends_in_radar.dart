@@ -55,7 +55,7 @@ class _FriendsInRadarScreenState extends State<FriendsInRadarScreen> {
           toolbarHeight: 70,
           elevation: 0,
           title: Text(
-            'People Near ME',
+            'People\nNear Me',
             style: TextStyle(
               color: SColors.color11,
               fontSize: 18,

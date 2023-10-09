@@ -22,7 +22,7 @@ class ProfileTextField2 extends StatefulWidget {
 class _ProfileTextField2State extends State<ProfileTextField2> {
   Widget textFieldHeading({String? headingText}) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 80),
+      padding: const EdgeInsets.only(bottom: 100),
       child: Text(
         headingText!,
         style: TextStyle(
@@ -62,7 +62,7 @@ class _ProfileTextField2State extends State<ProfileTextField2> {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10),
       //height: 25,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.grey.withOpacity(0.1)),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(4),color: Colors.grey.withOpacity(0.1)),
       child: TextFormField(
         controller: widget.controller,
         keyboardType: widget.keyboardType,

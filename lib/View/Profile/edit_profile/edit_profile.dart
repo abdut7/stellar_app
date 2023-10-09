@@ -114,13 +114,19 @@ class _EditProfileState extends State<EditProfile> {
                           builder: (BuildContext context) {
                             return Wrap(
                               children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 80,vertical: 15),
+                                  child: Divider(thickness: 2, color: Color.fromRGBO(0, 51, 142, 0.5),),
+                                ),
                                 ListTile(
-                                  leading:  Icon(Icons.photo_library,color: SColors.color12,),
-                                  title:  Text('Pick from Gallery',style: TextStyle(
-                                    color: SColors.color12,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w500,
-                                  ),),
+                                  //leading:  Icon(Icons.photo_library,color: SColors.color12,),
+                                  title:  Center(
+                                    child: Text('Upload Photo',style: TextStyle(
+                                      color: SColors.color12,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                    ),),
+                                  ),
                                   onTap: () async {
                                     Navigator.of(context)
                                         .pop(); // Close the bottom sheet
@@ -132,12 +138,14 @@ class _EditProfileState extends State<EditProfile> {
                                   },
                                 ),
                                 ListTile(
-                                  leading:  Icon(Icons.photo_camera,color: SColors.color12,),
-                                  title:  Text('Take a Photo',style: TextStyle(
-                                    color: SColors.color12,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w500,
-                                  ),),
+                                  //leading:  Icon(Icons.photo_camera,color: SColors.color12,),
+                                  title:  Center(
+                                    child: Text('Take a Photo',style: TextStyle(
+                                      color: SColors.color12,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                    ),),
+                                  ),
                                   onTap: () async {
                                     Navigator.of(context)
                                         .pop(); // Close the bottom sheet
@@ -190,7 +198,7 @@ class _EditProfileState extends State<EditProfile> {
           ),
           ProfileTextField2(
             keyboardType: TextInputType.multiline,
-            maxLines: 5,
+            maxLines: 6,
             head: 'About me',
             controller: aboutMeController,
           ),
@@ -276,6 +284,10 @@ void showBottomSheet(BuildContext context, String action) {
           children: <Widget>[
             if (action == 'profile')
               Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50,vertical: 15),
+                child: Divider(thickness: 2, color: Color.fromRGBO(0, 51, 142, 0.5),),
+              ),
+              Padding(
                 padding: const EdgeInsets.only(top: 25),
                 child: Text(
                   'Profile Updated',
@@ -306,7 +318,7 @@ void showBottomSheet(BuildContext context, String action) {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 15.0),
+                  //const SizedBox(height: 15.0),
                   GestureDetector(
                     onTap: () {},
                     child: Text(
