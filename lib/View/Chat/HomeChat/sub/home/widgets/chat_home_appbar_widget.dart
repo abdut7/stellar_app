@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:stellar_chat/View/contact/add_contact/scan_qr_code.dart';
 import 'package:stellar_chat/View/contact/add_contact/select_contacts_to_add_screen.dart';
 import 'package:stellar_chat/View/contact/show_contact/show_contacts_screen.dart';
+import 'package:stellar_chat/View/profile/qr/qr_screen.dart';
 import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/utils/colors.dart';
 
@@ -108,7 +109,11 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                   ),
                   ontap: () {
                     Get.back();
-                    Get.to(() => QRScannerScreen());
+                    Get.to(
+                      () => const QRScreen(
+                        isFromSettings: false,
+                      ),
+                    );
                   },
                   text: 'Scan',
                 ),
