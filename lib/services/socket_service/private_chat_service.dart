@@ -83,6 +83,7 @@ class PrivateChatService {
       {required String chatId,
       required List numbers,
       required String name}) async {
+
     Socket socket = SocketService().socket;
     //convert message to base64
 
@@ -92,7 +93,7 @@ class PrivateChatService {
       "strMessageType": "contact",
       "strType": "private",
       "strUrl": "",
-      "arrContactNumbers": numbers[0].toString(),
+      "strContactNumbers": numbers[0].toString(),
       "strContactName": name
     });
   }

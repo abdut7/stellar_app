@@ -37,6 +37,7 @@ class ChatHistorySocketService {
     //socket for updating private chats
     socketService.socket.on('get_message', (data) {
       print("Recieved the message back");
+      print(data);
       PrivateMessageModel model = PrivateMessageModel.fromJson(data);
       bool alreadyExist =
           chatController.messageList.any((element) => element.id == model.id);

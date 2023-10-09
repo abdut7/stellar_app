@@ -65,14 +65,17 @@ class GroupChatService {
     Socket socket = SocketService().socket;
     //convert message to base64
 
-    socket.emit('send_message', {
-      'strChatId': chatId,
-      'strMessage': "",
-      "strMessageType": "contact",
-      "strType": "group",
-      "strUrl": "",
-      "listNumbers": numbers[0].toString(),
-      "strName": name
-    });
+    socket.emit(
+      'send_message',
+      {
+        'strChatId': chatId,
+        'strMessage': "",
+        "strMessageType": "contact",
+        "strType": "group",
+        "strUrl": "",
+        "strContactNumbers": numbers[0].toString(),
+        "strContactName": name
+      },
+    );
   }
 }

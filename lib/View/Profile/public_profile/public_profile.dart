@@ -1,4 +1,5 @@
 import 'package:stellar_chat/Settings/SImages.dart';
+import 'package:stellar_chat/View/chat/chat_screen/chat_screen.dart';
 import 'package:stellar_chat/View/profile/public_profile/widgets/follow_details_widget.dart';
 import 'package:stellar_chat/View/profile/widget/about_me_text.dart';
 import 'package:stellar_chat/View/profile/widget/contact_through_options.dart';
@@ -79,8 +80,8 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                               userDetailsModel!);
                                         },
                                         child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(right: 28,bottom: 28),
+                                          padding: const EdgeInsets.only(
+                                              right: 28, bottom: 28),
                                           child: SvgPicture.asset(
                                             SSvgs.moreVertz,
                                             width: 10,
@@ -191,6 +192,11 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                             onTap: () {
                               if (widget.isFromChatScreen) {
                                 Get.back();
+                              } else {
+                                Get.to(PrivateChatScreen(
+                                    chatId: userDetailsModel!.id,
+                                    fullName: userDetailsModel!.strName,
+                                    imageUrl: userDetailsModel!.strProfileUrl));
                               }
                             },
                             child: ContactThrough(
@@ -235,7 +241,9 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                             ],
                           ),
                         )),
-                    const SizedBox(height: 10,),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 28),
                       child: Divider(
@@ -312,9 +320,14 @@ void showBottomSheet(
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: Divider(thickness: 2, color: Color.fromRGBO(0, 51, 142, 0.5),),
+              child: Divider(
+                thickness: 2,
+                color: Color.fromRGBO(0, 51, 142, 0.5),
+              ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             GestureDetector(
               onTap: () async {
                 if (model.isBlocked) {
