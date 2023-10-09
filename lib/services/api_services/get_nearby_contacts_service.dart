@@ -32,6 +32,9 @@ class GetNearbyContactsService {
       GetNearbyPeopleModel model = GetNearbyPeopleModel.fromJson(res.data);
       // ignore: avoid_function_literals_in_foreach_calls
       model.arrList.forEach((element) async {
+        if (element.location.coordinates.isEmpty) {
+          return;
+        }
         List<BitmapDescriptor> bitmapList =
             await avatharGenerator([element.strProfileUrl]);
         // BitmapDescriptor dis =
@@ -52,7 +55,7 @@ class GetNearbyContactsService {
                   context: Get.context!,
                   builder: (context) {
                     return Container(
-                        color: Color.fromRGBO(159, 196, 232, 1),
+                        color: const Color.fromRGBO(159, 196, 232, 1),
                         padding: const EdgeInsets.all(16),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -98,8 +101,8 @@ class GetNearbyContactsService {
                                                         element.strFullName,
                                                   ));
                                             },
-                                            child: Text('Chat')),
-                                        SizedBox(
+                                            child: const Text('Chat')),
+                                        const SizedBox(
                                           width: 20,
                                         ),
                                         GestureDetector(
@@ -109,7 +112,7 @@ class GetNearbyContactsService {
                                                     uid: element.id),
                                               );
                                             },
-                                            child: Text('View Profile')),
+                                            child: const Text('View Profile')),
                                       ],
                                     )
                                   ],

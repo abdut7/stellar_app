@@ -82,14 +82,19 @@ class _FollowDetailsWidgetState extends State<FollowDetailsWidget> {
                 width: MediaQuery.of(context).size.width * 0.74,
                 height: 35,
                 decoration: BoxDecoration(
-                  color: const Color.fromRGBO(0, 51, 142, 1),
+                  color: widget.isFollowing
+                      ? const Color.fromRGBO(159, 196, 232, 1)
+                      : const Color.fromRGBO(0, 51, 142, 1),
                   borderRadius: BorderRadius.circular(9),
                 ),
                 child: Center(
                   child: Text(
                     widget.isFollowing ? "Following" : 'Follow',
                     style: TextStyle(
-                        fontSize: 14, color: Color.fromRGBO(159, 196, 232, 1)),
+                        fontSize: 14,
+                        color: !widget.isFollowing
+                            ? const Color.fromRGBO(159, 196, 232, 1)
+                            : const Color.fromRGBO(0, 51, 142, 1)),
                   ),
                 ),
               ),

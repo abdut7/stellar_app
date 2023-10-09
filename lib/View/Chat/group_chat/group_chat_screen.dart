@@ -171,19 +171,19 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
               }
             },
             onAttach: () {
-              show_attachment(
+              showChatAttachmentSheet(
                 context,
                 (index) async {
                   //if index = 0 =>Send Files
                   //if index = 1 =>Camera
-                  XFile? image = await pickImageFromGalleryOrCamera(
-                      source: index == 1
-                          ? ImageSource.camera
-                          : ImageSource.gallery);
-                  if (image != null) {
-                    GroupChatService.sentGroupImageMessage(
-                        widget.chatHistoryList.strChatId, image);
-                  }
+                  // XFile? image = await pickImageFromGalleryOrCamera(
+                  //     source: index == 1
+                  //         ? ImageSource.camera
+                  //         : ImageSource.gallery);
+                  // if (image != null) {
+                  //   GroupChatService.sentGroupImageMessage(
+                  //       widget.chatHistoryList.strChatId, image);
+                  // }
 
                   if (index == 1 || index == 2) {
                     XFile? image = await pickImageFromGalleryOrCamera(
