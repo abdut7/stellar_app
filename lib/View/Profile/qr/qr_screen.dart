@@ -48,12 +48,19 @@ class _QRScreenState extends State<QRScreen> {
             bottom: TabBar(
               labelColor: SColors.color11,
               unselectedLabelColor: SColors.color11.withOpacity(0.5),
-              tabs: const [
-                Tab(
-                  text: 'My QR Code',
-                ),
-                Tab(text: 'Scan QR Code'),
-              ],
+              tabs: widget.isFromSettings
+                  ? const [
+                      Tab(
+                        text: 'My QR Code',
+                      ),
+                      Tab(text: 'Scan QR Code'),
+                    ]
+                  : const [
+                      Tab(text: 'Scan QR Code'),
+                      Tab(
+                        text: 'My QR Code',
+                      ),
+                    ],
             ),
           ),
           body: TabBarView(
