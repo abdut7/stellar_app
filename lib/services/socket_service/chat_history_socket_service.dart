@@ -21,7 +21,7 @@ class ChatHistorySocketService {
     socketService.socket.on(
       'chat_history',
       (data) {
-        ChatHistoryServiceApi.getChatHistory();
+        ChatHistoryServiceApi.getChatHistory(isRefresh: true);
         // ChatHistoryList newChatHistory = ChatHistoryList.fromJson(data);
         // for (var element in chatHistoryController.chatHistoryList) {
         //   if (element.id == newChatHistory.id) {
