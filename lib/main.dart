@@ -1,9 +1,11 @@
+import 'package:camera/camera.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stellar_chat/View/auth_screens/LoginWithMobile/login_with_mobile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stellar_chat/View/create_post/create_post_home.dart';
 import 'package:stellar_chat/View/splash/spalash_screen.dart';
 import 'package:stellar_chat/controllers/theme_controller.dart';
 
@@ -12,6 +14,11 @@ void main() async {
 
   final sharedPreferences = await SharedPreferences.getInstance();
   final isDarkTheme = sharedPreferences.getBool('isDarkTheme') ?? false;
+  try {
+    cameras = await availableCameras();
+  } on CameraException catch (e) {
+    print('Error: $e');
+  }
 
   Get.put(ThemeController());
   Get.find<ThemeController>().isDarkTheme.value = isDarkTheme;

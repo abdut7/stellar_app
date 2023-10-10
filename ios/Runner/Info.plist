@@ -40,6 +40,11 @@
 	<!-- social media recorder -->
 	<key>NSMicrophoneUsageDescription</key>
 	<string>We need to access to the microphone to record audio file</string>
+	<!-- Camera for video recording -->
+	<key>NSCameraUsageDescription</key>
+	<string>your usage description here</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>your usage description here</string>
 	<!-- Added by Joel till Here -->
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
