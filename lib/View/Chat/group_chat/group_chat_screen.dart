@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stellar_chat/View/Chat/group_chat/widgets/group_chat_options_bottomsheet.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/show_attachment.dart';
 import 'package:stellar_chat/View/chat/group_chat/group_info/group_info_screen.dart';
 import 'package:stellar_chat/View/chat/group_chat/widgets/group_chat_bubble.dart';
@@ -107,6 +108,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
           IconButton(
             icon: const Icon(Icons.more_vert),
             onPressed: () {
+              groupChatMainBottomSheet(context);
               // Implement your menu actions here
             },
           ),
