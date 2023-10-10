@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:stellar_chat/View/create_post/function/pick_from_storage.dart';
 import 'package:stellar_chat/View/create_post/video_player/video_player_screen.dart';
 import 'package:stellar_chat/View/create_post/widgets/upload_to_selection_widget.dart';
 import 'package:stellar_chat/functions/show_snackbar.dart';
@@ -27,7 +28,7 @@ class _AddFilesHomePageState extends State<AddFilesHomePage> {
   void initState() {
     super.initState();
     controller = CameraController(
-        isBackCamera ? cameras.first : cameras.last, ResolutionPreset.max);
+        isBackCamera ? cameras.first : cameras[1], ResolutionPreset.max);
     controller.initialize().then((_) {
       if (!mounted) {
         return;
@@ -155,6 +156,7 @@ class _AddFilesHomePageState extends State<AddFilesHomePage> {
                         : GestureDetector(
                             onTap: () {
                               //Open gallary
+                              pickVideoFromStorage();
                             },
                             child: SvgPicture.string(
                                 """<svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -207,7 +209,7 @@ class _AddFilesHomePageState extends State<AddFilesHomePage> {
                               //rotate camera
                               isBackCamera = !isBackCamera;
                               controller = CameraController(
-                                  isBackCamera ? cameras.first : cameras.last,
+                                  isBackCamera ? cameras.first : cameras[1],
                                   ResolutionPreset.max);
                               await controller.initialize();
                               setState(() {});
