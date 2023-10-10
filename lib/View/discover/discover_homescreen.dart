@@ -76,7 +76,7 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                       ),
                     )),
                 Container(
-                    //margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 380),
+                  //margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 210),
                     margin: const EdgeInsets.only(left: 45,right: 45,top: 400),
                     width: double.infinity,
                     decoration: ShapeDecoration(
@@ -95,16 +95,30 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: DiscoverListTile(
-                          title: 'Scan',
-                          svgAsset: SSvgs.scanLogo,
-                          onTap: () {
-                            Get.to(() => const QRScreen());
-                          }),
+                      child: Column(
+                        children: [
+                          DiscoverListTile(
+                              title: 'Scan',
+                              svgAsset: SSvgs.scanLogo,
+                              onTap: () {
+                                Get.to(() => const QRScreen());
+                              }),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 15),
+                            child: Divider(
+                              thickness: 2,
+                              color: Colors.black12,
+                            ),
+                          ),
+                          DiscoverListTile(
+                              title: 'Stellar Pay',
+                              svgAsset: SSvgs.payStellar,
+                              onTap: () {}),
+                        ],
+                      ),
                     )),
                 Container(
-                    //margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 480),
-                    margin: const EdgeInsets.only(left: 45,right: 45,top: 500),
+                    margin: const EdgeInsets.only(left: 45,right: 45,top: 570),
                     width: double.infinity,
                     decoration: ShapeDecoration(
                       color: SColors.color4,

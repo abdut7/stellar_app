@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
 
 class CustomPopupMenuItem<T> extends PopupMenuItem<T> {
   final Widget icon;
@@ -20,7 +21,11 @@ class CustomPopupMenuItem<T> extends PopupMenuItem<T> {
                   padding: const EdgeInsets.only(right: 16.0),
                   child: icon,
                 ),
-                Text(text),
+                Text(text,style: TextStyle(
+                  color:SColors.color12,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w600,
+                ),),
               ],
             ),
           ),
