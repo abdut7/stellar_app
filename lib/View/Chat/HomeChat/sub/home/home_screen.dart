@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> refreshChatHistory() async {
     // Refresh chat history data when the user pulls down
-    await ChatHistoryServiceApi.getChatHistory();
+    await ChatHistoryServiceApi.getChatHistory(isRefresh: true);
   }
 
   @override
