@@ -62,6 +62,13 @@ class ChatHomeAppbarWidget extends StatelessWidget {
 </svg>
 """),
           ),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 165),
+            child: GestureDetector(
+              onTap: (){},
+                child: SvgPicture.asset(SSvgs.stellarPayIconText)),
+          ),
           InkWell(
             onTap: () {},
             child: PopupMenuButton<String>(
@@ -151,6 +158,7 @@ class ChatHomeAppbarWidget extends StatelessWidget {
               color: SColors.color11,
             ),
           ),
+
         ],
       ),
     );
