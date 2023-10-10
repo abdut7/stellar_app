@@ -62,4 +62,5 @@ class SSvgs {
   static String get gSignUp => "assets/Svgs/gSignUp.svg";
   static String get payStellar => "assets/Svgs/payStellar.svg";
   static String get stellarPayIconText => "assets/Svgs/stellarPayIconText.svg";
+  static String get payIcon => "assets/Svgs/payIcon.svg";
 }

@@ -107,32 +107,32 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                   },
                   text: 'Add Contact',
                 ),
-                CustomPopupMenuItem(
-                  value: 'scan',
-                  icon: SvgPicture.asset(
-                    SSvgs.sv16,
-                    width: 20,
-                    height: 20,
-                  ),
-                  ontap: () {
-                    Get.back();
-                    Get.to(
-                      () => const QRScreen(
-                        isFromSettings: false,
-                      ),
-                    );
-                  },
-                  text: 'Scan',
-                ),
+                // CustomPopupMenuItem(
+                //   value: 'scan',
+                //   icon: SvgPicture.asset(
+                //     SSvgs.sv16,
+                //     width: 20,
+                //     height: 20,
+                //   ),
+                //   ontap: () {
+                //     Get.back();
+                //     Get.to(
+                //       () => const QRScreen(
+                //         isFromSettings: false,
+                //       ),
+                //     );
+                //   },
+                //   text: 'Scan',
+                // ),
                 CustomPopupMenuItem(
                   value: 'money',
                   icon: SvgPicture.asset(
-                    SSvgs.sv15,
+                    SSvgs.payIcon,
                     width: 20,
                     height: 20,
                   ),
                   ontap: () {},
-                  text: 'Money',
+                  text: 'Stellar Pay',
                 ),
               ],
               onSelected: (String choice) {
