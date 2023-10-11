@@ -56,7 +56,7 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Color.fromRGBO(159, 196, 232, 1),
+        backgroundColor: const Color.fromRGBO(159, 196, 232, 1),
         elevation: 0,
         title: InkWell(
           onTap: () {

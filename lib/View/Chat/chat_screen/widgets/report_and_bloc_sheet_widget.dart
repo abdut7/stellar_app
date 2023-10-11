@@ -3,6 +3,7 @@ import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/functions/show_snackbar.dart';
 import 'package:stellar_chat/services/api_services/account_services.dart';
 import 'package:flutter/material.dart';
+import 'package:stellar_chat/services/api_services/chat_message_service.dart';
 
 showBlockAndReportBottomSheet(
     {required BuildContext context,
@@ -84,7 +85,9 @@ showBlockAndReportBottomSheet(
                   showSubBottomSheet(
                     context: context,
                     text1: 'Do You want to',
-                    text2: ' Block the user',
+                    text2: ChatMessageService.isBlocked
+                        ? "Unblock user"
+                        : ' Block the user',
                     cancelText: 'Cancel',
                     okText: 'OK',
                     onCancel: () {
@@ -92,14 +95,19 @@ showBlockAndReportBottomSheet(
                     },
                     onOk: () async {
                       Get.back();
-                      await AccountServices.blockUser(id);
-                      // await AccountServices.unBlockUser(id);
+                      if (!ChatMessageService.isBlocked) {
+                        await AccountServices.blockUser(id);
+                      } else {
+                        await AccountServices.unBlockUser(id);
+                      }
                     },
                   );
                 },
                 child: Center(
                   child: Text(
-                    'Block User',
+                    ChatMessageService.isBlocked
+                        ? "Unblock User"
+                        : 'Block User',
                     style: TextStyle(
                       color: SColors.color12,
                       fontSize: 11,

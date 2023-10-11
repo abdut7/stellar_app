@@ -114,8 +114,8 @@ class _EditProfileState extends State<EditProfile> {
                           builder: (BuildContext context) {
                             return Wrap(
                               children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
+                                const Padding(
+                                  padding: EdgeInsets.symmetric(
                                       horizontal: 80, vertical: 15),
                                   child: Divider(
                                     thickness: 2,
@@ -295,9 +295,9 @@ void showBottomSheet(BuildContext context, String action) {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             if (action == 'profile')
-              Padding(
+              const Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                    EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 child: Divider(
                   thickness: 2,
                   color: Color.fromRGBO(0, 51, 142, 0.5),

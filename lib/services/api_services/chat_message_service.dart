@@ -8,8 +8,10 @@ import '../api_routes/api_routes.dart';
 import '../socket_service/sent_join_room_event_socket.dart';
 
 class ChatMessageService {
+  static bool isBlocked = false;
   static Future<void> getMessages(
       {required String chatId, required String type}) async {
+    isBlocked = false;
     PrivateChatController chatController = Get.put(PrivateChatController());
     chatController.isLoadingFailed(false);
     chatController.isLoading(true);
@@ -20,9 +22,11 @@ class ChatMessageService {
     try {
       Response response =
           await dio.post(url, data: body, options: Options(headers: header));
+
       print(response);
       PrivateMessageJsonModel model =
           PrivateMessageJsonModel.fromJson(response.data);
+      isBlocked = model.isBlocked;
       chatController.messageList.clear();
       chatController.messageList.addAll(model.privateMessageModelList);
       sentRoomJoinSocket(chatId: chatId, type: type);
