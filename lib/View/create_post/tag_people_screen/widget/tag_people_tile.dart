@@ -1,17 +1,22 @@
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
+import 'package:stellar_chat/controllers/new_post/fliq_controller.dart';
+import 'package:stellar_chat/models/api_models/get_contacts_model.dart';
 
-class TagPeopleTile extends StatefulWidget {
+class TagPeopleTile extends StatelessWidget {
   final String username;
   final String name;
-  const TagPeopleTile({Key? key, required this.username, required this.name})
+  final bool isSearch;
+  final Contact contact;
+  const TagPeopleTile(
+      {Key? key,
+      required this.username,
+      required this.name,
+      this.isSearch = false,
+      required this.contact})
       : super(key: key);
 
-  @override
-  State<TagPeopleTile> createState() => _TagPeopleTileState();
-}
-
-class _TagPeopleTileState extends State<TagPeopleTile> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,12 +25,10 @@ class _TagPeopleTileState extends State<TagPeopleTile> {
         leading: CircleAvatar(
           backgroundColor: SColors.color9,
           radius: 25,
-          backgroundImage: NetworkImage(
-            'https://img.freepik.com/premium-photo/woman-holding-camera-with-word-canon-front_853645-1568.jpg?w=1380',
-          ),
+          backgroundImage: NetworkImage(contact.strProfileUrl),
         ),
         title: Text(
-          widget.username,
+          username,
           style: TextStyle(
             color: SColors.color3,
             fontSize: 16,
@@ -33,19 +36,34 @@ class _TagPeopleTileState extends State<TagPeopleTile> {
           ),
         ),
         subtitle: Text(
-          widget.name,
+          name,
           style: TextStyle(
             color: SColors.color3,
             fontSize: 12,
             fontWeight: FontWeight.w400,
           ),
         ),
-        trailing: Icon(
-          Icons.cancel,
-          color: SColors.color3,
-          size: 20,
-        ),
-        onTap: () {},
+        trailing: isSearch
+            ? Text("Tag")
+            : GestureDetector(
+                onTap: () {
+                  FliqController cont = Get.find();
+                  cont.tagPeople.remove(contact);
+                },
+                child: Icon(
+                  Icons.cancel,
+                  color: SColors.color3,
+                  size: 20,
+                ),
+              ),
+        onTap: () {
+          if (isSearch) {
+            FliqController cont = Get.find();
+            cont.tagPeople.add(contact);
+            cont.searchList.clear();
+            cont.isSearching(false);
+          }
+        },
       ),
     );
   }

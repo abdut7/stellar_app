@@ -45,7 +45,7 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: colorPrimary,
+      color: Colors.black,
       child: Stack(
         alignment: Alignment.center,
         children: [

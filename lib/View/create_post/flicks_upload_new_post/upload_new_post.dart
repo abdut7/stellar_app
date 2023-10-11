@@ -5,6 +5,7 @@ import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
 import 'package:stellar_chat/View/create_post/function/generate_thumbnile.dart';
 import 'package:stellar_chat/View/create_post/tag_people_screen/tag_people_screen.dart';
+import 'package:stellar_chat/controllers/new_post/fliq_controller.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/functions/show_snackbar.dart';
 
@@ -23,6 +24,7 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
   @override
   Widget build(BuildContext context) {
     UserController controller = Get.find();
+    FliqController fliqController = Get.put(FliqController());
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -51,10 +53,6 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                 showCustomSnackbar(title: "No Thumbnile", message: "");
                 return;
               }
-              Get.to(() => TagPeopleScreen(
-                    videoFilePath: widget.path,
-                    thumbnile: thumbnile!,
-                  ));
             },
             child: Text('Share',
                 style: TextStyle(
@@ -183,7 +181,12 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
             ),
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: titleTextButton('Tag People', () {})),
+                child: titleTextButton('Tag People', () {
+                  Get.to(() => TagPeopleScreen(
+                        videoFilePath: widget.path,
+                        thumbnile: thumbnile!,
+                      ));
+                })),
             const SizedBox(
               height: 10,
             ),
@@ -191,34 +194,36 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
               scrollDirection: Axis.horizontal,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Row(
-                  children: List.generate(
-                    3,
-                    (index) {
-                      return Container(
-                        width: 112,
-                        height: 26,
-                        margin: const EdgeInsets.all(5),
-                        decoration: ShapeDecoration(
-                          color: SColors.color18,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(7),
-                          ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Abdul Rasheed',
-                            style: TextStyle(
-                                color: SColors.color3,
-                                overflow: TextOverflow.ellipsis,
-                                fontSize: 10,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
+                child: Obx(() => Row(
+                      children: List.generate(
+                        fliqController.tagPeople.length,
+                        (index) {
+                          return Container(
+                            width: 112,
+                            height: 26,
+                            margin: const EdgeInsets.all(5),
+                            decoration: ShapeDecoration(
+                              color: SColors.color18,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(7),
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                fliqController.tagPeople
+                                    .elementAt(index)
+                                    .strFullName,
+                                style: TextStyle(
+                                    color: SColors.color3,
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    )),
               ),
             ),
             divider(),

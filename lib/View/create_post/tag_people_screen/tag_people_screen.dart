@@ -6,6 +6,7 @@ import 'package:stellar_chat/View/create_post/tag_people_screen/widget/search_fi
 import 'package:stellar_chat/View/create_post/tag_people_screen/widget/tag_people_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:stellar_chat/controllers/new_post/fliq_controller.dart';
 
 class TagPeopleScreen extends StatefulWidget {
   const TagPeopleScreen(
@@ -21,6 +22,7 @@ class TagPeopleScreen extends StatefulWidget {
 class _TagPeopleScreenState extends State<TagPeopleScreen> {
   @override
   Widget build(BuildContext context) {
+    FliqController fliqController = Get.find();
     return Scaffold(
       backgroundColor: SColors.color4,
       appBar: AppBar(
@@ -37,12 +39,16 @@ class _TagPeopleScreenState extends State<TagPeopleScreen> {
         <line y1="-1" x2="18.3848" y2="-1" transform="matrix(-0.707107 0.707107 0.707107 0.707107 15 2)" stroke="black" stroke-width="2"/>
         </svg>
         """),
-            onPressed: () {},
+            onPressed: () {
+              Get.back();
+            },
           ),
         ),
         actions: <Widget>[
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.back();
+            },
             child: Text(
               'Next',
               style: TextStyle(
@@ -62,25 +68,27 @@ class _TagPeopleScreenState extends State<TagPeopleScreen> {
           )
         ],
       ),
-      body: ListView(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SearchField(),
+          const TagSearchField(),
           const SizedBox(
             height: 10,
           ),
-          Container(
-            width: Get.width,
-            height: 390,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: MemoryImage(widget.thumbnile),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
+          // Container(
+          //   width: Get.width,
+          //   height: 390,
+          //   decoration: BoxDecoration(
+          //     image: DecorationImage(
+          //       image: MemoryImage(widget.thumbnile),
+          //       fit: BoxFit.cover,
+          //     ),
+          //   ),
+          // ),
+          // const SizedBox(
+          //   height: 20,
+          // ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Text(
@@ -92,9 +100,40 @@ class _TagPeopleScreenState extends State<TagPeopleScreen> {
               ),
             ),
           ),
-          const TagPeopleTile(username: 'Abd_Rash', name: 'Abdul Rasheed'),
-          const TagPeopleTile(username: 'JSimon1990', name: 'Jacob Simon'),
-          const TagPeopleTile(username: 'Thomas D_vid', name: 'David Thomas'),
+          Obx(() => !fliqController.isSearching.value
+              ? Expanded(
+                  child: ListView.builder(
+                    itemCount: fliqController.tagPeople.length,
+                    itemBuilder: (context, index) {
+                      return TagPeopleTile(
+                        name: fliqController.tagPeople
+                            .elementAt(index)
+                            .strMobileNo,
+                        username: fliqController.tagPeople
+                            .elementAt(index)
+                            .strFullName,
+                        contact: fliqController.tagPeople.elementAt(index),
+                      );
+                    },
+                  ),
+                )
+              : Expanded(
+                  child: ListView.builder(
+                    itemCount: fliqController.searchList.length,
+                    itemBuilder: (context, index) {
+                      return TagPeopleTile(
+                        isSearch: true,
+                        name: fliqController.searchList
+                            .elementAt(index)
+                            .strMobileNo,
+                        username: fliqController.searchList
+                            .elementAt(index)
+                            .strFullName,
+                        contact: fliqController.searchList.elementAt(index),
+                      );
+                    },
+                  ),
+                ))
         ],
       ),
     );
