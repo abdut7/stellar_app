@@ -1,4 +1,3 @@
-
 import 'package:stellar_chat/View/Chat/chat_screen/widgets/report_and_bloc_sheet_widget.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/chat_appbar_title_widget.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/chat_bubble.dart';
@@ -158,8 +157,8 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                       if (image != null) {
                         PrivateChatService.sentPersonalImageMessage(
                             widget.chatId, image);
+                        Navigator.pop(context);
                       }
-                      Navigator.pop(context);
                     }
                     if (index == 4) {
                       await Get.to(
