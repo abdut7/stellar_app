@@ -34,7 +34,7 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
   @override
   Widget build(BuildContext context) {
     UserController controller = Get.find();
-    FliqController fliqController = Get.put(FliqController());
+    FliqController fliqController = Get.find();
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -74,7 +74,6 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                   strDescription: captionController.text,
                   arrUserIds: tagList,
                   strLocation: fliqController.locationName.value);
-              Get.to(FlicksUploadingScreen());
             },
             child: Text('Share',
                 style: TextStyle(

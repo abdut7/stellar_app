@@ -71,10 +71,20 @@ class FliqServices {
       required String strLocation}) async {
     FliqController controller = Get.find();
     controller.isUploading(true);
+    Get.offAll(() => const BaseBottomNavigation(
+          pageIndex: 4,
+        ));
+    print("code execution stopped");
     // String? strFileUrl = await UploadFileService.uploadFile(path);
     //
+    print(controller.isUploading.value);
     String? strFileUrl = "hello";
-    await Future.delayed(Duration(seconds: 5));
+    if (controller.isCancelled.value) {
+      controller.isUploading(false);
+      controller.isCancelled(false);
+    }
+    await Future.delayed(const Duration(seconds: 5));
+    print(controller.isUploading.value);
     //
     controller.isUploading(false);
     controller.isPosting(true);
@@ -90,9 +100,13 @@ class FliqServices {
       "arrUserIds": arrUserIds,
       "strLocation": strLocation
     };
-    Response res =
-        await dio.post(url, options: Options(headers: header), data: data);
+    // Response res =
+    //     await dio.post(url, options: Options(headers: header), data: data);
+    await Future.delayed(Duration(seconds: 5));
     controller.isPosting(false);
-    Get.offAll(BaseBottomNavigation());
+    controller.uploadPercentage(0);
+    controller.isUploaded(true);
+    await Future.delayed(Duration(seconds: 5));
+    controller.isUploaded(false);
   }
 }

@@ -11,4 +11,7 @@ class FliqController extends GetxController {
   RxBool hideComments = RxBool(false);
   RxBool isUploading = RxBool(false);
   RxBool isPosting = RxBool(false);
+  RxInt uploadPercentage = RxInt(0);
+  RxBool isCancelled = RxBool(false);
+  RxBool isUploaded = RxBool(false);
 }
