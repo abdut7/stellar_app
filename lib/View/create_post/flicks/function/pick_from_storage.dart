@@ -1,6 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
-import 'package:stellar_chat/View/create_post/video_player/video_player_screen.dart';
+import 'package:stellar_chat/View/create_post/flicks/video_player/video_player_screen.dart';
 
 Future<void> pickVideoFromStorage() async {
   final result = await FilePicker.platform.pickFiles(

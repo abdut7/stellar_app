@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
-import 'package:stellar_chat/View/create_post/tag_people_screen/widget/loaction_search_field.dart';
+import 'package:stellar_chat/View/create_post/flicks/tag_people_screen/widget/loaction_search_field.dart';
 import 'package:stellar_chat/controllers/new_post/fliq_controller.dart';
 
 class AddLocationScreen extends StatelessWidget {

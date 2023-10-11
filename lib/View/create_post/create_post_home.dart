@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:stellar_chat/View/create_post/function/pick_from_storage.dart';
-import 'package:stellar_chat/View/create_post/video_player/video_player_screen.dart';
-import 'package:stellar_chat/View/create_post/widgets/upload_to_selection_widget.dart';
+import 'package:stellar_chat/View/create_post/flicks/function/pick_from_storage.dart';
+import 'package:stellar_chat/View/create_post/flicks/video_player/video_player_screen.dart';
+import 'package:stellar_chat/View/create_post/flicks/widgets/upload_to_selection_widget.dart';
 import 'package:stellar_chat/functions/show_snackbar.dart';
 
 List<CameraDescription> cameras = [];
@@ -89,9 +89,10 @@ class _AddFilesHomePageState extends State<AddFilesHomePage> {
         alignment: Alignment.center,
         children: [
           SizedBox(
-              height: Get.height,
-              width: Get.width,
-              child: CameraPreview(controller)),
+            height: Get.height,
+            width: Get.width,
+            child: CameraPreview(controller),
+          ),
           SizedBox(
             height: Get.height,
             width: Get.width,

@@ -2,8 +2,8 @@ import 'dart:typed_data';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
-import 'package:stellar_chat/View/create_post/tag_people_screen/widget/tag_search_field.dart';
-import 'package:stellar_chat/View/create_post/tag_people_screen/widget/tag_people_tile.dart';
+import 'package:stellar_chat/View/create_post/flicks/tag_people_screen/widget/tag_search_field.dart';
+import 'package:stellar_chat/View/create_post/flicks/tag_people_screen/widget/tag_people_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stellar_chat/controllers/new_post/fliq_controller.dart';
