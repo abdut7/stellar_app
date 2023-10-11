@@ -75,16 +75,18 @@ class FliqServices {
           pageIndex: 4,
         ));
     print("code execution stopped");
+    // upload file here
     // String? strFileUrl = await UploadFileService.uploadFile(path);
     //
     print(controller.isUploading.value);
-    String? strFileUrl = "hello";
+    String? strFileUrl =
+        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
     if (controller.isCancelled.value) {
       controller.isUploading(false);
       controller.isCancelled(false);
     }
+
     await Future.delayed(const Duration(seconds: 5));
-    print(controller.isUploading.value);
     //
     controller.isUploading(false);
     controller.isPosting(true);
@@ -100,9 +102,9 @@ class FliqServices {
       "arrUserIds": arrUserIds,
       "strLocation": strLocation
     };
-    // Response res =
-    //     await dio.post(url, options: Options(headers: header), data: data);
-    await Future.delayed(Duration(seconds: 5));
+    Response res =
+        await dio.post(url, options: Options(headers: header), data: data);
+    print(res);
     controller.isPosting(false);
     controller.uploadPercentage(0);
     controller.isUploaded(true);
