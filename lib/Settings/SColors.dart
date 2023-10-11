@@ -22,5 +22,11 @@ class SColors {
   static Color get color16 => const   Color(0xFFe4e4e4);
   static Color get color17 => const   Color(0xFFD12C24);
   static Color get color18 => const   Color(0xFF9FC4E8);
+  static Color get color19 => const  Color(0xFF9DF9AA);
+  static Color get color20 => const  Color(0xFF037012);
+  static Color get color21 => const  Color(0xFFCFF9D4);
+  static Color get color22 => const  Color(0xFFEFEFEF);
+  static Color get color23 => const  Color(0xFFF1F1F1);
+  static Color get color24 => const  Color(0xFF19AA33);
 
 }

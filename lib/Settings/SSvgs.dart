@@ -63,4 +63,12 @@ class SSvgs {
   static String get payStellar => "assets/Svgs/payStellar.svg";
   static String get stellarPayIconText => "assets/Svgs/stellarPayIconText.svg";
   static String get payIcon => "assets/Svgs/payIcon.svg";
+  static String get stellarSplashLogo => "assets/Svgs/stellarSplashLogo.svg";
+  static String get addBalance => "assets/Svgs/addBalance.svg";
+  static String get payText => "assets/Svgs/payText.svg";
+  static String get logoStellar => "assets/Svgs/logoStellar.svg";
+  static String get requestMoney => "assets/Svgs/requestMoney.svg";
+  static String get sendMoneyTransfer => "assets/Svgs/sendMoneyTransfer.svg";
+  static String get addedMoney => "assets/Svgs/addedMoney.svg";
+  static String get sendRequest => "assets/Svgs/sendRequest.svg";
 }

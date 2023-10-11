@@ -7,6 +7,7 @@ import 'package:stellar_chat/View/contact/add_contact/select_contacts_to_add_scr
 import 'package:stellar_chat/View/contact/show_contact/show_contacts_screen.dart';
 import 'package:stellar_chat/View/profile/qr/qr_screen.dart';
 import 'package:stellar_chat/controllers/theme_controller.dart';
+import 'package:stellar_chat/stellar_pay/screens/stellar_pay_splash_screen/stellar_pay_splash.dart';
 import 'package:stellar_chat/utils/colors.dart';
 
 import '../../../../../../Settings/SColors.dart';
@@ -66,7 +67,9 @@ class ChatHomeAppbarWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 165),
             child: GestureDetector(
-              onTap: (){},
+              onTap: (){
+                Get.to(()=>StellarPaySplashScreen());
+              },
                 child: SvgPicture.asset(SSvgs.stellarPayIconText)),
           ),
           InkWell(
