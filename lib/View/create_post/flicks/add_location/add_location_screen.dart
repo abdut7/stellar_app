@@ -66,7 +66,7 @@ class AddLocationScreen extends StatelessWidget {
                 return ListTile(
                   onTap: () {
                     FliqController controller = Get.find();
-                    controller.locationName!(placeName[index]);
+                    controller.locationName(placeName[index]);
                     Get.back();
                   },
                   title: Text(placeName[index]),

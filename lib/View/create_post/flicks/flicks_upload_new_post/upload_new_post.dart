@@ -6,9 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:stellar_chat/View/create_post/flicks/add_location/add_location_screen.dart';
 import 'package:stellar_chat/View/create_post/flicks/function/generate_thumbnile.dart';
 import 'package:stellar_chat/View/create_post/flicks/tag_people_screen/tag_people_screen.dart';
+import 'package:stellar_chat/View/create_post/flicks/uploading/uploading_screen.dart';
 import 'package:stellar_chat/controllers/new_post/fliq_controller.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/functions/show_snackbar.dart';
+import 'package:stellar_chat/services/api_services/fliq_services.dart';
 
 class FlicksUploadNewPost extends StatefulWidget {
   const FlicksUploadNewPost({Key? key, required this.path}) : super(key: key);
@@ -22,6 +24,13 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
   bool hideLikeAndView = false;
   bool turnOffComment = false;
   Uint8List? thumbnile;
+  TextEditingController captionController = TextEditingController();
+  @override
+  void dispose() {
+    captionController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     UserController controller = Get.find();
@@ -54,6 +63,18 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                 showCustomSnackbar(title: "No Thumbnile", message: "");
                 return;
               }
+              List<String> tagList = [];
+              fliqController.tagPeople.forEach((element) {
+                tagList.add(element.id);
+              });
+              FliqServices.uploadFliq(
+                  isCommentEnabled: !turnOffComment,
+                  isLikeAndViews: !hideLikeAndView,
+                  path: widget.path,
+                  strDescription: captionController.text,
+                  arrUserIds: tagList,
+                  strLocation: fliqController.locationName.value);
+              Get.to(FlicksUploadingScreen());
             },
             child: Text('Share',
                 style: TextStyle(
@@ -87,10 +108,11 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.4,
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 25),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 25),
                       child: TextField(
-                        decoration: InputDecoration(
+                        controller: captionController,
+                        decoration: const InputDecoration(
                           hintStyle: TextStyle(
                             color: Color(0xFFD9D9D9),
                             fontSize: 12,

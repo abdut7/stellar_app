@@ -9,4 +9,6 @@ class FliqController extends GetxController {
   RxString caption = RxString("");
   RxBool hideLikeAndView = RxBool(false);
   RxBool hideComments = RxBool(false);
+  RxBool isUploading = RxBool(false);
+  RxBool isPosting = RxBool(false);
 }
