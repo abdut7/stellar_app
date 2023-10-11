@@ -1,19 +1,23 @@
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
+import 'package:stellar_chat/services/api_services/fliq_services.dart';
 
-class SearchField extends StatefulWidget {
-  const SearchField({Key? key}) : super(key: key);
+class TagSearchField extends StatefulWidget {
+  const TagSearchField({Key? key}) : super(key: key);
 
   @override
-  State<SearchField> createState() => _SearchFieldState();
+  State<TagSearchField> createState() => _TagSearchFieldState();
 }
 
-class _SearchFieldState extends State<SearchField> {
+class _TagSearchFieldState extends State<TagSearchField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
       child: TextFormField(
+        onChanged: (value) {
+          FliqServices.searchUserInTag(search: value);
+        },
         cursorColor: SColors.color12,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(vertical: 8),

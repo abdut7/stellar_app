@@ -6,6 +6,7 @@ import 'package:stellar_chat/View/profile/widget/about_me_text.dart';
 import 'package:stellar_chat/View/profile/widget/custom_grid_view.dart';
 import 'package:stellar_chat/View/profile/widget/profile_buttons.dart';
 import 'package:stellar_chat/View/profile/widget/profile_status.dart';
+import 'package:stellar_chat/controllers/new_post/fliq_controller.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,6 +24,8 @@ class _MainProfileState extends State<MainProfile> {
   int selectedTabIndex = 0;
   @override
   Widget build(BuildContext context) {
+    FliqController flickController = Get.find();
+
     UserController controller = Get.find();
     return SafeArea(
         child: Scaffold(
@@ -183,7 +186,9 @@ class _MainProfileState extends State<MainProfile> {
                   },
                 ),
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               IndexedStack(index: selectedTabIndex, children: [
                 Visibility(
                     visible: selectedTabIndex == 0,
@@ -197,6 +202,87 @@ class _MainProfileState extends State<MainProfile> {
           ),
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Obx(() => flickController.isPosting.value ||
+              flickController.isUploading.value ||
+              flickController.isUploaded.value
+          ? Container(
+              width: Get.width,
+              height: 50,
+              decoration: const BoxDecoration(
+                color: Color.fromRGBO(0, 0, 0, 0.8),
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(15),
+                ),
+              ),
+              child: Row(
+                children: [
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  Text(
+                    flickController.isUploading.value
+                        ? "Uploading.."
+                        : flickController.isPosting.value
+                            ? "Posting.."
+                            : "Uploaded Succesfuly",
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  const Spacer(),
+                  flickController.isUploading.value
+                      ? Row(
+                          children: [
+                            Text(
+                              "${flickController.uploadPercentage.value.toString()} %",
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                flickController.isCancelled(true);
+                              },
+                              child: CircleAvatar(
+                                radius: 10,
+                                backgroundColor:
+                                    const Color.fromRGBO(159, 196, 232, 1),
+                                child: SvgPicture.string(
+                                    """<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 1L1.00055 6.99945" stroke="#575757" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M7 6.99951L1.00055 1.00006" stroke="#575757" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            """),
+                              ),
+                            )
+                          ],
+                        )
+                      : flickController.isUploaded.value
+                          ? CircleAvatar(
+                              radius: 10,
+                              backgroundColor:
+                                  const Color.fromRGBO(159, 196, 232, 1),
+                              child: SvgPicture.string(
+                                  """<svg width="11" height="9" viewBox="0 0 11 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.49847 1.49945L3.49902 7.4989L0.999575 4.99945" stroke="#575757" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+"""),
+                            )
+                          : const SizedBox(),
+                  const SizedBox(
+                    width: 15,
+                  ),
+                ],
+              ),
+            )
+          : const SizedBox()),
     ));
   }
 }

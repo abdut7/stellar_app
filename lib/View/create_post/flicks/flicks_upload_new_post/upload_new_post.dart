@@ -3,10 +3,14 @@ import 'dart:typed_data';
 import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
-import 'package:stellar_chat/View/create_post/function/generate_thumbnile.dart';
-import 'package:stellar_chat/View/create_post/tag_people_screen/tag_people_screen.dart';
+import 'package:stellar_chat/View/create_post/flicks/add_location/add_location_screen.dart';
+import 'package:stellar_chat/View/create_post/flicks/function/generate_thumbnile.dart';
+import 'package:stellar_chat/View/create_post/flicks/tag_people_screen/tag_people_screen.dart';
+import 'package:stellar_chat/View/create_post/flicks/uploading/uploading_screen.dart';
+import 'package:stellar_chat/controllers/new_post/fliq_controller.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/functions/show_snackbar.dart';
+import 'package:stellar_chat/services/api_services/fliq_services.dart';
 
 class FlicksUploadNewPost extends StatefulWidget {
   const FlicksUploadNewPost({Key? key, required this.path}) : super(key: key);
@@ -20,9 +24,17 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
   bool hideLikeAndView = false;
   bool turnOffComment = false;
   Uint8List? thumbnile;
+  TextEditingController captionController = TextEditingController();
+  @override
+  void dispose() {
+    captionController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     UserController controller = Get.find();
+    FliqController fliqController = Get.find();
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -51,10 +63,17 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                 showCustomSnackbar(title: "No Thumbnile", message: "");
                 return;
               }
-              Get.to(() => TagPeopleScreen(
-                    videoFilePath: widget.path,
-                    thumbnile: thumbnile!,
-                  ));
+              List<String> tagList = [];
+              fliqController.tagPeople.forEach((element) {
+                tagList.add(element.id);
+              });
+              FliqServices.uploadFliq(
+                  isCommentEnabled: !turnOffComment,
+                  isLikeAndViews: !hideLikeAndView,
+                  path: widget.path,
+                  strDescription: captionController.text,
+                  arrUserIds: tagList,
+                  strLocation: fliqController.locationName.value);
             },
             child: Text('Share',
                 style: TextStyle(
@@ -88,10 +107,11 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.4,
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 25),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 25),
                       child: TextField(
-                        decoration: InputDecoration(
+                        controller: captionController,
+                        decoration: const InputDecoration(
                           hintStyle: TextStyle(
                             color: Color(0xFFD9D9D9),
                             fontSize: 12,
@@ -146,44 +166,55 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
             const SizedBox(
               height: 8,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  titleTextButton('Add Location', () {}),
-                  Container(
-                    height: 30,
-                    decoration: ShapeDecoration(
-                      color: SColors.color18,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(7),
+            Obx(() => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Row(
+                    children: [
+                      titleTextButton('Add Location', () {
+                        Get.to(() => const AddLocationScreen());
+                      }),
+                      const SizedBox(
+                        width: 20,
                       ),
-                    ),
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Text(
-                          'Dubai, United Arab Emirates',
-                          style: TextStyle(
-                            color: SColors.color3,
-                            fontSize: 11,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
+                      fliqController.locationName.isNotEmpty
+                          ? Container(
+                              height: 30,
+                              decoration: ShapeDecoration(
+                                color: SColors.color18,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(7),
+                                ),
+                              ),
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(
+                                    fliqController.locationName.value,
+                                    style: TextStyle(
+                                      color: SColors.color3,
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          : const SizedBox(),
+                    ],
                   ),
-                ],
-              ),
-            ),
+                )),
             divider(),
             const SizedBox(
               height: 10,
             ),
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: titleTextButton('Tag People', () {})),
+                child: titleTextButton('Tag People', () {
+                  Get.to(() => TagPeopleScreen(
+                        videoFilePath: widget.path,
+                        thumbnile: thumbnile!,
+                      ));
+                })),
             const SizedBox(
               height: 10,
             ),
@@ -191,34 +222,36 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
               scrollDirection: Axis.horizontal,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Row(
-                  children: List.generate(
-                    3,
-                    (index) {
-                      return Container(
-                        width: 112,
-                        height: 26,
-                        margin: const EdgeInsets.all(5),
-                        decoration: ShapeDecoration(
-                          color: SColors.color18,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(7),
-                          ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Abdul Rasheed',
-                            style: TextStyle(
-                                color: SColors.color3,
-                                overflow: TextOverflow.ellipsis,
-                                fontSize: 10,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
+                child: Obx(() => Row(
+                      children: List.generate(
+                        fliqController.tagPeople.length,
+                        (index) {
+                          return Container(
+                            width: 112,
+                            height: 26,
+                            margin: const EdgeInsets.all(5),
+                            decoration: ShapeDecoration(
+                              color: SColors.color18,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(7),
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                fliqController.tagPeople
+                                    .elementAt(index)
+                                    .strFullName,
+                                style: TextStyle(
+                                    color: SColors.color3,
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    )),
               ),
             ),
             divider(),
@@ -293,6 +326,7 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                       Switch(
                         value: hideLikeAndView,
                         onChanged: (bool newValue) {
+                          fliqController.hideLikeAndView(newValue);
                           setState(() {
                             hideLikeAndView = newValue;
                           });
@@ -331,6 +365,7 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                           setState(() {
                             turnOffComment = newValue;
                           });
+                          fliqController.hideComments(newValue);
                         },
                         activeColor: SColors.color11,
                       ),

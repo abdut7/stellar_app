@@ -4,8 +4,8 @@ import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:stellar_chat/View/create_post/flicks_upload_new_post/upload_new_post.dart';
-import 'package:stellar_chat/View/create_post/tag_people_screen/tag_people_screen.dart';
+import 'package:stellar_chat/View/create_post/flicks/flicks_upload_new_post/upload_new_post.dart';
+import 'package:stellar_chat/View/create_post/flicks/tag_people_screen/tag_people_screen.dart';
 import 'package:stellar_chat/utils/colors.dart';
 import 'package:video_player/video_player.dart';
 
@@ -45,7 +45,7 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: colorPrimary,
+      color: Colors.black,
       child: Stack(
         alignment: Alignment.center,
         children: [

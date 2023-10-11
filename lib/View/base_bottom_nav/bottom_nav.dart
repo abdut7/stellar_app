@@ -4,12 +4,14 @@ import 'package:stellar_chat/View/discover/discover_homescreen.dart';
 import 'package:stellar_chat/View/profile/own_profile/main_profile.dart';
 import 'package:stellar_chat/View/base_bottom_nav/widgets/bottom_nav_icon_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:stellar_chat/controllers/new_post/fliq_controller.dart';
 import 'package:stellar_chat/controllers/theme_controller.dart';
 import '../../Settings/SSvgs.dart';
 import '../create_post/create_post_home.dart';
 
 class BaseBottomNavigation extends StatefulWidget {
-  const BaseBottomNavigation({super.key});
+  const BaseBottomNavigation({super.key, this.pageIndex = 0});
+  final int pageIndex;
 
   @override
   State<BaseBottomNavigation> createState() => _BaseBottomNavigationState();
@@ -24,11 +26,19 @@ List<Widget> screenList = [
   const MainProfile(),
 ];
 
+int selectedIndex = 0;
+
 class _BaseBottomNavigationState extends State<BaseBottomNavigation> {
-  int selectedIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    selectedIndex = widget.pageIndex;
+  }
+
   @override
   Widget build(BuildContext context) {
     ThemeController controller = Get.find();
+
     return Scaffold(
       body: screenList[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
