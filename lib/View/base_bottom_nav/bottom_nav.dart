@@ -6,6 +6,7 @@ import 'package:stellar_chat/View/base_bottom_nav/widgets/bottom_nav_icon_widget
 import 'package:flutter/material.dart';
 import 'package:stellar_chat/controllers/theme_controller.dart';
 import '../../Settings/SSvgs.dart';
+import '../create_post/create_post_home.dart';
 
 class BaseBottomNavigation extends StatefulWidget {
   const BaseBottomNavigation({super.key});
@@ -18,7 +19,7 @@ List<Widget> screenList = [
   const HomeScreen(),
   // const ContactsHomeScreen(),
   const DiscoverHomeScreen(),
-  Container(),
+  const AddFilesHomePage(),
   Container(),
   const MainProfile(),
 ];

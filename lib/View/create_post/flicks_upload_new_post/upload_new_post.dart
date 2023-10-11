@@ -1,16 +1,28 @@
+import 'dart:typed_data';
+
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
+import 'package:stellar_chat/View/create_post/function/generate_thumbnile.dart';
+import 'package:stellar_chat/View/create_post/tag_people_screen/tag_people_screen.dart';
+import 'package:stellar_chat/controllers/user_controller.dart';
+import 'package:stellar_chat/functions/show_snackbar.dart';
 
 class FlicksUploadNewPost extends StatefulWidget {
-  const FlicksUploadNewPost({Key? key}) : super(key: key);
+  const FlicksUploadNewPost({Key? key, required this.path}) : super(key: key);
+  final String path;
 
   @override
   State<FlicksUploadNewPost> createState() => _FlicksUploadNewPostState();
 }
 
 class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
+  bool hideLikeAndView = false;
+  bool turnOffComment = false;
+  Uint8List? thumbnile;
   @override
   Widget build(BuildContext context) {
+    UserController controller = Get.find();
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -34,7 +46,16 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
         ),
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              if (thumbnile == null) {
+                showCustomSnackbar(title: "No Thumbnile", message: "");
+                return;
+              }
+              Get.to(() => TagPeopleScreen(
+                    videoFilePath: widget.path,
+                    thumbnile: thumbnile!,
+                  ));
+            },
             child: Text('Share',
                 style: TextStyle(
                   color: SColors.color12,
@@ -54,11 +75,13 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
                     child: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          'https://img.freepik.com/premium-photo/woman-holding-camera-with-word-canon-front_853645-1568.jpg?w=1380'),
+                      backgroundImage: NetworkImage(controller
+                              .userDetailsModel.value!.strProfileUrl.isEmpty
+                          ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                          : controller.userDetailsModel.value!.strProfileUrl),
                       radius: 25,
                       backgroundColor: Colors.grey,
                     ),
@@ -81,17 +104,41 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                       ),
                     ),
                   ),
-                  Container(
-                    height: 100.0,
-                    width: 100.0,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                      fit: BoxFit.cover,
-                      alignment: FractionalOffset.topCenter,
-                      image: NetworkImage(
-                          "https://img.freepik.com/premium-photo/woman-holding-camera-with-word-canon-front_853645-1568.jpg?w=1380"),
-                    )),
-                  ),
+                  FutureBuilder(
+                      future: generateVideoThumbnail(widget.path),
+                      builder: (context, AsyncSnapshot<Uint8List?> snapshot) {
+                        if (thumbnile != null) {
+                          return Container(
+                            height: 100.0,
+                            width: 100.0,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                              fit: BoxFit.cover,
+                              alignment: FractionalOffset.topCenter,
+                              image: MemoryImage(thumbnile!),
+                            )),
+                          );
+                        }
+                        if (!snapshot.hasData || snapshot.data == null) {
+                          return Container(
+                            height: 100.0,
+                            width: 100.0,
+                            decoration: const BoxDecoration(),
+                          );
+                        }
+                        thumbnile = snapshot.data;
+
+                        return Container(
+                          height: 100.0,
+                          width: 100.0,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                            fit: BoxFit.cover,
+                            alignment: FractionalOffset.topCenter,
+                            image: MemoryImage(thumbnile!),
+                          )),
+                        );
+                      }),
                 ],
               ),
             ),
@@ -242,13 +289,15 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      IgnorePointer(
-                        ignoring: true,
-                        child: Switch(
-                          value: false,
-                          onChanged: (bool newValue) {},
-                          activeColor: SColors.color11,
-                        ),
+                      //likes and views
+                      Switch(
+                        value: hideLikeAndView,
+                        onChanged: (bool newValue) {
+                          setState(() {
+                            hideLikeAndView = newValue;
+                          });
+                        },
+                        activeColor: SColors.color11,
                       ),
                     ],
                   ),
@@ -263,7 +312,7 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  headText(' Comments'),
+                  headText('Comments'),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -275,13 +324,15 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      IgnorePointer(
-                        ignoring: true,
-                        child: Switch(
-                          value: false,
-                          onChanged: (bool newValue) {},
-                          activeColor: SColors.color11,
-                        ),
+                      //Comments
+                      Switch(
+                        value: turnOffComment,
+                        onChanged: (bool newValue) {
+                          setState(() {
+                            turnOffComment = newValue;
+                          });
+                        },
+                        activeColor: SColors.color11,
                       ),
                     ],
                   ),
