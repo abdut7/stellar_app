@@ -65,7 +65,7 @@ class _EditProfileState extends State<EditProfile> {
           child: SvgPicture.asset(SSvgs.appLogo),
         ),
       ),
-      body: ListView(
+      body: Column(
         children: [
           Column(
             children: [
@@ -115,17 +115,24 @@ class _EditProfileState extends State<EditProfile> {
                             return Wrap(
                               children: <Widget>[
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 80,vertical: 15),
-                                  child: Divider(thickness: 2, color: Color.fromRGBO(0, 51, 142, 0.5),),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 80, vertical: 15),
+                                  child: Divider(
+                                    thickness: 2,
+                                    color: Color.fromRGBO(0, 51, 142, 0.5),
+                                  ),
                                 ),
                                 ListTile(
                                   //leading:  Icon(Icons.photo_library,color: SColors.color12,),
-                                  title:  Center(
-                                    child: Text('Upload Photo',style: TextStyle(
-                                      color: SColors.color12,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w500,
-                                    ),),
+                                  title: Center(
+                                    child: Text(
+                                      'Upload Photo',
+                                      style: TextStyle(
+                                        color: SColors.color12,
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
                                   ),
                                   onTap: () async {
                                     Navigator.of(context)
@@ -139,12 +146,15 @@ class _EditProfileState extends State<EditProfile> {
                                 ),
                                 ListTile(
                                   //leading:  Icon(Icons.photo_camera,color: SColors.color12,),
-                                  title:  Center(
-                                    child: Text('Take a Photo',style: TextStyle(
-                                      color: SColors.color12,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w500,
-                                    ),),
+                                  title: Center(
+                                    child: Text(
+                                      'Take a Photo',
+                                      style: TextStyle(
+                                        color: SColors.color12,
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
                                   ),
                                   onTap: () async {
                                     Navigator.of(context)
@@ -202,7 +212,9 @@ class _EditProfileState extends State<EditProfile> {
             head: 'About me',
             controller: aboutMeController,
           ),
-          const SizedBox(height: 15,),
+          const SizedBox(
+            height: 15,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Divider(
@@ -235,8 +247,8 @@ class _EditProfileState extends State<EditProfile> {
           //     ],
           //   ),
           // ),
-           SizedBox(
-            height: Get.height*0.2,
+          SizedBox(
+            height: Get.height * 0.2,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -284,20 +296,24 @@ void showBottomSheet(BuildContext context, String action) {
           children: <Widget>[
             if (action == 'profile')
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50,vertical: 15),
-                child: Divider(thickness: 2, color: Color.fromRGBO(0, 51, 142, 0.5),),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 25),
-                child: Text(
-                  'Profile Updated',
-                  style: TextStyle(
-                    color: SColors.color3,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                  ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                child: Divider(
+                  thickness: 2,
+                  color: Color.fromRGBO(0, 51, 142, 0.5),
                 ),
               ),
+            Padding(
+              padding: const EdgeInsets.only(top: 25),
+              child: Text(
+                'Profile Updated',
+                style: TextStyle(
+                  color: SColors.color3,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
             const SizedBox(
               height: 25,
             ),
