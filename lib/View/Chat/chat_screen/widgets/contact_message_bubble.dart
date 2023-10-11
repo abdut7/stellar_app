@@ -18,101 +18,78 @@ class ContactMessageBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-        children: [
-          Container(
-            height: 60,
+      children: [
+        Container(
+          height: 60,
+          width: Get.width * 0.6,
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(10),
+            ),
+            color: isSent
+                ? const Color.fromRGBO(233, 244, 255, 1)
+                : const Color.fromRGBO(244, 244, 244, 1),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(message.strContactName)
+                ],
+              ),
+              ShowTimeWidgetChatBuble(
+                isSent: isSent,
+                message: message,
+              )
+            ],
+          ),
+        ),
+        GestureDetector(
+          onTap: () {
+            if (message.strChatId.isEmpty) {
+              //show invite
+              Share.share('check out stellar chat https://stellarchat.com',
+                  subject: 'Come connect me on Stellar chat');
+            } else {
+              Get.to(() => PrivateChatScreen(
+                  chatId: message.strChatId,
+                  fullName: message.strName,
+                  imageUrl: message.strUrl));
+            }
+          },
+          child: Container(
+            height: 30,
             width: Get.width * 0.6,
             decoration: BoxDecoration(
-              borderRadius:
-                  const BorderRadius.vertical(
-                top: Radius.circular(10),
-              ),
-              color: isSent
-                  ? const Color.fromRGBO(
-                      233, 244, 255, 1)
-                  : const Color.fromRGBO(
-                      244, 244, 244, 1),
-            ),
-            child: Column(
-              mainAxisAlignment:
-                  MainAxisAlignment.end,
-              children: [
-                Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const CircleAvatar(
-                      backgroundImage:
-                          NetworkImage(
-                              "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(message
-                        .strContactName)
-                  ],
+                borderRadius: BorderRadius.only(
+                  bottomLeft: isSent
+                      ? const Radius.circular(10)
+                      : const Radius.circular(0),
+                  bottomRight: !isSent
+                      ? const Radius.circular(10)
+                      : const Radius.circular(0),
                 ),
-                ShowTimeWidgetChatBuble(
-                  isSent: isSent,
-                  message: message,
-                )
-              ],
+                color: isSent
+                    ? const Color.fromRGBO(197, 229, 255, 1)
+                    : const Color.fromRGBO(224, 224, 224, 1)),
+            child: Center(
+              child: Text(message.strChatId.isEmpty ? "Invite" : "Message"),
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              if (message.strChatId.isEmpty) {
-                //show invite
-                Share.share(
-                    'check out stellar chat https://stellarchat.com',
-                    subject:
-                        'Come connect me on Stellar chat');
-              } else {
-                Get.to(() =>
-                    PrivateChatScreen(
-                        chatId:
-                            message.strChatId,
-                        fullName:
-                            message.strName,
-                        imageUrl:
-                            message.strUrl));
-              }
-            },
-            child: Container(
-              height: 30,
-              width: Get.width * 0.6,
-              decoration: BoxDecoration(
-                  borderRadius:
-                      BorderRadius.only(
-                    bottomLeft: isSent
-                        ? const Radius
-                            .circular(10)
-                        : const Radius
-                            .circular(0),
-                    bottomRight: !isSent
-                        ? const Radius
-                            .circular(10)
-                        : const Radius
-                            .circular(0),
-                  ),
-                  color: isSent
-                      ? const Color.fromRGBO(
-                          197, 229, 255, 1)
-                      : const Color.fromRGBO(
-                          224, 224, 224, 1)),
-              child: Center(
-                child: Text(
-                    message.strChatId.isEmpty
-                        ? "Invite"
-                        : "Message"),
-              ),
-            ),
-          ),
-        ],
-      );
+        ),
+      ],
+    );
   }
 }

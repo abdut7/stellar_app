@@ -46,9 +46,9 @@ class BlockedUsers {
   BlockedUsers.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
     strUserId = json['strUserId'];
-    strFullName = json['strFullName'];
-    strMobileNo = json['strMobileNo'];
-    strProfileIcon = json['strProfileIcon'];
+    strFullName = json['strFullName'] ?? "";
+    strMobileNo = json['strMobileNo']??"";
+    strProfileIcon = json['strProfileIcon']??"";
   }
 
   Map<String, dynamic> toJson() {
