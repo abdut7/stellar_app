@@ -63,7 +63,7 @@ showBlockAndReportBottomSheet(
               GestureDetector(
                 onTap: () {
                   Get.back();
-                  showMuteNotificationSheet(context);
+                  showMuteNotificationSheet(context: context);
                 },
                 child: Center(
                   child: Text(
@@ -192,7 +192,8 @@ showBlockAndReportBottomSheet(
   );
 }
 
-void showMuteNotificationSheet(BuildContext context) {
+void showMuteNotificationSheet(
+    {required BuildContext context, bool isGroup = false}) {
   showModalBottomSheet(
     backgroundColor: SColors.color4,
     shape: const RoundedRectangleBorder(

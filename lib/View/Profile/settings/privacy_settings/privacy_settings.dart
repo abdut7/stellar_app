@@ -13,6 +13,8 @@ class PrivacySettings extends StatefulWidget {
   State<PrivacySettings> createState() => _PrivacySettingsState();
 }
 
+bool nearbyVisibility = false;
+
 class _PrivacySettingsState extends State<PrivacySettings> {
   Widget customRow(String title, String suffixText) {
     return Row(
@@ -143,8 +145,12 @@ class _PrivacySettingsState extends State<PrivacySettings> {
                   Transform.scale(
                     scale: 0.7,
                     child: CupertinoSwitch(
-                      value: false,
-                      onChanged: (bool newValue) {},
+                      value: nearbyVisibility,
+                      onChanged: (bool newValue) {
+                        setState(() {
+                          nearbyVisibility = newValue;
+                        });
+                      },
                       activeColor: SColors.color11,
                     ),
                   ),

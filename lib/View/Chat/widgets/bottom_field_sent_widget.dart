@@ -123,6 +123,8 @@ class _ChatBottomFieldSentState extends State<ChatBottomFieldSent> {
                       controller: widget.controller,
                       decoration: const InputDecoration(
                         hintText: 'Start typing...',
+                        hintStyle:
+                            TextStyle(color: Color.fromARGB(142, 0, 0, 0)),
                         border: InputBorder.none,
                       ),
                       maxLines: 2, // Set a maximum of 3 lines
