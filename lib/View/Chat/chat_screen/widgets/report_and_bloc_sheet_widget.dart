@@ -1,9 +1,13 @@
 import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/functions/show_snackbar.dart';
 import 'package:stellar_chat/services/api_services/account_services.dart';
 import 'package:flutter/material.dart';
 
-showBlockAndReportBottomSheet(BuildContext context, String id) {
+showBlockAndReportBottomSheet(
+    {required BuildContext context,
+    required String id,
+    required Function() onViewProfile}) {
   return showModalBottomSheet(
     backgroundColor: SColors.color11,
     shape: const RoundedRectangleBorder(
@@ -18,33 +22,65 @@ showBlockAndReportBottomSheet(BuildContext context, String id) {
         children: <Widget>[
           Column(
             children: [
-              const SizedBox(height: 15,),
-              GestureDetector(
-                onTap: () {},
-                child: Center(
-                  child: Text(
-                    'View Profile', style: TextStyle(color: SColors.color12, fontSize: 11, fontWeight: FontWeight.w600,),),),
+              const SizedBox(
+                height: 15,
               ),
-              const SizedBox(height: 18,),
-              GestureDetector(
-                onTap: () {},
-                child: Center(
-                  child: Text(
-                    'Search', style: TextStyle(color: SColors.color12, fontSize: 11, fontWeight: FontWeight.w600,),),),
-              ),
-              const SizedBox(height: 18,),
               GestureDetector(
                 onTap: () {
+                  onViewProfile();
+                },
+                child: Center(
+                  child: Text(
+                    'View Profile',
+                    style: TextStyle(
+                      color: SColors.color12,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 18,
+              ),
+              GestureDetector(
+                onTap: () {},
+                child: Center(
+                  child: Text(
+                    'Search',
+                    style: TextStyle(
+                      color: SColors.color12,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 18,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.back();
                   showMuteNotificationSheet(context);
                 },
                 child: Center(
                   child: Text(
                     'Mute Notification',
-                    style: TextStyle(color: SColors.color12, fontSize: 11, fontWeight: FontWeight.w600,),),),
+                    style: TextStyle(
+                      color: SColors.color12,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               ),
-              const SizedBox(height: 18,),
+              const SizedBox(
+                height: 18,
+              ),
               GestureDetector(
                 onTap: () {
+                  Navigator.of(context).pop();
                   showSubBottomSheet(
                     context: context,
                     text1: 'Do You want to',
@@ -55,37 +91,63 @@ showBlockAndReportBottomSheet(BuildContext context, String id) {
                       Navigator.of(context).pop();
                     },
                     onOk: () async {
+                      Get.back();
                       await AccountServices.blockUser(id);
-                      Navigator.of(context).pop();
+                      // await AccountServices.unBlockUser(id);
                     },
                   );
                 },
                 child: Center(
                   child: Text(
                     'Block User',
-                    style: TextStyle(color: SColors.color12, fontSize: 11, fontWeight: FontWeight.w600,),),),
+                    style: TextStyle(
+                      color: SColors.color12,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               ),
-              const SizedBox(height: 18,),
+              const SizedBox(
+                height: 18,
+              ),
               GestureDetector(
                 onTap: () {
+                  Get.back();
                   showSubBottomSheet(
                     context: context,
                     text1: 'Do You want to Clear all',
                     text2: ' Call Logs',
                     cancelText: 'Cancel',
                     okText: 'OK',
-                    onCancel: () {},
-                    onOk: () {},
+                    onCancel: () {
+                      Get.back();
+                    },
+                    onOk: () {
+                      Get.back();
+                      showCustomSnackbar(
+                          title: "Chat Clear in progress",
+                          message: "Clearing all messages");
+                    },
                   );
                 },
                 child: Center(
                   child: Text(
                     'Clear All Chat',
-                    style: TextStyle(color: SColors.color12, fontSize: 11, fontWeight: FontWeight.w600,),),),
+                    style: TextStyle(
+                      color: SColors.color12,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               ),
-              const SizedBox(height: 18,),
+              const SizedBox(
+                height: 18,
+              ),
               GestureDetector(
                 onTap: () {
+                  Get.back();
                   showSubBottomSheet(
                     context: context,
                     text1: 'Do You want to',
@@ -93,81 +155,188 @@ showBlockAndReportBottomSheet(BuildContext context, String id) {
                     cancelText: 'Cancel',
                     okText: 'OK',
                     onCancel: () {
-                      Navigator.of(context).pop();
+                      Get.back();
                     },
                     onOk: () async {
-                      await AccountServices.unBlockUser(id);
-                      Navigator.of(context).pop();
+                      Get.back();
+                      showCustomSnackbar(
+                          title: "User has been reported", message: "");
                     },
                   );
                 },
                 child: Center(
-                  child: Text(
-                    'Report User', style: TextStyle(color: SColors.color12, fontSize: 11, fontWeight: FontWeight.w600,)),
+                  child: Text('Report User',
+                      style: TextStyle(
+                        color: SColors.color12,
+                        fontSize: 11,
+                        fontWeight: FontWeight.w600,
+                      )),
                 ),
               ),
-              const SizedBox(height: 15,),
-            ],),
+              const SizedBox(
+                height: 15,
+              ),
+            ],
+          ),
         ],
       );
     },
   );
 }
+
 void showMuteNotificationSheet(BuildContext context) {
   showModalBottomSheet(
     backgroundColor: SColors.color4,
-    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(15.0),),),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(15.0),
+      ),
+    ),
     context: context,
     builder: (BuildContext context) {
-      return Container(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            const Text('Mute Notification', textAlign: TextAlign.center, style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w600,),),
-            const SizedBox(height: 10,),
-            const Text('Other participants will not see', style: TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w400,),),
-            const Text('that you muted this chat', style: TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w400,),),
-            const SizedBox(height: 30.0),
+      return const SelectNotificationTimeWidget();
+    },
+  );
+}
 
-            selectionRow('8 hours'),
-            const SizedBox(height: 10,),
-            selectionRow('One Weeks'),
-            const SizedBox(height: 10,),
-            selectionRow('Always'),
-            const SizedBox(height: 40,),
+class SelectNotificationTimeWidget extends StatefulWidget {
+  const SelectNotificationTimeWidget({
+    super.key,
+  });
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                GestureDetector(
-                  onTap: (){},
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.25,
-                    height: 30,
-                    decoration: BoxDecoration(color: SColors.color4, borderRadius: BorderRadius.circular(9),),
-                    child: Center(
-                      child: Text(
-                        'Cancel', style: TextStyle(color: SColors.color12, fontSize: 17, fontWeight: FontWeight.w500,),),),),),
+  @override
+  State<SelectNotificationTimeWidget> createState() =>
+      _SelectNotificationTimeWidgetState();
+}
 
+MuteNotificationTime selectedVal = MuteNotificationTime.eightHr;
 
-                GestureDetector(
-                  onTap: (){},
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.25,
-                    height: 30, decoration: BoxDecoration(color: const Color.fromRGBO(0, 51, 142, 1), borderRadius: BorderRadius.circular(9),),
-                    child: const Center(
-                      child: Text(
-                        'OK',
-                        textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.w500,),
+class _SelectNotificationTimeWidgetState
+    extends State<SelectNotificationTimeWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          SizedBox(
+            height: 30,
+          ),
+          const Text(
+            'Mute Notification',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Text(
+            'Other participants will not see',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          const Text(
+            'that you muted this chat',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          selectionRow('8 hours', MuteNotificationTime.eightHr, selectedVal,
+              onChanged: (val) {
+            setState(() {
+              selectedVal = val;
+            });
+          }),
+          selectionRow('One Weeks', MuteNotificationTime.oneWeek, selectedVal,
+              onChanged: (val) {
+            setState(() {
+              selectedVal = val;
+            });
+          }),
+          selectionRow('Always', MuteNotificationTime.always, selectedVal,
+              onChanged: (val) {
+            setState(() {
+              selectedVal = val;
+            });
+          }),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              GestureDetector(
+                onTap: () {
+                  Get.back();
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.25,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    color: SColors.color4,
+                    borderRadius: BorderRadius.circular(9),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Cancel',
+                      style: TextStyle(
+                        color: SColors.color12,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
-                ),],),],),);},);
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.back();
+                  showCustomSnackbar(
+                      title: "Muted notification", message: "message");
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.25,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    color: const Color.fromRGBO(0, 51, 142, 1),
+                    borderRadius: BorderRadius.circular(9),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'OK',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 }
 
-
-void showSubBottomSheet({required BuildContext context, required String text1, required String text2, required String cancelText, required String okText, required VoidCallback onCancel, required VoidCallback onOk}) {
+void showSubBottomSheet(
+    {required BuildContext context,
+    required String text1,
+    required String text2,
+    required String cancelText,
+    required String okText,
+    required VoidCallback onCancel,
+    required VoidCallback onOk}) {
   showModalBottomSheet(
     backgroundColor: SColors.color11,
     shape: const RoundedRectangleBorder(
@@ -192,21 +361,32 @@ void showSubBottomSheet({required BuildContext context, required String text1, r
             ),
             Text(
               text2,
-              style: const TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w600,),),
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
             const SizedBox(height: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 GestureDetector(
                   onTap: onCancel,
-                  child: Container(width: MediaQuery.of(context).size.width * 0.25,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.25,
                     height: 30,
                     decoration: BoxDecoration(
                       color: SColors.color11,
                       borderRadius: BorderRadius.circular(9),
                     ),
                     child: Center(
-                      child: Text(cancelText, style: TextStyle(color: SColors.color12, fontSize: 17, fontWeight: FontWeight.w500,
+                      child: Text(
+                        cancelText,
+                        style: TextStyle(
+                          color: SColors.color12,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
@@ -222,7 +402,15 @@ void showSubBottomSheet({required BuildContext context, required String text1, r
                       borderRadius: BorderRadius.circular(9),
                     ),
                     child: Center(
-                      child: Text(okText, textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.w500,),),
+                      child: Text(
+                        okText,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -235,23 +423,24 @@ void showSubBottomSheet({required BuildContext context, required String text1, r
   );
 }
 
-Widget selectionRow( String text){
-  return  Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 130),
+enum MuteNotificationTime { eightHr, oneWeek, always }
+
+Widget selectionRow(
+    String text, MuteNotificationTime value, MuteNotificationTime selectedValue,
+    {required Function(MuteNotificationTime) onChanged}) {
+  return Padding(
+    padding: EdgeInsets.symmetric(horizontal: Get.width * 0.3),
     child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Container(
-          height: 14,
-          width: 14,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: SColors.color11,
-          ),
-        ),
+        Radio(
+            value: value,
+            groupValue: selectedValue,
+            onChanged: (val) {
+              onChanged(val!);
+            }),
         Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
               fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black),
         ),
       ],

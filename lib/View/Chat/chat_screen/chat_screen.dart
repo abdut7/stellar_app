@@ -87,7 +87,16 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
           IconButton(
             icon: const Icon(Icons.more_vert_rounded),
             onPressed: () {
-              showBlockAndReportBottomSheet(context, widget.chatId);
+              showBlockAndReportBottomSheet(
+                  context: context,
+                  id: widget.chatId,
+                  onViewProfile: () {
+                    Get.back();
+                    Get.to(() => PublicProfileScreen(
+                          uid: widget.chatId,
+                          isFromChatScreen: true,
+                        ));
+                  });
             },
           ),
         ],

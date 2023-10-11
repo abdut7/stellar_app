@@ -93,7 +93,7 @@ class _ChatBottomFieldSentState extends State<ChatBottomFieldSent> {
       children: [
         Expanded(
           child: Container(
-            height: 60,
+            height: 50,
             margin: const EdgeInsets.only(left: 4.0, bottom: 6),
             decoration: BoxDecoration(
               color: const Color.fromRGBO(236, 240, 240, 1),
@@ -105,23 +105,27 @@ class _ChatBottomFieldSentState extends State<ChatBottomFieldSent> {
                   width: 8,
                 ),
                 Expanded(
-                  child: TextField(
-                    onChanged: (v) {
-                      if (v.isEmpty && !isVoice) {
-                        setState(() {
-                          isVoice = true;
-                        });
-                      }
-                      if (v.isNotEmpty && isVoice) {
-                        setState(() {
-                          isVoice = false;
-                        });
-                      }
-                    },
-                    controller: widget.controller,
-                    decoration: const InputDecoration(
-                      hintText: 'Start typing...',
-                      border: InputBorder.none,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: TextField(
+                      onChanged: (v) {
+                        if (v.isEmpty && !isVoice) {
+                          setState(() {
+                            isVoice = true;
+                          });
+                        }
+                        if (v.isNotEmpty && isVoice) {
+                          setState(() {
+                            isVoice = false;
+                          });
+                        }
+                      },
+                      controller: widget.controller,
+                      decoration: const InputDecoration(
+                        hintText: 'Start typing...',
+                        border: InputBorder.none,
+                      ),
+                      maxLines: 2, // Set a maximum of 3 lines
                     ),
                   ),
                 ),
