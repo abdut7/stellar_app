@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/money_received_bottomsheet.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/money_request_send_bottomsheet.dart';
 import 'package:stellar_chat/stellar_pay/screens/stellar_pay_home/widgets/transaction_tile.dart';
 class SendRequestRecentTransactionShowButtons extends StatefulWidget {
   @override
@@ -109,7 +112,16 @@ class _SendRequestRecentTransactionShowButtonsState extends State<SendRequestRec
                   timestamp: '07 October 2023 4:35pm',
                   amount: '15.00',
                   status: 'Success',
-                  onTap: () {},
+                  onTap: () {
+                    moneysendrequestbottomsheet(
+                        context: context,
+                        title: 'Money Send',
+                        btnTxt: 'Got it',
+                        ontap: (){
+                          Navigator.pop(context);
+                        }
+                    );
+                  },
                   svgAssetPath: SSvgs.addedMoney,
                 ),
                 const SizedBox(height: 10,),
@@ -119,7 +131,17 @@ class _SendRequestRecentTransactionShowButtonsState extends State<SendRequestRec
                   timestamp: '07 October 2023 4:35pm',
                   amount: '1000.00',
                   status: 'Success',
-                  onTap: () {},
+                  onTap: () {
+                    moneyreceivedbottomsheet(
+                        context: context,
+                        title: 'Money Received',
+                        btnTxt: 'Got it',
+                        ontap: (){
+                          Navigator.pop(context);
+                        }
+                    );
+
+                  },
                   svgAssetPath: SSvgs.addedMoney,
                 ),
                 const SizedBox(height: 10,),
@@ -135,7 +157,16 @@ class _SendRequestRecentTransactionShowButtonsState extends State<SendRequestRec
           timestamp: '06 October 2023 4:35pm',
           amount: '50.00',
           status: 'Pending',
-          onTap: () {},
+          onTap: () {
+            moneysendrequestbottomsheet(
+                context: context,
+                title: 'Request Send',
+                btnTxt: 'Got it',
+                ontap: (){
+                  Navigator.pop(context);
+                }
+            );
+          },
           svgAssetPath: SSvgs.sendRequest,
         ),
                 const SizedBox(height: 10,),

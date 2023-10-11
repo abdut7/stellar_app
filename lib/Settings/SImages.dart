@@ -18,5 +18,6 @@ class SImages {
   static String get bgDiscover=> "assets/Images/bgDiscover.png";
   static String get facebook=> "assets/Images/facebook.png";
   static String get signGoogle=> "assets/Images/signGoogle.png";
+  static String get moneyPayVector=> "assets/Images/moneyPayVector.png";
 
 }
