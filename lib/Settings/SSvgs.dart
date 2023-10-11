@@ -71,4 +71,9 @@ class SSvgs {
   static String get sendMoneyTransfer => "assets/Svgs/sendMoneyTransfer.svg";
   static String get addedMoney => "assets/Svgs/addedMoney.svg";
   static String get sendRequest => "assets/Svgs/sendRequest.svg";
+  static String get sendMoneyIcon => "assets/Svgs/sendMoneyIcon.svg";
+  static String get payVector => "assets/Svgs/payVector.svg";
+  static String get successLogo => "assets/Svgs/successLogo.svg";
+  static String get sucessText => "assets/Svgs/sucessText.svg";
+  static String get requestMoneyIcon => "assets/Svgs/requestMoneyIcon.svg";
 }

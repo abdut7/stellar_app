@@ -3,6 +3,17 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
+import 'package:stellar_chat/stellar_pay/screens/money_added_to_wallet_success_screen/money_added_to_wallet_success_screen.dart';
+import 'package:stellar_chat/stellar_pay/screens/request_money/request_amount_display_screen/request_amount_display_screen.dart';
+import 'package:stellar_chat/stellar_pay/screens/request_money/request_money_from_contacts_list/request_money_froom_contacts_list.dart';
+import 'package:stellar_chat/stellar_pay/screens/request_money/request_money_success_screen/request_money_success_screen.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/send_amount_display_screen/send_amount_display_screen.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/send_money_success_screen/send_money_success_screen.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/send_money_to_contacts/send_money_to_contacts.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/enter_card_details_bottomsheet.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/money_received_bottomsheet.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/money_request_send_bottomsheet.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/money_send_bottomsheet.dart';
 import 'package:stellar_chat/stellar_pay/screens/stellar_pay_home/widgets/send_or_request_money_buttons.dart';
 import 'package:stellar_chat/stellar_pay/screens/stellar_pay_home/widgets/send_request_recent_transactions.dart';
 import 'package:stellar_chat/stellar_pay/screens/stellar_pay_profile_settings/pay_profile_settings.dart';
@@ -103,9 +114,13 @@ class _MoneyPayHomeState extends State<MoneyPayHome> {
 
                     SendOrRequestMoneyButtons(
                       sendMoneyText: 'Send\nMoney',
-                      onSendMoneyTap: () {},
+                      onSendMoneyTap: () {
+                       Get.to(()=>const SendMoneyToContacts());
+                      },
                       requestMoneyText: 'Request\nMoney',
-                      onRequestMoneyTap: () {},
+                      onRequestMoneyTap: () {
+                        Get.to(()=>const RequestMoneyFromContacts());
+                      },
                     ),],
                 ),
 

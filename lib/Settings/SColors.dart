@@ -28,5 +28,6 @@ class SColors {
   static Color get color22 => const  Color(0xFFEFEFEF);
   static Color get color23 => const  Color(0xFFF1F1F1);
   static Color get color24 => const  Color(0xFF19AA33);
+  static Color get color25 => const  Color(0xFF75C681);
 
 }
