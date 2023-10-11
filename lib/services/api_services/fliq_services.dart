@@ -72,14 +72,14 @@ class FliqServices {
     FliqController controller = Get.find();
     controller.isUploading(true);
     // String? strFileUrl = await UploadFileService.uploadFile(path);
-   //
+    //
     String? strFileUrl = "hello";
     await Future.delayed(Duration(seconds: 5));
     //
     controller.isUploading(false);
     controller.isPosting(true);
     Dio dio = Dio();
-    String url = ApiRoutes.baseUrl + ApiRoutes.getStellarContacts;
+    String url = ApiRoutes.baseUrl + ApiRoutes.postFlick;
     Map<String, dynamic> header = await getHeader();
     Map<String, dynamic> data = {
       "isCommentEnabled": isCommentEnabled,
@@ -90,10 +90,8 @@ class FliqServices {
       "arrUserIds": arrUserIds,
       "strLocation": strLocation
     };
-    print(data);
-    await Future.delayed(Duration(seconds: 5));
-    // Response res =
-    //     await dio.post(url, options: Options(headers: header), data: data);
+    Response res =
+        await dio.post(url, options: Options(headers: header), data: data);
     controller.isPosting(false);
     Get.offAll(BaseBottomNavigation());
   }
