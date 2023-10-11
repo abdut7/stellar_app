@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
+import 'package:stellar_chat/View/create_post/add_location/add_location_screen.dart';
 import 'package:stellar_chat/View/create_post/function/generate_thumbnile.dart';
 import 'package:stellar_chat/View/create_post/tag_people_screen/tag_people_screen.dart';
 import 'package:stellar_chat/controllers/new_post/fliq_controller.dart';
@@ -144,37 +145,43 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
             const SizedBox(
               height: 8,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  titleTextButton('Add Location', () {}),
-                  Container(
-                    height: 30,
-                    decoration: ShapeDecoration(
-                      color: SColors.color18,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(7),
+            Obx(() => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Row(
+                    children: [
+                      titleTextButton('Add Location', () {
+                        Get.to(() => const AddLocationScreen());
+                      }),
+                      const SizedBox(
+                        width: 20,
                       ),
-                    ),
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Text(
-                          'Dubai, United Arab Emirates',
-                          style: TextStyle(
-                            color: SColors.color3,
-                            fontSize: 11,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
+                      fliqController.locationName.isNotEmpty
+                          ? Container(
+                              height: 30,
+                              decoration: ShapeDecoration(
+                                color: SColors.color18,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(7),
+                                ),
+                              ),
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(
+                                    fliqController.locationName.value,
+                                    style: TextStyle(
+                                      color: SColors.color3,
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          : const SizedBox(),
+                    ],
                   ),
-                ],
-              ),
-            ),
+                )),
             divider(),
             const SizedBox(
               height: 10,
@@ -298,6 +305,7 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                       Switch(
                         value: hideLikeAndView,
                         onChanged: (bool newValue) {
+                          fliqController.hideLikeAndView(newValue);
                           setState(() {
                             hideLikeAndView = newValue;
                           });
@@ -336,6 +344,7 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                           setState(() {
                             turnOffComment = newValue;
                           });
+                          fliqController.hideComments(newValue);
                         },
                         activeColor: SColors.color11,
                       ),

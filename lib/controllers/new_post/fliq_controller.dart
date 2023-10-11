@@ -5,7 +5,7 @@ class FliqController extends GetxController {
   RxSet<Contact> tagPeople = RxSet();
   RxList<Contact> searchList = RxList();
   RxBool isSearching = RxBool(false);
-  RxString? locationName;
+  RxString locationName = RxString("");
   RxString caption = RxString("");
   RxBool hideLikeAndView = RxBool(false);
   RxBool hideComments = RxBool(false);

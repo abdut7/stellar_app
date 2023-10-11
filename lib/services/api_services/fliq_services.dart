@@ -32,4 +32,31 @@ class FliqServices {
       print(e);
     }
   }
+
+  static Future<void> searchLocation({required String search}) async {
+    FliqController controller = Get.find();
+    if (search.isEmpty) {
+      controller.isSearching(false);
+      controller.searchList.clear();
+      return;
+    }
+    controller.isSearching(true);
+    Dio dio = Dio();
+    String url = ApiRoutes.baseUrl + ApiRoutes.getStellarContacts;
+    Map<String, dynamic> header = await getHeader();
+    Map<String, String> data = {"strSearch": search};
+    try {
+      Response res =
+          await dio.post(url, options: Options(headers: header), data: data);
+      print(res);
+      GetContactsModel model = GetContactsModel.fromJson(res.data);
+      List<Contact> userList = [];
+      for (var element in model.arrList) {
+        userList.add(element);
+      }
+      controller.locationName!("userList");
+    } catch (e) {
+      print(e);
+    }
+  }
 }
