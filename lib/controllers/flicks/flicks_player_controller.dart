@@ -10,3 +10,15 @@ class FlicksPlayerController extends GetxController {
     FliqServices().getFlick(count: pageNumber);
   }
 }
+
+class ProfileFlicksController extends GetxController {
+  int pageNumber = 0;
+  final RxList<FlickItem> flickItems = RxList();
+  void loadMore({
+    required String id,
+    bool isProfile = false,
+  }) {
+    pageNumber++;
+    FliqServices().getFlicksById(count: pageNumber, id: id);
+  }
+}

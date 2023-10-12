@@ -1,8 +1,8 @@
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
-import 'package:stellar_chat/models/api_models/flick_model.dart';
-import 'package:stellar_chat/services/api_services/fliq_services.dart';
-import 'package:stellar_chat/utils/colors.dart';
+import 'package:stellar_chat/View/flicks/flicks_player_profile.dart';
+import 'package:stellar_chat/controllers/flicks/flicks_player_controller.dart';
 
 class FlickGridView extends StatefulWidget {
   final IconData? icon;
@@ -22,27 +22,28 @@ class _FlickGridViewState extends State<FlickGridView> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<FlickItem>?>(
-        future: FliqServices().getFlicksById(id: widget.id),
-        builder: (context, AsyncSnapshot<List<FlickItem>?> snapshot) {
-          if (!snapshot.hasData || snapshot.data == null) {
-            return LinearProgressIndicator(
-              color: colorPrimary,
-            );
-          }
-          return Padding(
+    ProfileFlicksController controller = Get.put(ProfileFlicksController());
+    controller.pageNumber = 0;
+    controller.loadMore(id: widget.id);
+    return Obx(() => controller.flickItems.isNotEmpty
+        ? Padding(
             padding: const EdgeInsets.all(15.0),
             child: GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3, crossAxisSpacing: 0, mainAxisSpacing: 0),
-              itemCount: snapshot.data!.length,
+              itemCount: controller.flickItems.length,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.all(3.0),
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(FlicksPlayerProfile(
+                        id: widget.id,
+                        pageNo: index,
+                      ));
+                    },
                     child: Container(
                       height: 80,
                       decoration: BoxDecoration(
@@ -61,7 +62,7 @@ class _FlickGridViewState extends State<FlickGridView> {
                 );
               },
             ),
-          );
-        });
+          )
+        : LinearProgressIndicator());
   }
 }

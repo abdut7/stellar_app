@@ -115,19 +115,26 @@ class FliqServices {
     controller.isUploaded(false);
   }
 
-  Future<List<FlickItem>?> getFlicksById({required String id}) async {
+  Future<void> getFlicksById({required String id, required int count}) async {
     Dio dio = Dio();
     String url = ApiRoutes.baseUrl + ApiRoutes.getFlicksById;
     Map<String, dynamic> header = await getHeader();
-    Map<String, String> data = {"strUserId": id};
+    Map<String, dynamic> data = {"strUserId": id, "intPageCount ": count};
+    ProfileFlicksController controller = Get.find();
+    print(count);
+    if (count == 1) {
+      controller.flickItems.clear();
+    }
 
     try {
       Response res =
           await dio.post(url, options: Options(headers: header), data: data);
       print(res);
       FlickModel model = FlickModel.fromJson(res.data);
-      print(model.arrList.first.strCreatedTime);
-      return model.arrList;
+      for (var element in model.arrList) {
+        controller.flickItems.add(element);
+      }
+      // return model.arrList;
     } on Exception catch (e) {
       return null;
       // TODO
@@ -139,7 +146,7 @@ class FliqServices {
     Dio dio = Dio();
     String url = ApiRoutes.baseUrl + ApiRoutes.getFlicksList;
     Map<String, dynamic> header = await getHeader();
-    Map<String, dynamic> data = {"intPageCount ": 1};
+    Map<String, dynamic> data = {"intPageCount ": count};
     FlicksPlayerController controller = Get.find();
 
     try {
