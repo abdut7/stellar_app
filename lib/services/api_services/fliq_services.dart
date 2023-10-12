@@ -74,13 +74,10 @@ class FliqServices {
     Get.offAll(() => const BaseBottomNavigation(
           pageIndex: 4,
         ));
-    print("code execution stopped");
     // upload file here
-    // String? strFileUrl = await UploadFileService.uploadFile(path);
+    String? strFileUrl = await UploadFileService.uploadFile(
+        filePaths: [path], isFromFlicks: true);
     //
-    print(controller.isUploading.value);
-    String? strFileUrl =
-        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
     if (controller.isCancelled.value) {
       controller.isUploading(false);
       controller.isCancelled(false);
