@@ -39,17 +39,26 @@ class _FlickGridViewState extends State<FlickGridView> {
                   padding: const EdgeInsets.all(3.0),
                   child: GestureDetector(
                     onTap: () {
-                      Get.to(FlicksPlayerProfile(
-                        id: widget.id,
-                        pageNo: index,
-                      ));
+                      Get.to(() => FlicksPlayerProfile(
+                            id: widget.id,
+                            pageNo: index,
+                          ));
                     },
                     child: Container(
                       height: 80,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        color: SColors.color9.withOpacity(0.4),
-                      ),
+                          borderRadius: BorderRadius.circular(6),
+                          color: SColors.color9.withOpacity(0.4),
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(controller.flickItems
+                                          .elementAt(index)
+                                          .strThumbnailUrl ==
+                                      null
+                                  ? """https://loremflickr.com/cache/resized/65535_53065639115_14eaf016a0_z_640_360_nofilter.jpg"""
+                                  : controller.flickItems
+                                      .elementAt(index)
+                                      .strThumbnailUrl!))),
                       child: widget.icon != null
                           ? Icon(
                               widget.icon,
@@ -57,6 +66,7 @@ class _FlickGridViewState extends State<FlickGridView> {
                               size: 40,
                             )
                           : null,
+                          
                     ),
                   ),
                 );

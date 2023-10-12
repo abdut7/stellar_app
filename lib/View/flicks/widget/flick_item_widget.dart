@@ -30,13 +30,14 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.flickItem.strFileUrl);
     return Scaffold(
         body: Stack(
       children: [
         VideoPlayerScreen(
-          // videoUrl: widget.flickItem.strFileUrl,
-          videoUrl:
-              "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+          videoUrl: widget.flickItem.strFileUrl,
+          // videoUrl:
+          //     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
         ),
         Container(
           width: Get.width,
