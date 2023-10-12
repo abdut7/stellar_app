@@ -2,8 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/add_money_through_visa.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/choose_add_options.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/choose_add_options_add_money_sheet.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/choose_card_add_money_bottomsheet.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/choose_card_bottomsheet.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/choose_payment_options_bottomsheet.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/enter_card_details_bottomsheet.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/money_received_bottomsheet.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/money_request_send_bottomsheet.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/send_money_from_wallet_sheet.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/send_money_through_apple_pay.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/send_money_through_visa.dart';
 import 'package:stellar_chat/stellar_pay/screens/stellar_pay_home/widgets/transaction_tile.dart';
 class SendRequestRecentTransactionShowButtons extends StatefulWidget {
   @override
