@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
+import 'package:stellar_chat/stellar_pay/screens/money_added_to_wallet_success_screen/money_added_to_wallet_success_screen.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/choose_card_add_money_bottomsheet.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/proceed_to_payment_button.dart';
 
 void addmoneythroughvisasheet(BuildContext context) {
@@ -44,7 +47,9 @@ void addmoneythroughvisasheet(BuildContext context) {
                 'AED 12.00 will be deducted from card',
                 style: TextStyle(color: Colors.black, fontSize: 8, fontWeight: FontWeight.w400,),),
               trailing: GestureDetector(
-                onTap: (){},
+                onTap: (){
+                  choosecardaddmoneysheet(context);
+                },
                 child: Container(
                   width: 75,
                   height: 33,
@@ -67,7 +72,9 @@ void addmoneythroughvisasheet(BuildContext context) {
             const SizedBox(height: 20,),
             ProceedToPaymentButton(
               buttonText: 'Proceed to Add Money',
-              onTap: () {},
+              onTap: () {
+                Get.to(()=>const MoneyAddedToWalletSuccessScreen());
+              },
             ),
             const SizedBox(height: 25,),
           ],

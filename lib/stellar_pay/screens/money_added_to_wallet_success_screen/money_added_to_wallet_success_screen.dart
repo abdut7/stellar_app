@@ -6,6 +6,7 @@ import 'package:stellar_chat/Settings/SImages.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/go_back_home_button.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/transfer_summary_details_section.dart';
+import 'package:stellar_chat/stellar_pay/screens/stellar_pay_home/money_pay_home.dart';
 
 class MoneyAddedToWalletSuccessScreen extends StatefulWidget {
   const MoneyAddedToWalletSuccessScreen({Key? key}) : super(key: key);
@@ -57,7 +58,9 @@ class _MoneyAddedToWalletSuccessScreenState extends State<MoneyAddedToWalletSucc
                   SizedBox(height: Get.height*0.1),
                   GoBackHomeButton(
                       buttonText: 'Go Back Home',
-                      onTap: (){}
+                      onTap: (){
+                        Get.to(()=>const MoneyPayHome());
+                      }
                   ),
                   SizedBox(height: Get.height*0.1),
 

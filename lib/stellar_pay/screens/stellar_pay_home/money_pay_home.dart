@@ -10,6 +10,8 @@ import 'package:stellar_chat/stellar_pay/screens/request_money/request_money_suc
 import 'package:stellar_chat/stellar_pay/screens/send_money/send_amount_display_screen/send_amount_display_screen.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/send_money_success_screen/send_money_success_screen.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/send_money_to_contacts/send_money_to_contacts.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/choose_card_add_money_bottomsheet.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/choose_payment_options_bottomsheet.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/enter_card_details_bottomsheet.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/money_received_bottomsheet.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/money_request_send_bottomsheet.dart';
@@ -57,7 +59,9 @@ class _MoneyPayHomeState extends State<MoneyPayHome> {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 20),
                                   child: GestureDetector(
-                                      onTap: (){},
+                                      onTap: (){
+                                        choosecardaddmoneysheet(context);
+                                      },
                                       child: SvgPicture.asset(SSvgs.addBalance)),
                                 ),
                               ],),),

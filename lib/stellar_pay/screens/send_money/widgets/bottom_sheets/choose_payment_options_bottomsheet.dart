@@ -4,6 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/add_new_card_button.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/enter_card_details_bottomsheet.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/send_money_through_visa.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/send_button.dart';
 
 void choosepaymentoptionssheet(BuildContext context) {
@@ -82,10 +84,10 @@ void choosepaymentoptionssheet(BuildContext context) {
               children: [
                 SvgPicture.asset(SSvgs.circleWhite,),
                 const SizedBox(width: 10),
-                SvgPicture.asset(SSvgs.whiteVisaText),
+                SvgPicture.asset(SSvgs.applePay),
                 const SizedBox(width: 15),
-                const Text(
-                  '**** 2356', style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w400,),),
+                // const Text(
+                //   '**** 2356', style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w400,),),
               ],
             ),
             const SizedBox(height: 25,),
@@ -103,11 +105,15 @@ void choosepaymentoptionssheet(BuildContext context) {
             const SizedBox(height: 25,),
             AddNewCardButton(
                 buttonText: 'Add New Card',
-                onTap: (){}
+                onTap: (){
+                  entercarddetailssheet(context);
+                }
             ),
             const SizedBox(height: 50,),
             SendButton(
-                onTap: (){},
+                onTap: (){
+                 sendmoneythroughvisasheet(context);
+                },
                 buttonText: 'Send'
             ),
             const SizedBox(height: 25,),

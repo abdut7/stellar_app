@@ -11,6 +11,7 @@ import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheet
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/enter_card_details_bottomsheet.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/money_received_bottomsheet.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/money_request_send_bottomsheet.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/money_send_bottomsheet.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/send_money_from_wallet_sheet.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/send_money_through_apple_pay.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/send_money_through_visa.dart';
@@ -112,7 +113,17 @@ class _SendRequestRecentTransactionShowButtonsState extends State<SendRequestRec
           timestamp: '06 October 2023 4:35pm',
           amount: '25.00',
           status: 'Success',
-          onTap: () {},
+          onTap: () {
+            moneysendreceivedsheet(
+                context: context,
+                title: 'Money Send',
+                btnTxt: 'Got it',
+                ontap: (){
+                  Navigator.pop(context);
+                }
+            );
+
+          },
           svgAssetPath: SSvgs.addedMoney,
         ),
                 const SizedBox(height: 10,),
