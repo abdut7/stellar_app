@@ -68,7 +68,7 @@ class ChatHomeAppbarWidget extends StatelessWidget {
             padding: const EdgeInsets.only(left: 165),
             child: GestureDetector(
               onTap: (){
-                Get.to(()=>StellarPaySplashScreen());
+                Get.to(()=> const StellarPaySplashScreen());
               },
                 child: SvgPicture.asset(SSvgs.stellarPayIconText)),
           ),
@@ -134,7 +134,9 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                     width: 20,
                     height: 20,
                   ),
-                  ontap: () {},
+                  ontap: () {
+                    Get.to(()=>const StellarPaySplashScreen());
+                  },
                   text: 'Stellar Pay',
                 ),
               ],

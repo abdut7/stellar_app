@@ -4,6 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/add_new_card_button.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/enter_card_details_bottomsheet.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/send_money_through_visa.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/send_button.dart';
 
 void choosecardsheet(BuildContext context) {
@@ -59,11 +61,15 @@ void choosecardsheet(BuildContext context) {
             const SizedBox(height: 25,),
             AddNewCardButton(
                 buttonText: 'Add New Card',
-                onTap: (){}
+                onTap: (){
+                  entercarddetailssheet(context);
+                }
             ),
             const SizedBox(height: 40,),
             SendButton(
-                onTap: (){},
+                onTap: (){
+                  sendmoneythroughvisasheet(context);
+                },
                 buttonText: 'Send'
             ),
             const SizedBox(height: 25,),

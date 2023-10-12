@@ -72,7 +72,9 @@ void entercarddetailssheet(BuildContext context) {
               const SizedBox(height: 30,),
 
               SendButton(
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.pop(context);
+                  },
                   buttonText: 'Add Card'
               ),
               const SizedBox(height: 30,),

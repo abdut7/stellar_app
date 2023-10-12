@@ -6,6 +6,8 @@ import 'package:stellar_chat/Settings/SImages.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/send_money_success_screen/send_money_success_screen.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/amount_display_textfield.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/choose_card_bottomsheet.dart';
+import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/bottom_sheets/choose_payment_options_bottomsheet.dart';
 import 'package:stellar_chat/stellar_pay/screens/send_money/widgets/search_bar.dart';
 
 class SendAmountDisplayScreen extends StatefulWidget {
@@ -75,7 +77,7 @@ class _SendAmountDisplayScreenState extends State<SendAmountDisplayScreen> {
             const SizedBox(height: 25,),
             GestureDetector(
               onTap: (){
-                Get.to(()=>const SendMoneySuccessScreen());
+                choosepaymentoptionssheet(context);
               },
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.58,
