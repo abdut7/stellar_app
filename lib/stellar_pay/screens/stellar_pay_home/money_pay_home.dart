@@ -57,9 +57,7 @@ class _MoneyPayHomeState extends State<MoneyPayHome> {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 20),
                                   child: GestureDetector(
-                                      onTap: (){
-                                        Get.to(()=>const PayProfileSettings());
-                                      },
+                                      onTap: (){},
                                       child: SvgPicture.asset(SSvgs.addBalance)),
                                 ),
                               ],),),
@@ -103,12 +101,17 @@ class _MoneyPayHomeState extends State<MoneyPayHome> {
                     Positioned(
                       left: Get.width * 0.68,
                       top: Get.height * 0.02,
-                      child: Container(
-                        width: Get.width * 0.2,
-                        height: Get.width * 0.2,
-                        decoration: ShapeDecoration(
-                          image: const DecorationImage(image: NetworkImage("https://cdn.quotesgram.com/img/8/72/1135141999-074f6884b9f34be89538782d2fc98f8e.jpg"), fit: BoxFit.cover,),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Get.width * 0.1),),),),),
+                      child: GestureDetector(
+                        onTap: (){
+                          Get.to(()=>const PayProfileSettings());
+                        },
+                        child: Container(
+                          width: Get.width * 0.2,
+                          height: Get.width * 0.2,
+                          decoration: ShapeDecoration(
+                            image: const DecorationImage(image: NetworkImage("https://cdn.quotesgram.com/img/8/72/1135141999-074f6884b9f34be89538782d2fc98f8e.jpg"), fit: BoxFit.cover,),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Get.width * 0.1),),),),
+                      ),),
 
                     // send money  and request money  button
 

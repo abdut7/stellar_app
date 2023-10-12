@@ -76,4 +76,11 @@ class SSvgs {
   static String get successLogo => "assets/Svgs/successLogo.svg";
   static String get sucessText => "assets/Svgs/sucessText.svg";
   static String get requestMoneyIcon => "assets/Svgs/requestMoneyIcon.svg";
+  static String get logoVisa => "assets/Svgs/logoVisa.svg";
+  static String get walletLogo => "assets/Svgs/walletLogo.svg";
+  static String get applePay => "assets/Svgs/applePay.svg";
+  static String get addNewCard => "assets/Svgs/addNewCard.svg";
+  static String get visaWhiteText => "assets/Svgs/visaWhiteText.svg";
+  static String get whiteVisaText => "assets/Svgs/whiteVisaText.svg";
+  static String get circleWhite => "assets/Svgs/circleWhite.svg";
 }

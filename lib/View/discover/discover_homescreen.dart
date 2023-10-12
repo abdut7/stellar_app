@@ -8,6 +8,7 @@ import 'package:stellar_chat/View/channel/channel_home_screen/channel_home_scree
 import 'package:stellar_chat/View/contact/add_contact/friends_in_radar/friends_in_radar.dart';
 import 'package:stellar_chat/View/discover/widgets/discover_list_tile.dart';
 import 'package:stellar_chat/View/discover/widgets/top_section.dart';
+import 'package:stellar_chat/stellar_pay/screens/stellar_pay_splash_screen/stellar_pay_splash.dart';
 import 'package:stellar_chat/View/flicks/flicks_player_home_screen.dart';
 
 class DiscoverHomeScreen extends StatefulWidget {
@@ -118,7 +119,9 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                           DiscoverListTile(
                               title: 'Stellar Pay',
                               svgAsset: SSvgs.payStellar,
-                              onTap: () {}),
+                              onTap: () {
+                                Get.to(() => const StellarPaySplashScreen());
+                              }),
                         ],
                       ),
                     )),
