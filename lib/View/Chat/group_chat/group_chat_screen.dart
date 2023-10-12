@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stellar_chat/services/socket_service/sent_join_room_event_socket.dart';
+import 'package:stellar_chat/utils/colors.dart';
 
 import '../../../functions/pick_image.dart';
 
@@ -97,8 +98,10 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                 child: Text(
                   widget.chatHistoryList.strName,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                      fontSize: 18.0, fontWeight: FontWeight.bold),
+                  style:  TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                      color: colorPrimary),
                 ),
               ),
             ],
@@ -108,7 +111,8 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
           IconButton(
             icon: const Icon(Icons.more_vert),
             onPressed: () {
-              groupChatMainBottomSheet(context);
+              groupChatMainBottomSheet(
+                  context, widget.chatHistoryList.strChatId);
               // Implement your menu actions here
             },
           ),

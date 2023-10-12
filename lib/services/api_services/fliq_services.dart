@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:stellar_chat/View/base_bottom_nav/bottom_nav.dart';
+import 'package:stellar_chat/controllers/flicks/flicks_player_controller.dart';
 import 'package:stellar_chat/controllers/new_post/fliq_controller.dart';
 import 'package:stellar_chat/functions/get_header.dart';
+import 'package:stellar_chat/models/api_models/flick_model.dart';
 import 'package:stellar_chat/models/api_models/get_contacts_model.dart';
 import 'package:stellar_chat/services/api_routes/api_routes.dart';
 import 'package:stellar_chat/services/api_services/upload_file_service.dart';
@@ -74,19 +76,16 @@ class FliqServices {
     Get.offAll(() => const BaseBottomNavigation(
           pageIndex: 4,
         ));
-    print("code execution stopped");
     // upload file here
-    // String? strFileUrl = await UploadFileService.uploadFile(path);
+    String? strFileUrl = await UploadFileService.uploadFile(
+        filePaths: [path], isFromFlicks: true);
     //
-    print(controller.isUploading.value);
-    String? strFileUrl =
-        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
     if (controller.isCancelled.value) {
       controller.isUploading(false);
       controller.isCancelled(false);
     }
 
-    await Future.delayed(const Duration(seconds: 5));
+    // await Future.delayed(const Duration(seconds: 5));
     //
     controller.isUploading(false);
     controller.isPosting(true);
@@ -102,13 +101,67 @@ class FliqServices {
       "arrUserIds": arrUserIds,
       "strLocation": strLocation
     };
+    print(data);
     Response res =
         await dio.post(url, options: Options(headers: header), data: data);
     print(res);
     controller.isPosting(false);
     controller.uploadPercentage(0);
     controller.isUploaded(true);
+    Get.offAll(() => const BaseBottomNavigation(
+          pageIndex: 4,
+        ));
     await Future.delayed(Duration(seconds: 5));
     controller.isUploaded(false);
+  }
+
+  Future<void> getFlicksById({required String id, required int count}) async {
+    Dio dio = Dio();
+    String url = ApiRoutes.baseUrl + ApiRoutes.getFlicksById;
+    Map<String, dynamic> header = await getHeader();
+    Map<String, dynamic> data = {"strUserId": id, "intPageCount ": count};
+    ProfileFlicksController controller = Get.find();
+    print(count);
+    if (count == 1) {
+      controller.flickItems.clear();
+    }
+
+    try {
+      Response res =
+          await dio.post(url, options: Options(headers: header), data: data);
+      print(res);
+      FlickModel model = FlickModel.fromJson(res.data);
+      for (var element in model.arrList) {
+        controller.flickItems.add(element);
+      }
+      // return model.arrList;
+    } on Exception catch (e) {
+      return null;
+      // TODO
+      print(e);
+    }
+  }
+
+  Future<void> getFlick({required int count}) async {
+    Dio dio = Dio();
+    String url = ApiRoutes.baseUrl + ApiRoutes.getFlicksList;
+    Map<String, dynamic> header = await getHeader();
+    Map<String, dynamic> data = {"intPageCount ": count};
+    FlicksPlayerController controller = Get.find();
+
+    try {
+      Response res =
+          await dio.post(url, options: Options(headers: header), data: data);
+      print(res);
+      FlickModel model = FlickModel.fromJson(res.data);
+      print(model.arrList.length);
+      for (var element in model.arrList) {
+        controller.flickItems.add(element);
+      }
+    } on Exception catch (e) {
+      return null;
+      // TODO
+      print(e);
+    }
   }
 }

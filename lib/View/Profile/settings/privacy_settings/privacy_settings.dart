@@ -13,33 +13,30 @@ class PrivacySettings extends StatefulWidget {
   State<PrivacySettings> createState() => _PrivacySettingsState();
 }
 
+bool nearbyVisibility = false;
+
 class _PrivacySettingsState extends State<PrivacySettings> {
   Widget customRow(String title, String suffixText) {
-    return GestureDetector(
-      onTap: () {
-        Get.to(() => BlockedUsersScreen());
-      },
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              color: SColors.color3,
-              fontSize: 15,
-              fontWeight: FontWeight.w500,
-            ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: TextStyle(
+            color: SColors.color3,
+            fontSize: 15,
+            fontWeight: FontWeight.w500,
           ),
-          Text(
-            suffixText,
-            style: TextStyle(
-              color: SColors.color11,
-              fontSize: 11,
-              fontWeight: FontWeight.w500,
-            ),
-          )
-        ],
-      ),
+        ),
+        Text(
+          suffixText,
+          style: TextStyle(
+            color: SColors.color11,
+            fontSize: 11,
+            fontWeight: FontWeight.w500,
+          ),
+        )
+      ],
     );
   }
 
@@ -85,7 +82,11 @@ class _PrivacySettingsState extends State<PrivacySettings> {
                 const SizedBox(
                   height: 18,
                 ),
-                customRow('Blocked User', ''),
+                GestureDetector(
+                    onTap: () {
+                      Get.to(() => BlockedUsersScreen());
+                    },
+                    child: customRow('Blocked User', '')),
                 const SizedBox(
                   height: 18,
                 ),
@@ -141,15 +142,18 @@ class _PrivacySettingsState extends State<PrivacySettings> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-            Transform.scale(
-              scale: 0.7,
-              child: CupertinoSwitch(
-                value: false,
-                onChanged: (bool newValue) {},
-                activeColor: SColors.color11,
-
-              ),
-            ),
+                  Transform.scale(
+                    scale: 0.7,
+                    child: CupertinoSwitch(
+                      value: nearbyVisibility,
+                      onChanged: (bool newValue) {
+                        setState(() {
+                          nearbyVisibility = newValue;
+                        });
+                      },
+                      activeColor: SColors.color11,
+                    ),
+                  ),
 
                   // IgnorePointer(
                   //   ignoring: true,

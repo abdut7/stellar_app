@@ -26,6 +26,8 @@ class ApiRoutes {
   static String updateGroup = "/update_group";
   static String makeAdmin = "/update_group_admin";
   static String addParticipentsContacts = "/get_contacts_add_group";
-    static String postFlick = "/create_flick_channel";
-
+  static String postFlick = "/create_flick_channel";
+  static String filesUpload = "/files_upload";
+  static String getFlicksById = "/get_flick_by_id";
+  static String getFlicksList = "/get_flick_list";
 }

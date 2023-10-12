@@ -1,6 +1,7 @@
 import 'package:stellar_chat/models/api_models/blocked_user_model.dart';
 import 'package:stellar_chat/services/api_services/account_services.dart';
 import 'package:flutter/material.dart';
+import 'package:stellar_chat/utils/colors.dart';
 
 class BlockedUsersScreen extends StatefulWidget {
   const BlockedUsersScreen({super.key});
@@ -14,6 +15,7 @@ class _BlockedUsersScreenState extends State<BlockedUsersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: colorPrimary,
         title: const Text("Blocked Users"),
       ),
       body: FutureBuilder(

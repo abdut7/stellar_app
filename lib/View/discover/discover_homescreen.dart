@@ -8,7 +8,7 @@ import 'package:stellar_chat/View/channel/channel_home_screen/channel_home_scree
 import 'package:stellar_chat/View/contact/add_contact/friends_in_radar/friends_in_radar.dart';
 import 'package:stellar_chat/View/discover/widgets/discover_list_tile.dart';
 import 'package:stellar_chat/View/discover/widgets/top_section.dart';
-import 'package:stellar_chat/stellar_pay/screens/stellar_pay_splash_screen/stellar_pay_splash.dart';
+import 'package:stellar_chat/View/flicks/flicks_player_home_screen.dart';
 
 class DiscoverHomeScreen extends StatefulWidget {
   const DiscoverHomeScreen({Key? key}) : super(key: key);
@@ -36,7 +36,8 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                 const TopSection(),
                 Container(
                     //margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 210),
-                    margin: const EdgeInsets.only(left: 45,right: 45,top: 235),
+                    margin:
+                        const EdgeInsets.only(left: 45, right: 45, top: 235),
                     width: double.infinity,
                     decoration: ShapeDecoration(
                       color: SColors.color4,
@@ -59,14 +60,16 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                           DiscoverListTile(
                               title: 'Flicks',
                               svgAsset: SSvgs.flicksLogo,
-                              onTap: () {}),
-                           const Padding(
-                             padding: EdgeInsets.symmetric(horizontal: 15),
-                             child: Divider(
+                              onTap: () {
+                                Get.to(() => FlicksPlayerHomeScreen());
+                              }),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 15),
+                            child: Divider(
                               thickness: 2,
                               color: Colors.black12,
+                            ),
                           ),
-                           ),
                           DiscoverListTile(
                               title: 'Channel',
                               svgAsset: SSvgs.channelLogo,
@@ -77,8 +80,9 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                       ),
                     )),
                 Container(
-                  //margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 210),
-                    margin: const EdgeInsets.only(left: 45,right: 45,top: 400),
+                    //margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 210),
+                    margin:
+                        const EdgeInsets.only(left: 45, right: 45, top: 400),
                     width: double.infinity,
                     decoration: ShapeDecoration(
                       color: SColors.color4,
@@ -121,7 +125,8 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                       ),
                     )),
                 Container(
-                    margin: const EdgeInsets.only(left: 45,right: 45,top: 570),
+                    margin:
+                        const EdgeInsets.only(left: 45, right: 45, top: 570),
                     width: double.infinity,
                     decoration: ShapeDecoration(
                       color: SColors.color4,
@@ -147,13 +152,13 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                               onTap: () {
                                 Get.to(() => FriendsInRadarScreen());
                               }),
-                           Padding(
-                             padding: const EdgeInsets.symmetric(horizontal: 15),
-                             child: Divider(
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            child: Divider(
                               thickness: 2,
                               color: Colors.black12,
+                            ),
                           ),
-                           ),
                           DiscoverListTile(
                               title: 'Search',
                               svgAsset: SSvgs.searchIcon,

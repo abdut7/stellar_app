@@ -1,19 +1,21 @@
 class PrivateMessageJsonModel {
-  PrivateMessageJsonModel({
-    required this.success,
-    required this.message,
-    required this.statusCode,
-    required this.privateMessageModelList,
-  });
+  PrivateMessageJsonModel(
+      {required this.success,
+      required this.message,
+      required this.statusCode,
+      required this.privateMessageModelList,
+      required this.isBlocked});
   late final bool success;
   late final String message;
   late final int statusCode;
+  late final bool isBlocked;
   late final List<PrivateMessageModel> privateMessageModelList;
 
   PrivateMessageJsonModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     message = json['message'];
     statusCode = json['statusCode'];
+    isBlocked = json['isBlocked'] ?? false;
     privateMessageModelList = List.from(json['arrList'])
         .map((e) => PrivateMessageModel.fromJson(e))
         .toList();
@@ -30,19 +32,19 @@ class PrivateMessageJsonModel {
 }
 
 class PrivateMessageModel {
-  PrivateMessageModel(
-      {required this.id,
-      required this.strUserId,
-      required this.strType,
-      required this.strMessageType,
-      required this.strMessage,
-      required this.strName,
-      required this.strCreatedTime,
-      required this.strContactName,
-        required this.strChatId,
-      required this.strContactNumbers,
-      required this.strUrl,
-    });
+  PrivateMessageModel({
+    required this.id,
+    required this.strUserId,
+    required this.strType,
+    required this.strMessageType,
+    required this.strMessage,
+    required this.strName,
+    required this.strCreatedTime,
+    required this.strContactName,
+    required this.strChatId,
+    required this.strContactNumbers,
+    required this.strUrl,
+  });
   late final String id;
   late final String strUserId;
   late final String strType;

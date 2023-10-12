@@ -1,4 +1,4 @@
-
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stellar_chat/View/Chat/chat_screen/widgets/report_and_bloc_sheet_widget.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/chat_appbar_title_widget.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/chat_bubble.dart';
@@ -57,7 +57,7 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Color.fromRGBO(159, 196, 232, 1),
+        backgroundColor: const Color.fromRGBO(159, 196, 232, 1),
         elevation: 0,
         title: InkWell(
           onTap: () {
@@ -74,13 +74,22 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
         ),
         actions: <Widget>[
           IconButton(
-            icon: const Icon(Icons.videocam),
+            icon: SvgPicture.string(
+                """<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.6 6.53353C19.6 5.2446 18.5556 4.2002 17.2667 4.2002H3.26668C1.97775 4.2002 0.93335 5.2446 0.93335 6.53353V21.4669C0.93335 22.7558 1.97775 23.8002 3.26668 23.8002H17.2667C18.5556 23.8002 19.6 22.7558 19.6 21.4669V6.53353Z" fill="#F5F5F5"/>
+<path d="M25.508 6.5332C25.3045 6.5332 25.1034 6.57334 24.9149 6.6508L21.4667 8.0704V19.9293L24.9149 21.3489C25.1034 21.4264 25.305 21.4665 25.508 21.4665C26.369 21.4665 27.0667 20.7689 27.0667 19.9079V8.09187C27.0667 7.23087 26.369 6.5332 25.508 6.5332Z" fill="#F5F5F5"/>
+</svg>
+"""),
             onPressed: () {
               // Handle video call
             },
           ),
           IconButton(
-            icon: const Icon(Icons.call),
+            icon: SvgPicture.string(
+                """<svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.2226 15.4119L18.1748 12.4813C17.0863 11.4346 15.2358 11.8533 14.8004 13.2139C14.4739 14.1559 13.3853 14.6793 12.4057 14.4699C10.2287 13.9466 7.28967 11.2253 6.74542 9.02732C6.41886 8.0853 7.07197 7.03865 8.05163 6.7247C9.4667 6.30604 9.90211 4.52674 8.81359 3.4801L5.76575 0.549489C4.89494 -0.183163 3.58873 -0.183163 2.82677 0.549489L0.758593 2.53812C-1.30958 4.63141 0.976295 10.1786 6.09231 15.0979C11.2083 20.0171 16.9774 22.3198 19.1545 20.2264L21.2226 18.2378C21.9846 17.4005 21.9846 16.1445 21.2226 15.4119Z" fill="#F5F5F5"/>
+</svg>
+"""),
             onPressed: () {
               // Handle voice call
             },
@@ -88,7 +97,16 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
           IconButton(
             icon: const Icon(Icons.more_vert_rounded),
             onPressed: () {
-              showBlockAndReportBottomSheet(context, widget.chatId);
+              showBlockAndReportBottomSheet(
+                  context: context,
+                  id: widget.chatId,
+                  onViewProfile: () {
+                    Get.back();
+                    Get.to(() => PublicProfileScreen(
+                          uid: widget.chatId,
+                          isFromChatScreen: true,
+                        ));
+                  });
             },
           ),
         ],
@@ -158,8 +176,8 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                       if (image != null) {
                         PrivateChatService.sentPersonalImageMessage(
                             widget.chatId, image);
+                        Navigator.pop(context);
                       }
-                      Navigator.pop(context);
                     }
                     if (index == 4) {
                       await Get.to(
