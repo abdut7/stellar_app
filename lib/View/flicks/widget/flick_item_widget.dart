@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:stellar_chat/View/comment_view/show_comment_bottom_sheet.dart';
 import 'package:stellar_chat/View/flicks/widget/fliq_video_player_widget.dart';
+import 'package:stellar_chat/services/api_services/fliq_services.dart';
 import 'package:stellar_chat/utils/colors.dart';
 
 import '../../../models/api_models/flick_model.dart';
@@ -24,6 +26,7 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
   void initState() {
     likeCount = widget.flickItem.likesCount;
     commentCount = widget.flickItem.commentsCount;
+    isLiked = widget.flickItem.isLiked;
 
     super.initState();
   }
@@ -60,8 +63,12 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
                           isLiked = !isLiked;
                           if (isLiked) {
                             likeCount++;
+                            FliqServices()
+                                .likeFlick(flickId: widget.flickItem.id);
                           } else {
                             likeCount--;
+                            FliqServices()
+                                .unLikeFlick(flickId: widget.flickItem.id);
                           }
                         });
                       },
@@ -95,7 +102,12 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
                       height: 30,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        showCommentBottomSheet(
+                            context,
+                            widget.flickItem.commentsCount,
+                            widget.flickItem.id);
+                      },
                       child: SvgPicture.string(
                           """<svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_d_1516_6785)">

@@ -1,14 +1,36 @@
 import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/View/comment_view/functions/get_time_as_ago.dart';
 import 'package:stellar_chat/View/comment_view/show_comment_bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:stellar_chat/services/api_services/fliq_services.dart';
 
 class MainTile extends StatefulWidget {
-  const MainTile({Key? key}) : super(key: key);
+  final String commenterName;
+  final String commenterProfileUrl;
+  final String comment;
+  final String time;
+  final bool isLiked;
+  final String id;
+  final VoidCallback onLiked;
+  final String flickId;
+  const MainTile(
+      {Key? key,
+      required this.commenterName,
+      required this.commenterProfileUrl,
+      required this.comment,
+      required this.time,
+      required this.isLiked,
+      required this.onLiked,
+      required this.id,
+      required this.flickId})
+      : super(key: key);
 
   @override
   State<MainTile> createState() => _MainTileState();
 }
+
+bool isCommentLiked = false;
 
 class _MainTileState extends State<MainTile> {
   @override
@@ -20,14 +42,13 @@ class _MainTileState extends State<MainTile> {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: SColors.color9,
-          image: const DecorationImage(
-              image: NetworkImage(
-                  'https://img.freepik.com/premium-photo/woman-holding-camera-with-word-canon-front_853645-1568.jpg?w=1380'),
+          image: DecorationImage(
+              image: NetworkImage(widget.commenterProfileUrl),
               fit: BoxFit.cover),
         ),
       ),
       title: Text(
-        'martini_rond',
+        widget.commenterName,
         style: TextStyle(
           color: SColors.color8,
           fontSize: 13,
@@ -38,7 +59,7 @@ class _MainTileState extends State<MainTile> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'How neatly I write the date in my book',
+            widget.comment,
             style: TextStyle(
               color: SColors.color3,
               fontSize: 15,
@@ -58,7 +79,7 @@ class _MainTileState extends State<MainTile> {
               IconButton(
                 icon: const Icon(Icons.arrow_drop_down, size: 20),
                 onPressed: () {
-                  showCommentBottomSheet(context);
+                  showCommentBottomSheet(context, 10, "");
                 },
               ),
             ],
@@ -69,7 +90,7 @@ class _MainTileState extends State<MainTile> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            '22h',
+            formatTimeDifference(widget.time),
             style: TextStyle(
               color: SColors.color9,
               fontSize: 13,
@@ -79,8 +100,25 @@ class _MainTileState extends State<MainTile> {
           Column(
             children: [
               IconButton(
-                icon: const Icon(CupertinoIcons.heart, size: 20),
-                onPressed: () {},
+                icon: isCommentLiked
+                    ? const Icon(
+                        CupertinoIcons.heart_fill,
+                        size: 20,
+                        color: Colors.red,
+                      )
+                    : const Icon(CupertinoIcons.heart, size: 20),
+                onPressed: () {
+                  setState(() {
+                    isCommentLiked = !isCommentLiked;
+                  });
+                  if (isCommentLiked) {
+                    FliqServices().unLikeFlickComment(
+                        flickId: widget.flickId, commentId: widget.id);
+                  } else {
+                    FliqServices().likeFlickComment(
+                        flickId: widget.flickId, commentId: widget.id);
+                  }
+                },
               ),
               Expanded(
                 child: Text(

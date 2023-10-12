@@ -41,6 +41,7 @@ class FlickItem {
   final String strCreatedUserFullName;
   final String strCreatedUserMobNo;
   final String strUserProfileUrl;
+  final bool isLiked;
 
   FlickItem({
     required this.id,
@@ -49,6 +50,7 @@ class FlickItem {
     required this.strFileUrl,
     required this.strDescription,
     required this.strLocation,
+    required this.isLiked,
     this.strThumbnailUrl,
     required this.likesCount,
     required this.commentsCount,
@@ -72,6 +74,7 @@ class FlickItem {
       commentsCount: json['commentsCount'],
       isFavorite: json['isFavorite'],
       strUserId: json['strUserId'],
+      isLiked: json['isLiked'],
       strCreatedUserFullName: json['strCreatedUserFullName'],
       strCreatedUserMobNo: json['strCreatedUserMobNo'],
       strUserProfileUrl: json['strUserProfileUrl'],

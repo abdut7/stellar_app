@@ -37,7 +37,19 @@ class _ChannelViewScreenState extends State<ChannelViewScreen> {
               color: SColors.color9,
             ),
           ),
-          const MainTile(),
+          MainTile(
+            comment: "This is my comment",
+            commenterName: "Joel Mathew",
+            isLiked: true,
+            id: "myID",
+            onLiked: () {
+              print("like pressed");
+            },
+            time: "22hr",
+            commenterProfileUrl:
+                "https://loremflickr.com/cache/resized/65535_52627441448_842afe99e3_z_640_360_nofilter.jpg",
+                flickId: "",
+          ),
           const SizedBox(
             height: 10,
           ),
