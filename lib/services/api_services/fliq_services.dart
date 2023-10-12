@@ -119,7 +119,10 @@ class FliqServices {
     Dio dio = Dio();
     String url = ApiRoutes.baseUrl + ApiRoutes.getFlicksById;
     Map<String, dynamic> header = await getHeader();
-    Map<String, dynamic> data = {"strUserId": id, "intPageCount ": count};
+    Map<String, dynamic> data = {
+      "strUserId": id,
+      "intPageCount ": count.toString()
+    };
     ProfileFlicksController controller = Get.find();
     print(count);
     if (count == 1) {
@@ -146,7 +149,7 @@ class FliqServices {
     Dio dio = Dio();
     String url = ApiRoutes.baseUrl + ApiRoutes.getFlicksList;
     Map<String, dynamic> header = await getHeader();
-    Map<String, dynamic> data = {"intPageCount ": count};
+    Map<String, dynamic> data = {"intPageCount ": count.toString()};
     FlicksPlayerController controller = Get.find();
 
     try {
