@@ -16,7 +16,7 @@ class UploadFileService {
           filePaths.map((path) => MultipartFile.fromFileSync(path)).toList();
 
       final FormData formData = FormData.fromMap({
-        'files': files,
+        'arrFiles': files,
       });
       // Map<String, String> data = {"strSearch": query};
       Response res = await dio.post(
@@ -31,7 +31,9 @@ class UploadFileService {
           }
         },
       );
-      print(res);
-    } catch (e) {}
+      return res.data['arrUrls'][0];
+    } catch (e) {
+      print(e);
+    }
   }
 }

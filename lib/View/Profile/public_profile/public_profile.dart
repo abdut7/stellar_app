@@ -2,6 +2,7 @@ import 'package:stellar_chat/Settings/SImages.dart';
 import 'package:stellar_chat/View/chat/chat_screen/chat_screen.dart';
 import 'package:stellar_chat/View/profile/public_profile/widgets/follow_details_widget.dart';
 import 'package:stellar_chat/View/profile/widget/about_me_text.dart';
+import 'package:stellar_chat/View/profile/widget/channel_grid_view.dart';
 import 'package:stellar_chat/View/profile/widget/contact_through_options.dart';
 import 'package:stellar_chat/models/api_models/user_details_model.dart';
 import 'package:stellar_chat/services/api_services/account_services.dart';
@@ -9,7 +10,7 @@ import 'package:stellar_chat/services/api_services/public_profile_service.dart';
 import 'package:flutter/material.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
-import 'package:stellar_chat/View/profile/widget/custom_grid_view.dart';
+import 'package:stellar_chat/View/profile/widget/flick_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -284,12 +285,15 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                       child: IndexedStack(index: selectedTabIndex, children: [
                         Visibility(
                             visible: selectedTabIndex == 0,
-                            child: CustomGridView(
+                            child: FlickGridView(
+                              id: userDetailsModel!.id,
                               icon: Icons.photo,
                             )),
                         Visibility(
                             visible: selectedTabIndex == 1,
-                            child: CustomGridView()),
+                            child: ChannelGridView(
+                              id: userDetailsModel!.id,
+                            )),
                       ]),
                     ),
                   ],

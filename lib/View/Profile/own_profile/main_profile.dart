@@ -3,7 +3,8 @@ import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/View/profile/edit_profile/edit_profile.dart';
 import 'package:stellar_chat/View/profile/settings/profile_settings/profile_settings.dart';
 import 'package:stellar_chat/View/profile/widget/about_me_text.dart';
-import 'package:stellar_chat/View/profile/widget/custom_grid_view.dart';
+import 'package:stellar_chat/View/profile/widget/channel_grid_view.dart';
+import 'package:stellar_chat/View/profile/widget/flick_grid_view.dart';
 import 'package:stellar_chat/View/profile/widget/profile_buttons.dart';
 import 'package:stellar_chat/View/profile/widget/profile_status.dart';
 import 'package:stellar_chat/controllers/new_post/fliq_controller.dart';
@@ -191,12 +192,18 @@ class _MainProfileState extends State<MainProfile> {
               ),
               IndexedStack(index: selectedTabIndex, children: [
                 Visibility(
-                    visible: selectedTabIndex == 0,
-                    child: CustomGridView(
-                      icon: Icons.photo,
-                    )),
+                  visible: selectedTabIndex == 0,
+                  child: FlickGridView(
+                    id: controller.userDetailsModel.value!.id,
+                    icon: Icons.photo,
+                  ),
+                ),
                 Visibility(
-                    visible: selectedTabIndex == 1, child: CustomGridView()),
+                  visible: selectedTabIndex == 1,
+                  child: ChannelGridView(
+                     id: controller.userDetailsModel.value!.id,
+                  ),
+                ),
               ]),
             ],
           ),

@@ -28,4 +28,6 @@ class ApiRoutes {
   static String addParticipentsContacts = "/get_contacts_add_group";
   static String postFlick = "/create_flick_channel";
   static String filesUpload = "/files_upload";
+  static String getFlicksById = "/get_flick_by_id";
+  static String getFlicksList = "/get_flick_list";
 }
