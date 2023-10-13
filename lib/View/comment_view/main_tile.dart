@@ -1,20 +1,20 @@
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/View/comment_view/functions/get_time_as_ago.dart';
-import 'package:stellar_chat/View/comment_view/show_comment_bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stellar_chat/services/api_services/fliq_services.dart';
 
 class MainTile extends StatefulWidget {
+  final String likeCount;
   final String commenterName;
   final String commenterProfileUrl;
   final String comment;
   final String time;
   final bool isLiked;
   final String id;
-  final VoidCallback onLiked;
+  Function(bool) onLiked;
   final String flickId;
-  const MainTile(
+  MainTile(
       {Key? key,
       required this.commenterName,
       required this.commenterProfileUrl,
@@ -23,16 +23,22 @@ class MainTile extends StatefulWidget {
       required this.isLiked,
       required this.onLiked,
       required this.id,
-      required this.flickId})
+      required this.flickId,
+      required this.likeCount})
       : super(key: key);
 
   @override
   State<MainTile> createState() => _MainTileState();
 }
 
-bool isCommentLiked = false;
-
 class _MainTileState extends State<MainTile> {
+  late bool isLiked;
+  @override
+  void initState() {
+    super.initState();
+    isLiked = widget.isLiked;
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -66,24 +72,24 @@ class _MainTileState extends State<MainTile> {
               fontWeight: FontWeight.w400,
             ),
           ),
-          Row(
-            children: [
-              Text(
-                'View replies (4)',
-                style: TextStyle(
-                  color: SColors.color9,
-                  fontSize: 11,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              IconButton(
-                icon: const Icon(Icons.arrow_drop_down, size: 20),
-                onPressed: () {
-                  showCommentBottomSheet(context, 10, "");
-                },
-              ),
-            ],
-          ),
+          // Row(
+          //   children: [
+          //     Text(
+          //       'View replies (4)',
+          //       style: TextStyle(
+          //         color: SColors.color9,
+          //         fontSize: 11,
+          //         fontWeight: FontWeight.w600,
+          //       ),
+          //     ),
+          //     IconButton(
+          //       icon: const Icon(Icons.arrow_drop_down, size: 20),
+          //       onPressed: () {
+          //         showCommentBottomSheet(context, 10, "");
+          //       },
+          //     ),
+          //   ],
+          // ),
         ],
       ),
       trailing: Row(
@@ -100,7 +106,7 @@ class _MainTileState extends State<MainTile> {
           Column(
             children: [
               IconButton(
-                icon: isCommentLiked
+                icon: isLiked
                     ? const Icon(
                         CupertinoIcons.heart_fill,
                         size: 20,
@@ -109,20 +115,15 @@ class _MainTileState extends State<MainTile> {
                     : const Icon(CupertinoIcons.heart, size: 20),
                 onPressed: () {
                   setState(() {
-                    isCommentLiked = !isCommentLiked;
+                    isLiked = !isLiked;
                   });
-                  if (isCommentLiked) {
-                    FliqServices().unLikeFlickComment(
-                        flickId: widget.flickId, commentId: widget.id);
-                  } else {
-                    FliqServices().likeFlickComment(
-                        flickId: widget.flickId, commentId: widget.id);
-                  }
+
+                  widget.onLiked(!isLiked);
                 },
               ),
               Expanded(
                 child: Text(
-                  '25.2K',
+                  widget.likeCount,
                   style: TextStyle(fontSize: 8, color: SColors.color8),
                 ),
               )

@@ -1,6 +1,7 @@
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/View/profile/edit_profile/edit_profile.dart';
+import 'package:stellar_chat/View/profile/followe_listing_page.dart';
 import 'package:stellar_chat/View/profile/settings/profile_settings/profile_settings.dart';
 import 'package:stellar_chat/View/profile/widget/about_me_text.dart';
 import 'package:stellar_chat/View/profile/widget/channel_grid_view.dart';
@@ -112,16 +113,36 @@ class _MainProfileState extends State<MainProfile> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    ProfileStatus(count: '09', label: 'Posts'),
                     ProfileStatus(
-                        count:
-                            "${controller.userDetailsModel.value!.followingCount}",
-                        label: 'Following'),
-                    ProfileStatus(
-                        count:
-                            "${controller.userDetailsModel.value!.followersCount}",
-                        label: 'Followers'),
+                        count: controller.userDetailsModel.value!.intPostCount
+                            .toString(),
+                        label: 'Posts'),
+                    GestureDetector(
+                      onTap: () {
+                        // get to follower list
+                        Get.to(
+                          () => const FollowerListingPage(
+                              page: FollowingOrFollower.following),
+                        );
+                      },
+                      child: ProfileStatus(
+                          count:
+                              "${controller.userDetailsModel.value!.followingCount}",
+                          label: 'Following'),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        // get to follower list
+                        Get.to(() => const FollowerListingPage(
+                            page: FollowingOrFollower.followers));
+                      },
+                      child: ProfileStatus(
+                          count:
+                              "${controller.userDetailsModel.value!.followersCount}",
+                          label: 'Followers'),
+                    ),
                   ],
                 ),
               ),
@@ -201,7 +222,7 @@ class _MainProfileState extends State<MainProfile> {
                 Visibility(
                   visible: selectedTabIndex == 1,
                   child: ChannelGridView(
-                     id: controller.userDetailsModel.value!.id,
+                    id: controller.userDetailsModel.value!.id,
                   ),
                 ),
               ]),

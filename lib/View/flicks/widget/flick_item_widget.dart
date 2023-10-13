@@ -91,7 +91,7 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
                           </defs>
                           </svg>
                           """,
-                        color: isLiked ? colorPrimary : null,
+                        color: isLiked ? Colors.red : null,
                       ),
                     ),
                     Text(

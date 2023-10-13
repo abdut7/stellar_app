@@ -38,4 +38,7 @@ class ApiRoutes {
   static String unlikeFlickComment = "/unlike_comment";
 
   static String clearPersonalChat = "/clear_messages";
+
+  static String getFollowersList = "/get_follower_list";
+  static String getFollowingList = "/get_following_list";
 }

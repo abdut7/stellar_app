@@ -32,7 +32,10 @@ class _FlickGridViewState extends State<FlickGridView> {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3, crossAxisSpacing: 0, mainAxisSpacing: 0),
+                  childAspectRatio: 0.5,
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 0,
+                  mainAxisSpacing: 0),
               itemCount: controller.flickItems.length,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
@@ -66,7 +69,6 @@ class _FlickGridViewState extends State<FlickGridView> {
                               size: 40,
                             )
                           : null,
-                          
                     ),
                   ),
                 );

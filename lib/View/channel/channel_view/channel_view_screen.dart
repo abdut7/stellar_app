@@ -38,17 +38,16 @@ class _ChannelViewScreenState extends State<ChannelViewScreen> {
             ),
           ),
           MainTile(
+            likeCount: "10",
             comment: "This is my comment",
             commenterName: "Joel Mathew",
             isLiked: true,
             id: "myID",
-            onLiked: () {
-              print("like pressed");
-            },
+            onLiked: (val) {},
             time: "22hr",
             commenterProfileUrl:
                 "https://loremflickr.com/cache/resized/65535_52627441448_842afe99e3_z_640_360_nofilter.jpg",
-                flickId: "",
+            flickId: "",
           ),
           const SizedBox(
             height: 10,

@@ -205,6 +205,8 @@ class FliqServices {
 
   Future<void> unLikeFlickComment(
       {required String flickId, required String commentId}) async {
+    print("Comment unliking ");
+
     Dio dio = Dio();
     String url = ApiRoutes.baseUrl + ApiRoutes.unlikeFlickComment;
     Map<String, dynamic> header = await getHeader();

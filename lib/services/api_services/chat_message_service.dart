@@ -22,6 +22,7 @@ class ChatMessageService {
     try {
       Response response =
           await dio.post(url, data: body, options: Options(headers: header));
+      print(response);
 
       print(response);
       PrivateMessageJsonModel model =

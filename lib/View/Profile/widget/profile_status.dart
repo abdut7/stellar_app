@@ -14,27 +14,25 @@ class ProfileStatus extends StatefulWidget {
 class _ProfileStatusState extends State<ProfileStatus> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        children: [
-          Text(
-            widget.count,
-            style: TextStyle(
-              color: SColors.color3,
-              fontSize: 15,
-              fontWeight: FontWeight.w700,
-            ),
+    return Column(
+      children: [
+        Text(
+          widget.count,
+          style: TextStyle(
+            color: SColors.color3,
+            fontSize: 15,
+            fontWeight: FontWeight.w700,
           ),
-          Text(
-            widget.label,
-            style: TextStyle(
-              color: SColors.color3,
-              fontSize: 11,
-              fontWeight: FontWeight.w500,
-            ),
+        ),
+        Text(
+          widget.label,
+          style: TextStyle(
+            color: SColors.color3,
+            fontSize: 11,
+            fontWeight: FontWeight.w500,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -58,73 +58,71 @@ class _CommentScreenState extends State<CommentScreen> {
     return FutureBuilder(
         future: FliqServices().getComments(id: widget.commentId),
         builder: (context, AsyncSnapshot<CommentResponseModel?> snapshot) {
-          return Stack(
-            children: [
-              Column(
+          return Scaffold(
+            backgroundColor: Colors.transparent,
+            body: Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(10),
+                ),
+              ),
+              child: Column(
                 children: [
-                  Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(20.0),
-                      child: Text('${widget.commentCount} Comments'),
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const SizedBox(
+                        width: 30,
+                      ),
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Text('${widget.commentCount} Comments'),
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          Icons.cancel_outlined,
+                          color: SColors.color3,
+                        ),
+                        onPressed: () {
+                          Get.back();
+                        },
+                      ),
+                    ],
                   ),
                   !snapshot.hasData || snapshot.data == null
-                      ? Spacer()
+                      ? const Spacer()
                       : Expanded(
                           child: ListView.builder(
+                          reverse: true,
                           itemCount: snapshot.data!.arrList.length,
                           itemBuilder: (context, index) {
                             CommentItem commentItem =
                                 snapshot.data!.arrList.elementAt(index);
                             return MainTile(
-                              id: commentItem.id,
-                              comment: commentItem.strComment,
-                              commenterName: commentItem.userDetails.strName,
-                              isLiked: false,
-                              flickId: commentItem.strFlickId,
-                              onLiked: () {
-                                print("like pressed");
-                              },
-                              time: commentItem.strCreatedTime,
-                              commenterProfileUrl:
-                                  "https://loremflickr.com/cache/resized/65535_52627441448_842afe99e3_z_640_360_nofilter.jpg",
-                            );
+                                likeCount: commentItem.likeCount.toString(),
+                                id: commentItem.id,
+                                comment: commentItem.strComment,
+                                commenterName: commentItem.strCreatedUser,
+                                isLiked: commentItem.isLiked,
+                                flickId: commentItem.strFlickId,
+                                onLiked: (val) {
+                                  if (val) {
+                                    FliqServices().unLikeFlickComment(
+                                        flickId: commentItem.strFlickId,
+                                        commentId: commentItem.id);
+                                  } else {
+                                    FliqServices().likeFlickComment(
+                                        flickId: commentItem.strFlickId,
+                                        commentId: commentItem.id);
+                                  }
+                                },
+                                time: commentItem.strCreatedTime,
+                                commenterProfileUrl:
+                                    commentItem.strCreatedUserProfile);
                           },
-                        )
-                          //  ListViewB(
-                          //   children: [
-                          //     MainTile(
-                          //       id: "myid",
-                          //       comment: "This is my comment",
-                          //       commenterName: "Joel Mathew",
-                          //       isLiked: true,
-                          //       onLiked: () {
-                          //         print("like pressed");
-                          //       },
-                          //       time: "22hr",
-                          //       commenterProfileId:
-                          //           "https://loremflickr.com/cache/resized/65535_52627441448_842afe99e3_z_640_360_nofilter.jpg",
-                          //     ),
-                          //     // Padding(
-                          //     //   padding: EdgeInsets.all(10.0),
-                          //     //   child: MainTile(),
-                          //     // ),
-                          //     // ReplyTile(),
-                          //     // SizedBox(
-                          //     //   height: 10,
-                          //     // ),
-                          //     // ReplyTile(),
-                          //     // SizedBox(
-                          //     //   height: 10,
-                          //     // ),
-                          //     // ReplyTile(),
-                          //     // Padding(
-                          //     //   padding: EdgeInsets.all(10.0),
-                          //     //   child: MainTile(),
-                          //     // ),
-                          //   ],
-                          // ),
-                          ),
+                        )),
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Container(
@@ -162,9 +160,9 @@ class _CommentScreenState extends State<CommentScreen> {
                               IconButton(
                                 icon: SvgPicture.string(
                                     """<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M23.8731 12.0131C23.8731 12.8648 23.3236 13.6231 22.3681 14.1015L3.21147 23.6798C2.74481 23.9131 2.28981 24.0298 1.86981 24.0298C1.26197 24.0298 0.726474 23.7731 0.386974 23.3193C0.0964737 22.9215 -0.183526 22.2331 0.154807 21.1131L2.31314 13.9148C2.38314 13.7048 2.42981 13.4493 2.45314 13.1798H14.2715C14.9131 13.1798 15.4381 12.6548 15.4381 12.0131C15.4381 11.3715 14.9131 10.8465 14.2715 10.8465H2.45314C2.42864 10.5781 2.38197 10.3215 2.31314 10.1115L0.154807 2.91313C-0.183526 1.79313 0.0964737 1.1048 0.38814 0.708129C0.959807 -0.0618716 2.04481 -0.236871 3.21147 0.346462L22.3693 9.9248C23.3248 10.4031 23.8731 11.1615 23.8731 12.0131Z" fill="#00338E"/>
-    </svg>
-    """),
+                <path d="M23.8731 12.0131C23.8731 12.8648 23.3236 13.6231 22.3681 14.1015L3.21147 23.6798C2.74481 23.9131 2.28981 24.0298 1.86981 24.0298C1.26197 24.0298 0.726474 23.7731 0.386974 23.3193C0.0964737 22.9215 -0.183526 22.2331 0.154807 21.1131L2.31314 13.9148C2.38314 13.7048 2.42981 13.4493 2.45314 13.1798H14.2715C14.9131 13.1798 15.4381 12.6548 15.4381 12.0131C15.4381 11.3715 14.9131 10.8465 14.2715 10.8465H2.45314C2.42864 10.5781 2.38197 10.3215 2.31314 10.1115L0.154807 2.91313C-0.183526 1.79313 0.0964737 1.1048 0.38814 0.708129C0.959807 -0.0618716 2.04481 -0.236871 3.21147 0.346462L22.3693 9.9248C23.3248 10.4031 23.8731 11.1615 23.8731 12.0131Z" fill="#00338E"/>
+                </svg>
+                """),
                                 onPressed: () async {
                                   await FliqServices().addComments(
                                     flickId: widget.commentId,
@@ -182,20 +180,7 @@ class _CommentScreenState extends State<CommentScreen> {
                   ),
                 ],
               ),
-              Positioned(
-                top: 0,
-                right: 10,
-                child: IconButton(
-                  icon: Icon(
-                    Icons.cancel_outlined,
-                    color: SColors.color3,
-                  ),
-                  onPressed: () {
-                    Get.back();
-                  },
-                ),
-              ),
-            ],
+            ),
           );
         });
   }

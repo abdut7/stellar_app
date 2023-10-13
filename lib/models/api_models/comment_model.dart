@@ -12,65 +12,55 @@ class CommentResponseModel {
   });
 
   factory CommentResponseModel.fromJson(Map<String, dynamic> json) {
-    final List<dynamic> arrList = json['arrList'];
-    List<CommentItem> commentItems = arrList.map((item) {
-      return CommentItem.fromJson(item);
-    }).toList();
+    final List<dynamic> arrListJson = json['arrList'] ?? [];
+    final arrList =
+        arrListJson.map((item) => CommentItem.fromJson(item)).toList();
 
     return CommentResponseModel(
-      success: json['success'],
-      message: json['message'],
-      statusCode: json['statusCode'],
-      arrList: commentItems,
+      success: json['success'] ?? false,
+      message: json['message'] ?? '',
+      statusCode: json['statusCode'] ?? 0,
+      arrList: arrList,
     );
   }
 }
 
 class CommentItem {
   final String id;
-  final String chrStatus;
   final String strComment;
   final String strFlickId;
   final String strCreatedBy;
+  final bool isLiked;
+  final int likeCount;
+  final String strCreatedUser;
+  final String strCreatedUserId;
+  final String strCreatedUserProfile;
   final String strCreatedTime;
-  final UserDetails userDetails;
 
-  CommentItem({
-    required this.id,
-    required this.chrStatus,
-    required this.strComment,
-    required this.strFlickId,
-    required this.strCreatedBy,
-    required this.strCreatedTime,
-    required this.userDetails,
-  });
+  CommentItem(
+      {required this.id,
+      required this.strComment,
+      required this.strFlickId,
+      required this.strCreatedBy,
+      required this.isLiked,
+      required this.likeCount,
+      required this.strCreatedUser,
+      required this.strCreatedUserId,
+      required this.strCreatedUserProfile,
+      required this.strCreatedTime});
 
   factory CommentItem.fromJson(Map<String, dynamic> json) {
     return CommentItem(
-      id: json['_id'],
-      chrStatus: json['chrStatus'],
-      strComment: json['strComment'],
-      strFlickId: json['strFlickId'],
-      strCreatedBy: json['strCreatedBy'],
-      strCreatedTime: json['strCreatedTime'],
-      userDetails: UserDetails.fromJson(json['userDetails']),
-    );
-  }
-}
-
-class UserDetails {
-  final String id;
-  final String strName;
-
-  UserDetails({
-    required this.id,
-    required this.strName,
-  });
-
-  factory UserDetails.fromJson(Map<String, dynamic> json) {
-    return UserDetails(
-      id: json['_id'],
-      strName: json['strName'],
+      strCreatedTime: json["strCreatedTime"],
+      id: json['_id'] ?? '',
+      strComment: json['strComment'] ?? '',
+      strFlickId: json['strFlickId'] ?? '',
+      strCreatedBy: json['strCreatedBy'] ?? '',
+      isLiked: json['isLiked'] ?? false,
+      likeCount: json['likeCount'] ?? 0,
+      strCreatedUser: json['strCreatedUser'] ?? '',
+      strCreatedUserId: json['strCreatedUserId'] ?? '',
+      strCreatedUserProfile: json['strCreatedUserProfile'] ?? '',
     );
   }
 }

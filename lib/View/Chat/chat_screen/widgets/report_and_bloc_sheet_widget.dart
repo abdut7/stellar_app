@@ -168,6 +168,7 @@ showBlockAndReportBottomSheet(
                     },
                     onOk: () async {
                       Get.back();
+                      // report user here
                       showCustomSnackbar(
                           title: "User has been reported", message: "");
                     },
