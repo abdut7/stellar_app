@@ -57,15 +57,18 @@ class GroupChatBubble extends StatelessWidget {
               margin: EdgeInsets.symmetric(
                   vertical: message.strMessageType == "voice" ||
                           message.strMessageType == "contact" ||
+                          message.strMessageType == "document" ||
                           message.strMessageType == "tag"
                       ? 0
                       : 4),
               padding: EdgeInsets.all(message.strMessageType == "voice" ||
+                      message.strMessageType == "document" ||
                       message.strMessageType == "contact" ||
                       message.strMessageType == "tag"
                   ? 0
                   : 8.0),
               decoration: message.strMessageType == "voice" ||
+                      message.strMessageType == "document" ||
                       message.strMessageType == "contact"
                   ? null
                   : BoxDecoration(
@@ -187,10 +190,12 @@ class GroupChatBubble extends StatelessWidget {
                                       subject:
                                           'Come connect me on Stellar chat');
                                 } else {
-                                  Get.to(() => PrivateChatScreen(
-                                      chatId: message.strChatId,
-                                      fullName: message.strName,
-                                      imageUrl: message.strUrl));
+                                  Get.to(
+                                    () => PrivateChatScreen(
+                                        chatId: message.strChatId,
+                                        fullName: message.strName,
+                                        imageUrl: message.strUrl),
+                                  );
                                 }
                               },
                               child: Container(
@@ -319,6 +324,9 @@ class GroupChatBubble extends StatelessWidget {
                                   : message.strMessageType == "document" ||
                                           message.strMessageType == "sentingDoc"
                                       ? DocumentBubble(
+                                        senterName: message.strName,
+                                          isGroup: true,
+                                          createdTime: message.strCreatedTime,
                                           isSenting: message.strMessageType ==
                                               "sentingDoc",
                                           isSent: isSent,

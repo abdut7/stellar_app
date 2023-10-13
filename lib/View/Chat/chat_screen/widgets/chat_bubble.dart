@@ -60,16 +60,18 @@ class ChatBubble extends StatelessWidget {
                   : Container(
                       decoration: BoxDecoration(
                         color: message.strMessageType == "voice" ||
-                                message.strMessageType == "contact"
+                                message.strMessageType == "contact" ||
+                                message.strMessageType == "document"
                             ? null
                             : color,
                         boxShadow: !isSent &&
                                 message.strMessageType != "voice" &&
-                                message.strMessageType != "contact"
+                                message.strMessageType != "contact" &&
+                                message.strMessageType != "document"
                             ? [
                                 BoxShadow(
                                   color: Colors.black.withOpacity(0.2),
-                                  blurRadius: 1.0,
+                                  blurRadius: 0.3,
                                   offset: const Offset(1.0, 1.0),
                                 ),
                               ]
@@ -238,6 +240,9 @@ class ChatBubble extends StatelessWidget {
                                   : message.strMessageType == "document" ||
                                           message.strMessageType == "sentingDoc"
                                       ? DocumentBubble(
+                                          senterName: message.strName,
+                                          isGroup: false,
+                                          createdTime: message.strCreatedTime,
                                           isSenting: message.strMessageType ==
                                               "sentingDoc",
                                           isSent: isSent,

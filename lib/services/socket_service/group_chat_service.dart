@@ -1,5 +1,13 @@
+import 'dart:math';
+
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:path/path.dart';
+import 'package:stellar_chat/controllers/group_chat_controller.dart';
+import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/functions/delete_audio_file.dart';
 import 'package:stellar_chat/functions/image_to_base.dart';
+import 'package:stellar_chat/models/group_chat/group_message_model.dart';
 import 'package:stellar_chat/services/api_services/upload_file_service.dart';
 import 'package:stellar_chat/services/api_services/upload_files.dart';
 import 'package:stellar_chat/services/socket_service/socket_service.dart';
@@ -74,5 +82,42 @@ class GroupChatService {
         "strContactName": name
       },
     );
+  }
+
+  static Future<void> sentGroupDocumentMessage(
+      {required String chatId, required String path}) async {
+    final random = Random();
+    Socket socket = SocketService().socket;
+    UserController userController = Get.find();
+
+    GroupChatController chatController = Get.find();
+    int randomNumber = random.nextInt(1001);
+    chatController.groupMessageList.add(GroupMessageModel(
+        strIconURL: "",
+        id: "$randomNumber",
+        strCreatedTime: "",
+        strMessage: basename(path),
+        strMessageType: "sentingDoc",
+        strName: "",
+        strType: "group",
+        strUrl: userController.userDetailsModel.value!.id,
+        strUserId: "",
+        strContactName: "",
+        strContactNumbers: "",
+        strChatId: ""));
+    String? fileUrl = await UploadFileService.uploadFile(filePaths: [path]);
+    if (fileUrl == null) {
+      return;
+    }
+    socket.emit('send_message', {
+      'strChatId': chatId,
+      'strMessage': basename(path),
+      "strMessageType": "document",
+      "strType": "private",
+      "strUrl": fileUrl,
+    });
+    // ChatMessageService.getMessages(chatId: chatId, type: "private");
+    chatController.groupMessageList
+        .removeWhere((element) => element.id == randomNumber.toString());
   }
 }
