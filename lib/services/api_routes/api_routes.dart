@@ -36,4 +36,6 @@ class ApiRoutes {
   static String addFlickComments = "/create_comments";
   static String likeFlickComment = "/like_comment";
   static String unlikeFlickComment = "/unlike_comment";
+
+  static String clearPersonalChat = "/clear_messages";
 }

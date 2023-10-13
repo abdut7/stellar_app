@@ -125,7 +125,7 @@ showBlockAndReportBottomSheet(
                   showSubBottomSheet(
                     context: context,
                     text1: 'Do You want to Clear all',
-                    text2: ' Call Logs',
+                    text2: ' Messages by you',
                     cancelText: 'Cancel',
                     okText: 'OK',
                     onCancel: () {
@@ -133,6 +133,7 @@ showBlockAndReportBottomSheet(
                     },
                     onOk: () {
                       Get.back();
+                      ChatMessageService.clearAllMessages(chatId: id);
                       showCustomSnackbar(
                           title: "Chat Clear in progress",
                           message: "Clearing all messages");

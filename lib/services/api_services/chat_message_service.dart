@@ -36,4 +36,20 @@ class ChatMessageService {
       chatController.isLoading(false);
     }
   }
+
+  static Future<void> clearAllMessages({required String chatId}) async {
+    Dio dio = Dio();
+    String url = ApiRoutes.baseUrl + ApiRoutes.clearPersonalChat;
+    Map<String, dynamic> header = await getHeader();
+    Map<String, dynamic> body = {"strChatId": chatId};
+    print("Call working good");
+    try {
+      Response res =
+          await dio.post(url, options: Options(headers: header), data: body);
+      print(res);
+    } catch (e) {
+      print(e);
+    }
+    ChatMessageService.getMessages(chatId: chatId, type: "private");
+  }
 }
