@@ -31,6 +31,8 @@ class UploadFileService {
           }
         },
       );
+      print('Content-Length: ${res.headers['content-length']}');
+      print('Actual Content Length: ${res.data.length}');
       return res.data['arrUrls'][0];
     } catch (e) {
       print(e);

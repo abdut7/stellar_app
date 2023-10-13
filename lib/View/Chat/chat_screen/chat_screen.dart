@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stellar_chat/View/Chat/chat_screen/widgets/report_and_bloc_sheet_widget.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/chat_appbar_title_widget.dart';
@@ -159,6 +160,16 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                   context,
                   (index) async {
                     //if index = 0 =>Send Files
+                    if (index == 0) {
+                      FilePickerResult? result =
+                          await FilePicker.platform.pickFiles(
+                        type: FileType.any,
+                      );
+                      if (result != null) {
+                        PrivateChatService.sentPersonalDocumentMessage(
+                            chatId: widget.chatId, path: result.paths.first!);
+                      }
+                    }
                     //if index = 1 =>Camera
                     if (index == 1) {
                       XFile? image = await pickImageFromGalleryOrCamera(
@@ -167,7 +178,6 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                         PrivateChatService.sentPersonalImageMessage(
                             widget.chatId, image);
                       }
-                      Navigator.pop(context);
                     }
                     //if index = 2 =>Gallary
                     if (index == 2) {

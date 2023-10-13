@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stellar_chat/View/Chat/group_chat/widgets/group_chat_options_bottomsheet.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/show_attachment.dart';
@@ -98,7 +99,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                 child: Text(
                   widget.chatHistoryList.strName,
                   overflow: TextOverflow.ellipsis,
-                  style:  TextStyle(
+                  style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
                       color: colorPrimary),
@@ -155,8 +156,9 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                     senderName: model.strName,
                     // message: model.strMessage,
                     message: model,
-                    alignment: model.strUserId !=
-                            userController.userDetailsModel.value!.id
+                    alignment: !model.strMessageType.contains("senting") &&
+                            model.strUserId !=
+                                userController.userDetailsModel.value!.id
                         ? BubbleAlignment.left
                         : BubbleAlignment.right,
                   );
@@ -201,7 +203,17 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                   //   GroupChatService.sentGroupImageMessage(
                   //       widget.chatHistoryList.strChatId, image);
                   // }
-
+                  if (index == 0) {
+                    FilePickerResult? result =
+                        await FilePicker.platform.pickFiles(
+                      type: FileType.any,
+                    );
+                    if (result != null) {
+                      GroupChatService.sentGroupDocumentMessage(
+                          chatId: widget.chatHistoryList.strChatId,
+                          path: result.paths.first!);
+                    }
+                  }
                   if (index == 1 || index == 2) {
                     XFile? image = await pickImageFromGalleryOrCamera(
                         source: index == 1

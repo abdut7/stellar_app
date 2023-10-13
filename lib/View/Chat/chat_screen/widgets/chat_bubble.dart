@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter_svg/svg.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:stellar_chat/View/chat/chat_screen/chat_screen.dart';
+import 'package:stellar_chat/View/chat/chat_screen/widgets/document_bubble.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/show_time_widget.dart';
 import 'package:stellar_chat/View/chat/group_chat/widgets/voice_chat_bubble.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/contact_message_bubble.dart';
@@ -59,16 +60,18 @@ class ChatBubble extends StatelessWidget {
                   : Container(
                       decoration: BoxDecoration(
                         color: message.strMessageType == "voice" ||
-                                message.strMessageType == "contact"
+                                message.strMessageType == "contact" ||
+                                message.strMessageType == "document"
                             ? null
                             : color,
                         boxShadow: !isSent &&
                                 message.strMessageType != "voice" &&
-                                message.strMessageType != "contact"
+                                message.strMessageType != "contact" &&
+                                message.strMessageType != "document"
                             ? [
                                 BoxShadow(
                                   color: Colors.black.withOpacity(0.2),
-                                  blurRadius: 1.0,
+                                  blurRadius: 0.3,
                                   offset: const Offset(1.0, 1.0),
                                 ),
                               ]
@@ -234,31 +237,44 @@ class ChatBubble extends StatelessWidget {
                                       audioUrl: message.strUrl,
                                       isSender: isSent,
                                     )
-                                  : message.strMessageType == "contact"
-                                      ? ContactMessageBubble(
-                                          isSent: isSent, message: message)
-                                      : message.strMessageType == "sentingImage"
-                                          ? Padding(
-                                              padding:
-                                                  const EdgeInsets.all(2.0),
-                                              child: Container(
-                                                height: Get.width * 0.4,
-                                                width: Get.width * 0.6,
-                                                decoration: BoxDecoration(
-                                                  image: DecorationImage(
-                                                    fit: BoxFit.cover,
-                                                    image: FileImage(
-                                                      File(message.strUrl),
+                                  : message.strMessageType == "document" ||
+                                          message.strMessageType == "sentingDoc"
+                                      ? DocumentBubble(
+                                          senterName: message.strName,
+                                          isGroup: false,
+                                          createdTime: message.strCreatedTime,
+                                          isSenting: message.strMessageType ==
+                                              "sentingDoc",
+                                          isSent: isSent,
+                                          message: message.strMessage,
+                                          url: message.strUrl,
+                                        )
+                                      : message.strMessageType == "contact"
+                                          ? ContactMessageBubble(
+                                              isSent: isSent, message: message)
+                                          : message.strMessageType ==
+                                                  "sentingImage"
+                                              ? Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(2.0),
+                                                  child: Container(
+                                                    height: Get.width * 0.4,
+                                                    width: Get.width * 0.6,
+                                                    decoration: BoxDecoration(
+                                                      image: DecorationImage(
+                                                        fit: BoxFit.cover,
+                                                        image: FileImage(
+                                                          File(message.strUrl),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    child: const Center(
+                                                      child:
+                                                          CircularProgressIndicator(),
                                                     ),
                                                   ),
-                                                ),
-                                                child: const Center(
-                                                  child:
-                                                      CircularProgressIndicator(),
-                                                ),
-                                              ),
-                                            )
-                                          : const SizedBox(),
+                                                )
+                                              : const SizedBox(),
                     ),
               // const SizedBox(height: 4.0),
             ],

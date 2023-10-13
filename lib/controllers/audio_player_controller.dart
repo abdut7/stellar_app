@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:stellar_chat/services/get_cached_file_path.dart';
 
 class AudioController extends GetxController {
   AudioPlayer audioPlayer = AudioPlayer();
@@ -10,6 +11,7 @@ class AudioController extends GetxController {
   Rx<Duration> audioTotalDuration = Duration.zero.obs;
 
   Future<void> playAudio(String audioUrl) async {
+    audioUrl = audioUrl.trim();
     if (currentlyPlayingAudioUrl == audioUrl) {
       // The same audio is already playing, do nothing
       return;
@@ -18,9 +20,11 @@ class AudioController extends GetxController {
 
     // Stop the currently playing audio (if any)
     await stopAudio();
-
+    String? path = await getCachedFilePath(audioUrl);
+    print("path is $path");
     // Play the new audio
-    await audioPlayer.play(UrlSource(audioUrl));
+
+    await audioPlayer.play(DeviceFileSource(path!));
 
     currentlyPlayingAudioUrl = audioUrl;
     isPlaying(true);
