@@ -84,10 +84,10 @@ void choosepaymentoptionssheet(BuildContext context) {
               children: [
                 SvgPicture.asset(SSvgs.circleWhite,),
                 const SizedBox(width: 10),
-                SvgPicture.asset(SSvgs.applePay),
+                SvgPicture.asset(SSvgs.whiteVisaText),
                 const SizedBox(width: 15),
-                // const Text(
-                //   '**** 2356', style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w400,),),
+                const Text(
+                  '**** 2356', style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w400,),),
               ],
             ),
             const SizedBox(height: 25,),

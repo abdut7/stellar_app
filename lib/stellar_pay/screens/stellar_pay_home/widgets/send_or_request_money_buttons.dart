@@ -31,7 +31,7 @@ class _SendOrRequestMoneyButtonsState extends State<SendOrRequestMoneyButtons> {
             onTap: widget.onSendMoneyTap,
             child: Column(
               children: [
-                SvgPicture.asset(SSvgs.sendMoneyTransfer, width: 65, height: 65),
+                SvgPicture.asset(SSvgs.sendMoneyTransfer),
                 const SizedBox(height: 5),
                 Text(
                   widget.sendMoneyText,
@@ -44,7 +44,7 @@ class _SendOrRequestMoneyButtonsState extends State<SendOrRequestMoneyButtons> {
             onTap: widget.onRequestMoneyTap,
             child: Column(
               children: [
-                SvgPicture.asset(SSvgs.requestMoney, width: 65, height: 65),
+                SvgPicture.asset(SSvgs.requestMoney),
                 const SizedBox(height: 5),
                 Text(
                   widget.requestMoneyText,

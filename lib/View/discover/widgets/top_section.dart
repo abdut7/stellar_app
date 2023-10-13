@@ -16,7 +16,7 @@ class _TopSectionState extends State<TopSection > {
   Widget build(BuildContext context) {
     return Container(
       //height: 280,
-      height: Get.height*0.33,
+      height: Get.height*0.32,
       width: double.infinity,
       decoration: BoxDecoration(
         color: SColors.color11,
