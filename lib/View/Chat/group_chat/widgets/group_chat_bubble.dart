@@ -2,6 +2,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:stellar_chat/View/chat/chat_screen/chat_screen.dart';
+import 'package:stellar_chat/View/chat/chat_screen/widgets/document_bubble.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/show_time_widget.dart';
 import 'package:stellar_chat/View/chat/group_chat/widgets/audio_message_widget.dart';
 import 'package:stellar_chat/View/chat/group_chat/widgets/voice_chat_bubble.dart';
@@ -315,34 +316,44 @@ class GroupChatBubble extends StatelessWidget {
                                           controller.userDetailsModel.value!.id,
                                       createdTime: message.strCreatedTime,
                                     )
-                                  : message.strMessageType == "tag"
-                                      ? Center(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                color: const Color.fromRGBO(
-                                                    233, 244, 255, 1),
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                            width: Get.width * 0.7,
-                                            child: Center(
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
+                                  : message.strMessageType == "document" ||
+                                          message.strMessageType == "sentingDoc"
+                                      ? DocumentBubble(
+                                          isSenting: message.strMessageType ==
+                                              "sentingDoc",
+                                          isSent: isSent,
+                                          message: message.strMessage,
+                                          url: message.strUrl,
+                                        )
+                                      : message.strMessageType == "tag"
+                                          ? Center(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    color: const Color.fromRGBO(
+                                                        233, 244, 255, 1),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10)),
+                                                width: Get.width * 0.7,
+                                                child: Center(
+                                                  child: Padding(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
                                                         vertical: 12.0),
-                                                child: Text(
-                                                  message.strMessage,
-                                                  style: const TextStyle(
-                                                      fontSize: 9,
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      color: Color.fromRGBO(
-                                                          0, 51, 142, 1)),
+                                                    child: Text(
+                                                      message.strMessage,
+                                                      style: const TextStyle(
+                                                          fontSize: 9,
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                          color: Color.fromRGBO(
+                                                              0, 51, 142, 1)),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ),
-                                        )
-                                      : const SizedBox(),
+                                            )
+                                          : const SizedBox(),
                 ],
               )),
         ],

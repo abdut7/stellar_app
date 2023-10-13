@@ -1,9 +1,13 @@
+import 'dart:math';
+
 import 'package:get/get.dart';
+import 'package:path/path.dart';
 import 'package:stellar_chat/controllers/contacts_controller.dart';
 import 'package:stellar_chat/controllers/private_chat_controller.dart';
 import 'package:stellar_chat/functions/image_to_base.dart';
 import 'package:stellar_chat/models/private_chat/private_chat_model.dart';
 import 'package:stellar_chat/services/api_services/chat_message_service.dart';
+import 'package:stellar_chat/services/api_services/upload_file_service.dart';
 import 'package:stellar_chat/services/api_services/upload_files.dart';
 import 'package:stellar_chat/services/socket_service/socket_service.dart';
 import 'package:image_picker/image_picker.dart';
@@ -62,12 +66,8 @@ class PrivateChatService {
       {required String chatId, required String path}) async {
     Socket socket = SocketService().socket;
 
-    //convert message to base64
-    String imageAsBase = await filePathToBase(path);
-    print(imageAsBase);
-    //upload and take link
-    String? fileUrl =
-        await uploadFiles(fileExtension: 'm4a', base64File: imageAsBase);
+    String? fileUrl = await UploadFileService.uploadFile(filePaths: [path]);
+
     if (fileUrl == null) {
       return;
     }
@@ -97,5 +97,40 @@ class PrivateChatService {
       "strContactNumbers": numbers[0].toString(),
       "strContactName": name
     });
+  }
+
+  static Future<void> sentPersonalDocumentMessage(
+      {required String chatId, required String path}) async {
+    final random = Random();
+    Socket socket = SocketService().socket;
+
+    PrivateChatController chatController = Get.find();
+    int randomNumber = random.nextInt(1001);
+    chatController.messageList.add(PrivateMessageModel(
+        id: "$randomNumber",
+        strCreatedTime: "",
+        strMessage: basename(path),
+        strMessageType: "sentingDoc",
+        strName: "",
+        strType: "",
+        strUrl: "",
+        strUserId: "",
+        strContactName: "",
+        strContactNumbers: "",
+        strChatId: ""));
+    String? fileUrl = await UploadFileService.uploadFile(filePaths: [path]);
+    if (fileUrl == null) {
+      return;
+    }
+    socket.emit('send_message', {
+      'strChatId': chatId,
+      'strMessage': basename(path),
+      "strMessageType": "document",
+      "strType": "private",
+      "strUrl": fileUrl,
+    });
+    // ChatMessageService.getMessages(chatId: chatId, type: "private");
+    chatController.messageList
+        .removeWhere((element) => element.id == randomNumber.toString());
   }
 }
