@@ -38,7 +38,7 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                 Container(
                     //margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 210),
                     margin:
-                        const EdgeInsets.only(left: 45, right: 45, top: 235),
+                        const EdgeInsets.only(left: 45, right: 45, top: 225),
                     width: double.infinity,
                     decoration: ShapeDecoration(
                       color: SColors.color4,
@@ -83,7 +83,7 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                 Container(
                     //margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 210),
                     margin:
-                        const EdgeInsets.only(left: 45, right: 45, top: 400),
+                        const EdgeInsets.only(left: 45, right: 45, top: 385),
                     width: double.infinity,
                     decoration: ShapeDecoration(
                       color: SColors.color4,
@@ -127,7 +127,7 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                     )),
                 Container(
                     margin:
-                        const EdgeInsets.only(left: 45, right: 45, top: 570),
+                        const EdgeInsets.only(left: 45, right: 45, top: 545),
                     width: double.infinity,
                     decoration: ShapeDecoration(
                       color: SColors.color4,
