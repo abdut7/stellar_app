@@ -34,41 +34,38 @@ class _TransactionTileState extends State<TransactionTile> {
         color: SColors.color23,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
       ),
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: ListTile(
-          onTap: widget.onTap,
-          leading: Padding(
-            padding: const EdgeInsets.only(top: 15),
-            child: SvgPicture.asset(widget.svgAssetPath),
-          ),
-          title: Text(
-            widget.title,
-            style: const TextStyle(color: Colors.black, fontSize: 10, fontWeight: FontWeight.w600,),),
-          subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                widget.id,
-                style: const TextStyle(color: Colors.black, fontSize: 10, fontWeight: FontWeight.w500,),),
-              Text(
-                widget.timestamp, style: const TextStyle(color: Colors.black, fontSize: 10, fontWeight: FontWeight.w500,),
-              ),
-            ],
-          ),
-          trailing: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                '+ AED ${widget.amount}',
-                textAlign: TextAlign.right,
-                style: const TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w500,),),
-              Text(
-                widget.status,
-                textAlign: TextAlign.right,
-                style: const TextStyle(color: Color(0xFF19AA33), fontSize: 10, fontWeight: FontWeight.w700,),),
-            ],
-          ),
+      child: ListTile(
+        onTap: widget.onTap,
+        leading: Padding(
+          padding: const EdgeInsets.only(top: 15),
+          child: SvgPicture.asset(widget.svgAssetPath),
+        ),
+        title: Text(
+          widget.title,
+          style: const TextStyle(color: Colors.black, fontSize: 10, fontWeight: FontWeight.w600,),),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              widget.id,
+              style: const TextStyle(color: Colors.black, fontSize: 10, fontWeight: FontWeight.w500,),),
+            Text(
+              widget.timestamp, style: const TextStyle(color: Colors.black, fontSize: 10, fontWeight: FontWeight.w500,),
+            ),
+          ],
+        ),
+        trailing: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              '+ AED ${widget.amount}',
+              textAlign: TextAlign.right,
+              style: const TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w500,),),
+            Text(
+              widget.status,
+              textAlign: TextAlign.right,
+              style: const TextStyle(color: Color(0xFF19AA33), fontSize: 10, fontWeight: FontWeight.w700,),),
+          ],
         ),
       ),
     );
