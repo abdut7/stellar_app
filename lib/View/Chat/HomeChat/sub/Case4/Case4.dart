@@ -1,7 +1,5 @@
 import 'package:stellar_chat/View/chat/HomeChat/sub/Case4/sub/EditProfile/EditProfileUi.dart';
-import 'package:stellar_chat/View/chat/HomeChat/sub/Case4/sub/Favorites/Favorites.dart';
 import 'package:stellar_chat/View/chat/HomeChat/sub/Case4/sub/Settings/SettingsUi.dart';
-import 'package:stellar_chat/View/chat/HomeChat/sub/Case4/sub/StickerGallery/StickerGallery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -135,18 +133,13 @@ class _Case4State extends State<Case4> {
                 STSTile(
                     svgAsset: SSvgs.sv25,
                     text: 'Favorites',
-                    onPressed: () {
-                      Navigator.pushNamed(context, FavoritesScreen.routeName);
-                    }),
+                    onPressed: () {}),
                 STSTile(
                     svgAsset: SSvgs.sv26, text: 'Moments', onPressed: () {}),
                 STSTile(
                     svgAsset: SSvgs.sv27,
                     text: 'Sticker Gallery',
-                    onPressed: () {
-                      Navigator.pushNamed(
-                          context, StickerGalleryScreen.routeName);
-                    }),
+                    onPressed: () {}),
                 STSTile(
                     svgAsset: SSvgs.sv28,
                     text: 'Settings',
