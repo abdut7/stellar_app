@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:stellar_chat/View/Chat/HomeChat/sub/Case4/sub/StickerGallery/StickerGallery.dart';
+import 'package:stellar_chat/View/Favorites/Favorites.dart';
+import 'package:stellar_chat/View/StickerGallery/StickerGallery.dart';
 import 'package:stellar_chat/View/help_article/help_article_screen.dart';
 import 'package:stellar_chat/View/profile/settings/privacy_settings/privacy_settings.dart';
 import 'package:stellar_chat/services/token_service/token_service.dart';
@@ -103,7 +104,10 @@ class _ProfileSettingsState extends State<ProfileSettings> {
             ),
             CustomListTilee(
               text: 'Favorites',
-              onTap: () {},
+              onTap: () {
+                Get.to(() => FavoritesScreen());
+
+              },
               svgAsset: SSvgs.sv25,
             ),
             Column(
