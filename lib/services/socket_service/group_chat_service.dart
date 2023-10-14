@@ -86,6 +86,7 @@ class GroupChatService {
 
   static Future<void> sentGroupDocumentMessage(
       {required String chatId, required String path}) async {
+    print("chat id is : $chatId");
     final random = Random();
     Socket socket = SocketService().socket;
     UserController userController = Get.find();

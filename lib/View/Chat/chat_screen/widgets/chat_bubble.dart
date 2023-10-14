@@ -1,10 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_svg/svg.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:stellar_chat/View/chat/chat_screen/chat_screen.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/document_bubble.dart';
-import 'package:stellar_chat/View/chat/chat_screen/widgets/show_time_widget.dart';
 import 'package:stellar_chat/View/chat/group_chat/widgets/voice_chat_bubble.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/contact_message_bubble.dart';
 import 'package:stellar_chat/View/chat/widgets/photo_view_widget.dart';

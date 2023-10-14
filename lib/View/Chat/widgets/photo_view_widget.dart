@@ -9,6 +9,7 @@ class PhotoViewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PhotoView(
+      disableGestures: true,
       backgroundDecoration: BoxDecoration(
         color: Colors.black,
       ),

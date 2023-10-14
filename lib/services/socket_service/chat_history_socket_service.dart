@@ -54,6 +54,7 @@ class ChatHistorySocketService {
       // print("Recieved the group message back");
       // print(data);
       GroupMessageModel model = GroupMessageModel.fromJson(data);
+      print(model.strMessageType);
       // Check if a model with the same id already exists in the list
       bool alreadyExists = chatController.groupMessageList
           .any((existingModel) => existingModel.id == model.id);
