@@ -47,6 +47,7 @@ showBlockAndReportBottomSheet(
               ),
               GestureDetector(
                 onTap: () {
+                  Get.back();
                   Get.to(() => SearchScreen(
                         chatId: id,
                         isGroup: false,

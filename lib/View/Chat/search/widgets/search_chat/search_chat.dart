@@ -12,8 +12,25 @@ class _SearchChatScreenState extends State<SearchChatScreen> {
   Widget build(BuildContext context) {
     ChatSearchController searchController = Get.find();
 
-    return const Center(
-      child: Text('Chat Content'),
-    );
+    return Obx(() => searchController.isLoading.value
+        ? const Center(child: CircularProgressIndicator())
+        : searchController.messageChatList.isEmpty
+            ? const Center(child: Text("No messages"))
+            : ListView.builder(
+                itemCount: searchController.messageChatList.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    leading: Text(searchController.messageChatList
+                        .elementAt(index)
+                        .strName),
+                    title: Text(searchController.messageChatList
+                        .elementAt(index)
+                        .strMessage),
+                    trailing: Text(searchController.messageChatList
+                        .elementAt(index)
+                        .strCreatedTime),
+                  );
+                },
+              ));
   }
 }

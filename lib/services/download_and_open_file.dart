@@ -16,20 +16,24 @@ Future<void> downloadCacheAndOpenFile(String fileUrl) async {
 
   if (fileInfo == null || !await fileInfo.file.exists()) {
     final dio = Dio();
-    final response = await dio.get(fileUrl,
-        options: Options(responseType: ResponseType.bytes));
+    try {
+      final response = await dio.get(fileUrl,
+          options: Options(responseType: ResponseType.bytes));
 
-    if (response.statusCode == 200) {
-      // Determine the file extension based on your knowledge or from response headers.
-      final uri = Uri.parse(fileUrl);
-      final fileExtension = path.extension(uri.path);
+      if (response.statusCode == 200) {
+        // Determine the file extension based on your knowledge or from response headers.
+        final uri = Uri.parse(fileUrl);
+        final fileExtension = path.extension(uri.path);
 
-      // Save the file with the specified file extension.
-      file = await cacheManager.putFile(
-        fileUrl,
-        response.data,
-        fileExtension: fileExtension,
-      );
+        // Save the file with the specified file extension.
+        file = await cacheManager.putFile(
+          fileUrl,
+          response.data,
+          fileExtension: fileExtension,
+        );
+      }
+    } on Exception catch (e) {
+      showCustomSnackbar(title: "Error opening file", message: "");
     }
   }
 

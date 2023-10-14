@@ -3,6 +3,7 @@ import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/report_and_bloc_sheet_widget.dart';
 import 'package:stellar_chat/View/chat/group_chat/group_info/group_info_screen.dart';
+import 'package:stellar_chat/View/chat/search/search.dart';
 import 'package:stellar_chat/functions/show_snackbar.dart';
 
 groupChatMainBottomSheet(BuildContext context, String chatId) {
@@ -50,7 +51,13 @@ groupChatMainBottomSheet(BuildContext context, String chatId) {
                   height: 18,
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Get.back();
+                    Get.to(() => SearchScreen(
+                          chatId: chatId,
+                          isGroup: true,
+                        ));
+                  },
                   child: Text(
                     'Search',
                     style: TextStyle(

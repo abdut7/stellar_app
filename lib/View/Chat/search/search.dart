@@ -20,9 +20,35 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   PageController pageController = PageController(initialPage: 0);
+  TextEditingController searchTextController = TextEditingController();
   int _currentPage = 0;
+  late ChatSearchController searchController;
+
+  @override
+  void initState() {
+    searchController = Get.put(ChatSearchController());
+    // TODO: implement initState
+    ChatSearchService.getTextMessages(
+        search: "",
+        chatId: widget.chatId,
+        type: widget.isGroup ? "group" : "private");
+    super.initState();
+  }
 
   void _changePage(int page) {
+    searchTextController.clear();
+    if (page == 1) {
+      ChatSearchService.getMediaMessages(
+          search: "",
+          chatId: widget.chatId,
+          type: widget.isGroup ? "group" : "private");
+    }
+    if (page == 3) {
+      ChatSearchService.getDocumentMessages(
+          search: "",
+          chatId: widget.chatId,
+          type: widget.isGroup ? "group" : "private");
+    }
     pageController.animateToPage(
       page,
       duration: Duration(milliseconds: 300),
@@ -32,7 +58,6 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ChatSearchController searchController = Get.put(ChatSearchController());
     return Scaffold(
       backgroundColor: SColors.color4,
       appBar: AppBar(
@@ -40,9 +65,32 @@ class _SearchScreenState extends State<SearchScreen> {
         elevation: 0,
         backgroundColor: SColors.color11,
         title: TextFormField(
+          controller: searchTextController,
           onChanged: (value) {
-            ChatSearchService.getTextMessages(
-                search: value, chatId: widget.chatId, type: "private");
+            if (_currentPage == 0) {
+              ChatSearchService.getTextMessages(
+                  search: value,
+                  chatId: widget.chatId,
+                  type: widget.isGroup ? "group" : "private");
+            }
+            if (_currentPage == 1) {
+              ChatSearchService.getMediaMessages(
+                  search: value,
+                  chatId: widget.chatId,
+                  type: widget.isGroup ? "group" : "private");
+            }
+            if (_currentPage == 2) {
+              ChatSearchService.getAudioMessages(
+                  search: value,
+                  chatId: widget.chatId,
+                  type: widget.isGroup ? "group" : "private");
+            }
+            if (_currentPage == 3) {
+              ChatSearchService.getDocumentMessages(
+                  search: value,
+                  chatId: widget.chatId,
+                  type: widget.isGroup ? "group" : "private");
+            }
           },
           cursorColor: SColors.color12,
           decoration: InputDecoration(
@@ -65,7 +113,9 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
         centerTitle: true,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.back();
+          },
           icon: Icon(
             Icons.arrow_back_ios,
             color: SColors.color4,
@@ -205,6 +255,12 @@ class _SearchScreenState extends State<SearchScreen> {
             child: PageView(
               controller: pageController,
               onPageChanged: (int page) {
+                if (page == 3) {
+                  ChatSearchService.getDocumentMessages(
+                      search: "",
+                      chatId: widget.chatId,
+                      type: widget.isGroup ? "group" : "private");
+                }
                 setState(() {
                   _currentPage = page;
                 });

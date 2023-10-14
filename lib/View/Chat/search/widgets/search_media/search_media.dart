@@ -14,30 +14,42 @@ class _SearchMediaScreenState extends State<SearchMediaScreen> {
   Widget build(BuildContext context) {
     ChatSearchController searchController = Get.find();
 
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 0,
-      ),
-      itemCount: 100,
-      itemBuilder: (BuildContext context, int index) {
-        return Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: GestureDetector(
-            onTap: () {},
-            child: Container(
-              child: Icon((Icons.photo), color: Colors.grey),
-              height: 80,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: SColors.color9.withOpacity(0.4),
-              ),
-            ),
-          ),
-        );
-      },
-    );
+    return Obx(() => searchController.isLoading.value
+        ? const Center(child: CircularProgressIndicator())
+        : searchController.mediaChatList.isEmpty
+            ? const Center(child: Text("No Medias available"))
+            : GridView.builder(
+                shrinkWrap: true,
+                // physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 0,
+                ),
+                itemCount: searchController.mediaChatList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        height: 80,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                              searchController.mediaChatList
+                                  .elementAt(index)
+                                  .strUrl
+                                  .trim(),
+                            ),
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                          color: SColors.color9.withOpacity(0.4),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ));
   }
 }

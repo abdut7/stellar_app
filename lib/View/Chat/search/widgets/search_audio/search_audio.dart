@@ -21,7 +21,7 @@ class _SearchAudioScreenState extends State<SearchAudioScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ChatSearchController searchController = Get.find();
+    // ChatSearchController searchController = Get.find();
 
     return Scaffold(
       body: ListView(
