@@ -27,7 +27,7 @@ class _SearchDocumentListTileState extends State<SearchDocumentListTile> {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () async {
-        downloadCacheAndOpenFile(widget.fileUrl.trim());
+        await downloadCacheAndOpenFile(widget.fileUrl.trim());
         setState(() {});
       },
       leading: SvgPicture.asset(widget.svgAssetPath),
@@ -69,7 +69,7 @@ class _SearchDocumentListTileState extends State<SearchDocumentListTile> {
                 ),
               );
             }
-            return snapshot.data! ? Icon(Icons.download) : SizedBox();
+            return !snapshot.data! ? Icon(Icons.download) : SizedBox();
           },
         ),
       ]),

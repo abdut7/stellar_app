@@ -38,11 +38,17 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white),
       darkTheme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: Colors.black,
-          textTheme: GoogleFonts.interTextTheme()),
+          textTheme: GoogleFonts.interTextTheme().copyWith(
+            bodyText1:
+                TextStyle(color: Colors.white), // Customize your text style
+            bodyText2:
+                TextStyle(color: Colors.white), // Customize other text styles
+                
+          )),
       themeMode: Get.find<ThemeController>().isDarkTheme.value
           ? ThemeMode.dark
           : ThemeMode.light,
-      home:  const SplashScreen(),
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

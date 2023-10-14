@@ -58,11 +58,13 @@ class GroupChatBubble extends StatelessWidget {
                   vertical: message.strMessageType == "voice" ||
                           message.strMessageType == "contact" ||
                           message.strMessageType == "document" ||
+                          message.strMessageType.contains("senting") ||
                           message.strMessageType == "tag"
                       ? 0
                       : 4),
               padding: EdgeInsets.all(message.strMessageType == "voice" ||
                       message.strMessageType == "document" ||
+                      message.strMessageType.contains("senting") ||
                       message.strMessageType == "contact" ||
                       message.strMessageType == "tag"
                   ? 0
@@ -324,7 +326,7 @@ class GroupChatBubble extends StatelessWidget {
                                   : message.strMessageType == "document" ||
                                           message.strMessageType == "sentingDoc"
                                       ? DocumentBubble(
-                                        senterName: message.strName,
+                                          senterName: message.strName,
                                           isGroup: true,
                                           createdTime: message.strCreatedTime,
                                           isSenting: message.strMessageType ==

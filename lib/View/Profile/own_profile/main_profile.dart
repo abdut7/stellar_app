@@ -9,6 +9,7 @@ import 'package:stellar_chat/View/profile/widget/flick_grid_view.dart';
 import 'package:stellar_chat/View/profile/widget/profile_buttons.dart';
 import 'package:stellar_chat/View/profile/widget/profile_status.dart';
 import 'package:stellar_chat/controllers/new_post/fliq_controller.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,12 +27,13 @@ class _MainProfileState extends State<MainProfile> {
   int selectedTabIndex = 0;
   @override
   Widget build(BuildContext context) {
+    final themeController = Get.find<ThemeController>();
     FliqController flickController = Get.find();
 
     UserController controller = Get.find();
     return SafeArea(
         child: Scaffold(
-      backgroundColor: SColors.color4,
+      // backgroundColor: SColors.color4,
       body: RefreshIndicator(
         onRefresh: () async {
           await GetUserDetailsService.getUserDetails();
@@ -61,11 +63,13 @@ class _MainProfileState extends State<MainProfile> {
                         Container(
                           width: Get.width,
                           height: Get.height * 0.2,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             // color: Colors.red,
                             gradient: LinearGradient(
                               colors: [
-                                Colors.white,
+                                themeController.isDarkTheme.value
+                                    ? Colors.black
+                                    : Colors.white,
                                 Colors.transparent,
                               ],
                               begin: Alignment.bottomCenter,
@@ -82,7 +86,7 @@ class _MainProfileState extends State<MainProfile> {
                               Text(
                                 controller.userDetailsModel.value!.strName,
                                 style: TextStyle(
-                                  color: SColors.color3,
+                                  // color: SColors.color3,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w800,
                                 ),
@@ -93,7 +97,7 @@ class _MainProfileState extends State<MainProfile> {
                               Text(
                                 'PHONE NUMBER : ${controller.userDetailsModel.value!.strMobileNo}',
                                 style: TextStyle(
-                                  color: SColors.color3,
+                                  // color: SColors.color3,
                                   fontSize: 11,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -175,7 +179,7 @@ class _MainProfileState extends State<MainProfile> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Divider(
-                  color: SColors.color3,
+                  // color: SColors.color3,
                   thickness: 1,
                 ),
               ),

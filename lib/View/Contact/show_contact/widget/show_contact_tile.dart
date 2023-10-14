@@ -1,6 +1,8 @@
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
 class Tile extends StatefulWidget {
   final String svgAsset;
@@ -49,13 +51,19 @@ class _TileState extends State<Tile> {
             )
           ],
         ),
-        title: Text(
-          widget.title,
-          style: const TextStyle(
-            color: Colors.black,
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-          ),
+        title: GetBuilder<ThemeController>(
+          builder: (themeController) {
+            return Text(
+              widget.title,
+              style: TextStyle(
+                color: themeController.isDarkTheme.value
+                    ? Colors.white
+                    : Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+            );
+          },
         ),
         trailing: widget.trailingIcon,
       ),

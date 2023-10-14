@@ -22,7 +22,7 @@ class _AboutMeTextState extends State<AboutMeText> {
                 TextSpan(
                   text: 'About Me\n',
                   style: TextStyle(
-                    color: SColors.color3,
+                    // color: SColors.color3,
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
                   ),
@@ -30,7 +30,7 @@ class _AboutMeTextState extends State<AboutMeText> {
                 TextSpan(
                   text: userController.userDetailsModel.value!.strAbout,
                   style: TextStyle(
-                    color: SColors.color3,
+                    // color: SColors.color3,
                     fontSize: 11,
                     fontWeight: FontWeight.w400,
                   ),

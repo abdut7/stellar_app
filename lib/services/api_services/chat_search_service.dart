@@ -49,7 +49,7 @@ class ChatSearchService {
       "strChatId": chatId,
       "strType": type,
       "strSearch": search,
-      "strSearchType": "media"
+      "strMessageType": "media"
     };
     Response res =
         await dio.post(path, options: Options(headers: header), data: body);
@@ -76,7 +76,7 @@ class ChatSearchService {
       "strChatId": chatId,
       "strSearch": search,
       "strType": type,
-      "strSearchType": "audio"
+      "strMessageType": "audio"
     };
     Response res =
         await dio.post(path, options: Options(headers: header), data: body);
@@ -103,7 +103,7 @@ class ChatSearchService {
       "strChatId": chatId,
       "strSearch": search,
       "strType": type,
-      "strSearchType": "document"
+      "strMessageType": "document"
     };
     Response res =
         await dio.post(path, options: Options(headers: header), data: body);

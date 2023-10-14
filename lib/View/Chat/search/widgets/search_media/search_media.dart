@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
+import 'package:stellar_chat/View/chat/widgets/photo_view_widget.dart';
 import 'package:stellar_chat/controllers/search_controllers.dart';
 
 class SearchMediaScreen extends StatefulWidget {
@@ -30,7 +31,13 @@ class _SearchMediaScreenState extends State<SearchMediaScreen> {
                   return Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(() => PhotoViewScreen(
+                            imageUrl: searchController.mediaChatList
+                                .elementAt(index)
+                                .strUrl
+                                .trim()));
+                      },
                       child: Container(
                         height: 80,
                         decoration: BoxDecoration(

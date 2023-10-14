@@ -1,6 +1,7 @@
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
 import '../../../controllers/contacts_controller.dart';
 import '../../../models/api_models/get_contacts_model.dart';
@@ -21,6 +22,7 @@ class ListContactsWidget extends StatelessWidget {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
+          final themeController = Get.find<ThemeController>();
           Contact data = contactsController.phoneNumberUserList[index];
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -31,7 +33,7 @@ class ListContactsWidget extends StatelessWidget {
                     fullName: data.strFullName,
                     chatId: data.id));
               },
-              leading:Container(
+              leading: Container(
                 width: 50,
                 height: 50,
                 decoration: BoxDecoration(
@@ -46,16 +48,24 @@ class ListContactsWidget extends StatelessWidget {
                   ),
                 ),
               ),
-
-              title: Text(
-                data.strFullName,
-                style: TextStyle(
-                  color: SColors.color3,
-                  fontSize: 17,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              subtitle: Text(data.strMobileNo),
+              title: Obx(() => Text(
+                    data.strFullName,
+                    style: TextStyle(
+                      color: themeController.isDarkTheme.value
+                          ? Colors.white
+                          : SColors.color3,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  )),
+              subtitle: Obx(() => Text(
+                    data.strMobileNo,
+                    style: TextStyle(
+                      color: themeController.isDarkTheme.value
+                          ? Colors.white
+                          : Colors.black,
+                    ),
+                  )),
             ),
           );
         },

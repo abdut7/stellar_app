@@ -107,9 +107,11 @@ class ChatBubble extends StatelessWidget {
                                     height: 15,
                                     width: Get.width * 0.6,
                                     decoration: BoxDecoration(
-                                        color: color,
-                                        borderRadius: const BorderRadius.only(
-                                            bottomLeft: Radius.circular(10))),
+                                      color: color,
+                                      borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(10),
+                                      ),
+                                    ),
                                     child: Row(
                                       mainAxisAlignment: isSent
                                           ? MainAxisAlignment.end
