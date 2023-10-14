@@ -1,6 +1,9 @@
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/View/chat/search/widgets/search_document/widgets/search_document_tile.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../controllers/search_controllers.dart';
 
 class SearchDocumentScreen extends StatelessWidget {
   Widget divider() {
@@ -15,6 +18,8 @@ class SearchDocumentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ChatSearchController searchController = Get.find();
+
     return ListView(
       children: [
         SearchDocumentListTile(

@@ -125,6 +125,7 @@ class PrivateChatService {
     socket.emit('send_message', {
       'strChatId': chatId,
       'strMessage': basename(path),
+      'strFileName': basename(path),
       "strMessageType": "document",
       "strType": "private",
       "strUrl": fileUrl,

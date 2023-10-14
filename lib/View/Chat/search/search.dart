@@ -1,23 +1,29 @@
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/View/Chat/search/widgets/search_audio/search_audio.dart';
 import 'package:stellar_chat/View/Chat/search/widgets/search_chat/search_chat.dart';
 import 'package:stellar_chat/View/Chat/search/widgets/search_document/search_document.dart';
 import 'package:stellar_chat/View/Chat/search/widgets/search_media/search_media.dart';
 import 'package:flutter/material.dart';
+import 'package:stellar_chat/controllers/search_controllers.dart';
+import 'package:stellar_chat/services/api_services/chat_search_service.dart';
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({Key? key}) : super(key: key);
+  final bool isGroup;
+  final String chatId;
+  const SearchScreen({Key? key, required this.isGroup, required this.chatId})
+      : super(key: key);
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  PageController _pageController = PageController(initialPage: 0);
+  PageController pageController = PageController(initialPage: 0);
   int _currentPage = 0;
 
   void _changePage(int page) {
-    _pageController.animateToPage(
+    pageController.animateToPage(
       page,
       duration: Duration(milliseconds: 300),
       curve: Curves.easeInOut,
@@ -26,6 +32,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ChatSearchController searchController = Get.put(ChatSearchController());
     return Scaffold(
       backgroundColor: SColors.color4,
       appBar: AppBar(
@@ -33,6 +40,10 @@ class _SearchScreenState extends State<SearchScreen> {
         elevation: 0,
         backgroundColor: SColors.color11,
         title: TextFormField(
+          onChanged: (value) {
+            ChatSearchService.getTextMessages(
+                search: value, chatId: widget.chatId, type: "private");
+          },
           cursorColor: SColors.color12,
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(vertical: 8),
@@ -192,7 +203,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
           Expanded(
             child: PageView(
-              controller: _pageController,
+              controller: pageController,
               onPageChanged: (int page) {
                 setState(() {
                   _currentPage = page;

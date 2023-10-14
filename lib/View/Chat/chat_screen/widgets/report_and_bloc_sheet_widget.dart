@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/View/chat/search/search.dart';
 import 'package:stellar_chat/functions/show_snackbar.dart';
 import 'package:stellar_chat/services/api_services/account_services.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,12 @@ showBlockAndReportBottomSheet(
                 height: 18,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Get.to(() => SearchScreen(
+                        chatId: id,
+                        isGroup: false,
+                      ));
+                },
                 child: Center(
                   child: Text(
                     'Search',
