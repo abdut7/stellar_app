@@ -223,8 +223,8 @@ class _SearchScreenState extends State<SearchScreen> {
                       _changePage(3);
                     },
                     child: Container(
-                      width: 75,
-                      height: 25,
+                      width: 112,
+                      height: 26,
                       margin: const EdgeInsets.all(5),
                       decoration: ShapeDecoration(
                         color: _currentPage == 3
