@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:stellar_chat/View/comment_view/show_comment_bottom_sheet.dart';
 import 'package:stellar_chat/View/flicks/widget/fliq_video_player_widget.dart';
+import 'package:stellar_chat/View/profile/public_profile/public_profile.dart';
 import 'package:stellar_chat/services/api_services/fliq_services.dart';
 import 'package:stellar_chat/utils/colors.dart';
 
@@ -38,13 +39,14 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
         body: Stack(
       children: [
         VideoPlayerScreen(
+          
           videoUrl: widget.flickItem.strFileUrl,
           // videoUrl:
           //     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
         ),
         Container(
           width: Get.width,
-          height: Get.height - 1,
+          height: Get.height,
           color: Colors.transparent,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -57,6 +59,20 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(() => PublicProfileScreen(
+                            uid: widget.flickItem.strUserId));
+                      },
+                      child: CircleAvatar(
+                        radius: 30,
+                        backgroundImage:
+                            NetworkImage(widget.flickItem.strUserProfileUrl),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
                     GestureDetector(
                       onTap: () {
                         setState(() {

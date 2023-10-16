@@ -18,7 +18,7 @@ class _ProfileStatusState extends State<ProfileStatus> {
       children: [
         Text(
           widget.count,
-          style: TextStyle(
+          style: const TextStyle(
             // color: SColors.color3,
             fontSize: 15,
             fontWeight: FontWeight.w700,
@@ -26,7 +26,7 @@ class _ProfileStatusState extends State<ProfileStatus> {
         ),
         Text(
           widget.label,
-          style: TextStyle(
+          style: const TextStyle(
             // color: SColors.color3,
             fontSize: 11,
             fontWeight: FontWeight.w500,

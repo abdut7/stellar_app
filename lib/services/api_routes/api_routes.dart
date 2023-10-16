@@ -39,6 +39,6 @@ class ApiRoutes {
   static String clearPersonalChat = "/clear_messages";
   static String getFollowersList = "/get_follower_list";
   static String getFollowingList = "/get_following_list";
-    static String postChannel = "/create_flick_channel";
-
+  static String postChannel = "/create_flick_channel";
+  static String getChannelById = "/get_channel_by_id";
 }

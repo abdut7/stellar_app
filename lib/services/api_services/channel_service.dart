@@ -2,9 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:stellar_chat/View/base_bottom_nav/bottom_nav.dart';
 import 'package:stellar_chat/controllers/bottom_navigation_controller.dart';
+import 'package:stellar_chat/controllers/channel/channel_controller.dart';
 import 'package:stellar_chat/controllers/flicks/flicks_player_controller.dart';
 import 'package:stellar_chat/controllers/new_post/new_post_common_controller.dart';
 import 'package:stellar_chat/functions/get_header.dart';
+import 'package:stellar_chat/models/api_models/channel_model.dart';
 import 'package:stellar_chat/models/api_models/comment_model.dart';
 import 'package:stellar_chat/models/api_models/flick_model.dart';
 import 'package:stellar_chat/models/api_models/get_contacts_model.dart';
@@ -64,27 +66,27 @@ class ChannelService {
     controller.isUploaded(false);
   }
 
-  Future<void> getFlicksById({required String id, required int count}) async {
+  Future<void> getChannelsById({required String id, required int count}) async {
     Dio dio = Dio();
-    String url = ApiRoutes.baseUrl + ApiRoutes.getFlicksById;
+    String url = ApiRoutes.baseUrl + ApiRoutes.getChannelById;
     Map<String, dynamic> header = await getHeader();
     Map<String, dynamic> data = {
       "strUserId": id,
       "intPageCount ": count.toString()
     };
-    ProfileFlicksController controller = Get.find();
+    ProfileChannelController controller = Get.find();
     print(count);
     if (count == 1) {
-      controller.flickItems.clear();
+      controller.channelItem.clear();
     }
 
     try {
       Response res =
           await dio.post(url, options: Options(headers: header), data: data);
       print(res);
-      FlickModel model = FlickModel.fromJson(res.data);
+      ChannelModel model = ChannelModel.fromJson(res.data);
       for (var element in model.arrList) {
-        controller.flickItems.add(element);
+        controller.channelItem.add(element);
       }
       // return model.arrList;
     } on Exception catch (e) {
