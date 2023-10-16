@@ -8,7 +8,7 @@ import 'package:stellar_chat/View/profile/widget/channel_grid_view.dart';
 import 'package:stellar_chat/View/profile/widget/flick_grid_view.dart';
 import 'package:stellar_chat/View/profile/widget/profile_buttons.dart';
 import 'package:stellar_chat/View/profile/widget/profile_status.dart';
-import 'package:stellar_chat/controllers/new_post/fliq_controller.dart';
+import 'package:stellar_chat/controllers/new_post/new_post_common_controller.dart';
 import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +28,7 @@ class _MainProfileState extends State<MainProfile> {
   @override
   Widget build(BuildContext context) {
     final themeController = Get.find<ThemeController>();
-    FliqController flickController = Get.find();
+    NewPostController flickController = Get.find();
 
     UserController controller = Get.find();
     return SafeArea(

@@ -5,7 +5,7 @@ import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stellar_chat/controllers/contacts_controller.dart';
-import 'package:stellar_chat/controllers/new_post/fliq_controller.dart';
+import 'package:stellar_chat/controllers/new_post/new_post_common_controller.dart';
 
 import '../../services/token_service/token_service.dart';
 
@@ -19,7 +19,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   ContactsController contactsController = Get.put(ContactsController());
-  FliqController flickController = Get.put(FliqController());
+  NewPostController flickController = Get.put(NewPostController());
 
   @override
   void initState() {

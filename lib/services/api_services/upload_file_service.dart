@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide MultipartFile, FormData, Response;
-import 'package:stellar_chat/controllers/new_post/fliq_controller.dart';
+import 'package:stellar_chat/controllers/new_post/new_post_common_controller.dart';
 import 'package:stellar_chat/functions/get_header.dart';
 import 'package:stellar_chat/services/api_routes/api_routes.dart';
 
 class UploadFileService {
   static Future<String?> uploadFile(
       {required List<String> filePaths, bool isFromFlicks = false}) async {
-    FliqController fliqController = Get.find();
+    NewPostController newPostController = Get.find();
     Dio dio = Dio();
     String url = ApiRoutes.baseUrl + ApiRoutes.filesUpload;
     Map<String, dynamic> header = await getHeader();
@@ -27,7 +27,7 @@ class UploadFileService {
           if (total != -1) {
             // Calculate and notify the progress percentage
             final progress = ((sent / total) * 100).toInt();
-            fliqController.uploadPercentage(progress);
+            newPostController.uploadPercentage(progress);
           }
         },
       );

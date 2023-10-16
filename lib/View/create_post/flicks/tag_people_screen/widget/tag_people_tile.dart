@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
-import 'package:stellar_chat/controllers/new_post/fliq_controller.dart';
+import 'package:stellar_chat/controllers/new_post/new_post_common_controller.dart';
 import 'package:stellar_chat/models/api_models/get_contacts_model.dart';
 
 class TagPeopleTile extends StatelessWidget {
@@ -47,7 +47,7 @@ class TagPeopleTile extends StatelessWidget {
             ? Text("Tag")
             : GestureDetector(
                 onTap: () {
-                  FliqController cont = Get.find();
+                  NewPostController cont = Get.find();
                   cont.tagPeople.remove(contact);
                 },
                 child: Icon(
@@ -58,7 +58,7 @@ class TagPeopleTile extends StatelessWidget {
               ),
         onTap: () {
           if (isSearch) {
-            FliqController cont = Get.find();
+            NewPostController cont = Get.find();
             cont.tagPeople.add(contact);
             cont.searchList.clear();
             cont.isSearching(false);

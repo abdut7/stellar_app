@@ -4,6 +4,7 @@ import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:stellar_chat/View/create_post/channel/upload_new_post.dart';
 import 'package:stellar_chat/View/create_post/flicks/flicks_upload_new_post/upload_new_post.dart';
 import 'package:stellar_chat/View/create_post/flicks/tag_people_screen/tag_people_screen.dart';
 import 'package:stellar_chat/utils/colors.dart';
@@ -11,8 +12,9 @@ import 'package:video_player/video_player.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
   final String videoFilePath;
+  final bool isFromChannel;
 
-  VideoPlayerScreen({required this.videoFilePath});
+  VideoPlayerScreen({required this.videoFilePath, required this.isFromChannel});
 
   @override
   _VideoPlayerScreen createState() => _VideoPlayerScreen();
@@ -119,9 +121,19 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Get.to(() => FlicksUploadNewPost(
+                        if (widget.isFromChannel) {
+                          Get.to(
+                            () => ChannelUploadNewPost(
                               path: widget.videoFilePath,
-                            ));
+                            ),
+                          );
+                          return;
+                        }
+                        Get.to(
+                          () => FlicksUploadNewPost(
+                            path: widget.videoFilePath,
+                          ),
+                        );
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 15.0),
