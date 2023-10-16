@@ -185,7 +185,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                       height: 25,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 90),
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -201,12 +201,16 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                               }
                             },
                             child: ContactThrough(
-                                svgAsset: SImages.msgIcon, label: 'Message'),
+                                svgAsset: SSvgs.pMessage, label: 'Message'),
                           ),
                           ContactThrough(
-                              svgAsset: SImages.callIcon, label: 'Call'),
+                              svgAsset: SSvgs.pCall, label: 'Call'),
                           ContactThrough(
-                              svgAsset: SImages.videoIcon, label: 'Video'),
+                              svgAsset: SSvgs.pVideo, label: 'Video'),
+                          ContactThrough(
+                              svgAsset: SSvgs.sendMoneyIcon, label: 'Send'),
+                          ContactThrough(
+                              svgAsset: SSvgs.requestMoneyIcon, label: 'Request'),
                         ],
                       ),
                     ),

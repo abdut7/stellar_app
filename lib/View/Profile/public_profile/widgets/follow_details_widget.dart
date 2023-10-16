@@ -39,9 +39,9 @@ class _FollowDetailsWidgetState extends State<FollowDetailsWidget> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 60),
+          padding: const EdgeInsets.symmetric(horizontal: 70),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ProfileStatus(
                   count: "${widget.model.intPostCount}", label: 'Posts'),

@@ -1,3 +1,4 @@
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class _ContactThroughState extends State<ContactThrough> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.asset(
+        SvgPicture.asset(
           widget.svgAsset,
           width: 40,
           height: 40,
