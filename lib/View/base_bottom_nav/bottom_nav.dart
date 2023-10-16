@@ -7,8 +7,7 @@ import 'package:stellar_chat/controllers/theme_controller.dart';
 import '../../Settings/SSvgs.dart';
 
 class BaseBottomNavigation extends StatefulWidget {
-  const BaseBottomNavigation({super.key, this.pageIndex = 0});
-  final int pageIndex;
+  const BaseBottomNavigation({super.key, });
 
   @override
   State<BaseBottomNavigation> createState() => _BaseBottomNavigationState();
@@ -20,11 +19,7 @@ BottomNavigationController bottomNavigationController =
 int selectedIndex = 0;
 
 class _BaseBottomNavigationState extends State<BaseBottomNavigation> {
-  @override
-  void initState() {
-    super.initState();
-    selectedIndex = widget.pageIndex;
-  }
+
 
   @override
   Widget build(BuildContext context) {

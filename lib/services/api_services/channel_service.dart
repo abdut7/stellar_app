@@ -2,71 +2,21 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:stellar_chat/View/base_bottom_nav/bottom_nav.dart';
 import 'package:stellar_chat/controllers/bottom_navigation_controller.dart';
+import 'package:stellar_chat/controllers/channel/channel_controller.dart';
 import 'package:stellar_chat/controllers/flicks/flicks_player_controller.dart';
 import 'package:stellar_chat/controllers/new_post/new_post_common_controller.dart';
 import 'package:stellar_chat/functions/get_header.dart';
+import 'package:stellar_chat/models/api_models/channel_model.dart';
 import 'package:stellar_chat/models/api_models/comment_model.dart';
 import 'package:stellar_chat/models/api_models/flick_model.dart';
 import 'package:stellar_chat/models/api_models/get_contacts_model.dart';
 import 'package:stellar_chat/services/api_routes/api_routes.dart';
 import 'package:stellar_chat/services/api_services/upload_file_service.dart';
 
-class FliqServices {
-  static Future<void> searchUserInTag({required String search}) async {
-    NewPostController controller = Get.find();
-    if (search.isEmpty) {
-      controller.isSearching(false);
-      controller.searchList.clear();
-      return;
-    }
-    controller.isSearching(true);
-    Dio dio = Dio();
-    String url = ApiRoutes.baseUrl + ApiRoutes.getStellarContacts;
-    Map<String, dynamic> header = await getHeader();
-    Map<String, String> data = {"strSearch": search};
-    try {
-      Response res =
-          await dio.post(url, options: Options(headers: header), data: data);
-      print(res);
-      GetContactsModel model = GetContactsModel.fromJson(res.data);
-      List<Contact> userList = [];
-      for (var element in model.arrList) {
-        userList.add(element);
-      }
-      controller.searchList(userList);
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  static Future<void> searchLocation({required String search}) async {
-    NewPostController controller = Get.find();
-    if (search.isEmpty) {
-      controller.isSearching(false);
-      controller.searchList.clear();
-      return;
-    }
-    controller.isSearching(true);
-    Dio dio = Dio();
-    String url = ApiRoutes.baseUrl + ApiRoutes.getStellarContacts;
-    Map<String, dynamic> header = await getHeader();
-    Map<String, String> data = {"strSearch": search};
-    try {
-      Response res =
-          await dio.post(url, options: Options(headers: header), data: data);
-      print(res);
-      GetContactsModel model = GetContactsModel.fromJson(res.data);
-      List<Contact> userList = [];
-      for (var element in model.arrList) {
-        userList.add(element);
-      }
-      controller.locationName("userList");
-    } catch (e) {}
-  }
-
+class ChannelService {
   //upload the fliq
 
-  static Future<void> uploadFliq(
+  static Future<void> uploadChannel(
       {required bool isCommentEnabled,
       required bool isLikeAndViews,
       required String path,
@@ -92,11 +42,11 @@ class FliqServices {
     controller.isUploading(false);
     controller.isPosting(true);
     Dio dio = Dio();
-    String url = ApiRoutes.baseUrl + ApiRoutes.postFlick;
+    String url = ApiRoutes.baseUrl + ApiRoutes.postChannel;
     Map<String, dynamic> header = await getHeader();
     Map<String, dynamic> data = {
       "isCommentEnabled": isCommentEnabled,
-      "strType": "flick",
+      "strType": "channel",
       "isLikeAndViews": isLikeAndViews,
       "strFileUrl": strFileUrl,
       "strDescription": strDescription,
@@ -116,27 +66,27 @@ class FliqServices {
     controller.isUploaded(false);
   }
 
-  Future<void> getFlicksById({required String id, required int count}) async {
+  Future<void> getChannelsById({required String id, required int count}) async {
     Dio dio = Dio();
-    String url = ApiRoutes.baseUrl + ApiRoutes.getFlicksById;
+    String url = ApiRoutes.baseUrl + ApiRoutes.getChannelById;
     Map<String, dynamic> header = await getHeader();
     Map<String, dynamic> data = {
       "strUserId": id,
       "intPageCount ": count.toString()
     };
-    ProfileFlicksController controller = Get.find();
+    ProfileChannelController controller = Get.find();
     print(count);
     if (count == 1) {
-      controller.flickItems.clear();
+      controller.channelItem.clear();
     }
 
     try {
       Response res =
           await dio.post(url, options: Options(headers: header), data: data);
       print(res);
-      FlickModel model = FlickModel.fromJson(res.data);
+      ChannelModel model = ChannelModel.fromJson(res.data);
       for (var element in model.arrList) {
-        controller.flickItems.add(element);
+        controller.channelItem.add(element);
       }
       // return model.arrList;
     } on Exception catch (e) {

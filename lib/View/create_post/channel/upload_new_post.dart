@@ -6,21 +6,21 @@ import 'package:flutter/material.dart';
 import 'package:stellar_chat/View/create_post/flicks/add_location/add_location_screen.dart';
 import 'package:stellar_chat/View/create_post/flicks/function/generate_thumbnile.dart';
 import 'package:stellar_chat/View/create_post/flicks/tag_people_screen/tag_people_screen.dart';
-import 'package:stellar_chat/View/create_post/flicks/uploading/uploading_screen.dart';
 import 'package:stellar_chat/controllers/new_post/new_post_common_controller.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/functions/show_snackbar.dart';
+import 'package:stellar_chat/services/api_services/channel_service.dart';
 import 'package:stellar_chat/services/api_services/fliq_services.dart';
 
-class FlicksUploadNewPost extends StatefulWidget {
-  const FlicksUploadNewPost({Key? key, required this.path}) : super(key: key);
+class ChannelUploadNewPost extends StatefulWidget {
+  const ChannelUploadNewPost({Key? key, required this.path}) : super(key: key);
   final String path;
 
   @override
-  State<FlicksUploadNewPost> createState() => _FlicksUploadNewPostState();
+  State<ChannelUploadNewPost> createState() => ChannelUploadNewPostState();
 }
 
-class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
+class ChannelUploadNewPostState extends State<ChannelUploadNewPost> {
   bool hideLikeAndView = false;
   bool turnOffComment = false;
   Uint8List? thumbnile;
@@ -46,7 +46,9 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
             color: SColors.color3,
             size: 15,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Get.back();
+          },
         ),
         title: Text(
           'New Post',
@@ -64,10 +66,10 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                 return;
               }
               List<String> tagList = [];
-              newPostController.tagPeople.forEach((element) {
+              for (var element in newPostController.tagPeople) {
                 tagList.add(element.id);
-              });
-              FliqServices.uploadFliq(
+              }
+              ChannelService.uploadChannel(
                   isCommentEnabled: !turnOffComment,
                   isLikeAndViews: !hideLikeAndView,
                   path: widget.path,
@@ -88,8 +90,43 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            FutureBuilder(
+                future: generateVideoThumbnail(widget.path),
+                builder: (context, AsyncSnapshot<Uint8List?> snapshot) {
+                  if (thumbnile != null) {
+                    return Container(
+                      height: Get.height * 0.3,
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                        fit: BoxFit.cover,
+                        alignment: FractionalOffset.topCenter,
+                        image: MemoryImage(thumbnile!),
+                      )),
+                    );
+                  }
+                  if (!snapshot.hasData || snapshot.data == null) {
+                    return Container(
+                      height: Get.height * 0.3,
+                      width: Get.width,
+                      decoration: const BoxDecoration(),
+                    );
+                  }
+                  thumbnile = snapshot.data;
+
+                  return Container(
+                    height: Get.height * 0.3,
+                    width: Get.width,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                      fit: BoxFit.cover,
+                      alignment: FractionalOffset.topCenter,
+                      image: MemoryImage(thumbnile!),
+                    )),
+                  );
+                }),
             Padding(
-              padding: const EdgeInsets.all(25.0),
+              padding: const EdgeInsets.only(top: 25.0, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,9 +143,9 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                     ),
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.4,
+                    width: MediaQuery.of(context).size.width * 0.7,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 25),
+                      padding: const EdgeInsets.only(top: 25, bottom: 10),
                       child: TextField(
                         controller: captionController,
                         decoration: const InputDecoration(
@@ -124,41 +161,6 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                       ),
                     ),
                   ),
-                  FutureBuilder(
-                      future: generateVideoThumbnail(widget.path),
-                      builder: (context, AsyncSnapshot<Uint8List?> snapshot) {
-                        if (thumbnile != null) {
-                          return Container(
-                            height: 100.0,
-                            width: 100.0,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                              fit: BoxFit.cover,
-                              alignment: FractionalOffset.topCenter,
-                              image: MemoryImage(thumbnile!),
-                            )),
-                          );
-                        }
-                        if (!snapshot.hasData || snapshot.data == null) {
-                          return Container(
-                            height: 100.0,
-                            width: 100.0,
-                            decoration: const BoxDecoration(),
-                          );
-                        }
-                        thumbnile = snapshot.data;
-
-                        return Container(
-                          height: 100.0,
-                          width: 100.0,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                            fit: BoxFit.cover,
-                            alignment: FractionalOffset.topCenter,
-                            image: MemoryImage(thumbnile!),
-                          )),
-                        );
-                      }),
                 ],
               ),
             ),

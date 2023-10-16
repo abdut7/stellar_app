@@ -157,7 +157,7 @@ class _AddFilesHomePageState extends State<AddFilesHomePage> {
                         : GestureDetector(
                             onTap: () {
                               //Open gallary
-                              pickVideoFromStorage();
+                              pickVideoFromStorage(isFromChannel: false);
                             },
                             child: SvgPicture.string(
                                 """<svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -176,6 +176,7 @@ class _AddFilesHomePageState extends State<AddFilesHomePage> {
                             XFile file = await controller.stopVideoRecording();
                             stopTimer();
                             Get.to(() => VideoPlayerScreen(
+                                  isFromChannel: false,
                                   videoFilePath: file.path,
                                 ));
                             //take to video preview screen
@@ -252,9 +253,7 @@ class _AddFilesHomePageState extends State<AddFilesHomePage> {
                         ),
                         UploadToSelectionWidget(
                           onTap: (val) {
-                            setState(() {
-                              uploadTo = val;
-                            });
+                            pickVideoFromStorage(isFromChannel: true);
                           },
                           selectedValue: uploadTo,
                           value: UploadTo.channel,

@@ -6,7 +6,7 @@ import 'package:stellar_chat/View/create_post/flicks/tag_people_screen/widget/ta
 import 'package:stellar_chat/View/create_post/flicks/tag_people_screen/widget/tag_people_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:stellar_chat/controllers/new_post/fliq_controller.dart';
+import 'package:stellar_chat/controllers/new_post/new_post_common_controller.dart';
 
 class TagPeopleScreen extends StatefulWidget {
   const TagPeopleScreen(
@@ -22,7 +22,7 @@ class TagPeopleScreen extends StatefulWidget {
 class _TagPeopleScreenState extends State<TagPeopleScreen> {
   @override
   Widget build(BuildContext context) {
-    FliqController fliqController = Get.find();
+    NewPostController newPostController = Get.find();
     return Scaffold(
       backgroundColor: SColors.color4,
       appBar: AppBar(
@@ -100,36 +100,36 @@ class _TagPeopleScreenState extends State<TagPeopleScreen> {
               ),
             ),
           ),
-          Obx(() => !fliqController.isSearching.value
+          Obx(() => !newPostController.isSearching.value
               ? Expanded(
                   child: ListView.builder(
-                    itemCount: fliqController.tagPeople.length,
+                    itemCount: newPostController.tagPeople.length,
                     itemBuilder: (context, index) {
                       return TagPeopleTile(
-                        name: fliqController.tagPeople
+                        name: newPostController.tagPeople
                             .elementAt(index)
                             .strMobileNo,
-                        username: fliqController.tagPeople
+                        username: newPostController.tagPeople
                             .elementAt(index)
                             .strFullName,
-                        contact: fliqController.tagPeople.elementAt(index),
+                        contact: newPostController.tagPeople.elementAt(index),
                       );
                     },
                   ),
                 )
               : Expanded(
                   child: ListView.builder(
-                    itemCount: fliqController.searchList.length,
+                    itemCount: newPostController.searchList.length,
                     itemBuilder: (context, index) {
                       return TagPeopleTile(
                         isSearch: true,
-                        name: fliqController.searchList
+                        name: newPostController.searchList
                             .elementAt(index)
                             .strMobileNo,
-                        username: fliqController.searchList
+                        username: newPostController.searchList
                             .elementAt(index)
                             .strFullName,
-                        contact: fliqController.searchList.elementAt(index),
+                        contact: newPostController.searchList.elementAt(index),
                       );
                     },
                   ),
