@@ -101,6 +101,7 @@ class ChannelService {
     String url = ApiRoutes.baseUrl + ApiRoutes.getChannelList;
     Map<String, dynamic> header = await getHeader();
     Map<String, dynamic> data = {"intPageCount ": count.toString()};
+    print(data);
     ChannelHomeController controller = Get.find();
     if (count == 1) {
       controller.channelItems.clear();
