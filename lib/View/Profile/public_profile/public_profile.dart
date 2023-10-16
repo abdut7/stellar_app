@@ -55,7 +55,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                 child: ListView(
                   children: <Widget>[
                     Container(
-                        height: 250,
+                        height:  MediaQuery.of(context).size.height*0.3,
                         width: Get.width,
                         decoration: BoxDecoration(
                           image: DecorationImage(
