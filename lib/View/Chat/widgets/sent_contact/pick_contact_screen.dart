@@ -23,6 +23,7 @@ class _PickContactFromPhoneToSentState
     extends State<PickContactFromPhoneToSent> {
   List<Contact> _contacts = [];
   List<Contact> _filteredContacts = [];
+  List<Contact> _selectedContacts = [];
 
   @override
   void initState() {
@@ -37,6 +38,15 @@ class _PickContactFromPhoneToSentState
       _filteredContacts = contacts.toList();
     });
   }
+  void _toggleContactSelection(Contact contact) {
+    setState(() {
+      if (_selectedContacts.contains(contact)) {
+        _selectedContacts.remove(contact);
+      } else {
+        _selectedContacts.add(contact);
+      }
+    });
+  }
 
   void _filterContacts(String query) {
     final filteredContacts = _contacts.where((contact) {
@@ -47,6 +57,7 @@ class _PickContactFromPhoneToSentState
       _filteredContacts = filteredContacts;
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -73,9 +84,7 @@ class _PickContactFromPhoneToSentState
           Padding(
             padding: const EdgeInsets.only(top: 40,right: 20),
             child: GestureDetector(
-              onTap: (){
-
-              },
+              onTap: (){},
               child: Text(
                 'Send',
                 textAlign: TextAlign.center,
@@ -130,22 +139,66 @@ class _PickContactFromPhoneToSentState
                     strList: _filteredContacts
                         .map((contact) => contact.displayName ?? "")
                         .toList(),
-                    indexedHeight: (index) => 80,
+                    indexedHeight: (index) => 55,
                     itemBuilder: (context, index) {
                       final contact = _filteredContacts[index];
-                      return ListTile(
-                        onTap: () {
-                          if (contact.phones != null) {
-                            Get.to(() => ContactDetailsScreen(
-                                  chatId: widget.chatId,
-                                  isGroup: widget.isGroup,
-                                  contact: contact,
-                                ));
-                          }
-                        },
-                        title: Text(contact.displayName ?? ''),
-                        // Add more contact information or actions here if needed.
-                      );
+                      return
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 25),
+                          child: Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  _toggleContactSelection(contact);
+                                },
+                                child: CircleAvatar(
+                                  radius: 6,
+                                  backgroundColor: _selectedContacts.contains(contact)
+                                      ? SColors.color12
+                                      : Colors.grey.withOpacity(0.4),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  if (contact.phones != null) {
+                                    Get.to(() => ContactDetailsScreen(
+                                      chatId: widget.chatId,
+                                      isGroup: widget.isGroup,
+                                      contact: contact,
+                                    ));
+                                  }
+                                },
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 40,
+                                      height: 40,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        image: DecorationImage(
+                                          image: NetworkImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 15,),
+                                    Text(
+                                      contact.displayName ?? '',
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+
                     },
                   ),
                 ),

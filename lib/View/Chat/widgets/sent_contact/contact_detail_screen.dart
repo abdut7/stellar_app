@@ -46,7 +46,9 @@ class ContactDetailsScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: GestureDetector(
+      floatingActionButton:
+
+      GestureDetector(
         onTap: () {
           if (isGroup) {
             GroupChatService.sentGroupContactMessage(
