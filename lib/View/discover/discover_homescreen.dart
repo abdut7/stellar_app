@@ -8,6 +8,7 @@ import 'package:stellar_chat/View/channel/channel_home_screen/channel_home_scree
 import 'package:stellar_chat/View/contact/add_contact/friends_in_radar/friends_in_radar.dart';
 import 'package:stellar_chat/View/discover/widgets/discover_list_tile.dart';
 import 'package:stellar_chat/View/discover/widgets/top_section.dart';
+import 'package:stellar_chat/controllers/bottom_navigation_controller.dart';
 import 'package:stellar_chat/stellar_pay/screens/stellar_pay_splash_screen/stellar_pay_splash.dart';
 import 'package:stellar_chat/View/flicks/flicks_player_home_screen.dart';
 
@@ -121,7 +122,12 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                                 title: 'Stellar Pay',
                                 svgAsset: SSvgs.payStellar,
                                 onTap: () {
-                                  Get.to(() => const StellarPaySplashScreen());
+                                  // Get.to(() => const StellarPaySplashScreen());
+                                  BottomNavigationController
+                                      bottomNavigationController = Get.find();
+                                  bottomNavigationController.bottomNavList[1]
+                                      .add(const StellarPaySplashScreen());
+                                  bottomNavigationController.pageCount(1);
                                 }),
                           ],
                         ),
@@ -155,7 +161,8 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                                   Get.to(() => FriendsInRadarScreen());
                                 }),
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 15),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15),
                               child: Divider(
                                 thickness: 2,
                                 color: Colors.black12,

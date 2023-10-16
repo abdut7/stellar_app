@@ -6,6 +6,7 @@ import 'package:stellar_chat/View/contact/add_contact/scan_qr_code.dart';
 import 'package:stellar_chat/View/contact/add_contact/select_contacts_to_add_screen.dart';
 import 'package:stellar_chat/View/contact/show_contact/show_contacts_screen.dart';
 import 'package:stellar_chat/View/profile/qr/qr_screen.dart';
+import 'package:stellar_chat/controllers/bottom_navigation_controller.dart';
 import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/stellar_pay/screens/stellar_pay_splash_screen/stellar_pay_splash.dart';
 import 'package:stellar_chat/utils/colors.dart';
@@ -63,13 +64,17 @@ class ChatHomeAppbarWidget extends StatelessWidget {
 </svg>
 """),
           ),
-
           Padding(
             padding: const EdgeInsets.only(left: 165),
             child: GestureDetector(
-              onTap: (){
-                Get.to(()=> const StellarPaySplashScreen());
-              },
+                onTap: () {
+                  // Get.to(()=> const StellarPaySplashScreen());
+                  BottomNavigationController bottomNavigationController =
+                      Get.find();
+                  bottomNavigationController.bottomNavList[1]
+                      .add(const StellarPaySplashScreen());
+                  bottomNavigationController.pageCount(1);
+                },
                 child: SvgPicture.asset(SSvgs.stellarPayIconText)),
           ),
           InkWell(
@@ -135,7 +140,7 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                     height: 20,
                   ),
                   ontap: () {
-                    Get.to(()=>const StellarPaySplashScreen());
+                    Get.to(() => const StellarPaySplashScreen());
                   },
                   text: 'Stellar Pay',
                 ),
@@ -163,7 +168,6 @@ class ChatHomeAppbarWidget extends StatelessWidget {
               color: SColors.color11,
             ),
           ),
-
         ],
       ),
     );
