@@ -16,3 +16,12 @@ class ProfileChannelController extends GetxController {
     ChannelService().getChannelsById(count: pageNumber, id: id);
   }
 }
+
+class ChannelHomeController extends GetxController {
+  int currentPage = 1;
+  final RxList<ChannelItem> channelItems = RxList();
+  void fetchNextPage() {
+    ChannelService().getChannel(count: currentPage);
+    currentPage++;
+  }
+}

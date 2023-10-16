@@ -96,21 +96,24 @@ class ChannelService {
     }
   }
 
-  Future<void> getFlick({required int count}) async {
+  Future<void> getChannel({required int count}) async {
     Dio dio = Dio();
-    String url = ApiRoutes.baseUrl + ApiRoutes.getFlicksList;
+    String url = ApiRoutes.baseUrl + ApiRoutes.getChannelList;
     Map<String, dynamic> header = await getHeader();
     Map<String, dynamic> data = {"intPageCount ": count.toString()};
-    FlicksPlayerController controller = Get.find();
+    ChannelHomeController controller = Get.find();
+    if (count == 1) {
+      controller.channelItems.clear();
+    }
 
     try {
       Response res =
           await dio.post(url, options: Options(headers: header), data: data);
       print(res);
-      FlickModel model = FlickModel.fromJson(res.data);
+      ChannelModel model = ChannelModel.fromJson(res.data);
       print(model.arrList.length);
       for (var element in model.arrList) {
-        controller.flickItems.add(element);
+        controller.channelItems.add(element);
       }
     } on Exception catch (e) {
       return null;
