@@ -12,6 +12,7 @@ Future<dynamic> showChatAttachmentSheet(
     {"name": "Contacts", "file": "assets/Svgs/contact_attach.svg"},
     {"name": "Audio", "file": "assets/Svgs/audio_attach.svg"}
   ];
+
   return showModalBottomSheet(
     isScrollControlled: false,
     backgroundColor: Colors.transparent,

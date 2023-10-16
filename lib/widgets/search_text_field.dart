@@ -15,7 +15,8 @@ class SearchTextField extends StatefulWidget {
 class _SearchTextFieldState extends State<SearchTextField> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return
+      Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
       child: SizedBox(
         height: 40,

@@ -1,3 +1,4 @@
+import 'package:stellar_chat/View/Chat/group_chat/group_info/group_description_screen/group_description_screen.dart';
 import 'package:stellar_chat/View/chat/chat_screen/chat_screen.dart';
 import 'package:stellar_chat/View/chat/group_chat/group_info/widgets/group_participent_more.dart';
 import 'package:stellar_chat/View/contact/create_group/select_participents_screen.dart';
@@ -143,9 +144,14 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 16.0),
-                      child: Text(
-                        resModel.strDiscription,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      child: GestureDetector(
+                        onTap: (){
+                          Get.to(()=>const GroupDescriptionScreen());
+                        },
+                        child: Text(
+                          resModel.strDiscription,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                     const SizedBox(
