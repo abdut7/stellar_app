@@ -31,8 +31,9 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.black, // Change the color to your desired color
+            Icons.arrow_back_ios,
+            color: Colors.black,
+            size: 20,// Change the color to your desired color
           ),
           onPressed: () {
             Get.back();
@@ -40,14 +41,14 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
         ),
         elevation: 0,
         backgroundColor: Colors.transparent,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.more_vert, color: Colors.black),
-            onPressed: () {
-              // Implement your menu actions here
-            },
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     icon: const Icon(Icons.more_vert, color: Colors.black),
+        //     onPressed: () {
+        //       // Implement your menu actions here
+        //     },
+        //   ),
+        // ],
       ),
       body: FutureBuilder<GroupDetailsResponseModel?>(
           future: GroupServices.getGroupDetails(groupId: widget.chatId),

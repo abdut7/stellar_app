@@ -19,7 +19,8 @@ class AddUserGroupTileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Row(
+      child:
+      Row(
         children: [
           const SizedBox(
             width: 10,
