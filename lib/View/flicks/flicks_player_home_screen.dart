@@ -4,13 +4,19 @@ import 'package:stellar_chat/View/flicks/widget/flick_item_widget.dart';
 import 'package:stellar_chat/controllers/flicks/flicks_player_controller.dart';
 
 class FlicksPlayerHomeScreen extends StatelessWidget {
-  final bool isFromProfile;
-  FlicksPlayerHomeScreen({super.key, this.isFromProfile = false});
+  final bool isFromChannel;
+  final int page;
+
+  FlicksPlayerHomeScreen(
+      {super.key, this.isFromChannel = false, this.page = 0});
 
   @override
   Widget build(BuildContext context) {
     FlicksPlayerController flicksController = Get.put(FlicksPlayerController());
-    flicksController.loadMore();
+    if (!isFromChannel) {
+      flicksController.loadMore();
+    }
+    PageController pageController = PageController(initialPage: page);
     return Obx(
       () => Scaffold(
         body: flicksController.flickItems.isEmpty
@@ -23,6 +29,7 @@ class FlicksPlayerHomeScreen extends StatelessWidget {
                 ),
               )
             : PageView.builder(
+                controller: pageController,
                 onPageChanged: (value) {
                   if (value == flicksController.flickItems.length - 2) {
                     flicksController.loadMore();
