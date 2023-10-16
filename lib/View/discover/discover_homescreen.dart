@@ -64,7 +64,14 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                                 title: 'Flicks',
                                 svgAsset: SSvgs.flicksLogo,
                                 onTap: () {
-                                  Get.to(() => FlicksPlayerHomeScreen());
+                                  // Get.to(() => FlicksPlayerHomeScreen());
+                                  BottomNavigationController
+                                      bottomNavigationController = Get.find();
+                                  bottomNavigationController.bottomNavList[1]
+                                      .add(
+                                    FlicksPlayerHomeScreen(),
+                                  );
+                                  bottomNavigationController.pageCount(1);
                                 }),
                             const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 15),
