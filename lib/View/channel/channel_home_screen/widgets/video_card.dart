@@ -1,10 +1,25 @@
+import 'package:intl/intl.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/View/channel/channel_view/channel_view_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class VideoCard extends StatefulWidget {
-  const VideoCard({Key? key}) : super(key: key);
+  final String? thumbnileUrl;
+  final String userProfileUrl;
+  final String duration;
+  final String title;
+  final String views;
+  final DateTime time;
+  const VideoCard({
+    Key? key,
+    required this.thumbnileUrl,
+    required this.userProfileUrl,
+    required this.duration,
+    required this.title,
+    required this.views,
+    required this.time,
+  }) : super(key: key);
 
   @override
   State<VideoCard> createState() => _VideoCardState();
@@ -27,13 +42,14 @@ class _VideoCardState extends State<VideoCard> {
                 children: [
                   Container(
                     width: double.infinity,
-                    height: 175,
+                    height: Get.height * 0.2,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         color: SColors.color8,
-                        image: const DecorationImage(
-                            image: NetworkImage(
-                                'https://img.freepik.com/premium-photo/woman-holding-camera-with-word-canon-front_853645-1568.jpg?w=1380'),
+                        image: DecorationImage(
+                            image: NetworkImage(widget.thumbnileUrl == null
+                                ? 'https://img.freepik.com/premium-photo/woman-holding-camera-with-word-canon-front_853645-1568.jpg?w=1380'
+                                : widget.thumbnileUrl!),
                             fit: BoxFit.cover)),
                   ),
                   Positioned(
@@ -46,7 +62,7 @@ class _VideoCardState extends State<VideoCard> {
                           borderRadius: BorderRadius.circular(4),
                           color: SColors.color3),
                       child: Text(
-                        '17:45',
+                        widget.duration,
                         style: TextStyle(color: SColors.color4, fontSize: 10),
                       ),
                     ),
@@ -68,8 +84,7 @@ class _VideoCardState extends State<VideoCard> {
                         color: SColors.color9,
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: NetworkImage(
-                              'https://img.freepik.com/premium-photo/woman-holding-camera-with-word-canon-front_853645-1568.jpg?w=1380'),
+                          image: NetworkImage(widget.userProfileUrl),
                         )),
                   ),
                   const SizedBox(
@@ -81,7 +96,7 @@ class _VideoCardState extends State<VideoCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'The Beauty of Existence - Heart Touching Nasheed',
+                        widget.title,
                         style: TextStyle(
                           color: SColors.color3,
                           fontSize: 14,
@@ -92,7 +107,7 @@ class _VideoCardState extends State<VideoCard> {
                         height: 5,
                       ),
                       Text(
-                        '19,210,251 views - Jul •1, 2016',
+                        '${widget.views} views - ${DateFormat('MMM •d, y').format(widget.time)}',
                         style: TextStyle(
                           color: SColors.color8,
                           fontSize: 12,

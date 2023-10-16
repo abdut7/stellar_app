@@ -48,7 +48,7 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                           borderRadius: BorderRadius.circular(17),
                         ),
                         shadows: [
-                          BoxShadow(
+                          const BoxShadow(
                             color: Color(0x26000000),
                             blurRadius: 8,
                             offset: Offset(0, 3),
@@ -84,7 +84,14 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                                 title: 'Channel',
                                 svgAsset: SSvgs.channelLogo,
                                 onTap: () {
-                                  Get.to(() => const ChannelHomeScreen());
+                                  BottomNavigationController
+                                      bottomNavigationController = Get.find();
+                                  bottomNavigationController.bottomNavList[1]
+                                      .add(
+                                    const ChannelHomeScreen(),
+                                  );
+                                  // bottomNavigationController.pageCount(1);
+                                  // Get.to(() => const ChannelHomeScreen());
                                 }),
                           ],
                         ),
@@ -100,7 +107,7 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                           borderRadius: BorderRadius.circular(17),
                         ),
                         shadows: [
-                          BoxShadow(
+                          const BoxShadow(
                             color: Color(0x26000000),
                             blurRadius: 8,
                             offset: Offset(0, 3),
@@ -149,7 +156,7 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                           borderRadius: BorderRadius.circular(17),
                         ),
                         shadows: [
-                          BoxShadow(
+                          const BoxShadow(
                             color: Color(0x26000000),
                             blurRadius: 8,
                             offset: Offset(0, 3),
@@ -165,11 +172,10 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                                 title: 'People Near Me',
                                 svgAsset: SSvgs.nearMeIcon,
                                 onTap: () {
-                                  Get.to(() => FriendsInRadarScreen());
+                                  Get.to(() => const FriendsInRadarScreen());
                                 }),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 15),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 15),
                               child: Divider(
                                 thickness: 2,
                                 color: Colors.black12,

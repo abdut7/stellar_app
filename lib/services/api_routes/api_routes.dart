@@ -41,4 +41,5 @@ class ApiRoutes {
   static String getFollowingList = "/get_following_list";
   static String postChannel = "/create_flick_channel";
   static String getChannelById = "/get_channel_by_id";
+  static String getChannelList = "/get_channel_list";
 }

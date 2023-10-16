@@ -52,8 +52,8 @@ class _ChannelViewScreenState extends State<ChannelViewScreen> {
           const SizedBox(
             height: 10,
           ),
-          const VideoCard(),
-          const VideoCard(),
+          // const VideoCard(),
+          // const VideoCard(),
         ],
       ),
     );
