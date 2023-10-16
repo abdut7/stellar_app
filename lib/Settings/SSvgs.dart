@@ -83,4 +83,7 @@ class SSvgs {
   static String get visaWhiteText => "assets/Svgs/visaWhiteText.svg";
   static String get whiteVisaText => "assets/Svgs/whiteVisaText.svg";
   static String get circleWhite => "assets/Svgs/circleWhite.svg";
+  static String get pMessage => "assets/Svgs/pMessage.svg";
+  static String get pCall => "assets/Svgs/pCall.svg";
+  static String get pVideo => "assets/Svgs/pVideo.svg";
 }
