@@ -167,32 +167,35 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 const SizedBox(
                   height: 10,
                 ),
-                Obx(() => Padding(
+                Obx(() => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 60),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Dark Mode',
-                            style: TextStyle(
-                              color: SColors.color3,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          Transform.scale(
-                            scale: 0.7,
-                            child: CupertinoSwitch(
-                              value: darkThemeController.isDarkTheme.value,
-                              onChanged: (bool newValue) {
-                                darkThemeController.switchTheme();
-                              },
-                              activeColor: SColors.color11,
-                            ),
-                          ),
-                        ],
+                      child: Text(
+                        'Dark Mode',
+                        style: TextStyle(
+                          color: SColors.color3,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    )),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Transform.scale(
+                        scale: 0.6,
+                        child: CupertinoSwitch(
+                          value: darkThemeController.isDarkTheme.value,
+                          onChanged: (bool newValue) {
+                            darkThemeController.switchTheme();
+                          },
+                          activeColor: SColors.color11,
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
                 const SizedBox(
                   height: 20,
                 ),
@@ -207,7 +210,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         )),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 20,
                   ),
                   GestureDetector(
                     onTap: () {
@@ -226,7 +229,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                     ),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 20,
                   ),
                   GestureDetector(
                     onTap: () {},
@@ -243,7 +246,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                     ),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 20,
                   ),
                   GestureDetector(
                     onTap: () {},
@@ -261,7 +264,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   ),
                 ]),
                 const SizedBox(
-                  height: 35,
+                  height: 30,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -276,7 +279,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                           )),
                     ),
                     const SizedBox(
-                      height: 15,
+                      height: 20,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 45),
