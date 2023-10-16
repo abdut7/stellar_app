@@ -5,6 +5,7 @@ import 'package:stellar_chat/View/channel/channel_home_screen/widgets/flicks_sug
 import 'package:stellar_chat/View/channel/channel_home_screen/widgets/video_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stellar_chat/View/channel/channel_view/widgets/video_card_channel_view.dart';
 import 'package:stellar_chat/controllers/channel/channel_controller.dart';
 import 'package:stellar_chat/controllers/flicks/flicks_player_controller.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
@@ -23,6 +24,7 @@ class _ChannelHomeScreenState extends State<ChannelHomeScreen> {
   ScrollController scrollController = ScrollController();
   @override
   void initState() {
+    channelHomeController.fetchNextPage();
     super.initState();
     scrollController.addListener(() {
       if (scrollController.position.pixels ==
@@ -34,7 +36,6 @@ class _ChannelHomeScreenState extends State<ChannelHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    channelHomeController.fetchNextPage();
     UserController userController = Get.find();
     return Obx(
       () => Scaffold(
@@ -55,17 +56,19 @@ class _ChannelHomeScreenState extends State<ChannelHomeScreen> {
                     return ChannelHeaderWidget(userController: userController);
                   }
                   if (index == 3) {
-                    return FlicksInChannelsWidget();
+                    return const FlicksInChannelsWidget();
                   }
                   ChannelItem channelItem =
                       channelHomeController.channelItems.elementAt(newIndex);
-                  return VideoCard(
-                    thumbnileUrl: channelItem.strThumbnailUrl,
-                    userProfileUrl: channelItem.strUserProfileUrl,
-                    duration: channelItem.commentsCount.toString(),
-                    time: channelItem.strCreatedTime,
-                    title: channelItem.strDescription,
-                    views: channelItem.likesCount.toString(),
+                  return GestureDetector(
+                    onTap: () {
+                      Get.to(() => VideoCardChannelView(
+                            channelItem: channelItem,
+                          ));
+                    },
+                    child: VideoCard(
+                      channelItem: channelItem,
+                    ),
                   );
                 },
                 separatorBuilder: (context, index) {
@@ -156,14 +159,14 @@ class FlicksInChannelsWidget extends StatelessWidget {
     flicksController.loadMore();
     return Obx(
       () => flicksController.flickItems.isEmpty
-          ? SizedBox()
+          ? const SizedBox()
           : Container(
               height: 160,
               child: Column(
                 children: [
                   Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
                       SvgPicture.string(
@@ -184,10 +187,10 @@ class FlicksInChannelsWidget extends StatelessWidget {
 </defs>
 </svg>
 """),
-                      Text("Flicks")
+                      const Text("Flicks")
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Expanded(
