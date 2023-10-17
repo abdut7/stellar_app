@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:stellar_chat/services/api_services/fliq_services.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
   final String videoUrl;
+  final String flickId;
 
-  VideoPlayerScreen({required this.videoUrl});
+  VideoPlayerScreen({required this.videoUrl, required this.flickId});
 
   @override
   _VideoPlayerScreenState createState() => _VideoPlayerScreenState();
@@ -13,6 +15,7 @@ class VideoPlayerScreen extends StatefulWidget {
 
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   late VideoPlayerController _controller;
+  bool functionCalled = false;
 
   @override
   void initState() {
@@ -25,6 +28,18 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
           _controller.setLooping(true);
         });
       });
+    _controller.addListener(() {
+      final position = _controller.value.position;
+
+      // Check if the video has been playing for at least 10 seconds
+      if (position >= Duration(seconds: 10) && !functionCalled) {
+        // Call your function here
+        FliqServices.addView(flickId: widget.flickId);
+
+        // Set the flag to prevent calling the function multiple times
+        functionCalled = true;
+      }
+    });
   }
 
   @override
