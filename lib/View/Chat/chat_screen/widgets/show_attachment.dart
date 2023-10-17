@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
 Future<dynamic> showChatAttachmentSheet(
     {required BuildContext context,
@@ -29,6 +31,7 @@ Future<dynamic> showChatAttachmentSheet(
     backgroundColor: Colors.transparent,
     context: context,
     builder: (context) {
+      ThemeController themeController = Get.find();
       return Padding(
           padding:
               EdgeInsets.only(bottom: Get.height * 0.1, left: 12, right: 12),
@@ -36,7 +39,9 @@ Future<dynamic> showChatAttachmentSheet(
             width: Get.width * 0.9,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: const Color.fromRGBO(159, 196, 232, 1),
+              color:themeController.isDarkTheme.value
+                  ? SColors.darkmode
+                  : SColors.color11,
             ),
             child: GridView.builder(
               shrinkWrap: true,
@@ -60,10 +65,8 @@ Future<dynamic> showChatAttachmentSheet(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SvgPicture.asset(attachList[index]['file']!),
-                          const SizedBox(
-                            height: 5,
-                          ),
+                          SvgPicture.asset(attachList[index]['file']!,),
+                          const SizedBox(height: 5,),
                           Text(attachList[index]['name']!)
                         ],
                       ),
