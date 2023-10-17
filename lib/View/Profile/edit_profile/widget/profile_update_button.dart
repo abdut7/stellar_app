@@ -20,7 +20,7 @@ class _ProfileUpdateButtonState extends State<ProfileUpdateButton> {
     return GestureDetector(
       onTap: widget.onPressed,
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.2,
+        width: MediaQuery.of(context).size.width * 0.6,
         height: 40,
         decoration: BoxDecoration(
           color: const Color.fromRGBO(0, 51, 142, 1),
