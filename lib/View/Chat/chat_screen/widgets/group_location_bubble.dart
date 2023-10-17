@@ -43,7 +43,8 @@ class GroupLocationBubble extends StatelessWidget {
                       ),
                       Text(
                         message.strName,
-                        style: TextStyle(fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600, color: Colors.black),
                       ),
                     ],
                   ),

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stellar_chat/controllers/bottom_navigation_controller.dart';
 import 'package:stellar_chat/controllers/contacts_controller.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/stellar_pay/screens/stellar_pay_home/money_pay_home.dart';
 
 class StellarPaySplashScreen extends StatefulWidget {
@@ -18,6 +19,14 @@ class StellarPaySplashScreen extends StatefulWidget {
 class _StellarPaySplashScreenState extends State<StellarPaySplashScreen> {
   ContactsController contactsController = Get.put(ContactsController());
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Your function to run after the widget is built
+      Get.find<ThemeController>().isInsideDarkScreens(true);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

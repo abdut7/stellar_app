@@ -7,7 +7,9 @@ import 'package:stellar_chat/controllers/theme_controller.dart';
 import '../../Settings/SSvgs.dart';
 
 class BaseBottomNavigation extends StatefulWidget {
-  const BaseBottomNavigation({super.key, });
+  const BaseBottomNavigation({
+    super.key,
+  });
 
   @override
   State<BaseBottomNavigation> createState() => _BaseBottomNavigationState();
@@ -19,8 +21,6 @@ BottomNavigationController bottomNavigationController =
 int selectedIndex = 0;
 
 class _BaseBottomNavigationState extends State<BaseBottomNavigation> {
-
-
   @override
   Widget build(BuildContext context) {
     ThemeController controller = Get.find();
@@ -31,12 +31,16 @@ class _BaseBottomNavigationState extends State<BaseBottomNavigation> {
             .elementAt(bottomNavigationController.pageCount.value)
             .last,
         bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Get.find<ThemeController>().isInsideDarkScreens.value
+              ? Color.fromRGBO(79, 79, 79, 1)
+              : null,
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: false, // Hide labels for selected items
           showUnselectedLabels: false, // Hide labels for unselected items
           items: [
             BottomNavigationBarItem(
-                backgroundColor: controller.isDarkTheme.value
+                backgroundColor: controller.isDarkTheme.value ||
+                        controller.isInsideDarkScreens.value
                     ? const Color.fromRGBO(79, 79, 79, 1)
                     : null,
                 icon: BottomNavIconWidget(
@@ -77,10 +81,14 @@ class _BaseBottomNavigationState extends State<BaseBottomNavigation> {
                 bottomNavigationController.bottomNavList[e] = RxSet({
                   const DiscoverHomeScreen(),
                 });
+                Get.find<ThemeController>().isInsideDarkScreens(false);
                 bottomNavigationController.tapCount(0);
               }
             }
             bottomNavigationController.pageCount(e);
+            if (e != 1) {
+              Get.find<ThemeController>().isInsideDarkScreens(false);
+            }
           },
         ),
       ),

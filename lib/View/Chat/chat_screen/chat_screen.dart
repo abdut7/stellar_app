@@ -163,6 +163,7 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                   onTap: (index) async {
                     //if index = 0 =>Send Files
                     if (index == 0) {
+                      Get.back();
                       FilePickerResult? result =
                           await FilePicker.platform.pickFiles(
                         type: FileType.any,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/services/download_and_open_file.dart';
 import 'package:stellar_chat/utils/colors.dart';
 
@@ -58,7 +59,11 @@ class _DocumentBubbleState extends State<DocumentBubble> {
                   padding: const EdgeInsets.only(left: 16.0, top: 4, bottom: 4),
                   child: Text(
                     widget.isSent ? "" : widget.senterName,
-                    style: TextStyle(fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Get.find<ThemeController>().isDarkTheme.value
+                            ? Colors.black
+                            : Colors.white),
                   ),
                 ),
                 Row(
@@ -87,6 +92,7 @@ class _DocumentBubbleState extends State<DocumentBubble> {
                       child: Text(
                         widget.message,
                         overflow: TextOverflow.ellipsis,
+                        style: TextStyle(color: Colors.black),
                       ),
                     ),
                     const SizedBox(

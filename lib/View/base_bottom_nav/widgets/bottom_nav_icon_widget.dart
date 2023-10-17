@@ -21,12 +21,14 @@ class BottomNavIconWidget extends StatelessWidget {
         radius: 25,
         backgroundColor: !isSelected
             ? Colors.transparent
-            : themeController.isDarkTheme.value
+            : themeController.isDarkTheme.value ||
+                    themeController.isInsideDarkScreens.value
                 ? colorBlack
                 : const Color.fromRGBO(0, 51, 142, 1),
         child: SvgPicture.asset(
           svgPath,
-          color: themeController.isDarkTheme.value
+          color: themeController.isDarkTheme.value ||
+                  themeController.isInsideDarkScreens.value
               ? const Color.fromRGBO(137, 137, 137, 1)
               : null,
         )));

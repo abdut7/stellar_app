@@ -6,6 +6,7 @@ class ThemeController extends GetxController {
   final RxBool isDarkTheme = false.obs;
   final Rx<ThemeData> lightTheme = ThemeData.light().obs;
   final Rx<ThemeData> darkTheme = ThemeData.dark().obs;
+  RxBool isInsideDarkScreens = RxBool(false);
 
   ThemeData get currentTheme =>
       isDarkTheme.value ? darkTheme.value : lightTheme.value;

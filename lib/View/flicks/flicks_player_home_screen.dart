@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stellar_chat/View/flicks/widget/flick_item_widget.dart';
 import 'package:stellar_chat/controllers/flicks/flicks_player_controller.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
-class FlicksPlayerHomeScreen extends StatelessWidget {
+class FlicksPlayerHomeScreen extends StatefulWidget {
   final bool isFromChannel;
   final int page;
 
@@ -11,12 +12,26 @@ class FlicksPlayerHomeScreen extends StatelessWidget {
       {super.key, this.isFromChannel = false, this.page = 0});
 
   @override
+  State<FlicksPlayerHomeScreen> createState() => _FlicksPlayerHomeScreenState();
+}
+
+class _FlicksPlayerHomeScreenState extends State<FlicksPlayerHomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Your function to run after the widget is built
+      Get.find<ThemeController>().isInsideDarkScreens(true);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     FlicksPlayerController flicksController = Get.put(FlicksPlayerController());
-    if (!isFromChannel) {
+    if (!widget.isFromChannel) {
       flicksController.loadMore();
     }
-    PageController pageController = PageController(initialPage: page);
+    PageController pageController = PageController(initialPage: widget.page);
     return Obx(
       () => Scaffold(
         body: flicksController.flickItems.isEmpty
