@@ -85,7 +85,8 @@ class _CommentScreenState extends State<CommentScreen> {
                       Center(
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
-                          child: Text('${widget.commentCount} Comments'),
+                          child: Text(
+                              '${snapshot.hasData && snapshot.data != null ? snapshot.data!.arrList.length : widget.commentCount} Comments'),
                         ),
                       ),
                       IconButton(
@@ -193,6 +194,8 @@ class _CommentScreenState extends State<CommentScreen> {
                                       comment: widget.commentController.text,
                                     );
                                     widget.commentController.clear();
+                                    FocusScope.of(context).unfocus();
+                                    setState(() {});
                                     return;
                                   }
                                   await FliqServices().addComments(
@@ -200,6 +203,7 @@ class _CommentScreenState extends State<CommentScreen> {
                                     comment: widget.commentController.text,
                                   );
                                   widget.commentController.clear();
+                                  FocusScope.of(context).unfocus();
                                   setState(() {});
                                 },
                               ),
