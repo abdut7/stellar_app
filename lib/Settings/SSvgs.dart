@@ -92,4 +92,7 @@ class SSvgs {
   static String get scanDark => "assets/Svgs/scanDark.svg";
   static String get nearmeDark => "assets/Svgs/nearmeDark.svg";
   static String get searchDark => "assets/Svgs/searchDark.svg";
+  static String get qrDark => "assets/Svgs/qrDark.svg";
+  static String get stickerDark => "assets/Svgs/stickerDark.svg";
+  static String get favouriteDark => "assets/Svgs/favouriteDark.svg";
 }
