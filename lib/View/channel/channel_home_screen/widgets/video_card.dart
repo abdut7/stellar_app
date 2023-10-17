@@ -4,6 +4,7 @@ import 'package:stellar_chat/View/channel/channel_view/channel_view_screen.dart'
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stellar_chat/View/channel/channel_view/widgets/video_card_channel_view.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/models/api_models/channel_model.dart';
 
 class VideoCard extends StatefulWidget {
@@ -89,7 +90,9 @@ class _VideoCardState extends State<VideoCard> {
                     Text(
                       widget.channelItem.description,
                       style: TextStyle(
-                        color: SColors.color3,
+                        color: Get.find<ThemeController>().isDarkTheme.value
+                            ? Colors.white
+                            : SColors.color3,
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                       ),
@@ -103,7 +106,9 @@ class _VideoCardState extends State<VideoCard> {
                         DateTime.parse(widget.channelItem.createdTime),
                       )}',
                       style: TextStyle(
-                        color: SColors.color8,
+                        color: Get.find<ThemeController>().isDarkTheme.value
+                            ? Colors.grey
+                            : SColors.color8,
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
                       ),

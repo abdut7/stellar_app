@@ -1,4 +1,5 @@
 import 'package:chewie/chewie.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:stellar_chat/View/channel/channel_home_screen/widgets/video_card.dart';
 import 'package:stellar_chat/View/comment_view/show_comment_bottom_sheet.dart';
 import 'package:stellar_chat/controllers/channel/channel_controller.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/models/api_models/channel_model.dart';
 import 'package:stellar_chat/services/api_services/account_services.dart';
 import 'package:stellar_chat/services/api_services/channel_service.dart';
@@ -35,13 +37,14 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
 
     super.initState();
     _videoPlayerController = VideoPlayerController.network(
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      widget.channelItem.fileUrl,
     );
     _chewieController = ChewieController(
       allowMuting: false,
       useRootNavigator: false,
       // zoomAndPan: true,
       draggableProgressBar: true,
+
       placeholder: Container(
         color: Colors.black,
       ),
@@ -57,7 +60,7 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
       autoPlay: true,
       looping: true,
 
-      showControlsOnInitialize: false, // Show controls when the video starts
+      showControlsOnInitialize: true, // Show controls when the video starts
     );
 
     _videoPlayerController.addListener(() {
@@ -108,9 +111,13 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          widget.channelItem.description,
+                          widget.channelItem.description.isEmpty
+                              ? "No Title"
+                              : widget.channelItem.description,
                           style: TextStyle(
-                            color: SColors.color3,
+                            color: Get.find<ThemeController>().isDarkTheme.value
+                                ? Colors.white
+                                : SColors.color3,
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                           ),
@@ -135,12 +142,25 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
                       child: Column(
                         children: [
                           GestureDetector(
-                              onTap: () {},
-                              child: Image.asset(SImages.shareIcon)),
+                            onTap: () {},
+                            child: SvgPicture.string(
+                              """<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.5 5.63L21.16 12L15.5 18.37V15V14H14.5C10.54 14 7.36 15 4.75 17.09C6.59 13.02 9.86 10.69 14.64 9.99L15.5 9.86V9V5.63ZM14.5 3V9C6.72 10.13 3.61 15.33 2.5 21C5.28 17.03 8.94 15 14.5 15V21L22.5 12L14.5 3Z" fill="#0A0A0A"/>
+</svg>
+""",
+                              color:
+                                  Get.find<ThemeController>().isDarkTheme.value
+                                      ? Colors.white
+                                      : SColors.color3,
+                            ),
+                          ),
                           Text(
                             'Share',
                             style: TextStyle(
-                              color: SColors.color3,
+                              color:
+                                  Get.find<ThemeController>().isDarkTheme.value
+                                      ? Colors.white
+                                      : SColors.color3,
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
                             ),
@@ -242,7 +262,10 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
                       color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(10)),
                   child: Center(
-                    child: Text("Comments"),
+                    child: Text(
+                      "Comments",
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
                 ),
               ),

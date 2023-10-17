@@ -9,6 +9,7 @@ import 'package:stellar_chat/View/channel/channel_view/widgets/video_card_channe
 import 'package:stellar_chat/View/flicks/flicks_player_home_screen.dart';
 import 'package:stellar_chat/controllers/channel/channel_controller.dart';
 import 'package:stellar_chat/controllers/flicks/flicks_player_controller.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/models/api_models/channel_model.dart';
 
@@ -40,7 +41,6 @@ class _ChannelHomeScreenState extends State<ChannelHomeScreen> {
     UserController userController = Get.find();
     return Obx(
       () => Scaffold(
-        backgroundColor: SColors.color4,
         body: channelHomeController.channelItems.isNotEmpty
             ? ListView.separated(
                 controller: scrollController,
@@ -110,13 +110,16 @@ class ChannelHeaderWidget extends StatelessWidget {
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                        userController.userDetailsModel.value!.strProfileUrl),
+                      userController.userDetailsModel.value!.strProfileUrl,
+                    ),
                   )),
             ),
             title: Text(
               (userController.userDetailsModel.value!.strFullName),
               style: TextStyle(
-                color: SColors.color3,
+                color: Get.find<ThemeController>().isDarkTheme.value
+                    ? Colors.white
+                    : SColors.color3,
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
               ),
@@ -124,7 +127,9 @@ class ChannelHeaderWidget extends StatelessWidget {
             subtitle: Text(
               userController.userDetailsModel.value!.strName,
               style: TextStyle(
-                color: SColors.color3,
+                color: Get.find<ThemeController>().isDarkTheme.value
+                    ? Colors.white
+                    : SColors.color3,
                 fontSize: 11,
                 fontWeight: FontWeight.w400,
               ),
@@ -132,7 +137,9 @@ class ChannelHeaderWidget extends StatelessWidget {
             trailing: IconButton(
               icon: Icon(
                 Icons.search,
-                color: SColors.color3,
+                color: Get.find<ThemeController>().isDarkTheme.value
+                    ? Colors.white
+                    : SColors.color3,
                 size: 30,
               ),
               onPressed: () {},
@@ -140,7 +147,9 @@ class ChannelHeaderWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Divider(
-            color: SColors.color3,
+            color: Get.find<ThemeController>().isDarkTheme.value
+                ? Colors.white
+                : SColors.color3,
             thickness: 1,
           ),
         ),

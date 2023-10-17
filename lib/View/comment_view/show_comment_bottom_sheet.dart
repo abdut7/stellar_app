@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import 'package:stellar_chat/View/comment_view/main_tile.dart';
 import 'package:stellar_chat/View/comment_view/reply_tile.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/models/api_models/comment_model.dart';
 import 'package:stellar_chat/services/api_services/channel_service.dart';
@@ -157,6 +158,11 @@ class _CommentScreenState extends State<CommentScreen> {
                       child: TextField(
                         controller: widget.commentController,
                         decoration: InputDecoration(
+                          hintStyle: TextStyle(
+                              color:
+                                  Get.find<ThemeController>().isDarkTheme.value
+                                      ? const Color.fromARGB(170, 0, 0, 0)
+                                      : null),
                           contentPadding: const EdgeInsets.all(15),
                           hintText: "Add Comments",
                           prefixIcon: Padding(

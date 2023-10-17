@@ -1,8 +1,11 @@
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/View/comment_view/functions/get_time_as_ago.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stellar_chat/services/api_services/fliq_services.dart';
+
+import '../../controllers/theme_controller.dart';
 
 class MainTile extends StatefulWidget {
   final String likeCount;
@@ -58,7 +61,9 @@ class _MainTileState extends State<MainTile> {
       title: Text(
         widget.commenterName,
         style: TextStyle(
-          color: SColors.color8,
+          color: Get.find<ThemeController>().isDarkTheme.value
+              ? Colors.white
+              : SColors.color8,
           fontSize: 13,
           fontWeight: FontWeight.w400,
         ),
@@ -69,7 +74,9 @@ class _MainTileState extends State<MainTile> {
           Text(
             widget.comment,
             style: TextStyle(
-              color: SColors.color3,
+              color: Get.find<ThemeController>().isDarkTheme.value
+                  ? Colors.white
+                  : SColors.color3,
               fontSize: 15,
               fontWeight: FontWeight.w400,
             ),
@@ -131,7 +138,11 @@ class _MainTileState extends State<MainTile> {
               Expanded(
                 child: Text(
                   likeCount.toString(),
-                  style: TextStyle(fontSize: 8, color: SColors.color8),
+                  style: TextStyle(
+                      fontSize: 8,
+                      color: Get.find<ThemeController>().isDarkTheme.value
+                          ? Colors.white
+                          : SColors.color8),
                 ),
               )
             ],
