@@ -32,11 +32,13 @@ class MainTile extends StatefulWidget {
 }
 
 class _MainTileState extends State<MainTile> {
+  int likeCount = 0;
   late bool isLiked;
   @override
   void initState() {
     super.initState();
     isLiked = widget.isLiked;
+    likeCount = int.parse(widget.likeCount);
   }
 
   @override
@@ -116,6 +118,11 @@ class _MainTileState extends State<MainTile> {
                 onPressed: () {
                   setState(() {
                     isLiked = !isLiked;
+                    if (isLiked) {
+                      likeCount++;
+                    } else {
+                      likeCount--;
+                    }
                   });
 
                   widget.onLiked(!isLiked);
@@ -123,7 +130,7 @@ class _MainTileState extends State<MainTile> {
               ),
               Expanded(
                 child: Text(
-                  widget.likeCount,
+                  likeCount.toString(),
                   style: TextStyle(fontSize: 8, color: SColors.color8),
                 ),
               )
