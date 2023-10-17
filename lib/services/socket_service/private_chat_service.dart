@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:path/path.dart';
 import 'package:stellar_chat/controllers/contacts_controller.dart';
 import 'package:stellar_chat/controllers/private_chat_controller.dart';
+import 'package:stellar_chat/functions/get_location_name.dart';
 import 'package:stellar_chat/functions/image_to_base.dart';
 import 'package:stellar_chat/models/private_chat/private_chat_model.dart';
 import 'package:stellar_chat/services/api_services/chat_message_service.dart';
@@ -129,6 +130,43 @@ class PrivateChatService {
       "strMessageType": "document",
       "strType": "private",
       "strUrl": fileUrl,
+    });
+    // ChatMessageService.getMessages(chatId: chatId, type: "private");
+    chatController.messageList
+        .removeWhere((element) => element.id == randomNumber.toString());
+  }
+
+  static Future<void> sentPersonalLocationMessage({
+    required String chatId,
+    required double longitude,
+    required double latitude,
+  }) async {
+    final random = Random();
+    Socket socket = SocketService().socket;
+    String locationName = await getLocationName(longitude, latitude);
+
+    PrivateChatController chatController = Get.find();
+    int randomNumber = random.nextInt(1001);
+    chatController.messageList.add(PrivateMessageModel(
+        id: "$randomNumber",
+        strCreatedTime: "",
+        strMessage: locationName,
+        strMessageType: "sentingLoc",
+        strName: "",
+        strType: "",
+        strUrl: "",
+        strUserId: "",
+        strContactName: "",
+        strContactNumbers: "",
+        strChatId: ""));
+
+    socket.emit('send_message', {
+      'strChatId': chatId,
+      'strMessage': locationName,
+      "strMessageType": "location",
+      "strType": "private",
+      "strLongitude": longitude,
+      "strLatitude": latitude
     });
     // ChatMessageService.getMessages(chatId: chatId, type: "private");
     chatController.messageList

@@ -88,6 +88,8 @@ dependencies:
   video_thumbnail: ^0.5.3
   open_file: ^3.3.2
   chewie: ^1.7.1
+  geocoding: ^2.1.1
+  geocode: ^1.0.3
 
 
 

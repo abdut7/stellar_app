@@ -5,6 +5,7 @@ import 'package:stellar_chat/View/chat/chat_screen/widgets/chat_appbar_title_wid
 import 'package:stellar_chat/View/chat/chat_screen/widgets/chat_bubble.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/show_attachment.dart';
 import 'package:stellar_chat/View/chat/widgets/sent_contact/pick_contact_screen.dart';
+import 'package:stellar_chat/View/chat/widgets/sent_location/sent_location_screen.dart';
 import 'package:stellar_chat/View/profile/public_profile/public_profile.dart';
 import 'package:stellar_chat/controllers/private_chat_controller.dart';
 import 'package:stellar_chat/services/api_services/chat_message_service.dart';
@@ -171,6 +172,13 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                             chatId: widget.chatId, path: result.paths.first!);
                       }
                     }
+                    if (index == 3) {
+                      print("hello");
+                      await Get.to(() => SendLocationScreen(
+                            chatId: widget.chatId,
+                            isFromGroup: false,
+                          ));
+                    }
                     //if index = 1 =>Camera
                     // if (index == 1) {
                     //   XFile? image = await pickImageFromGalleryOrCamera(
@@ -199,7 +207,7 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                       );
                     }
 
-                    Navigator.pop(context);
+                    // Navigator.pop(context);
                     //if index = 3 =>Location
                     //if index = 4 =>Contacts
                     //if index = 5 =>Audio
