@@ -39,7 +39,6 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
         body: Stack(
       children: [
         VideoPlayerScreen(
-          
           videoUrl: widget.flickItem.strFileUrl,
           // videoUrl:
           //     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
@@ -122,7 +121,8 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
                         showCommentBottomSheet(
                             context,
                             widget.flickItem.commentsCount,
-                            widget.flickItem.id);
+                            widget.flickItem.id,
+                            false);
                       },
                       child: SvgPicture.string(
                           """<svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">

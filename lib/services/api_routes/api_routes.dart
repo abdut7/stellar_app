@@ -33,6 +33,7 @@ class ApiRoutes {
   static String likeFlick = "/like_flick_channel";
   static String unlikeFlick = "/unlike_flick_channel";
   static String getFlickComments = "/flick_comment_list";
+  static String getChannelComments = "/channel_comment_list";
   static String addFlickComments = "/create_comments";
   static String likeFlickComment = "/like_comment";
   static String unlikeFlickComment = "/unlike_comment";
@@ -42,4 +43,5 @@ class ApiRoutes {
   static String postChannel = "/create_flick_channel";
   static String getChannelById = "/get_channel_by_id";
   static String getChannelList = "/get_channel_list";
+  static String createView = "/create_view";
 }

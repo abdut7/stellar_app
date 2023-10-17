@@ -5,8 +5,11 @@ import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SImages.dart';
 import 'package:flutter/material.dart';
 import 'package:stellar_chat/View/channel/channel_home_screen/widgets/video_card.dart';
+import 'package:stellar_chat/View/comment_view/show_comment_bottom_sheet.dart';
 import 'package:stellar_chat/controllers/channel/channel_controller.dart';
 import 'package:stellar_chat/models/api_models/channel_model.dart';
+import 'package:stellar_chat/services/api_services/account_services.dart';
+import 'package:stellar_chat/services/api_services/channel_service.dart';
 import 'package:stellar_chat/utils/colors.dart';
 import 'package:video_player/video_player.dart';
 
@@ -24,6 +27,7 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
   late ChewieController _chewieController;
   bool isFollowing = false;
   int followCount = 0;
+  bool functionCalled = false;
   @override
   void initState() {
     isFollowing = widget.channelItem.isFollowing;
@@ -46,6 +50,19 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
       looping: true,
       showControlsOnInitialize: false, // Show controls when the video starts
     );
+
+    _videoPlayerController.addListener(() {
+      final position = _videoPlayerController.value.position;
+
+      // Check if the video has been playing for at least 10 seconds
+      if (position >= Duration(seconds: 10) && !functionCalled) {
+        // Call your function here
+        ChannelService.addView(channelId: widget.channelItem.id);
+
+        // Set the flag to prevent calling the function multiple times
+        functionCalled = true;
+      }
+    });
   }
 
   @override
@@ -57,132 +74,184 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
 
   @override
   Widget build(BuildContext context) {
+    ChannelHomeController channelHomeController = Get.find();
     return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(
-            width: double.infinity,
-            height: Get.width * (9 / 16),
-            child: Center(
-              child: Chewie(
-                controller: _chewieController,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.channelItem.description,
-                      style: TextStyle(
-                        color: SColors.color3,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      '${widget.channelItem.viewsCount} views - ${DateFormat.yMMMEd().format(
-                        DateTime.parse(widget.channelItem.createdTime),
-                      )}',
-                      style: TextStyle(
-                        color: SColors.color8,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              width: double.infinity,
+              height: Get.width * (9 / 16),
+              child: Center(
+                child: Chewie(
+                  controller: _chewieController,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                          onTap: () {}, child: Image.asset(SImages.shareIcon)),
-                      Text(
-                        'Share',
-                        style: TextStyle(
-                          color: SColors.color3,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
+              ),
             ),
-          ),
-          Row(
-            children: [
-              const SizedBox(
-                width: 10,
-              ),
-              CircleAvatar(
-                backgroundImage:
-                    NetworkImage(widget.channelItem.userProfileUrl),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Column(
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(widget.channelItem.createdUserFullName),
-                  Text(
-                    "$followCount Followers",
-                    style: const TextStyle(color: Colors.grey, fontSize: 10),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.channelItem.description,
+                        style: TextStyle(
+                          color: SColors.color3,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        '${widget.channelItem.viewsCount} views - ${DateFormat.yMMMEd().format(
+                          DateTime.parse(widget.channelItem.createdTime),
+                        )}',
+                        style: TextStyle(
+                          color: SColors.color8,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                            onTap: () {},
+                            child: Image.asset(SImages.shareIcon)),
+                        Text(
+                          'Share',
+                          style: TextStyle(
+                            color: SColors.color3,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),
-              const Spacer(),
-              GestureDetector(
-                onTap: () {
-                  if (isFollowing) {
-                    followCount--;
-                  } else {
-                    followCount++;
-                  }
-                  setState(() {
-                    isFollowing = !isFollowing;
-                  });
-                },
-                child: Container(
-                  width: 80,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    color: colorPrimary,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: Text(
-                      isFollowing ? "Unfollow" : "Follow",
-                      style: TextStyle(color: secondaryColor),
+            ),
+            Row(
+              children: [
+                const SizedBox(
+                  width: 10,
+                ),
+                CircleAvatar(
+                  backgroundImage:
+                      NetworkImage(widget.channelItem.userProfileUrl),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(widget.channelItem.createdUserFullName),
+                    Text(
+                      "$followCount Followers",
+                      style: const TextStyle(color: Colors.grey, fontSize: 10),
+                    )
+                  ],
+                ),
+                const Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    if (isFollowing) {
+                      AccountServices.unFollowUser(widget.channelItem.userId)
+                          .then((value) {
+                        if (value) {
+                          setState(() {
+                            isFollowing = false;
+                            followCount -= 1;
+                          });
+                        }
+                      });
+                    } else {
+                      AccountServices.followUser(widget.channelItem.userId)
+                          .then((value) {
+                        if (value) {
+                          setState(() {
+                            isFollowing = true;
+                            followCount += 1;
+                          });
+                        }
+                      });
+                    }
+                  },
+                  child: Container(
+                    width: 80,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      color: colorPrimary,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        isFollowing ? "Unfollow" : "Follow",
+                        style: TextStyle(color: secondaryColor),
+                      ),
                     ),
                   ),
                 ),
+                const SizedBox(
+                  width: 20,
+                )
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            GestureDetector(
+              onTap: () {
+                showCommentBottomSheet(
+                    context,
+                    widget.channelItem.commentsCount,
+                    widget.channelItem.id,
+                    true);
+              },
+              child: Container(
+                width: Get.width * 0.9,
+                height: 30,
+                decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Center(
+                  child: Text("Comments"),
+                ),
               ),
-              const SizedBox(
-                width: 20,
-              )
-            ],
-          ),
-          Expanded(
-            child: ListView.separated(
-                itemBuilder: (context, index) => const Text("hello"),
+            ),
+            ListView.separated(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  ChannelItem channelItem =
+                      channelHomeController.channelItems.elementAt(index);
+                  return GestureDetector(
+                    onTap: () {
+                      Get.to(() => VideoCardChannelView(
+                            channelItem: channelItem,
+                          ));
+                    },
+                    child: VideoCard(
+                      channelItem: channelItem,
+                    ),
+                  );
+                },
                 separatorBuilder: (context, index) => const Divider(),
-                itemCount: 1000),
-          )
-        ],
+                itemCount: channelHomeController.channelItems.length)
+          ],
+        ),
       ),
     );
   }

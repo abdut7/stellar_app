@@ -29,6 +29,7 @@ class CommentItem {
   final String id;
   final String strComment;
   final String strFlickId;
+  final String strChannelId;
   final String strCreatedBy;
   final bool isLiked;
   final int likeCount;
@@ -41,6 +42,7 @@ class CommentItem {
       {required this.id,
       required this.strComment,
       required this.strFlickId,
+      required this.strChannelId,
       required this.strCreatedBy,
       required this.isLiked,
       required this.likeCount,
@@ -51,6 +53,7 @@ class CommentItem {
 
   factory CommentItem.fromJson(Map<String, dynamic> json) {
     return CommentItem(
+      strChannelId: json["strChannelId"] ?? "",
       strCreatedTime: json["strCreatedTime"],
       id: json['_id'] ?? '',
       strComment: json['strComment'] ?? '',

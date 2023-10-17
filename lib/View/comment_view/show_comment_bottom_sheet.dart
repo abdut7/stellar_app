@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,12 +9,13 @@ import 'package:stellar_chat/View/comment_view/main_tile.dart';
 import 'package:stellar_chat/View/comment_view/reply_tile.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/models/api_models/comment_model.dart';
+import 'package:stellar_chat/services/api_services/channel_service.dart';
 import 'package:stellar_chat/services/api_services/fliq_services.dart';
 
 import '../../Settings/SColors.dart';
 
 void showCommentBottomSheet(
-    BuildContext context, int commentCount, String commentId) {
+    BuildContext context, int commentCount, String commentId, bool isChannel) {
   TextEditingController commentController = TextEditingController();
   UserController userController = Get.find();
   showModalBottomSheet(
@@ -23,12 +26,13 @@ void showCommentBottomSheet(
       ),
     ),
     builder: (BuildContext context) {
-      FliqServices().getComments(id: commentId);
+      // FliqServices().getComments(id: commentId);
       return CommentScreen(
         commentController: commentController,
         userController: userController,
         commentCount: commentCount,
         commentId: commentId,
+        isChannel: isChannel,
       );
     },
   );
@@ -41,12 +45,14 @@ class CommentScreen extends StatefulWidget {
     required this.userController,
     required this.commentCount,
     required this.commentId,
+    required this.isChannel,
   }) : super(key: key);
 
   final TextEditingController commentController;
   final UserController userController;
   final int commentCount;
   final String commentId;
+  final bool isChannel;
 
   @override
   State<CommentScreen> createState() => _CommentScreenState();
@@ -56,7 +62,9 @@ class _CommentScreenState extends State<CommentScreen> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: FliqServices().getComments(id: widget.commentId),
+        future: widget.isChannel
+            ? ChannelService().getComments(id: widget.commentId)
+            : FliqServices().getComments(id: widget.commentId),
         builder: (context, AsyncSnapshot<CommentResponseModel?> snapshot) {
           return Scaffold(
             backgroundColor: Colors.transparent,
@@ -108,6 +116,21 @@ class _CommentScreenState extends State<CommentScreen> {
                                 isLiked: commentItem.isLiked,
                                 flickId: commentItem.strFlickId,
                                 onLiked: (val) {
+                                  if (widget.isChannel) {
+                                    if (val) {
+                                      ChannelService().unLikeChannelComment(
+                                        channelId: commentItem.strChannelId,
+                                        commentId: commentItem.id,
+                                      );
+                                    } else {
+                                      ChannelService().likeChannelComment(
+                                        channelId: commentItem.strChannelId,
+                                        commentId: commentItem.id,
+                                      );
+                                    }
+                                    return;
+                                  }
+
                                   if (val) {
                                     FliqServices().unLikeFlickComment(
                                         flickId: commentItem.strFlickId,
@@ -164,6 +187,14 @@ class _CommentScreenState extends State<CommentScreen> {
                 </svg>
                 """),
                                 onPressed: () async {
+                                  if (widget.isChannel) {
+                                    await ChannelService().addComments(
+                                      channelId: widget.commentId,
+                                      comment: widget.commentController.text,
+                                    );
+                                    widget.commentController.clear();
+                                    return;
+                                  }
                                   await FliqServices().addComments(
                                     flickId: widget.commentId,
                                     comment: widget.commentController.text,

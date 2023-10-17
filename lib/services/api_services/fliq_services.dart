@@ -211,8 +211,8 @@ class FliqServices {
     String url = ApiRoutes.baseUrl + ApiRoutes.unlikeFlickComment;
     Map<String, dynamic> header = await getHeader();
     Map<String, dynamic> data = {
-      "strCommentId": "65213e99d8e8c7d817a8dfbc",
-      "strFlickId": "65211feff649fbeccd2d154a",
+      "strCommentId": commentId,
+      "strFlickId": flickId,
       "strType": "flick"
     };
 
@@ -288,6 +288,19 @@ class FliqServices {
       return null;
       // TODO
       print(e);
+    }
+  }
+
+  static Future<void> addView({required String flickId}) async {
+    Dio dio = Dio();
+    String url = ApiRoutes.baseUrl + ApiRoutes.createView;
+    Map<String, dynamic> header = await getHeader();
+    Map<String, dynamic> data = {"strFlickId": flickId, "strType": "flick"};
+    try {
+      Response res =
+          await dio.post(url, options: Options(headers: header), data: data);
+    } on Exception catch (e) {
+      // TODO
     }
   }
 }
