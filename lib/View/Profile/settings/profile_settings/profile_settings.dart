@@ -31,13 +31,14 @@ class _ProfileSettingsState extends State<ProfileSettings> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: themeController.isDarkTheme.value
-            ?  SColors.darkmode : SColors.color4,
+            ? SColors.darkmode
+            : SColors.color4,
         body: ListView(
           children: <Widget>[
             Stack(
               children: <Widget>[
                 Container(
-                  height: Get.height*0.36,
+                  height: Get.height * 0.36,
                   child: Stack(
                     children: <Widget>[
                       Image.network(
@@ -54,8 +55,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         child: Text(
                           controller.userDetailsModel.value!.strName,
                           style: TextStyle(
-                            color:  themeController.isDarkTheme.value
-                                ? SColors.color4 : SColors.color11,
+                            color: themeController.isDarkTheme.value
+                                ? SColors.color4
+                                : SColors.color11,
                             fontSize: 15,
                             fontWeight: FontWeight.w900,
                           ),
@@ -67,8 +69,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         child: Text(
                           'Online',
                           style: TextStyle(
-                            color:  themeController.isDarkTheme.value
-                          ? SColors.color4 : SColors.color11,
+                            color: themeController.isDarkTheme.value
+                                ? SColors.color4
+                                : SColors.color11,
                             fontSize: 13,
                             fontWeight: FontWeight.w700,
                           ),
@@ -97,8 +100,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       },
                       child: SvgPicture.asset(
                         SSvgs.qr,
-                        color:  themeController.isDarkTheme.value
-                      ?  SColors.color3 : SColors.color4,
+                        color: themeController.isDarkTheme.value
+                            ? SColors.color3
+                            : SColors.color4,
                         height: 25,
                       )),
                 ),
@@ -111,9 +115,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
               text: 'Favorites',
               onTap: () {
                 Get.to(() => FavoritesScreen());
-
               },
-              svgAsset: themeController.isDarkTheme.value ? SSvgs.favouriteDark
+              svgAsset: themeController.isDarkTheme.value
+                  ? SSvgs.favouriteDark
                   : SSvgs.sv25,
             ),
             Column(
@@ -122,9 +126,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   text: 'Sticker Gallery',
                   onTap: () {
                     Get.to(() => StickerGalleryScreen());
-
                   },
-                  svgAsset: themeController.isDarkTheme.value ? SSvgs.stickerDark
+                  svgAsset: themeController.isDarkTheme.value
+                      ? SSvgs.stickerDark
                       : SSvgs.sv27,
                 ),
                 Padding(
@@ -178,7 +182,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 const SizedBox(
                   height: 10,
                 ),
-                Obx(() => Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
@@ -202,13 +206,14 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                           value: darkThemeController.isDarkTheme.value,
                           onChanged: (bool newValue) {
                             darkThemeController.switchTheme();
+                            setState(() {});
                           },
                           activeColor: SColors.color11,
                         ),
                       ),
                     ),
                   ],
-                )),
+                ),
                 const SizedBox(
                   height: 20,
                 ),

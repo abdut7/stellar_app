@@ -40,6 +40,7 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
       children: [
         VideoPlayerScreen(
           videoUrl: widget.flickItem.strFileUrl,
+          flickId: widget.flickItem.id,
           // videoUrl:
           //     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
         ),

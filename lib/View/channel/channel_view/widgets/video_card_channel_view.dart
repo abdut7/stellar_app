@@ -239,6 +239,7 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
                       channelHomeController.channelItems.elementAt(index);
                   return GestureDetector(
                     onTap: () {
+                      Get.back();
                       Get.to(() => VideoCardChannelView(
                             channelItem: channelItem,
                           ));
