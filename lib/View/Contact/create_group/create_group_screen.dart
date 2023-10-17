@@ -78,6 +78,11 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                     color: Colors.grey.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(10)),
                 child: TextField(
+                  style: TextStyle(
+                    color: themeController.isDarkTheme.value
+                        ?  Colors.white
+                        : SColors.color3,
+                  ),
                   controller: groupNameController,
                   decoration:  InputDecoration(
                       border: InputBorder.none,

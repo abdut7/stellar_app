@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
 import '../../../../models/api_models/get_contacts_model.dart';
 
@@ -17,6 +19,7 @@ class AddUserGroupTileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child:
@@ -50,10 +53,12 @@ class AddUserGroupTileWidget extends StatelessWidget {
 
           const SizedBox(width: 15,),
           Text(user.strFullName,
-          style: const TextStyle(
-            color: Colors.black,
+          style: TextStyle(
+            color: themeController.isDarkTheme.value
+                ?  SColors.color4
+                : SColors.color3,
             fontSize: 17,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w400,
           ),),
         ],
       ),

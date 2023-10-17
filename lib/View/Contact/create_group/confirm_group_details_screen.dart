@@ -3,6 +3,7 @@ import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/View/Contact/create_group/widgets/add_group_icon_widget.dart';
 import 'package:stellar_chat/View/base_bottom_nav/bottom_nav.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/functions/show_snackbar.dart';
 import 'package:stellar_chat/services/api_services/group_service.dart';
 import 'package:flutter/material.dart';
@@ -36,15 +37,24 @@ class _ConfirmGroupDetailsScreenState extends State<ConfirmGroupDetailsScreen> {
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor: SColors.color4,
+      backgroundColor: themeController.isDarkTheme.value
+          ?  SColors.darkmode
+          : SColors.color4,
         appBar: AppBar(
           toolbarHeight: 70,
           elevation: 0,
           title: Text(
             'New Group',
-            style: TextStyle(color: SColors.color11, fontSize: 18, fontWeight: FontWeight.w700,),),
-          backgroundColor: SColors.color12,
+            style: TextStyle(
+              color: themeController.isDarkTheme.value
+                  ?  SColors.appbarTitleInDark
+                  : SColors.color11,
+              fontSize: 18, fontWeight: FontWeight.w700,),),
+          backgroundColor: themeController.isDarkTheme.value
+              ?  SColors.appbarbgInDark
+              : SColors.color12,
           leading: Padding(padding: const EdgeInsets.all(8.0), child: SvgPicture.asset(SSvgs.appLogo),
           ),
         ),
@@ -65,19 +75,21 @@ class _ConfirmGroupDetailsScreenState extends State<ConfirmGroupDetailsScreen> {
           ),
         ),
         const SizedBox(height: 15,),
-        const Center(
+         Center(
           child: Text(
             'Group Name',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.black,
+              color: themeController.isDarkTheme.value
+                  ?  SColors.color4
+                  : SColors.color3,
               fontSize: 17,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),
         const SizedBox(height: 30,),
-        const Padding(
+        Padding(
           padding: EdgeInsets.symmetric(horizontal: 30),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -85,7 +97,9 @@ class _ConfirmGroupDetailsScreenState extends State<ConfirmGroupDetailsScreen> {
               Text(
                 '40/128 MEMBERS',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: themeController.isDarkTheme.value
+                      ?  SColors.color4
+                      : SColors.color3,
                   fontSize: 10,
                   fontWeight: FontWeight.w500,
                   height: 0,
@@ -119,8 +133,10 @@ class _ConfirmGroupDetailsScreenState extends State<ConfirmGroupDetailsScreen> {
                           width: 10,
                         ),
                         Text(widget.userModelList[index].strFullName,
-                        style:  const TextStyle(
-                          color: Colors.black,
+                        style:   TextStyle(
+                          color: themeController.isDarkTheme.value
+                              ?  SColors.color4
+                              : SColors.color3,
                           fontSize: 17,
                           fontWeight: FontWeight.w500,
                         ),)
@@ -128,7 +144,10 @@ class _ConfirmGroupDetailsScreenState extends State<ConfirmGroupDetailsScreen> {
                     ),
                   );
                 },
-                separatorBuilder: (context, index) => const Divider(thickness: 0,color: Colors.white,),
+                separatorBuilder: (context, index) =>
+                Divider(thickness: 0,color: themeController.isDarkTheme.value
+                    ?  SColors.darkmode
+                    : SColors.color4,),
                 itemCount: widget.userModelList.length)),
         GestureDetector(
           onTap: () async {
@@ -154,7 +173,9 @@ class _ConfirmGroupDetailsScreenState extends State<ConfirmGroupDetailsScreen> {
               width: Get.width * 0.7,
               height: 45,
               decoration: BoxDecoration(
-                color: SColors.color12,
+                color: themeController.isDarkTheme.value
+                    ?  SColors.color3
+                    : SColors.color12,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: isLoading
@@ -168,7 +189,9 @@ class _ConfirmGroupDetailsScreenState extends State<ConfirmGroupDetailsScreen> {
                       child: Text(
                         "Create New Group",
                         style: TextStyle(
-                          color: SColors.color11,
+                          color: themeController.isDarkTheme.value
+                              ?  SColors.buttonTextIndark
+                              : SColors.color11,
                           fontSize: 17,
                           fontWeight: FontWeight.w500,
                         ),
