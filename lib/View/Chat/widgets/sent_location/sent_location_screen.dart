@@ -6,6 +6,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/functions/get_location_name.dart';
+import 'package:stellar_chat/functions/location_permission.dart';
+import 'package:stellar_chat/services/socket_service/group_chat_service.dart';
 import 'package:stellar_chat/services/socket_service/private_chat_service.dart';
 
 class SendLocationScreen extends StatefulWidget {
@@ -27,6 +29,7 @@ class _SendLocationScreenState extends State<SendLocationScreen> {
   @override
   void initState() {
     super.initState();
+
     _getLocation();
   }
 
@@ -34,6 +37,7 @@ class _SendLocationScreenState extends State<SendLocationScreen> {
 
   String fetchedAddress = "";
   void _getLocation() async {
+    await requestLocationPermission();
     Position position = await Geolocator.getCurrentPosition();
     _userLocation = LatLng(position.latitude, position.longitude);
     _latitude = position.latitude;
@@ -138,6 +142,10 @@ class _SendLocationScreenState extends State<SendLocationScreen> {
               GestureDetector(
                 onTap: () {
                   if (widget.isFromGroup) {
+                    GroupChatService.sentGroupLocationMessage(
+                        chatId: widget.chatId,
+                        longitude: _longitude,
+                        latitude: _latitude);
                   } else {
                     PrivateChatService.sentPersonalLocationMessage(
                         chatId: widget.chatId,

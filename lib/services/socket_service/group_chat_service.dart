@@ -94,6 +94,8 @@ class GroupChatService {
     GroupChatController chatController = Get.find();
     int randomNumber = random.nextInt(1001);
     chatController.groupMessageList.add(GroupMessageModel(
+        strLatitude: 0.0,
+        strLongitude: 0.0,
         strIconURL: "",
         id: "$randomNumber",
         strCreatedTime: "",
@@ -137,6 +139,8 @@ class GroupChatService {
     String locationName = await getLocationName(longitude, latitude);
 
     chatController.groupMessageList.add(GroupMessageModel(
+        strLatitude: 0.0,
+        strLongitude: 0.0,
         id: "$randomNumber",
         strCreatedTime: "",
         strMessage: locationName,

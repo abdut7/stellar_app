@@ -173,6 +173,7 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                       }
                     }
                     if (index == 3) {
+                      Get.back();
                       await Get.to(() => SendLocationScreen(
                             chatId: widget.chatId,
                             isFromGroup: false,
