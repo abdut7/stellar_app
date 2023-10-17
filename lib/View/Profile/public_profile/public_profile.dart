@@ -185,9 +185,9 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                       height: 25,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
+                      padding: const EdgeInsets.symmetric(horizontal: 60),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           GestureDetector(
                             onTap: () {
@@ -205,10 +205,13 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                           ),
                           ContactThrough(
                               svgAsset: SSvgs.pCall, label: 'Call'),
+                          const SizedBox(),
                           ContactThrough(
                               svgAsset: SSvgs.pVideo, label: 'Video'),
+                          const SizedBox(),
                           ContactThrough(
                               svgAsset: SSvgs.sendMoneyIcon, label: 'Send'),
+                          const SizedBox(),
                           ContactThrough(
                               svgAsset: SSvgs.requestMoneyIcon, label: 'Request'),
                         ],
