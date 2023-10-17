@@ -133,6 +133,7 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                 //   text: 'Scan',
                 // ),
                 CustomPopupMenuItem(
+
                   value: 'money',
                   icon: SvgPicture.asset(
                     SSvgs.payIcon,
@@ -143,6 +144,7 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                     Get.to(() => const StellarPaySplashScreen());
                   },
                   text: 'Stellar Pay',
+
                 ),
               ],
               onSelected: (String choice) {
@@ -159,14 +161,18 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                 //     break;
                 // }
               },
+
               icon: SvgPicture.asset(SSvgs.sv08,
                   width: 20,
                   height: 20,
                   color: themeController.isDarkTheme.value
                       ? Color.fromRGBO(193, 193, 193, 1)
                       : secondaryColor),
-              color: SColors.color11,
+              color: themeController.isDarkTheme.value
+                  ?  SColors.darkmode
+                  : SColors.color11,
             ),
+
           ),
         ],
       ),
