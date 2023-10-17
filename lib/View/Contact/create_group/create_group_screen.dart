@@ -4,6 +4,7 @@ import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/View/Contact/create_group/select_participents_screen.dart';
 import 'package:stellar_chat/View/Contact/create_group/widgets/add_group_icon_widget.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/functions/show_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,19 +24,27 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return Scaffold(
+      backgroundColor: themeController.isDarkTheme.value
+          ?  SColors.darkmode
+          : SColors.color4,
       appBar: AppBar(
         toolbarHeight: 70,
         elevation: 0,
         title: Text(
           'New Group',
           style: TextStyle(
-            color: SColors.color11,
+            color: themeController.isDarkTheme.value
+                ?  SColors.appbarTitleInDark
+                : SColors.color11,
             fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
         ),
-        backgroundColor: SColors.color12,
+        backgroundColor: themeController.isDarkTheme.value
+            ?  SColors.appbarbgInDark
+            : SColors.color12,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SvgPicture.asset(SSvgs.appLogo),
@@ -69,12 +78,19 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                     color: Colors.grey.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(10)),
                 child: TextField(
+                  style: TextStyle(
+                    color: themeController.isDarkTheme.value
+                        ?  Colors.white
+                        : SColors.color3,
+                  ),
                   controller: groupNameController,
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                       border: InputBorder.none,
                       hintText: " Group Name",
                       hintStyle: TextStyle(
-                        color: Colors.black,
+                        color: themeController.isDarkTheme.value
+                            ?  SColors.buttonTextIndark
+                            : SColors.color3,
                         fontSize: 17,
                         fontWeight: FontWeight.w500,
                       ),
@@ -129,15 +145,19 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                   width: Get.width * 0.5,
                   height: 45,
                   decoration: BoxDecoration(
-                      color: const Color.fromRGBO(0, 51, 142, 1),
+                      color:themeController.isDarkTheme.value
+                          ?  SColors.color3
+                          : SColors.color12,
                       borderRadius: BorderRadius.circular(10)),
-                  child: const Center(
+                  child:  Center(
                     child: Text(
                       "Add Participants",
                       style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 17,
-                          color: Color.fromRGBO(159, 196, 232, 1)),
+                          color: themeController.isDarkTheme.value
+                              ? Color(0xFFB2B2B2)
+                              : SColors.color11,),
                     ),
                   ),
                 ),

@@ -6,6 +6,7 @@ import 'package:stellar_chat/View/Contact/create_group/widgets/add_user_group_ti
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/functions/show_snackbar.dart';
 import 'package:stellar_chat/services/api_services/group_service.dart';
 import 'package:stellar_chat/utils/colors.dart';
@@ -45,10 +46,14 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     ContactsController contactsController = Get.find();
     Set<Contact> myContact = {};
 
     return Scaffold(
+      backgroundColor: themeController.isDarkTheme.value
+          ?  SColors.darkmode
+          : SColors.color4,
       appBar: AppBar(
         toolbarHeight: 70,
         elevation: 0,
@@ -58,7 +63,9 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
             Text(
               widget.isCreatedGroup ? widget.grpName : 'New Group',
               style: TextStyle(
-                color: SColors.color11,
+                color:themeController.isDarkTheme.value
+                    ?  SColors.appbarTitleInDark
+                    : SColors.color11,
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
               ),
@@ -66,14 +73,18 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
             Text(
               'Add Participants',
               style: TextStyle(
-                color: SColors.color11,
+                color:themeController.isDarkTheme.value
+                    ?  SColors.appbarTitleInDark
+                    : SColors.color11,
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
               ),
             ),
           ],
         ),
-        backgroundColor: SColors.color12,
+        backgroundColor: themeController.isDarkTheme.value
+            ?  SColors.appbarbgInDark
+            : SColors.color12,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SvgPicture.asset(SSvgs.appLogo),
@@ -149,9 +160,11 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
                                     );
                                   },
                                   separatorBuilder: (context, index) =>
-                                      const Divider(
+                                     Divider(
                                     thickness: 0,
-                                    color: Colors.white,
+                                    color:themeController.isDarkTheme.value
+                                        ?  SColors.darkmode
+                                        : SColors.color4,
                                   ),
                                   itemCount: myContact.length,
                                 ),
@@ -195,7 +208,9 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
                   width: 55,
                   height: 55,
                   decoration: BoxDecoration(
-                      color: SColors.color11,
+                      color: themeController.isDarkTheme.value
+                          ? Color(0xFF939393)
+                          : SColors.color11,
                       borderRadius: BorderRadius.circular(30)),
                   child: Center(
                     child: Icon(

@@ -1,5 +1,7 @@
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
 class ProfileTextField2 extends StatefulWidget {
   final String head;
@@ -21,14 +23,15 @@ class ProfileTextField2 extends StatefulWidget {
 
 class _ProfileTextField2State extends State<ProfileTextField2> {
   Widget textFieldHeading({String? headingText}) {
+    ThemeController themeController = Get.find();
     return Padding(
       padding: const EdgeInsets.only(bottom: 100),
       child: Text(
         headingText!,
         style: TextStyle(
           fontSize: 14,
-          color: SColors.color3,
-          fontWeight: FontWeight.w600,
+          color: themeController.isDarkTheme.value ?  SColors.color4 : SColors.color3,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );
@@ -59,6 +62,7 @@ class _ProfileTextField2State extends State<ProfileTextField2> {
   }
 
   Widget textField() {
+    ThemeController themeController = Get.find();
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10),
       //height: 25,
@@ -68,7 +72,7 @@ class _ProfileTextField2State extends State<ProfileTextField2> {
         keyboardType: widget.keyboardType,
         cursorColor: SColors.color8,
         style: TextStyle(
-          color: SColors.color3,
+          color: themeController.isDarkTheme.value ?  SColors.color4 : SColors.color3,
           fontWeight: FontWeight.w500,
           fontSize: 15,
           letterSpacing: 0.2,

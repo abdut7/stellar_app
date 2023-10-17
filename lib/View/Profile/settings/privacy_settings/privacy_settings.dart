@@ -5,6 +5,7 @@ import 'package:stellar_chat/View/profile/settings/privacy_settings/blocked_user
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
 class PrivacySettings extends StatefulWidget {
   const PrivacySettings({Key? key}) : super(key: key);
@@ -17,15 +18,18 @@ bool nearbyVisibility = false;
 
 class _PrivacySettingsState extends State<PrivacySettings> {
   Widget customRow(String title, String suffixText) {
+    ThemeController themeController = Get.find();
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           title,
           style: TextStyle(
-            color: SColors.color3,
+            color: themeController.isDarkTheme.value
+                ?  SColors.color4
+                : SColors.color3,
             fontSize: 15,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w400,
           ),
         ),
         Text(
@@ -51,18 +55,26 @@ class _PrivacySettingsState extends State<PrivacySettings> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return Scaffold(
-        backgroundColor: SColors.color4,
+        backgroundColor: themeController.isDarkTheme.value
+            ?  SColors.darkmode
+            : SColors.color4,
         appBar: AppBar(
           toolbarHeight: 70,
           elevation: 0,
-          title: Text('Privacy And Security',
+          title: Text(
+              'Privacy And Security',
               style: TextStyle(
-                color: SColors.color11,
+                color: themeController.isDarkTheme.value
+                    ?  SColors.appbarTitleInDark
+                    : SColors.color11,
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
               )),
-          backgroundColor: SColors.color12,
+          backgroundColor: themeController.isDarkTheme.value
+              ?  SColors.appbarbgInDark
+              : SColors.color12,
           leading: Padding(
             padding: const EdgeInsets.all(8.0),
             child: SvgPicture.asset(SSvgs.appLogo),
@@ -96,16 +108,20 @@ class _PrivacySettingsState extends State<PrivacySettings> {
                     Text(
                       'Chat History',
                       style: TextStyle(
-                        color: SColors.color3,
+                        color: themeController.isDarkTheme.value
+                      ?  SColors.color4
+                          : SColors.color3,
                         fontSize: 15,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
                     GestureDetector(
                       onTap: () {},
                       child: Icon(
                         Icons.arrow_forward_ios,
-                        color: SColors.color3,
+                        color: themeController.isDarkTheme.value
+                      ?  SColors.color4
+                          : SColors.color3,
                         size: 15,
                       ),
                     ),
@@ -118,7 +134,9 @@ class _PrivacySettingsState extends State<PrivacySettings> {
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Divider(
               thickness: 1,
-              color: SColors.color3,
+              color:  themeController.isDarkTheme.value
+            ?  Color.fromRGBO(187, 187, 187, 1)
+                  : SColors.color3,
             ),
           ),
           Padding(
@@ -137,13 +155,15 @@ class _PrivacySettingsState extends State<PrivacySettings> {
                   Text(
                     'Nearby Visibility',
                     style: TextStyle(
-                      color: SColors.color3,
+                      color:  themeController.isDarkTheme.value
+                          ?  SColors.color4
+                          : SColors.color3,
                       fontSize: 14,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                   Transform.scale(
-                    scale: 0.7,
+                    scale: 0.65,
                     child: CupertinoSwitch(
                       value: nearbyVisibility,
                       onChanged: (bool newValue) {
@@ -170,7 +190,9 @@ class _PrivacySettingsState extends State<PrivacySettings> {
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Divider(
               thickness: 1,
-              color: SColors.color3,
+              color:  themeController.isDarkTheme.value
+                  ?  Color.fromRGBO(187, 187, 187, 1)
+                  : SColors.color3,
             ),
           ),
         ]));

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
 class ProfileUpdateButton extends StatefulWidget {
   final String buttonText;
@@ -17,19 +20,21 @@ class ProfileUpdateButton extends StatefulWidget {
 class _ProfileUpdateButtonState extends State<ProfileUpdateButton> {
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return GestureDetector(
       onTap: widget.onPressed,
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.2,
+        width: MediaQuery.of(context).size.width * 0.6,
         height: 40,
         decoration: BoxDecoration(
-          color: const Color.fromRGBO(0, 51, 142, 1),
+          color: themeController.isDarkTheme.value ?  Colors.black : SColors.color12,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Center(
           child: Text(
             widget.buttonText,
-            style: TextStyle(fontSize: 14, color: Color.fromRGBO(159, 196, 232, 1)),
+            style: TextStyle(fontSize: 14,
+                color: themeController.isDarkTheme.value ?  SColors.buttonTextIndark : SColors.color11,),
           ),
         ),
       ),
