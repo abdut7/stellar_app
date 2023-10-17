@@ -168,9 +168,7 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                   color: themeController.isDarkTheme.value
                       ? Color.fromRGBO(193, 193, 193, 1)
                       : secondaryColor),
-              color: themeController.isDarkTheme.value
-                  ?  SColors.darkmode
-                  : SColors.color11,
+              color: SColors.color11
             ),
 
           ),
