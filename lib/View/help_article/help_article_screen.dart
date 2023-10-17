@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:stellar_chat/View/help_article/widgets/bullet_list.dart';
 import 'package:stellar_chat/View/help_article/widgets/like_dislike_button.dart';
 import 'package:stellar_chat/View/help_article/widgets/number_list.dart';
@@ -5,25 +6,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
 class HelpArticleScreen extends StatelessWidget {
   Widget _buildTitle(String text) {
+    ThemeController themeController = Get.find();
     return Text(
       text,
       style: TextStyle(
-        color: SColors.color3,
+        color:  themeController.isDarkTheme.value
+            ?  SColors.color4
+            : SColors.color3,
         fontSize: 20,
-        fontWeight: FontWeight.w800,
+        fontWeight: FontWeight.w700,
       ),
     );
   }
 
   Widget _buildSubtitle(String text,
-      {double fontSize = 12, FontWeight fontWeight = FontWeight.w500}) {
+      {double fontSize = 12, FontWeight fontWeight = FontWeight.w600}) {
+    ThemeController themeController = Get.find();
     return Text(
       text,
       style: TextStyle(
-        color: SColors.color3,
+        color: themeController.isDarkTheme.value
+            ?  SColors.color4
+            : SColors.color3,
         fontSize: fontSize,
         fontWeight: fontWeight,
       ),
@@ -40,20 +48,27 @@ class HelpArticleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor: SColors.color4,
+      backgroundColor: themeController.isDarkTheme.value
+          ?  SColors.darkmode
+          : SColors.color4,
       appBar: AppBar(
         toolbarHeight: 70,
         elevation: 0,
         title: Text(
           'Help Article',
           style: TextStyle(
-            color: SColors.color11,
+            color:  themeController.isDarkTheme.value
+                ?  SColors.appbarTitleInDark
+                : SColors.color11,
             fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
         ),
-        backgroundColor: SColors.color12,
+        backgroundColor:  themeController.isDarkTheme.value
+            ?  SColors.appbarbgInDark
+            : SColors.color12,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SvgPicture.asset(SSvgs.appLogo),
@@ -71,7 +86,7 @@ class HelpArticleScreen extends StatelessWidget {
             },
             icon: Icon(
               Icons.more_vert,
-              size: 35,
+              size: 30,
               color: SColors.color11,
             ),
             itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
@@ -141,7 +156,9 @@ class HelpArticleScreen extends StatelessWidget {
                     Text(
                       'Does this answer your question?',
                       style: TextStyle(
-                          color: SColors.color3,
+                          color: themeController.isDarkTheme.value
+                              ?  SColors.color4
+                              : SColors.color3,
                           fontSize: 12,
                           fontWeight: FontWeight.w700),
                       textAlign: TextAlign.center,
@@ -152,6 +169,7 @@ class HelpArticleScreen extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
                     ),
+                    const SizedBox(height: 25,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -168,11 +186,13 @@ class HelpArticleScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 25),
                     Text(
                       'Help for something else? Contact Stellar Chat Support',
                       style: TextStyle(
-                        color: SColors.color3,
+                        color: themeController.isDarkTheme.value
+                            ?  SColors.color4
+                            : SColors.color3,
                         fontSize: 10,
                         fontWeight: FontWeight.w500,
                       ),
