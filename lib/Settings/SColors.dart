@@ -30,4 +30,7 @@ class SColors {
   static Color get color24 => const Color(0xFF19AA33);
   static Color get color25 => const Color(0xFF75C681);
   static Color get darkmode => const Color(0xFF1D1D1B);
+  static Color get appbarTitleInDark => const  Color(0xFFC1C1C1);
+  static Color get appbarbgInDark => const Color(0xFF313131);
+  static Color get buttonTextIndark => const Color(0xFFB2B2B2);
 }

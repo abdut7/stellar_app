@@ -63,13 +63,18 @@ class _PrivacySettingsState extends State<PrivacySettings> {
         appBar: AppBar(
           toolbarHeight: 70,
           elevation: 0,
-          title: Text('Privacy And Security',
+          title: Text(
+              'Privacy And Security',
               style: TextStyle(
-                color: SColors.color11,
+                color: themeController.isDarkTheme.value
+                    ?  SColors.appbarTitleInDark
+                    : SColors.color11,
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
               )),
-          backgroundColor: SColors.color12,
+          backgroundColor: themeController.isDarkTheme.value
+              ?  SColors.appbarbgInDark
+              : SColors.color12,
           leading: Padding(
             padding: const EdgeInsets.all(8.0),
             child: SvgPicture.asset(SSvgs.appLogo),

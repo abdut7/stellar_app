@@ -58,12 +58,12 @@ class _EditProfileState extends State<EditProfile> {
         title: Text(
           'Edit Profile',
           style: TextStyle(
-            color: SColors.color11,
+            color: themeController.isDarkTheme.value ?  SColors.appbarTitleInDark : SColors.color11,
             fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
         ),
-        backgroundColor: SColors.color12,
+        backgroundColor: themeController.isDarkTheme.value ?  SColors.appbarbgInDark : SColors.color12,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SvgPicture.asset(SSvgs.appLogo),
