@@ -35,11 +35,10 @@ class _VideoCardState extends State<VideoCard> {
                       borderRadius: BorderRadius.circular(12),
                       color: SColors.color8,
                       image: DecorationImage(
-                          image: NetworkImage(widget
-                                      .channelItem.strThumbnailUrl ==
+                          image: NetworkImage(widget.channelItem.thumbnailUrl ==
                                   null
                               ? 'https://img.freepik.com/premium-photo/woman-holding-camera-with-word-canon-front_853645-1568.jpg?w=1380'
-                              : widget.channelItem.strThumbnailUrl!),
+                              : widget.channelItem.thumbnailUrl!),
                           fit: BoxFit.cover)),
                 ),
                 Positioned(
@@ -76,8 +75,7 @@ class _VideoCardState extends State<VideoCard> {
                       color: SColors.color9,
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image:
-                            NetworkImage(widget.channelItem.strUserProfileUrl),
+                        image: NetworkImage(widget.channelItem.userProfileUrl),
                       )),
                 ),
                 const SizedBox(
@@ -89,7 +87,7 @@ class _VideoCardState extends State<VideoCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.channelItem.strDescription,
+                      widget.channelItem.description,
                       style: TextStyle(
                         color: SColors.color3,
                         fontSize: 14,
@@ -101,7 +99,9 @@ class _VideoCardState extends State<VideoCard> {
                     ),
                     Text(
                       //replace with views insted of like count
-                      '${widget.channelItem.likesCount} views - ${DateFormat('MMM •d, y').format(widget.channelItem.strCreatedTime)}',
+                      '${widget.channelItem.viewsCount} views - ${DateFormat.yMMMEd().format(
+                        DateTime.parse(widget.channelItem.createdTime),
+                      )}',
                       style: TextStyle(
                         color: SColors.color8,
                         fontSize: 12,

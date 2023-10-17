@@ -22,8 +22,13 @@ class VideoCardChannelView extends StatefulWidget {
 class _VideoCardChannelViewState extends State<VideoCardChannelView> {
   late VideoPlayerController _videoPlayerController;
   late ChewieController _chewieController;
+  bool isFollowing = false;
+  int followCount = 0;
   @override
   void initState() {
+    isFollowing = widget.channelItem.isFollowing;
+    followCount = widget.channelItem.followersCount;
+
     super.initState();
     _videoPlayerController = VideoPlayerController.network(
       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
@@ -75,7 +80,7 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.channelItem.strDescription,
+                      widget.channelItem.description,
                       style: TextStyle(
                         color: SColors.color3,
                         fontSize: 14,
@@ -86,7 +91,9 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
                       height: 10,
                     ),
                     Text(
-                      '${widget.channelItem.commentsCount} views - ${DateFormat('MMM •d, y').format(widget.channelItem.strCreatedTime)}',
+                      '${widget.channelItem.viewsCount} views - ${DateFormat.yMMMEd().format(
+                        DateTime.parse(widget.channelItem.createdTime),
+                      )}',
                       style: TextStyle(
                         color: SColors.color8,
                         fontSize: 12,
@@ -122,7 +129,7 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
               ),
               CircleAvatar(
                 backgroundImage:
-                    NetworkImage(widget.channelItem.strUserProfileUrl),
+                    NetworkImage(widget.channelItem.userProfileUrl),
               ),
               const SizedBox(
                 width: 10,
@@ -130,25 +137,35 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(widget.channelItem.strCreatedUserFullName),
-                  const Text(
-                    "200 Followers",
-                    style: TextStyle(color: Colors.grey, fontSize: 10),
+                  Text(widget.channelItem.createdUserFullName),
+                  Text(
+                    "$followCount Followers",
+                    style: const TextStyle(color: Colors.grey, fontSize: 10),
                   )
                 ],
               ),
               const Spacer(),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  if (isFollowing) {
+                    followCount--;
+                  } else {
+                    followCount++;
+                  }
+                  setState(() {
+                    isFollowing = !isFollowing;
+                  });
+                },
                 child: Container(
                   width: 80,
                   height: 30,
                   decoration: BoxDecoration(
-                      color: colorPrimary,
-                      borderRadius: BorderRadius.circular(10)),
+                    color: colorPrimary,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   child: Center(
                     child: Text(
-                      "Follow",
+                      isFollowing ? "Unfollow" : "Follow",
                       style: TextStyle(color: secondaryColor),
                     ),
                   ),

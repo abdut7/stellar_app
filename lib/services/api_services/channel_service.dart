@@ -101,7 +101,6 @@ class ChannelService {
     String url = ApiRoutes.baseUrl + ApiRoutes.getChannelList;
     Map<String, dynamic> header = await getHeader();
     Map<String, dynamic> data = {"intPageCount ": count.toString()};
-    print(data);
     ChannelHomeController controller = Get.find();
     if (count == 1) {
       controller.channelItems.clear();
@@ -110,7 +109,7 @@ class ChannelService {
     try {
       Response res =
           await dio.post(url, options: Options(headers: header), data: data);
-      print(res);
+      print("channel data:$res");
       ChannelModel model = ChannelModel.fromJson(res.data);
       print(model.arrList.length);
       for (var element in model.arrList) {

@@ -57,12 +57,12 @@ class _ChannelGridViewState extends State<ChannelGridView> {
                               fit: BoxFit.cover,
                               image: NetworkImage(controller.channelItem
                                           .elementAt(index)
-                                          .strThumbnailUrl ==
+                                          .thumbnailUrl ==
                                       null
                                   ? """https://loremflickr.com/cache/resized/65535_53065639115_14eaf016a0_z_640_360_nofilter.jpg"""
                                   : controller.channelItem
                                       .elementAt(index)
-                                      .strThumbnailUrl!))),
+                                      .thumbnailUrl!))),
                       child: widget.icon != null
                           ? Icon(
                               widget.icon,
