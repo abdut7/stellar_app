@@ -6,6 +6,7 @@ import 'package:path/path.dart';
 import 'package:stellar_chat/controllers/group_chat_controller.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/functions/delete_audio_file.dart';
+import 'package:stellar_chat/functions/get_location_name.dart';
 import 'package:stellar_chat/functions/image_to_base.dart';
 import 'package:stellar_chat/models/group_chat/group_message_model.dart';
 import 'package:stellar_chat/services/api_services/upload_file_service.dart';
@@ -114,8 +115,48 @@ class GroupChatService {
       'strMessage': basename(path),
       'strFileName': basename(path),
       "strMessageType": "document",
-      "strType": "private",
+      "strType": "group",
       "strUrl": fileUrl,
+    });
+    // ChatMessageService.getMessages(chatId: chatId, type: "private");
+    chatController.groupMessageList
+        .removeWhere((element) => element.id == randomNumber.toString());
+  }
+
+  static Future<void> sentGroupLocationMessage({
+    required String chatId,
+    required double longitude,
+    required double latitude,
+  }) async {
+    final random = Random();
+    Socket socket = SocketService().socket;
+    UserController userController = Get.find();
+
+    GroupChatController chatController = Get.find();
+    int randomNumber = random.nextInt(1001);
+    String locationName = await getLocationName(longitude, latitude);
+
+    chatController.groupMessageList.add(GroupMessageModel(
+        id: "$randomNumber",
+        strCreatedTime: "",
+        strMessage: locationName,
+        strMessageType: "sentingLoc",
+        strIconURL: "",
+        strName: "",
+        strType: "",
+        strUrl: "",
+        strUserId: "",
+        strContactName: "",
+        strContactNumbers: "",
+        strChatId: ""));
+
+    socket.emit('send_message', {
+      'strChatId': chatId,
+      'strMessage': locationName,
+      "strMessageType": "location",
+      "strType": "group",
+      "strLongitude": longitude,
+      "strLatitude": latitude
     });
     // ChatMessageService.getMessages(chatId: chatId, type: "private");
     chatController.groupMessageList

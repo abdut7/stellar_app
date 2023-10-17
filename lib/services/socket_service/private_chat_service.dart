@@ -36,6 +36,8 @@ class PrivateChatService {
     PrivateChatController chatController = Get.put(PrivateChatController());
     chatController.messageList.add(PrivateMessageModel(
         id: "",
+        strLatitude: 0.0,
+        strLongitude: 0.0,
         strCreatedTime: "",
         strMessage: "",
         strMessageType: "sentingImage",
@@ -109,6 +111,8 @@ class PrivateChatService {
     int randomNumber = random.nextInt(1001);
     chatController.messageList.add(PrivateMessageModel(
         id: "$randomNumber",
+        strLatitude: 0.0,
+        strLongitude: 0.0,
         strCreatedTime: "",
         strMessage: basename(path),
         strMessageType: "sentingDoc",
@@ -148,6 +152,8 @@ class PrivateChatService {
     PrivateChatController chatController = Get.find();
     int randomNumber = random.nextInt(1001);
     chatController.messageList.add(PrivateMessageModel(
+        strLatitude: 0.0,
+        strLongitude: 0.0,
         id: "$randomNumber",
         strCreatedTime: "",
         strMessage: locationName,
