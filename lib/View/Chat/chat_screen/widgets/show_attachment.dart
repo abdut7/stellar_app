@@ -3,15 +3,26 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 Future<dynamic> showChatAttachmentSheet(
-    BuildContext context, void Function(int) onTap) {
-  List<Map<String, String>> attachList = [
-    {"name": "Send Files", "file": "assets/Svgs/send_files.svg"},
-    {"name": "Camera", "file": "assets/Svgs/camera_attach.svg"},
-    {"name": "Gallery", "file": "assets/Svgs/gallary_attach.svg"},
-    {"name": "Location", "file": "assets/Svgs/location_attach.svg"},
-    {"name": "Contacts", "file": "assets/Svgs/contact_attach.svg"},
-    {"name": "Audio", "file": "assets/Svgs/audio_attach.svg"}
-  ];
+    {required BuildContext context,
+    required void Function(int) onTap,
+    bool isFromPrivate = false}) {
+  List<Map<String, String>> attachList = isFromPrivate
+      ? [
+          {"name": "Send Files", "file": "assets/Svgs/send_files.svg"},
+          {"name": "Audio", "file": "assets/Svgs/audio_attach.svg"},
+          {"name": "Gallery", "file": "assets/Svgs/gallary_attach.svg"},
+          {"name": "Location", "file": "assets/Svgs/location_attach.svg"},
+          {"name": "Contacts", "file": "assets/Svgs/contact_attach.svg"},
+          {"name": "Pay", "file": "assets/Svgs/pay_icon.svg"}
+        ]
+      : [
+          {"name": "Send Files", "file": "assets/Svgs/send_files.svg"},
+          {"name": "Camera", "file": "assets/Svgs/camera_attach.svg"},
+          {"name": "Gallery", "file": "assets/Svgs/gallary_attach.svg"},
+          {"name": "Location", "file": "assets/Svgs/location_attach.svg"},
+          {"name": "Contacts", "file": "assets/Svgs/contact_attach.svg"},
+          {"name": "Audio", "file": "assets/Svgs/audio_attach.svg"}
+        ];
 
   return showModalBottomSheet(
     isScrollControlled: false,

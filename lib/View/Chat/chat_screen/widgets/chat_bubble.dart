@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_svg/svg.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/document_bubble.dart';
 import 'package:stellar_chat/View/chat/group_chat/widgets/voice_chat_bubble.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/contact_message_bubble.dart';
@@ -10,6 +11,7 @@ import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:stellar_chat/utils/colors.dart';
 import '../../../../models/private_chat/private_chat_model.dart';
 
 class ChatBubble extends StatelessWidget {
@@ -58,13 +60,15 @@ class ChatBubble extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: message.strMessageType == "voice" ||
                                 message.strMessageType == "contact" ||
-                                message.strMessageType == "document"
+                                message.strMessageType == "document" ||
+                                message.strMessageType == "location"
                             ? null
                             : color,
                         boxShadow: !isSent &&
                                 message.strMessageType != "voice" &&
                                 message.strMessageType != "contact" &&
-                                message.strMessageType != "document"
+                                message.strMessageType != "document" &&
+                                message.strMessageType != "location"
                             ? [
                                 BoxShadow(
                                   color: Colors.black.withOpacity(0.2),
@@ -236,44 +240,88 @@ class ChatBubble extends StatelessWidget {
                                       audioUrl: message.strUrl,
                                       isSender: isSent,
                                     )
-                                  : message.strMessageType == "document" ||
-                                          message.strMessageType == "sentingDoc"
-                                      ? DocumentBubble(
-                                          senterName: message.strName,
-                                          isGroup: false,
-                                          createdTime: message.strCreatedTime,
-                                          isSenting: message.strMessageType ==
-                                              "sentingDoc",
-                                          isSent: isSent,
-                                          message: message.strMessage,
-                                          url: message.strUrl,
+                                  : message.strMessageType == "location" ||
+                                          message.strMessageType == "sentingLoc"
+                                      ? Container(
+                                          decoration: BoxDecoration(
+                                              color: secondaryColor,
+                                              borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(10),
+                                                topRight: Radius.circular(10),
+                                                bottomLeft: Radius.circular(
+                                                    isSent ? 10 : 0),
+                                                bottomRight: Radius.circular(
+                                                    isSent ? 0 : 10),
+                                              )),
+                                          padding: EdgeInsets.all(10),
+                                          width: Get.width * 0.6,
+                                          height: 150,
+                                          child: GoogleMap(
+                                            initialCameraPosition:
+                                                CameraPosition(
+                                              target: LatLng(
+                                                  message.strLatitude,
+                                                  message.strLongitude),
+                                              zoom:
+                                                  15.0, // Adjust zoom level as needed
+                                            ),
+                                            markers: Set<Marker>.from([
+                                              Marker(
+                                                markerId:
+                                                    MarkerId("locationMarker"),
+                                                position: LatLng(
+                                                    message.strLatitude,
+                                                    message.strLongitude),
+                                              ),
+                                            ]),
+                                          ),
                                         )
-                                      : message.strMessageType == "contact"
-                                          ? ContactMessageBubble(
-                                              isSent: isSent, message: message)
-                                          : message.strMessageType ==
-                                                  "sentingImage"
-                                              ? Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(2.0),
-                                                  child: Container(
-                                                    height: Get.width * 0.4,
-                                                    width: Get.width * 0.6,
-                                                    decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                        fit: BoxFit.cover,
-                                                        image: FileImage(
-                                                          File(message.strUrl),
+                                      : message.strMessageType == "document" ||
+                                              message.strMessageType ==
+                                                  "sentingDoc"
+                                          ? DocumentBubble(
+                                              senterName: message.strName,
+                                              isGroup: false,
+                                              createdTime:
+                                                  message.strCreatedTime,
+                                              isSenting:
+                                                  message.strMessageType ==
+                                                      "sentingDoc",
+                                              isSent: isSent,
+                                              message: message.strMessage,
+                                              url: message.strUrl,
+                                            )
+                                          : message.strMessageType == "contact"
+                                              ? ContactMessageBubble(
+                                                  isSent: isSent,
+                                                  message: message)
+                                              : message.strMessageType ==
+                                                      "sentingImage"
+                                                  ? Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              2.0),
+                                                      child: Container(
+                                                        height: Get.width * 0.4,
+                                                        width: Get.width * 0.6,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          image:
+                                                              DecorationImage(
+                                                            fit: BoxFit.cover,
+                                                            image: FileImage(
+                                                              File(message
+                                                                  .strUrl),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        child: const Center(
+                                                          child:
+                                                              CircularProgressIndicator(),
                                                         ),
                                                       ),
-                                                    ),
-                                                    child: const Center(
-                                                      child:
-                                                          CircularProgressIndicator(),
-                                                    ),
-                                                  ),
-                                                )
-                                              : const SizedBox(),
+                                                    )
+                                                  : const SizedBox(),
                     ),
               // const SizedBox(height: 4.0),
             ],
