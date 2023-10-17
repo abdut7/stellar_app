@@ -9,6 +9,7 @@ import 'package:stellar_chat/View/contact/add_contact/friends_in_radar/friends_i
 import 'package:stellar_chat/View/discover/widgets/discover_list_tile.dart';
 import 'package:stellar_chat/View/discover/widgets/top_section.dart';
 import 'package:stellar_chat/controllers/bottom_navigation_controller.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/stellar_pay/screens/stellar_pay_splash_screen/stellar_pay_splash.dart';
 import 'package:stellar_chat/View/flicks/flicks_player_home_screen.dart';
 
@@ -22,8 +23,11 @@ class DiscoverHomeScreen extends StatefulWidget {
 class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor: SColors.color4,
+      backgroundColor: themeController.isDarkTheme.value
+    ?  SColors.darkmode
+        : SColors.color4,
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -43,7 +47,9 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                           const EdgeInsets.only(left: 45, right: 45, top: 225),
                       width: double.infinity,
                       decoration: ShapeDecoration(
-                        color: SColors.color4,
+                        color:themeController.isDarkTheme.value
+                            ? SColors.darkmode
+                            : SColors.color4,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(17),
                         ),
@@ -62,7 +68,8 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                           children: [
                             DiscoverListTile(
                                 title: 'Flicks',
-                                svgAsset: SSvgs.flicksLogo,
+                                svgAsset:  themeController.isDarkTheme.value ? SSvgs.flicksDark
+                              : SSvgs.flicksLogo,
                                 onTap: () {
                                   // Get.to(() => FlicksPlayerHomeScreen());
                                   BottomNavigationController
@@ -73,16 +80,20 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                                   );
                                   bottomNavigationController.pageCount(1);
                                 }),
-                            const Padding(
+                            Padding(
                               padding: EdgeInsets.symmetric(horizontal: 15),
                               child: Divider(
                                 thickness: 2,
-                                color: Colors.black12,
+                                color: themeController.isDarkTheme.value
+                                    ? Color.fromRGBO(187, 187, 187, 1)
+                                    : Color.fromRGBO(232, 232, 232, 1)
+
                               ),
                             ),
                             DiscoverListTile(
                                 title: 'Channel',
-                                svgAsset: SSvgs.channelLogo,
+                                svgAsset: themeController.isDarkTheme.value ? SSvgs.channelDark
+                                    : SSvgs.channelLogo,
                                 onTap: () {
                                   BottomNavigationController
                                       bottomNavigationController = Get.find();
@@ -102,7 +113,9 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                           const EdgeInsets.only(left: 45, right: 45, top: 385),
                       width: double.infinity,
                       decoration: ShapeDecoration(
-                        color: SColors.color4,
+                        color: themeController.isDarkTheme.value
+                            ? SColors.darkmode
+                            : SColors.color4,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(17),
                         ),
@@ -121,15 +134,19 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                           children: [
                             DiscoverListTile(
                                 title: 'Scan',
-                                svgAsset: SSvgs.scanLogo,
+                                svgAsset:  themeController.isDarkTheme.value ? SSvgs.scanDark
+                                    : SSvgs.scanLogo,
                                 onTap: () {
                                   Get.to(() => const QRScreen());
                                 }),
-                            const Padding(
+                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 15),
                               child: Divider(
                                 thickness: 2,
-                                color: Colors.black12,
+                                color: themeController.isDarkTheme.value
+                                    ? Color.fromRGBO(187, 187, 187, 1)
+                                    : Color.fromRGBO(232, 232, 232, 1)
+
                               ),
                             ),
                             DiscoverListTile(
@@ -151,7 +168,9 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                           const EdgeInsets.only(left: 45, right: 45, top: 545),
                       width: double.infinity,
                       decoration: ShapeDecoration(
-                        color: SColors.color4,
+                        color: themeController.isDarkTheme.value
+                            ? SColors.darkmode
+                            : SColors.color4,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(17),
                         ),
@@ -170,20 +189,22 @@ class _DiscoverHomeScreenState extends State<DiscoverHomeScreen> {
                           children: [
                             DiscoverListTile(
                                 title: 'People Near Me',
-                                svgAsset: SSvgs.nearMeIcon,
+                                svgAsset: themeController.isDarkTheme.value ? SSvgs.nearmeDark : SSvgs.nearMeIcon,
                                 onTap: () {
                                   Get.to(() => const FriendsInRadarScreen());
                                 }),
-                            const Padding(
+                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 15),
                               child: Divider(
                                 thickness: 2,
-                                color: Colors.black12,
+                                color: themeController.isDarkTheme.value
+                                    ? Color.fromRGBO(187, 187, 187, 1)
+                                    : Color.fromRGBO(232, 232, 232, 1)
                               ),
                             ),
                             DiscoverListTile(
                                 title: 'Search',
-                                svgAsset: SSvgs.searchIcon,
+                                svgAsset: themeController.isDarkTheme.value ? SSvgs.searchDark : SSvgs.searchIcon,
                                 onTap: () {}),
                           ],
                         ),

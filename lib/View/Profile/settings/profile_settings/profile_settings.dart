@@ -26,16 +26,18 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   final ThemeController darkThemeController = Get.find();
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     UserController controller = Get.find();
     return SafeArea(
       child: Scaffold(
-        backgroundColor: SColors.color4,
+        backgroundColor: themeController.isDarkTheme.value
+            ?  SColors.darkmode : SColors.color4,
         body: ListView(
           children: <Widget>[
             Stack(
               children: <Widget>[
                 Container(
-                  height: 300,
+                  height: Get.height*0.36,
                   child: Stack(
                     children: <Widget>[
                       Image.network(
@@ -52,7 +54,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         child: Text(
                           controller.userDetailsModel.value!.strName,
                           style: TextStyle(
-                            color: SColors.color11,
+                            color:  themeController.isDarkTheme.value
+                                ? SColors.color4 : SColors.color11,
                             fontSize: 15,
                             fontWeight: FontWeight.w900,
                           ),
@@ -64,7 +67,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         child: Text(
                           'Online',
                           style: TextStyle(
-                            color: SColors.color11,
+                            color:  themeController.isDarkTheme.value
+                          ? SColors.color4 : SColors.color11,
                             fontSize: 13,
                             fontWeight: FontWeight.w700,
                           ),
@@ -93,7 +97,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       },
                       child: SvgPicture.asset(
                         SSvgs.qr,
-                        color: SColors.color4,
+                        color:  themeController.isDarkTheme.value
+                      ?  SColors.color3 : SColors.color4,
                         height: 25,
                       )),
                 ),
@@ -108,7 +113,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 Get.to(() => FavoritesScreen());
 
               },
-              svgAsset: SSvgs.sv25,
+              svgAsset: themeController.isDarkTheme.value ? SSvgs.favouriteDark
+                  : SSvgs.sv25,
             ),
             Column(
               children: [
@@ -118,13 +124,16 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                     Get.to(() => StickerGalleryScreen());
 
                   },
-                  svgAsset: SSvgs.sv27,
+                  svgAsset: themeController.isDarkTheme.value ? SSvgs.stickerDark
+                      : SSvgs.sv27,
                 ),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                   child: Divider(
-                    color: SColors.color3,
+                    color: themeController.isDarkTheme.value
+                        ? Color.fromRGBO(187, 187, 187, 1)
+                        : SColors.color3,
                     thickness: 1,
                     height: 1,
                   ),
@@ -158,9 +167,11 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       child: Text(
                         'Privacy and Security',
                         style: TextStyle(
-                          color: SColors.color3,
+                          color: themeController.isDarkTheme.value
+                              ? SColors.color4
+                              : SColors.color3,
                           fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     )),
@@ -175,9 +186,11 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       child: Text(
                         'Dark Mode',
                         style: TextStyle(
-                          color: SColors.color3,
+                          color: themeController.isDarkTheme.value
+                              ? SColors.color4
+                              : SColors.color3,
                           fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     ),
@@ -221,9 +234,11 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       child: Text(
                         'Find Contacts',
                         style: TextStyle(
-                          color: SColors.color3,
+                          color: themeController.isDarkTheme.value
+                              ? SColors.color4
+                              : SColors.color3,
                           fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     ),
@@ -238,9 +253,11 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       child: Text(
                         'Stellar Chat FAQ',
                         style: TextStyle(
-                          color: SColors.color3,
+                          color: themeController.isDarkTheme.value
+                              ? SColors.color4
+                              : SColors.color3,
                           fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     ),
@@ -255,9 +272,11 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       child: Text(
                         'Privacy Policy',
                         style: TextStyle(
-                          color: SColors.color3,
+                          color: themeController.isDarkTheme.value
+                              ? SColors.color4
+                              : SColors.color3,
                           fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     ),

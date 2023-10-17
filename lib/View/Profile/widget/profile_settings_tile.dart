@@ -1,6 +1,8 @@
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
 class CustomListTilee extends StatefulWidget {
   final String text;
@@ -20,6 +22,7 @@ class CustomListTilee extends StatefulWidget {
 class _CustomListTileeState extends State<CustomListTilee> {
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
@@ -30,7 +33,9 @@ class _CustomListTileeState extends State<CustomListTilee> {
           title: Text(
             widget.text,
             style: TextStyle(
-              color: SColors.color3,
+              color: themeController.isDarkTheme.value
+                  ? SColors.color4
+                  : SColors.color3,
               fontSize: 16,
               fontWeight: FontWeight.w400,
             ),

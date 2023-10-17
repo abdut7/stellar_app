@@ -86,4 +86,13 @@ class SSvgs {
   static String get pMessage => "assets/Svgs/pMessage.svg";
   static String get pCall => "assets/Svgs/pCall.svg";
   static String get pVideo => "assets/Svgs/pVideo.svg";
+  static String get logoDark => "assets/Svgs/05Dark.svg";
+  static String get flicksDark => "assets/Svgs/flicksDark.svg";
+  static String get channelDark => "assets/Svgs/channelDark.svg";
+  static String get scanDark => "assets/Svgs/scanDark.svg";
+  static String get nearmeDark => "assets/Svgs/nearmeDark.svg";
+  static String get searchDark => "assets/Svgs/searchDark.svg";
+  static String get qrDark => "assets/Svgs/qrDark.svg";
+  static String get stickerDark => "assets/Svgs/stickerDark.svg";
+  static String get favouriteDark => "assets/Svgs/favouriteDark.svg";
 }
