@@ -1,11 +1,13 @@
-import 'package:geocode/geocode.dart';
+import 'package:geocoding/geocoding.dart';
 
-
-
-Future<String> getLocationName(double? lat, double? lang) async {
- if (lat == null || lang == null) return "";
- GeoCode geoCode = GeoCode();
- Address address =
-     await geoCode.reverseGeocoding(latitude: lat, longitude: lang);
- return "${address.streetAddress}, ${address.city}, ${address.countryName}, ${address.postal}";
+Future<String> getLocationName(double longitude, double latitude) async {
+  // List<Placemark> placemarks =
+  //     await placemarkFromCoordinates(latitude, longitude);
+  // if (placemarks.isNotEmpty) {
+  //   Placemark placemark = placemarks[0];
+  //   return "${placemark.street}, ${placemark.locality}, ${placemark.postalCode}";
+  // } else {
+  //   return "Unknown location";
+  // }
+  return "Unknown location";
 }

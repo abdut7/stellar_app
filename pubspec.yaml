@@ -90,6 +90,7 @@ dependencies:
   chewie: ^1.7.1
   geocoding: ^2.1.1
   geocode: ^1.0.3
+  url_launcher: ^6.1.14
 
 
 

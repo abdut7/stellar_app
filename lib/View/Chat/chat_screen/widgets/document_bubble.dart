@@ -56,7 +56,10 @@ class _DocumentBubbleState extends State<DocumentBubble> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0, top: 4, bottom: 4),
-                  child: Text(widget.isSent ? "" : widget.senterName),
+                  child: Text(
+                    widget.isSent ? "" : widget.senterName,
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
                 ),
                 Row(
                   children: [
