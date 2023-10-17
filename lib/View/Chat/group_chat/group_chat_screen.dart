@@ -191,8 +191,8 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
             },
             onAttach: () {
               showChatAttachmentSheet(
-                context,
-                (index) async {
+                context: context,
+                onTap: (index) async {
                   //if index = 0 =>Send Files
                   //if index = 1 =>Camera
                   // XFile? image = await pickImageFromGalleryOrCamera(

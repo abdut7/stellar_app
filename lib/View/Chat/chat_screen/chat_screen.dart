@@ -157,8 +157,9 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
               },
               onAttach: () {
                 showChatAttachmentSheet(
-                  context,
-                  (index) async {
+                  isFromPrivate: true,
+                  context: context,
+                  onTap: (index) async {
                     //if index = 0 =>Send Files
                     if (index == 0) {
                       FilePickerResult? result =
@@ -171,14 +172,14 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                       }
                     }
                     //if index = 1 =>Camera
-                    if (index == 1) {
-                      XFile? image = await pickImageFromGalleryOrCamera(
-                          source: ImageSource.camera);
-                      if (image != null) {
-                        PrivateChatService.sentPersonalImageMessage(
-                            widget.chatId, image);
-                      }
-                    }
+                    // if (index == 1) {
+                    //   XFile? image = await pickImageFromGalleryOrCamera(
+                    //       source: ImageSource.camera);
+                    //   if (image != null) {
+                    //     PrivateChatService.sentPersonalImageMessage(
+                    //         widget.chatId, image);
+                    //   }
+                    // }
                     //if index = 2 =>Gallary
                     if (index == 2) {
                       XFile? image = await pickImageFromGalleryOrCamera(
@@ -197,6 +198,7 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                         ),
                       );
                     }
+
                     Navigator.pop(context);
                     //if index = 3 =>Location
                     //if index = 4 =>Contacts
