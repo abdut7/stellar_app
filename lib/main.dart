@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stellar_chat/View/auth_screens/LoginWithMobile/login_with_mobile_screen.dart';
@@ -7,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stellar_chat/View/create_post/create_post_home.dart';
 import 'package:stellar_chat/View/splash/spalash_screen.dart';
+import 'package:stellar_chat/View/video_editor/video_editor_screen.dart';
 import 'package:stellar_chat/controllers/theme_controller.dart';
 
 void main() async {
@@ -39,16 +42,16 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: Colors.black,
           textTheme: GoogleFonts.interTextTheme().copyWith(
-            bodyText1:
-                TextStyle(color: Colors.white), // Customize your text style
-            bodyText2:
-                TextStyle(color: Colors.white), // Customize other text styles
-                
-          )),
+              // bodyText1:
+              //     TextStyle(color: Colors.white), // Customize your text style
+              // bodyText2:
+              //     TextStyle(color: Colors.white), // Customize other text styles
+
+              )),
       themeMode: Get.find<ThemeController>().isDarkTheme.value
           ? ThemeMode.dark
           : ThemeMode.light,
-      home: const SplashScreen(),
+      home: SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

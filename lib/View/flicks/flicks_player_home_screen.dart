@@ -20,7 +20,6 @@ class _FlicksPlayerHomeScreenState extends State<FlicksPlayerHomeScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // Your function to run after the widget is built
       Get.find<ThemeController>().isInsideDarkScreens(true);
     });
   }
