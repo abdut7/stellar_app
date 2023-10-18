@@ -4,11 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/report_and_bloc_sheet_widget.dart';
 import 'package:stellar_chat/View/chat/group_chat/group_info/group_info_screen.dart';
 import 'package:stellar_chat/View/chat/search/search.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/functions/show_snackbar.dart';
 
 groupChatMainBottomSheet(BuildContext context, String chatId) {
+  ThemeController themeController = Get.find();
   return showModalBottomSheet(
-    backgroundColor: SColors.color11,
+    backgroundColor: themeController.isDarkTheme.value
+        ?  SColors.darkmode
+        : SColors.color11,
     shape: const RoundedRectangleBorder(
       // <-- SEE HERE
       borderRadius: BorderRadius.vertical(
@@ -24,11 +28,14 @@ groupChatMainBottomSheet(BuildContext context, String chatId) {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 28, vertical: 20),
                   child: Divider(
                     thickness: 3,
-                    color: Color.fromRGBO(0, 51, 142, 0.5),
+                    color:themeController.isDarkTheme.value
+                        ?  SColors.color26
+                        : Color.fromRGBO(0, 51, 142, 0.5),
+
                   ),
                 ),
                 GestureDetector(
@@ -41,7 +48,9 @@ groupChatMainBottomSheet(BuildContext context, String chatId) {
                   child: Text(
                     'Group Info',
                     style: TextStyle(
-                      color: SColors.color12,
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.sheetItemColor
+                          : SColors.color12,
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
                     ),
@@ -61,7 +70,9 @@ groupChatMainBottomSheet(BuildContext context, String chatId) {
                   child: Text(
                     'Search',
                     style: TextStyle(
-                      color: SColors.color12,
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.sheetItemColor
+                          : SColors.color12,
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
                     ),
@@ -79,7 +90,9 @@ groupChatMainBottomSheet(BuildContext context, String chatId) {
                   child: Text(
                     'Mute Notification',
                     style: TextStyle(
-                        color: SColors.color12,
+                        color: themeController.isDarkTheme.value
+                            ?  SColors.sheetItemColor
+                            : SColors.color12,
                         fontSize: 11,
                         fontWeight: FontWeight.w600),
                   ),
@@ -147,7 +160,9 @@ groupChatMainBottomSheet(BuildContext context, String chatId) {
                   child: Text(
                     'Clear All Chat',
                     style: TextStyle(
-                      color: SColors.color12,
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.sheetItemColor
+                          : SColors.color12,
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
                     ),
@@ -298,8 +313,11 @@ void showSubBottomSheet(
     required String okText,
     required VoidCallback onCancel,
     required VoidCallback onOk}) {
+  ThemeController themeController = Get.find();
   showModalBottomSheet(
-    backgroundColor: SColors.color11,
+    backgroundColor: themeController.isDarkTheme.value
+        ?  SColors.darkmode
+        : SColors.color11,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
         top: Radius.circular(15.0),
@@ -314,16 +332,20 @@ void showSubBottomSheet(
           children: <Widget>[
             Text(
               text1,
-              style: const TextStyle(
-                color: Colors.black,
+              style:  TextStyle(
+                color:  themeController.isDarkTheme.value
+                    ?  SColors.color4
+                    : SColors.color3,
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
               ),
             ),
             Text(
               text2,
-              style: const TextStyle(
-                color: Colors.black,
+              style: TextStyle(
+                color: themeController.isDarkTheme.value
+                    ?  SColors.color4
+                    : SColors.color3,
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
               ),
@@ -338,14 +360,18 @@ void showSubBottomSheet(
                     width: MediaQuery.of(context).size.width * 0.25,
                     height: 30,
                     decoration: BoxDecoration(
-                      color: SColors.color11,
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.darkmode
+                          : SColors.color11,
                       borderRadius: BorderRadius.circular(9),
                     ),
                     child: Center(
                       child: Text(
                         cancelText,
                         style: TextStyle(
-                          color: SColors.color12,
+                          color: themeController.isDarkTheme.value
+                              ?  SColors.color26
+                              : SColors.color12,
                           fontSize: 17,
                           fontWeight: FontWeight.w400,
                         ),
@@ -359,7 +385,9 @@ void showSubBottomSheet(
                     width: MediaQuery.of(context).size.width * 0.25,
                     height: 30,
                     decoration: BoxDecoration(
-                      color: const Color.fromRGBO(0, 51, 142, 1),
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.color3
+                          : SColors.color12,
                       borderRadius: BorderRadius.circular(9),
                     ),
                     child: Center(
