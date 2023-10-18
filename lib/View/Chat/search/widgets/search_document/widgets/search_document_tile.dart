@@ -1,6 +1,8 @@
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/services/download_and_open_file.dart';
 
 class SearchDocumentListTile extends StatefulWidget {
@@ -25,6 +27,7 @@ class SearchDocumentListTile extends StatefulWidget {
 class _SearchDocumentListTileState extends State<SearchDocumentListTile> {
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return ListTile(
       onTap: () async {
         await downloadCacheAndOpenFile(widget.fileUrl.trim());
@@ -34,7 +37,9 @@ class _SearchDocumentListTileState extends State<SearchDocumentListTile> {
       title: Text(
         widget.fileType,
         style: TextStyle(
-          color: SColors.color3,
+          color:  themeController.isDarkTheme.value
+              ?  SColors.color4
+              : SColors.color3,
           fontSize: 14,
           fontWeight: FontWeight.w600,
         ),
@@ -42,7 +47,9 @@ class _SearchDocumentListTileState extends State<SearchDocumentListTile> {
       subtitle: Text(
         widget.fileSize,
         style: TextStyle(
-          color: SColors.color8,
+          color: themeController.isDarkTheme.value
+              ?  SColors.color26
+              : SColors.color8,
           fontSize: 12,
           fontWeight: FontWeight.w400,
         ),
@@ -52,7 +59,9 @@ class _SearchDocumentListTileState extends State<SearchDocumentListTile> {
         Text(
           widget.time,
           style: TextStyle(
-            color: SColors.color8,
+            color: themeController.isDarkTheme.value
+                ?  SColors.color26
+                : SColors.color8,
             fontSize: 10,
             fontWeight: FontWeight.w400,
           ),

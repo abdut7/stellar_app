@@ -6,6 +6,7 @@ import 'package:stellar_chat/View/Chat/search/widgets/search_document/search_doc
 import 'package:stellar_chat/View/Chat/search/widgets/search_media/search_media.dart';
 import 'package:flutter/material.dart';
 import 'package:stellar_chat/controllers/search_controllers.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/services/api_services/chat_search_service.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -58,8 +59,11 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor: SColors.color4,
+      backgroundColor: themeController.isDarkTheme.value
+          ?  SColors.darkmode
+          : SColors.color4,
       appBar: AppBar(
         toolbarHeight: 70,
         elevation: 0,
@@ -151,7 +155,9 @@ class _SearchScreenState extends State<SearchScreen> {
                         child: Text(
                           'Chat',
                           style: TextStyle(
-                            color: SColors.color3,
+                            color: themeController.isDarkTheme.value
+                                ?  SColors.color4
+                                : SColors.color3,
                             overflow: TextOverflow.ellipsis,
                             fontSize: 10,
                             fontWeight: FontWeight.w500,
@@ -180,7 +186,9 @@ class _SearchScreenState extends State<SearchScreen> {
                         child: Text(
                           'Media',
                           style: TextStyle(
-                            color: SColors.color3,
+                            color: themeController.isDarkTheme.value
+                                ?  SColors.color4
+                                : SColors.color3,
                             overflow: TextOverflow.ellipsis,
                             fontSize: 10,
                             fontWeight: FontWeight.w500,
@@ -209,7 +217,9 @@ class _SearchScreenState extends State<SearchScreen> {
                         child: Text(
                           'Audio',
                           style: TextStyle(
-                            color: SColors.color3,
+                            color: themeController.isDarkTheme.value
+                                ?  SColors.color4
+                                : SColors.color3,
                             overflow: TextOverflow.ellipsis,
                             fontSize: 10,
                             fontWeight: FontWeight.w500,
@@ -238,7 +248,9 @@ class _SearchScreenState extends State<SearchScreen> {
                         child: Text(
                           'Document',
                           style: TextStyle(
-                            color: SColors.color3,
+                            color: themeController.isDarkTheme.value
+                                ?  SColors.color4
+                                : SColors.color3,
                             overflow: TextOverflow.ellipsis,
                             fontSize: 10,
                             fontWeight: FontWeight.w500,
