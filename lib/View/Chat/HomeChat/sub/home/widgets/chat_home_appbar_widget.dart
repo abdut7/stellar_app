@@ -86,63 +86,53 @@ class ChatHomeAppbarWidget extends StatelessWidget {
               itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
                 CustomPopupMenuItem(
                   value: 'new_chat',
-                  icon: SvgPicture.asset(
-                    SSvgs.sv17,
-                    width: 20,
-                    height: 20,
+                  icon: GestureDetector(
+                    onTap: (){
+                      Get.back();
+                      Get.to(() => const ShowContactsScreen());
+
+                    },
+                    child: SvgPicture.asset(
+                      SSvgs.sv17,
+                      width: 20,
+                      height: 20,
+                    ),
                   ),
-                  ontap: () {
-                    Get.back();
-                    Get.to(() => const ShowContactsScreen());
-                  },
+                  ontap: () {},
                   text: 'New Chat',
                 ),
                 CustomPopupMenuItem(
                   value: 'add_contact',
-                  icon: SvgPicture.asset(
-                    SSvgs.sv14,
-                    width: 20,
-                    height: 20,
+                  icon: GestureDetector(
+                    onTap: (){
+                      Get.back();
+                      Get.to(() => const AddContactUi(), fullscreenDialog: false);
+                    },
+                    child: SvgPicture.asset(
+                      SSvgs.sv14,
+                      width: 20,
+                      height: 20,
+                    ),
                   ),
-                  ontap: () {
-                    // print("tapped");
-                    // Navigator.push(
-                    //     context,
-                    //     CupertinoPageRoute(
-                    //         builder: (builder) => AddContactUi()));
-                    Get.back();
-                    Get.to(() => const AddContactUi(), fullscreenDialog: false);
-                  },
+                  ontap: () {},
                   text: 'Add Contact',
                 ),
-                // CustomPopupMenuItem(
-                //   value: 'scan',
-                //   icon: SvgPicture.asset(
-                //     SSvgs.sv16,
-                //     width: 20,
-                //     height: 20,
-                //   ),
-                //   ontap: () {
-                //     Get.back();
-                //     Get.to(
-                //       () => const QRScreen(
-                //         isFromSettings: false,
-                //       ),
-                //     );
-                //   },
-                //   text: 'Scan',
-                // ),
+
                 CustomPopupMenuItem(
 
                   value: 'money',
-                  icon: SvgPicture.asset(
-                    SSvgs.payIcon,
-                    width: 20,
-                    height: 20,
+                  icon: GestureDetector(
+                    onTap: (){
+                      Get.back();
+                      Get.to(() => const StellarPaySplashScreen());
+                    },
+                    child: SvgPicture.asset(
+                      SSvgs.payIcon,
+                      width: 20,
+                      height: 20,
+                    ),
                   ),
-                  ontap: () {
-                    Get.to(() => const StellarPaySplashScreen());
-                  },
+                  ontap: () {},
                   text: 'Stellar Pay',
 
                 ),
