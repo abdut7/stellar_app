@@ -197,6 +197,7 @@ class FlicksInChannelsWidget extends StatelessWidget {
           </defs>
           </svg>
           """),
+                      const SizedBox(width: 8,),
                       const Text("Flicks")
                     ],
                   ),
