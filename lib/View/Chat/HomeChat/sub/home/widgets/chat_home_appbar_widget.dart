@@ -101,7 +101,10 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                       height: 20,
                     ),
                   ),
-                  ontap: () {},
+                  ontap: () {
+                    Get.back();
+                    Get.to(() => const ShowContactsScreen());
+                  },
                   text: 'New Chat',
 
                 ),
@@ -121,7 +124,10 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                       height: 20,
                     ),
                   ),
-                  ontap: () {},
+                  ontap: () {
+                    Get.back();
+                    Get.to(() => const AddContactUi(), fullscreenDialog: false);
+                  },
                   text: 'Add Contact',
                 ),
 
@@ -141,7 +147,10 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                       height: 20,
                     ),
                   ),
-                  ontap: () {},
+                  ontap: () {
+                    Get.back();
+                    Get.to(() => const StellarPaySplashScreen());
+                  },
                   text: 'Stellar Pay',
 
                 ),
