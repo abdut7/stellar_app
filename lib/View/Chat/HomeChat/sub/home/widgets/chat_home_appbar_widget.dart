@@ -85,7 +85,7 @@ class ChatHomeAppbarWidget extends StatelessWidget {
               ),
               itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
                 CustomPopupMenuItem(
-                  value: 'new_chat',
+                  value: 'new_chat,',
                   icon: GestureDetector(
                     onTap: (){
                       Get.back();
