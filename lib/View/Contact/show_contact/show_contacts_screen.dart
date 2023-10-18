@@ -77,7 +77,9 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
           PopupMenuButton<int>(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            color: SColors.color11, // Change this to your desired color
+            color:  themeController.isDarkTheme.value
+          ?  SColors.darkmode
+              : SColors.color11,
             onSelected: (value) {
               // Handle the option selected
               switch (value) {
@@ -100,28 +102,49 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
                 value: 1,
                 child: Text(
                   'Invite Friend',
-                  style: TextStyle(color: SColors.color12),
+                  style: TextStyle(
+                    fontSize: 14,
+                      color:  themeController.isDarkTheme.value
+                  ?  SColors.sheetItemColor
+                      : SColors.color12,
+                  ),
                 ),
               ),
               PopupMenuItem<int>(
                 value: 2,
                 child: Text(
                   'Contacts',
-                  style: TextStyle(color: SColors.color12),
+                  style: TextStyle(
+                    fontSize: 14,
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.sheetItemColor
+                          : SColors.color12,
+                  ),
                 ),
               ),
               PopupMenuItem<int>(
                 value: 3,
                 child: Text(
+
                   'Refresh',
-                  style: TextStyle(color: SColors.color12),
+                  style: TextStyle(
+                    fontSize: 14,
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.sheetItemColor
+                          : SColors.color12,
+                  ),
                 ),
               ),
               PopupMenuItem<int>(
                 value: 4,
                 child: Text(
                   'Help',
-                  style: TextStyle(color: SColors.color12),
+                  style: TextStyle(
+                    fontSize: 14,
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.sheetItemColor
+                          : SColors.color12,
+                  ),
                 ),
               ),
             ],
