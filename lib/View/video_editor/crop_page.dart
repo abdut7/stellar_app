@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fraction/fraction.dart';
+import 'package:get/get.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
+import 'package:stellar_chat/utils/colors.dart';
 import 'package:video_editor/video_editor.dart';
 
 class CropPage extends StatelessWidget {
@@ -10,17 +13,34 @@ class CropPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 30),
           child: Column(children: [
             Row(children: [
               Expanded(
+                flex: 2,
+                child: IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: Center(
+                    child: Text(
+                      "Cancel",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Get.find<ThemeController>().isDarkTheme.value
+                              ? Colors.white
+                              : Colors.black),
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
                 child: IconButton(
                   onPressed: () =>
                       controller.rotate90Degrees(RotateDirection.left),
-                  icon: const Icon(Icons.rotate_left),
+                  icon: const Icon(
+                    Icons.rotate_left,
+                  ),
                 ),
               ),
               Expanded(
@@ -29,7 +49,26 @@ class CropPage extends StatelessWidget {
                       controller.rotate90Degrees(RotateDirection.right),
                   icon: const Icon(Icons.rotate_right),
                 ),
-              )
+              ),
+              Expanded(
+                flex: 2,
+                child: IconButton(
+                  onPressed: () {
+                    controller.applyCacheCrop();
+
+                    Navigator.pop(context);
+                  },
+                  icon: Center(
+                    child: Text(
+                      "Done",
+                      style: TextStyle(
+                        color: colorPrimary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ]),
             const SizedBox(height: 15),
             Expanded(
@@ -41,18 +80,6 @@ class CropPage extends StatelessWidget {
             ),
             const SizedBox(height: 15),
             Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
-              Expanded(
-                flex: 2,
-                child: IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  icon: const Center(
-                    child: Text(
-                      "cancel",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-              ),
               Expanded(
                 flex: 4,
                 child: AnimatedBuilder(
@@ -91,6 +118,7 @@ class CropPage extends StatelessWidget {
                         ],
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           _buildCropButton(context, null),
                           _buildCropButton(context, 1.toFraction()),
@@ -100,27 +128,6 @@ class CropPage extends StatelessWidget {
                         ],
                       )
                     ],
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: IconButton(
-                  onPressed: () {
-                    // WAY 1: validate crop parameters set in the crop view
-                    controller.applyCacheCrop();
-                    // WAY 2: update manually with Offset values
-                    // controller.updateCrop(const Offset(0.2, 0.2), const Offset(0.8, 0.8));
-                    Navigator.pop(context);
-                  },
-                  icon: Center(
-                    child: Text(
-                      "done",
-                      style: TextStyle(
-                        color: const CropGridStyle().selectedBoundariesColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                   ),
                 ),
               ),
