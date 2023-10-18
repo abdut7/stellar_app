@@ -35,47 +35,71 @@ class _PayProfileSettingsState extends State<PayProfileSettings> {
                   ),
                 ),
                 const SizedBox(height: 30,),
-                 Padding(
-                  padding:  const EdgeInsets.symmetric(horizontal: 30),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      headText(head: 'Your Account'),
-                      const SizedBox(height: 20,),
-                      Text(
-                        'Personal Information\n+971 222-555-666',
-                        style: TextStyle(color: SColors.color3, fontSize: 16, fontWeight: FontWeight.w400,),),
-                      const SizedBox(height: 20,),
-                     cardField(
-                         field: 'Cards',
-                         ontap: (){}
+                 Column(
+                   crossAxisAlignment: CrossAxisAlignment.start,
+                   children: [
+                     Padding(
+                       padding: const EdgeInsets.symmetric(horizontal: 30),
+                       child: headText(head: 'Your Account'),
                      ),
-                      const SizedBox(height: 20,),
-                     countryField(
-                         field: 'Country',
-                         yourCountry: 'UAE',
-                         onTap: (){}
+                     const SizedBox(height: 20,),
+                     Padding(
+                       padding: const EdgeInsets.symmetric(horizontal: 30),
+                       child: Text(
+                         'Personal Information\n+971 222-555-666',
+                         style: TextStyle(color: SColors.color3, fontSize: 16, fontWeight: FontWeight.w400,),),
                      ),
-                      const SizedBox(height: 10,),
-                      const Divider(thickness: 1,color: Colors.black,),
-                      const SizedBox(height: 20,),
-                     headText(head: 'Delete my Account'),
-                      const SizedBox(height: 20,),
-                     deleteMyAccount(
-                         text: 'LOG OUT My Stellar Pay Account',
-                         onTap: (){}
-                     ),
-                      const SizedBox(height: 20,),
-
-                      deleteMyAccount(text: 'Delete my Stellar Pay Account',
+                     const SizedBox(height: 20,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: cardField(
+                          field: 'Cards',
+                          ontap: (){}
+                      ),
+                    ),
+                     const SizedBox(height: 20,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: countryField(
+                          field: 'Country',
+                          yourCountry: 'UAE',
                           onTap: (){}
                       ),
-                      const SizedBox(height: 25,),
-                      const Divider(thickness: 1,color: Colors.black,),
+                    ),
+                     const SizedBox(height: 10,),
+                     Padding(
+                       padding: const EdgeInsets.symmetric(horizontal: 18),
+                       child: const Divider(thickness: 1,color: Colors.black,),
+                     ),
+                     const SizedBox(height: 20,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: headText(head: 'Delete my Account'),
+                    ),
+                     const SizedBox(height: 20,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: deleteMyAccount(
+                          text: 'LOG OUT My Stellar Pay Account',
+                          onTap: (){}
+                      ),
+                    ),
+                     const SizedBox(height: 20,),
 
-                    ],
-                  ),
-                )
+                     Padding(
+                       padding: const EdgeInsets.symmetric(horizontal: 30),
+                       child: deleteMyAccount(text: 'Delete my Stellar Pay Account',
+                           onTap: (){}
+                       ),
+                     ),
+                     const SizedBox(height: 25,),
+                     Padding(
+                       padding: const EdgeInsets.symmetric(horizontal: 18),
+                       child: const Divider(thickness: 1,color: Colors.black,),
+                     ),
+
+                   ],
+                 )
 
               ],
             ),
