@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stellar_chat/View/create_post/create_post_home.dart';
 import 'package:stellar_chat/View/splash/spalash_screen.dart';
 import 'package:stellar_chat/View/video_editor/video_editor_screen.dart';
+import 'package:stellar_chat/View/video_editor/video_filter/video_filter_home.dart';
 import 'package:stellar_chat/controllers/theme_controller.dart';
 
 void main() async {

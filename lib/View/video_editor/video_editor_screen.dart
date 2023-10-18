@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -7,7 +6,6 @@ import 'package:stellar_chat/View/create_post/channel/upload_new_post.dart';
 import 'package:stellar_chat/View/create_post/flicks/flicks_upload_new_post/upload_new_post.dart';
 import 'package:stellar_chat/View/video_editor/crop_page.dart';
 import 'package:stellar_chat/View/video_editor/export_service.dart';
-import 'package:stellar_chat/View/video_editor/widget/export_result.dart';
 import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:video_editor/video_editor.dart';
 
@@ -68,20 +66,14 @@ class _VideoEditorHomeScreenState extends State<VideoEditorHomeScreen> {
 
     final config = VideoFFmpegVideoEditorConfig(
       _controller,
-      // format: VideoExportFormat.gif,
-      // commandBuilder: (config, videoPath, outputPath) {
-      //   final List<String> filters = config.getExportFilters();
-      //   filters.add('hflip'); // add horizontal flip
-
-      //   return '-i $videoPath ${config.filtersCmd(filters)} -preset ultrafast $outputPath';
-      // },
     );
 
     await ExportService.runFFmpegCommand(
       await config.getExecuteConfig(),
       onProgress: (stats) {
-        _exportingProgress.value =
-            config.getFFmpegProgress(stats.getTime().toInt());
+        _exportingProgress.value = config.getFFmpegProgress(
+          stats.getTime().toInt(),
+        );
       },
       onError: (e, s) => _showErrorSnackBar("Error on export video :("),
       onCompleted: (file) {
@@ -108,27 +100,27 @@ class _VideoEditorHomeScreenState extends State<VideoEditorHomeScreen> {
     );
   }
 
-  void _exportCover() async {
-    final config = CoverFFmpegVideoEditorConfig(_controller);
-    final execute = await config.getExecuteConfig();
-    if (execute == null) {
-      _showErrorSnackBar("Error on cover exportation initialization.");
-      return;
-    }
+  // void _exportCover() async {
+  //   final config = CoverFFmpegVideoEditorConfig(_controller);
+  //   final execute = await config.getExecuteConfig();
+  //   if (execute == null) {
+  //     _showErrorSnackBar("Error on cover exportation initialization.");
+  //     return;
+  //   }
 
-    await ExportService.runFFmpegCommand(
-      execute,
-      onError: (e, s) => _showErrorSnackBar("Error on cover exportation :("),
-      onCompleted: (cover) {
-        if (!mounted) return;
+  //   await ExportService.runFFmpegCommand(
+  //     execute,
+  //     onError: (e, s) => _showErrorSnackBar("Error on cover exportation :("),
+  //     onCompleted: (cover) {
+  //       if (!mounted) return;
 
-        showDialog(
-          context: context,
-          builder: (_) => CoverResultPopup(cover: cover),
-        );
-      },
-    );
-  }
+  //       showDialog(
+  //         context: context,
+  //         builder: (_) => CoverResultPopup(cover: cover),
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -242,24 +234,28 @@ class _VideoEditorHomeScreenState extends State<VideoEditorHomeScreen> {
                                   margin: const EdgeInsets.only(top: 10),
                                   child: Column(
                                     children: [
-                                      Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            const Padding(
-                                                padding: EdgeInsets.all(5),
-                                                child: Icon(Icons.content_cut)),
-                                            Text(
-                                              'Trim',
-                                              style: TextStyle(
-                                                  color: Get.find<
-                                                              ThemeController>()
-                                                          .isDarkTheme
-                                                          .value
-                                                      ? Colors.white
-                                                      : Colors.black),
-                                            )
-                                          ]),
+                                      GestureDetector(
+                                        onTap: () {},
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const Padding(
+                                                  padding: EdgeInsets.all(5),
+                                                  child:
+                                                      Icon(Icons.content_cut)),
+                                              Text(
+                                                'Trim',
+                                                style: TextStyle(
+                                                    color: Get.find<
+                                                                ThemeController>()
+                                                            .isDarkTheme
+                                                            .value
+                                                        ? Colors.white
+                                                        : Colors.black),
+                                              )
+                                            ]),
+                                      ),
                                       Expanded(
                                         child: TabBarView(
                                           physics:
@@ -353,13 +349,6 @@ class _VideoEditorHomeScreenState extends State<VideoEditorHomeScreen> {
               ),
             ),
             const VerticalDivider(endIndent: 22, indent: 22),
-            // Expanded(
-            //   child: IconButton(
-            //     onPressed: _exportVideo,
-            //     icon: const Icon(Icons.arrow_forward),
-            //     tooltip: 'Save and next',
-            //   ),
-            // ),
           ],
         ),
       ),
@@ -385,16 +374,27 @@ class _VideoEditorHomeScreenState extends State<VideoEditorHomeScreen> {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: height / 4),
             child: Row(children: [
-              Text(formatter(Duration(seconds: pos.toInt()))),
+              Text(
+                formatter(Duration(
+                  seconds: pos.toInt(),
+                )),
+              ),
               const Expanded(child: SizedBox()),
               AnimatedOpacity(
                 opacity: _controller.isTrimming ? 1 : 0,
                 duration: kThemeAnimationDuration,
-                child: Row(mainAxisSize: MainAxisSize.min, children: [
-                  Text(formatter(_controller.startTrim)),
-                  const SizedBox(width: 10),
-                  Text(formatter(_controller.endTrim)),
-                ]),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      formatter(_controller.startTrim),
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      formatter(_controller.endTrim),
+                    ),
+                  ],
+                ),
               ),
             ]),
           );
