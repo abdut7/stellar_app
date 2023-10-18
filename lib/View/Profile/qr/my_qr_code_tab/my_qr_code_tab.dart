@@ -3,6 +3,7 @@ import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
 import '../../../../controllers/user_controller.dart';
 
@@ -19,11 +20,14 @@ class _MyQRCodeTabState extends State<MyQRCodeTab> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     print(controller.userDetailsModel.value!.strQRCodeUrls);
     return Container(
       height: double.infinity,
       width: double.infinity,
-      color: Colors.white,
+      color: themeController.isDarkTheme.value
+          ?  SColors.darkmode
+          : SColors.color4,
       child: Stack(
         children: <Widget>[
           Padding(

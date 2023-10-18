@@ -1,8 +1,11 @@
-import 'package:stellar_chat/Settings/SSvgs.dart';
-import 'package:stellar_chat/View/profile/widget/profile_status.dart';
-import 'package:stellar_chat/services/api_services/account_services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/Settings/SSvgs.dart';
+import 'package:stellar_chat/View/profile/widget/profile_status.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
+import 'package:stellar_chat/services/api_services/account_services.dart';
 
 import '../../../../models/api_models/user_details_model.dart';
 
@@ -10,6 +13,7 @@ import '../../../../models/api_models/user_details_model.dart';
 class FollowDetailsWidget extends StatefulWidget {
   final String uid;
   final UserDetailsModel model;
+
   FollowDetailsWidget({
     super.key,
     required this.uid,
@@ -36,6 +40,7 @@ class _FollowDetailsWidgetState extends State<FollowDetailsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return Column(
       children: [
         Padding(
@@ -84,8 +89,12 @@ class _FollowDetailsWidgetState extends State<FollowDetailsWidget> {
                 height: 35,
                 decoration: BoxDecoration(
                   color: widget.isFollowing
-                      ? const Color.fromRGBO(159, 196, 232, 1)
-                      : const Color.fromRGBO(0, 51, 142, 1),
+                      ? themeController.isDarkTheme.value
+                          ? SColors.color3
+                          : SColors.color11
+                      : themeController.isDarkTheme.value
+                          ? SColors.color27
+                          : SColors.color12,
                   borderRadius: BorderRadius.circular(9),
                 ),
                 child: Center(
@@ -94,14 +103,24 @@ class _FollowDetailsWidgetState extends State<FollowDetailsWidget> {
                     style: TextStyle(
                         fontSize: 14,
                         color: !widget.isFollowing
-                            ? const Color.fromRGBO(159, 196, 232, 1)
-                            : const Color.fromRGBO(0, 51, 142, 1)),
+                            ? themeController.isDarkTheme.value
+                                ? SColors.color4
+                                : SColors.color11
+                            : themeController.isDarkTheme.value
+                            ?  SColors.color26
+                            : SColors.color12,),
                   ),
                 ),
               ),
             ),
             GestureDetector(
-                onTap: () {}, child: SvgPicture.asset(SSvgs.forwardIcon))
+                onTap: () {}, child:
+            SvgPicture.asset(
+                SSvgs.forwardIcon,
+              color: themeController.isDarkTheme.value
+                  ?  SColors.color27
+                  : SColors.color3,
+            ))
           ],
         )
       ],

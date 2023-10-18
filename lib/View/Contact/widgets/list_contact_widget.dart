@@ -17,6 +17,7 @@ class ListContactsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     print(contactsController.phoneNumberUserList.length);
     return ListView.separated(
         shrinkWrap: true,
@@ -24,6 +25,7 @@ class ListContactsWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           final themeController = Get.find<ThemeController>();
           Contact data = contactsController.phoneNumberUserList[index];
+
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: ListTile(
@@ -69,8 +71,10 @@ class ListContactsWidget extends StatelessWidget {
             ),
           );
         },
-        separatorBuilder: (context, index) => const Divider(
-              color: Colors.white,
+        separatorBuilder: (context, index) =>  Divider(
+              color: themeController.isDarkTheme.value
+                  ? SColors.darkmode
+                  : Colors.white,
             ),
         itemCount: contactsController.phoneNumberUserList.length);
   }

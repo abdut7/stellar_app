@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,7 @@ class Tile extends StatefulWidget {
 class _TileState extends State<Tile> {
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return Padding(
       padding: const EdgeInsets.only(left: 30.0, top: 15),
       child: ListTile(
@@ -46,7 +48,9 @@ class _TileState extends State<Tile> {
               child: Icon(
                 Icons.add,
                 size: 15,
-                color: SColors.color4,
+                color: themeController.isDarkTheme.value
+                    ?  SColors.color3
+                    : SColors.color4,
               ),
             )
           ],

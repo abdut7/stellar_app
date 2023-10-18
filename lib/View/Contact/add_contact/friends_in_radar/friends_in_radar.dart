@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/controllers/google_map/google_map_controller.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/functions/location_permission.dart';
 import 'package:stellar_chat/services/api_services/get_nearby_contacts_service.dart';
 import 'package:flutter/material.dart';
@@ -50,19 +51,27 @@ class _FriendsInRadarScreenState extends State<FriendsInRadarScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return Scaffold(
+      backgroundColor:  themeController.isDarkTheme.value
+          ?  SColors.darkmode
+          : SColors.color4,
         appBar: AppBar(
           toolbarHeight: 70,
           elevation: 0,
           title: Text(
             'People\nNear Me',
             style: TextStyle(
-              color: SColors.color11,
+              color:  themeController.isDarkTheme.value
+                  ?  SColors.appbarTitleInDark
+                  : SColors.color11,
               fontSize: 18,
               fontWeight: FontWeight.w700,
             ),
           ),
-          backgroundColor: SColors.color12,
+          backgroundColor:  themeController.isDarkTheme.value
+              ?  SColors.appbarbgInDark
+              : SColors.color12,
           leading: Padding(
             padding: const EdgeInsets.all(8.0),
             child: SvgPicture.asset(SSvgs.appLogo),

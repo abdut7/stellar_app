@@ -6,6 +6,7 @@ import 'package:stellar_chat/View/contact/add_contact/friends_in_radar/friends_i
 import 'package:stellar_chat/View/contact/add_contact/scan_qr_code.dart';
 import 'package:stellar_chat/View/contact/show_contact/show_contacts_screen.dart';
 import 'package:stellar_chat/View/profile/qr/qr_screen.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/functions/share_or_copy.dart';
 import 'package:stellar_chat/widgets/add_contact_listtile.dart';
 import 'package:flutter/material.dart';
@@ -25,18 +26,23 @@ class AddContactUi extends StatefulWidget {
 class _AddContactUiState extends State<AddContactUi> {
   ContactsController contactsController = Get.put(ContactsController());
   AppBar _buildAppBar() {
+    ThemeController themeController = Get.find();
     return AppBar(
       toolbarHeight: 70,
       elevation: 0,
       title: Text(
         'Add Contact',
         style: TextStyle(
-          color: SColors.color11,
+          color: themeController.isDarkTheme.value
+              ?  SColors.appbarTitleInDark
+              : SColors.color11,
           fontSize: 18,
           fontWeight: FontWeight.w700,
         ),
       ),
-      backgroundColor: SColors.color12,
+      backgroundColor: themeController.isDarkTheme.value
+          ?  SColors.appbarbgInDark
+          : SColors.color12,
       leading: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SvgPicture.asset(SSvgs.appLogo),
@@ -46,8 +52,11 @@ class _AddContactUiState extends State<AddContactUi> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor: SColors.color4,
+      backgroundColor: themeController.isDarkTheme.value
+          ?  SColors.darkmode
+          : SColors.color4,
       appBar: _buildAppBar(),
       body: ListView(
         children: [

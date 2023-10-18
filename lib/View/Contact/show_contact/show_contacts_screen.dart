@@ -6,6 +6,7 @@ import 'package:stellar_chat/View/Contact/show_contact/widget/show_contact_tile.
 import 'package:stellar_chat/View/Contact/widgets/list_contact_widget.dart';
 import 'package:stellar_chat/View/contact/add_contact/scan_qr_code.dart';
 import 'package:stellar_chat/View/profile/qr/qr_screen.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/services/api_services/contacts_service.dart';
 import 'package:stellar_chat/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
@@ -30,13 +31,18 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     ContactsController contactsController = Get.put(ContactsController());
-
     return Scaffold(
+      backgroundColor: themeController.isDarkTheme.value
+          ?  SColors.darkmode
+          : SColors.color4,
       appBar: AppBar(
         toolbarHeight: 70,
         elevation: 0,
-        backgroundColor: SColors.color12,
+        backgroundColor: themeController.isDarkTheme.value
+            ?  SColors.appbarbgInDark
+            : SColors.color12,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SvgPicture.asset(
@@ -48,7 +54,9 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
           children: [
             Text('Select Contact',
                 style: TextStyle(
-                  color: SColors.color11,
+                  color: themeController.isDarkTheme.value
+                      ?  SColors.appbarTitleInDark
+                      : SColors.color11,
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                 )),
@@ -131,7 +139,9 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
               },
               child: Tile(
                 svgAsset: SSvgs.sv20,
-                assetColor: SColors.color12,
+                assetColor: themeController.isDarkTheme.value
+                    ?  SColors.appbarbgInDark
+                    : SColors.color12,
                 circleAvatarBackgroundColor: SColors.color4,
                 title: 'New Group',
               ),
@@ -144,7 +154,9 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
               child: Tile(
                 svgAsset: SSvgs.sv06,
                 assetColor: SColors.color4,
-                circleAvatarBackgroundColor: SColors.color12,
+                circleAvatarBackgroundColor: themeController.isDarkTheme.value
+                    ?  SColors.appbarbgInDark
+                    : SColors.color12,
                 title: 'New Contact',
                 trailingIcon: GestureDetector(
                     onTap: () {
@@ -156,7 +168,9 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
                     },
                     child: Icon(
                       Icons.qr_code,
-                      color: SColors.color3,
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.color4
+                          : SColors.color3
                     )),
               ),
             ),
