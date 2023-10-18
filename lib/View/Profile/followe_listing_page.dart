@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/View/profile/public_profile/public_profile.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/models/api_models/follow_model.dart';
 import 'package:stellar_chat/services/api_services/following_services.dart';
 import 'package:stellar_chat/utils/colors.dart';
@@ -13,11 +15,23 @@ class FollowerListingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return Scaffold(
+      backgroundColor: themeController.isDarkTheme.value
+          ?  SColors.darkmode
+          : SColors.color4,
       appBar: AppBar(
-        backgroundColor: colorPrimary,
+        backgroundColor: themeController.isDarkTheme.value
+            ?  SColors.appbarbgInDark
+            : SColors.color12,
         title: Text(
-            page == FollowingOrFollower.following ? "Following" : "Followers"),
+            page == FollowingOrFollower.following ? "Following" : "Followers",
+          style:TextStyle(
+            color: themeController.isDarkTheme.value ?  SColors.appbarTitleInDark : SColors.color11,
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
       body: FutureBuilder(
         future: page == FollowingOrFollower.following
@@ -43,7 +57,12 @@ class FollowerListingPage extends StatelessWidget {
                         uid: snapshot.data!.followList[index].userId),
                   );
                 },
-                title: Text(snapshot.data!.followList[index].fullName),
+                title: Text(snapshot.data!.followList[index].fullName,
+                  style: TextStyle(
+                    color: themeController.isDarkTheme.value ?  SColors.color4 : SColors.color3,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w500,
+                  ),),
               );
             },
           );
