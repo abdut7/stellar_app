@@ -89,7 +89,9 @@ class _MainProfileState extends State<MainProfile> {
                               Text(
                                 controller.userDetailsModel.value!.strName,
                                 style: TextStyle(
-                                  // color: SColors.color3,
+                                   color:  themeController.isDarkTheme.value
+                                       ?  SColors.color4
+                                       : SColors.color3,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w800,
                                 ),
@@ -100,7 +102,9 @@ class _MainProfileState extends State<MainProfile> {
                               Text(
                                 'PHONE NUMBER : ${controller.userDetailsModel.value!.strMobileNo}',
                                 style: TextStyle(
-                                  // color: SColors.color3,
+                                  color:  themeController.isDarkTheme.value
+                                      ?  SColors.color4
+                                      : SColors.color3,
                                   fontSize: 11,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -178,11 +182,13 @@ class _MainProfileState extends State<MainProfile> {
                 height: 20,
               ),
               const AboutMeText(),
-              //const SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Divider(
-                  // color: SColors.color3,
+                   color:  themeController.isDarkTheme.value
+                       ?  SColors.color4
+                       : SColors.color3,
                   thickness: 1,
                 ),
               ),
