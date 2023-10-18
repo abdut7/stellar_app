@@ -1,5 +1,7 @@
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
 class GroupDescTextfield extends StatefulWidget {
   final String head;
@@ -21,13 +23,16 @@ class GroupDescTextfield extends StatefulWidget {
 
 class _GroupDescTextfieldState extends State<GroupDescTextfield> {
   Widget textFieldHeading({String? headingText}) {
+    ThemeController themeController = Get.find();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Text(
         headingText!,
         style: TextStyle(
           fontSize: 14,
-          color: SColors.color3,
+          color: themeController.isDarkTheme.value
+              ?  SColors.color4
+              : SColors.color3,
           fontWeight: FontWeight.w600,
         ),
       ),
@@ -59,6 +64,7 @@ class _GroupDescTextfieldState extends State<GroupDescTextfield> {
   }
 
   Widget textField() {
+    ThemeController themeController = Get.find();
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 30),
       //height: 25,
@@ -66,9 +72,13 @@ class _GroupDescTextfieldState extends State<GroupDescTextfield> {
       child: TextFormField(
         controller: widget.controller,
         keyboardType: widget.keyboardType,
-        cursorColor: SColors.color8,
+        cursorColor: themeController.isDarkTheme.value
+            ?  SColors.color26
+            : SColors.color8,
         style: TextStyle(
-          color: SColors.color3,
+          color: themeController.isDarkTheme.value
+              ?  SColors.color4
+              : SColors.color3,
           fontWeight: FontWeight.w500,
           fontSize: 15,
           letterSpacing: 0.2,

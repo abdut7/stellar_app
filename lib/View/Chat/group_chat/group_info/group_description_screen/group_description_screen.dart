@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/View/Chat/group_chat/group_info/widgets/group_description_textfield.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
 class GroupDescriptionScreen extends StatefulWidget {
   const GroupDescriptionScreen({Key? key}) : super(key: key);
@@ -15,20 +17,27 @@ class _GroupDescriptionScreenState extends State<GroupDescriptionScreen> {
   TextEditingController descriptionController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor: SColors.color4,
+      backgroundColor: themeController.isDarkTheme.value
+          ?  SColors.darkmode
+          : SColors.color4,
       appBar: AppBar(
         toolbarHeight: 70,
         elevation: 0,
         title: Text(
           'Group\nDescription',
           style: TextStyle(
-            color: SColors.color11,
+            color: themeController.isDarkTheme.value
+                ?  SColors.appbarTitleInDark
+                : SColors.color11,
             fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
         ),
-        backgroundColor: SColors.color12,
+        backgroundColor: themeController.isDarkTheme.value
+            ?  SColors.appbarbgInDark
+            : SColors.color12,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SvgPicture.asset(SSvgs.appLogo),
@@ -43,9 +52,14 @@ class _GroupDescriptionScreenState extends State<GroupDescriptionScreen> {
             controller: descriptionController,
           ),
           const SizedBox(height: 25,),
-          const Padding(
+           Padding(
             padding:  EdgeInsets.symmetric(horizontal: 40),
-            child: Divider(thickness: 1.2,color: Colors.black,),
+            child: Divider(
+              thickness: 1.2,
+              color: themeController.isDarkTheme.value
+                  ?  SColors.color26
+                  : SColors.color3,
+            ),
           ),
           const SizedBox(height: 40,),
           GestureDetector(
@@ -54,13 +68,20 @@ class _GroupDescriptionScreenState extends State<GroupDescriptionScreen> {
               width: MediaQuery.of(context).size.width * 0.7,
               height: 40,
               decoration: BoxDecoration(
-                color: const Color.fromRGBO(0, 51, 142, 1),
+                color: themeController.isDarkTheme.value
+                    ?  SColors.color26
+                    : SColors.color12,
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: const Center(
+              child:  Center(
                 child: Text(
                   'Update',
-                  style: TextStyle(fontSize: 14, color: Color.fromRGBO(159, 196, 232, 1)),
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.color4
+                          : SColors.color11
+                  ),
                 ),
               ),
             ),
