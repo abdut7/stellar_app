@@ -5,9 +5,12 @@ class CustomPopupMenuItem<T> extends PopupMenuItem<T> {
   final Widget icon;
   final String text;
   final VoidCallback ontap;
+  final Color textColor;
 
-  CustomPopupMenuItem( {
+  CustomPopupMenuItem(
+        {
     required this.ontap,
+    required this.textColor,
     required T value,
     required this.icon,
     required this.text,
@@ -22,7 +25,7 @@ class CustomPopupMenuItem<T> extends PopupMenuItem<T> {
                   child: icon,
                 ),
                 Text(text,style: TextStyle(
-                  color:SColors.color12,
+                  color:textColor,
                   fontSize: 10,
                   fontWeight: FontWeight.w600,
                 ),),

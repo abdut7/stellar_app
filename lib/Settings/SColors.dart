@@ -35,4 +35,5 @@ class SColors {
   static Color get buttonTextIndark => const Color(0xFFB2B2B2);
   static Color get color26 => const Color(0xFFB2B2B2);
   static Color get color27 => const Color(0xFF939393);
+  static Color get sheetItemColor => const Color(0xFFC1C1C1);
 }

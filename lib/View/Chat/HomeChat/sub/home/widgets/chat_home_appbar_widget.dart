@@ -85,7 +85,10 @@ class ChatHomeAppbarWidget extends StatelessWidget {
               ),
               itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
                 CustomPopupMenuItem(
-                  value: 'new_chat,',
+                  textColor:  themeController.isDarkTheme.value
+                      ?  SColors.sheetItemColor
+                      : SColors.color12,
+                  value: 'new_chat',
                   icon: GestureDetector(
                     onTap: (){
                       Get.back();
@@ -100,8 +103,12 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                   ),
                   ontap: () {},
                   text: 'New Chat',
+
                 ),
                 CustomPopupMenuItem(
+                  textColor:  themeController.isDarkTheme.value
+                      ?  SColors.sheetItemColor
+                      : SColors.color12,
                   value: 'add_contact',
                   icon: GestureDetector(
                     onTap: (){
@@ -119,7 +126,9 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                 ),
 
                 CustomPopupMenuItem(
-
+                  textColor:  themeController.isDarkTheme.value
+                      ?  SColors.sheetItemColor
+                      : SColors.color12,
                   value: 'money',
                   icon: GestureDetector(
                     onTap: (){
@@ -158,7 +167,9 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                   color: themeController.isDarkTheme.value
                       ? Color.fromRGBO(193, 193, 193, 1)
                       : secondaryColor),
-              color: SColors.color11
+              color:  themeController.isDarkTheme.value
+                  ?  SColors.darkmode
+                  : SColors.color11
             ),
 
           ),
