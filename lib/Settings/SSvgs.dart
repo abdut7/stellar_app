@@ -98,4 +98,5 @@ class SSvgs {
   static String get pMessageDark => "assets/Svgs/pMessageDark.svg";
   static String get pCallDark => "assets/Svgs/pCallDark.svg";
   static String get pVideoDark => "assets/Svgs/pVideoDark.svg";
+  static String get flicksSmall => "assets/Svgs/flicksSmall.svg";
 }

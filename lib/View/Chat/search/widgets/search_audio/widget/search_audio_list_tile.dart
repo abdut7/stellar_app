@@ -1,7 +1,9 @@
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
 class SearchAudioListTile extends StatefulWidget {
   final String fileType;
@@ -22,6 +24,7 @@ class SearchAudioListTile extends StatefulWidget {
 class _SearchAudioListTileState extends State<SearchAudioListTile> {
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return ListTile(
       onTap: widget.onPressed,
       leading: SvgPicture.asset(
@@ -29,7 +32,9 @@ class _SearchAudioListTileState extends State<SearchAudioListTile> {
       title: Text(
         widget.fileType,
         style: TextStyle(
-          color: SColors.color3,
+          color: themeController.isDarkTheme.value
+              ?  SColors.color4
+              : SColors.color3,
           fontSize: 14,
           fontWeight: FontWeight.w600,
         ),
@@ -37,7 +42,9 @@ class _SearchAudioListTileState extends State<SearchAudioListTile> {
       subtitle: Text(
         widget.fileSize,
         style: TextStyle(
-          color: SColors.color8,
+          color: themeController.isDarkTheme.value
+              ?  SColors.color26
+              : SColors.color8,
           fontSize: 12,
           fontWeight: FontWeight.w400,
         ),
@@ -45,7 +52,9 @@ class _SearchAudioListTileState extends State<SearchAudioListTile> {
       trailing: Text(
         widget.time,
         style: TextStyle(
-          color: SColors.color8,
+          color: themeController.isDarkTheme.value
+              ?  SColors.color26
+              : SColors.color8,
           fontSize: 10,
           fontWeight: FontWeight.w400,
         ),

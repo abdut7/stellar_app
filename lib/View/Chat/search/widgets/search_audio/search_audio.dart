@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/View/Chat/search/widgets/search_audio/widget/search_audio_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:stellar_chat/controllers/search_controllers.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
 class SearchAudioScreen extends StatefulWidget {
   @override
@@ -21,9 +23,13 @@ class _SearchAudioScreenState extends State<SearchAudioScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     // ChatSearchController searchController = Get.find();
 
     return Scaffold(
+      backgroundColor:themeController.isDarkTheme.value
+          ?  SColors.darkmode
+          : SColors.color4,
       body: ListView(
         children: [
           SearchAudioListTile(

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/View/chat/search/search.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/functions/show_snackbar.dart';
 import 'package:stellar_chat/services/api_services/account_services.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,11 @@ showBlockAndReportBottomSheet(
     {required BuildContext context,
     required String id,
     required Function() onViewProfile}) {
+  ThemeController themeController = Get.find();
   return showModalBottomSheet(
-    backgroundColor: SColors.color11,
+    backgroundColor: themeController.isDarkTheme.value
+        ?  SColors.darkmode
+        : SColors.color11,
     shape: const RoundedRectangleBorder(
       // <-- SEE HERE
       borderRadius: BorderRadius.vertical(
@@ -35,7 +39,9 @@ showBlockAndReportBottomSheet(
                   child: Text(
                     'View Profile',
                     style: TextStyle(
-                      color: SColors.color12,
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.sheetItemColor
+                          : SColors.color12,
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
                     ),
@@ -57,7 +63,9 @@ showBlockAndReportBottomSheet(
                   child: Text(
                     'Search',
                     style: TextStyle(
-                      color: SColors.color12,
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.sheetItemColor
+                          : SColors.color12,
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
                     ),
@@ -76,7 +84,9 @@ showBlockAndReportBottomSheet(
                   child: Text(
                     'Mute Notification',
                     style: TextStyle(
-                      color: SColors.color12,
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.sheetItemColor
+                          : SColors.color12,
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
                     ),
@@ -116,7 +126,9 @@ showBlockAndReportBottomSheet(
                         ? "Unblock User"
                         : 'Block User',
                     style: TextStyle(
-                      color: SColors.color12,
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.sheetItemColor
+                          : SColors.color12,
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
                     ),
@@ -151,7 +163,9 @@ showBlockAndReportBottomSheet(
                   child: Text(
                     'Clear All Chat',
                     style: TextStyle(
-                      color: SColors.color12,
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.sheetItemColor
+                          : SColors.color12,
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
                     ),
@@ -184,7 +198,9 @@ showBlockAndReportBottomSheet(
                 child: Center(
                   child: Text('Report User',
                       style: TextStyle(
-                        color: SColors.color12,
+                        color: themeController.isDarkTheme.value
+                            ?  SColors.sheetItemColor
+                            : SColors.color12,
                         fontSize: 11,
                         fontWeight: FontWeight.w600,
                       )),
@@ -203,8 +219,11 @@ showBlockAndReportBottomSheet(
 
 void showMuteNotificationSheet(
     {required BuildContext context, bool isGroup = false}) {
+  ThemeController themeController = Get.find();
   showModalBottomSheet(
-    backgroundColor: SColors.color4,
+    backgroundColor: themeController.isDarkTheme.value
+        ?  SColors.darkmode
+        : SColors.color4,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
         top: Radius.circular(15.0),
@@ -233,6 +252,7 @@ class _SelectNotificationTimeWidgetState
     extends State<SelectNotificationTimeWidget> {
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return Container(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -241,11 +261,13 @@ class _SelectNotificationTimeWidgetState
           SizedBox(
             height: 30,
           ),
-          const Text(
+          Text(
             'Mute Notification',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.black,
+              color: themeController.isDarkTheme.value
+                  ?  SColors.color4
+                  : SColors.color3,
               fontSize: 15,
               fontWeight: FontWeight.w600,
             ),
@@ -253,22 +275,27 @@ class _SelectNotificationTimeWidgetState
           const SizedBox(
             height: 10,
           ),
-          const Text(
+           Text(
             'Other participants will not see',
             style: TextStyle(
-              color: Colors.black,
+              color:themeController.isDarkTheme.value
+                  ?  SColors.color4
+                  : SColors.color3,
               fontSize: 12,
               fontWeight: FontWeight.w400,
             ),
           ),
-          const Text(
+           Text(
             'that you muted this chat',
             style: TextStyle(
-              color: Colors.black,
+              color: themeController.isDarkTheme.value
+                  ?  SColors.color4
+                  : SColors.color3,
               fontSize: 12,
               fontWeight: FontWeight.w400,
             ),
           ),
+          const SizedBox(height: 10,),
           selectionRow('8 hours', MuteNotificationTime.eightHr, selectedVal,
               onChanged: (val) {
             setState(() {
@@ -287,6 +314,7 @@ class _SelectNotificationTimeWidgetState
               selectedVal = val;
             });
           }),
+          const SizedBox(height: 10,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
@@ -298,14 +326,18 @@ class _SelectNotificationTimeWidgetState
                   width: MediaQuery.of(context).size.width * 0.25,
                   height: 30,
                   decoration: BoxDecoration(
-                    color: SColors.color4,
+                    color: themeController.isDarkTheme.value
+                        ?  SColors.darkmode
+                        : SColors.color4,
                     borderRadius: BorderRadius.circular(9),
                   ),
                   child: Center(
                     child: Text(
                       'Cancel',
                       style: TextStyle(
-                        color: SColors.color12,
+                        color: themeController.isDarkTheme.value
+                            ?  SColors.sheetItemColor
+                            : SColors.color12,
                         fontSize: 17,
                         fontWeight: FontWeight.w500,
                       ),
@@ -323,7 +355,9 @@ class _SelectNotificationTimeWidgetState
                   width: MediaQuery.of(context).size.width * 0.25,
                   height: 30,
                   decoration: BoxDecoration(
-                    color: const Color.fromRGBO(0, 51, 142, 1),
+                    color: themeController.isDarkTheme.value
+                        ?  SColors.color3
+                        : SColors.color12,
                     borderRadius: BorderRadius.circular(9),
                   ),
                   child: const Center(
@@ -355,8 +389,11 @@ void showSubBottomSheet(
     required String okText,
     required VoidCallback onCancel,
     required VoidCallback onOk}) {
+  ThemeController themeController = Get.find();
   showModalBottomSheet(
-    backgroundColor: SColors.color11,
+    backgroundColor: themeController.isDarkTheme.value
+        ?  SColors.darkmode
+        : SColors.color11,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
         top: Radius.circular(15.0),
@@ -371,16 +408,20 @@ void showSubBottomSheet(
           children: <Widget>[
             Text(
               text1,
-              style: const TextStyle(
-                color: Colors.black,
+              style:  TextStyle(
+                color: themeController.isDarkTheme.value
+                    ?  SColors.color4
+                    : SColors.color3,
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
               ),
             ),
             Text(
               text2,
-              style: const TextStyle(
-                color: Colors.black,
+              style:  TextStyle(
+                color: themeController.isDarkTheme.value
+                    ?  SColors.color4
+                    : SColors.color3,
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
               ),
@@ -395,14 +436,18 @@ void showSubBottomSheet(
                     width: MediaQuery.of(context).size.width * 0.25,
                     height: 30,
                     decoration: BoxDecoration(
-                      color: SColors.color11,
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.darkmode
+                          : SColors.color11,
                       borderRadius: BorderRadius.circular(9),
                     ),
                     child: Center(
                       child: Text(
                         cancelText,
                         style: TextStyle(
-                          color: SColors.color12,
+                          color: themeController.isDarkTheme.value
+                              ?  SColors.sheetItemColor
+                              : SColors.color12,
                           fontSize: 17,
                           fontWeight: FontWeight.w500,
                         ),
@@ -416,7 +461,9 @@ void showSubBottomSheet(
                     width: MediaQuery.of(context).size.width * 0.25,
                     height: 30,
                     decoration: BoxDecoration(
-                      color: const Color.fromRGBO(0, 51, 142, 1),
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.color3
+                          : SColors.color12,
                       borderRadius: BorderRadius.circular(9),
                     ),
                     child: Center(
@@ -446,6 +493,7 @@ enum MuteNotificationTime { eightHr, oneWeek, always }
 Widget selectionRow(
     String text, MuteNotificationTime value, MuteNotificationTime selectedValue,
     {required Function(MuteNotificationTime) onChanged}) {
+  ThemeController themeController = Get.find();
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: Get.width * 0.3),
     child: Row(
@@ -458,8 +506,12 @@ Widget selectionRow(
             }),
         Text(
           text,
-          style: const TextStyle(
-              fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black),
+          style: TextStyle(
+              fontSize: 12, fontWeight: FontWeight.w400,
+              color: themeController.isDarkTheme.value
+                  ?  SColors.color4
+                  : SColors.color3,
+          ),
         ),
       ],
     ),

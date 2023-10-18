@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
 void showParticipentsMoreBottomSheet(
   BuildContext context, {
@@ -9,6 +11,7 @@ void showParticipentsMoreBottomSheet(
   required Function() makeGroupAdminCallback,
   required Function() removeUserCallback,
 }) {
+  ThemeController themeController = Get.find();
   showModalBottomSheet(
     context: context,
     shape: const RoundedRectangleBorder(
@@ -19,8 +22,10 @@ void showParticipentsMoreBottomSheet(
     ),
     builder: (BuildContext context) {
       return Container(
-        decoration: const BoxDecoration(
-            color: Color.fromRGBO(159, 196, 232, 1),
+        decoration:  BoxDecoration(
+            color: themeController.isDarkTheme.value
+                ?  SColors.darkmode
+                : SColors.color11,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(16.0),
               topRight: Radius.circular(16.0),
@@ -37,7 +42,9 @@ void showParticipentsMoreBottomSheet(
                   width: Get.width * 0.5,
                   margin: const EdgeInsets.symmetric(vertical: 8.0),
                   decoration: BoxDecoration(
-                    color: const Color.fromRGBO(0, 51, 142, 0.5),
+                    color: themeController.isDarkTheme.value
+                        ?  SColors.color26
+                        : Color.fromRGBO(0, 51, 142, 0.5),
                     borderRadius: BorderRadius.circular(2.0),
                   ),
                 ),
@@ -50,13 +57,14 @@ void showParticipentsMoreBottomSheet(
                   Navigator.pop(context);
                   messageCallback.call();
                 },
-                child: const Padding(
+                child:  Padding(
                   padding: EdgeInsets.symmetric(vertical: 8),
                   child: Text(
                     'Message User',
                     style: TextStyle(
-                      color: Color.fromRGBO(0, 51, 142, 1),
-                      fontFamily: 'Inter',
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.sheetItemColor
+                          : SColors.color12,
                       fontSize: 11.0,
                       fontWeight: FontWeight.w500,
                       letterSpacing: 0.0,
@@ -69,13 +77,14 @@ void showParticipentsMoreBottomSheet(
                   Navigator.pop(context);
                   viewUserCallback.call();
                 },
-                child: const Padding(
+                child:  Padding(
                   padding: EdgeInsets.symmetric(vertical: 8),
                   child: Text(
                     'View User',
                     style: TextStyle(
-                      color: Color.fromRGBO(0, 51, 142, 1),
-                      fontFamily: 'Inter',
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.sheetItemColor
+                          : SColors.color12,
                       fontSize: 11.0,
                       fontWeight: FontWeight.w500,
                       letterSpacing: 0.0,
@@ -89,12 +98,13 @@ void showParticipentsMoreBottomSheet(
                   Navigator.pop(context);
                 },
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  padding:  EdgeInsets.symmetric(vertical: 8),
                   child: Text(
                     isAdmin ? "Remove Admin" : 'Make Group Admin',
-                    style: const TextStyle(
-                      color: Color.fromRGBO(0, 51, 142, 1),
-                      fontFamily: 'Inter',
+                    style: TextStyle(
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.sheetItemColor
+                          : SColors.color12,
                       fontSize: 11.0,
                       fontWeight: FontWeight.w500,
                       letterSpacing: 0.0,
@@ -107,13 +117,14 @@ void showParticipentsMoreBottomSheet(
                   removeUserCallback.call();
                   Navigator.pop(context);
                 },
-                child: const Padding(
+                child:  Padding(
                   padding: EdgeInsets.symmetric(vertical: 8),
                   child: Text(
                     'Remove User',
                     style: TextStyle(
-                      color: Color.fromRGBO(0, 51, 142, 1),
-                      fontFamily: 'Inter',
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.sheetItemColor
+                          : SColors.color12,
                       fontSize: 11.0,
                       fontWeight: FontWeight.w500,
                       letterSpacing: 0.0,

@@ -1,8 +1,10 @@
+import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/View/Chat/group_chat/group_info/group_description_screen/group_description_screen.dart';
 import 'package:stellar_chat/View/chat/chat_screen/chat_screen.dart';
 import 'package:stellar_chat/View/chat/group_chat/group_info/widgets/group_participent_more.dart';
 import 'package:stellar_chat/View/contact/create_group/select_participents_screen.dart';
 import 'package:stellar_chat/View/profile/public_profile/public_profile.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/functions/show_snackbar.dart';
 import 'package:stellar_chat/services/api_services/chat_history_service.dart';
@@ -26,13 +28,19 @@ class GroupInfoScreen extends StatefulWidget {
 class _GroupInfoScreenState extends State<GroupInfoScreen> {
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     UserController controller = Get.find();
     return Scaffold(
+      backgroundColor:  themeController.isDarkTheme.value
+          ?  SColors.darkmode
+          : SColors.color4,
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(
+          icon:  Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color:  themeController.isDarkTheme.value
+                ?  SColors.color4
+                : SColors.color3,
             size: 20,// Change the color to your desired color
           ),
           onPressed: () {
@@ -83,7 +91,10 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                     Center(
                       child: Text(
                         resModel.strGroupName,
-                        style: const TextStyle(
+                        style: TextStyle(
+                          color:  themeController.isDarkTheme.value
+                              ?  SColors.color4
+                              : SColors.color3,
                             fontWeight: FontWeight.w600, fontSize: 14),
                       ),
                     ),
@@ -92,7 +103,11 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                     ),
                     Center(
                       child: Text(
-                          "Group : ${resModel.intParticipants} Participants"),
+                          "Group : ${resModel.intParticipants} Participants",style: TextStyle(
+                        color:  themeController.isDarkTheme.value
+                            ?  SColors.color4
+                            : SColors.color3
+                      ),),
                     ),
                     const SizedBox(
                       height: 20,
@@ -114,15 +129,22 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                     alignment: Alignment.bottomRight,
                                     children: [
                                       CircleAvatar(
-                                        backgroundColor: colorPrimary,
+                                        backgroundColor:  themeController.isDarkTheme.value
+                                            ?  SColors.color26
+                                            : SColors.color12,
                                         child: const Icon(Icons.person),
                                       ),
                                       CircleAvatar(
                                         radius: 7,
-                                        backgroundColor: secondaryColor,
-                                        child: const Icon(
+                                        backgroundColor:  themeController.isDarkTheme.value
+                                            ?  SColors.color3
+                                            : secondaryColor,
+                                        child:  Icon(
                                           Icons.add,
-                                          size: 7,
+                                          size: 9,
+                                          color:  themeController.isDarkTheme.value
+                                              ?  SColors.color4
+                                              : SColors.color12,
                                         ),
                                       )
                                     ],
@@ -130,7 +152,11 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                   const SizedBox(
                                     height: 5,
                                   ),
-                                  const Text("Add")
+                                  Text("Add",style: TextStyle(
+                                    color:  themeController.isDarkTheme.value
+                                        ?  SColors.color4
+                                        : SColors.color3,
+                                  ),)
                                 ],
                               ),
                             ),
@@ -141,7 +167,9 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                     ),
                     Divider(
                       thickness: 1,
-                      color: colorBlack,
+                      color:  themeController.isDarkTheme.value
+                          ?  SColors.color26
+                          : SColors.color3,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 16.0),
@@ -151,7 +179,11 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                         },
                         child: Text(
                           resModel.strDiscription,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
+                          style:  TextStyle(fontWeight: FontWeight.bold,
+                              color:  themeController.isDarkTheme.value
+                                  ?  SColors.color4
+                                  : SColors.color3,
+                          ),
                         ),
                       ),
                     ),
@@ -162,8 +194,12 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                       padding: const EdgeInsets.only(left: 16.0),
                       child: Text(
                         "Created by : ${resModel.strCreatedBy}, ${DateFormat('dd/MM/yyyy').format(DateTime.parse(resModel.strCreatedTime))}",
-                        style: const TextStyle(
-                            color: Color.fromRGBO(91, 91, 91, 1)),
+                        style:  TextStyle(
+                          color: themeController.isDarkTheme.value
+                              ?  SColors.color26
+                              : Color.fromRGBO(91, 91, 91, 1)
+
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -171,7 +207,9 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                     ),
                     Divider(
                       thickness: 1,
-                      color: colorBlack,
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.color26
+                          : SColors.color3,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -180,13 +218,10 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                         children: [
                           Text(
                             "${resModel.intParticipants} Participants",
-                            style: const TextStyle(
-                                color: Color.fromRGBO(
-                                  91,
-                                  91,
-                                  91,
-                                  1,
-                                ),
+                            style:  TextStyle(
+                                color: themeController.isDarkTheme.value
+                                    ?  SColors.color26
+                                    : Color.fromRGBO(91, 91, 91, 1),
                                 fontSize: 13,
                                 fontWeight: FontWeight.w400),
                           ),
@@ -202,12 +237,15 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                       isCreatedGroup: true,
                                     ));
                                   },
-                                  child: const Padding(
+                                  child:  Padding(
                                     padding: EdgeInsets.only(
                                         left: 24.0, bottom: 8, top: 8),
                                     child: Text(
                                       "Add Participants",
                                       style: TextStyle(
+                                        color: themeController.isDarkTheme.value
+                                            ?  SColors.color4
+                                            : SColors.color3,
                                           fontSize: 15,
                                           fontWeight: FontWeight.w500),
                                     ),
@@ -302,7 +340,11 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                     resModel.groupUser[index].strProfileIcon),
                               ),
                               title:
-                                  Text(resModel.groupUser[index].strFullName),
+                                  Text(resModel.groupUser[index].strFullName,style: TextStyle(
+                                    color: themeController.isDarkTheme.value
+                                        ?  SColors.color4
+                                        : SColors.color3,
+                                  ),),
                               trailing: resModel.groupUser[index].isAdmin
                                   ? const Text(
                                       "Admin",
