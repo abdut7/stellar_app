@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:get/get.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/services/socket_service/group_chat_service.dart';
 import 'package:stellar_chat/services/socket_service/private_chat_service.dart';
 import 'package:stellar_chat/utils/colors.dart';
@@ -15,10 +17,26 @@ class ContactDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return Scaffold(
+      backgroundColor: themeController.isDarkTheme.value
+          ?  SColors.darkmode
+          : SColors.color4,
       appBar: AppBar(
-        backgroundColor: colorPrimary,
-        title: const Text('Contact Details'),
+        elevation: 0,
+        backgroundColor: themeController.isDarkTheme.value
+            ?  SColors.appbarbgInDark
+            : SColors.color12,
+        title: Text(
+          'Contact Details',
+          style: TextStyle(
+            color: themeController.isDarkTheme.value
+                ?  SColors.appbarTitleInDark
+                : SColors.color11,
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -32,7 +50,7 @@ class ContactDetailsScreen extends StatelessWidget {
             Text(contact.displayName ?? ''),
             const SizedBox(height: 16.0),
             const Text(
-              'Phone Numbers:',
+              'Phone Number:',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Column(
@@ -73,16 +91,20 @@ class ContactDetailsScreen extends StatelessWidget {
           Get.back();
         },
         child: Container(
-          width: Get.width * 0.5,
-          height: Get.height * 0.08,
+          width: Get.width * 0.6,
+          height: Get.height * 0.05,
           decoration: BoxDecoration(
-              color: colorPrimary, borderRadius: BorderRadius.circular(10)),
+              color: themeController.isDarkTheme.value
+                  ?  SColors.color26
+                  : SColors.color12,
+
+              borderRadius: BorderRadius.circular(10)),
           child: const Center(
             child: Text(
               "Sent",
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 20,
+                  fontSize: 15,
                   fontWeight: FontWeight.bold),
             ),
           ),

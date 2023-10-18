@@ -7,6 +7,7 @@ import 'package:alphabet_list_scroll_view/alphabet_list_scroll_view.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/View/chat/widgets/sent_contact/contact_detail_screen.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
 class PickContactFromPhoneToSent extends StatefulWidget {
   final String chatId;
@@ -61,17 +62,25 @@ class _PickContactFromPhoneToSentState
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return Scaffold(
+      backgroundColor: themeController.isDarkTheme.value
+          ?  SColors.darkmode
+          : SColors.color4,
       appBar: AppBar(
-        backgroundColor: SColors.color12,
+        backgroundColor: themeController.isDarkTheme.value
+            ?  SColors.appbarbgInDark
+            : SColors.color12,
         elevation: 0,
         centerTitle: true,
         toolbarHeight: 70,
-        title: const Text(
+        title:  Text(
           'Contacts',
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: Color(0xFF9FC4E8),
+            color: themeController.isDarkTheme.value
+                ?  SColors.appbarTitleInDark
+                : SColors.color11,
             fontSize: 12,
             fontWeight: FontWeight.w700,
           ),
@@ -89,7 +98,9 @@ class _PickContactFromPhoneToSentState
                 'Send',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color:SColors.color11,
+                  color:themeController.isDarkTheme.value
+                      ?  SColors.appbarTitleInDark
+                      : SColors.color11,
                   fontSize: 9,
                   fontWeight: FontWeight.w700,
                 ),
@@ -186,8 +197,10 @@ class _PickContactFromPhoneToSentState
                                   const SizedBox(width: 15,),
                                   Text(
                                     contact.displayName ?? '',
-                                    style: const TextStyle(
-                                      color: Colors.black,
+                                    style:  TextStyle(
+                                      color: themeController.isDarkTheme.value
+                                          ?  SColors.color4
+                                          : SColors.color3,
                                       fontSize: 17,
                                       fontWeight: FontWeight.w500,
                                     ),
