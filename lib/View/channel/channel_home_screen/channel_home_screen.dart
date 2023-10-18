@@ -167,6 +167,7 @@ class FlicksInChannelsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     FlicksPlayerController flicksController = Get.put(FlicksPlayerController());
     flicksController.loadMore();
+    ThemeController themeController = Get.find();
     return Obx(
       () => flicksController.flickItems.isEmpty
           ? const SizedBox()
@@ -198,7 +199,16 @@ class FlicksInChannelsWidget extends StatelessWidget {
           </svg>
           """),
                       const SizedBox(width: 8,),
-                      const Text("Flicks")
+                     Text(
+                        'Flicks',
+                        style: TextStyle(
+                          color: themeController.isDarkTheme.value
+                              ?  SColors.color4
+                              : SColors.color3,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(

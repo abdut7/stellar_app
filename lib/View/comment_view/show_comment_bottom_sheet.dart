@@ -62,6 +62,7 @@ class CommentScreen extends StatefulWidget {
 class _CommentScreenState extends State<CommentScreen> {
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return FutureBuilder(
         future: widget.isChannel
             ? ChannelService().getComments(id: widget.commentId)
@@ -87,13 +88,23 @@ class _CommentScreenState extends State<CommentScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Text(
-                              '${snapshot.hasData && snapshot.data != null ? snapshot.data!.arrList.length : widget.commentCount} Comments'),
+                              '${snapshot.hasData && snapshot.data != null ? snapshot.data!.arrList.length : widget.commentCount} Comments',
+                            style: TextStyle(
+                              color: themeController.isDarkTheme.value
+                                  ?  SColors.color4
+                                  : SColors.color3,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
                         ),
                       ),
                       IconButton(
                         icon: Icon(
                           Icons.cancel_outlined,
-                          color: SColors.color3,
+                          color: themeController.isDarkTheme.value
+                              ?  SColors.color4
+                              : SColors.color3
                         ),
                         onPressed: () {
                           Get.back();
