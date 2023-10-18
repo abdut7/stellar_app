@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:stellar_chat/View/Profile/widget/flick_grid_view.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/widgets/favorite_grid_view_tab1.dart';
 import 'package:stellar_chat/widgets/favorite_grid_view_tab2.dart';
 
@@ -19,20 +21,27 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor: SColors.color4,
+      backgroundColor: themeController.isDarkTheme.value
+          ?  SColors.darkmode
+          : SColors.color4,
       appBar: AppBar(
         toolbarHeight: 70,
         elevation: 0,
         title: Text(
           'Favorites',
           style: TextStyle(
-            color: SColors.color11,
+            color: themeController.isDarkTheme.value
+                ?  SColors.appbarTitleInDark
+                : SColors.color11,
             fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
         ),
-        backgroundColor: SColors.color12,
+        backgroundColor: themeController.isDarkTheme.value
+            ?  SColors.appbarbgInDark
+            : SColors.color12,
         leading: Padding(
           padding: const EdgeInsets.only(left: 15),
           child: SvgPicture.asset(SSvgs.appLogo),
@@ -54,7 +63,13 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                         SSvgs.flicksLogo,
                         width: 30,
                         height: 30,
-                        color: selectedTabIndex == 0 ? null : Colors.grey,
+                        color: selectedTabIndex == 0 ?
+                        themeController.isDarkTheme.value
+                            ?  SColors.color27
+                            : null
+                            : themeController.isDarkTheme.value
+                            ?  SColors.color27.withOpacity(0.5)
+                            : Colors.grey
                       ),
                     ),
                     Tab(
@@ -62,7 +77,13 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                         SSvgs.channelLogo,
                         width: 30,
                         height: 30,
-                        color: selectedTabIndex == 1 ? null : Colors.grey,
+                        color: selectedTabIndex == 1 ?
+                        themeController.isDarkTheme.value
+                            ?  SColors.color27
+                            : null
+                            : themeController.isDarkTheme.value
+                            ?  SColors.color27.withOpacity(0.5)
+                            : Colors.grey
                       ),
                     ),
                   ],
