@@ -67,7 +67,13 @@ Future<dynamic> showChatAttachmentSheet(
                         children: [
                           SvgPicture.asset(attachList[index]['file']!,),
                           const SizedBox(height: 5,),
-                          Text(attachList[index]['name']!)
+                          Text(attachList[index]['name']!,style: TextStyle(
+                            color: themeController.isDarkTheme.value
+                                ? SColors.color4
+                                : SColors.color3,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                          ),)
                         ],
                       ),
                     ),

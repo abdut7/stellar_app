@@ -85,6 +85,7 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     ChannelHomeController channelHomeController = Get.find();
     return Scaffold(
       body: SafeArea(
@@ -186,7 +187,14 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(widget.channelItem.createdUserFullName),
+                      Text(widget.channelItem.createdUserFullName,
+                      style: TextStyle(
+                        color: themeController.isDarkTheme.value
+                            ?  SColors.color4
+                            : SColors.color3,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),),
                       Text(
                         "$followCount Followers",
                         style:

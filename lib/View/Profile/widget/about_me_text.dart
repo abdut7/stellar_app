@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 
 class AboutMeText extends StatefulWidget {
@@ -14,6 +15,7 @@ class _AboutMeTextState extends State<AboutMeText> {
   @override
   Widget build(BuildContext context) {
     UserController userController = Get.find();
+    ThemeController themeController = Get.find();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Obx(() => Text.rich(
@@ -22,7 +24,9 @@ class _AboutMeTextState extends State<AboutMeText> {
                 TextSpan(
                   text: 'About Me\n',
                   style: TextStyle(
-                    // color: SColors.color3,
+                    color: themeController.isDarkTheme.value
+                        ?  SColors.color4
+                        : SColors.color3,
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
                   ),
@@ -30,7 +34,9 @@ class _AboutMeTextState extends State<AboutMeText> {
                 TextSpan(
                   text: userController.userDetailsModel.value!.strAbout,
                   style: TextStyle(
-                    // color: SColors.color3,
+                     color:  themeController.isDarkTheme.value
+                         ?  SColors.color4
+                         : SColors.color3,
                     fontSize: 11,
                     fontWeight: FontWeight.w400,
                   ),

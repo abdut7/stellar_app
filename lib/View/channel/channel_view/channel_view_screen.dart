@@ -19,7 +19,7 @@
 //       backgroundColor: SColors.color4,
 //       body: Column(
 //         children: [
-//           VideoCardChannelView(channelItem: widget.channelItem),
+          //VideoCardChannelView(channelItem: widget.channelItem),
 //         ],
 //       ),
 //     );
