@@ -1,13 +1,18 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:stellar_chat/View/create_post/channel/upload_new_post.dart';
+import 'package:stellar_chat/View/create_post/flicks/flicks_upload_new_post/upload_new_post.dart';
 import 'package:stellar_chat/View/video_editor/crop_page.dart';
 import 'package:stellar_chat/View/video_editor/export_service.dart';
-import 'package:stellar_chat/View/video_editor/widget/export_result.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:video_editor/video_editor.dart';
 
 class VideoEditorHomeScreen extends StatefulWidget {
-  const VideoEditorHomeScreen({super.key, required this.file});
+  const VideoEditorHomeScreen(
+      {super.key, required this.file, required this.isFromChannel});
+  final bool isFromChannel;
 
   final File file;
 
@@ -61,61 +66,117 @@ class _VideoEditorHomeScreenState extends State<VideoEditorHomeScreen> {
 
     final config = VideoFFmpegVideoEditorConfig(
       _controller,
-      // format: VideoExportFormat.gif,
-      // commandBuilder: (config, videoPath, outputPath) {
-      //   final List<String> filters = config.getExportFilters();
-      //   filters.add('hflip'); // add horizontal flip
-
-      //   return '-i $videoPath ${config.filtersCmd(filters)} -preset ultrafast $outputPath';
-      // },
     );
 
     await ExportService.runFFmpegCommand(
       await config.getExecuteConfig(),
       onProgress: (stats) {
-        _exportingProgress.value =
-            config.getFFmpegProgress(stats.getTime().toInt());
+        _exportingProgress.value = config.getFFmpegProgress(
+          stats.getTime().toInt(),
+        );
       },
       onError: (e, s) => _showErrorSnackBar("Error on export video :("),
       onCompleted: (file) {
         _isExporting.value = false;
         if (!mounted) return;
-
-        showDialog(
-          context: context,
-          builder: (_) => VideoResultPopup(video: file),
+        if (widget.isFromChannel) {
+          Get.to(
+            () => ChannelUploadNewPost(
+              path: file.path,
+            ),
+          );
+          return;
+        }
+        Get.to(
+          () => FlicksUploadNewPost(
+            path: file.path,
+          ),
         );
+        // showDialog(
+        //   context: context,
+        //   builder: (_) => VideoResultPopup(video: file),
+        // );
       },
     );
   }
 
-  void _exportCover() async {
-    final config = CoverFFmpegVideoEditorConfig(_controller);
-    final execute = await config.getExecuteConfig();
-    if (execute == null) {
-      _showErrorSnackBar("Error on cover exportation initialization.");
-      return;
-    }
+  // void _exportCover() async {
+  //   final config = CoverFFmpegVideoEditorConfig(_controller);
+  //   final execute = await config.getExecuteConfig();
+  //   if (execute == null) {
+  //     _showErrorSnackBar("Error on cover exportation initialization.");
+  //     return;
+  //   }
 
-    await ExportService.runFFmpegCommand(
-      execute,
-      onError: (e, s) => _showErrorSnackBar("Error on cover exportation :("),
-      onCompleted: (cover) {
-        if (!mounted) return;
+  //   await ExportService.runFFmpegCommand(
+  //     execute,
+  //     onError: (e, s) => _showErrorSnackBar("Error on cover exportation :("),
+  //     onCompleted: (cover) {
+  //       if (!mounted) return;
 
-        showDialog(
-          context: context,
-          builder: (_) => CoverResultPopup(cover: cover),
-        );
-      },
-    );
-  }
+  //       showDialog(
+  //         context: context,
+  //         builder: (_) => CoverResultPopup(cover: cover),
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(120), // Set this height
+          child: Container(
+              height: 80,
+              color: const Color.fromRGBO(159, 196, 232, 1),
+              child: SafeArea(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      width: 30,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: SvgPicture.string(
+                          """<svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7.5 14L1 7.5L7.5 1" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+                                    </svg>
+                                    """),
+                    ),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: _exportVideo,
+                      child: Row(
+                        children: [
+                          const Text(
+                            "Next",
+                            style:
+                                TextStyle(color: Color.fromRGBO(0, 51, 142, 1)),
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          SvgPicture.string(
+                              """<svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L7.5 7.5L1 14" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                    """),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              )),
+        ),
         body: _controller.initialized
             ? SafeArea(
                 child: Stack(
@@ -173,19 +234,28 @@ class _VideoEditorHomeScreenState extends State<VideoEditorHomeScreen> {
                                   margin: const EdgeInsets.only(top: 10),
                                   child: Column(
                                     children: [
-                                      // Row(
-                                      //     mainAxisAlignment:
-                                      //         MainAxisAlignment.center,
-                                      //     children: const [
-                                      //       Padding(
-                                      //           padding: EdgeInsets.all(5),
-                                      //           child: Icon(Icons.content_cut)),
-                                      //       Text(
-                                      //         'Trim',
-                                      //         style: TextStyle(
-                                      //             color: Colors.white),
-                                      //       )
-                                      //     ]),
+                                      GestureDetector(
+                                        onTap: () {},
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const Padding(
+                                                  padding: EdgeInsets.all(5),
+                                                  child:
+                                                      Icon(Icons.content_cut)),
+                                              Text(
+                                                'Trim',
+                                                style: TextStyle(
+                                                    color: Get.find<
+                                                                ThemeController>()
+                                                            .isDarkTheme
+                                                            .value
+                                                        ? Colors.white
+                                                        : Colors.black),
+                                              )
+                                            ]),
+                                      ),
                                       Expanded(
                                         child: TabBarView(
                                           physics:
@@ -213,9 +283,11 @@ class _VideoEditorHomeScreenState extends State<VideoEditorHomeScreen> {
                                   child: AlertDialog(
                                     title: ValueListenableBuilder(
                                       valueListenable: _exportingProgress,
-                                      builder: (_, double value, __) => Text(
-                                        "Processing video ${(value * 100).ceil()}%",
-                                        style: const TextStyle(fontSize: 12),
+                                      builder: (_, double value, __) => Center(
+                                        child: Text(
+                                          "Processing video ${(value * 100).ceil()}%",
+                                          style: const TextStyle(fontSize: 12),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -240,13 +312,13 @@ class _VideoEditorHomeScreenState extends State<VideoEditorHomeScreen> {
         height: height,
         child: Row(
           children: [
-            Expanded(
-              child: IconButton(
-                onPressed: () => Navigator.of(context).pop(),
-                icon: const Icon(Icons.arrow_back_outlined),
-                tooltip: 'Leave editor',
-              ),
-            ),
+            // Expanded(
+            //   child: IconButton(
+            //     onPressed: () => Navigator.of(context).pop(),
+            //     icon: const Icon(Icons.arrow_back_outlined),
+            //     tooltip: 'Leave editor',
+            //   ),
+            // ),
             const VerticalDivider(endIndent: 22, indent: 22),
             Expanded(
               child: IconButton(
@@ -277,13 +349,6 @@ class _VideoEditorHomeScreenState extends State<VideoEditorHomeScreen> {
               ),
             ),
             const VerticalDivider(endIndent: 22, indent: 22),
-            Expanded(
-              child: IconButton(
-                onPressed: _exportVideo,
-                icon: const Icon(Icons.arrow_forward),
-                tooltip: 'Save and next',
-              ),
-            ),
           ],
         ),
       ),
@@ -309,16 +374,27 @@ class _VideoEditorHomeScreenState extends State<VideoEditorHomeScreen> {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: height / 4),
             child: Row(children: [
-              Text(formatter(Duration(seconds: pos.toInt()))),
+              Text(
+                formatter(Duration(
+                  seconds: pos.toInt(),
+                )),
+              ),
               const Expanded(child: SizedBox()),
               AnimatedOpacity(
                 opacity: _controller.isTrimming ? 1 : 0,
                 duration: kThemeAnimationDuration,
-                child: Row(mainAxisSize: MainAxisSize.min, children: [
-                  Text(formatter(_controller.startTrim)),
-                  const SizedBox(width: 10),
-                  Text(formatter(_controller.endTrim)),
-                ]),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      formatter(_controller.startTrim),
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      formatter(_controller.endTrim),
+                    ),
+                  ],
+                ),
               ),
             ]),
           );

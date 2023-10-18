@@ -4,6 +4,7 @@ import 'package:stellar_chat/Settings/SImages.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stellar_chat/controllers/bottom_navigation_controller.dart';
 import 'package:stellar_chat/controllers/contacts_controller.dart';
 import 'package:stellar_chat/controllers/new_post/new_post_common_controller.dart';
 
@@ -23,6 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
+    Get.put(BottomNavigationController());
     authenticateUser();
     super.initState();
   }

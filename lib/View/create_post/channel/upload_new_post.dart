@@ -7,6 +7,7 @@ import 'package:stellar_chat/View/create_post/flicks/add_location/add_location_s
 import 'package:stellar_chat/View/create_post/flicks/function/generate_thumbnile.dart';
 import 'package:stellar_chat/View/create_post/flicks/tag_people_screen/tag_people_screen.dart';
 import 'package:stellar_chat/controllers/new_post/new_post_common_controller.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/functions/show_snackbar.dart';
 import 'package:stellar_chat/services/api_services/channel_service.dart';
@@ -319,7 +320,9 @@ class ChannelUploadNewPostState extends State<ChannelUploadNewPost> {
                       Text(
                         'Hide like and view counts \non your post',
                         style: TextStyle(
-                          color: SColors.color3,
+                          color: Get.find<ThemeController>().isDarkTheme.value
+                              ? Colors.grey
+                              : SColors.color3,
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
                         ),
@@ -355,7 +358,9 @@ class ChannelUploadNewPostState extends State<ChannelUploadNewPost> {
                       Text(
                         'Turn off comments on your\npost. You can always change it\nfrom the menu ',
                         style: TextStyle(
-                          color: SColors.color3,
+                          color: Get.find<ThemeController>().isDarkTheme.value
+                              ? Colors.white
+                              : SColors.color3,
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
                         ),
@@ -397,7 +402,9 @@ Widget headText(String head) {
   return Text(
     head,
     style: TextStyle(
-      color: SColors.color3,
+      color: Get.find<ThemeController>().isDarkTheme.value
+          ? Colors.grey
+          : SColors.color3,
       fontSize: 15,
       fontWeight: FontWeight.w600,
     ),
@@ -410,7 +417,9 @@ Widget titleTextButton(String btnTxt, Function() onPress) {
     child: Text(
       btnTxt,
       style: TextStyle(
-        color: SColors.color12,
+        color: Get.find<ThemeController>().isDarkTheme.value
+            ? Colors.grey
+            : SColors.color12,
         fontSize: 12,
         fontWeight: FontWeight.w500,
       ),

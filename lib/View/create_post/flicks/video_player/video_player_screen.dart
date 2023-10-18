@@ -6,6 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:stellar_chat/View/create_post/channel/upload_new_post.dart';
 import 'package:stellar_chat/View/create_post/flicks/flicks_upload_new_post/upload_new_post.dart';
+import 'package:stellar_chat/View/video_editor/video_editor_screen.dart';
+import 'package:stellar_chat/View/video_editor/video_filter/video_filter_home.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
@@ -119,19 +121,14 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        if (widget.isFromChannel) {
-                          Get.to(
-                            () => ChannelUploadNewPost(
-                              path: widget.videoFilePath,
-                            ),
-                          );
-                          return;
-                        }
-                        Get.to(
-                          () => FlicksUploadNewPost(
-                            path: widget.videoFilePath,
-                          ),
-                        );
+                        // Get.to(
+                        //   () => VideoFilterHomeScreen(
+                        //       videoPath: widget.videoFilePath),
+                        // );
+                        Get.to(() => VideoEditorHomeScreen(
+                              isFromChannel: widget.isFromChannel,
+                              file: File(widget.videoFilePath),
+                            ));
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 15.0),

@@ -93,7 +93,8 @@ dependencies:
   url_launcher: ^6.1.14
   video_editor: ^3.0.0
   fraction: ^5.0.2
-  ffmpeg_kit_flutter: ^6.0.3
+  ffmpeg_kit_flutter: 6.0.3-LTS
+  tapioca: ^1.0.6+1
 
 
 
