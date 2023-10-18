@@ -4,6 +4,7 @@ import 'package:stellar_chat/View/profile/public_profile/widgets/follow_details_
 import 'package:stellar_chat/View/profile/widget/about_me_text.dart';
 import 'package:stellar_chat/View/profile/widget/channel_grid_view.dart';
 import 'package:stellar_chat/View/profile/widget/contact_through_options.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/models/api_models/user_details_model.dart';
 import 'package:stellar_chat/services/api_services/account_services.dart';
 import 'package:stellar_chat/services/api_services/public_profile_service.dart';
@@ -31,9 +32,12 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
   int selectedTabIndex = 0;
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return SafeArea(
         child: Scaffold(
-      backgroundColor: SColors.color4,
+      backgroundColor: themeController.isDarkTheme.value
+          ?  SColors.darkmode
+          : SColors.color4,
       body: RefreshIndicator(
         onRefresh: () async {
           userDetailsModel = await PublicProfileService()
@@ -201,19 +205,32 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                               }
                             },
                             child: ContactThrough(
-                                svgAsset: SSvgs.pMessage, label: 'Message'),
+                                svgAsset: themeController.isDarkTheme.value ? SSvgs.pMessageDark
+                                    : SSvgs.pMessage,
+
+                                label: 'Message'),
                           ),
                           ContactThrough(
-                              svgAsset: SSvgs.pCall, label: 'Call'),
+                              svgAsset: themeController.isDarkTheme.value ? SSvgs.pCallDark
+                                  : SSvgs.pCall,
+
+                              label: 'Call'),
                           const SizedBox(),
                           ContactThrough(
-                              svgAsset: SSvgs.pVideo, label: 'Video'),
+                              svgAsset: themeController.isDarkTheme.value ? SSvgs.pVideoDark
+                                  : SSvgs.pVideo,
+
+                              label: 'Video'),
                           const SizedBox(),
                           ContactThrough(
-                              svgAsset: SSvgs.sendMoneyIcon, label: 'Send'),
+                              svgAsset: SSvgs.sendMoneyIcon,
+
+                              label: 'Send'),
                           const SizedBox(),
                           ContactThrough(
-                              svgAsset: SSvgs.requestMoneyIcon, label: 'Request'),
+                              svgAsset: SSvgs.requestMoneyIcon,
+
+                              label: 'Request'),
                         ],
                       ),
                     ),
@@ -233,15 +250,19 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                               TextSpan(
                                 text: 'About Me\n',
                                 style: TextStyle(
-                                  color: SColors.color3,
+                                  color:  themeController.isDarkTheme.value
+                                      ?  SColors.color4
+                                      : SColors.color3,
                                   fontSize: 12,
-                                  fontWeight: FontWeight.w900,
+                                  fontWeight: FontWeight.w700,
                                 ),
                               ),
                               TextSpan(
                                 text: userDetailsModel!.strAbout,
                                 style: TextStyle(
-                                  color: SColors.color3,
+                                  color:themeController.isDarkTheme.value
+                                      ?  SColors.color26
+                                      : SColors.color3,
                                   fontSize: 11,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -269,7 +290,13 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                               SSvgs.flicksLogo,
                               width: 30,
                               height: 30,
-                              color: selectedTabIndex == 0 ? null : Colors.grey,
+                              color: selectedTabIndex == 0 ?
+                              themeController.isDarkTheme.value
+                                  ?  SColors.color27
+                                  : null
+                                  : themeController.isDarkTheme.value
+                                  ?  SColors.color27.withOpacity(0.5)
+                                  : Colors.grey
                             ),
                           ),
                           Tab(
@@ -277,7 +304,14 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                               SSvgs.channelLogo,
                               width: 30,
                               height: 30,
-                              color: selectedTabIndex == 1 ? null : Colors.grey,
+                              color:
+                              selectedTabIndex == 1 ?
+                              themeController.isDarkTheme.value
+                                  ?  SColors.color27
+                                  : null
+                                  : themeController.isDarkTheme.value
+                                  ?  SColors.color27.withOpacity(0.5)
+                                  : Colors.grey
                             ),
                           ),
                         ],

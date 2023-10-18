@@ -30,10 +30,13 @@ class _MainProfileState extends State<MainProfile> {
     final themeController = Get.find<ThemeController>();
     NewPostController flickController = Get.find();
 
+
     UserController controller = Get.find();
     return SafeArea(
         child: Scaffold(
-      // backgroundColor: SColors.color4,
+      backgroundColor: themeController.isDarkTheme.value
+          ?  SColors.darkmode
+          : SColors.color4,
       body: RefreshIndicator(
         onRefresh: () async {
           await GetUserDetailsService.getUserDetails();
@@ -193,7 +196,15 @@ class _MainProfileState extends State<MainProfile> {
                         SSvgs.flicksLogo,
                         width: 30,
                         height: 30,
-                        color: selectedTabIndex == 0 ? null : Colors.grey,
+                        color:
+
+                        selectedTabIndex == 0 ?
+                        themeController.isDarkTheme.value
+                            ?  SColors.color27
+                            : null
+                            : themeController.isDarkTheme.value
+                            ?  SColors.color27.withOpacity(0.5)
+                            : Colors.grey
                       ),
                     ),
                     Tab(
@@ -201,7 +212,13 @@ class _MainProfileState extends State<MainProfile> {
                         SSvgs.channelLogo,
                         width: 30,
                         height: 30,
-                        color: selectedTabIndex == 1 ? null : Colors.grey,
+                        color: selectedTabIndex == 1 ?
+                        themeController.isDarkTheme.value
+                            ?  SColors.color27
+                            : null
+                            : themeController.isDarkTheme.value
+                            ?  SColors.color27.withOpacity(0.5)
+                            : Colors.grey
                       ),
                     ),
                   ],
