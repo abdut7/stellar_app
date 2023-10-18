@@ -1,7 +1,9 @@
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:flutter/material.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
 class StickerGalleryScreen extends StatefulWidget {
   static const routeName = '/StickerGalleryScreen';
@@ -12,20 +14,27 @@ class StickerGalleryScreen extends StatefulWidget {
 class _StickerGalleryScreenState extends State<StickerGalleryScreen> {
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor: SColors.color4,
+      backgroundColor: themeController.isDarkTheme.value
+          ?  SColors.darkmode
+          : SColors.color4,
       appBar: AppBar(
         toolbarHeight: 70,
         elevation: 0,
         title: Text(
           'Stickers',
           style: TextStyle(
-            color: SColors.color11,
+            color: themeController.isDarkTheme.value
+                ?  SColors.appbarTitleInDark
+                : SColors.color11,
             fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
         ),
-        backgroundColor: SColors.color12,
+        backgroundColor: themeController.isDarkTheme.value
+            ?  SColors.appbarbgInDark
+            : SColors.color12,
         leading: Padding(
           padding: const EdgeInsets.only(left: 15),
           child: SvgPicture.asset(SSvgs.appLogo),
@@ -33,7 +42,7 @@ class _StickerGalleryScreenState extends State<StickerGalleryScreen> {
       ),
       body: Column(
         children: [
-          const SizedBox(height: 20,),
+          const SizedBox(height: 15,),
           Expanded(
             child: stickerGridView(),
           ),
@@ -48,7 +57,8 @@ class _StickerGalleryScreenState extends State<StickerGalleryScreen> {
       child: GridView.count(
         scrollDirection: Axis.vertical,
         crossAxisCount: 4,
-        mainAxisSpacing: 8,
+        mainAxisSpacing: 5,
+        crossAxisSpacing: 2,
         children: List.generate(100, (index) {
           return Center(
             child: GestureDetector(
