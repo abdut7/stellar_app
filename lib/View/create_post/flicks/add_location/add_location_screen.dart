@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/View/create_post/flicks/tag_people_screen/widget/loaction_search_field.dart';
 import 'package:stellar_chat/controllers/new_post/new_post_common_controller.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 
 class AddLocationScreen extends StatelessWidget {
   const AddLocationScreen({super.key});
@@ -11,7 +12,6 @@ class AddLocationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SColors.color4,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: SColors.color18,
@@ -69,7 +69,13 @@ class AddLocationScreen extends StatelessWidget {
                     controller.locationName(placeName[index]);
                     Get.back();
                   },
-                  title: Text(placeName[index]),
+                  title: Text(
+                    placeName[index],
+                    style: TextStyle(
+                        color: Get.find<ThemeController>().isDarkTheme.value
+                            ? Colors.white
+                            : Colors.black),
+                  ),
                 );
               },
             ),

@@ -149,6 +149,7 @@ class ChannelUploadNewPostState extends State<ChannelUploadNewPost> {
                       padding: const EdgeInsets.only(top: 25, bottom: 10),
                       child: TextField(
                         controller: captionController,
+                        style: TextStyle(color:Get.find<ThemeController>().isDarkTheme.value? Colors.white:Colors.black),
                         decoration: const InputDecoration(
                           hintStyle: TextStyle(
                             color: Color(0xFFD9D9D9),

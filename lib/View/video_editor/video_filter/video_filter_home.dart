@@ -26,8 +26,15 @@ class _VideoFilterHomeScreenState extends State<VideoFilterHomeScreen> {
     "Normal",
     "B & W",
     "Vintage",
+    "Sepial",
     "Grey Scale",
-    "Sepial"
+  ];
+  List<String> filterImageList = [
+    "assets/Images/01 Normal.png",
+    "assets/Images/06 GrayScale.png",
+    "assets/Images/03 Vintage.png",
+    "assets/Images/07 Sepia.png"
+        "assets/Images/06 GrayScale.png",
   ];
   @override
   void initState() {
@@ -128,7 +135,7 @@ class _VideoFilterHomeScreenState extends State<VideoFilterHomeScreen> {
                 children: [
                   Text(
                     filterList[index],
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -143,17 +150,19 @@ class _VideoFilterHomeScreenState extends State<VideoFilterHomeScreen> {
                         applyVintageFilterUsingFFmpeg(widget.videoPath);
                       }
                       if (index == 3) {
-                        applyGrayscaleFilterUsingFFmpeg(widget.videoPath);
+                        applySepiaFilterUsingFFmpeg(widget.videoPath);
                       }
                       if (index == 4) {
-                        applySepiaFilterUsingFFmpeg(widget.videoPath);
+                        applyGrayscaleFilterUsingFFmpeg(widget.videoPath);
                       }
                     },
                     child: Container(
                       height: Get.height * 0.12,
                       width: Get.height * 0.12,
                       decoration: BoxDecoration(
-                        color: Colors.amber,
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage(filterImageList[index])),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
@@ -185,12 +194,12 @@ class VideoPlayerWidget extends StatelessWidget {
                 children: [
                   VideoPlayer(videoController.videoPlayerController.value!),
                   videoController.isLoadingFilter.value
-                      ? CircularProgressIndicator()
-                      : SizedBox()
+                      ? const CircularProgressIndicator()
+                      : const SizedBox()
                 ],
               );
             } else {
-              return Text('No video loaded');
+              return const Text('No video loaded');
             }
           },
         ),

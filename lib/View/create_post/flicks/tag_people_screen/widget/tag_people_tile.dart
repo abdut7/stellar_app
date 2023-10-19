@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:flutter/material.dart';
 import 'package:stellar_chat/controllers/new_post/new_post_common_controller.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/models/api_models/get_contacts_model.dart';
 
 class TagPeopleTile extends StatelessWidget {
@@ -30,7 +31,9 @@ class TagPeopleTile extends StatelessWidget {
         title: Text(
           username,
           style: TextStyle(
-            color: SColors.color3,
+            color: Get.find<ThemeController>().isDarkTheme.value
+                ? Colors.white
+                : Colors.black,
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
@@ -38,13 +41,22 @@ class TagPeopleTile extends StatelessWidget {
         subtitle: Text(
           name,
           style: TextStyle(
-            color: SColors.color3,
+            color: Get.find<ThemeController>().isDarkTheme.value
+                ? Colors.white
+                : Colors.black,
             fontSize: 12,
             fontWeight: FontWeight.w400,
           ),
         ),
         trailing: isSearch
-            ? Text("Tag")
+            ? Text(
+                "Tag",
+                style: TextStyle(
+                  color: Get.find<ThemeController>().isDarkTheme.value
+                      ? Colors.white
+                      : Colors.black,
+                ),
+              )
             : GestureDetector(
                 onTap: () {
                   NewPostController cont = Get.find();
