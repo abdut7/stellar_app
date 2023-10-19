@@ -121,6 +121,7 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
+                        print(widget.videoFilePath);
                         // Get.to(
                         //   () => VideoFilterHomeScreen(
                         //       videoPath: widget.videoFilePath),
