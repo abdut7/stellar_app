@@ -14,6 +14,7 @@ import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:stellar_chat/functions/capitalize_names.dart';
 import 'package:stellar_chat/services/api_services/user_details_service.dart';
 
 class MainProfile extends StatefulWidget {
@@ -30,13 +31,11 @@ class _MainProfileState extends State<MainProfile> {
     final themeController = Get.find<ThemeController>();
     NewPostController flickController = Get.find();
 
-
     UserController controller = Get.find();
     return SafeArea(
         child: Scaffold(
-      backgroundColor: themeController.isDarkTheme.value
-          ?  SColors.darkmode
-          : SColors.color4,
+      backgroundColor:
+          themeController.isDarkTheme.value ? SColors.darkmode : SColors.color4,
       body: RefreshIndicator(
         onRefresh: () async {
           await GetUserDetailsService.getUserDetails();
@@ -87,11 +86,12 @@ class _MainProfileState extends State<MainProfile> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
-                                controller.userDetailsModel.value!.strName,
+                                capitalizeNames(
+                                    controller.userDetailsModel.value!.strName),
                                 style: TextStyle(
-                                   color:  themeController.isDarkTheme.value
-                                       ?  SColors.color4
-                                       : SColors.color3,
+                                  color: themeController.isDarkTheme.value
+                                      ? SColors.color4
+                                      : SColors.color3,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w800,
                                 ),
@@ -100,10 +100,10 @@ class _MainProfileState extends State<MainProfile> {
                                 height: 10,
                               ),
                               Text(
-                                'PHONE NUMBER : ${controller.userDetailsModel.value!.strMobileNo}',
+                                'Phone Number : ${controller.userDetailsModel.value!.strMobileNo}',
                                 style: TextStyle(
-                                  color:  themeController.isDarkTheme.value
-                                      ?  SColors.color4
+                                  color: themeController.isDarkTheme.value
+                                      ? SColors.color4
                                       : SColors.color3,
                                   fontSize: 11,
                                   fontWeight: FontWeight.w700,
@@ -182,13 +182,15 @@ class _MainProfileState extends State<MainProfile> {
                 height: 20,
               ),
               const AboutMeText(),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Divider(
-                   color:  themeController.isDarkTheme.value
-                       ?  SColors.color4
-                       : SColors.color3,
+                  color: themeController.isDarkTheme.value
+                      ? SColors.color4
+                      : SColors.color3,
                   thickness: 1,
                 ),
               ),
@@ -198,34 +200,28 @@ class _MainProfileState extends State<MainProfile> {
                   indicatorColor: SColors.color9.withOpacity(0.4),
                   tabs: [
                     Tab(
-                      icon: SvgPicture.asset(
-                        SSvgs.flicksLogo,
-                        width: 30,
-                        height: 30,
-                        color:
-
-                        selectedTabIndex == 0 ?
-                        themeController.isDarkTheme.value
-                            ?  SColors.color27
-                            : null
-                            : themeController.isDarkTheme.value
-                            ?  SColors.color27.withOpacity(0.5)
-                            : Colors.grey
-                      ),
+                      icon: SvgPicture.asset(SSvgs.flicksLogo,
+                          width: 30,
+                          height: 30,
+                          color: selectedTabIndex == 0
+                              ? themeController.isDarkTheme.value
+                                  ? SColors.color27
+                                  : null
+                              : themeController.isDarkTheme.value
+                                  ? SColors.color27.withOpacity(0.5)
+                                  : Colors.grey),
                     ),
                     Tab(
-                      icon: SvgPicture.asset(
-                        SSvgs.channelLogo,
-                        width: 30,
-                        height: 30,
-                        color: selectedTabIndex == 1 ?
-                        themeController.isDarkTheme.value
-                            ?  SColors.color27
-                            : null
-                            : themeController.isDarkTheme.value
-                            ?  SColors.color27.withOpacity(0.5)
-                            : Colors.grey
-                      ),
+                      icon: SvgPicture.asset(SSvgs.channelLogo,
+                          width: 30,
+                          height: 30,
+                          color: selectedTabIndex == 1
+                              ? themeController.isDarkTheme.value
+                                  ? SColors.color27
+                                  : null
+                              : themeController.isDarkTheme.value
+                                  ? SColors.color27.withOpacity(0.5)
+                                  : Colors.grey),
                     ),
                   ],
                   onTap: (index) {
