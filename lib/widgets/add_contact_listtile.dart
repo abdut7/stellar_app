@@ -9,12 +9,15 @@ class AddContactListTile extends StatefulWidget {
   final String subtitle;
   final Function() onPressed;
   final String svgAssetPath;
+  final Color? svgColor;
+
 
   AddContactListTile({
     required this.text,
     required this.subtitle,
     required this.onPressed,
     required this.svgAssetPath,
+    this.svgColor
   });
 
   @override
@@ -33,6 +36,7 @@ class _AddContactListTileState extends State<AddContactListTile> {
         },
         leading: SvgPicture.asset(
           widget.svgAssetPath,
+          color: widget.svgColor,
         ),
         title: Text(
           widget.text,

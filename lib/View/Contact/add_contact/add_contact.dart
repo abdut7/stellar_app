@@ -71,6 +71,9 @@ class _AddContactUiState extends State<AddContactUi> {
                   subject: 'Come connect me on Stellar chat');
             },
             svgAssetPath: SSvgs.invite,
+            svgColor: themeController.isDarkTheme.value
+                ?  SColors.color26
+                : SColors.color12,
           ),
           AddContactListTile(
             text: 'Friends In Radar',
@@ -79,6 +82,9 @@ class _AddContactUiState extends State<AddContactUi> {
               Get.to(() => const FriendsInRadarScreen());
             },
             svgAssetPath: SSvgs.radar,
+            svgColor: themeController.isDarkTheme.value
+                ?  SColors.color26
+                : SColors.color12,
           ),
           AddContactListTile(
               text: 'Use QR Code',
@@ -88,14 +94,21 @@ class _AddContactUiState extends State<AddContactUi> {
                   () => const QRScreen(),
                 );
               },
-              svgAssetPath: SSvgs.qr),
+              svgAssetPath: SSvgs.qr,
+            svgColor: themeController.isDarkTheme.value
+                ?  SColors.color26
+                : SColors.color12,
+          ),
           AddContactListTile(
               text: 'My Contact',
               subtitle: 'Add from mobile contact',
               onPressed: () {
                 Get.to(() => const ShowContactsScreen());
               },
-              svgAssetPath: SSvgs.myContactt),
+              svgAssetPath: themeController.isDarkTheme.value
+                  ? SSvgs.chatDark
+                  : SSvgs.myContactt,
+          ),
         ],
       ),
     );
