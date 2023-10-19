@@ -34,7 +34,7 @@ class _CustomButtonState extends State<CustomButton> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 70),
       child: SizedBox(
-        height: 40,
+        height: MediaQuery.of(context).size.height*0.045,
         child: ElevatedButton(
           onPressed: widget.onPressed,
           style: ElevatedButton.styleFrom(
@@ -47,7 +47,7 @@ class _CustomButtonState extends State<CustomButton> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 if (widget.prefixIcon != null)
                   Icon(
