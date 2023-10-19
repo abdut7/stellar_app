@@ -39,19 +39,19 @@ class _PayProfileSettingsState extends State<PayProfileSettings> {
                    crossAxisAlignment: CrossAxisAlignment.start,
                    children: [
                      Padding(
-                       padding: const EdgeInsets.symmetric(horizontal: 30),
+                       padding: const EdgeInsets.symmetric(horizontal: 35),
                        child: headText(head: 'Your Account'),
                      ),
                      const SizedBox(height: 20,),
                      Padding(
-                       padding: const EdgeInsets.symmetric(horizontal: 30),
+                       padding: const EdgeInsets.symmetric(horizontal: 35),
                        child: Text(
                          'Personal Information\n+971 222-555-666',
                          style: TextStyle(color: SColors.color3, fontSize: 16, fontWeight: FontWeight.w400,),),
                      ),
                      const SizedBox(height: 20,),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      padding: const EdgeInsets.symmetric(horizontal: 35),
                       child: cardField(
                           field: 'Cards',
                           ontap: (){}
@@ -59,7 +59,7 @@ class _PayProfileSettingsState extends State<PayProfileSettings> {
                     ),
                      const SizedBox(height: 20,),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      padding: const EdgeInsets.symmetric(horizontal: 35),
                       child: countryField(
                           field: 'Country',
                           yourCountry: 'UAE',
@@ -73,12 +73,12 @@ class _PayProfileSettingsState extends State<PayProfileSettings> {
                      ),
                      const SizedBox(height: 20,),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      padding: const EdgeInsets.symmetric(horizontal: 35),
                       child: headText(head: 'Delete my Account'),
                     ),
                      const SizedBox(height: 20,),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      padding: const EdgeInsets.symmetric(horizontal: 35),
                       child: deleteMyAccount(
                           text: 'LOG OUT My Stellar Pay Account',
                           onTap: (){}
@@ -87,7 +87,7 @@ class _PayProfileSettingsState extends State<PayProfileSettings> {
                      const SizedBox(height: 20,),
 
                      Padding(
-                       padding: const EdgeInsets.symmetric(horizontal: 30),
+                       padding: const EdgeInsets.symmetric(horizontal: 35),
                        child: deleteMyAccount(text: 'Delete my Stellar Pay Account',
                            onTap: (){}
                        ),
