@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class CustomButton extends StatefulWidget {
   final String text;
@@ -34,6 +35,7 @@ class _CustomButtonState extends State<CustomButton> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 70),
       child: SizedBox(
+        width: Get.width,
         height: MediaQuery.of(context).size.height*0.045,
         child: ElevatedButton(
           onPressed: widget.onPressed,
@@ -44,42 +46,39 @@ class _CustomButtonState extends State<CustomButton> {
               borderRadius: BorderRadius.circular(5),
             ),
           ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (widget.prefixIcon != null)
-                  Icon(
-                    widget.prefixIcon,
-                    size: 20,
-                    color: Colors.black,
-                  )
-                else if (widget.svgAssetPath != null)
-                  SvgPicture.asset(
-                    widget.svgAssetPath!,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (widget.prefixIcon != null)
+                Icon(
+                  widget.prefixIcon,
+                  size: 20,
+                  color: Colors.black,
+                )
+              else if (widget.svgAssetPath != null)
+                SvgPicture.asset(
+                  widget.svgAssetPath!,
+                  width: 30,
+                  height: 20,
+                  color: widget.svgColor,
+                )
+              else if (widget.imageAssetPath != null) // Check if image asset is provided
+                  Image.asset(
+                    widget.imageAssetPath!,
                     width: 30,
                     height: 20,
-                    color: widget.svgColor,
-                  )
-                else if (widget.imageAssetPath != null) // Check if image asset is provided
-                    Image.asset(
-                      widget.imageAssetPath!,
-                      width: 30,
-                      height: 20,
-                    ),
-                Text(
-                  widget.text,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: widget.textColor,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 0.40,
                   ),
+              Text(
+                widget.text,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: widget.textColor,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 0.40,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
