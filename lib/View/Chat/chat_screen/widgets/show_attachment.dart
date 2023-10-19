@@ -25,6 +25,23 @@ Future<dynamic> showChatAttachmentSheet(
           {"name": "Contacts", "file": "assets/Svgs/contact_attach.svg"},
           {"name": "Audio", "file": "assets/Svgs/audio_attach.svg"}
         ];
+  List<Map<String, String>> attachList1 = isFromPrivate
+      ? [
+    {"name": "Send Files", "file": "assets/Svgs/sendFilesDark.svg"},
+    {"name": "Audio", "file": "assets/Svgs/audioAttachDark.svg"},
+    {"name": "Gallery", "file": "assets/Svgs/galleryDark.svg"},
+    {"name": "Location", "file": "assets/Svgs/locationDark.svg"},
+    {"name": "Contacts", "file": "assets/Svgs/contactDark.svg"},
+    {"name": "Pay", "file": "assets/Svgs/pay_icon.svg"}
+  ]
+      : [
+    {"name": "Send Files", "file": "assets/Svgs/sendFilesDark.svg"},
+    {"name": "Camera", "file": "assets/Svgs/cameraDark.svg"},
+    {"name": "Gallery", "file": "assets/Svgs/galleryDark.svg"},
+    {"name": "Location", "file": "assets/Svgs/locationDark.svg"},
+    {"name": "Contacts", "file": "assets/Svgs/contactDark.svg"},
+    {"name": "Audio", "file": "assets/Svgs/audioAttachDark.svg"}
+  ];
 
   return showModalBottomSheet(
     isScrollControlled: false,
@@ -65,7 +82,11 @@ Future<dynamic> showChatAttachmentSheet(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SvgPicture.asset(attachList[index]['file']!,),
+                          SvgPicture.asset(
+                            themeController.isDarkTheme.value?
+                            attachList1[index]['file']!:
+                            attachList[index]['file']!,
+                          ),
                           const SizedBox(height: 5,),
                           Text(attachList[index]['name']!,style: TextStyle(
                             color: themeController.isDarkTheme.value
