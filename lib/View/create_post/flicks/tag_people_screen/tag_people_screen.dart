@@ -24,7 +24,7 @@ class _TagPeopleScreenState extends State<TagPeopleScreen> {
   Widget build(BuildContext context) {
     NewPostController newPostController = Get.find();
     return Scaffold(
-      backgroundColor: SColors.color4,
+      // backgroundColor: SColors.color4,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: SColors.color18,

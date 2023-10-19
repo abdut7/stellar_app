@@ -5,6 +5,7 @@ import 'package:stellar_chat/View/profile/widget/about_me_text.dart';
 import 'package:stellar_chat/View/profile/widget/channel_grid_view.dart';
 import 'package:stellar_chat/View/profile/widget/contact_through_options.dart';
 import 'package:stellar_chat/controllers/theme_controller.dart';
+import 'package:stellar_chat/functions/capitalize_names.dart';
 import 'package:stellar_chat/models/api_models/user_details_model.dart';
 import 'package:stellar_chat/services/api_services/account_services.dart';
 import 'package:stellar_chat/services/api_services/public_profile_service.dart';
@@ -35,9 +36,8 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
     ThemeController themeController = Get.find();
     return SafeArea(
         child: Scaffold(
-      backgroundColor: themeController.isDarkTheme.value
-          ?  SColors.darkmode
-          : SColors.color4,
+      backgroundColor:
+          themeController.isDarkTheme.value ? SColors.darkmode : SColors.color4,
       body: RefreshIndicator(
         onRefresh: () async {
           userDetailsModel = await PublicProfileService()
@@ -59,7 +59,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                 child: ListView(
                   children: <Widget>[
                     Container(
-                        height:  MediaQuery.of(context).size.height*0.3,
+                        height: MediaQuery.of(context).size.height * 0.3,
                         width: Get.width,
                         decoration: BoxDecoration(
                           image: DecorationImage(
@@ -91,8 +91,9 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                             SSvgs.moreVertz,
                                             width: 10,
                                             height: 20,
-                                            color: themeController.isDarkTheme.value
-                                                ?  SColors.color3
+                                            color: themeController
+                                                    .isDarkTheme.value
+                                                ? SColors.color3
                                                 : SColors.color11,
                                           ),
                                         )),
@@ -101,15 +102,15 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                 Container(
                                   width: Get.width,
                                   height: Get.height * 0.2,
-                                  decoration:  BoxDecoration(
+                                  decoration: BoxDecoration(
                                     // color: Colors.red,
                                     gradient: LinearGradient(
                                       colors: [
                                         themeController.isDarkTheme.value
-                                            ?  SColors.darkmode
+                                            ? SColors.color3
                                             : SColors.color4,
-                                       themeController.isDarkTheme.value
-                                            ?  Colors.transparent
+                                        themeController.isDarkTheme.value
+                                            ? Colors.transparent
                                             : Colors.transparent
                                       ],
                                       begin: Alignment.bottomCenter,
@@ -124,11 +125,13 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Text(
-                                        userDetailsModel!.strName,
+                                        capitalizeNames(
+                                            userDetailsModel!.strName),
                                         style: TextStyle(
-                                          color: themeController.isDarkTheme.value
-                                              ?  SColors.color4
-                                              : SColors.color3,
+                                          color:
+                                              themeController.isDarkTheme.value
+                                                  ? SColors.color4
+                                                  : SColors.color3,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w900,
                                         ),
@@ -137,11 +140,12 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                         height: 10,
                                       ),
                                       Text(
-                                        'PHONE NUMBER : ${userDetailsModel!.strMobileNo}',
+                                        'Phone Number : ${userDetailsModel!.strMobileNo}',
                                         style: TextStyle(
-                                          color: themeController.isDarkTheme.value
-                                              ?  SColors.color4
-                                              : SColors.color3,
+                                          color:
+                                              themeController.isDarkTheme.value
+                                                  ? SColors.color4
+                                                  : SColors.color3,
                                           fontSize: 11,
                                           fontWeight: FontWeight.w800,
                                         ),
@@ -199,49 +203,49 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                     const SizedBox(
                       height: 25,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            if (widget.isFromChatScreen) {
-                              Get.back();
-                            } else {
-                              Get.to(PrivateChatScreen(
-                                  chatId: userDetailsModel!.id,
-                                  fullName: userDetailsModel!.strName,
-                                  imageUrl: userDetailsModel!.strProfileUrl));
-                            }
-                          },
-                          child: ContactThrough(
-                              svgAsset: themeController.isDarkTheme.value ? SSvgs.pMessageDark
-                                  : SSvgs.pMessage,
-
-                              label: 'Message'),
-                        ),
-                        ContactThrough(
-                            svgAsset: themeController.isDarkTheme.value ? SSvgs.pCallDark
-                                : SSvgs.pCall,
-
-                            label: 'Call'),
-                         //const SizedBox(),
-                        ContactThrough(
-                            svgAsset: themeController.isDarkTheme.value ? SSvgs.pVideoDark
-                                : SSvgs.pVideo,
-
-                            label: 'Video'),
-                        //const SizedBox(),
-                        ContactThrough(
-                            svgAsset: SSvgs.sendMoneyIcon,
-
-                            label: 'Send'),
-                        //const SizedBox(width: 1,),
-                        ContactThrough(
-                            svgAsset: SSvgs.requestMoneyIcon,
-
-                            label: 'Request'),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              if (widget.isFromChatScreen) {
+                                Get.back();
+                              } else {
+                                Get.to(PrivateChatScreen(
+                                    chatId: userDetailsModel!.id,
+                                    fullName: userDetailsModel!.strName,
+                                    imageUrl: userDetailsModel!.strProfileUrl));
+                              }
+                            },
+                            child: ContactThrough(
+                                svgAsset: themeController.isDarkTheme.value
+                                    ? SSvgs.pMessageDark
+                                    : SSvgs.pMessage,
+                                label: 'Message'),
+                          ),
+                          ContactThrough(
+                              svgAsset: themeController.isDarkTheme.value
+                                  ? SSvgs.pCallDark
+                                  : SSvgs.pCall,
+                              label: 'Call'),
+                          //const SizedBox(),
+                          ContactThrough(
+                              svgAsset: themeController.isDarkTheme.value
+                                  ? SSvgs.pVideoDark
+                                  : SSvgs.pVideo,
+                              label: 'Video'),
+                          //const SizedBox(),
+                          ContactThrough(
+                              svgAsset: SSvgs.sendMoneyIcon, label: 'Send'),
+                          //const SizedBox(width: 1,),
+                          ContactThrough(
+                              svgAsset: SSvgs.requestMoneyIcon,
+                              label: 'Request'),
+                        ],
+                      ),
                     ),
                     const SizedBox(
                       height: 25,
@@ -259,8 +263,8 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                               TextSpan(
                                 text: 'About Me\n',
                                 style: TextStyle(
-                                  color:  themeController.isDarkTheme.value
-                                      ?  SColors.color4
+                                  color: themeController.isDarkTheme.value
+                                      ? SColors.color4
                                       : SColors.color3,
                                   fontSize: 12,
                                   fontWeight: FontWeight.w700,
@@ -269,8 +273,8 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                               TextSpan(
                                 text: userDetailsModel!.strAbout,
                                 style: TextStyle(
-                                  color:themeController.isDarkTheme.value
-                                      ?  SColors.color26
+                                  color: themeController.isDarkTheme.value
+                                      ? SColors.color26
                                       : SColors.color3,
                                   fontSize: 11,
                                   fontWeight: FontWeight.w500,
@@ -286,7 +290,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 28),
                       child: Divider(
                         color: themeController.isDarkTheme.value
-                            ?  SColors.color26
+                            ? SColors.color26
                             : SColors.color3,
                         thickness: 1,
                       ),
@@ -297,33 +301,28 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                         indicatorColor: SColors.color9.withOpacity(0.5),
                         tabs: [
                           Tab(
-                            icon: SvgPicture.asset(
-                              SSvgs.flicksLogo,
-                              width: 30,
-                              height: 30,
-                              color: selectedTabIndex == 0 ?
-                              themeController.isDarkTheme.value
-                                  ?  SColors.color27
-                                  : null
-                                  : themeController.isDarkTheme.value
-                                  ?  SColors.color27.withOpacity(0.5)
-                                  : Colors.grey
-                            ),
+                            icon: SvgPicture.asset(SSvgs.flicksLogo,
+                                width: 30,
+                                height: 30,
+                                color: selectedTabIndex == 0
+                                    ? themeController.isDarkTheme.value
+                                        ? SColors.color27
+                                        : null
+                                    : themeController.isDarkTheme.value
+                                        ? SColors.color27.withOpacity(0.5)
+                                        : Colors.grey),
                           ),
                           Tab(
-                            icon: SvgPicture.asset(
-                              SSvgs.channelLogo,
-                              width: 30,
-                              height: 30,
-                              color:
-                              selectedTabIndex == 1 ?
-                              themeController.isDarkTheme.value
-                                  ?  SColors.color27
-                                  : null
-                                  : themeController.isDarkTheme.value
-                                  ?  SColors.color27.withOpacity(0.5)
-                                  : Colors.grey
-                            ),
+                            icon: SvgPicture.asset(SSvgs.channelLogo,
+                                width: 30,
+                                height: 30,
+                                color: selectedTabIndex == 1
+                                    ? themeController.isDarkTheme.value
+                                        ? SColors.color27
+                                        : null
+                                    : themeController.isDarkTheme.value
+                                        ? SColors.color27.withOpacity(0.5)
+                                        : Colors.grey),
                           ),
                         ],
                         onTap: (index) {
@@ -362,9 +361,8 @@ void showBottomSheet(
   ThemeController themeController = Get.find();
   showModalBottomSheet(
     context: context,
-    backgroundColor: themeController.isDarkTheme.value
-        ?  SColors.darkmode
-        : SColors.color11,
+    backgroundColor:
+        themeController.isDarkTheme.value ? SColors.darkmode : SColors.color11,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
         top: Radius.circular(25),
@@ -382,8 +380,8 @@ void showBottomSheet(
               child: Divider(
                 thickness: 2,
                 color: themeController.isDarkTheme.value
-                    ?  SColors.color26
-                    :Color.fromRGBO(0, 51, 142, 0.5),
+                    ? SColors.color26
+                    : Color.fromRGBO(0, 51, 142, 0.5),
               ),
             ),
             const SizedBox(
@@ -402,7 +400,7 @@ void showBottomSheet(
                 model.isBlocked ? "Unblock" : 'Block',
                 style: TextStyle(
                   color: themeController.isDarkTheme.value
-                      ?  SColors.sheetItemColor
+                      ? SColors.sheetItemColor
                       : SColors.color12,
                   fontSize: 11,
                   fontWeight: FontWeight.w600,
@@ -426,7 +424,7 @@ void showBottomSheet(
                 'Report',
                 style: TextStyle(
                   color: themeController.isDarkTheme.value
-                      ?  SColors.sheetItemColor
+                      ? SColors.sheetItemColor
                       : SColors.color12,
                   fontSize: 11,
                   fontWeight: FontWeight.w600,

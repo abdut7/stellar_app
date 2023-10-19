@@ -6,6 +6,7 @@ import 'package:stellar_chat/View/create_post/channel/upload_new_post.dart';
 import 'package:stellar_chat/View/create_post/flicks/flicks_upload_new_post/upload_new_post.dart';
 import 'package:stellar_chat/View/video_editor/crop_page.dart';
 import 'package:stellar_chat/View/video_editor/export_service.dart';
+import 'package:stellar_chat/View/video_editor/video_filter/video_filter_home.dart';
 import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:video_editor/video_editor.dart';
 
@@ -79,19 +80,11 @@ class _VideoEditorHomeScreenState extends State<VideoEditorHomeScreen> {
       onCompleted: (file) {
         _isExporting.value = false;
         if (!mounted) return;
-        if (widget.isFromChannel) {
-          Get.to(
-            () => ChannelUploadNewPost(
-              path: file.path,
-            ),
-          );
-          return;
-        }
-        Get.to(
-          () => FlicksUploadNewPost(
-            path: file.path,
-          ),
-        );
+        Get.to(() => VideoFilterHomeScreen(
+              videoPath: file.path,
+              isFromChannel: widget.isFromChannel,
+            ));
+
         // showDialog(
         //   context: context,
         //   builder: (_) => VideoResultPopup(video: file),

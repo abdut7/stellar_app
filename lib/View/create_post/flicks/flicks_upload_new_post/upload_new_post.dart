@@ -111,6 +111,10 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 25),
                       child: TextField(
+                        style: TextStyle(
+                            color: Get.find<ThemeController>().isDarkTheme.value
+                                ? Colors.white
+                                : Colors.black),
                         controller: captionController,
                         decoration: const InputDecoration(
                           hintStyle: TextStyle(
