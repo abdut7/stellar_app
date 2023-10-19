@@ -124,185 +124,179 @@ class _VideoEditorHomeScreenState extends State<VideoEditorHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(120), // Set this height
-          child: Container(
-              height: 80,
-              color: const Color.fromRGBO(159, 196, 232, 1),
-              child: SafeArea(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const SizedBox(
-                      width: 30,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: SvgPicture.string(
-                          """<svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M7.5 14L1 7.5L7.5 1" stroke="black" stroke-width="2" stroke-linejoin="round"/>
-                                    </svg>
-                                    """),
-                    ),
-                    const Spacer(),
-                    GestureDetector(
-                      onTap: _exportVideo,
-                      child: Row(
-                        children: [
-                          const Text(
-                            "Next",
-                            style:
-                                TextStyle(color: Color.fromRGBO(0, 51, 142, 1)),
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          SvgPicture.string(
-                              """<svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L7.5 7.5L1 14" stroke="black" stroke-width="2" stroke-linejoin="round"/>
-                    </svg>
-                    """),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              )),
-        ),
-        body: _controller.initialized
-            ? SafeArea(
-                child: Stack(
-                  children: [
-                    Column(
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(120), // Set this height
+        child: Container(
+            height: 100,
+            color: const Color.fromRGBO(159, 196, 232, 1),
+            child: SafeArea(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: SvgPicture.string(
+                        """<svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M7.5 14L1 7.5L7.5 1" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+                                  </svg>
+                                  """),
+                  ),
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: _exportVideo,
+                    child: Row(
                       children: [
-                        _topNavBar(),
-                        Expanded(
-                          child: DefaultTabController(
-                            length: 2,
-                            child: Column(
-                              children: [
-                                Expanded(
-                                  child: TabBarView(
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    children: [
-                                      Stack(
-                                        alignment: Alignment.center,
-                                        children: [
-                                          CropGridViewer.preview(
-                                              controller: _controller),
-                                          AnimatedBuilder(
-                                            animation: _controller.video,
-                                            builder: (_, __) => AnimatedOpacity(
-                                              opacity:
-                                                  _controller.isPlaying ? 0 : 1,
-                                              duration: kThemeAnimationDuration,
-                                              child: GestureDetector(
-                                                onTap: _controller.video.play,
-                                                child: Container(
-                                                  width: 40,
-                                                  height: 40,
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                    color: Colors.white,
-                                                    shape: BoxShape.circle,
-                                                  ),
-                                                  child: const Icon(
-                                                    Icons.play_arrow,
-                                                    color: Colors.black,
-                                                  ),
+                        const Text(
+                          "Next",
+                          style:
+                              TextStyle(color: Color.fromRGBO(0, 51, 142, 1)),
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        SvgPicture.string(
+                            """<svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L7.5 7.5L1 14" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+                  </svg>
+                  """),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            )),
+      ),
+      body: _controller.initialized
+          ? SafeArea(
+              child: Stack(
+                children: [
+                  Column(
+                    children: [
+                      _topNavBar(),
+                      Expanded(
+                        child: DefaultTabController(
+                          length: 2,
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: TabBarView(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  children: [
+                                    Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        CropGridViewer.preview(
+                                            controller: _controller),
+                                        AnimatedBuilder(
+                                          animation: _controller.video,
+                                          builder: (_, __) => AnimatedOpacity(
+                                            opacity:
+                                                _controller.isPlaying ? 0 : 1,
+                                            duration: kThemeAnimationDuration,
+                                            child: GestureDetector(
+                                              onTap: _controller.video.play,
+                                              child: Container(
+                                                width: 40,
+                                                height: 40,
+                                                decoration: const BoxDecoration(
+                                                  color: Colors.white,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: const Icon(
+                                                  Icons.play_arrow,
+                                                  color: Colors.black,
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                      CoverViewer(controller: _controller)
-                                    ],
-                                  ),
+                                        ),
+                                      ],
+                                    ),
+                                    CoverViewer(controller: _controller)
+                                  ],
                                 ),
-                                Container(
-                                  height: 200,
-                                  margin: const EdgeInsets.only(top: 10),
-                                  child: Column(
-                                    children: [
-                                      GestureDetector(
-                                        onTap: () {},
-                                        child: Row(
+                              ),
+                              Container(
+                                height: 200,
+                                margin: const EdgeInsets.only(top: 10),
+                                child: Column(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {},
+                                      child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            const Padding(
+                                                padding: EdgeInsets.all(5),
+                                                child: Icon(Icons.content_cut)),
+                                            Text(
+                                              'Trim',
+                                              style: TextStyle(
+                                                  color: Get.find<
+                                                              ThemeController>()
+                                                          .isDarkTheme
+                                                          .value
+                                                      ? Colors.white
+                                                      : Colors.black),
+                                            )
+                                          ]),
+                                    ),
+                                    Expanded(
+                                      child: TabBarView(
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        children: [
+                                          Column(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
-                                            children: [
-                                              const Padding(
-                                                  padding: EdgeInsets.all(5),
-                                                  child:
-                                                      Icon(Icons.content_cut)),
-                                              Text(
-                                                'Trim',
-                                                style: TextStyle(
-                                                    color: Get.find<
-                                                                ThemeController>()
-                                                            .isDarkTheme
-                                                            .value
-                                                        ? Colors.white
-                                                        : Colors.black),
-                                              )
-                                            ]),
+                                            children: _trimSlider(),
+                                          ),
+                                          _coverSelection(),
+                                        ],
                                       ),
-                                      Expanded(
-                                        child: TabBarView(
-                                          physics:
-                                              const NeverScrollableScrollPhysics(),
-                                          children: [
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: _trimSlider(),
-                                            ),
-                                            _coverSelection(),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                                ValueListenableBuilder(
-                                  valueListenable: _isExporting,
-                                  builder: (_, bool export, Widget? child) =>
-                                      AnimatedSize(
-                                    duration: kThemeAnimationDuration,
-                                    child: export ? child : null,
-                                  ),
-                                  child: AlertDialog(
-                                    title: ValueListenableBuilder(
-                                      valueListenable: _exportingProgress,
-                                      builder: (_, double value, __) => Center(
-                                        child: Text(
-                                          "Processing video ${(value * 100).ceil()}%",
-                                          style: const TextStyle(fontSize: 12),
-                                        ),
+                              ),
+                              ValueListenableBuilder(
+                                valueListenable: _isExporting,
+                                builder: (_, bool export, Widget? child) =>
+                                    AnimatedSize(
+                                  duration: kThemeAnimationDuration,
+                                  child: export ? child : null,
+                                ),
+                                child: AlertDialog(
+                                  title: ValueListenableBuilder(
+                                    valueListenable: _exportingProgress,
+                                    builder: (_, double value, __) => Center(
+                                      child: Text(
+                                        "Processing video ${(value * 100).ceil()}%",
+                                        style: const TextStyle(fontSize: 12),
                                       ),
                                     ),
                                   ),
-                                )
-                              ],
-                            ),
+                                ),
+                              )
+                            ],
                           ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              )
-            : const Center(child: CircularProgressIndicator()),
-      ),
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            )
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 
