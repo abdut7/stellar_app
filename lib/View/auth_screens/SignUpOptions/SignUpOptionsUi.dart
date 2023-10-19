@@ -31,7 +31,7 @@ class _SignUpOptionsUiState extends State<SignUpOptionsUi> {
   Widget bottomSheetContent() {
     return Container(
       height: 400,
-      width: double.infinity,
+      width: Get.width,
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
