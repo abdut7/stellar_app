@@ -109,6 +109,7 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
   Widget textField(TextEditingController controller) {
     return GestureDetector(
       child: Container(
+        width: Get.width,
         height: containerHeight,
         decoration: BoxDecoration(
           color: Colors.white,

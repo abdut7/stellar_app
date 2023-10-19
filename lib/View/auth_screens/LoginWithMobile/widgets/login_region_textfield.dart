@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 
 class LoginRegionTextField extends StatefulWidget {
@@ -89,6 +90,7 @@ class _LoginRegionTextFieldState extends State<LoginRegionTextField> {
 
   Widget textField(TextEditingController controller) {
     return Container(
+      width: Get.width,
       height: 35,
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(8)),
