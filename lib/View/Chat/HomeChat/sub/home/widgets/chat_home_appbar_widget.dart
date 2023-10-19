@@ -99,6 +99,9 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                       SSvgs.sv17,
                       width: 20,
                       height: 20,
+                      color:  themeController.isDarkTheme.value
+                          ?  SColors.color26
+                          : SColors.color12,
                     ),
                   ),
                   ontap: () {
@@ -122,6 +125,9 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                       SSvgs.sv14,
                       width: 20,
                       height: 20,
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.color26
+                          : SColors.color12,
                     ),
                   ),
                   ontap: () {
@@ -145,6 +151,9 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                       SSvgs.payIcon,
                       width: 20,
                       height: 20,
+                      color: themeController.isDarkTheme.value
+                          ?  SColors.color26
+                          : SColors.color12,
                     ),
                   ),
                   ontap: () {
