@@ -90,7 +90,10 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                           child: SvgPicture.asset(
                                             SSvgs.moreVertz,
                                             width: 10,
-                                            height: 22,
+                                            height: 20,
+                                            color: themeController.isDarkTheme.value
+                                                ?  SColors.color3
+                                                : SColors.color11,
                                           ),
                                         )),
                                   ],
@@ -98,12 +101,16 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                 Container(
                                   width: Get.width,
                                   height: Get.height * 0.2,
-                                  decoration: const BoxDecoration(
+                                  decoration:  BoxDecoration(
                                     // color: Colors.red,
                                     gradient: LinearGradient(
                                       colors: [
-                                        Colors.white,
-                                        Colors.transparent,
+                                        themeController.isDarkTheme.value
+                                            ?  SColors.color3
+                                            : SColors.color4,
+                                       themeController.isDarkTheme.value
+                                            ?  Colors.transparent
+                                            : Colors.transparent
                                       ],
                                       begin: Alignment.bottomCenter,
                                       end: Alignment.topCenter,
@@ -119,7 +126,9 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                       Text(
                                         userDetailsModel!.strName,
                                         style: TextStyle(
-                                          color: SColors.color3,
+                                          color: themeController.isDarkTheme.value
+                                              ?  SColors.color4
+                                              : SColors.color3,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w900,
                                         ),
@@ -130,7 +139,9 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                       Text(
                                         'PHONE NUMBER : ${userDetailsModel!.strMobileNo}',
                                         style: TextStyle(
-                                          color: SColors.color3,
+                                          color: themeController.isDarkTheme.value
+                                              ?  SColors.color4
+                                              : SColors.color3,
                                           fontSize: 11,
                                           fontWeight: FontWeight.w800,
                                         ),
@@ -278,7 +289,9 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 28),
                       child: Divider(
-                        color: SColors.color3,
+                        color: themeController.isDarkTheme.value
+                            ?  SColors.color26
+                            : SColors.color3,
                         thickness: 1,
                       ),
                     ),
@@ -350,9 +363,12 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
 
 void showBottomSheet(
     BuildContext context, String action, UserDetailsModel model) {
+  ThemeController themeController = Get.find();
   showModalBottomSheet(
     context: context,
-    backgroundColor: SColors.color11,
+    backgroundColor: themeController.isDarkTheme.value
+        ?  SColors.darkmode
+        : SColors.color11,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
         top: Radius.circular(25),
@@ -369,7 +385,9 @@ void showBottomSheet(
               padding: const EdgeInsets.symmetric(horizontal: 50),
               child: Divider(
                 thickness: 2,
-                color: Color.fromRGBO(0, 51, 142, 0.5),
+                color: themeController.isDarkTheme.value
+                    ?  SColors.color26
+                    :Color.fromRGBO(0, 51, 142, 0.5),
               ),
             ),
             const SizedBox(
@@ -387,7 +405,9 @@ void showBottomSheet(
               child: Text(
                 model.isBlocked ? "Unblock" : 'Block',
                 style: TextStyle(
-                  color: SColors.color12,
+                  color: themeController.isDarkTheme.value
+                      ?  SColors.sheetItemColor
+                      : SColors.color12,
                   fontSize: 11,
                   fontWeight: FontWeight.w600,
                 ),
@@ -409,7 +429,9 @@ void showBottomSheet(
               child: Text(
                 'Report',
                 style: TextStyle(
-                  color: SColors.color12,
+                  color: themeController.isDarkTheme.value
+                      ?  SColors.sheetItemColor
+                      : SColors.color12,
                   fontSize: 11,
                   fontWeight: FontWeight.w600,
                 ),
