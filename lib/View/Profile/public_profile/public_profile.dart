@@ -106,7 +106,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                     gradient: LinearGradient(
                                       colors: [
                                         themeController.isDarkTheme.value
-                                            ?  SColors.color3
+                                            ?  SColors.darkmode
                                             : SColors.color4,
                                        themeController.isDarkTheme.value
                                             ?  Colors.transparent
@@ -199,53 +199,49 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                     const SizedBox(
                       height: 25,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              if (widget.isFromChatScreen) {
-                                Get.back();
-                              } else {
-                                Get.to(PrivateChatScreen(
-                                    chatId: userDetailsModel!.id,
-                                    fullName: userDetailsModel!.strName,
-                                    imageUrl: userDetailsModel!.strProfileUrl));
-                              }
-                            },
-                            child: ContactThrough(
-                                svgAsset: themeController.isDarkTheme.value ? SSvgs.pMessageDark
-                                    : SSvgs.pMessage,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            if (widget.isFromChatScreen) {
+                              Get.back();
+                            } else {
+                              Get.to(PrivateChatScreen(
+                                  chatId: userDetailsModel!.id,
+                                  fullName: userDetailsModel!.strName,
+                                  imageUrl: userDetailsModel!.strProfileUrl));
+                            }
+                          },
+                          child: ContactThrough(
+                              svgAsset: themeController.isDarkTheme.value ? SSvgs.pMessageDark
+                                  : SSvgs.pMessage,
 
-                                label: 'Message'),
-                          ),
-                          ContactThrough(
-                              svgAsset: themeController.isDarkTheme.value ? SSvgs.pCallDark
-                                  : SSvgs.pCall,
+                              label: 'Message'),
+                        ),
+                        ContactThrough(
+                            svgAsset: themeController.isDarkTheme.value ? SSvgs.pCallDark
+                                : SSvgs.pCall,
 
-                              label: 'Call'),
-                           //const SizedBox(),
-                          ContactThrough(
-                              svgAsset: themeController.isDarkTheme.value ? SSvgs.pVideoDark
-                                  : SSvgs.pVideo,
+                            label: 'Call'),
+                         //const SizedBox(),
+                        ContactThrough(
+                            svgAsset: themeController.isDarkTheme.value ? SSvgs.pVideoDark
+                                : SSvgs.pVideo,
 
-                              label: 'Video'),
-                          //const SizedBox(),
-                          ContactThrough(
-                              svgAsset: SSvgs.sendMoneyIcon,
+                            label: 'Video'),
+                        //const SizedBox(),
+                        ContactThrough(
+                            svgAsset: SSvgs.sendMoneyIcon,
 
-                              label: 'Send'),
-                          //const SizedBox(width: 1,),
-                          ContactThrough(
-                              svgAsset: SSvgs.requestMoneyIcon,
+                            label: 'Send'),
+                        //const SizedBox(width: 1,),
+                        ContactThrough(
+                            svgAsset: SSvgs.requestMoneyIcon,
 
-                              label: 'Request'),
-                        ],
-                      ),
-
+                            label: 'Request'),
+                      ],
                     ),
                     const SizedBox(
                       height: 25,
