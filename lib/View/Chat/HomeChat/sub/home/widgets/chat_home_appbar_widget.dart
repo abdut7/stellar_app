@@ -153,7 +153,7 @@ class ChatHomeAppbarWidget extends StatelessWidget {
                       height: 20,
                       color: themeController.isDarkTheme.value
                           ?  SColors.color26
-                          : SColors.color12,
+                          : null,
                     ),
                   ),
                   ontap: () {
