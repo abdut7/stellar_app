@@ -72,7 +72,7 @@ class _MainProfileState extends State<MainProfile> {
                                 gradient: LinearGradient(
                                   colors: [
                                     themeController.isDarkTheme.value
-                                        ? Colors.black
+                                        ? SColors.darkmode
                                         : Colors.white,
                                     Colors.transparent,
                                   ],
