@@ -7,6 +7,7 @@ import 'package:stellar_chat/View/create_post/channel/upload_new_post.dart';
 import 'package:stellar_chat/View/create_post/flicks/flicks_upload_new_post/upload_new_post.dart';
 import 'package:stellar_chat/View/video_editor/video_filter/filters/filters_generated.dart';
 import 'package:stellar_chat/controllers/filter_controller.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoFilterHomeScreen extends StatefulWidget {
@@ -33,8 +34,8 @@ class _VideoFilterHomeScreenState extends State<VideoFilterHomeScreen> {
     "assets/Images/01 Normal.png",
     "assets/Images/06 GrayScale.png",
     "assets/Images/03 Vintage.png",
-    "assets/Images/07 Sepia.png"
-        "assets/Images/06 GrayScale.png",
+    "assets/Images/07 Sepia.png",
+    "assets/Images/06 GrayScale.png",
   ];
   @override
   void initState() {
@@ -51,7 +52,7 @@ class _VideoFilterHomeScreenState extends State<VideoFilterHomeScreen> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(120), // Set this height
         child: Container(
-            height: 80,
+            height: 100,
             color: const Color.fromRGBO(159, 196, 232, 1),
             child: SafeArea(
               child: Row(
@@ -112,66 +113,75 @@ class _VideoFilterHomeScreenState extends State<VideoFilterHomeScreen> {
               ),
             )),
       ),
-      body: Column(
-        children: [
-          Container(
-            height: Get.height * 0.7,
-            width: Get.width,
-            decoration: const BoxDecoration(color: Colors.red),
-            child: VideoPlayerWidget(),
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          SizedBox(
-            height: Get.height * 0.15,
-            child: ListView.separated(
-              separatorBuilder: (context, index) => const SizedBox(
-                width: 5,
-              ),
-              scrollDirection: Axis.horizontal,
-              itemCount: filterList.length,
-              itemBuilder: (context, index) => Column(
-                children: [
-                  Text(
-                    filterList[index],
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      print(index);
-                      if (index == 0) {
-                        applyNormalColor(widget.videoPath);
-                      }
-                      if (index == 1) {
-                        applyBlackAndWhiteFilterUsingFFmpeg(widget.videoPath);
-                      }
-                      if (index == 2) {
-                        applyVintageFilterUsingFFmpeg(widget.videoPath);
-                      }
-                      if (index == 3) {
-                        applySepiaFilterUsingFFmpeg(widget.videoPath);
-                      }
-                      if (index == 4) {
-                        applyGrayscaleFilterUsingFFmpeg(widget.videoPath);
-                      }
-                    },
-                    child: Container(
-                      height: Get.height * 0.12,
-                      width: Get.height * 0.12,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(filterImageList[index])),
-                        borderRadius: BorderRadius.circular(10),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: Get.height * 0.65,
+              width: Get.width,
+              decoration: const BoxDecoration(color: Colors.red),
+              child: VideoPlayerWidget(),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              height: Get.height * 0.15,
+              child: ListView.separated(
+                padding: EdgeInsets.only(left: 10),
+                separatorBuilder: (context, index) => const SizedBox(
+                  width: 5,
+                ),
+                scrollDirection: Axis.horizontal,
+                itemCount: 5,
+                itemBuilder: (context, index) => Column(
+                  children: [
+                    Text(
+                      filterList[index],
+                      style: TextStyle(
+                          color: Get.find<ThemeController>().isDarkTheme.value
+                              ? Colors.white
+                              : Colors.black),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        print(index);
+                        if (index == 0) {
+                          applyNormalColor(widget.videoPath);
+                        }
+                        if (index == 1) {
+                          applyBlackAndWhiteFilterUsingFFmpeg(widget.videoPath);
+                        }
+                        if (index == 2) {
+                          applyVintageFilterUsingFFmpeg(widget.videoPath);
+                        }
+                        if (index == 3) {
+                          applySepiaFilterUsingFFmpeg(widget.videoPath);
+                        }
+                        if (index == 4) {
+                          applyGrayscaleFilterUsingFFmpeg(widget.videoPath);
+                        }
+                      },
+                      child: Container(
+                        height: Get.height * 0.12,
+                        width: Get.height * 0.12,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(filterImageList[index])),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

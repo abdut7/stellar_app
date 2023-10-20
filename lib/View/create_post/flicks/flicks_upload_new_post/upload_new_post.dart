@@ -47,7 +47,9 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
             color: SColors.color3,
             size: 15,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Get.back();
+          },
         ),
         title: Text(
           'New Post',
