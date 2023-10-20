@@ -9,14 +9,14 @@ import 'package:stellar_chat/services/api_services/fliq_services.dart';
 
 import '../controllers/flicks/flicks_player_controller.dart';
 
-class FavoriteGridViewTab1 extends StatefulWidget {
-  FavoriteGridViewTab1();
+class FavoriteFlicksGridView extends StatefulWidget {
+  FavoriteFlicksGridView();
 
   @override
-  _FavoriteGridViewTab1State createState() => _FavoriteGridViewTab1State();
+  _FavoriteGridVFlicksGridView createState() => _FavoriteGridVFlicksGridView();
 }
 
-class _FavoriteGridViewTab1State extends State<FavoriteGridViewTab1> {
+class _FavoriteGridVFlicksGridView extends State<FavoriteFlicksGridView> {
   @override
   void initState() {
     super.initState();

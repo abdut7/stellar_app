@@ -125,6 +125,22 @@ class ChannelService {
     }
   }
 
+  Future<List<ChannelItem>> getFavoriteChannel() async {
+    Dio dio = Dio();
+    String url = ApiRoutes.baseUrl + ApiRoutes.getFavoriteChannel;
+    Map<String, dynamic> header = await getHeader();
+    List<ChannelItem> channelItemList = [];
+
+    Response res = await dio.post(url, options: Options(headers: header));
+    ChannelModel model = ChannelModel.fromJson(res.data);
+    print("model is: $model");
+    for (var element in model.arrList) {
+      channelItemList.add(element);
+    }
+    print("channel: $channelItemList");
+    return channelItemList;
+  }
+
   Future<void> likeFlick({required String flickId}) async {
     Dio dio = Dio();
     String url = ApiRoutes.baseUrl + ApiRoutes.likeFlick;

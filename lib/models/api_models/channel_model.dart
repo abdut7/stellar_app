@@ -15,7 +15,6 @@ class ChannelModel {
     final List<dynamic> arrListJson = json['arrList'];
     final List<ChannelItem> channelItems =
         arrListJson.map((item) => ChannelItem.fromJson(item)).toList();
-
     return ChannelModel(
       success: json['success'],
       message: json['message'],
@@ -87,11 +86,11 @@ class ChannelItem {
       createdUserFullName: json['strCreatedUserFullName'],
       createdUserMobNo: json['strCreatedUserMobNo'],
       userProfileUrl: json['strUserProfileUrl'],
-      viewsCount: json['viewsCount'],
+      viewsCount: json['viewsCount'] ?? 0,
       followers: json['followers'] ?? [],
-      followersCount: json['followersCount'],
-      followingStatus: json['followingStatus']??[],
-      isFollowing: json['isFollowing'],
+      followersCount: json['followersCount'] ?? 0,
+      followingStatus: json['followingStatus'] ?? [],
+      isFollowing: json['isFollowing'] ?? false,
     );
   }
 }
