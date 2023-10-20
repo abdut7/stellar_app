@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:stellar_chat/View/comment_view/show_comment_bottom_sheet.dart';
 import 'package:stellar_chat/View/flicks/widget/fliq_video_player_widget.dart';
 import 'package:stellar_chat/View/profile/public_profile/public_profile.dart';
+import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/services/api_services/fliq_services.dart';
 import 'package:stellar_chat/utils/colors.dart';
 
@@ -36,6 +37,7 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
 
   @override
   Widget build(BuildContext context) {
+    UserController userController = Get.find();
     print(widget.flickItem.strFileUrl);
     return Scaffold(
         body: Stack(
@@ -63,6 +65,10 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
                   children: [
                     GestureDetector(
                       onTap: () {
+                        if (userController.userDetailsModel.value!.id ==
+                            widget.flickItem.strUserId) {
+                          return;
+                        }
                         Get.to(() => PublicProfileScreen(
                             uid: widget.flickItem.strUserId));
                       },
