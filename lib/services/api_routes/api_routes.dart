@@ -44,4 +44,6 @@ class ApiRoutes {
   static String getChannelById = "/get_channel_by_id";
   static String getChannelList = "/get_channel_list";
   static String createView = "/create_view";
+  static String createFavorite = "/create_favorite";
+  static String removeFavorite = "/remove_favorite";
 }

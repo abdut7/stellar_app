@@ -20,6 +20,7 @@ class FlickItemWidget extends StatefulWidget {
 
 class _FlickItemWidgetState extends State<FlickItemWidget> {
   bool isLiked = false;
+  bool isFavorite = false;
   int likeCount = 0;
   int commentCount = 0;
   // Implement autoplay logic here.
@@ -28,6 +29,7 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
     likeCount = widget.flickItem.likesCount;
     commentCount = widget.flickItem.commentsCount;
     isLiked = widget.flickItem.isLiked;
+    isFavorite = widget.flickItem.isFavorite;
 
     super.initState();
   }
@@ -70,7 +72,7 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
                             NetworkImage(widget.flickItem.strUserProfileUrl),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     GestureDetector(
@@ -174,6 +176,42 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
                     const Text(
                       "SHARE",
                       style: TextStyle(color: Colors.white),
+                    ),
+                    const SizedBox(height: 30),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isFavorite = !isFavorite;
+                          if (isFavorite) {
+                            FliqServices()
+                                .favoriteFlick(flickId: widget.flickItem.id);
+                          } else {
+                            FliqServices()
+                                .unFavoriteFlick(flickId: widget.flickItem.id);
+                          }
+                        });
+                      },
+                      child: SvgPicture.string(
+                        """<svg width="33" height="38" viewBox="0 0 33 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d_2420_4291)">
+<path d="M26.4986 4H6.4986C5.11919 4 4 5.09786 4 6.45097V30.5463C4 31.9021 5.11919 32.9973 6.5014 32.9973C6.96866 32.9973 7.42753 32.8683 7.82485 32.624L16.3083 27.4229C16.4259 27.3515 16.5713 27.3515 16.6889 27.4229L25.1724 32.6267C26.3447 33.3431 27.8864 32.9945 28.6167 31.8445C28.8657 31.4548 28.9972 31.0046 28.9972 30.5463V6.45097C28.9972 5.09786 27.878 4 26.4986 4Z" fill="white"/>
+</g>
+<defs>
+<filter id="filter0_d_2420_4291" x="0" y="0.33" width="32.9971" height="36.999" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="0.33"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2420_4291"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2420_4291" result="shape"/>
+</filter>
+</defs>
+</svg>
+""",
+                        color: isFavorite ? Colors.red : null,
+                      ),
                     ),
                   ],
                 ),

@@ -169,6 +169,40 @@ class FliqServices {
     }
   }
 
+  Future<void> favoriteFlick({required String flickId}) async {
+    Dio dio = Dio();
+    String url = ApiRoutes.baseUrl + ApiRoutes.createFavorite;
+    Map<String, dynamic> header = await getHeader();
+    Map<String, dynamic> data = {"strFlickId": flickId, "strType": "flick"};
+
+    try {
+      Response res =
+          await dio.post(url, options: Options(headers: header), data: data);
+      print("Favorite flick $res");
+    } on Exception catch (e) {
+      return null;
+      // TODO
+      print(e);
+    }
+  }
+
+  Future<void> unFavoriteFlick({required String flickId}) async {
+    Dio dio = Dio();
+    String url = ApiRoutes.baseUrl + ApiRoutes.removeFavorite;
+    Map<String, dynamic> header = await getHeader();
+    Map<String, dynamic> data = {"strFlickId": flickId, "strType": "flick"};
+
+    try {
+      Response res =
+          await dio.post(url, options: Options(headers: header), data: data);
+      print(res);
+    } on Exception catch (e) {
+      return null;
+      // TODO
+      print(e);
+    }
+  }
+
   Future<void> likeFlick({required String flickId}) async {
     Dio dio = Dio();
     String url = ApiRoutes.baseUrl + ApiRoutes.likeFlick;
