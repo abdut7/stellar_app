@@ -1,5 +1,6 @@
 import 'package:intl/intl.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/View/channel/channel_home_screen/widgets/channel_more_options.dart';
 import 'package:stellar_chat/View/channel/channel_view/channel_view_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -115,7 +116,25 @@ class _VideoCardState extends State<VideoCard> {
                     ),
                   ],
                 )),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))
+                IconButton(
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        backgroundColor: Color.fromRGBO(159, 196, 232, 1),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20.0),
+                            topRight: Radius.circular(20.0),
+                          ),
+                        ),
+                        builder: (BuildContext context) {
+                          return ChannelBottomSheet(
+                            channelItem: widget.channelItem,
+                          );
+                        },
+                      );
+                    },
+                    icon: const Icon(Icons.more_vert))
               ],
             )
           ],

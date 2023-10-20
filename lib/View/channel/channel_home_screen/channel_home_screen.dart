@@ -36,6 +36,8 @@ class _ChannelHomeScreenState extends State<ChannelHomeScreen> {
     });
   }
 
+  List<String> isChannelFavorite = [];
+
   @override
   Widget build(BuildContext context) {
     UserController userController = Get.find();
@@ -180,20 +182,21 @@ class FlicksInChannelsWidget extends StatelessWidget {
                       const SizedBox(
                         width: 20,
                       ),
-          SvgPicture.asset(
-            themeController.isDarkTheme.value ? SSvgs.flicksDark
-                : SSvgs.flicksSmall,
-            width: themeController.isDarkTheme.value ? 16
-                : null,
-            height: themeController.isDarkTheme.value ? 17
-                : null,
-          ),
-                      const SizedBox(width: 8,),
-                     Text(
+                      SvgPicture.asset(
+                        themeController.isDarkTheme.value
+                            ? SSvgs.flicksDark
+                            : SSvgs.flicksSmall,
+                        width: themeController.isDarkTheme.value ? 16 : null,
+                        height: themeController.isDarkTheme.value ? 17 : null,
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Text(
                         'Flicks',
                         style: TextStyle(
                           color: themeController.isDarkTheme.value
-                              ?  SColors.color4
+                              ? SColors.color4
                               : SColors.color3,
                           fontSize: 10,
                           fontWeight: FontWeight.w500,
