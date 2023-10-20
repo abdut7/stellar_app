@@ -9,6 +9,7 @@ import 'package:stellar_chat/View/channel/channel_home_screen/widgets/video_card
 import 'package:stellar_chat/View/comment_view/show_comment_bottom_sheet.dart';
 import 'package:stellar_chat/controllers/channel/channel_controller.dart';
 import 'package:stellar_chat/controllers/theme_controller.dart';
+import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/models/api_models/channel_model.dart';
 import 'package:stellar_chat/services/api_services/account_services.dart';
 import 'package:stellar_chat/services/api_services/channel_service.dart';
@@ -67,7 +68,7 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
       final position = _videoPlayerController.value.position;
 
       // Check if the video has been playing for at least 10 seconds
-      if (position >= Duration(seconds: 10) && !functionCalled) {
+      if (position >= const Duration(seconds: 10) && !functionCalled) {
         // Call your function here
         ChannelService.addView(channelId: widget.channelItem.id);
         // Set the flag to prevent calling the function multiple times
@@ -87,6 +88,7 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
   Widget build(BuildContext context) {
     ThemeController themeController = Get.find();
     ChannelHomeController channelHomeController = Get.find();
+    UserController userController = Get.find();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -187,14 +189,16 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(widget.channelItem.createdUserFullName,
-                      style: TextStyle(
-                        color: themeController.isDarkTheme.value
-                            ?  SColors.color4
-                            : SColors.color3,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),),
+                      Text(
+                        widget.channelItem.createdUserFullName,
+                        style: TextStyle(
+                          color: themeController.isDarkTheme.value
+                              ? SColors.color4
+                              : SColors.color3,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                       Text(
                         "$followCount Followers",
                         style:
@@ -203,56 +207,61 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
                     ],
                   ),
                   const Spacer(),
-                  GestureDetector(
-                    onTap: () {
-                      if (isFollowing) {
-                        AccountServices.unFollowUser(widget.channelItem.userId)
-                            .then((value) {
-                          if (value) {
-                            setState(() {
-                              isFollowing = false;
-                              followCount -= 1;
-                            });
-                          }
-                        });
-                      } else {
-                        AccountServices.followUser(widget.channelItem.userId)
-                            .then((value) {
-                          if (value) {
-                            setState(() {
-                              isFollowing = true;
-                              followCount += 1;
-                            });
-                          }
-                        });
-                      }
-                    },
-                    child: Container(
-                      width: 90,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: isFollowing
-                            ? Color.fromRGBO(159, 196, 232, 1)
-                            : colorPrimary,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: Text(
-                          isFollowing ? "Following" : "Follow",
-                          style: TextStyle(
+                  userController.userDetailsModel.value!.id ==
+                          widget.channelItem.userId
+                      ? SizedBox()
+                      : GestureDetector(
+                          onTap: () {
+                            if (isFollowing) {
+                              AccountServices.unFollowUser(
+                                      widget.channelItem.userId)
+                                  .then((value) {
+                                if (value) {
+                                  setState(() {
+                                    isFollowing = false;
+                                    followCount -= 1;
+                                  });
+                                }
+                              });
+                            } else {
+                              AccountServices.followUser(
+                                      widget.channelItem.userId)
+                                  .then((value) {
+                                if (value) {
+                                  setState(() {
+                                    isFollowing = true;
+                                    followCount += 1;
+                                  });
+                                }
+                              });
+                            }
+                          },
+                          child: Container(
+                            width: 90,
+                            height: 30,
+                            decoration: BoxDecoration(
                               color: isFollowing
-                                  ? const Color.fromARGB(184, 0, 0, 0)
-                                  : secondaryColor),
+                                  ? const Color.fromRGBO(159, 196, 232, 1)
+                                  : colorPrimary,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Center(
+                              child: Text(
+                                isFollowing ? "Following" : "Follow",
+                                style: TextStyle(
+                                    color: isFollowing
+                                        ? const Color.fromARGB(184, 0, 0, 0)
+                                        : secondaryColor),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
                   const SizedBox(
                     width: 20,
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               GestureDetector(
@@ -269,7 +278,7 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
                   decoration: BoxDecoration(
                       color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(10)),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       "Comments",
                       style: TextStyle(color: Colors.black),
@@ -279,7 +288,7 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
               ),
               ListView.separated(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     ChannelItem channelItem =
                         channelHomeController.channelItems.elementAt(index);
