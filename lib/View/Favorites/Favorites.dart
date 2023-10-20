@@ -101,7 +101,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 child: IndexedStack(index: selectedTabIndex, children: [
                   Visibility(
                       visible: selectedTabIndex == 0,
-                      child: FavoriteGridViewTab1(icon: Icons.video_camera_back,)),
+                      child: FavoriteGridViewTab1()),
                   Visibility(
                       visible: selectedTabIndex == 1,
                       child: FavoriteGridViewTab2()),

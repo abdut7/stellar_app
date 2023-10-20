@@ -169,6 +169,26 @@ class FliqServices {
     }
   }
 
+  Future<List<FlickItem>> getFavoriteFlicks() async {
+    Dio dio = Dio();
+    String url = ApiRoutes.baseUrl + ApiRoutes.getFavoriteFlick;
+    Map<String, dynamic> header = await getHeader();
+    List<FlickItem> flickItemList = [];
+    try {
+      Response res = await dio.post(
+        url,
+        options: Options(headers: header),
+      );
+      print(res);
+      FlickModel model = FlickModel.fromJson(res.data);
+      for (var element in model.arrList) {
+        flickItemList.add(element);
+      }
+      // ignore: empty_catches
+    } on Exception {}
+    return flickItemList;
+  }
+
   Future<void> favoriteFlick({required String flickId}) async {
     Dio dio = Dio();
     String url = ApiRoutes.baseUrl + ApiRoutes.createFavorite;

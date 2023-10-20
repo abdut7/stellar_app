@@ -30,6 +30,8 @@ class ApiRoutes {
   static String filesUpload = "/files_upload";
   static String getFlicksById = "/get_flick_by_id";
   static String getFlicksList = "/get_flick_list";
+  static String getFavoriteFlick = "/get_flick_favorite";
+  static String getFavoriteChannel = "/get_channel_favorite";
   static String likeFlick = "/like_flick_channel";
   static String unlikeFlick = "/unlike_flick_channel";
   static String getFlickComments = "/flick_comment_list";
