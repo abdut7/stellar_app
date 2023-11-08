@@ -8,6 +8,7 @@ import 'package:stellar_chat/View/chat/group_chat/widgets/group_chat_bubble.dart
 import 'package:stellar_chat/View/chat/widgets/bottom_field_sent_widget.dart';
 import 'package:stellar_chat/View/chat/widgets/sent_contact/pick_contact_screen.dart';
 import 'package:stellar_chat/View/chat/widgets/sent_location/sent_location_screen.dart';
+import 'package:stellar_chat/constants/stickers.dart';
 import 'package:stellar_chat/controllers/group_chat_controller.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/models/api_models/chat_history_model.dart';
@@ -170,8 +171,48 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
 
           // Message input field
           ChatBottomFieldSent(
-            onSticker: (){
-              //todo
+            onSticker: () {
+              showModalBottomSheet(
+                context: context,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(24),
+                  ),
+                ),
+                builder: (context) {
+                  return GridView.count(
+                    scrollDirection: Axis.vertical,
+                    crossAxisCount: 4,
+                    mainAxisSpacing: 5,
+                    crossAxisSpacing: 2,
+                    children: List.generate(stickerGalleryList.length, (index) {
+                      return Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            GroupChatService.sentGroupStickerMessage(
+                                widget.chatHistoryList.strChatId,
+                                stickerGalleryList.elementAt(index).path);
+                            Get.back();
+                          },
+                          child: Container(
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              image: DecorationImage(
+                                image: AssetImage(stickerGalleryList
+                                    .elementAt(index)
+                                    .path), // Add your image URL here
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+                  );
+                },
+              );
             },
             chatId: widget.chatHistoryList.strChatId,
             controller: messageConteroller,

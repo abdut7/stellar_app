@@ -27,6 +27,17 @@ class GroupChatService {
     });
   }
 
+    static void sentGroupStickerMessage(String chatId, String message) {
+    Socket socket = SocketService().socket;
+
+    socket.emit('send_message', {
+      'strChatId': chatId,
+      'strMessage': message,
+      "strMessageType": "sticker",
+      "strType": "group",
+    });
+  }
+
   static void sentGroupImageMessage(String chatId, XFile image) async {
     Socket socket = SocketService().socket;
     //convert message to base64
