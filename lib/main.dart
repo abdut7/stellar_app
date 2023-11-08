@@ -2,20 +2,24 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:stellar_chat/View/auth_screens/LoginWithMobile/login_with_mobile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stellar_chat/View/create_post/create_post_home.dart';
 import 'package:stellar_chat/View/splash/spalash_screen.dart';
-import 'package:stellar_chat/View/video_editor/video_editor_screen.dart';
-import 'package:stellar_chat/View/video_editor/video_filter/video_filter_home.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:stellar_chat/services/firebase_service.dart';
+import 'firebase_options.dart';
 import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/functions/hive_functions.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await FirebaseApi().initNotifications();
   final sharedPreferences = await SharedPreferences.getInstance();
   final isDarkTheme = sharedPreferences.getBool('isDarkTheme') ?? false;
   await initHive();

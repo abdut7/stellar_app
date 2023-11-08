@@ -1,5 +1,6 @@
 import 'package:stellar_chat/controllers/api_controllers/login_with_phone_controller.dart';
 import 'package:stellar_chat/controllers/api_controllers/signup_controllers.dart';
+import 'package:stellar_chat/functions/get_fcm_token.dart';
 import 'package:stellar_chat/functions/show_snackbar.dart';
 import 'package:stellar_chat/models/api_models/login_success_model.dart';
 import 'package:stellar_chat/models/api_models/signup_model.dart';
@@ -19,6 +20,7 @@ class AuthServices {
     signupController.isSignupSuccess(false);
     signupController.errorMessage('');
     Dio dio = Dio();
+    String? token = await getFCMToken();
     Map<String, dynamic> body = {
       "strProfileBase64": signupModel.filePath,
       "strName": signupModel.username,
@@ -29,7 +31,8 @@ class AuthServices {
       "strPassword": signupModel.password,
       "strSignupMethode": "OTP",
       "coordinates": signupModel.coordinates,
-      "strRegion": signupModel.region
+      "strRegion": signupModel.region,
+      "strFcmToken": token
     };
 
     String path = ApiRoutes.baseUrl + ApiRoutes.createUser;
@@ -65,6 +68,7 @@ class AuthServices {
   Future<void> loginService(String phoneNumber) async {
     LoginWithPhoneNumberConteroller login = Get.find();
     login.isLoading(true);
+
     Dio dio = Dio();
     Map<String, dynamic> body = {"strMobileNo": phoneNumber};
     String path = ApiRoutes.baseUrl + ApiRoutes.phoneNumberLogin;
@@ -98,7 +102,13 @@ class AuthServices {
         Get.put(LoginWithPhoneNumberConteroller());
 
     Dio dio = Dio();
-    Map<String, dynamic> body = {"strOTPToken": otpToken, "strOTP": otp};
+    String? token = await getFCMToken();
+
+    Map<String, dynamic> body = {
+      "strOTPToken": otpToken,
+      "strOTP": otp,
+      "strFcmToken": token
+    };
     String path = ApiRoutes.baseUrl + ApiRoutes.verifyOtp;
     try {
       Response res = await dio.post(path, data: body);
