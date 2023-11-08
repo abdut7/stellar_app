@@ -10,6 +10,7 @@ import 'package:stellar_chat/View/chat/widgets/sent_location/sent_location_scree
 import 'package:stellar_chat/View/profile/public_profile/public_profile.dart';
 import 'package:stellar_chat/constants/stickers.dart';
 import 'package:stellar_chat/controllers/private_chat_controller.dart';
+import 'package:stellar_chat/functions/hive_functions.dart';
 import 'package:stellar_chat/services/api_services/chat_message_service.dart';
 import 'package:stellar_chat/services/socket_service/private_chat_service.dart';
 import 'package:flutter/material.dart';
@@ -222,16 +223,15 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                                 mainAxisSpacing: 5,
                                 crossAxisSpacing: 2,
                                 children: List.generate(
-                                    stickerGalleryList.length, (index) {
+                                    fetchFavoritStickers().length, (index) {
                                   return Center(
                                     child: GestureDetector(
                                       onTap: () {
                                         PrivateChatService
                                             .sentPersonalStickerMessage(
                                                 widget.chatId,
-                                                stickerGalleryList
-                                                    .elementAt(index)
-                                                    .path);
+                                                fetchFavoritStickers()
+                                                    .elementAt(index));
                                         Get.back();
                                       },
                                       child: Container(
@@ -241,9 +241,9 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                                           borderRadius:
                                               BorderRadius.circular(4),
                                           image: DecorationImage(
-                                            image: AssetImage(stickerGalleryList
-                                                .elementAt(index)
-                                                .path), // Add your image URL here
+                                            image: AssetImage(
+                                                fetchFavoritStickers().elementAt(
+                                                    index)), // Add your image URL here
                                             fit: BoxFit.cover,
                                           ),
                                         ),

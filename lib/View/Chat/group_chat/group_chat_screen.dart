@@ -11,6 +11,7 @@ import 'package:stellar_chat/View/chat/widgets/sent_location/sent_location_scree
 import 'package:stellar_chat/constants/stickers.dart';
 import 'package:stellar_chat/controllers/group_chat_controller.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
+import 'package:stellar_chat/functions/hive_functions.dart';
 import 'package:stellar_chat/models/api_models/chat_history_model.dart';
 import 'package:stellar_chat/models/group_chat/group_message_model.dart';
 import 'package:stellar_chat/services/api_services/group_service.dart';
@@ -250,16 +251,15 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                               crossAxisCount: 4,
                               mainAxisSpacing: 5,
                               crossAxisSpacing: 2,
-                              children: List.generate(stickerGalleryList.length,
-                                  (index) {
+                              children: List.generate(
+                                  fetchFavoritStickers().length, (index) {
                                 return Center(
                                   child: GestureDetector(
                                     onTap: () {
                                       GroupChatService.sentGroupStickerMessage(
                                           widget.chatHistoryList.strChatId,
-                                          stickerGalleryList
-                                              .elementAt(index)
-                                              .path);
+                                          fetchFavoritStickers()
+                                              .elementAt(index));
                                       Get.back();
                                     },
                                     child: Container(
@@ -268,9 +268,9 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(4),
                                         image: DecorationImage(
-                                          image: AssetImage(stickerGalleryList
-                                              .elementAt(index)
-                                              .path), // Add your image URL here
+                                          image: AssetImage(
+                                              fetchFavoritStickers().elementAt(
+                                                  index)), // Add your image URL here
                                           fit: BoxFit.cover,
                                         ),
                                       ),
