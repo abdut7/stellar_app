@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:stellar_chat/View/channel/channel_view/widgets/video_card_channel_view.dart';
 import 'package:stellar_chat/controllers/channel/channel_controller.dart';
 
-
 class ChannelGridView extends StatefulWidget {
   final IconData? icon;
   final String id;
@@ -68,7 +67,8 @@ class _ChannelGridViewState extends State<ChannelGridView> {
                                     ? """https://loremflickr.com/cache/resized/65535_53065639115_14eaf016a0_z_640_360_nofilter.jpg"""
                                     : controller.channelItem
                                         .elementAt(index)
-                                        .thumbnailUrl!))),
+                                        .thumbnailUrl!
+                                        .trim()))),
                         child: widget.icon != null
                             ? Icon(
                                 widget.icon,

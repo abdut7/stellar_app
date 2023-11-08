@@ -1,4 +1,4 @@
-package com.example.base_project
+package com.stellar.stellarchat
 
 import io.flutter.embedding.android.FlutterActivity
 
