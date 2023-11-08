@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:flutter/material.dart';
+import 'package:stellar_chat/constants/stickers.dart';
 import 'package:stellar_chat/controllers/theme_controller.dart';
 
 class StickerGalleryScreen extends StatefulWidget {
@@ -16,9 +17,8 @@ class _StickerGalleryScreenState extends State<StickerGalleryScreen> {
   Widget build(BuildContext context) {
     ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor: themeController.isDarkTheme.value
-          ?  SColors.darkmode
-          : SColors.color4,
+      backgroundColor:
+          themeController.isDarkTheme.value ? SColors.darkmode : SColors.color4,
       appBar: AppBar(
         toolbarHeight: 70,
         elevation: 0,
@@ -26,14 +26,14 @@ class _StickerGalleryScreenState extends State<StickerGalleryScreen> {
           'Stickers',
           style: TextStyle(
             color: themeController.isDarkTheme.value
-                ?  SColors.appbarTitleInDark
+                ? SColors.appbarTitleInDark
                 : SColors.color11,
             fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
         ),
         backgroundColor: themeController.isDarkTheme.value
-            ?  SColors.appbarbgInDark
+            ? SColors.appbarbgInDark
             : SColors.color12,
         leading: Padding(
           padding: const EdgeInsets.only(left: 15),
@@ -42,7 +42,9 @@ class _StickerGalleryScreenState extends State<StickerGalleryScreen> {
       ),
       body: Column(
         children: [
-          const SizedBox(height: 15,),
+          const SizedBox(
+            height: 15,
+          ),
           Expanded(
             child: stickerGridView(),
           ),
@@ -59,19 +61,75 @@ class _StickerGalleryScreenState extends State<StickerGalleryScreen> {
         crossAxisCount: 4,
         mainAxisSpacing: 5,
         crossAxisSpacing: 2,
-        children: List.generate(100, (index) {
+        children: List.generate(stickerGalleryList.length, (index) {
           return Center(
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                showModalBottomSheet(
+                  shape: const RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(24)),
+                  ),
+                  context: context,
+                  builder: (context) {
+                    return SizedBox(
+                      height: 250,
+                      child: Column(
+                        children: [
+                          const Spacer(),
+                          Container(
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              // color: SColors.color4,
+                              borderRadius: BorderRadius.circular(4),
+                              image: DecorationImage(
+                                image: AssetImage(stickerGalleryList
+                                    .elementAt(index)
+                                    .path), // Add your image URL here
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          GestureDetector(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Container(
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 12.0, vertical: 8),
+                                child: Text(
+                                  "Add to Favorites",
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w400,
+                                      color: Color.fromRGBO(159, 196, 232, 1)),
+                                ),
+                              ),
+                              decoration: BoxDecoration(
+                                  color: const Color.fromRGBO(0, 51, 142, 1),
+                                  borderRadius: BorderRadius.circular(10)),
+                            ),
+                          ),
+                          const Spacer()
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
               child: Container(
                 width: 100,
                 height: 100,
                 decoration: BoxDecoration(
                   color: SColors.color4,
                   borderRadius: BorderRadius.circular(4),
-                  image:const  DecorationImage(
-                    image: NetworkImage(
-                        'https://media.istockphoto.com/id/1267740854/vector/good-job-work-comic-text-sound-effects-pop-art-style-vector-speech-bubble-word-and-short.jpg?s=612x612&w=0&k=20&c=OP5jqKUAXR3J8K813UfYgOn7X5dpbg_DexzMvg2P2Fg='), // Add your image URL here
+                  image: DecorationImage(
+                    image: AssetImage(stickerGalleryList
+                        .elementAt(index)
+                        .path), // Add your image URL here
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -82,6 +140,4 @@ class _StickerGalleryScreenState extends State<StickerGalleryScreen> {
       ),
     );
   }
-
 }
-
