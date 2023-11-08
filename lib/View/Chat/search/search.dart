@@ -140,7 +140,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       _changePage(0);
                     },
                     child: Container(
-                      width: 112,
+                      width: 80,
                       height: 26,
                       margin: const EdgeInsets.all(5),
                       decoration: ShapeDecoration(
@@ -171,7 +171,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       _changePage(1);
                     },
                     child: Container(
-                      width: 112,
+                      width: 80,
                       height: 26,
                       margin: const EdgeInsets.all(5),
                       decoration: ShapeDecoration(
@@ -202,7 +202,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       _changePage(2);
                     },
                     child: Container(
-                      width: 112,
+                      width: 80,
                       height: 26,
                       margin: const EdgeInsets.all(5),
                       decoration: ShapeDecoration(
@@ -233,7 +233,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       _changePage(3);
                     },
                     child: Container(
-                      width: 112,
+                      width: 80,
                       height: 26,
                       margin: const EdgeInsets.all(5),
                       decoration: ShapeDecoration(
