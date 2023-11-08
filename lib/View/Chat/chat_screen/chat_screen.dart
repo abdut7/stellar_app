@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/View/Chat/chat_screen/widgets/report_and_bloc_sheet_widget.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/chat_appbar_title_widget.dart';
 import 'package:stellar_chat/View/chat/chat_screen/widgets/chat_bubble.dart';
@@ -7,6 +8,7 @@ import 'package:stellar_chat/View/chat/chat_screen/widgets/show_attachment.dart'
 import 'package:stellar_chat/View/chat/widgets/sent_contact/pick_contact_screen.dart';
 import 'package:stellar_chat/View/chat/widgets/sent_location/sent_location_screen.dart';
 import 'package:stellar_chat/View/profile/public_profile/public_profile.dart';
+import 'package:stellar_chat/constants/stickers.dart';
 import 'package:stellar_chat/controllers/private_chat_controller.dart';
 import 'package:stellar_chat/services/api_services/chat_message_service.dart';
 import 'package:stellar_chat/services/socket_service/private_chat_service.dart';
@@ -138,6 +140,50 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
             );
           }),
           ChatBottomFieldSent(
+              onSticker: () {
+                showModalBottomSheet(
+                  context: context,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(24),
+                    ),
+                  ),
+                  builder: (context) {
+                    return GridView.count(
+                      scrollDirection: Axis.vertical,
+                      crossAxisCount: 4,
+                      mainAxisSpacing: 5,
+                      crossAxisSpacing: 2,
+                      children:
+                          List.generate(stickerGalleryList.length, (index) {
+                        return Center(
+                          child: GestureDetector(
+                            onTap: () {
+                              PrivateChatService.sentPersonalStickerMessage(
+                                  widget.chatId,
+                                  stickerGalleryList.elementAt(index).path);
+                              Get.back();
+                            },
+                            child: Container(
+                              width: 100,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                image: DecorationImage(
+                                  image: AssetImage(stickerGalleryList
+                                      .elementAt(index)
+                                      .path), // Add your image URL here
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                    );
+                  },
+                );
+              },
               chatId: widget.chatId,
               controller: controller,
               onsent: () async {

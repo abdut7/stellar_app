@@ -170,6 +170,9 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
 
           // Message input field
           ChatBottomFieldSent(
+            onSticker: (){
+              //todo
+            },
             chatId: widget.chatHistoryList.strChatId,
             controller: messageConteroller,
             isGroup: true,

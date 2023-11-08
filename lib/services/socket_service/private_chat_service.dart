@@ -28,6 +28,19 @@ class PrivateChatService {
     });
   }
 
+    static void sentPersonalStickerMessage(String chatId, String message) {
+    print(chatId);
+    print(message);
+    Socket socket = SocketService().socket;
+
+    socket.emit('send_message', {
+      'strChatId': chatId,
+      'strMessage': message,
+      "strMessageType": "sticker",
+      "strType": "private",
+    });
+  }
+
   static void sentPersonalImageMessage(String chatId, XFile image) async {
     Socket socket = SocketService().socket;
     //convert message to base64
