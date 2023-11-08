@@ -5,6 +5,7 @@ import 'package:stellar_chat/Settings/SSvgs.dart';
 import 'package:flutter/material.dart';
 import 'package:stellar_chat/constants/stickers.dart';
 import 'package:stellar_chat/controllers/theme_controller.dart';
+import 'package:stellar_chat/functions/hive_functions.dart';
 
 class StickerGalleryScreen extends StatefulWidget {
   static const routeName = '/StickerGalleryScreen';
@@ -94,9 +95,14 @@ class _StickerGalleryScreenState extends State<StickerGalleryScreen> {
                           const Spacer(),
                           GestureDetector(
                             onTap: () {
+                              appendFavorite(
+                                  stickerGalleryList.elementAt(index).path);
                               Get.back();
                             },
                             child: Container(
+                              decoration: BoxDecoration(
+                                  color: const Color.fromRGBO(0, 51, 142, 1),
+                                  borderRadius: BorderRadius.circular(10)),
                               child: const Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 12.0, vertical: 8),
@@ -108,9 +114,6 @@ class _StickerGalleryScreenState extends State<StickerGalleryScreen> {
                                       color: Color.fromRGBO(159, 196, 232, 1)),
                                 ),
                               ),
-                              decoration: BoxDecoration(
-                                  color: const Color.fromRGBO(0, 51, 142, 1),
-                                  borderRadius: BorderRadius.circular(10)),
                             ),
                           ),
                           const Spacer()

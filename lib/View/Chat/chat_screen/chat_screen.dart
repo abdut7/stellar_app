@@ -142,6 +142,7 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
           ChatBottomFieldSent(
               onSticker: () {
                 showModalBottomSheet(
+                  backgroundColor: const Color.fromRGBO(221, 221, 221, 1),
                   context: context,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.vertical(
@@ -149,37 +150,112 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                     ),
                   ),
                   builder: (context) {
-                    return GridView.count(
-                      scrollDirection: Axis.vertical,
-                      crossAxisCount: 4,
-                      mainAxisSpacing: 5,
-                      crossAxisSpacing: 2,
-                      children:
-                          List.generate(stickerGalleryList.length, (index) {
-                        return Center(
-                          child: GestureDetector(
-                            onTap: () {
-                              PrivateChatService.sentPersonalStickerMessage(
-                                  widget.chatId,
-                                  stickerGalleryList.elementAt(index).path);
-                              Get.back();
-                            },
-                            child: Container(
-                              width: 100,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                image: DecorationImage(
-                                  image: AssetImage(stickerGalleryList
-                                      .elementAt(index)
-                                      .path), // Add your image URL here
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
+                    return DefaultTabController(
+                      length: 2,
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 10,
                           ),
-                        );
-                      }),
+                          Container(
+                            height: 5,
+                            width: Get.width * 0.6,
+                            decoration: BoxDecoration(
+                                color: const Color.fromRGBO(0, 51, 142, 0.5),
+                                borderRadius: BorderRadius.circular(10)),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const TabBar(
+                              labelColor: Color.fromRGBO(0, 51, 142, 1),
+                              tabs: [
+                                Tab(
+                                  text: "Recent",
+                                ),
+                                Tab(
+                                  text: "Favorites",
+                                ),
+                              ]),
+                          Expanded(
+                            child: TabBarView(children: [
+                              GridView.count(
+                                scrollDirection: Axis.vertical,
+                                crossAxisCount: 4,
+                                mainAxisSpacing: 5,
+                                crossAxisSpacing: 2,
+                                children: List.generate(
+                                    stickerGalleryList.length, (index) {
+                                  return Center(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        PrivateChatService
+                                            .sentPersonalStickerMessage(
+                                                widget.chatId,
+                                                stickerGalleryList
+                                                    .elementAt(index)
+                                                    .path);
+                                        Get.back();
+                                      },
+                                      child: Container(
+                                        width: 100,
+                                        height: 100,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          image: DecorationImage(
+                                            image: AssetImage(stickerGalleryList
+                                                .elementAt(index)
+                                                .path), // Add your image URL here
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }),
+                              ),
+                              //fav tab
+                              GridView.count(
+                                scrollDirection: Axis.vertical,
+                                crossAxisCount: 4,
+                                mainAxisSpacing: 5,
+                                crossAxisSpacing: 2,
+                                children: List.generate(
+                                    stickerGalleryList.length, (index) {
+                                  return Center(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        PrivateChatService
+                                            .sentPersonalStickerMessage(
+                                                widget.chatId,
+                                                stickerGalleryList
+                                                    .elementAt(index)
+                                                    .path);
+                                        Get.back();
+                                      },
+                                      child: Container(
+                                        width: 100,
+                                        height: 100,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          image: DecorationImage(
+                                            image: AssetImage(stickerGalleryList
+                                                .elementAt(index)
+                                                .path), // Add your image URL here
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }),
+                              ),
+                            ]),
+                          )
+                        ],
+                      ),
                     );
                   },
                 );

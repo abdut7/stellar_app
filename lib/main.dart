@@ -12,12 +12,13 @@ import 'package:stellar_chat/View/splash/spalash_screen.dart';
 import 'package:stellar_chat/View/video_editor/video_editor_screen.dart';
 import 'package:stellar_chat/View/video_editor/video_filter/video_filter_home.dart';
 import 'package:stellar_chat/controllers/theme_controller.dart';
+import 'package:stellar_chat/functions/hive_functions.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   final sharedPreferences = await SharedPreferences.getInstance();
   final isDarkTheme = sharedPreferences.getBool('isDarkTheme') ?? false;
+  await initHive();
   try {
     cameras = await availableCameras();
   } on CameraException catch (e) {
