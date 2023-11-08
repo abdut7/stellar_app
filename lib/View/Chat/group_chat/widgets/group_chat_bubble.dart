@@ -24,7 +24,7 @@ class GroupChatBubble extends StatelessWidget {
   // final String message;
   final BubbleAlignment alignment;
 
-  GroupChatBubble({
+  const GroupChatBubble({
     required this.senderName,
     // required this.message,
     required this.alignment,
@@ -56,16 +56,44 @@ class GroupChatBubble extends StatelessWidget {
           //         ),
           //       ),
           message.strMessageType == "sticker"
-              ? Container(
+              ? SizedBox(
                   width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                    image: DecorationImage(
-                      image: AssetImage(
-                          message.strMessage), // Add your image URL here
-                      fit: BoxFit.cover,
-                    ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      alignment == BubbleAlignment.left
+                          ? Row(
+                              children: [
+                                Text(
+                                  "  ${message.strName}",
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w600),
+                                )
+                              ],
+                            )
+                          : const SizedBox(),
+                      Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          image: DecorationImage(
+                            image: AssetImage(
+                                message.strMessage), // Add your image URL here
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            bottom: 2.0, right: 5, left: 5),
+                        child: Text(
+                          message.strCreatedTime,
+                          style:
+                              const TextStyle(color: Colors.grey, fontSize: 10),
+                        ),
+                      ),
+                    ],
                   ),
                 )
               : Container(
