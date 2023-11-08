@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stellar_chat/View/create_post/create_post_home.dart';
 import 'package:stellar_chat/View/splash/spalash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:stellar_chat/functions/get_fcm_token.dart';
 import 'package:stellar_chat/services/firebase_service.dart';
 import 'firebase_options.dart';
 import 'package:stellar_chat/controllers/theme_controller.dart';
@@ -28,6 +29,9 @@ void main() async {
   } on CameraException catch (e) {
     print('Error: $e');
   }
+
+  print("token");
+  print(await getFCMToken());
 
   Get.put(ThemeController());
   Get.find<ThemeController>().isDarkTheme.value = isDarkTheme;

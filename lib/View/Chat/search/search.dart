@@ -61,9 +61,8 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor: themeController.isDarkTheme.value
-          ?  SColors.darkmode
-          : SColors.color4,
+      backgroundColor:
+          themeController.isDarkTheme.value ? SColors.darkmode : SColors.color4,
       appBar: AppBar(
         toolbarHeight: 70,
         elevation: 0,
@@ -134,6 +133,7 @@ class _SearchScreenState extends State<SearchScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   GestureDetector(
                     onTap: () {
@@ -156,7 +156,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           'Chat',
                           style: TextStyle(
                             color: themeController.isDarkTheme.value
-                                ?  SColors.color4
+                                ? SColors.color4
                                 : SColors.color3,
                             overflow: TextOverflow.ellipsis,
                             fontSize: 10,
@@ -187,7 +187,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           'Media',
                           style: TextStyle(
                             color: themeController.isDarkTheme.value
-                                ?  SColors.color4
+                                ? SColors.color4
                                 : SColors.color3,
                             overflow: TextOverflow.ellipsis,
                             fontSize: 10,
@@ -218,7 +218,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           'Audio',
                           style: TextStyle(
                             color: themeController.isDarkTheme.value
-                                ?  SColors.color4
+                                ? SColors.color4
                                 : SColors.color3,
                             overflow: TextOverflow.ellipsis,
                             fontSize: 10,
@@ -249,7 +249,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           'Document',
                           style: TextStyle(
                             color: themeController.isDarkTheme.value
-                                ?  SColors.color4
+                                ? SColors.color4
                                 : SColors.color3,
                             overflow: TextOverflow.ellipsis,
                             fontSize: 10,
