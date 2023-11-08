@@ -237,7 +237,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                                           image: AssetImage(stickerGalleryList
                                               .elementAt(index)
                                               .path), // Add your image URL here
-                                          fit: BoxFit.cover,
+                                          fit: BoxFit.contain,
                                         ),
                                       ),
                                     ),
@@ -271,7 +271,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                                           image: AssetImage(
                                               fetchFavoritStickers().elementAt(
                                                   index)), // Add your image URL here
-                                          fit: BoxFit.cover,
+                                          fit: BoxFit.contain,
                                         ),
                                       ),
                                     ),

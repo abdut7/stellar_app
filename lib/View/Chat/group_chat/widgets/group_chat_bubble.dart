@@ -80,7 +80,7 @@ class GroupChatBubble extends StatelessWidget {
                           image: DecorationImage(
                             image: AssetImage(
                                 message.strMessage), // Add your image URL here
-                            fit: BoxFit.cover,
+                            fit: BoxFit.contain,
                           ),
                         ),
                       ),

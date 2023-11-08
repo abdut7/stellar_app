@@ -208,7 +208,7 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                                             image: AssetImage(stickerGalleryList
                                                 .elementAt(index)
                                                 .path), // Add your image URL here
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.contain,
                                           ),
                                         ),
                                       ),
@@ -245,7 +245,7 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                                               fetchFavoritStickers()
                                                   .elementAt(index),
                                             ), // Add your image URL here
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.contain,
                                           ),
                                         ),
                                       ),
