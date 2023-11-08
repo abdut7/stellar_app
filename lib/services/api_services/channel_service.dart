@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:stellar_chat/View/base_bottom_nav/bottom_nav.dart';
+import 'package:stellar_chat/View/create_post/flicks/function/generate_thumbnile.dart';
 import 'package:stellar_chat/controllers/bottom_navigation_controller.dart';
 import 'package:stellar_chat/controllers/channel/channel_controller.dart';
 import 'package:stellar_chat/controllers/flicks/flicks_player_controller.dart';
@@ -43,6 +44,8 @@ class ChannelService {
     controller.isUploading(false);
     controller.isPosting(true);
     String duration = await getVideoDuration(path);
+
+    String? thumb = await getThumbnileUrl(path);
     Dio dio = Dio();
     String url = ApiRoutes.baseUrl + ApiRoutes.postChannel;
     Map<String, dynamic> header = await getHeader();
@@ -54,7 +57,8 @@ class ChannelService {
       "strFileUrl": strFileUrl,
       "strDescription": strDescription,
       "arrUserIds": arrUserIds,
-      "strLocation": strLocation
+      "strLocation": strLocation,
+      "strThumbnailUrl": thumb!.trim()
     };
     print(data);
     Response res =

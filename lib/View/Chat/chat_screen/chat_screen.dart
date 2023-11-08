@@ -242,8 +242,9 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                                               BorderRadius.circular(4),
                                           image: DecorationImage(
                                             image: AssetImage(
-                                                fetchFavoritStickers().elementAt(
-                                                    index)), // Add your image URL here
+                                              fetchFavoritStickers()
+                                                  .elementAt(index),
+                                            ), // Add your image URL here
                                             fit: BoxFit.cover,
                                           ),
                                         ),

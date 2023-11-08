@@ -62,13 +62,6 @@ class _FlickGridViewState extends State<FlickGridView> {
                                   : controller.flickItems
                                       .elementAt(index)
                                       .strThumbnailUrl!))),
-                      child: widget.icon != null
-                          ? Icon(
-                              widget.icon,
-                              color: Colors.grey.withOpacity(0.7),
-                              size: 40,
-                            )
-                          : null,
                     ),
                   ),
                 );

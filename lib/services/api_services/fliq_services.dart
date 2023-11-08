@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
+import 'package:logger/logger.dart';
 import 'package:stellar_chat/View/base_bottom_nav/bottom_nav.dart';
+import 'package:stellar_chat/View/create_post/flicks/function/generate_thumbnile.dart';
 import 'package:stellar_chat/controllers/bottom_navigation_controller.dart';
 import 'package:stellar_chat/controllers/flicks/flicks_player_controller.dart';
 import 'package:stellar_chat/controllers/new_post/new_post_common_controller.dart';
@@ -87,10 +89,13 @@ class FliqServices {
       controller.isCancelled(false);
     }
 
-    // await Future.delayed(const Duration(seconds: 5));
+    // await Future.delayed(const Duration(seconds: 5));P
     //
     controller.isUploading(false);
     controller.isPosting(true);
+    String? thumb = await getThumbnileUrl(path);
+    print(thumb!);
+
     Dio dio = Dio();
     String url = ApiRoutes.baseUrl + ApiRoutes.postFlick;
     Map<String, dynamic> header = await getHeader();
@@ -101,8 +106,10 @@ class FliqServices {
       "strFileUrl": strFileUrl,
       "strDescription": strDescription,
       "arrUserIds": arrUserIds,
-      "strLocation": strLocation
+      "strLocation": strLocation,
+      "strThumbnailUrl": thumb.trim()
     };
+    Logger().d(data);
     print(data);
     Response res =
         await dio.post(url, options: Options(headers: header), data: data);
