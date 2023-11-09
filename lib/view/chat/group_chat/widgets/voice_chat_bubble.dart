@@ -9,12 +9,15 @@ class AudioMessageBubble extends StatefulWidget {
   final bool isSender;
   final String createdTime;
   final AudioController audioController;
+  final bool isAudio;
 
-  AudioMessageBubble(
-      {required this.audioUrl,
+  const AudioMessageBubble(
+      {super.key,
+      required this.audioUrl,
       required this.isSender,
       required this.createdTime,
-      required this.audioController});
+      required this.audioController,
+      this.isAudio = false});
 
   @override
   _AudioMessageBubbleState createState() => _AudioMessageBubbleState();

@@ -95,6 +95,7 @@ class GroupChatBubble extends StatelessWidget {
               : Container(
                   margin: EdgeInsets.symmetric(
                       vertical: message.strMessageType == "voice" ||
+                              message.strMessageType == "audio" ||
                               message.strMessageType == "contact" ||
                               message.strMessageType == "document" ||
                               message.strMessageType == "location" ||
@@ -103,6 +104,7 @@ class GroupChatBubble extends StatelessWidget {
                           ? 0
                           : 4),
                   padding: EdgeInsets.all(message.strMessageType == "voice" ||
+                          message.strMessageType == "audio" ||
                           message.strMessageType == "document" ||
                           message.strMessageType.contains("senting") ||
                           message.strMessageType == "contact" ||
@@ -111,6 +113,7 @@ class GroupChatBubble extends StatelessWidget {
                       ? 0
                       : 8.0),
                   decoration: message.strMessageType == "voice" ||
+                          message.strMessageType == "audio" ||
                           message.strMessageType == "document" ||
                           message.strMessageType == "location" ||
                           message.strMessageType == "contact"
@@ -382,8 +385,11 @@ class GroupChatBubble extends StatelessWidget {
                                             )
                                           ],
                                         )
-                                      : message.strMessageType == "voice"
+                                      : (message.strMessageType == "voice" ||
+                                              message.strMessageType == "audio")
                                           ? AudioMessageBubble(
+                                              isAudio: message.strMessageType ==
+                                                  "audio",
                                               audioController: audioController,
                                               audioUrl: message.strUrl,
                                               isSender: message.strUserId ==
