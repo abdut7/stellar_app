@@ -74,6 +74,22 @@ class GroupChatService {
       "strUrl": fileUrl,
     });
   }
+    static void sentGroupAudioMessage(
+      {required String chatId, required String path}) async {
+    Socket socket = SocketService().socket;
+    //upload and take link
+    String? fileUrl = await UploadFileService.uploadFile(filePaths: [path]);
+    if (fileUrl == null) {
+      return;
+    }
+    socket.emit('send_message', {
+      'strChatId': chatId,
+      'strMessage': "",
+      "strMessageType": "audio",
+      "strType": "group",
+      "strUrl": fileUrl,
+    });
+  }
 
   static void sentGroupContactMessage(
       {required String chatId,

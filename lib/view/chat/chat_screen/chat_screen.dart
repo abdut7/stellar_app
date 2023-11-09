@@ -314,12 +314,14 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                     //   }
                     // }
                     //if index = 2 =>Gallary
+
                     if (index == 2) {
                       XFile? image = await pickImageFromGalleryOrCamera(
                           source: ImageSource.gallery);
                       if (image != null) {
                         PrivateChatService.sentPersonalImageMessage(
                             widget.chatId, image);
+                        // ignore: use_build_context_synchronously
                         Navigator.pop(context);
                       }
                     }
@@ -330,6 +332,17 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                           isGroup: false,
                         ),
                       );
+                    }
+                    if(index==1){
+                       Get.back();
+                      FilePickerResult? result =
+                          await FilePicker.platform.pickFiles(
+                        type: FileType.audio,
+                      );
+                      if (result != null) {
+                        PrivateChatService.sentPersonalAudioMessage(
+                            chatId: widget.chatId, path: result.paths.first!);
+                      }
                     }
 
                     // Navigator.pop(context);

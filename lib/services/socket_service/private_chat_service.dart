@@ -97,6 +97,25 @@ class PrivateChatService {
     // ChatMessageService.getMessages(chatId: chatId, type: "private");
   }
 
+    static Future<void> sentPersonalAudioMessage(
+      {required String chatId, required String path}) async {
+    Socket socket = SocketService().socket;
+
+    String? fileUrl = await UploadFileService.uploadFile(filePaths: [path]);
+
+    if (fileUrl == null) {
+      return;
+    }
+    socket.emit('send_message', {
+      'strChatId': chatId,
+      'strMessage': "",
+      "strMessageType": "audio",
+      "strType": "private",
+      "strUrl": fileUrl,
+    });
+    // ChatMessageService.getMessages(chatId: chatId, type: "private");
+  }
+
   static void sentPersonalContactMessage(
       {required String chatId,
       required List numbers,

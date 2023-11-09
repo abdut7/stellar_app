@@ -10,6 +10,7 @@ import 'package:stellar_chat/controllers/theme_controller.dart';
 import '../../../controllers/user_controller.dart';
 
 class QRScreen extends StatefulWidget {
+
   final bool isFromSettings;
   const QRScreen({Key? key, this.isFromSettings = false}) : super(key: key);
   @override
@@ -19,8 +20,10 @@ class QRScreen extends StatefulWidget {
 class _QRScreenState extends State<QRScreen> {
   @override
   Widget build(BuildContext context) {
+        UserController controller = Get.find();
+
     ThemeController themeController = Get.find();
-    UserController controller = Get.find();
+
     return Scaffold(
       backgroundColor: themeController.isDarkTheme.value
           ?  SColors.darkmode
