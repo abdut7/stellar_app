@@ -1,10 +1,8 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/view/chat/chat_screen/widgets/chat_appbar_title_widget.dart';
 import 'package:stellar_chat/view/chat/chat_screen/widgets/report_and_bloc_sheet_widget.dart';
 import 'package:stellar_chat/view/profile/public_profile/public_profile.dart';
-import 'package:stellar_chat/view/chat/chat_screen/widgets/chat_appbar_title_widget.dart';
 import 'package:stellar_chat/view/chat/chat_screen/widgets/chat_bubble.dart';
 import 'package:stellar_chat/view/chat/chat_screen/widgets/show_attachment.dart';
 import 'package:stellar_chat/view/chat/widgets/sent_contact/pick_contact_screen.dart';

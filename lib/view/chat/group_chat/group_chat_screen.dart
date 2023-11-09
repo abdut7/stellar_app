@@ -355,6 +355,18 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                         ));
                   }
 
+                  if(index ==5){
+                        FilePickerResult? result =
+                        await FilePicker.platform.pickFiles(
+                      type: FileType.audio,
+                    );
+                    if (result != null) {
+                      GroupChatService.sentGroupAudioMessage(
+                          chatId: widget.chatHistoryList.strChatId,
+                          path: result.paths.first!);
+                    }
+                  }
+
                   //if index = 3 =>Location
                   //if index = 4 =>Contacts
                   //if index = 5 =>Audio
