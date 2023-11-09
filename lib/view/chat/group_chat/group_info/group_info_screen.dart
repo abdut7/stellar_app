@@ -1,4 +1,6 @@
 import 'package:stellar_chat/Settings/SColors.dart';
+import 'package:stellar_chat/view/chat/group_chat/group_info/group_description_screen/group_name_change_screen.dart';
+import 'package:stellar_chat/view/chat/search/search.dart';
 import 'package:stellar_chat/view/contact/create_group/select_participents_screen.dart';
 import 'package:stellar_chat/view/profile/public_profile/public_profile.dart';
 import 'package:stellar_chat/view/chat/group_chat/group_info/group_description_screen/group_description_screen.dart';
@@ -26,6 +28,8 @@ class GroupInfoScreen extends StatefulWidget {
 }
 
 class _GroupInfoScreenState extends State<GroupInfoScreen> {
+  bool isAdmin = false;
+  String groupName = "";
   @override
   Widget build(BuildContext context) {
     ThemeController themeController = Get.find();
@@ -48,14 +52,85 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
         ),
         elevation: 0,
         backgroundColor: Colors.transparent,
-        // actions: [
-        //   IconButton(
-        //     icon: const Icon(Icons.more_vert, color: Colors.black),
-        //     onPressed: () {
-        //       // Implement your menu actions here
-        //     },
-        //   ),
-        // ],
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.more_vert, color: Colors.black),
+            onPressed: () {
+              showModalBottomSheet(
+                backgroundColor: Colors.transparent,
+                context: context,
+                builder: (context) {
+                  return Container(
+                    height: 150,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: const Color.fromRGBO(159, 196, 232, 1),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Center(
+                            child: Container(
+                              width: Get.width * 0.8,
+                              height: 6,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: const Color.fromRGBO(0, 51, 142, 0.5),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: isAdmin ? 10 : 0,
+                          ),
+                          isAdmin
+                              ? TextButton(
+                                  onPressed: () {
+                                    Get.back();
+                                    Get.to(
+                                      () => SelectGroupParticipents(
+                                        groupId: widget.chatId,
+                                        grpName: groupName,
+                                        isCreatedGroup: true,
+                                      ),
+                                    );
+                                  },
+                                  child: const Text(
+                                    "Add Participents",
+                                    style: TextStyle(
+                                        color: Color.fromRGBO(0, 51, 142, 1)),
+                                  ))
+                              : const SizedBox(),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          TextButton(
+                              onPressed: () async {
+                                await Get.to(() => ChangeGroupNameScreen(
+                                      chatId: widget.chatId,
+                                      name: groupName,
+                                    ));
+                                Get.back();
+                                setState(() {});
+                              },
+                              child: const Text(
+                                "Change Group Name",
+                                style: TextStyle(
+                                    color: Color.fromRGBO(0, 51, 142, 1)),
+                              ))
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+        ],
       ),
       body: FutureBuilder<GroupDetailsResponseModel?>(
           future: GroupServices.getGroupDetails(groupId: widget.chatId),
@@ -65,6 +140,8 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
               return const Center(child: CircularProgressIndicator());
             }
             GroupDetailsResponseModel resModel = snapshot.data!;
+            isAdmin = resModel.isAdmin;
+            groupName = resModel.strGroupName;
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: SingleChildScrollView(
@@ -114,73 +191,119 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                       height: 20,
                     ),
                     //Add button
-                    resModel.isAdmin
-                        ? GestureDetector(
-                            onTap: () {
-                              Get.to(() => SelectGroupParticipents(
-                                    groupId: widget.chatId,
-                                    grpName: resModel.strGroupName,
-                                    isCreatedGroup: true,
-                                  ));
-                            },
-                            child: Center(
-                              child: Column(
-                                children: [
-                                  Stack(
-                                    alignment: Alignment.bottomRight,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        resModel.isAdmin
+                            ? GestureDetector(
+                                onTap: () {
+                                  Get.to(
+                                    () => SelectGroupParticipents(
+                                      groupId: widget.chatId,
+                                      grpName: resModel.strGroupName,
+                                      isCreatedGroup: true,
+                                    ),
+                                  );
+                                },
+                                child: Center(
+                                  child: Column(
                                     children: [
-                                      CircleAvatar(
-                                        backgroundColor:
-                                            themeController.isDarkTheme.value
+                                      Stack(
+                                        alignment: Alignment.bottomRight,
+                                        children: [
+                                          CircleAvatar(
+                                            backgroundColor: themeController
+                                                    .isDarkTheme.value
                                                 ? SColors.color26
                                                 : SColors.color12,
-                                        child: const Icon(Icons.person),
-                                      ),
-                                      CircleAvatar(
-                                        radius: 7,
-                                        backgroundColor:
-                                            themeController.isDarkTheme.value
+                                            child: const Icon(Icons.person),
+                                          ),
+                                          CircleAvatar(
+                                            radius: 7,
+                                            backgroundColor: themeController
+                                                    .isDarkTheme.value
                                                 ? SColors.color3
                                                 : secondaryColor,
-                                        child: Icon(
-                                          Icons.add,
-                                          size: 9,
+                                            child: Icon(
+                                              Icons.add,
+                                              size: 9,
+                                              color: themeController
+                                                      .isDarkTheme.value
+                                                  ? SColors.color4
+                                                  : SColors.color12,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        "Add",
+                                        style: TextStyle(
                                           color:
                                               themeController.isDarkTheme.value
                                                   ? SColors.color4
-                                                  : SColors.color12,
+                                                  : SColors.color3,
                                         ),
                                       )
                                     ],
                                   ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "Add",
-                                    style: TextStyle(
-                                      color: themeController.isDarkTheme.value
-                                          ? SColors.color4
-                                          : SColors.color3,
-                                    ),
-                                  )
-                                ],
+                                ),
+                              )
+                            : const SizedBox(),
+                        resModel.isAdmin
+                            ? const SizedBox(
+                                width: 30,
+                              )
+                            : const SizedBox(),
+                        InkWell(
+                          onTap: () {
+                            Get.back();
+                            Get.to(() => SearchScreen(
+                                  chatId: widget.chatId,
+                                  isGroup: true,
+                                ));
+                          },
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor:
+                                    themeController.isDarkTheme.value
+                                        ? SColors.color26
+                                        : SColors.color12,
+                                child: const Icon(Icons.search),
                               ),
-                            ),
-                          )
-                        : const SizedBox(),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                "Search",
+                                style: TextStyle(
+                                  color: themeController.isDarkTheme.value
+                                      ? SColors.color4
+                                      : SColors.color3,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                     const SizedBox(
                       height: 10,
                     ),
                     InkWell(
-                      onTap: () {
+                      onTap: () async {
                         if (!resModel.isAdmin) {
                           return;
                         }
-                        Get.to(() => GroupDescriptionScreen(
+                        await Get.to(() => GroupDescriptionScreen(
                               chatId: widget.chatId,
                               discription: resModel.strDiscription,
                             ));
+                        setState(() {});
+                        
                       },
                       child: SizedBox(
                         width: Get.width,

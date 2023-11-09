@@ -163,6 +163,24 @@ class GroupServices {
     }
   }
 
+  static Future<bool> updateName(
+      {required String name, required String chatID}) async {
+    Dio dio = Dio();
+    String path = ApiRoutes.baseUrl + ApiRoutes.updateGroup;
+    Map<String, dynamic> header = await getHeader();
+    Map<String, dynamic> body = {"_id": chatID, "strGroupName": name};
+
+    try {
+      Response res =
+          await dio.post(path, options: Options(headers: header), data: body);
+      print(res);
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
   static Future<bool> updateImage(
       {required String icon, required String chatID}) async {
     Dio dio = Dio();
