@@ -1,4 +1,5 @@
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -45,13 +46,14 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
     //     completedDuration = duration;
     //   });
     // });
+  }
 
-    @override
-    void dispose() {
-      // audioPlayer.stop();
-      // audioPlayer.dispose();
-      super.dispose();
-    }
+  @override
+  void dispose() {
+    // audioPlayer.stop();
+    // audioPlayer.dispose();
+    AudioController().stopAudio();
+    super.dispose();
   }
 
   Duration duration = Duration.zero;
@@ -93,10 +95,11 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
                         widget.audioController.audioPlayerPosition.value;
                     final totalDuration =
                         widget.audioController.audioTotalDuration.value;
-                    final isPlaying =
+                    bool isPlaying =
                         widget.audioController.currentlyPlayingAudioUrl ==
-                                widget.audioUrl &&
+                                widget.audioUrl.trim() &&
                             widget.audioController.isPlaying.value;
+
                     return SizedBox(
                       height: 65,
                       child: Row(
@@ -122,9 +125,14 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
                             onPressed: () {
                               if (widget.audioController
                                       .currentlyPlayingAudioUrl ==
-                                  widget.audioUrl) {
+                                  widget.audioUrl.trim()) {
                                 // This audio is already playing, pause it
-                                widget.audioController.stopAudio();
+                                if (widget.audioController.audioPlayerState ==
+                                    PlayerState.paused) {
+                                  widget.audioController.resumeAudio();
+                                } else {
+                                  widget.audioController.pauseAudio();
+                                }
                               } else {
                                 // Play this audio
                                 widget.audioController

@@ -10,6 +10,21 @@ class AudioController extends GetxController {
   RxBool isPlaying = RxBool(false);
   Rx<Duration> audioTotalDuration = Duration.zero.obs;
 
+  Future<void> pauseAudio() async {
+    await audioPlayer.pause();
+    audioPlayerState.value = PlayerState.paused;
+    isPlaying(false);
+    update();
+  }
+
+  Future<void> resumeAudio() async {
+    await audioPlayer.resume();
+    audioPlayerState.value = PlayerState.playing;
+
+    isPlaying(false);
+    update();
+  }
+
   Future<void> playAudio(String audioUrl) async {
     audioUrl = audioUrl.trim();
     if (currentlyPlayingAudioUrl == audioUrl) {
