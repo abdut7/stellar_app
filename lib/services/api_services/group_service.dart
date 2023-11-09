@@ -145,6 +145,43 @@ class GroupServices {
     }
   }
 
+  static Future<bool> updateDescription(
+      {required String description, required String chatID}) async {
+    Dio dio = Dio();
+    String path = ApiRoutes.baseUrl + ApiRoutes.updateGroup;
+    Map<String, dynamic> header = await getHeader();
+    Map<String, dynamic> body = {"_id": chatID, "strDiscription": description};
+
+    try {
+      Response res =
+          await dio.post(path, options: Options(headers: header), data: body);
+      print(res);
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  static Future<bool> updateImage(
+      {required String icon, required String chatID}) async {
+    Dio dio = Dio();
+    String path = ApiRoutes.baseUrl + ApiRoutes.updateGroup;
+    icon = await filePathToBase(icon);
+    Map<String, dynamic> header = await getHeader();
+    Map<String, dynamic> body = {"_id": chatID, "strIconeBase64": icon};
+
+    try {
+      Response res =
+          await dio.post(path, options: Options(headers: header), data: body);
+      print(res);
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
   static Future<bool> makeGroupAdmin(
       {required String uid,
       required String chatID,

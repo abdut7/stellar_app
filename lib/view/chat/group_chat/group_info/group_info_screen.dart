@@ -31,17 +31,16 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
     ThemeController themeController = Get.find();
     UserController controller = Get.find();
     return Scaffold(
-      backgroundColor:  themeController.isDarkTheme.value
-          ?  SColors.darkmode
-          : SColors.color4,
+      backgroundColor:
+          themeController.isDarkTheme.value ? SColors.darkmode : SColors.color4,
       appBar: AppBar(
         leading: IconButton(
-          icon:  Icon(
+          icon: Icon(
             Icons.arrow_back_ios,
-            color:  themeController.isDarkTheme.value
-                ?  SColors.color4
+            color: themeController.isDarkTheme.value
+                ? SColors.color4
                 : SColors.color3,
-            size: 20,// Change the color to your desired color
+            size: 20, // Change the color to your desired color
           ),
           onPressed: () {
             Get.back();
@@ -92,10 +91,11 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                       child: Text(
                         resModel.strGroupName,
                         style: TextStyle(
-                          color:  themeController.isDarkTheme.value
-                              ?  SColors.color4
-                              : SColors.color3,
-                            fontWeight: FontWeight.w600, fontSize: 14),
+                            color: themeController.isDarkTheme.value
+                                ? SColors.color4
+                                : SColors.color3,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14),
                       ),
                     ),
                     const SizedBox(
@@ -103,11 +103,12 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                     ),
                     Center(
                       child: Text(
-                          "Group : ${resModel.intParticipants} Participants",style: TextStyle(
-                        color:  themeController.isDarkTheme.value
-                            ?  SColors.color4
-                            : SColors.color3
-                      ),),
+                        "Group : ${resModel.intParticipants} Participants",
+                        style: TextStyle(
+                            color: themeController.isDarkTheme.value
+                                ? SColors.color4
+                                : SColors.color3),
+                      ),
                     ),
                     const SizedBox(
                       height: 20,
@@ -129,22 +130,25 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                     alignment: Alignment.bottomRight,
                                     children: [
                                       CircleAvatar(
-                                        backgroundColor:  themeController.isDarkTheme.value
-                                            ?  SColors.color26
-                                            : SColors.color12,
+                                        backgroundColor:
+                                            themeController.isDarkTheme.value
+                                                ? SColors.color26
+                                                : SColors.color12,
                                         child: const Icon(Icons.person),
                                       ),
                                       CircleAvatar(
                                         radius: 7,
-                                        backgroundColor:  themeController.isDarkTheme.value
-                                            ?  SColors.color3
-                                            : secondaryColor,
-                                        child:  Icon(
+                                        backgroundColor:
+                                            themeController.isDarkTheme.value
+                                                ? SColors.color3
+                                                : secondaryColor,
+                                        child: Icon(
                                           Icons.add,
                                           size: 9,
-                                          color:  themeController.isDarkTheme.value
-                                              ?  SColors.color4
-                                              : SColors.color12,
+                                          color:
+                                              themeController.isDarkTheme.value
+                                                  ? SColors.color4
+                                                  : SColors.color12,
                                         ),
                                       )
                                     ],
@@ -152,11 +156,14 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                   const SizedBox(
                                     height: 5,
                                   ),
-                                  Text("Add",style: TextStyle(
-                                    color:  themeController.isDarkTheme.value
-                                        ?  SColors.color4
-                                        : SColors.color3,
-                                  ),)
+                                  Text(
+                                    "Add",
+                                    style: TextStyle(
+                                      color: themeController.isDarkTheme.value
+                                          ? SColors.color4
+                                          : SColors.color3,
+                                    ),
+                                  )
                                 ],
                               ),
                             ),
@@ -165,51 +172,64 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Divider(
-                      thickness: 1,
-                      color:  themeController.isDarkTheme.value
-                          ?  SColors.color26
-                          : SColors.color3,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 16.0),
-                      child: GestureDetector(
-                        onTap: (){
-                          Get.to(()=>const GroupDescriptionScreen());
-                        },
-                        child: Text(
-                          resModel.strDiscription,
-                          style:  TextStyle(fontWeight: FontWeight.bold,
-                              color:  themeController.isDarkTheme.value
-                                  ?  SColors.color4
+                    InkWell(
+                      onTap: () {
+                        if (!resModel.isAdmin) {
+                          return;
+                        }
+                        Get.to(() => GroupDescriptionScreen(
+                              chatId: widget.chatId,
+                              discription: resModel.strDiscription,
+                            ));
+                      },
+                      child: SizedBox(
+                        width: Get.width,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Divider(
+                              thickness: 1,
+                              color: themeController.isDarkTheme.value
+                                  ? SColors.color26
                                   : SColors.color3,
-                          ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 16.0),
+                              child: Text(
+                                resModel.strDiscription,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: themeController.isDarkTheme.value
+                                      ? SColors.color4
+                                      : SColors.color3,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 16.0),
+                              child: Text(
+                                "Created by : ${resModel.strCreatedBy}, ${DateFormat('dd/MM/yyyy').format(DateTime.parse(resModel.strCreatedTime))}",
+                                style: TextStyle(
+                                    color: themeController.isDarkTheme.value
+                                        ? SColors.color26
+                                        : const Color.fromRGBO(91, 91, 91, 1)),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Divider(
+                              thickness: 1,
+                              color: themeController.isDarkTheme.value
+                                  ? SColors.color26
+                                  : SColors.color3,
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 16.0),
-                      child: Text(
-                        "Created by : ${resModel.strCreatedBy}, ${DateFormat('dd/MM/yyyy').format(DateTime.parse(resModel.strCreatedTime))}",
-                        style:  TextStyle(
-                          color: themeController.isDarkTheme.value
-                              ?  SColors.color26
-                              : Color.fromRGBO(91, 91, 91, 1)
-
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Divider(
-                      thickness: 1,
-                      color: themeController.isDarkTheme.value
-                          ?  SColors.color26
-                          : SColors.color3,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -218,10 +238,10 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                         children: [
                           Text(
                             "${resModel.intParticipants} Participants",
-                            style:  TextStyle(
+                            style: TextStyle(
                                 color: themeController.isDarkTheme.value
-                                    ?  SColors.color26
-                                    : Color.fromRGBO(91, 91, 91, 1),
+                                    ? SColors.color26
+                                    : const Color.fromRGBO(91, 91, 91, 1),
                                 fontSize: 13,
                                 fontWeight: FontWeight.w400),
                           ),
@@ -237,15 +257,16 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                       isCreatedGroup: true,
                                     ));
                                   },
-                                  child:  Padding(
-                                    padding: EdgeInsets.only(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
                                         left: 24.0, bottom: 8, top: 8),
                                     child: Text(
                                       "Add Participants",
                                       style: TextStyle(
-                                        color: themeController.isDarkTheme.value
-                                            ?  SColors.color4
-                                            : SColors.color3,
+                                          color:
+                                              themeController.isDarkTheme.value
+                                                  ? SColors.color4
+                                                  : SColors.color3,
                                           fontSize: 15,
                                           fontWeight: FontWeight.w500),
                                     ),
@@ -339,12 +360,14 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                 backgroundImage: NetworkImage(
                                     resModel.groupUser[index].strProfileIcon),
                               ),
-                              title:
-                                  Text(resModel.groupUser[index].strFullName,style: TextStyle(
-                                    color: themeController.isDarkTheme.value
-                                        ?  SColors.color4
-                                        : SColors.color3,
-                                  ),),
+                              title: Text(
+                                resModel.groupUser[index].strFullName,
+                                style: TextStyle(
+                                  color: themeController.isDarkTheme.value
+                                      ? SColors.color4
+                                      : SColors.color3,
+                                ),
+                              ),
                               trailing: resModel.groupUser[index].isAdmin
                                   ? const Text(
                                       "Admin",
