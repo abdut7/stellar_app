@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
-import 'package:stellar_chat/View/flicks/flicks_player_favorites.dart';
-import 'package:stellar_chat/View/flicks/flicks_player_profile.dart';
+import 'package:stellar_chat/view/flicks/flicks_player_favorites.dart';
+import 'package:stellar_chat/view/flicks/flicks_player_profile.dart';
 import 'package:stellar_chat/models/api_models/flick_model.dart';
 import 'package:stellar_chat/services/api_services/fliq_services.dart';
 

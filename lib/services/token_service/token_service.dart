@@ -1,4 +1,4 @@
-import 'package:stellar_chat/View/base_bottom_nav/bottom_nav.dart';
+import 'package:stellar_chat/view/base_bottom_nav/bottom_nav.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/models/api_models/user_details_model.dart';
 import 'package:stellar_chat/services/api_routes/api_routes.dart';
@@ -7,7 +7,7 @@ import 'package:stellar_chat/utils/uid.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../View/auth_screens/auth_home_page/auth_home_screen.dart';
+import '../../view/auth_screens/auth_home_page/auth_home_screen.dart';
 import '../socket_service/socket_service.dart';
 
 Future<void> storeJwtToken(String jwtToken) async {

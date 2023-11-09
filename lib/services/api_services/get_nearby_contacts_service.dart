@@ -1,6 +1,5 @@
-import 'package:stellar_chat/View/chat/chat_screen/chat_screen.dart';
-import 'package:stellar_chat/View/contact/add_contact/friends_in_radar/functions/get_radius.dart';
-import 'package:stellar_chat/View/profile/public_profile/public_profile.dart';
+import 'package:stellar_chat/view/chat/chat_screen/chat_screen.dart';
+
 import 'package:stellar_chat/controllers/google_map/google_map_controller.dart';
 import 'package:stellar_chat/functions/avathar_generator.dart';
 import 'package:stellar_chat/functions/get_header.dart';
@@ -12,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:stellar_chat/view/contact/add_contact/friends_in_radar/functions/get_radius.dart';
+import 'package:stellar_chat/view/profile/public_profile/public_profile.dart';
 
 class GetNearbyContactsService {
   GoogleMapsController gController = Get.put(GoogleMapsController());

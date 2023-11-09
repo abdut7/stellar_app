@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
-import 'package:stellar_chat/View/base_bottom_nav/bottom_nav.dart';
-import 'package:stellar_chat/View/create_post/flicks/function/generate_thumbnile.dart';
+import 'package:stellar_chat/view/base_bottom_nav/bottom_nav.dart';
+import 'package:stellar_chat/view/create_post/flicks/function/generate_thumbnile.dart';
 import 'package:stellar_chat/controllers/bottom_navigation_controller.dart';
 import 'package:stellar_chat/controllers/channel/channel_controller.dart';
 import 'package:stellar_chat/controllers/flicks/flicks_player_controller.dart';

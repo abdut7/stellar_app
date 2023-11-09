@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
-import 'package:stellar_chat/View/channel/channel_view/widgets/video_card_channel_view.dart';
+import 'package:stellar_chat/view/channel/channel_view/widgets/video_card_channel_view.dart';
 import 'package:stellar_chat/controllers/channel/channel_controller.dart';
 import 'package:stellar_chat/models/api_models/channel_model.dart';
 import 'package:stellar_chat/services/api_services/channel_service.dart';
