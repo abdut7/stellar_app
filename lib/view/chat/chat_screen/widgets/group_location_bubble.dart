@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:stellar_chat/models/group_chat/group_message_model.dart';
-import 'package:stellar_chat/utils/colors.dart';
 
 class GroupLocationBubble extends StatelessWidget {
   const GroupLocationBubble({
@@ -19,7 +18,7 @@ class GroupLocationBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: isSent ? secondaryColor : Color.fromRGBO(224, 224, 224, 1),
+          color: isSent ? const Color.fromRGBO(233, 244, 255, 1) : const Color.fromRGBO(224, 224, 224, 1),
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(10),
             topRight: const Radius.circular(10),
@@ -38,18 +37,18 @@ class GroupLocationBubble extends StatelessWidget {
                   height: Get.height * 0.022,
                   child: Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(
                         message.strName,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.w600, color: Colors.black),
                       ),
                     ],
                   ),
                 )
-              : SizedBox(),
+              : const SizedBox(),
           SizedBox(
             height: !isSent ? Get.height * 0.01 : 0,
           ),

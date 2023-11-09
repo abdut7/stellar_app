@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:stellar_chat/models/private_chat/private_chat_model.dart';
-import 'package:stellar_chat/utils/colors.dart';
 
 class PrivateLocationBubble extends StatelessWidget {
   const PrivateLocationBubble({
@@ -19,7 +18,7 @@ class PrivateLocationBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: isSent ? secondaryColor : Color.fromRGBO(224, 224, 224, 1),
+          color: isSent ? const Color.fromRGBO(233, 244, 255, 1) : const Color.fromRGBO(224, 224, 224, 1),
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(10),
             topRight: const Radius.circular(10),

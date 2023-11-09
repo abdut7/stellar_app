@@ -1,12 +1,8 @@
 import 'package:flutter_svg/svg.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:stellar_chat/view/chat/chat_screen/chat_screen.dart';
-import 'package:stellar_chat/view/chat/chat_screen/widgets/chat_bubble.dart';
 import 'package:stellar_chat/view/chat/chat_screen/widgets/document_bubble.dart';
 import 'package:stellar_chat/view/chat/chat_screen/widgets/group_location_bubble.dart';
-import 'package:stellar_chat/view/chat/chat_screen/widgets/show_time_widget.dart';
-import 'package:stellar_chat/view/chat/group_chat/widgets/audio_message_widget.dart';
 import 'package:stellar_chat/view/chat/group_chat/widgets/voice_chat_bubble.dart';
 import 'package:stellar_chat/view/chat/widgets/photo_view_widget.dart';
 import 'package:stellar_chat/controllers/audio_player_controller.dart';
