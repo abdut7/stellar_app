@@ -1,3 +1,4 @@
+import 'package:image_picker/image_picker.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/view/chat/group_chat/group_info/group_description_screen/group_name_change_screen.dart';
 import 'package:stellar_chat/view/chat/search/search.dart';
@@ -150,15 +151,105 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                   children: [
                     //top  group icon
 
-                    Center(
-                      child: CircleAvatar(
-                        backgroundImage: NetworkImage(snapshot.data!.strIconURL
-                                    .contains("undefined") ||
-                                snapshot.data!.strIconURL.isEmpty
-                            ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                            : snapshot.data!.strIconURL),
-                        radius:
-                            50.0, // Adjust the size of the circle avatar as needed
+                    GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet(
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (context) {
+                            return Container(
+                              height: 150,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: const Color.fromRGBO(159, 196, 232, 1),
+                              ),
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Center(
+                                      child: Container(
+                                        width: Get.width * 0.8,
+                                        height: 6,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: const Color.fromRGBO(
+                                              0, 51, 142, 0.5),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    TextButton(
+                                        onPressed: () async {
+                                          XFile? picked = await ImagePicker()
+                                              .pickImage(
+                                                  source: ImageSource.gallery);
+                                          Get.back();
+                                          if (picked != null) {
+                                            await GroupServices.updateImage(
+                                                icon: picked.path,
+                                                chatID: widget.chatId);
+                                            setState(() {});
+                                            ChatHistoryServiceApi
+                                                .getChatHistory();
+                                          }
+                                        },
+                                        child: const Text(
+                                          "Upload Photo",
+                                          style: TextStyle(
+                                              color: Color.fromRGBO(
+                                                  0, 51, 142, 1)),
+                                        )),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    TextButton(
+                                        onPressed: () async {
+                                          XFile? picked = await ImagePicker()
+                                              .pickImage(
+                                                  source: ImageSource.camera);
+                                          Get.back();
+                                          if (picked != null) {
+                                            await GroupServices.updateImage(
+                                                icon: picked.path,
+                                                chatID: widget.chatId);
+                                            setState(() {});
+                                            ChatHistoryServiceApi
+                                                .getChatHistory();
+                                          }
+                                        },
+                                        child: const Text(
+                                          "Take a Photo",
+                                          style: TextStyle(
+                                              color: Color.fromRGBO(
+                                                  0, 51, 142, 1)),
+                                        ))
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      child: Center(
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage(snapshot
+                                      .data!.strIconURL
+                                      .contains("undefined") ||
+                                  snapshot.data!.strIconURL.isEmpty
+                              ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                              : snapshot.data!.strIconURL),
+                          radius:
+                              50.0, // Adjust the size of the circle avatar as needed
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -303,7 +394,6 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                               discription: resModel.strDiscription,
                             ));
                         setState(() {});
-                        
                       },
                       child: SizedBox(
                         width: Get.width,
