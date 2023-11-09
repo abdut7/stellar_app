@@ -90,6 +90,7 @@ class ChatBubble extends StatelessWidget {
                         : Container(
                             decoration: BoxDecoration(
                               color: message.strMessageType == "voice" ||
+                                      message.strMessageType == "audio" ||
                                       message.strMessageType == "contact" ||
                                       message.strMessageType == "document" ||
                                       message.strMessageType == "location"
@@ -97,6 +98,7 @@ class ChatBubble extends StatelessWidget {
                                   : color,
                               boxShadow: !isSent &&
                                       message.strMessageType != "voice" &&
+                                      message.strMessageType == "audio" &&
                                       message.strMessageType != "contact" &&
                                       message.strMessageType != "document" &&
                                       message.strMessageType != "location"
@@ -279,8 +281,11 @@ class ChatBubble extends StatelessWidget {
                                           ],
                                         ),
                                       )
-                                    : message.strMessageType == "voice"
+                                    : message.strMessageType == "voice" ||
+                                            message.strMessageType == "audio"
                                         ? AudioMessageBubble(
+                                            isAudio: message.strMessageType ==
+                                                "audio",
                                             audioController: audioController,
                                             createdTime: message.strCreatedTime,
                                             audioUrl: message.strUrl,
