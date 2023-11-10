@@ -3,6 +3,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:stellar_chat/controllers/audio_player_controller.dart';
 
 class AudioMessageBubble extends StatefulWidget {
@@ -28,30 +29,10 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
   @override
   void initState() {
     super.initState();
-
-    // audioPlayer.onPlayerStateChanged.listen((PlayerState state) {
-    //   setState(() {
-    //     audioPlayerState = state;
-    //   });
-    // });
-
-    // audioPlayer.onDurationChanged.listen((Duration duration) {
-    //   setState(() {
-    //     totalDuration = duration;
-    //   });
-    // });
-
-    // audioPlayer.onPositionChanged.listen((Duration duration) {
-    //   setState(() {
-    //     completedDuration = duration;
-    //   });
-    // });
   }
 
   @override
   void dispose() {
-    // audioPlayer.stop();
-    // audioPlayer.dispose();
     AudioController().stopAudio();
     super.dispose();
   }
@@ -126,15 +107,30 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
                               if (widget.audioController
                                       .currentlyPlayingAudioUrl ==
                                   widget.audioUrl.trim()) {
+                                Logger().d("On pressed");
+                                Logger()
+                                    .d(widget.audioController.audioPlayerState);
                                 // This audio is already playing, pause it
-                                if (widget.audioController.audioPlayerState ==
+                                if (widget.audioController.audioPlayerState
+                                        .value ==
                                     PlayerState.paused) {
-                                  widget.audioController.resumeAudio();
-                                } else {
+                                  Logger()
+                                      .d("The state was paused now resuming");
+                                  widget.audioController
+                                      .playAudio(widget.audioUrl);
+                                } else if (widget.audioController
+                                        .audioPlayerState.value ==
+                                    PlayerState.playing) {
+                                  Logger()
+                                      .d("The state was Playing now Pausing");
                                   widget.audioController.pauseAudio();
                                 }
                               } else {
+                                Logger()
+                                    .d("The state was Not playing now playing");
                                 // Play this audio
+                                widget.audioController
+                                    .audioPlayerState(PlayerState.playing);
                                 widget.audioController
                                     .playAudio(widget.audioUrl);
                               }
