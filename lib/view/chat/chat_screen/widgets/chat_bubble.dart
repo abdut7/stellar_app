@@ -98,7 +98,7 @@ class ChatBubble extends StatelessWidget {
                                   : color,
                               boxShadow: !isSent &&
                                       message.strMessageType != "voice" &&
-                                      message.strMessageType == "audio" &&
+                                      message.strMessageType != "audio" &&
                                       message.strMessageType != "contact" &&
                                       message.strMessageType != "document" &&
                                       message.strMessageType != "location"
