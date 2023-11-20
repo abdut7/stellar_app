@@ -36,6 +36,7 @@ class ChannelItem {
   final int commentsCount;
   final int likesCount;
   final bool isLiked;
+  final String duration;
   final String userId;
   final String createdUserFullName;
   final String createdUserMobNo;
@@ -54,6 +55,7 @@ class ChannelItem {
     required this.description,
     required this.location,
     this.thumbnailUrl,
+    required this.duration,
     required this.createdTime,
     required this.commentsCount,
     required this.likesCount,
@@ -71,6 +73,7 @@ class ChannelItem {
 
   factory ChannelItem.fromJson(Map<String, dynamic> json) {
     return ChannelItem(
+      duration: json['strDuration'] ?? "",
       id: json['_id'],
       isCommentEnabled: json['isCommentEnabled'],
       isLikeAndViews: json['isLikeAndViews'],

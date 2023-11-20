@@ -159,15 +159,16 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                           builder: (context) {
                             return Container(
                               height: 150,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: const Color.fromRGBO(159, 196, 232, 1),
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(20)),
+                                color: Color.fromRGBO(159, 196, 232, 1),
                               ),
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 20),
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     const SizedBox(
                                       height: 8,
@@ -175,7 +176,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                     Center(
                                       child: Container(
                                         width: Get.width * 0.8,
-                                        height: 6,
+                                        height: 3,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(10),
@@ -184,7 +185,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     TextButton(

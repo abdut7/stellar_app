@@ -85,8 +85,10 @@ class ChatListItem extends StatelessWidget {
           Text(
             time,
             style: TextStyle(
-                color: themeController.isDarkTheme.value ? Colors.white : null),
+                color: themeController.isDarkTheme.value ? Colors.white : null,
+                fontSize: 12),
           ),
+          // ignore: prefer_const_constructors
           SizedBox(
             height: 5,
           ),

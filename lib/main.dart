@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:camera/camera.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -51,13 +49,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white),
       darkTheme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: Colors.black,
-          textTheme: GoogleFonts.interTextTheme().copyWith(
-              // bodyText1:
-              //     TextStyle(color: Colors.white), // Customize your text style
-              // bodyText2:
-              //     TextStyle(color: Colors.white), // Customize other text styles
-
-              )),
+          textTheme: GoogleFonts.interTextTheme()),
       themeMode: Get.find<ThemeController>().isDarkTheme.value
           ? ThemeMode.dark
           : ThemeMode.light,

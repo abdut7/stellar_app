@@ -55,7 +55,7 @@ class _VideoCardState extends State<VideoCard> {
                     child: Text(
                       // replace with duration
                       // widget.channelItem.,
-                      "05:78",
+                      widget.channelItem.duration,
                       style: TextStyle(color: SColors.color4, fontSize: 10),
                     ),
                   ),

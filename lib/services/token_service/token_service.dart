@@ -45,7 +45,7 @@ Future<void> authenticateUser() async {
       ApiRoutes.socketBaseUrl,
       token,
     );
-    Get.off(() => const BaseBottomNavigation());
+    Get.offAll(() => const BaseBottomNavigation());
   }
 }
 

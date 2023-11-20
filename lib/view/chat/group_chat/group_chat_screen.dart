@@ -20,7 +20,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stellar_chat/services/socket_service/sent_join_room_event_socket.dart';
-import 'package:stellar_chat/utils/colors.dart';
 
 import '../../../functions/pick_image.dart';
 
@@ -102,10 +101,8 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                 child: Text(
                   widget.chatHistoryList.strName,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                      color: colorPrimary),
+                  style:
+                      const TextStyle(fontSize: 16, color: Color(0xFF2E3192)),
                 ),
               ),
             ],
@@ -355,8 +352,8 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                         ));
                   }
 
-                  if(index ==5){
-                        FilePickerResult? result =
+                  if (index == 5) {
+                    FilePickerResult? result =
                         await FilePicker.platform.pickFiles(
                       type: FileType.audio,
                     );

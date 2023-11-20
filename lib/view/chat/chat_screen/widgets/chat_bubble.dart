@@ -1,7 +1,5 @@
 import 'dart:io';
-
 import 'package:flutter_svg/svg.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:stellar_chat/view/chat/chat_screen/widgets/document_bubble.dart';
 import 'package:stellar_chat/view/chat/chat_screen/widgets/private_loaction_bubble.dart';
 import 'package:stellar_chat/view/chat/group_chat/widgets/voice_chat_bubble.dart';
@@ -12,7 +10,6 @@ import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:stellar_chat/utils/colors.dart';
 import '../../../../models/private_chat/private_chat_model.dart';
 
 class ChatBubble extends StatelessWidget {

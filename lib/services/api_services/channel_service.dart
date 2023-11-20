@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
+import 'package:logger/logger.dart';
 import 'package:stellar_chat/view/base_bottom_nav/bottom_nav.dart';
 import 'package:stellar_chat/view/create_post/flicks/function/generate_thumbnile.dart';
 import 'package:stellar_chat/controllers/bottom_navigation_controller.dart';
@@ -92,6 +93,7 @@ class ChannelService {
           await dio.post(url, options: Options(headers: header), data: data);
       print(res);
       ChannelModel model = ChannelModel.fromJson(res.data);
+      Logger().d(res.data);
       for (var element in model.arrList) {
         controller.channelItem.add(element);
       }
@@ -118,6 +120,8 @@ class ChannelService {
           await dio.post(url, options: Options(headers: header), data: data);
       print("channel data:$res");
       ChannelModel model = ChannelModel.fromJson(res.data);
+      Logger().d(res.data);
+
       print(model.arrList.length);
       for (var element in model.arrList) {
         controller.channelItems.add(element);
