@@ -30,8 +30,10 @@ class _ProfileTextField2State extends State<ProfileTextField2> {
         headingText!,
         style: TextStyle(
           fontSize: 14,
-          color: themeController.isDarkTheme.value ?  SColors.color4 : SColors.color3,
-          fontWeight: FontWeight.w500,
+          color: themeController.isDarkTheme.value
+              ? SColors.color4
+              : SColors.color3,
+          fontWeight: FontWeight.w600,
         ),
       ),
     );
@@ -66,13 +68,17 @@ class _ProfileTextField2State extends State<ProfileTextField2> {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10),
       //height: 25,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(4),color: Colors.grey.withOpacity(0.1)),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+          color: Colors.grey.withOpacity(0.1)),
       child: TextFormField(
         controller: widget.controller,
         keyboardType: widget.keyboardType,
         cursorColor: SColors.color8,
         style: TextStyle(
-          color: themeController.isDarkTheme.value ?  SColors.color4 : SColors.color3,
+          color: themeController.isDarkTheme.value
+              ? SColors.color4
+              : SColors.color3,
           fontWeight: FontWeight.w500,
           fontSize: 15,
           letterSpacing: 0.2,
@@ -93,7 +99,7 @@ class _ProfileTextField2State extends State<ProfileTextField2> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: SizedBox(
-              width: 70,
+              width: 90,
               child: textFieldHeading(headingText: widget.head),
             ),
           ),

@@ -63,7 +63,7 @@ class _DocumentBubbleState extends State<DocumentBubble> {
                         fontWeight: FontWeight.w600,
                         color: Get.find<ThemeController>().isDarkTheme.value
                             ? Colors.black
-                            : Colors.white),
+                            : Colors.black),
                   ),
                 ),
                 Row(

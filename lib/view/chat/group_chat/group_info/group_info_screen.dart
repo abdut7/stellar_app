@@ -62,27 +62,24 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                 context: context,
                 builder: (context) {
                   return Container(
-                    height: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: const Color.fromRGBO(159, 196, 232, 1),
+                    // height: 150,
+                    decoration: const BoxDecoration(
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(20)),
+                      color: Color.fromRGBO(159, 196, 232, 1),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          Center(
-                            child: Container(
-                              width: Get.width * 0.8,
-                              height: 6,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: const Color.fromRGBO(0, 51, 142, 0.5),
-                              ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 80, vertical: 15),
+                            child: Divider(
+                              thickness: 2,
+                              color: Color.fromRGBO(0, 51, 142, 0.5),
                             ),
                           ),
                           SizedBox(
@@ -103,6 +100,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                   child: const Text(
                                     "Add Participents",
                                     style: TextStyle(
+                                        fontSize: 16,
                                         color: Color.fromRGBO(0, 51, 142, 1)),
                                   ))
                               : const SizedBox(),
@@ -121,6 +119,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                               child: const Text(
                                 "Change Group Name",
                                 style: TextStyle(
+                                    fontSize: 16,
                                     color: Color.fromRGBO(0, 51, 142, 1)),
                               ))
                         ],
@@ -158,31 +157,24 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                           context: context,
                           builder: (context) {
                             return Container(
-                              height: 150,
                               decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.vertical(
-                                    top: Radius.circular(20)),
+                                    top: Radius.circular(30)),
                                 color: Color.fromRGBO(159, 196, 232, 1),
                               ),
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 20),
                                 child: Column(
+                                  mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    const SizedBox(
-                                      height: 8,
-                                    ),
-                                    Center(
-                                      child: Container(
-                                        width: Get.width * 0.8,
-                                        height: 3,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: const Color.fromRGBO(
-                                              0, 51, 142, 0.5),
-                                        ),
+                                    const Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 80, vertical: 15),
+                                      child: Divider(
+                                        thickness: 2,
+                                        color: Color.fromRGBO(0, 51, 142, 0.5),
                                       ),
                                     ),
                                     const SizedBox(
@@ -203,11 +195,13 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                                 .getChatHistory();
                                           }
                                         },
-                                        child: const Text(
+                                        child: Text(
                                           "Upload Photo",
                                           style: TextStyle(
-                                              color: Color.fromRGBO(
-                                                  0, 51, 142, 1)),
+                                            color: SColors.color12,
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         )),
                                     const SizedBox(
                                       height: 10,
@@ -227,11 +221,13 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                                 .getChatHistory();
                                           }
                                         },
-                                        child: const Text(
+                                        child: Text(
                                           "Take a Photo",
                                           style: TextStyle(
-                                              color: Color.fromRGBO(
-                                                  0, 51, 142, 1)),
+                                            color: SColors.color12,
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ))
                                   ],
                                 ),
