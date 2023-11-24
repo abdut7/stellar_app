@@ -18,7 +18,9 @@ class PrivateLocationBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: isSent ? const Color.fromRGBO(233, 244, 255, 1) : const Color.fromRGBO(224, 224, 224, 1),
+          color: isSent
+              ? const Color.fromRGBO(233, 244, 255, 1)
+              : const Color.fromRGBO(224, 224, 224, 1),
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(10),
             topRight: const Radius.circular(10),
@@ -35,17 +37,20 @@ class PrivateLocationBubble extends StatelessWidget {
           SizedBox(
             width: Get.width * 0.58,
             height: Get.height * 0.15,
-            child: GoogleMap(
-              initialCameraPosition: CameraPosition(
-                target: LatLng(message.strLatitude, message.strLongitude),
-                zoom: 15.0, // Adjust zoom level as needed
-              ),
-              markers: <Marker>{
-                Marker(
-                  markerId: const MarkerId("locationMarker"),
-                  position: LatLng(message.strLatitude, message.strLongitude),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: GoogleMap(
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(message.strLatitude, message.strLongitude),
+                  zoom: 15.0, // Adjust zoom level as needed
                 ),
-              },
+                markers: <Marker>{
+                  Marker(
+                    markerId: const MarkerId("locationMarker"),
+                    position: LatLng(message.strLatitude, message.strLongitude),
+                  ),
+                },
+              ),
             ),
           ),
           const SizedBox(

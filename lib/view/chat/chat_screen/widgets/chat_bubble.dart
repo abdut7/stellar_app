@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter_svg/svg.dart';
+import 'package:stellar_chat/controllers/theme_controller.dart';
 import 'package:stellar_chat/view/chat/chat_screen/widgets/document_bubble.dart';
 import 'package:stellar_chat/view/chat/chat_screen/widgets/private_loaction_bubble.dart';
 import 'package:stellar_chat/view/chat/group_chat/widgets/voice_chat_bubble.dart';
@@ -21,6 +22,7 @@ class ChatBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     final AudioController audioController = Get.put(AudioController());
     UserController controller = Get.find();
+    ThemeController themeController = Get.find();
     // print(message.strUserId);
     // print(controller.userDetailsModel.value!.id);
     // print(message.strUserId == controller.userDetailsModel.value!.id);
@@ -82,7 +84,13 @@ class ChatBubble extends StatelessWidget {
                   children: <Widget>[
                     message.strMessageType == "tag"
                         ? Center(
-                            child: Text(message.strMessage),
+                            child: Text(
+                              message.strMessage,
+                              style: TextStyle(
+                                  color: themeController.isDarkTheme.value
+                                      ? Colors.white
+                                      : Colors.black),
+                            ),
                           )
                         : Container(
                             decoration: BoxDecoration(
@@ -203,25 +211,29 @@ class ChatBubble extends StatelessWidget {
                                                     : message.strMessageType ==
                                                             "image"
                                                         ? const EdgeInsets.all(
-                                                            0)
+                                                            1,
+                                                          )
                                                         : const EdgeInsets.all(
                                                             0),
-                                                child: CachedNetworkImage(
-                                                  fit: BoxFit.cover,
-                                                  imageUrl: message.strUrl,
-                                                  progressIndicatorBuilder:
-                                                      (context, url,
-                                                              downloadProgress) =>
-                                                          Center(
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                            value:
-                                                                downloadProgress
-                                                                    .progress),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  child: CachedNetworkImage(
+                                                    fit: BoxFit.cover,
+                                                    imageUrl: message.strUrl,
+                                                    progressIndicatorBuilder:
+                                                        (context, url,
+                                                                downloadProgress) =>
+                                                            Center(
+                                                      child: CircularProgressIndicator(
+                                                          value:
+                                                              downloadProgress
+                                                                  .progress),
+                                                    ),
+                                                    errorWidget: (context, url,
+                                                            error) =>
+                                                        const Icon(Icons.error),
                                                   ),
-                                                  errorWidget: (context, url,
-                                                          error) =>
-                                                      const Icon(Icons.error),
                                                 ),
                                               ),
                                             ),
