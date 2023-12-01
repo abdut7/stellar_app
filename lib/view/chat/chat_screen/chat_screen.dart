@@ -40,24 +40,41 @@ class PrivateChatScreen extends StatefulWidget {
 class _PrivateChatScreenState extends State<PrivateChatScreen> {
   final List<Message> messages = [];
   TextEditingController controller = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+  PrivateChatController chatController = Get.put(PrivateChatController());
 
   @override
   void initState() {
     super.initState();
-    ChatMessageService.getMessages(chatId: widget.chatId, type: "private");
+    ChatMessageService.getMessages(
+        chatId: widget.chatId, type: "private", isFirstLoading: true);
+    _scrollController.addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    // if (_scrollController.position.pixels ==
+    //         _scrollController.position.maxScrollExtent &&
+    //     chatController.isEnded == false) {
+    //   Logger().d("called");
+    //   ChatMessageService.getMessages(chatId: widget.chatId, type: "private");
+    // }
   }
 
   @override
   void dispose() {
     sentRoomLeftSocket(chatId: widget.chatId, type: "private");
-    PrivateChatController chatController = Get.put(PrivateChatController());
     chatController.messageList.clear();
+    chatController.isEnded = false;
+    chatController.pageNumber = 0;
+    chatController.dispose();
+
+    _scrollController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    PrivateChatController chatController = Get.put(PrivateChatController());
+    PrivateChatController chatController = Get.find();
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -123,6 +140,7 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                 alignment: Alignment.bottomCenter,
                 children: [
                   ListView.builder(
+                    controller: _scrollController,
                     reverse: true,
                     itemCount: chatController.messageList.length,
                     itemBuilder: (context, index) {
@@ -330,8 +348,8 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                         ),
                       );
                     }
-                    if(index==1){
-                       Get.back();
+                    if (index == 1) {
+                      Get.back();
                       FilePickerResult? result =
                           await FilePicker.platform.pickFiles(
                         type: FileType.audio,
