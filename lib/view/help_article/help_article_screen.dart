@@ -14,9 +14,9 @@ class HelpArticleScreen extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        color:  themeController.isDarkTheme.value
-            ?  SColors.color4
-            : SColors.color3,
+        fontFamily: 'Inter',
+        color:
+            themeController.isDarkTheme.value ? SColors.color4 : SColors.color3,
         fontSize: 20,
         fontWeight: FontWeight.w700,
       ),
@@ -29,9 +29,9 @@ class HelpArticleScreen extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        color: themeController.isDarkTheme.value
-            ?  SColors.color4
-            : SColors.color3,
+        fontFamily: 'Inter',
+        color:
+            themeController.isDarkTheme.value ? SColors.color4 : SColors.color3,
         fontSize: fontSize,
         fontWeight: fontWeight,
       ),
@@ -50,24 +50,24 @@ class HelpArticleScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor: themeController.isDarkTheme.value
-          ?  SColors.darkmode
-          : SColors.color4,
+      backgroundColor:
+          themeController.isDarkTheme.value ? SColors.darkmode : SColors.color4,
       appBar: AppBar(
         toolbarHeight: 70,
         elevation: 0,
         title: Text(
           'Help Article',
           style: TextStyle(
-            color:  themeController.isDarkTheme.value
-                ?  SColors.appbarTitleInDark
+            fontFamily: 'Inter',
+            color: themeController.isDarkTheme.value
+                ? SColors.appbarTitleInDark
                 : SColors.color11,
             fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
         ),
-        backgroundColor:  themeController.isDarkTheme.value
-            ?  SColors.appbarbgInDark
+        backgroundColor: themeController.isDarkTheme.value
+            ? SColors.appbarbgInDark
             : SColors.color12,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -146,8 +146,10 @@ class HelpArticleScreen extends StatelessWidget {
                 const SizedBox(height: 15),
                 const Text(
                     "5. If the phone number doesn't use Stellar Chat, tap Share invite link to invite the phone number to chat on Stellar Chat.",
-                    style:
-                        TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+                    style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500)),
                 const SizedBox(
                   height: 30,
                 ),
@@ -156,8 +158,9 @@ class HelpArticleScreen extends StatelessWidget {
                     Text(
                       'Does this answer your question?',
                       style: TextStyle(
+                          fontFamily: 'Inter',
                           color: themeController.isDarkTheme.value
-                              ?  SColors.color4
+                              ? SColors.color4
                               : SColors.color3,
                           fontSize: 12,
                           fontWeight: FontWeight.w700),
@@ -166,10 +169,14 @@ class HelpArticleScreen extends StatelessWidget {
                     const SizedBox(height: 15),
                     const Text(
                       'Your response is anonymous and helps us improve our help resources .',
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500),
                     ),
-                    const SizedBox(height: 25,),
+                    const SizedBox(
+                      height: 25,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -190,8 +197,9 @@ class HelpArticleScreen extends StatelessWidget {
                     Text(
                       'Help for something else? Contact Stellar Chat Support',
                       style: TextStyle(
+                        fontFamily: 'Inter',
                         color: themeController.isDarkTheme.value
-                            ?  SColors.color4
+                            ? SColors.color4
                             : SColors.color3,
                         fontSize: 10,
                         fontWeight: FontWeight.w500,

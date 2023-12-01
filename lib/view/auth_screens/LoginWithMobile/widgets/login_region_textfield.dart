@@ -54,7 +54,7 @@ class _LoginRegionTextFieldState extends State<LoginRegionTextField> {
       ),
       suffixIcon: GestureDetector(
         onTap: () {
-           //showRegionMenu(context);
+          //showRegionMenu(context);
         },
         child: widget.suffixIcon,
       ),
@@ -66,14 +66,21 @@ class _LoginRegionTextFieldState extends State<LoginRegionTextField> {
       context: context,
       builder: (BuildContext context) {
         return SimpleDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           backgroundColor: SColors.color11,
           children: regions.map((String region) {
             return SimpleDialogOption(
               onPressed: () {
                 Navigator.pop(context, region);
               },
-              child: Text(region,style: TextStyle(fontWeight: FontWeight.w700,fontSize: 15),),
+              child: Text(
+                region,
+                style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w700,
+                    fontSize: 15),
+              ),
             );
           }).toList(),
         );
@@ -94,9 +101,9 @@ class _LoginRegionTextFieldState extends State<LoginRegionTextField> {
       height: 35,
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(8)),
-      child:  TextFormField(
+      child: TextFormField(
         readOnly: true,
-        onTap: (){
+        onTap: () {
           showRegionMenu(context);
         },
         onChanged: widget.onChanged,
@@ -106,6 +113,7 @@ class _LoginRegionTextFieldState extends State<LoginRegionTextField> {
         keyboardType: widget.keyboardType,
         cursorColor: Colors.black,
         style: TextStyle(
+          fontFamily: 'Inter',
           color: SColors.color3,
           fontSize: 16,
           fontWeight: FontWeight.w400,
@@ -124,20 +132,19 @@ class _LoginRegionTextFieldState extends State<LoginRegionTextField> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-                widget.labelText,
-                style: TextStyle(
-                  color: SColors.color3,
-                  fontSize: 11,
-                  fontWeight: FontWeight.w400,
-                ),
+            widget.labelText,
+            style: TextStyle(
+              fontFamily: 'Inter',
+              color: SColors.color3,
+              fontSize: 11,
+              fontWeight: FontWeight.w400,
+            ),
           ),
           const SizedBox(height: 5),
-        GestureDetector(
-            child: textField(widget.controller)),
+          GestureDetector(child: textField(widget.controller)),
           const SizedBox(height: 20),
         ],
       ),
     );
-
   }
 }

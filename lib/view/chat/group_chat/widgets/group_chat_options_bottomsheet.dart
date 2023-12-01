@@ -10,9 +10,8 @@ import 'package:stellar_chat/functions/show_snackbar.dart';
 groupChatMainBottomSheet(BuildContext context, String chatId) {
   ThemeController themeController = Get.find();
   return showModalBottomSheet(
-    backgroundColor: themeController.isDarkTheme.value
-        ?  SColors.darkmode
-        : SColors.color11,
+    backgroundColor:
+        themeController.isDarkTheme.value ? SColors.darkmode : SColors.color11,
     shape: const RoundedRectangleBorder(
       // <-- SEE HERE
       borderRadius: BorderRadius.vertical(
@@ -28,14 +27,13 @@ groupChatMainBottomSheet(BuildContext context, String chatId) {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 Padding(
+                Padding(
                   padding: EdgeInsets.symmetric(horizontal: 28, vertical: 20),
                   child: Divider(
                     thickness: 3,
-                    color:themeController.isDarkTheme.value
-                        ?  SColors.color26
+                    color: themeController.isDarkTheme.value
+                        ? SColors.color26
                         : Color.fromRGBO(0, 51, 142, 0.5),
-
                   ),
                 ),
                 GestureDetector(
@@ -48,8 +46,9 @@ groupChatMainBottomSheet(BuildContext context, String chatId) {
                   child: Text(
                     'Group Info',
                     style: TextStyle(
+                      fontFamily: 'Inter',
                       color: themeController.isDarkTheme.value
-                          ?  SColors.sheetItemColor
+                          ? SColors.sheetItemColor
                           : SColors.color12,
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
@@ -70,8 +69,9 @@ groupChatMainBottomSheet(BuildContext context, String chatId) {
                   child: Text(
                     'Search',
                     style: TextStyle(
+                      fontFamily: 'Inter',
                       color: themeController.isDarkTheme.value
-                          ?  SColors.sheetItemColor
+                          ? SColors.sheetItemColor
                           : SColors.color12,
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
@@ -90,8 +90,9 @@ groupChatMainBottomSheet(BuildContext context, String chatId) {
                   child: Text(
                     'Mute Notification',
                     style: TextStyle(
+                        fontFamily: 'Inter',
                         color: themeController.isDarkTheme.value
-                            ?  SColors.sheetItemColor
+                            ? SColors.sheetItemColor
                             : SColors.color12,
                         fontSize: 11,
                         fontWeight: FontWeight.w600),
@@ -114,7 +115,7 @@ groupChatMainBottomSheet(BuildContext context, String chatId) {
                 //   },
                 //   child: Text(
                 //     'Report User',
-                //     style: TextStyle(
+                //     style: TextStyle(fontFamily: 'Inter',
                 //       color: SColors.color12,
                 //       fontSize: 11,
                 //       fontWeight: FontWeight.w600,
@@ -128,7 +129,7 @@ groupChatMainBottomSheet(BuildContext context, String chatId) {
                 //   onTap: () {},
                 //   child: Text(
                 //     'Exit Group',
-                //     style: TextStyle(
+                //     style: TextStyle(fontFamily: 'Inter',
                 //       color: SColors.color12,
                 //       fontSize: 11,
                 //       fontWeight: FontWeight.w600,
@@ -160,8 +161,9 @@ groupChatMainBottomSheet(BuildContext context, String chatId) {
                   child: Text(
                     'Clear All Chat',
                     style: TextStyle(
+                      fontFamily: 'Inter',
                       color: themeController.isDarkTheme.value
-                          ?  SColors.sheetItemColor
+                          ? SColors.sheetItemColor
                           : SColors.color12,
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
@@ -175,7 +177,7 @@ groupChatMainBottomSheet(BuildContext context, String chatId) {
                 //   onTap: () {},
                 //   child: Text(
                 //     'Export Chat',
-                //     style: TextStyle(
+                //     style: TextStyle(fontFamily: 'Inter',
                 //       color: SColors.color12,
                 //       fontSize: 11,
                 //       fontWeight: FontWeight.w600,
@@ -212,7 +214,7 @@ groupChatMainBottomSheet(BuildContext context, String chatId) {
 //             const Text(
 //               'Mute Notification',
 //               textAlign: TextAlign.center,
-//               style: TextStyle(
+//               style: TextStyle(fontFamily: 'Inter',
 //                 color: Colors.black,
 //                 fontSize: 15,
 //                 fontWeight: FontWeight.w600,
@@ -223,7 +225,7 @@ groupChatMainBottomSheet(BuildContext context, String chatId) {
 //             ),
 //             const Text(
 //               'Other participants will not see',
-//               style: TextStyle(
+//               style: TextStyle(fontFamily: 'Inter',
 //                 color: Colors.black,
 //                 fontSize: 12,
 //                 fontWeight: FontWeight.w400,
@@ -231,7 +233,7 @@ groupChatMainBottomSheet(BuildContext context, String chatId) {
 //             ),
 //             const Text(
 //               'that you muted this chat',
-//               style: TextStyle(
+//               style: TextStyle(fontFamily: 'Inter',
 //                 color: Colors.black,
 //                 fontSize: 12,
 //                 fontWeight: FontWeight.w400,
@@ -265,7 +267,7 @@ groupChatMainBottomSheet(BuildContext context, String chatId) {
 //                     child: Center(
 //                       child: Text(
 //                         'Cancel',
-//                         style: TextStyle(
+//                         style: TextStyle(fontFamily: 'Inter',
 //                           color: SColors.color12,
 //                           fontSize: 17,
 //                           fontWeight: FontWeight.w400,
@@ -287,7 +289,7 @@ groupChatMainBottomSheet(BuildContext context, String chatId) {
 //                       child: Text(
 //                         'OK',
 //                         textAlign: TextAlign.center,
-//                         style: TextStyle(
+//                         style: TextStyle(fontFamily: 'Inter',
 //                           color: Colors.white,
 //                           fontSize: 17,
 //                           fontWeight: FontWeight.w400,
@@ -315,9 +317,8 @@ void showSubBottomSheet(
     required VoidCallback onOk}) {
   ThemeController themeController = Get.find();
   showModalBottomSheet(
-    backgroundColor: themeController.isDarkTheme.value
-        ?  SColors.darkmode
-        : SColors.color11,
+    backgroundColor:
+        themeController.isDarkTheme.value ? SColors.darkmode : SColors.color11,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
         top: Radius.circular(15.0),
@@ -332,9 +333,10 @@ void showSubBottomSheet(
           children: <Widget>[
             Text(
               text1,
-              style:  TextStyle(
-                color:  themeController.isDarkTheme.value
-                    ?  SColors.color4
+              style: TextStyle(
+                fontFamily: 'Inter',
+                color: themeController.isDarkTheme.value
+                    ? SColors.color4
                     : SColors.color3,
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
@@ -343,8 +345,9 @@ void showSubBottomSheet(
             Text(
               text2,
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: themeController.isDarkTheme.value
-                    ?  SColors.color4
+                    ? SColors.color4
                     : SColors.color3,
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
@@ -361,7 +364,7 @@ void showSubBottomSheet(
                     height: 30,
                     decoration: BoxDecoration(
                       color: themeController.isDarkTheme.value
-                          ?  SColors.darkmode
+                          ? SColors.darkmode
                           : SColors.color11,
                       borderRadius: BorderRadius.circular(9),
                     ),
@@ -369,8 +372,9 @@ void showSubBottomSheet(
                       child: Text(
                         cancelText,
                         style: TextStyle(
+                          fontFamily: 'Inter',
                           color: themeController.isDarkTheme.value
-                              ?  SColors.color26
+                              ? SColors.color26
                               : SColors.color12,
                           fontSize: 17,
                           fontWeight: FontWeight.w400,
@@ -386,7 +390,7 @@ void showSubBottomSheet(
                     height: 30,
                     decoration: BoxDecoration(
                       color: themeController.isDarkTheme.value
-                          ?  SColors.color3
+                          ? SColors.color3
                           : SColors.color12,
                       borderRadius: BorderRadius.circular(9),
                     ),
@@ -395,6 +399,7 @@ void showSubBottomSheet(
                         okText,
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                          fontFamily: 'Inter',
                           color: Colors.white,
                           fontSize: 17,
                           fontWeight: FontWeight.w400,
@@ -429,7 +434,10 @@ Widget selectionRow(String text) {
         Text(
           text,
           style: TextStyle(
-              fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black),
+              fontFamily: 'Inter',
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+              color: Colors.black),
         ),
       ],
     ),

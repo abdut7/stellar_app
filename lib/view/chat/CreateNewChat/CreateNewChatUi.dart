@@ -56,6 +56,7 @@ class _CreateNewChatUiState extends State<CreateNewChatUi> {
           'INVITE FRIENDS TO REGISTER',
           textAlign: TextAlign.center,
           style: TextStyle(
+            fontFamily: 'Inter',
             color: SColors.color3,
             fontSize: 10,
             fontWeight: FontWeight.w600,

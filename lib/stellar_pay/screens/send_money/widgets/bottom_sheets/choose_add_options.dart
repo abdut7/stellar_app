@@ -24,49 +24,75 @@ void chooseaddoptionssheet(BuildContext context) {
           children: [
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 65, vertical: 5),
-              child: Divider(
-                  thickness: 3,
-                  color: Color.fromRGBO(1, 97, 14, 1)
-              ),
+              child: Divider(thickness: 3, color: Color.fromRGBO(1, 97, 14, 1)),
             ),
-            const SizedBox(height: 25,),
+            const SizedBox(
+              height: 25,
+            ),
             const Text(
               'Choose Add Options',
-              style: TextStyle(color: Colors.black, fontSize: 21, fontWeight: FontWeight.w700,),),
-            const SizedBox(height: 25,),
+              style: TextStyle(
+                fontFamily: 'Inter',
+                color: Colors.black,
+                fontSize: 21,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
             Row(
               children: [
-                SvgPicture.asset(SSvgs.circleWhite,),
+                SvgPicture.asset(
+                  SSvgs.circleWhite,
+                ),
                 const SizedBox(width: 10),
                 SvgPicture.asset(SSvgs.whiteVisaText),
                 const SizedBox(width: 15),
                 const Text(
-                  '**** 2356', style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w400,),),
+                  '**** 2356',
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ],
             ),
-            const SizedBox(height: 25,),
+            const SizedBox(
+              height: 25,
+            ),
             Row(
               children: [
-                SvgPicture.asset(SSvgs.circleWhite,),
+                SvgPicture.asset(
+                  SSvgs.circleWhite,
+                ),
                 const SizedBox(width: 10),
                 SvgPicture.asset(SSvgs.whiteVisaText),
                 const SizedBox(width: 15),
                 const Text(
-                  '**** 2356', style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w400,),),
+                  '**** 2356',
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ],
             ),
-
-            const SizedBox(height: 25,),
-            AddNewCardButton(
-                buttonText: 'Add New Card',
-                onTap: (){}
+            const SizedBox(
+              height: 25,
             ),
-            const SizedBox(height: 40,),
-            SendButton(
-                onTap: (){},
-                buttonText: 'Send'
+            AddNewCardButton(buttonText: 'Add New Card', onTap: () {}),
+            const SizedBox(
+              height: 40,
             ),
-            const SizedBox(height: 25,),
+            SendButton(onTap: () {}, buttonText: 'Send'),
+            const SizedBox(
+              height: 25,
+            ),
           ],
         ),
       );

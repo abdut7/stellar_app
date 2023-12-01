@@ -63,8 +63,10 @@ class _SendRequestRecentTransactionShowButtonsState
                           child: Text(
                             'Send',
                             style: TextStyle(
+                              fontFamily: 'Inter',
                               fontSize: 11,
-                              color: isSendSelected ? Colors.black : Colors.black,
+                              color:
+                                  isSendSelected ? Colors.black : Colors.black,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -90,9 +92,11 @@ class _SendRequestRecentTransactionShowButtonsState
                           child: Text(
                             'Request',
                             style: TextStyle(
+                              fontFamily: 'Inter',
                               fontSize: 11,
-                              color:
-                                  isRequestSelected ? Colors.black : Colors.black,
+                              color: isRequestSelected
+                                  ? Colors.black
+                                  : Colors.black,
                               fontWeight: FontWeight.w500,
                             ),
                           ),

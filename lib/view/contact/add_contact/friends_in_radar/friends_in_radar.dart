@@ -53,24 +53,25 @@ class _FriendsInRadarScreenState extends State<FriendsInRadarScreen> {
   Widget build(BuildContext context) {
     ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor:  themeController.isDarkTheme.value
-          ?  SColors.darkmode
-          : SColors.color4,
+        backgroundColor: themeController.isDarkTheme.value
+            ? SColors.darkmode
+            : SColors.color4,
         appBar: AppBar(
           toolbarHeight: 70,
           elevation: 0,
           title: Text(
             'People\nNear Me',
             style: TextStyle(
-              color:  themeController.isDarkTheme.value
-                  ?  SColors.appbarTitleInDark
+              fontFamily: 'Inter',
+              color: themeController.isDarkTheme.value
+                  ? SColors.appbarTitleInDark
                   : SColors.color11,
               fontSize: 18,
               fontWeight: FontWeight.w700,
             ),
           ),
-          backgroundColor:  themeController.isDarkTheme.value
-              ?  SColors.appbarbgInDark
+          backgroundColor: themeController.isDarkTheme.value
+              ? SColors.appbarbgInDark
               : SColors.color12,
           leading: Padding(
             padding: const EdgeInsets.all(8.0),

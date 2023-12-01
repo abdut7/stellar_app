@@ -45,7 +45,9 @@ class GroupLocationBubble extends StatelessWidget {
                       Text(
                         message.strName,
                         style: const TextStyle(
-                            fontWeight: FontWeight.w600, color: Colors.black),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black),
                       ),
                     ],
                   ),
@@ -84,7 +86,8 @@ class GroupLocationBubble extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 2.0, right: 5, left: 5),
                 child: Text(
                   message.strCreatedTime,
-                  style: const TextStyle(color: Colors.grey, fontSize: 10),
+                  style: const TextStyle(
+                      fontFamily: 'Inter', color: Colors.grey, fontSize: 10),
                 ),
               ),
               isSent

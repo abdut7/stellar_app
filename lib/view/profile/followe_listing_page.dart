@@ -16,17 +16,19 @@ class FollowerListingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor: themeController.isDarkTheme.value
-          ?  SColors.darkmode
-          : SColors.color4,
+      backgroundColor:
+          themeController.isDarkTheme.value ? SColors.darkmode : SColors.color4,
       appBar: AppBar(
         backgroundColor: themeController.isDarkTheme.value
-            ?  SColors.appbarbgInDark
+            ? SColors.appbarbgInDark
             : SColors.color12,
         title: Text(
-            page == FollowingOrFollower.following ? "Following" : "Followers",
-          style:TextStyle(
-            color: themeController.isDarkTheme.value ?  SColors.appbarTitleInDark : SColors.color11,
+          page == FollowingOrFollower.following ? "Following" : "Followers",
+          style: TextStyle(
+            fontFamily: 'Inter',
+            color: themeController.isDarkTheme.value
+                ? SColors.appbarTitleInDark
+                : SColors.color11,
             fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
@@ -56,12 +58,17 @@ class FollowerListingPage extends StatelessWidget {
                         uid: snapshot.data!.followList[index].userId),
                   );
                 },
-                title: Text(snapshot.data!.followList[index].fullName,
+                title: Text(
+                  snapshot.data!.followList[index].fullName,
                   style: TextStyle(
-                    color: themeController.isDarkTheme.value ?  SColors.color4 : SColors.color3,
+                    fontFamily: 'Inter',
+                    color: themeController.isDarkTheme.value
+                        ? SColors.color4
+                        : SColors.color3,
                     fontSize: 17,
                     fontWeight: FontWeight.w500,
-                  ),),
+                  ),
+                ),
               );
             },
           );

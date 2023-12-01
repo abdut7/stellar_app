@@ -26,24 +26,24 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
   Widget build(BuildContext context) {
     ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor: themeController.isDarkTheme.value
-          ?  SColors.darkmode
-          : SColors.color4,
+      backgroundColor:
+          themeController.isDarkTheme.value ? SColors.darkmode : SColors.color4,
       appBar: AppBar(
         toolbarHeight: 70,
         elevation: 0,
         title: Text(
           'New Group',
           style: TextStyle(
+            fontFamily: 'Inter',
             color: themeController.isDarkTheme.value
-                ?  SColors.appbarTitleInDark
+                ? SColors.appbarTitleInDark
                 : SColors.color11,
             fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
         ),
         backgroundColor: themeController.isDarkTheme.value
-            ?  SColors.appbarbgInDark
+            ? SColors.appbarbgInDark
             : SColors.color12,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -79,17 +79,19 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                     borderRadius: BorderRadius.circular(10)),
                 child: TextField(
                   style: TextStyle(
+                    fontFamily: 'Inter',
                     color: themeController.isDarkTheme.value
-                        ?  Colors.white
+                        ? Colors.white
                         : SColors.color3,
                   ),
                   controller: groupNameController,
-                  decoration:  InputDecoration(
+                  decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: " Group Name",
                       hintStyle: TextStyle(
+                        fontFamily: 'Inter',
                         color: themeController.isDarkTheme.value
-                            ?  SColors.buttonTextIndark
+                            ? SColors.buttonTextIndark
                             : SColors.color3,
                         fontSize: 17,
                         fontWeight: FontWeight.w500,
@@ -111,7 +113,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
               //         children: [
               //           Text(
               //             'Group Permission',
-              //             style: TextStyle(
+              //             style: TextStyle(fontFamily: 'Inter',
               //               color: Colors.black,
               //               fontSize: 14,
               //               fontWeight: FontWeight.w500,
@@ -125,9 +127,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
               //         ],
               //       ),
               //     )),
-               SizedBox(
-                height: Get.height*0.26
-              ),
+              SizedBox(height: Get.height * 0.26),
               GestureDetector(
                 onTap: () {
                   if (groupNameController.text.isEmpty) {
@@ -145,19 +145,21 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                   width: Get.width * 0.5,
                   height: 45,
                   decoration: BoxDecoration(
-                      color:themeController.isDarkTheme.value
-                          ?  SColors.color3
+                      color: themeController.isDarkTheme.value
+                          ? SColors.color3
                           : SColors.color12,
                       borderRadius: BorderRadius.circular(10)),
-                  child:  Center(
+                  child: Center(
                     child: Text(
                       "Add Participants",
                       style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 17,
-                          color: themeController.isDarkTheme.value
-                              ? Color(0xFFB2B2B2)
-                              : SColors.color11,),
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 17,
+                        color: themeController.isDarkTheme.value
+                            ? Color(0xFFB2B2B2)
+                            : SColors.color11,
+                      ),
                     ),
                   ),
                 ),

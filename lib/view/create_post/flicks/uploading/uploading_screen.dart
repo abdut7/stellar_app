@@ -14,7 +14,8 @@ class FlicksUploadingScreen extends StatelessWidget {
             ? "Uploading"
             : controller.isPosting.value
                 ? "Posting"
-                : "Completed")),
+                : "Completed",style:TextStyle(
+          fontFamily: 'Inter',))),
       ),
     );
   }

@@ -15,21 +15,14 @@ class ShowTimeWidgetChatBuble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: isSent
-          ? MainAxisAlignment.end
-          : MainAxisAlignment.end,
+      mainAxisAlignment: isSent ? MainAxisAlignment.end : MainAxisAlignment.end,
       children: [
         Padding(
-          padding:
-              const EdgeInsets.only(
-                  bottom: 2.0,
-                  right: 5,
-                  left: 5),
+          padding: const EdgeInsets.only(bottom: 2.0, right: 5, left: 5),
           child: Text(
             message.strCreatedTime,
             style: const TextStyle(
-                color: Colors.grey,
-                fontSize: 10),
+                fontFamily: 'Inter', color: Colors.grey, fontSize: 10),
           ),
         ),
         isSent

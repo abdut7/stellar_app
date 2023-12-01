@@ -18,7 +18,8 @@ class _SearchMediaScreenState extends State<SearchMediaScreen> {
     return Obx(() => searchController.isLoading.value
         ? const Center(child: CircularProgressIndicator())
         : searchController.mediaChatList.isEmpty
-            ? const Center(child: Text("No Medias available"))
+            ? const Center(child: Text("No Medias available",style:TextStyle(
+          fontFamily: 'Inter',)))
             : GridView.builder(
                 shrinkWrap: true,
                 // physics: const NeverScrollableScrollPhysics(),

@@ -36,6 +36,7 @@ class _CustomRowTileState extends State<CustomRowTile> {
           Text(
             widget.text,
             style: TextStyle(
+              fontFamily: 'Inter',
               color: SColors.color4,
               fontSize: 14,
               fontWeight: FontWeight.w400,

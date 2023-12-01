@@ -19,19 +19,19 @@ class ContactDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor: themeController.isDarkTheme.value
-          ?  SColors.darkmode
-          : SColors.color4,
+      backgroundColor:
+          themeController.isDarkTheme.value ? SColors.darkmode : SColors.color4,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: themeController.isDarkTheme.value
-            ?  SColors.appbarbgInDark
+            ? SColors.appbarbgInDark
             : SColors.color12,
         title: Text(
           'Contact Details',
           style: TextStyle(
+            fontFamily: 'Inter',
             color: themeController.isDarkTheme.value
-                ?  SColors.appbarTitleInDark
+                ? SColors.appbarTitleInDark
                 : SColors.color11,
             fontSize: 18,
             fontWeight: FontWeight.w700,
@@ -45,13 +45,15 @@ class ContactDetailsScreen extends StatelessWidget {
           children: <Widget>[
             const Text(
               'Name:',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style:
+                  TextStyle(fontFamily: 'Inter', fontWeight: FontWeight.bold),
             ),
             Text(contact.displayName ?? ''),
             const SizedBox(height: 16.0),
             const Text(
               'Phone Number:',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style:
+                  TextStyle(fontFamily: 'Inter', fontWeight: FontWeight.bold),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,9 +66,7 @@ class ContactDetailsScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton:
-
-      GestureDetector(
+      floatingActionButton: GestureDetector(
         onTap: () {
           if (isGroup) {
             GroupChatService.sentGroupContactMessage(
@@ -95,14 +95,14 @@ class ContactDetailsScreen extends StatelessWidget {
           height: Get.height * 0.05,
           decoration: BoxDecoration(
               color: themeController.isDarkTheme.value
-                  ?  SColors.color26
+                  ? SColors.color26
                   : SColors.color12,
-
               borderRadius: BorderRadius.circular(10)),
           child: const Center(
             child: Text(
               "Sent",
               style: TextStyle(
+                  fontFamily: 'Inter',
                   color: Colors.white,
                   fontSize: 15,
                   fontWeight: FontWeight.bold),

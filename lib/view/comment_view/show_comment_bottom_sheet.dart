@@ -88,10 +88,11 @@ class _CommentScreenState extends State<CommentScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Text(
-                              '${snapshot.hasData && snapshot.data != null ? snapshot.data!.arrList.length : widget.commentCount} Comments',
+                            '${snapshot.hasData && snapshot.data != null ? snapshot.data!.arrList.length : widget.commentCount} Comments',
                             style: TextStyle(
+                              fontFamily: 'Inter',
                               color: themeController.isDarkTheme.value
-                                  ?  SColors.color4
+                                  ? SColors.color4
                                   : SColors.color3,
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
@@ -100,12 +101,10 @@ class _CommentScreenState extends State<CommentScreen> {
                         ),
                       ),
                       IconButton(
-                        icon: Icon(
-                          Icons.cancel_outlined,
-                          color: themeController.isDarkTheme.value
-                              ?  SColors.color4
-                              : SColors.color3
-                        ),
+                        icon: Icon(Icons.cancel_outlined,
+                            color: themeController.isDarkTheme.value
+                                ? SColors.color4
+                                : SColors.color3),
                         onPressed: () {
                           Get.back();
                         },
@@ -170,6 +169,7 @@ class _CommentScreenState extends State<CommentScreen> {
                         controller: widget.commentController,
                         decoration: InputDecoration(
                           hintStyle: TextStyle(
+                              fontFamily: 'Inter',
                               color:
                                   Get.find<ThemeController>().isDarkTheme.value
                                       ? const Color.fromARGB(170, 0, 0, 0)

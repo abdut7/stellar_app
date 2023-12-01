@@ -51,7 +51,8 @@ class AuthHomeScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: SColors.color11,
                     borderRadius: BorderRadius.circular(10)),
-                child: const Center(child: Text("Login")),
+                child: const Center(child: Text("Login",style:TextStyle(
+          fontFamily: 'Inter',))),
               ),
             ),
             const SizedBox(
@@ -70,7 +71,7 @@ class AuthHomeScreen extends StatelessWidget {
                 child: Center(
                     child: Text(
                   "Sign Up",
-                  style: TextStyle(color: SColors.color4),
+                  style: TextStyle(fontFamily: 'Inter', color: SColors.color4),
                 )),
               ),
             )

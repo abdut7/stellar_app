@@ -28,6 +28,7 @@ class ProceedToPaymentButton extends StatelessWidget {
               buttonText,
               textAlign: TextAlign.center,
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: SColors.color20,
                 fontSize: 17,
                 fontWeight: FontWeight.w400,

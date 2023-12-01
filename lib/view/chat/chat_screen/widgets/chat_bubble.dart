@@ -66,8 +66,10 @@ class ChatBubble extends StatelessWidget {
                           const EdgeInsets.only(bottom: 2.0, right: 5, left: 5),
                       child: Text(
                         message.strCreatedTime,
-                        style:
-                            const TextStyle(color: Colors.grey, fontSize: 10),
+                        style: const TextStyle(
+                            fontFamily: 'Inter',
+                            color: Colors.grey,
+                            fontSize: 10),
                       ),
                     ),
                   ],
@@ -87,6 +89,7 @@ class ChatBubble extends StatelessWidget {
                             child: Text(
                               message.strMessage,
                               style: TextStyle(
+                                  fontFamily: 'Inter',
                                   color: themeController.isDarkTheme.value
                                       ? Colors.white
                                       : Colors.black),
@@ -141,6 +144,7 @@ class ChatBubble extends StatelessWidget {
                                             child: Text(
                                               message.strMessage,
                                               style: const TextStyle(
+                                                  fontFamily: 'Inter',
                                                   color: Color.fromRGBO(
                                                       87, 87, 87, 1)),
                                             ),
@@ -169,6 +173,7 @@ class ChatBubble extends StatelessWidget {
                                                 child: Text(
                                                   message.strCreatedTime,
                                                   style: const TextStyle(
+                                                      fontFamily: 'Inter',
                                                       color: Colors.grey,
                                                       fontSize: 10),
                                                 ),
@@ -269,6 +274,7 @@ class ChatBubble extends StatelessWidget {
                                                     child: Text(
                                                       message.strCreatedTime,
                                                       style: const TextStyle(
+                                                          fontFamily: 'Inter',
                                                           color: Colors.grey,
                                                           fontSize: 10),
                                                     ),
@@ -387,7 +393,7 @@ class ChatBubble extends StatelessWidget {
         //               padding: const EdgeInsets.only(bottom: 2.0),
         //               child: Text(
         //                 message.strCreatedTime,
-        //                 style: const TextStyle(color: Colors.grey),
+        //                 style: const TextStyle(fontFamily: 'Inter',color: Colors.grey),
         //               ),
         //             ),
         //             const SizedBox(width: 4.0),

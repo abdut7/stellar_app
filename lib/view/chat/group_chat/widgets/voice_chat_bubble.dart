@@ -167,11 +167,11 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
                 ),
                 // Text(
                 //   '${completedDuration.inMinutes}:${(completedDuration.inSeconds % 60).toString().padLeft(2, '0')} / ${totalDuration.inMinutes}:${(totalDuration.inSeconds % 60).toString().padLeft(2, '0')}',
-                //   style: const TextStyle(color: Colors.black),
+                //   style: const TextStyle(fontFamily: 'Inter',color: Colors.black),
                 // ),
                 // Text(
                 //   widget.createdTime,
-                //   style: const TextStyle(color: Colors.grey, fontSize: 8),
+                //   style: const TextStyle(fontFamily: 'Inter',color: Colors.grey, fontSize: 8),
                 // ),
               ],
             ),
@@ -202,7 +202,8 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
                       const EdgeInsets.only(bottom: 2.0, right: 5, left: 5),
                   child: Text(
                     widget.createdTime,
-                    style: const TextStyle(color: Colors.grey, fontSize: 10),
+                    style: const TextStyle(
+                        fontFamily: 'Inter', color: Colors.grey, fontSize: 10),
                   ),
                 ),
                 widget.isSender

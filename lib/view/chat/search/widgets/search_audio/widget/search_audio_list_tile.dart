@@ -32,8 +32,9 @@ class _SearchAudioListTileState extends State<SearchAudioListTile> {
       title: Text(
         widget.fileType,
         style: TextStyle(
+          fontFamily: 'Inter',
           color: themeController.isDarkTheme.value
-              ?  SColors.color4
+              ? SColors.color4
               : SColors.color3,
           fontSize: 14,
           fontWeight: FontWeight.w600,
@@ -42,8 +43,9 @@ class _SearchAudioListTileState extends State<SearchAudioListTile> {
       subtitle: Text(
         widget.fileSize,
         style: TextStyle(
+          fontFamily: 'Inter',
           color: themeController.isDarkTheme.value
-              ?  SColors.color26
+              ? SColors.color26
               : SColors.color8,
           fontSize: 12,
           fontWeight: FontWeight.w400,
@@ -52,8 +54,9 @@ class _SearchAudioListTileState extends State<SearchAudioListTile> {
       trailing: Text(
         widget.time,
         style: TextStyle(
+          fontFamily: 'Inter',
           color: themeController.isDarkTheme.value
-              ?  SColors.color26
+              ? SColors.color26
               : SColors.color8,
           fontSize: 10,
           fontWeight: FontWeight.w400,

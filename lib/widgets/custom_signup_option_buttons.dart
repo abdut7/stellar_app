@@ -36,7 +36,7 @@ class _CustomButtonState extends State<CustomButton> {
       padding: const EdgeInsets.symmetric(horizontal: 70),
       child: SizedBox(
         width: Get.width,
-        height: MediaQuery.of(context).size.height*0.045,
+        height: MediaQuery.of(context).size.height * 0.045,
         child: ElevatedButton(
           onPressed: widget.onPressed,
           style: ElevatedButton.styleFrom(
@@ -62,16 +62,18 @@ class _CustomButtonState extends State<CustomButton> {
                   height: 20,
                   color: widget.svgColor,
                 )
-              else if (widget.imageAssetPath != null) // Check if image asset is provided
-                  Image.asset(
-                    widget.imageAssetPath!,
-                    width: 30,
-                    height: 20,
-                  ),
+              else if (widget.imageAssetPath !=
+                  null) // Check if image asset is provided
+                Image.asset(
+                  widget.imageAssetPath!,
+                  width: 30,
+                  height: 20,
+                ),
               Text(
                 widget.text,
                 textAlign: TextAlign.center,
                 style: TextStyle(
+                  fontFamily: 'Inter',
                   fontSize: 13,
                   color: widget.textColor,
                   fontWeight: FontWeight.w500,

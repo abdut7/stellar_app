@@ -106,8 +106,8 @@ class _VideoPlayerScreen extends State<VideoPlayerScreen> {
                         },
                         progress: _controller.value.position,
                         total: _controller.value.duration,
-                        timeLabelTextStyle:
-                            const TextStyle(color: Colors.white),
+                        timeLabelTextStyle: const TextStyle(
+                            fontFamily: 'Inter', color: Colors.white),
                         timeLabelLocation: TimeLabelLocation.below,
                         thumbColor: const Color.fromRGBO(159, 196, 232, 1),
                         progressBarColor:

@@ -33,19 +33,31 @@ class _SelectContactsState extends State<SelectContacts> {
       () => Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
-          title: const Text("Select Contacts"),
+          title: const Text("Select Contacts",
+              style: TextStyle(
+                fontFamily: 'Inter',
+              )),
         ),
         body: contactsController.isFetchingContacts.value
             ? const Center(
-                child: Text("Uploading contacts"),
+                child: Text("Uploading contacts",
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                    )),
               )
             : contactsController.isGettingFromServer.value
                 ? const Center(
-                    child: Text("Geting Users"),
+                    child: Text("Geting Users",
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                        )),
                   )
                 : contactsController.isErrorOccured.value
                     ? const Center(
-                        child: Text("Erroro occured"),
+                        child: Text("Erroro occured",
+                            style: TextStyle(
+                              fontFamily: 'Inter',
+                            )),
                       )
                     : ListView.separated(
                         itemBuilder: (context, index) {
@@ -67,8 +79,10 @@ class _SelectContactsState extends State<SelectContacts> {
                               onChanged: (e) {},
                             ),
                             selected: selectedId.contains(item.id),
-                            title: Text(item.strFullName),
-                            subtitle: Text(item.strMobileNo),
+                            title: Text(item.strFullName,style:TextStyle(
+          fontFamily: 'Inter',)),
+                            subtitle: Text(item.strMobileNo,style:TextStyle(
+          fontFamily: 'Inter',)),
                           );
                         },
                         separatorBuilder: (context, index) => const Divider(),
@@ -95,7 +109,8 @@ class _SelectContactsState extends State<SelectContacts> {
                               )
                             : Text(
                                 "Add Contacts",
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(
+                                    fontFamily: 'Inter', color: Colors.white),
                               ));
                   }),
                 ),

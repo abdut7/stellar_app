@@ -26,7 +26,7 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
       appBar: AppBar(
         title: const Text(
           "Scan QR",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(fontFamily: 'Inter', color: Colors.black),
         ),
         backgroundColor: Colors.white,
       ),

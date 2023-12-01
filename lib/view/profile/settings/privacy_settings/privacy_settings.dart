@@ -25,8 +25,9 @@ class _PrivacySettingsState extends State<PrivacySettings> {
         Text(
           title,
           style: TextStyle(
+            fontFamily: 'Inter',
             color: themeController.isDarkTheme.value
-                ?  SColors.color4
+                ? SColors.color4
                 : SColors.color3,
             fontSize: 15,
             fontWeight: FontWeight.w400,
@@ -35,6 +36,7 @@ class _PrivacySettingsState extends State<PrivacySettings> {
         Text(
           suffixText,
           style: TextStyle(
+            fontFamily: 'Inter',
             color: SColors.color11,
             fontSize: 11,
             fontWeight: FontWeight.w500,
@@ -47,6 +49,7 @@ class _PrivacySettingsState extends State<PrivacySettings> {
   Widget headTitle(String head) {
     return Text(head,
         style: TextStyle(
+          fontFamily: 'Inter',
           color: SColors.color11,
           fontSize: 18,
           fontWeight: FontWeight.w600,
@@ -58,22 +61,22 @@ class _PrivacySettingsState extends State<PrivacySettings> {
     ThemeController themeController = Get.find();
     return Scaffold(
         backgroundColor: themeController.isDarkTheme.value
-            ?  SColors.darkmode
+            ? SColors.darkmode
             : SColors.color4,
         appBar: AppBar(
           toolbarHeight: 70,
           elevation: 0,
-          title: Text(
-              'Privacy And Security',
+          title: Text('Privacy And Security',
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: themeController.isDarkTheme.value
-                    ?  SColors.appbarTitleInDark
+                    ? SColors.appbarTitleInDark
                     : SColors.color11,
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
               )),
           backgroundColor: themeController.isDarkTheme.value
-              ?  SColors.appbarbgInDark
+              ? SColors.appbarbgInDark
               : SColors.color12,
           leading: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -108,9 +111,10 @@ class _PrivacySettingsState extends State<PrivacySettings> {
                     Text(
                       'Chat History',
                       style: TextStyle(
+                        fontFamily: 'Inter',
                         color: themeController.isDarkTheme.value
-                      ?  SColors.color4
-                          : SColors.color3,
+                            ? SColors.color4
+                            : SColors.color3,
                         fontSize: 15,
                         fontWeight: FontWeight.w400,
                       ),
@@ -120,8 +124,8 @@ class _PrivacySettingsState extends State<PrivacySettings> {
                       child: Icon(
                         Icons.arrow_forward_ios,
                         color: themeController.isDarkTheme.value
-                      ?  SColors.color4
-                          : SColors.color3,
+                            ? SColors.color4
+                            : SColors.color3,
                         size: 15,
                       ),
                     ),
@@ -134,8 +138,8 @@ class _PrivacySettingsState extends State<PrivacySettings> {
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Divider(
               thickness: 1,
-              color:  themeController.isDarkTheme.value
-            ?  Color.fromRGBO(187, 187, 187, 1)
+              color: themeController.isDarkTheme.value
+                  ? Color.fromRGBO(187, 187, 187, 1)
                   : SColors.color3,
             ),
           ),
@@ -155,8 +159,9 @@ class _PrivacySettingsState extends State<PrivacySettings> {
                   Text(
                     'Nearby Visibility',
                     style: TextStyle(
-                      color:  themeController.isDarkTheme.value
-                          ?  SColors.color4
+                      fontFamily: 'Inter',
+                      color: themeController.isDarkTheme.value
+                          ? SColors.color4
                           : SColors.color3,
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
@@ -190,8 +195,8 @@ class _PrivacySettingsState extends State<PrivacySettings> {
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Divider(
               thickness: 1,
-              color:  themeController.isDarkTheme.value
-                  ?  Color.fromRGBO(187, 187, 187, 1)
+              color: themeController.isDarkTheme.value
+                  ? Color.fromRGBO(187, 187, 187, 1)
                   : SColors.color3,
             ),
           ),

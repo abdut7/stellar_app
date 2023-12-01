@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 
-
 class SendButton extends StatefulWidget {
   final VoidCallback onTap;
   final String buttonText;
@@ -26,11 +25,22 @@ class _SendButtonState extends State<SendButton> {
           width: MediaQuery.of(context).size.width * 0.65,
           height: 41,
           decoration: ShapeDecoration(
-            color: SColors.color19, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),),),
+            color: SColors.color19,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
           child: Center(
             child: Text(
               widget.buttonText,
-              style: TextStyle(color: SColors.color20, fontSize: 17, fontWeight: FontWeight.w400,),),),
+              style: TextStyle(
+                fontFamily: 'Inter',
+                color: SColors.color20,
+                fontSize: 17,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
         ),
       ),
     );

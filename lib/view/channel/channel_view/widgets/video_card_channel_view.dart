@@ -118,6 +118,7 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
                               ? "No Title"
                               : widget.channelItem.description,
                           style: TextStyle(
+                            fontFamily: 'Inter',
                             color: Get.find<ThemeController>().isDarkTheme.value
                                 ? Colors.white
                                 : SColors.color3,
@@ -133,6 +134,7 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
                             DateTime.parse(widget.channelItem.createdTime),
                           )}',
                           style: TextStyle(
+                            fontFamily: 'Inter',
                             color: SColors.color8,
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
@@ -160,6 +162,7 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
                           Text(
                             'Share',
                             style: TextStyle(
+                              fontFamily: 'Inter',
                               color:
                                   Get.find<ThemeController>().isDarkTheme.value
                                       ? Colors.white
@@ -192,6 +195,7 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
                       Text(
                         widget.channelItem.createdUserFullName,
                         style: TextStyle(
+                          fontFamily: 'Inter',
                           color: themeController.isDarkTheme.value
                               ? SColors.color4
                               : SColors.color3,
@@ -201,8 +205,10 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
                       ),
                       Text(
                         "$followCount Followers",
-                        style:
-                            const TextStyle(color: Colors.grey, fontSize: 10),
+                        style: const TextStyle(
+                            fontFamily: 'Inter',
+                            color: Colors.grey,
+                            fontSize: 10),
                       )
                     ],
                   ),
@@ -249,6 +255,7 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
                               child: Text(
                                 isFollowing ? "Following" : "Follow",
                                 style: TextStyle(
+                                    fontFamily: 'Inter',
                                     color: isFollowing
                                         ? const Color.fromARGB(184, 0, 0, 0)
                                         : secondaryColor),
@@ -281,7 +288,8 @@ class _VideoCardChannelViewState extends State<VideoCardChannelView> {
                   child: const Center(
                     child: Text(
                       "Comments",
-                      style: TextStyle(color: Colors.black),
+                      style:
+                          TextStyle(fontFamily: 'Inter', color: Colors.black),
                     ),
                   ),
                 ),

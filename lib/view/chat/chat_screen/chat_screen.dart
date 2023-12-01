@@ -118,7 +118,6 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
       body: Column(
         children: <Widget>[
           Obx(() {
-            print("Added new message");
             return Expanded(
               child: Stack(
                 alignment: Alignment.bottomCenter,

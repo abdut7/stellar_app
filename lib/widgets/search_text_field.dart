@@ -15,8 +15,7 @@ class SearchTextField extends StatefulWidget {
 class _SearchTextFieldState extends State<SearchTextField> {
   @override
   Widget build(BuildContext context) {
-    return
-      Padding(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
       child: SizedBox(
         height: 40,
@@ -28,6 +27,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
             fillColor: Colors.grey[300],
             hintText: 'Search',
             hintStyle: TextStyle(
+              fontFamily: 'Inter',
               color: SColors.color9,
               fontSize: 13,
               fontWeight: FontWeight.w700,
@@ -37,7 +37,8 @@ class _SearchTextFieldState extends State<SearchTextField> {
               borderSide: BorderSide.none,
             ),
           ),
-          style: TextStyle(color: SColors.color3, fontSize: 15),
+          style: TextStyle(
+              fontFamily: 'Inter', color: SColors.color3, fontSize: 15),
           textAlign: TextAlign.center,
           onChanged: (val) {
             if (widget.isFromContacts) {

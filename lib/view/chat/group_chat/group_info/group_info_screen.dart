@@ -100,6 +100,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                   child: const Text(
                                     "Add Participents",
                                     style: TextStyle(
+                                        fontFamily: 'Inter',
                                         fontSize: 16,
                                         color: Color.fromRGBO(0, 51, 142, 1)),
                                   ))
@@ -119,6 +120,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                               child: const Text(
                                 "Change Group Name",
                                 style: TextStyle(
+                                    fontFamily: 'Inter',
                                     fontSize: 16,
                                     color: Color.fromRGBO(0, 51, 142, 1)),
                               ))
@@ -198,6 +200,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                         child: Text(
                                           "Upload Photo",
                                           style: TextStyle(
+                                            fontFamily: 'Inter',
                                             color: SColors.color12,
                                             fontSize: 17,
                                             fontWeight: FontWeight.w500,
@@ -224,6 +227,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                         child: Text(
                                           "Take a Photo",
                                           style: TextStyle(
+                                            fontFamily: 'Inter',
                                             color: SColors.color12,
                                             fontSize: 17,
                                             fontWeight: FontWeight.w500,
@@ -256,6 +260,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                       child: Text(
                         resModel.strGroupName,
                         style: TextStyle(
+                            fontFamily: 'Inter',
                             color: themeController.isDarkTheme.value
                                 ? SColors.color4
                                 : SColors.color3,
@@ -270,6 +275,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                       child: Text(
                         "Group : ${resModel.intParticipants} Participants",
                         style: TextStyle(
+                            fontFamily: 'Inter',
                             color: themeController.isDarkTheme.value
                                 ? SColors.color4
                                 : SColors.color3),
@@ -329,6 +335,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                       Text(
                                         "Add",
                                         style: TextStyle(
+                                          fontFamily: 'Inter',
                                           color:
                                               themeController.isDarkTheme.value
                                                   ? SColors.color4
@@ -368,6 +375,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                               Text(
                                 "Search",
                                 style: TextStyle(
+                                  fontFamily: 'Inter',
                                   color: themeController.isDarkTheme.value
                                       ? SColors.color4
                                       : SColors.color3,
@@ -408,6 +416,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                               child: Text(
                                 resModel.strDiscription,
                                 style: TextStyle(
+                                  fontFamily: 'Inter',
                                   fontWeight: FontWeight.bold,
                                   color: themeController.isDarkTheme.value
                                       ? SColors.color4
@@ -423,6 +432,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                               child: Text(
                                 "Created by : ${resModel.strCreatedBy}, ${DateFormat('dd/MM/yyyy').format(DateTime.parse(resModel.strCreatedTime))}",
                                 style: TextStyle(
+                                    fontFamily: 'Inter',
                                     color: themeController.isDarkTheme.value
                                         ? SColors.color26
                                         : const Color.fromRGBO(91, 91, 91, 1)),
@@ -449,6 +459,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                           Text(
                             "${resModel.intParticipants} Participants",
                             style: TextStyle(
+                                fontFamily: 'Inter',
                                 color: themeController.isDarkTheme.value
                                     ? SColors.color26
                                     : const Color.fromRGBO(91, 91, 91, 1),
@@ -473,6 +484,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                                     child: Text(
                                       "Add Participants",
                                       style: TextStyle(
+                                          fontFamily: 'Inter',
                                           color:
                                               themeController.isDarkTheme.value
                                                   ? SColors.color4
@@ -573,6 +585,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                               title: Text(
                                 resModel.groupUser[index].strFullName,
                                 style: TextStyle(
+                                  fontFamily: 'Inter',
                                   color: themeController.isDarkTheme.value
                                       ? SColors.color4
                                       : SColors.color3,
@@ -581,7 +594,9 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                               trailing: resModel.groupUser[index].isAdmin
                                   ? const Text(
                                       "Admin",
-                                      style: TextStyle(color: Colors.green),
+                                      style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          color: Colors.green),
                                     )
                                   : const SizedBox(),
                             ),
@@ -616,7 +631,8 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content: Text(
-                                      'You cannot exit the group because you are an admin'),
+                                      'You cannot exit the group because you are an admin',style:TextStyle(
+          fontFamily: 'Inter',)),
                                 ),
                               );
                               return;
@@ -627,7 +643,8 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content: Text(
-                                      'You cannot exit the group because you created it.'),
+                                      'You cannot exit the group because you created it.',style:TextStyle(
+          fontFamily: 'Inter',)),
                                 ),
                               );
                               return;
@@ -643,13 +660,15 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                               Get.back();
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
-                                content: Text('Succesfully Exited'),
+                                content: Text('Succesfully Exited',style:TextStyle(
+          fontFamily: 'Inter',)),
                               ));
                             }
                           },
                           child: const Text(
                             "Exit Group",
-                            style: TextStyle(color: Colors.red),
+                            style: TextStyle(
+                                fontFamily: 'Inter', color: Colors.red),
                           ),
                         )
                       ],
@@ -679,7 +698,8 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                         ),
                         const Text(
                           "Report Group",
-                          style: TextStyle(color: Colors.red),
+                          style:
+                              TextStyle(fontFamily: 'Inter', color: Colors.red),
                         )
                       ],
                     )

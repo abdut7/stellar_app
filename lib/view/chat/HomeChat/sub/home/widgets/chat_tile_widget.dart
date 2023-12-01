@@ -50,6 +50,7 @@ class ChatListItem extends StatelessWidget {
       title: Text(
         name,
         style: TextStyle(
+            fontFamily: 'Inter',
             fontWeight: FontWeight.w500,
             fontSize: 15,
             color: themeController.isDarkTheme.value ? Colors.white : null),
@@ -67,6 +68,7 @@ class ChatListItem extends StatelessWidget {
             child: Text(
               message,
               style: TextStyle(
+                  fontFamily: 'Inter',
                   fontWeight: FontWeight.w400,
                   fontSize: 13,
                   color:
@@ -85,6 +87,7 @@ class ChatListItem extends StatelessWidget {
           Text(
             time,
             style: TextStyle(
+                fontFamily: 'Inter',
                 color: themeController.isDarkTheme.value ? Colors.white : null,
                 fontSize: 12),
           ),
@@ -99,6 +102,7 @@ class ChatListItem extends StatelessWidget {
               child: Text(
                 unreadCount.toString(),
                 style: const TextStyle(
+                  fontFamily: 'Inter',
                   color: Colors.white,
                   fontSize: 12,
                 ),

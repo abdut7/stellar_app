@@ -29,8 +29,9 @@ class _ContactThroughState extends State<ContactThrough> {
         Text(
           widget.label,
           style: TextStyle(
-            color:  themeController.isDarkTheme.value
-                ?  SColors.color26
+            fontFamily: 'Inter',
+            color: themeController.isDarkTheme.value
+                ? SColors.color26
                 : SColors.color3,
             fontSize: 12,
             fontWeight: FontWeight.w600,

@@ -71,11 +71,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 } else if (chatHistoryController.errorOccured.value) {
                   return const Center(
-                    child: Text("Error occured while loading chat"),
+                    child: Text("Error occured while loading chat",style:TextStyle(
+          fontFamily: 'Inter',)),
                   );
                 } else if (chatHistoryController.chatHistoryList.isEmpty) {
                   return const Center(
-                    child: Text("No Chat Exist"),
+                    child: Text("No Chat Exist",style:TextStyle(
+          fontFamily: 'Inter',)),
                   );
                 }
 

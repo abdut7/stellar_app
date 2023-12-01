@@ -61,6 +61,7 @@ class _SearchChatScreenState extends State<SearchChatScreen> {
                                 child: Text(
                                   searchFiles.strMessage,
                                   style: const TextStyle(
+                                    fontFamily: 'Inter',
                                     color: Color.fromRGBO(87, 87, 87, 1),
                                   ),
                                 ),
@@ -94,7 +95,9 @@ class _SearchChatScreenState extends State<SearchChatScreen> {
                                 child: Text(
                                   searchFiles.strCreatedTime,
                                   style: const TextStyle(
-                                      color: Colors.grey, fontSize: 10),
+                                      fontFamily: 'Inter',
+                                      color: Colors.grey,
+                                      fontSize: 10),
                                 ),
                               ),
                               isSent

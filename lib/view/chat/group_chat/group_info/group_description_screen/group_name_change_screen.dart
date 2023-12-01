@@ -44,6 +44,7 @@ class _ChangeGroupNameScreenState extends State<ChangeGroupNameScreen> {
           title: Text(
             'Enter Group\nName',
             style: TextStyle(
+              fontFamily: 'Inter',
               color: themeController.isDarkTheme.value
                   ? SColors.appbarTitleInDark
                   : SColors.color11,
@@ -111,6 +112,7 @@ class _ChangeGroupNameScreenState extends State<ChangeGroupNameScreen> {
                 child: Text(
                   isUpdating ? "Updating..." : 'Update',
                   style: TextStyle(
+                      fontFamily: 'Inter',
                       fontSize: 14,
                       color: themeController.isDarkTheme.value
                           ? SColors.color4

@@ -119,7 +119,8 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
                     ),
                     Text(
                       likeCount.toString(),
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(
+                          fontFamily: 'Inter', color: Colors.white),
                     ),
                     const SizedBox(
                       height: 30,
@@ -154,7 +155,8 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
                     ),
                     Text(
                       "$commentCount",
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(
+                          fontFamily: 'Inter', color: Colors.white),
                     ),
                     const SizedBox(
                       height: 30,
@@ -180,7 +182,8 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
 """),
                     const Text(
                       "SHARE",
-                      style: TextStyle(color: Colors.white),
+                      style:
+                          TextStyle(fontFamily: 'Inter', color: Colors.white),
                     ),
                     const SizedBox(height: 30),
                     GestureDetector(
@@ -229,6 +232,7 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
                         Text(
                           "@${widget.flickItem.strCreatedUserFullName}",
                           style: const TextStyle(
+                              fontFamily: 'Inter',
                               color: Colors.white,
                               fontSize: 17,
                               fontWeight: FontWeight.w600),
@@ -239,6 +243,7 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
                         Text(
                           widget.flickItem.strDescription,
                           style: const TextStyle(
+                              fontFamily: 'Inter',
                               color: Colors.white,
                               fontSize: 13,
                               fontWeight: FontWeight.w400),
@@ -258,7 +263,8 @@ class _FlickItemWidgetState extends State<FlickItemWidget> {
                             ),
                             const Text(
                               "Own Audio",
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                  fontFamily: 'Inter', color: Colors.white),
                             )
                           ],
                         )

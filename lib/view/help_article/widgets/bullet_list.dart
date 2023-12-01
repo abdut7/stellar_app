@@ -25,9 +25,17 @@ class UnorderedListItem extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const Text("• ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),),
+        const Text(
+          "• ",
+          style: TextStyle(
+              fontFamily: 'Inter', fontWeight: FontWeight.bold, fontSize: 15),
+        ),
         Expanded(
-          child: Text(text,style: TextStyle(fontSize: 12,fontWeight: FontWeight.w500),),
+          child: Text(
+            text,
+            style: TextStyle(
+                fontFamily: 'Inter', fontSize: 12, fontWeight: FontWeight.w500),
+          ),
         ),
       ],
     );

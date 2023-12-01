@@ -53,6 +53,7 @@ class ListContactsWidget extends StatelessWidget {
               title: Obx(() => Text(
                     data.strFullName,
                     style: TextStyle(
+                      fontFamily: 'Inter',
                       color: themeController.isDarkTheme.value
                           ? Colors.white
                           : SColors.color3,
@@ -63,6 +64,7 @@ class ListContactsWidget extends StatelessWidget {
               subtitle: Obx(() => Text(
                     data.strMobileNo,
                     style: TextStyle(
+                      fontFamily: 'Inter',
                       color: themeController.isDarkTheme.value
                           ? Colors.white
                           : Colors.black,
@@ -71,7 +73,7 @@ class ListContactsWidget extends StatelessWidget {
             ),
           );
         },
-        separatorBuilder: (context, index) =>  Divider(
+        separatorBuilder: (context, index) => Divider(
               color: themeController.isDarkTheme.value
                   ? SColors.darkmode
                   : Colors.white,

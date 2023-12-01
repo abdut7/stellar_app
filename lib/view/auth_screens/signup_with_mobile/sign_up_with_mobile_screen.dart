@@ -187,6 +187,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                                 Text(
                                   "Sign Up\nwith Mobile",
                                   style: TextStyle(
+                                    fontFamily: 'Inter',
                                     color: SColors.color12,
                                     fontSize: 26,
                                     fontWeight: FontWeight.w900,
@@ -327,6 +328,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                                               child: Text(
                                                 "OTP Verification",
                                                 style: TextStyle(
+                                                  fontFamily: 'Inter',
                                                   fontSize: 14,
                                                   color: Color.fromRGBO(
                                                       159, 196, 232, 1),
@@ -369,6 +371,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                             Text(
                               'Have a account?',
                               style: TextStyle(
+                                fontFamily: 'Inter',
                                 color: SColors.color9,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
@@ -380,6 +383,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                             Text(
                               "Sign In",
                               style: TextStyle(
+                                fontFamily: 'Inter',
                                 fontSize: 16,
                                 color: SColors.color3,
                                 fontWeight: FontWeight.w800,

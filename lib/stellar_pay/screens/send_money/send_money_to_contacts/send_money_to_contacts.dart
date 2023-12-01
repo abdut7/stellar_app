@@ -26,7 +26,10 @@ class _SendMoneyToContactsState extends State<SendMoneyToContacts> {
         backgroundColor: SColors.color19.withOpacity(0.6),
         leading: Padding(
           padding: const EdgeInsets.only(left: 15),
-          child: SvgPicture.asset(SSvgs.payStellar,),),
+          child: SvgPicture.asset(
+            SSvgs.payStellar,
+          ),
+        ),
         title: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -34,24 +37,29 @@ class _SendMoneyToContactsState extends State<SendMoneyToContacts> {
               Text(
                 'Send Money',
                 style: TextStyle(
+                  fontFamily: 'Inter',
                   color: SColors.color20,
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(width: 5,),
-              SvgPicture.asset(SSvgs.sendMoneyIcon,),
+              const SizedBox(
+                width: 5,
+              ),
+              SvgPicture.asset(
+                SSvgs.sendMoneyIcon,
+              ),
             ],
           ),
         ),
       ),
       body: ListView(
         children: [
-         SearchBarTextfield(hintText: 'Search in Stellar Contacts'),
+          SearchBarTextfield(hintText: 'Search in Stellar Contacts'),
           SendReceiveContactsListTile(
             name: 'Abdul Rasheed',
             onTap: () {
-              Get.to(()=>const SendAmountDisplayScreen());
+              Get.to(() => const SendAmountDisplayScreen());
             },
           ),
           SendReceiveContactsListTile(

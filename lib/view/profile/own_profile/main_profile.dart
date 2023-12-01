@@ -91,6 +91,7 @@ class _MainProfileState extends State<MainProfile> {
                                     capitalizeNames(controller
                                         .userDetailsModel.value!.strName),
                                     style: TextStyle(
+                                      fontFamily: 'Inter',
                                       color: themeController.isDarkTheme.value
                                           ? SColors.color4
                                           : SColors.color3,
@@ -104,6 +105,7 @@ class _MainProfileState extends State<MainProfile> {
                                   Text(
                                     'Phone Number : ${controller.userDetailsModel.value!.strMobileNo}',
                                     style: TextStyle(
+                                      fontFamily: 'Inter',
                                       color: themeController.isDarkTheme.value
                                           ? SColors.color4
                                           : SColors.color3,
@@ -282,6 +284,7 @@ class _MainProfileState extends State<MainProfile> {
                                 ? "Posting.."
                                 : "Uploaded Succesfuly",
                         style: const TextStyle(
+                            fontFamily: 'Inter',
                             color: Colors.white,
                             fontSize: 12,
                             fontWeight: FontWeight.w600),
@@ -293,6 +296,7 @@ class _MainProfileState extends State<MainProfile> {
                                 Text(
                                   "${flickController.uploadPercentage.value.toString()} %",
                                   style: const TextStyle(
+                                      fontFamily: 'Inter',
                                       color: Colors.white,
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600),

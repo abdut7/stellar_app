@@ -29,6 +29,7 @@ class _EditProfileUiState extends State<EditProfileUi> {
         title: Text(
           'EDIT PROFILE',
           style: TextStyle(
+            fontFamily: 'Inter',
             color: SColors.color3,
             fontSize: 13,
             fontWeight: FontWeight.w500,
@@ -80,6 +81,7 @@ class _EditProfileUiState extends State<EditProfileUi> {
                     content: Text(
                       'Profile Updated',
                       style: TextStyle(
+                        fontFamily: 'Inter',
                         color: SColors.color3,
                         fontSize: 15,
                         fontWeight: FontWeight.w700,

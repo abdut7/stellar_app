@@ -35,6 +35,7 @@ class _ContactsHomeScreenState extends State<ContactsHomeScreen> {
           title: Text(
             text,
             style: TextStyle(
+              fontFamily: 'Inter',
               color: SColors.color3,
               fontSize: 14,
               fontWeight: FontWeight.w400,
@@ -90,7 +91,8 @@ class _ContactsHomeScreenState extends State<ContactsHomeScreen> {
                   padding: EdgeInsets.all(8.0),
                   child: Text(
                     "Your Contacts",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontFamily: 'Inter', fontWeight: FontWeight.bold),
                   ),
                 )
               ],
@@ -107,7 +109,8 @@ class _ContactsHomeScreenState extends State<ContactsHomeScreen> {
                       : contactsController
                               .getContactsModel.value!.arrList.isEmpty
                           ? const Center(
-                              child: Text("No Contacts added add now"),
+                              child: Text("No Contacts added add now", style: TextStyle(
+          fontFamily: 'Inter',)),
                             )
                           : CustomScrollView(
                               shrinkWrap: true,
@@ -132,8 +135,10 @@ class _ContactsHomeScreenState extends State<ContactsHomeScreen> {
                                           backgroundImage:
                                               NetworkImage(data.strProfileUrl),
                                         ),
-                                        title: Text(data.strFullName),
-                                        subtitle: Text(data.strMobileNo),
+                                        title: Text(data.strFullName,style:TextStyle(
+          fontFamily: 'Inter',)),
+                                        subtitle: Text(data.strMobileNo,style:TextStyle(
+          fontFamily: 'Inter',)),
                                       );
                                     },
                                     childCount: contactsController

@@ -54,6 +54,7 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
         title: Text(
           'New Post',
           style: TextStyle(
+            fontFamily: 'Inter',
             color: SColors.color12,
             fontSize: 16,
             fontWeight: FontWeight.w700,
@@ -80,6 +81,7 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
             },
             child: Text('Share',
                 style: TextStyle(
+                  fontFamily: 'Inter',
                   color: SColors.color12,
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
@@ -114,12 +116,14 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                       padding: const EdgeInsets.symmetric(vertical: 25),
                       child: TextField(
                         style: TextStyle(
+                            fontFamily: 'Inter',
                             color: Get.find<ThemeController>().isDarkTheme.value
                                 ? Colors.white
                                 : Colors.black),
                         controller: captionController,
                         decoration: const InputDecoration(
                           hintStyle: TextStyle(
+                            fontFamily: 'Inter',
                             color: Color(0xFFD9D9D9),
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
@@ -198,6 +202,7 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                                   child: Text(
                                     newPostController.locationName.value,
                                     style: TextStyle(
+                                      fontFamily: 'Inter',
                                       color: SColors.color3,
                                       fontSize: 11,
                                       fontWeight: FontWeight.w500,
@@ -249,6 +254,7 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                                     .elementAt(index)
                                     .strFullName,
                                 style: TextStyle(
+                                    fontFamily: 'Inter',
                                     color: SColors.color3,
                                     overflow: TextOverflow.ellipsis,
                                     fontSize: 10,
@@ -281,6 +287,7 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                       child: Text(
                         'Music , Artist',
                         style: TextStyle(
+                            fontFamily: 'Inter',
                             color: SColors.color3,
                             overflow: TextOverflow.ellipsis,
                             fontSize: 10,
@@ -303,6 +310,7 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
               child: Text(
                 'Advance Settings',
                 style: TextStyle(
+                  fontFamily: 'Inter',
                   color: SColors.color12,
                   fontSize: 13,
                   fontWeight: FontWeight.w500,
@@ -324,6 +332,7 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                       Text(
                         'Hide like and view counts \non your post',
                         style: TextStyle(
+                          fontFamily: 'Inter',
                           color: Get.find<ThemeController>().isDarkTheme.value
                               ? Colors.grey
                               : SColors.color3,
@@ -362,6 +371,7 @@ class _FlicksUploadNewPostState extends State<FlicksUploadNewPost> {
                       Text(
                         'Turn off comments on your\npost. You can always change it\nfrom the menu ',
                         style: TextStyle(
+                          fontFamily: 'Inter',
                           color: Get.find<ThemeController>().isDarkTheme.value
                               ? Colors.grey
                               : SColors.color3,
@@ -406,6 +416,7 @@ Widget headText(String head) {
   return Text(
     head,
     style: TextStyle(
+      fontFamily: 'Inter',
       color: Get.find<ThemeController>().isDarkTheme.value
           ? Colors.grey
           : SColors.color3,
@@ -421,6 +432,7 @@ Widget titleTextButton(String btnTxt, Function() onPress) {
     child: Text(
       btnTxt,
       style: TextStyle(
+        fontFamily: 'Inter',
         color: SColors.color12,
         fontSize: 12,
         fontWeight: FontWeight.w500,

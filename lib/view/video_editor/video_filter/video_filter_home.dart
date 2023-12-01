@@ -92,8 +92,9 @@ class _VideoFilterHomeScreenState extends State<VideoFilterHomeScreen> {
                       children: [
                         const Text(
                           "Next",
-                          style:
-                              TextStyle(color: Color.fromRGBO(0, 51, 142, 1)),
+                          style: TextStyle(
+                              fontFamily: 'Inter',
+                              color: Color.fromRGBO(0, 51, 142, 1)),
                         ),
                         const SizedBox(
                           width: 8,
@@ -142,6 +143,7 @@ class _VideoFilterHomeScreenState extends State<VideoFilterHomeScreen> {
                     Text(
                       filterList[index],
                       style: TextStyle(
+                          fontFamily: 'Inter',
                           color: Get.find<ThemeController>().isDarkTheme.value
                               ? Colors.white
                               : Colors.black),
@@ -209,7 +211,8 @@ class VideoPlayerWidget extends StatelessWidget {
                 ],
               );
             } else {
-              return const Text('No video loaded');
+              return const Text('No video loaded',style:TextStyle(
+          fontFamily: 'Inter',));
             }
           },
         ),

@@ -9,24 +9,37 @@ class DiscoverListTile extends StatelessWidget {
   final String svgAsset;
   final Function() onTap;
 
-  DiscoverListTile({required this.title, required this.svgAsset, required this.onTap});
+  DiscoverListTile(
+      {required this.title, required this.svgAsset, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     ThemeController themeController = Get.find();
     return ListTile(
       onTap: onTap,
-      leading: SvgPicture.asset(svgAsset, height: 40, width: 40,),
-      title:Text(
-        title, style: TextStyle(
-
+      leading: SvgPicture.asset(
+        svgAsset,
+        height: 40,
+        width: 40,
+      ),
+      title: Text(
+        title,
+        style: TextStyle(
+          fontFamily: 'Inter',
           color: themeController.isDarkTheme.value
               ? SColors.color4
-              : SColors.color3, fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.01,),
+              : SColors.color3,
+          fontSize: 14,
+          fontWeight: FontWeight.w400,
+          letterSpacing: 0.01,
+        ),
       ),
-      trailing: Icon(Icons.arrow_forward_ios,color: themeController.isDarkTheme.value
-          ? SColors.color4
-          : SColors.color3,size: 17,),
+      trailing: Icon(
+        Icons.arrow_forward_ios,
+        color:
+            themeController.isDarkTheme.value ? SColors.color4 : SColors.color3,
+        size: 17,
+      ),
     );
   }
 }

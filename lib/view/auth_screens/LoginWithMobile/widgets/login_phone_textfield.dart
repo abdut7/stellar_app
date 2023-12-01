@@ -46,7 +46,8 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
   InputDecoration buildInputDecoration({double contentVerticalPadding = 15}) {
     return InputDecoration(
       border: InputBorder.none,
-      contentPadding: EdgeInsets.symmetric(vertical: contentVerticalPadding, horizontal: 15),
+      contentPadding: EdgeInsets.symmetric(
+          vertical: contentVerticalPadding, horizontal: 15),
       filled: true,
       fillColor: Colors.white,
       enabledBorder: OutlineInputBorder(
@@ -78,6 +79,7 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
                   Text(
                     publiccountryCode?.dialCode ?? "+91",
                     style: TextStyle(
+                      fontFamily: 'Inter',
                       color: Colors.black,
                       fontSize: 16,
                       fontWeight: FontWeight.w300,
@@ -86,17 +88,28 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      final code = await countryPicker.showPicker(context: context);
+                      final code =
+                          await countryPicker.showPicker(context: context);
                       setState(() {
                         publiccountryCode = code;
                       });
                     },
-                    child: Icon(Icons.keyboard_arrow_down, color: SColors.color3, size: 28,),
+                    child: Icon(
+                      Icons.keyboard_arrow_down,
+                      color: SColors.color3,
+                      size: 28,
+                    ),
                   ),
-                  containerHeight == 50 ?  Padding(
-                    padding: EdgeInsets.all(7),
-                    child: VerticalDivider(thickness: 2, color: Colors.grey.withOpacity(0.4),),
-                  ) :  VerticalDivider(thickness: 2, color: Colors.grey.withOpacity(0.4)),
+                  containerHeight == 50
+                      ? Padding(
+                          padding: EdgeInsets.all(7),
+                          child: VerticalDivider(
+                            thickness: 2,
+                            color: Colors.grey.withOpacity(0.4),
+                          ),
+                        )
+                      : VerticalDivider(
+                          thickness: 2, color: Colors.grey.withOpacity(0.4)),
                 ],
               ),
             ),
@@ -132,7 +145,8 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
           keyboardType: widget.keyboardType,
           cursorColor: Colors.black,
           style: TextStyle(
-            color:SColors.color3,
+            fontFamily: 'Inter',
+            color: SColors.color3,
             fontSize: 16,
             fontWeight: FontWeight.w400,
           ),
@@ -157,6 +171,7 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
             Text(
               widget.labelText,
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: SColors.color3,
                 fontSize: 11,
                 fontWeight: FontWeight.w400,
@@ -171,6 +186,3 @@ class _LoginPhoneTextFieldState extends State<LoginPhoneTextField> {
     );
   }
 }
-
-
-

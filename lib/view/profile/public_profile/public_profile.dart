@@ -126,6 +126,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                         capitalizeNames(
                                             userDetailsModel!.strName),
                                         style: TextStyle(
+                                          fontFamily: 'Inter',
                                           color:
                                               themeController.isDarkTheme.value
                                                   ? SColors.color4
@@ -140,6 +141,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                       Text(
                                         'Phone Number : ${userDetailsModel!.strMobileNo}',
                                         style: TextStyle(
+                                          fontFamily: 'Inter',
                                           color:
                                               themeController.isDarkTheme.value
                                                   ? SColors.color4
@@ -175,7 +177,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                         //     const Spacer(),
                         //     Text(
                         //       userDetailsModel!.strName,
-                        //       style: TextStyle(
+                        //       style: TextStyle(fontFamily: 'Inter',
                         //         color: SColors.color3,
                         //         fontSize: 14,
                         //         fontWeight: FontWeight.w800,
@@ -186,7 +188,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                         //     ),
                         //     Text(
                         //       'PHONE NUMBER : ${userDetailsModel!.strMobileNo}',
-                        //       style: TextStyle(
+                        //       style: TextStyle(fontFamily: 'Inter',
                         //         color: SColors.color3,
                         //         fontSize: 11,
                         //         fontWeight: FontWeight.w600,
@@ -237,8 +239,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                             svgAsset: SSvgs.sendMoneyIcon, label: 'Send'),
                         //const SizedBox(width: 1,),
                         ContactThrough(
-                            svgAsset: SSvgs.requestMoneyIcon,
-                            label: 'Request'),
+                            svgAsset: SSvgs.requestMoneyIcon, label: 'Request'),
                       ],
                     ),
                     const SizedBox(
@@ -257,6 +258,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                               TextSpan(
                                 text: 'About Me\n',
                                 style: TextStyle(
+                                  fontFamily: 'Inter',
                                   color: themeController.isDarkTheme.value
                                       ? SColors.color4
                                       : SColors.color3,
@@ -267,6 +269,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                               TextSpan(
                                 text: userDetailsModel!.strAbout,
                                 style: TextStyle(
+                                  fontFamily: 'Inter',
                                   color: themeController.isDarkTheme.value
                                       ? SColors.color26
                                       : SColors.color3,
@@ -393,6 +396,7 @@ void showBottomSheet(
               child: Text(
                 model.isBlocked ? "Unblock" : 'Block',
                 style: TextStyle(
+                  fontFamily: 'Inter',
                   color: themeController.isDarkTheme.value
                       ? SColors.sheetItemColor
                       : SColors.color12,
@@ -417,6 +421,7 @@ void showBottomSheet(
               child: Text(
                 'Report',
                 style: TextStyle(
+                  fontFamily: 'Inter',
                   color: themeController.isDarkTheme.value
                       ? SColors.sheetItemColor
                       : SColors.color12,

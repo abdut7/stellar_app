@@ -41,6 +41,7 @@ class _GroupDescriptionScreenState extends State<GroupDescriptionScreen> {
         title: Text(
           'Group\nDescription',
           style: TextStyle(
+            fontFamily: 'Inter',
             color: themeController.isDarkTheme.value
                 ? SColors.appbarTitleInDark
                 : SColors.color11,
@@ -106,6 +107,7 @@ class _GroupDescriptionScreenState extends State<GroupDescriptionScreen> {
                 child: Text(
                   isUpdating ? "Updating..." : 'Update',
                   style: TextStyle(
+                      fontFamily: 'Inter',
                       fontSize: 14,
                       color: themeController.isDarkTheme.value
                           ? SColors.color4

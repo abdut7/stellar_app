@@ -31,10 +31,8 @@ class _SignUpWithPhoneButtonState extends State<SignUpWithPhoneButton> {
       padding: const EdgeInsets.symmetric(horizontal: 60),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
-            borderRadius: BorderRadius.circular(10)),
+            color: Colors.white, borderRadius: BorderRadius.circular(10)),
         height: 52,
-
         child: SizedBox(
           height: 50,
           child: Padding(
@@ -46,7 +44,8 @@ class _SignUpWithPhoneButtonState extends State<SignUpWithPhoneButton> {
                 foregroundColor: widget.foregroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
-                  side: BorderSide(color: Colors.black), // Add this line for border
+                  side: BorderSide(
+                      color: Colors.black), // Add this line for border
                 ),
               ),
               child: Padding(
@@ -70,6 +69,7 @@ class _SignUpWithPhoneButtonState extends State<SignUpWithPhoneButton> {
                       widget.text,
                       textAlign: TextAlign.center,
                       style: TextStyle(
+                        fontFamily: 'Inter',
                         fontSize: 13,
                         color: widget.textColor,
                         fontWeight: FontWeight.w500,
@@ -86,4 +86,3 @@ class _SignUpWithPhoneButtonState extends State<SignUpWithPhoneButton> {
     );
   }
 }
-

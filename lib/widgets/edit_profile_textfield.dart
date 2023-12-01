@@ -50,6 +50,7 @@ class _EditProfileTextFieldState extends State<EditProfileTextField> {
         keyboardType: widget.keyboardType,
         cursorColor: SColors.color3,
         style: TextStyle(
+          fontFamily: 'Inter',
           color: SColors.color3,
           fontSize: 16,
           fontWeight: FontWeight.w400,
@@ -72,6 +73,7 @@ class _EditProfileTextFieldState extends State<EditProfileTextField> {
             child: Text(
               widget.labelText,
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: SColors.color3,
                 fontSize: 12,
                 fontWeight: FontWeight.w600,

@@ -119,6 +119,7 @@ class ChannelHeaderWidget extends StatelessWidget {
             title: Text(
               (userController.userDetailsModel.value!.strFullName),
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: Get.find<ThemeController>().isDarkTheme.value
                     ? Colors.white
                     : SColors.color3,
@@ -129,6 +130,7 @@ class ChannelHeaderWidget extends StatelessWidget {
             subtitle: Text(
               userController.userDetailsModel.value!.strName,
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: Get.find<ThemeController>().isDarkTheme.value
                     ? Colors.white
                     : SColors.color3,
@@ -195,6 +197,7 @@ class FlicksInChannelsWidget extends StatelessWidget {
                       Text(
                         'Flicks',
                         style: TextStyle(
+                          fontFamily: 'Inter',
                           color: themeController.isDarkTheme.value
                               ? SColors.color4
                               : SColors.color3,

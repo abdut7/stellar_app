@@ -13,7 +13,8 @@ class RequestMoneySuccessScreen extends StatefulWidget {
   const RequestMoneySuccessScreen({Key? key}) : super(key: key);
 
   @override
-  State<RequestMoneySuccessScreen> createState() => _RequestMoneySuccessScreenState();
+  State<RequestMoneySuccessScreen> createState() =>
+      _RequestMoneySuccessScreenState();
 }
 
 class _RequestMoneySuccessScreenState extends State<RequestMoneySuccessScreen> {
@@ -21,13 +22,13 @@ class _RequestMoneySuccessScreenState extends State<RequestMoneySuccessScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: SColors.color4,
-      body:  Stack(
+      body: Stack(
         children: [
           Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              color:  SColors.color25,
+              color: SColors.color25,
               image: DecorationImage(
                 image: AssetImage(SImages.image1),
                 fit: BoxFit.cover,
@@ -36,35 +37,53 @@ class _RequestMoneySuccessScreenState extends State<RequestMoneySuccessScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  SizedBox(height: Get.height*0.2,),
+                  SizedBox(
+                    height: Get.height * 0.2,
+                  ),
                   SvgPicture.asset(SSvgs.successLogo),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   SvgPicture.asset(SSvgs.sucessText),
-                  const SizedBox(height: 15,),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   Text.rich(
                     textAlign: TextAlign.center,
                     TextSpan(
-                      children: [TextSpan(text: 'You have successfully requested\nmoney to ', style: TextStyle(color: SColors.color20, fontSize: 17, fontWeight: FontWeight.w400,
-                      ),
-                      ),
+                      children: [
+                        TextSpan(
+                          text: 'You have successfully requested\nmoney to ',
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            color: SColors.color20,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
                         TextSpan(
                           text: 'Ravindranath',
-                          style: TextStyle(color: SColors.color20, fontSize: 17, fontWeight: FontWeight.w600,
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            color: SColors.color20,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ],
-                    ),),
-                  SizedBox(height:Get.height*0.06,),
+                    ),
+                  ),
+                  SizedBox(
+                    height: Get.height * 0.06,
+                  ),
                   const TransferSummaryDetails(),
-                  SizedBox(height: Get.height*0.1),
+                  SizedBox(height: Get.height * 0.1),
                   GoBackHomeButton(
                       buttonText: 'Go Back Home',
-                      onTap: (){
-                        Get.to(()=>const MoneyPayHome());
-                      }
-                  ),
-                  SizedBox(height: Get.height*0.1),
-
+                      onTap: () {
+                        Get.to(() => const MoneyPayHome());
+                      }),
+                  SizedBox(height: Get.height * 0.1),
                 ],
               ),
             ),

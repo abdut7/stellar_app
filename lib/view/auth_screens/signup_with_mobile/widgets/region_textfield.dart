@@ -33,6 +33,7 @@ class _RegionTextFieldState extends State<RegionTextField> {
     return InputDecoration(
       hintText: widget.hintText,
       hintStyle: TextStyle(
+        fontFamily: 'Inter',
         color: SColors.color9,
         fontSize: 12,
         fontWeight: FontWeight.w600,
@@ -71,14 +72,21 @@ class _RegionTextFieldState extends State<RegionTextField> {
       context: context,
       builder: (BuildContext context) {
         return SimpleDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           backgroundColor: SColors.color11,
           children: regions.map((String region) {
             return SimpleDialogOption(
               onPressed: () {
                 Navigator.pop(context, region);
               },
-              child: Text(region,style: TextStyle(fontWeight: FontWeight.w700,fontSize: 15),),
+              child: Text(
+                region,
+                style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w700,
+                    fontSize: 15),
+              ),
             );
           }).toList(),
         );
@@ -98,8 +106,8 @@ class _RegionTextFieldState extends State<RegionTextField> {
       height: 35,
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(8)),
-      child:  TextFormField(
-        onTap: (){
+      child: TextFormField(
+        onTap: () {
           showRegionMenu(context);
         },
         readOnly: true,
@@ -110,6 +118,7 @@ class _RegionTextFieldState extends State<RegionTextField> {
         keyboardType: widget.keyboardType,
         cursorColor: Colors.black,
         style: TextStyle(
+          fontFamily: 'Inter',
           color: SColors.color3,
           fontSize: 16,
           fontWeight: FontWeight.w400,
@@ -123,7 +132,7 @@ class _RegionTextFieldState extends State<RegionTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 6),
       child: textField(widget.controller),
     );
   }

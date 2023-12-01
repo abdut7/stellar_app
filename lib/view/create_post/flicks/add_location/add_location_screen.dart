@@ -39,6 +39,7 @@ class AddLocationScreen extends StatelessWidget {
             child: Text(
               'Next',
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: SColors.color12,
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
@@ -72,6 +73,7 @@ class AddLocationScreen extends StatelessWidget {
                   title: Text(
                     placeName[index],
                     style: TextStyle(
+                        fontFamily: 'Inter',
                         color: Get.find<ThemeController>().isDarkTheme.value
                             ? Colors.white
                             : Colors.black),

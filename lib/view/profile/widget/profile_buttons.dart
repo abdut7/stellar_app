@@ -5,7 +5,7 @@ import 'package:stellar_chat/controllers/theme_controller.dart';
 
 class ProfileButton extends StatefulWidget {
   final String buttonText;
-  final Function () onPressed;
+  final Function() onPressed;
 
   const ProfileButton({
     Key? key,
@@ -27,8 +27,8 @@ class _ProfileButtonState extends State<ProfileButton> {
         width: MediaQuery.of(context).size.width * 0.35,
         height: 32,
         decoration: BoxDecoration(
-          color:  themeController.isDarkTheme.value
-              ?  SColors.color26
+          color: themeController.isDarkTheme.value
+              ? SColors.color26
               : SColors.color12,
           borderRadius: BorderRadius.circular(8),
         ),
@@ -36,10 +36,11 @@ class _ProfileButtonState extends State<ProfileButton> {
           child: Text(
             widget.buttonText,
             style: TextStyle(
-                fontSize: 14,
-                color: themeController.isDarkTheme.value
-                    ?  SColors.color4
-                    : SColors.color11,
+              fontFamily: 'Inter',
+              fontSize: 14,
+              color: themeController.isDarkTheme.value
+                  ? SColors.color4
+                  : SColors.color11,
             ),
           ),
         ),

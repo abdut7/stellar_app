@@ -4,7 +4,8 @@ import 'package:stellar_chat/services/api_services/contacts_service.dart';
 import 'package:flutter/material.dart';
 
 class SearchBarTextfield extends StatefulWidget {
-  const SearchBarTextfield({Key? key, this.isFromContacts = false, required this.hintText})
+  const SearchBarTextfield(
+      {Key? key, this.isFromContacts = false, required this.hintText})
       : super(key: key);
   final bool isFromContacts;
   final String hintText;
@@ -28,6 +29,7 @@ class _SearchBarTextfieldState extends State<SearchBarTextfield> {
             fillColor: Colors.grey[300],
             hintText: widget.hintText,
             hintStyle: TextStyle(
+              fontFamily: 'Inter',
               color: SColors.color9,
               fontSize: 13,
               fontWeight: FontWeight.w700,
@@ -37,7 +39,8 @@ class _SearchBarTextfieldState extends State<SearchBarTextfield> {
               borderSide: BorderSide.none,
             ),
           ),
-          style: TextStyle(color: SColors.color3, fontSize: 15),
+          style: TextStyle(
+              fontFamily: 'Inter', color: SColors.color3, fontSize: 15),
           textAlign: TextAlign.center,
           onChanged: (val) {
             if (widget.isFromContacts) {

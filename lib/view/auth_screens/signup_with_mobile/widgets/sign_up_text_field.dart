@@ -20,7 +20,7 @@ class SignUpTextField extends StatefulWidget {
     required this.keyboardType,
     this.prefixIcon,
     this.suffixIcon,
-     this.hintText,
+    this.hintText,
     required this.controller,
     this.validator,
     this.onSaved,
@@ -44,17 +44,20 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
       containerHeight = 35;
     });
   }
+
   InputDecoration buildInputDecoration({double contentVerticalPadding = 15}) {
     return InputDecoration(
       hintText: widget.hintText,
       hintStyle: TextStyle(
+        fontFamily: 'Inter',
         color: SColors.color9,
         fontSize: 12,
         fontWeight: FontWeight.w600,
         height: containerHeight == 50 ? 4.8 : 1.0,
       ),
       border: InputBorder.none,
-      contentPadding:  EdgeInsets.symmetric(vertical: contentVerticalPadding, horizontal: 15),
+      contentPadding: EdgeInsets.symmetric(
+          vertical: contentVerticalPadding, horizontal: 15),
       filled: true,
       fillColor: Colors.white,
       enabledBorder: OutlineInputBorder(
@@ -108,14 +111,13 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
               child: TextFormField(
                   readOnly: true,
                   onTap: () => selectDate(context),
-                  decoration:
-                  buildInputDecoration(),
+                  decoration: buildInputDecoration(),
                   controller: controller),
             )
           : TextFormField(
               onChanged: widget.onChanged,
               onSaved: widget.onSaved,
-              validator:  (val) {
+              validator: (val) {
                 final error = widget.validator!(val);
                 if (error != null) {
                   _increaseContainerHeight();
@@ -129,6 +131,7 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
               keyboardType: widget.keyboardType,
               cursorColor: Colors.black,
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: SColors.color3,
                 fontSize: 16,
                 fontWeight: FontWeight.w400,

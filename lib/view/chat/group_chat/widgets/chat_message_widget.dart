@@ -35,10 +35,12 @@ class ChatMessage extends StatelessWidget {
           Text(
             sender,
             style: const TextStyle(
+              fontFamily: 'Inter',
               fontWeight: FontWeight.bold,
             ),
           ),
-          Text(text),
+          Text(text,style:TextStyle(
+          fontFamily: 'Inter',)),
         ],
       ),
     );

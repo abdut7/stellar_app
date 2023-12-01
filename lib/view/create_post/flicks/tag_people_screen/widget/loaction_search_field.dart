@@ -25,6 +25,7 @@ class _LocationSearchFieldState extends State<LocationSearchField> {
           fillColor: Colors.grey[300],
           hintText: 'Search Location',
           hintStyle: TextStyle(
+            fontFamily: 'Inter',
             color: SColors.color9,
             fontSize: 13,
             fontWeight: FontWeight.w700,
@@ -34,7 +35,8 @@ class _LocationSearchFieldState extends State<LocationSearchField> {
             borderSide: BorderSide.none,
           ),
         ),
-        style: TextStyle(color: SColors.color3, fontSize: 15),
+        style:
+            TextStyle(fontFamily: 'Inter', color: SColors.color3, fontSize: 15),
         textAlign: TextAlign.center,
       ),
     );

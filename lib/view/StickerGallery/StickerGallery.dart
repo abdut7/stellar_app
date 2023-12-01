@@ -26,6 +26,7 @@ class _StickerGalleryScreenState extends State<StickerGalleryScreen> {
         title: Text(
           'Stickers',
           style: TextStyle(
+            fontFamily: 'Inter',
             color: themeController.isDarkTheme.value
                 ? SColors.appbarTitleInDark
                 : SColors.color11,
@@ -109,6 +110,7 @@ class _StickerGalleryScreenState extends State<StickerGalleryScreen> {
                                 child: Text(
                                   "Add to Favorites",
                                   style: TextStyle(
+                                      fontFamily: 'Inter',
                                       fontSize: 17,
                                       fontWeight: FontWeight.w400,
                                       color: Color.fromRGBO(159, 196, 232, 1)),

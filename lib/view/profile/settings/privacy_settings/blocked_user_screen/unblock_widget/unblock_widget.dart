@@ -15,7 +15,10 @@ showUnblockBottomSheet(BuildContext context, String id) {
         children: <Widget>[
           ListTile(
             leading: Icon(Icons.report),
-            title: Text('Unblock User'),
+            title: Text('Unblock User',
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                )),
             onTap: () async {
               // Perform report user action here
               await AccountServices.unBlockUser(id);

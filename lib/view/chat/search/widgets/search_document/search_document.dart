@@ -14,7 +14,8 @@ class SearchDocumentScreen extends StatelessWidget {
     return Obx(() => searchController.isLoading.value
         ? const Center(child: CircularProgressIndicator())
         : searchController.documentChatList.isEmpty
-            ? const Center(child: Text("No Document available"))
+            ? const Center(child: Text("No Document available",style:TextStyle(
+          fontFamily: 'Inter',)))
             : ListView.separated(
                 itemBuilder: (context, index) {
                   String fileName = searchController.documentChatList

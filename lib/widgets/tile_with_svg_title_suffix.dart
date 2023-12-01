@@ -24,6 +24,7 @@ class _STSTileState extends State<STSTile> {
         title: Text(
           widget.text,
           style: TextStyle(
+            fontFamily: 'Inter',
             color: SColors.color3,
             fontSize: 14,
             fontWeight: FontWeight.w400,

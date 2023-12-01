@@ -26,6 +26,7 @@ class CropPage extends StatelessWidget {
                     child: Text(
                       "Cancel",
                       style: TextStyle(
+                          fontFamily: 'Inter',
                           fontWeight: FontWeight.bold,
                           color: Get.find<ThemeController>().isDarkTheme.value
                               ? Colors.white
@@ -62,6 +63,7 @@ class CropPage extends StatelessWidget {
                     child: Text(
                       "Done",
                       style: TextStyle(
+                        fontFamily: 'Inter',
                         color: colorPrimary,
                         fontWeight: FontWeight.bold,
                       ),
@@ -155,7 +157,8 @@ class CropPage extends StatelessWidget {
           textStyle: Theme.of(context).textTheme.bodySmall,
         ),
         onPressed: () => controller.preferredCropAspectRatio = f?.toDouble(),
-        child: Text(f == null ? 'free' : '${f.numerator}:${f.denominator}'),
+        child: Text(f == null ? 'free' : '${f.numerator}:${f.denominator}',style:TextStyle(
+          fontFamily: 'Inter',)),
       ),
     );
   }

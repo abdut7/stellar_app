@@ -28,6 +28,7 @@ class _Case4State extends State<Case4> {
     return Text(
       name,
       style: TextStyle(
+        fontFamily: 'Inter',
         color: SColors.color3,
         fontSize: 14,
         fontWeight: FontWeight.w600,
@@ -44,6 +45,7 @@ class _Case4State extends State<Case4> {
           Text(
             text,
             style: TextStyle(
+              fontFamily: 'Inter',
               color: SColors.color3,
               fontSize: 14,
               fontWeight: FontWeight.w400,
@@ -52,6 +54,7 @@ class _Case4State extends State<Case4> {
           Text(
             id,
             style: TextStyle(
+              fontFamily: 'Inter',
               color: SColors.color3,
               fontSize: 14,
               fontWeight: FontWeight.w500,
@@ -73,6 +76,7 @@ class _Case4State extends State<Case4> {
         Text(
           text,
           style: TextStyle(
+            fontFamily: 'Inter',
             color: SColors.color3,
             fontSize: 12,
             fontWeight: FontWeight.w600,
@@ -90,6 +94,7 @@ class _Case4State extends State<Case4> {
         child: Text(
           text,
           style: TextStyle(
+            fontFamily: 'Inter',
             color: SColors.color3,
             fontSize: 12,
             fontWeight: FontWeight.w700,
@@ -131,9 +136,7 @@ class _Case4State extends State<Case4> {
                 }),
                 const SizedBox(height: 15),
                 STSTile(
-                    svgAsset: SSvgs.sv25,
-                    text: 'Favorites',
-                    onPressed: () {}),
+                    svgAsset: SSvgs.sv25, text: 'Favorites', onPressed: () {}),
                 STSTile(
                     svgAsset: SSvgs.sv26, text: 'Moments', onPressed: () {}),
                 STSTile(

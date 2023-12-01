@@ -56,6 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Text(
                 'Welcome to Stellar App',
                 style: TextStyle(
+                    fontFamily: 'Inter',
                     fontSize: 13,
                     color: Colors.white38,
                     fontWeight: FontWeight.w700),

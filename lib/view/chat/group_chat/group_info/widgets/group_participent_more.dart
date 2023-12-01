@@ -22,9 +22,9 @@ void showParticipentsMoreBottomSheet(
     ),
     builder: (BuildContext context) {
       return Container(
-        decoration:  BoxDecoration(
+        decoration: BoxDecoration(
             color: themeController.isDarkTheme.value
-                ?  SColors.darkmode
+                ? SColors.darkmode
                 : SColors.color11,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(16.0),
@@ -43,7 +43,7 @@ void showParticipentsMoreBottomSheet(
                   margin: const EdgeInsets.symmetric(vertical: 8.0),
                   decoration: BoxDecoration(
                     color: themeController.isDarkTheme.value
-                        ?  SColors.color26
+                        ? SColors.color26
                         : Color.fromRGBO(0, 51, 142, 0.5),
                     borderRadius: BorderRadius.circular(2.0),
                   ),
@@ -57,13 +57,14 @@ void showParticipentsMoreBottomSheet(
                   Navigator.pop(context);
                   messageCallback.call();
                 },
-                child:  Padding(
+                child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 8),
                   child: Text(
                     'Message User',
                     style: TextStyle(
+                      fontFamily: 'Inter',
                       color: themeController.isDarkTheme.value
-                          ?  SColors.sheetItemColor
+                          ? SColors.sheetItemColor
                           : SColors.color12,
                       fontSize: 11.0,
                       fontWeight: FontWeight.w500,
@@ -77,13 +78,14 @@ void showParticipentsMoreBottomSheet(
                   Navigator.pop(context);
                   viewUserCallback.call();
                 },
-                child:  Padding(
+                child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 8),
                   child: Text(
                     'View User',
                     style: TextStyle(
+                      fontFamily: 'Inter',
                       color: themeController.isDarkTheme.value
-                          ?  SColors.sheetItemColor
+                          ? SColors.sheetItemColor
                           : SColors.color12,
                       fontSize: 11.0,
                       fontWeight: FontWeight.w500,
@@ -98,12 +100,13 @@ void showParticipentsMoreBottomSheet(
                   Navigator.pop(context);
                 },
                 child: Padding(
-                  padding:  EdgeInsets.symmetric(vertical: 8),
+                  padding: EdgeInsets.symmetric(vertical: 8),
                   child: Text(
                     isAdmin ? "Remove Admin" : 'Make Group Admin',
                     style: TextStyle(
+                      fontFamily: 'Inter',
                       color: themeController.isDarkTheme.value
-                          ?  SColors.sheetItemColor
+                          ? SColors.sheetItemColor
                           : SColors.color12,
                       fontSize: 11.0,
                       fontWeight: FontWeight.w500,
@@ -117,13 +120,14 @@ void showParticipentsMoreBottomSheet(
                   removeUserCallback.call();
                   Navigator.pop(context);
                 },
-                child:  Padding(
+                child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 8),
                   child: Text(
                     'Remove User',
                     style: TextStyle(
+                      fontFamily: 'Inter',
                       color: themeController.isDarkTheme.value
-                          ?  SColors.sheetItemColor
+                          ? SColors.sheetItemColor
                           : SColors.color12,
                       fontSize: 11.0,
                       fontWeight: FontWeight.w500,

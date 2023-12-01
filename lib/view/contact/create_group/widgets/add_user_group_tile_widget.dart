@@ -22,44 +22,51 @@ class AddUserGroupTileWidget extends StatelessWidget {
     ThemeController themeController = Get.find();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child:
-      Row(
+      child: Row(
         children: [
           const SizedBox(
             width: 10,
           ),
           CircleAvatar(
             radius: 6,
-            backgroundColor: isSelcted ? SColors.color12 : Colors.grey.withOpacity(0.4),
+            backgroundColor:
+                isSelcted ? SColors.color12 : Colors.grey.withOpacity(0.4),
           ),
           const SizedBox(
             width: 15,
           ),
-
           Container(
             width: 40,
             height: 40,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              image: user.strProfileUrl.isEmpty ? const DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
-                ),
-              )
-                  : DecorationImage(fit: BoxFit.cover, image: NetworkImage(user.strProfileUrl),
-              ),
+              image: user.strProfileUrl.isEmpty
+                  ? const DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(
+                        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+                      ),
+                    )
+                  : DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(user.strProfileUrl),
+                    ),
             ),
           ),
-
-          const SizedBox(width: 15,),
-          Text(user.strFullName,
-          style: TextStyle(
-            color: themeController.isDarkTheme.value
-                ?  SColors.color4
-                : SColors.color3,
-            fontSize: 17,
-            fontWeight: FontWeight.w400,
-          ),),
+          const SizedBox(
+            width: 15,
+          ),
+          Text(
+            user.strFullName,
+            style: TextStyle(
+              fontFamily: 'Inter',
+              color: themeController.isDarkTheme.value
+                  ? SColors.color4
+                  : SColors.color3,
+              fontSize: 17,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
         ],
       ),
     );

@@ -101,26 +101,28 @@ class _FollowDetailsWidgetState extends State<FollowDetailsWidget> {
                   child: Text(
                     widget.isFollowing ? "Following" : 'Follow',
                     style: TextStyle(
-                        fontSize: 14,
-                        color: !widget.isFollowing
-                            ? themeController.isDarkTheme.value
-                                ? SColors.color4
-                                : SColors.color11
-                            : themeController.isDarkTheme.value
-                            ?  SColors.color26
-                            : SColors.color12,),
+                      fontFamily: 'Inter',
+                      fontSize: 14,
+                      color: !widget.isFollowing
+                          ? themeController.isDarkTheme.value
+                              ? SColors.color4
+                              : SColors.color11
+                          : themeController.isDarkTheme.value
+                              ? SColors.color26
+                              : SColors.color12,
+                    ),
                   ),
                 ),
               ),
             ),
             GestureDetector(
-                onTap: () {}, child:
-            SvgPicture.asset(
-                SSvgs.forwardIcon,
-              color: themeController.isDarkTheme.value
-                  ?  SColors.color27
-                  : SColors.color3,
-            ))
+                onTap: () {},
+                child: SvgPicture.asset(
+                  SSvgs.forwardIcon,
+                  color: themeController.isDarkTheme.value
+                      ? SColors.color27
+                      : SColors.color3,
+                ))
           ],
         )
       ],

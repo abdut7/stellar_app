@@ -15,12 +15,21 @@ class _TransferSummaryDetailsState extends State<TransferSummaryDetails> {
       children: [
         Text(
           label,
-          style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400,
+          style: TextStyle(
+            fontFamily: 'Inter',
+            color: Colors.black,
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
           ),
         ),
         Text(
           value,
-          style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500,),
+          style: TextStyle(
+            fontFamily: 'Inter',
+            color: Colors.black,
+            fontSize: 15,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ],
     );

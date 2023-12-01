@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 
 class OtpVerificationUi extends StatefulWidget {
   static const routeName = '/OtpVerificationUi ';
-  const   OtpVerificationUi({Key? key, required this.otpToken}) : super(key: key);
+  const OtpVerificationUi({Key? key, required this.otpToken}) : super(key: key);
   final String otpToken;
 
   @override
@@ -30,7 +30,7 @@ class _OtpVerificationUiState extends State<OtpVerificationUi> {
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              gradient:  LinearGradient(colors: [
+              gradient: LinearGradient(colors: [
                 SColors.color12,
                 SColors.color12,
                 //SColors.color4.withOpacity(0.0)
@@ -80,6 +80,7 @@ class _OtpVerificationUiState extends State<OtpVerificationUi> {
                       Text(
                         "Didn't receive OTP",
                         style: TextStyle(
+                          fontFamily: 'Inter',
                           color: SColors.color4,
                           fontSize: 10,
                           fontWeight: FontWeight.w400,
@@ -108,6 +109,7 @@ class _OtpVerificationUiState extends State<OtpVerificationUi> {
                       child: Text(
                         'Verify',
                         style: TextStyle(
+                          fontFamily: 'Inter',
                           color: SColors.color12,
                           fontSize: 17,
                           fontWeight: FontWeight.w500,
@@ -125,6 +127,7 @@ class _OtpVerificationUiState extends State<OtpVerificationUi> {
                       TextSpan(
                         text: '00:30 ',
                         style: TextStyle(
+                          fontFamily: 'Inter',
                           color: SColors.color4,
                           fontSize: 10,
                           fontWeight: FontWeight.w800,
@@ -133,6 +136,7 @@ class _OtpVerificationUiState extends State<OtpVerificationUi> {
                       TextSpan(
                         text: ' sec remaining',
                         style: TextStyle(
+                          fontFamily: 'Inter',
                           color: SColors.color4,
                           fontSize: 10,
                           fontWeight: FontWeight.w500,

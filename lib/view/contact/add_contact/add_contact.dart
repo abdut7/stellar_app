@@ -31,15 +31,16 @@ class _AddContactUiState extends State<AddContactUi> {
       title: Text(
         'Add Contact',
         style: TextStyle(
+          fontFamily: 'Inter',
           color: themeController.isDarkTheme.value
-              ?  SColors.appbarTitleInDark
+              ? SColors.appbarTitleInDark
               : SColors.color11,
           fontSize: 18,
           fontWeight: FontWeight.w700,
         ),
       ),
       backgroundColor: themeController.isDarkTheme.value
-          ?  SColors.appbarbgInDark
+          ? SColors.appbarbgInDark
           : SColors.color12,
       leading: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -52,9 +53,8 @@ class _AddContactUiState extends State<AddContactUi> {
   Widget build(BuildContext context) {
     ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor: themeController.isDarkTheme.value
-          ?  SColors.darkmode
-          : SColors.color4,
+      backgroundColor:
+          themeController.isDarkTheme.value ? SColors.darkmode : SColors.color4,
       appBar: _buildAppBar(),
       body: ListView(
         children: [
@@ -70,7 +70,7 @@ class _AddContactUiState extends State<AddContactUi> {
             },
             svgAssetPath: SSvgs.invite,
             svgColor: themeController.isDarkTheme.value
-                ?  SColors.color26
+                ? SColors.color26
                 : SColors.color12,
           ),
           AddContactListTile(
@@ -81,31 +81,31 @@ class _AddContactUiState extends State<AddContactUi> {
             },
             svgAssetPath: SSvgs.radar,
             svgColor: themeController.isDarkTheme.value
-                ?  SColors.color26
+                ? SColors.color26
                 : SColors.color12,
           ),
           AddContactListTile(
-              text: 'Use QR Code',
-              subtitle: 'Scan your QR code',
-              onPressed: () {
-                Get.to(
-                  () => const QRScreen(),
-                );
-              },
-              svgAssetPath: SSvgs.qr,
+            text: 'Use QR Code',
+            subtitle: 'Scan your QR code',
+            onPressed: () {
+              Get.to(
+                () => const QRScreen(),
+              );
+            },
+            svgAssetPath: SSvgs.qr,
             svgColor: themeController.isDarkTheme.value
-                ?  SColors.color26
+                ? SColors.color26
                 : SColors.color12,
           ),
           AddContactListTile(
-              text: 'My Contact',
-              subtitle: 'Add from mobile contact',
-              onPressed: () {
-                Get.to(() => const ShowContactsScreen());
-              },
-              svgAssetPath: themeController.isDarkTheme.value
-                  ? SSvgs.chatDark
-                  : SSvgs.myContactt,
+            text: 'My Contact',
+            subtitle: 'Add from mobile contact',
+            onPressed: () {
+              Get.to(() => const ShowContactsScreen());
+            },
+            svgAssetPath: themeController.isDarkTheme.value
+                ? SSvgs.chatDark
+                : SSvgs.myContactt,
           ),
         ],
       ),

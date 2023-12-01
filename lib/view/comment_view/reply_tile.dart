@@ -28,6 +28,7 @@ class _Tile3State extends State<ReplyTile> {
         title: Text(
           'No Pressue',
           style: TextStyle(
+            fontFamily: 'Inter',
             color: SColors.color8,
             fontSize: 13,
             fontWeight: FontWeight.w400,
@@ -38,6 +39,7 @@ class _Tile3State extends State<ReplyTile> {
             Text(
               'View replies (4)',
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: SColors.color9,
                 fontSize: 11,
                 fontWeight: FontWeight.w600,
@@ -55,6 +57,7 @@ class _Tile3State extends State<ReplyTile> {
             Text(
               '22h',
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: SColors.color9,
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
@@ -69,7 +72,10 @@ class _Tile3State extends State<ReplyTile> {
                 Expanded(
                   child: Text(
                     '20.2K',
-                    style: TextStyle(fontSize: 8, color: SColors.color8),
+                    style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 8,
+                        color: SColors.color8),
                   ),
                 )
               ],

@@ -51,9 +51,8 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
     Set<Contact> myContact = {};
 
     return Scaffold(
-      backgroundColor: themeController.isDarkTheme.value
-          ?  SColors.darkmode
-          : SColors.color4,
+      backgroundColor:
+          themeController.isDarkTheme.value ? SColors.darkmode : SColors.color4,
       appBar: AppBar(
         toolbarHeight: 70,
         elevation: 0,
@@ -63,8 +62,9 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
             Text(
               widget.isCreatedGroup ? widget.grpName : 'New Group',
               style: TextStyle(
-                color:themeController.isDarkTheme.value
-                    ?  SColors.appbarTitleInDark
+                fontFamily: 'Inter',
+                color: themeController.isDarkTheme.value
+                    ? SColors.appbarTitleInDark
                     : SColors.color11,
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
@@ -73,8 +73,9 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
             Text(
               'Add Participants',
               style: TextStyle(
-                color:themeController.isDarkTheme.value
-                    ?  SColors.appbarTitleInDark
+                fontFamily: 'Inter',
+                color: themeController.isDarkTheme.value
+                    ? SColors.appbarTitleInDark
                     : SColors.color11,
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
@@ -83,7 +84,7 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
           ],
         ),
         backgroundColor: themeController.isDarkTheme.value
-            ?  SColors.appbarbgInDark
+            ? SColors.appbarbgInDark
             : SColors.color12,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -119,7 +120,8 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
                       )
                     : myContact.isEmpty
                         ? const Center(
-                            child: Text("No Contacts added add now"),
+                            child: Text("No Contacts added add now",style:TextStyle(
+          fontFamily: 'Inter',)),
                           )
                         : SingleChildScrollView(
                             child: Column(
@@ -159,11 +161,10 @@ class _SelectGroupParticipentsState extends State<SelectGroupParticipents> {
                                       ),
                                     );
                                   },
-                                  separatorBuilder: (context, index) =>
-                                     Divider(
+                                  separatorBuilder: (context, index) => Divider(
                                     thickness: 0,
-                                    color:themeController.isDarkTheme.value
-                                        ?  SColors.darkmode
+                                    color: themeController.isDarkTheme.value
+                                        ? SColors.darkmode
                                         : SColors.color4,
                                   ),
                                   itemCount: myContact.length,

@@ -11,7 +11,8 @@ class RequestMoneyFromContacts extends StatefulWidget {
   const RequestMoneyFromContacts({Key? key}) : super(key: key);
 
   @override
-  State<RequestMoneyFromContacts> createState() => _RequestMoneyFromContactsState();
+  State<RequestMoneyFromContacts> createState() =>
+      _RequestMoneyFromContactsState();
 }
 
 class _RequestMoneyFromContactsState extends State<RequestMoneyFromContacts> {
@@ -25,7 +26,10 @@ class _RequestMoneyFromContactsState extends State<RequestMoneyFromContacts> {
         backgroundColor: SColors.color19.withOpacity(0.6),
         leading: Padding(
           padding: const EdgeInsets.only(left: 15),
-          child: SvgPicture.asset(SSvgs.payStellar,),),
+          child: SvgPicture.asset(
+            SSvgs.payStellar,
+          ),
+        ),
         title: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -33,13 +37,18 @@ class _RequestMoneyFromContactsState extends State<RequestMoneyFromContacts> {
               Text(
                 'Request Money',
                 style: TextStyle(
+                  fontFamily: 'Inter',
                   color: SColors.color20,
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(width: 8,),
-              SvgPicture.asset(SSvgs.requestMoneyIcon,),
+              const SizedBox(
+                width: 8,
+              ),
+              SvgPicture.asset(
+                SSvgs.requestMoneyIcon,
+              ),
             ],
           ),
         ),
@@ -50,7 +59,7 @@ class _RequestMoneyFromContactsState extends State<RequestMoneyFromContacts> {
           SendReceiveContactsListTile(
             name: 'Abdul Rasheed',
             onTap: () {
-              Get.to(()=>const RequestAmountDisplayScreen());
+              Get.to(() => const RequestAmountDisplayScreen());
             },
           ),
           SendReceiveContactsListTile(

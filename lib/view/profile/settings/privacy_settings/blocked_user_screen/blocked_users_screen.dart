@@ -16,7 +16,10 @@ class _BlockedUsersScreenState extends State<BlockedUsersScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colorPrimary,
-        title: const Text("Blocked Users"),
+        title: const Text("Blocked Users",
+            style: TextStyle(
+              fontFamily: 'Inter',
+            )),
       ),
       body: FutureBuilder(
         future: AccountServices.getBlockedUserList(),
@@ -27,7 +30,10 @@ class _BlockedUsersScreenState extends State<BlockedUsersScreen> {
           }
           if (snapshot.data!.isEmpty) {
             return const Center(
-              child: Text("No blocked users"),
+              child: Text("No blocked users",
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                  )),
             );
           }
           return ListView.separated(
@@ -47,7 +53,10 @@ class _BlockedUsersScreenState extends State<BlockedUsersScreen> {
                           children: <Widget>[
                             ListTile(
                               leading: const Icon(Icons.report),
-                              title: const Text('Unblock User'),
+                              title: const Text('Unblock User',
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                  )),
                               onTap: () async {
                                 // Perform report user action here
                                 await AccountServices.unBlockUser(
@@ -68,12 +77,14 @@ class _BlockedUsersScreenState extends State<BlockedUsersScreen> {
                     backgroundImage:
                         NetworkImage(snapshot.data![index].strProfileIcon),
                   ),
-                  title: Text(
-                    snapshot.data![index].strFullName,
-                  ),
-                  subtitle: Text(
-                    snapshot.data![index].strMobileNo,
-                  ),
+                  title: Text(snapshot.data![index].strFullName,
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                      )),
+                  subtitle: Text(snapshot.data![index].strMobileNo,
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                      )),
                 );
               },
               separatorBuilder: (context, index) => const Divider(),

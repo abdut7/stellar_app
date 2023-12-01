@@ -33,7 +33,12 @@ class _GoBackHomeButtonState extends State<GoBackHomeButton> {
           child: Text(
             widget.buttonText,
             textAlign: TextAlign.center,
-            style: const TextStyle(color: Colors.black, fontSize: 10,fontWeight: FontWeight.w500,),
+            style: const TextStyle(
+              fontFamily: 'Inter',
+              color: Colors.black,
+              fontSize: 10,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
       ),

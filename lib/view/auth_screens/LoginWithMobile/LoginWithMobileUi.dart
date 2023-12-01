@@ -26,6 +26,7 @@ class _LoginWithMobileUiState extends State<LoginWithMobileUi> {
       'Log in with Mobile ',
       textAlign: TextAlign.center,
       style: TextStyle(
+        fontFamily: 'Inter',
         color: Colors.black,
         fontSize: 17,
         fontWeight: FontWeight.w800,
@@ -38,6 +39,7 @@ class _LoginWithMobileUiState extends State<LoginWithMobileUi> {
       text,
       textAlign: TextAlign.center,
       style: TextStyle(
+        fontFamily: 'Inter',
         color: SColors.color3,
         fontSize: 10,
         fontWeight: FontWeight.w600,

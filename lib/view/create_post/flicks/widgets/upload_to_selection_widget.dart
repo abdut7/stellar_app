@@ -23,6 +23,7 @@ class UploadToSelectionWidget extends StatelessWidget {
       child: Text(
         value.name.capitalize!,
         style: TextStyle(
+            fontFamily: 'Inter',
             color: selectedValue == value
                 ? Color.fromRGBO(0, 51, 142, 1)
                 : Color.fromRGBO(255, 255, 255, 1)),

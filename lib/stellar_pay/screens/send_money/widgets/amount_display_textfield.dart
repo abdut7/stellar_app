@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class AmountDisplayTextField extends StatefulWidget {
@@ -42,6 +41,7 @@ class _AmountDisplayTextFieldState extends State<AmountDisplayTextField> {
         cursorColor: Colors.black,
         keyboardType: TextInputType.number,
         style: const TextStyle(
+          fontFamily: 'Inter',
           color: Colors.black,
           fontSize: 70,
           fontWeight: FontWeight.w600,
@@ -50,6 +50,7 @@ class _AmountDisplayTextFieldState extends State<AmountDisplayTextField> {
         decoration: InputDecoration(
           hintText: isFocused ? '' : '0.00',
           hintStyle: const TextStyle(
+            fontFamily: 'Inter',
             color: Colors.black,
             fontSize: 70,
             fontWeight: FontWeight.w700,

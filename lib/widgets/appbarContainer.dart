@@ -30,6 +30,7 @@ class _AppBarContainerState extends State<AppBarContainer> {
             child: Text(
               widget.labelText,
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: SColors.color13,
                 fontSize: 12,
                 fontWeight: FontWeight.w800,

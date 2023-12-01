@@ -22,85 +22,120 @@ class _PayProfileSettingsState extends State<PayProfileSettings> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  width: Get.width, height: Get.height * 0.1, decoration:  BoxDecoration(color: SColors.color21),
+                  width: Get.width,
+                  height: Get.height * 0.1,
+                  decoration: BoxDecoration(color: SColors.color21),
                   child: Row(
                     children: [
-                      Padding(padding: const EdgeInsets.only(left: 20.0), child: SvgPicture.asset(SSvgs.logoStellar,),),
-                      const SizedBox(width: 10,),
-                      Padding(padding: const EdgeInsets.only(top: 8), child: Text(
-                        'Chozhiath', style: TextStyle(color: SColors.color20, fontSize: 18, fontWeight: FontWeight.w800,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: SvgPicture.asset(
+                          SSvgs.logoStellar,
                         ),
-                      ),),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Text(
+                          'Chozhiath',
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            color: SColors.color20,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 30,),
-                 Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Padding(
-                       padding: const EdgeInsets.symmetric(horizontal: 35),
-                       child: headText(head: 'Your Account'),
-                     ),
-                     const SizedBox(height: 20,),
-                     Padding(
-                       padding: const EdgeInsets.symmetric(horizontal: 35),
-                       child: Text(
-                         'Personal Information\n+971 222-555-666',
-                         style: TextStyle(color: SColors.color3, fontSize: 16, fontWeight: FontWeight.w400,),),
-                     ),
-                     const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 30,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 35),
-                      child: cardField(
-                          field: 'Cards',
-                          ontap: (){}
+                      child: headText(head: 'Your Account'),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 35),
+                      child: Text(
+                        'Personal Information\n+971 222-555-666',
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                          color: SColors.color3,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ),
-                     const SizedBox(height: 20,),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 35),
+                      child: cardField(field: 'Cards', ontap: () {}),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 35),
                       child: countryField(
-                          field: 'Country',
-                          yourCountry: 'UAE',
-                          onTap: (){}
+                          field: 'Country', yourCountry: 'UAE', onTap: () {}),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                      child: const Divider(
+                        thickness: 1,
+                        color: Colors.black,
                       ),
                     ),
-                     const SizedBox(height: 10,),
-                     Padding(
-                       padding: const EdgeInsets.symmetric(horizontal: 18),
-                       child: const Divider(thickness: 1,color: Colors.black,),
-                     ),
-                     const SizedBox(height: 20,),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 35),
                       child: headText(head: 'Delete my Account'),
                     ),
-                     const SizedBox(height: 20,),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 35),
                       child: deleteMyAccount(
-                          text: 'LOG OUT My Stellar Pay Account',
-                          onTap: (){}
+                          text: 'LOG OUT My Stellar Pay Account', onTap: () {}),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 35),
+                      child: deleteMyAccount(
+                          text: 'Delete my Stellar Pay Account', onTap: () {}),
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                      child: const Divider(
+                        thickness: 1,
+                        color: Colors.black,
                       ),
                     ),
-                     const SizedBox(height: 20,),
-
-                     Padding(
-                       padding: const EdgeInsets.symmetric(horizontal: 35),
-                       child: deleteMyAccount(text: 'Delete my Stellar Pay Account',
-                           onTap: (){}
-                       ),
-                     ),
-                     const SizedBox(height: 25,),
-                     Padding(
-                       padding: const EdgeInsets.symmetric(horizontal: 18),
-                       child: const Divider(thickness: 1,color: Colors.black,),
-                     ),
-
-                   ],
-                 )
-
+                  ],
+                )
               ],
             ),
 
@@ -112,8 +147,17 @@ class _PayProfileSettingsState extends State<PayProfileSettings> {
                 width: Get.width * 0.2,
                 height: Get.width * 0.2,
                 decoration: ShapeDecoration(
-                  image: const DecorationImage(image: NetworkImage("https://cdn.quotesgram.com/img/8/72/1135141999-074f6884b9f34be89538782d2fc98f8e.jpg"), fit: BoxFit.cover,),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Get.width * 0.1),),),),),
+                  image: const DecorationImage(
+                    image: NetworkImage(
+                        "https://cdn.quotesgram.com/img/8/72/1135141999-074f6884b9f34be89538782d2fc98f8e.jpg"),
+                    fit: BoxFit.cover,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(Get.width * 0.1),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -121,12 +165,13 @@ class _PayProfileSettingsState extends State<PayProfileSettings> {
   }
 }
 
-Widget deleteMyAccount({required String text , required Function() onTap}){
-  return  GestureDetector(
-    onTap:onTap,
+Widget deleteMyAccount({required String text, required Function() onTap}) {
+  return GestureDetector(
+    onTap: onTap,
     child: Text(
       text,
       style: TextStyle(
+        fontFamily: 'Inter',
         color: SColors.color17,
         fontSize: 16,
         fontWeight: FontWeight.w600,
@@ -134,50 +179,82 @@ Widget deleteMyAccount({required String text , required Function() onTap}){
     ),
   );
 }
-Widget headText({required String head}){
+
+Widget headText({required String head}) {
   return Text(
     head,
-    style: TextStyle(color: SColors.color24, fontSize: 18, fontWeight: FontWeight.w700,),
+    style: TextStyle(
+      fontFamily: 'Inter',
+      color: SColors.color24,
+      fontSize: 18,
+      fontWeight: FontWeight.w700,
+    ),
   );
 }
 
-Widget countryField( {required String field, required String yourCountry, required Function()onTap}) {
+Widget countryField(
+    {required String field,
+    required String yourCountry,
+    required Function() onTap}) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       Text(
         field,
-        style: TextStyle(color: SColors.color3, fontSize: 16, fontWeight: FontWeight.w400,),
+        style: TextStyle(
+          fontFamily: 'Inter',
+          color: SColors.color3,
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+        ),
       ),
       Row(
         children: [
           Text(
             yourCountry,
-            style: TextStyle(color:SColors.color3, fontSize: 16, fontWeight: FontWeight.w600,
+            style: TextStyle(
+              fontFamily: 'Inter',
+              color: SColors.color3,
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(width: 5,),
+          const SizedBox(
+            width: 5,
+          ),
           GestureDetector(
               onTap: onTap,
-              child: const Icon(Icons.arrow_forward_ios,size: 12,color: Colors.black,)),
+              child: const Icon(
+                Icons.arrow_forward_ios,
+                size: 12,
+                color: Colors.black,
+              )),
         ],
       ),
     ],
   );
 }
 
-Widget cardField({required String field , required Function() ontap}){
-  return  Row(
+Widget cardField({required String field, required Function() ontap}) {
+  return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       Text(
-        field, style: TextStyle(color:SColors.color3, fontSize: 16,
-        fontWeight: FontWeight.w400,
-      ),
+        field,
+        style: TextStyle(
+          fontFamily: 'Inter',
+          color: SColors.color3,
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+        ),
       ),
       GestureDetector(
           onTap: ontap,
-          child: const Icon(Icons.arrow_forward_ios,size: 12,color: Colors.black,)),
+          child: const Icon(
+            Icons.arrow_forward_ios,
+            size: 12,
+            color: Colors.black,
+          )),
     ],
   );
 }

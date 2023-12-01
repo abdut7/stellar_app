@@ -35,6 +35,7 @@ class _WelcomeChatContainerState extends State<WelcomeChatContainer> {
                 const Text(
                   'WELCOME TO STELLAR CHAT IF YOU HAVE THE',
                   style: TextStyle(
+                    fontFamily: 'Inter',
                     overflow: TextOverflow.ellipsis,
                     fontSize: 12,
                   ),
@@ -54,6 +55,7 @@ class _WelcomeChatContainerState extends State<WelcomeChatContainer> {
         const Text(
           'STELLAR CHAT TEAM',
           style: TextStyle(
+            fontFamily: 'Inter',
             fontWeight: FontWeight.bold,
             fontSize: 12,
           ),
@@ -62,6 +64,7 @@ class _WelcomeChatContainerState extends State<WelcomeChatContainer> {
           'NOW',
           textAlign: TextAlign.right,
           style: TextStyle(
+            fontFamily: 'Inter',
             color: SColors.color9,
             fontSize: 9,
             fontWeight: FontWeight.w400,

@@ -28,9 +28,17 @@ class OrderedListItem extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text("$counter. ",style: TextStyle(fontSize: 10,fontWeight: FontWeight.bold),),
+        Text(
+          "$counter. ",
+          style: TextStyle(
+              fontFamily: 'Inter', fontSize: 10, fontWeight: FontWeight.bold),
+        ),
         Expanded(
-          child: Text(text,style: TextStyle(fontSize: 12,fontWeight: FontWeight.w500),),
+          child: Text(
+            text,
+            style: TextStyle(
+                fontFamily: 'Inter', fontSize: 12, fontWeight: FontWeight.w500),
+          ),
         ),
       ],
     );

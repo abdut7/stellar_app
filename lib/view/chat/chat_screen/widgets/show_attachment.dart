@@ -27,21 +27,21 @@ Future<dynamic> showChatAttachmentSheet(
         ];
   List<Map<String, String>> attachList1 = isFromPrivate
       ? [
-    {"name": "Send Files", "file": "assets/Svgs/sendFilesDark.svg"},
-    {"name": "Audio", "file": "assets/Svgs/audioAttachDark.svg"},
-    {"name": "Gallery", "file": "assets/Svgs/galleryDark.svg"},
-    {"name": "Location", "file": "assets/Svgs/locationDark.svg"},
-    {"name": "Contacts", "file": "assets/Svgs/contactDark.svg"},
-    {"name": "Pay", "file": "assets/Svgs/pay_icon.svg"}
-  ]
+          {"name": "Send Files", "file": "assets/Svgs/sendFilesDark.svg"},
+          {"name": "Audio", "file": "assets/Svgs/audioAttachDark.svg"},
+          {"name": "Gallery", "file": "assets/Svgs/galleryDark.svg"},
+          {"name": "Location", "file": "assets/Svgs/locationDark.svg"},
+          {"name": "Contacts", "file": "assets/Svgs/contactDark.svg"},
+          {"name": "Pay", "file": "assets/Svgs/pay_icon.svg"}
+        ]
       : [
-    {"name": "Send Files", "file": "assets/Svgs/sendFilesDark.svg"},
-    {"name": "Camera", "file": "assets/Svgs/cameraDark.svg"},
-    {"name": "Gallery", "file": "assets/Svgs/galleryDark.svg"},
-    {"name": "Location", "file": "assets/Svgs/locationDark.svg"},
-    {"name": "Contacts", "file": "assets/Svgs/contactDark.svg"},
-    {"name": "Audio", "file": "assets/Svgs/audioAttachDark.svg"}
-  ];
+          {"name": "Send Files", "file": "assets/Svgs/sendFilesDark.svg"},
+          {"name": "Camera", "file": "assets/Svgs/cameraDark.svg"},
+          {"name": "Gallery", "file": "assets/Svgs/galleryDark.svg"},
+          {"name": "Location", "file": "assets/Svgs/locationDark.svg"},
+          {"name": "Contacts", "file": "assets/Svgs/contactDark.svg"},
+          {"name": "Audio", "file": "assets/Svgs/audioAttachDark.svg"}
+        ];
 
   return showModalBottomSheet(
     isScrollControlled: false,
@@ -56,7 +56,7 @@ Future<dynamic> showChatAttachmentSheet(
             width: Get.width * 0.9,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color:themeController.isDarkTheme.value
+              color: themeController.isDarkTheme.value
                   ? SColors.darkmode
                   : SColors.color11,
             ),
@@ -83,18 +83,24 @@ Future<dynamic> showChatAttachmentSheet(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           SvgPicture.asset(
-                            themeController.isDarkTheme.value?
-                            attachList1[index]['file']!:
-                            attachList[index]['file']!,
+                            themeController.isDarkTheme.value
+                                ? attachList1[index]['file']!
+                                : attachList[index]['file']!,
                           ),
-                          const SizedBox(height: 5,),
-                          Text(attachList[index]['name']!,style: TextStyle(
-                            color: themeController.isDarkTheme.value
-                                ? SColors.color4
-                                : SColors.color3,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                          ),)
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            attachList[index]['name']!,
+                            style: TextStyle(
+                              fontFamily: 'Inter',
+                              color: themeController.isDarkTheme.value
+                                  ? SColors.color4
+                                  : SColors.color3,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          )
                         ],
                       ),
                     ),

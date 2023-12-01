@@ -55,6 +55,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         child: Text(
                           controller.userDetailsModel.value!.strName,
                           style: TextStyle(
+                            fontFamily: 'Inter',
                             color: themeController.isDarkTheme.value
                                 ? SColors.color4
                                 : SColors.color11,
@@ -69,6 +70,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         child: Text(
                           'Online',
                           style: TextStyle(
+                            fontFamily: 'Inter',
                             color: themeController.isDarkTheme.value
                                 ? SColors.color4
                                 : SColors.color11,
@@ -154,6 +156,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   padding: const EdgeInsets.symmetric(horizontal: 45),
                   child: Text('Settings',
                       style: TextStyle(
+                        fontFamily: 'Inter',
                         color: SColors.color11,
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
@@ -171,6 +174,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       child: Text(
                         'Privacy and Security',
                         style: TextStyle(
+                          fontFamily: 'Inter',
                           color: themeController.isDarkTheme.value
                               ? SColors.color4
                               : SColors.color3,
@@ -190,6 +194,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       child: Text(
                         'Dark Mode',
                         style: TextStyle(
+                          fontFamily: 'Inter',
                           color: themeController.isDarkTheme.value
                               ? SColors.color4
                               : SColors.color3,
@@ -222,6 +227,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                     padding: const EdgeInsets.symmetric(horizontal: 45),
                     child: Text('Help ',
                         style: TextStyle(
+                          fontFamily: 'Inter',
                           color: SColors.color11,
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
@@ -239,6 +245,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       child: Text(
                         'Find Contacts',
                         style: TextStyle(
+                          fontFamily: 'Inter',
                           color: themeController.isDarkTheme.value
                               ? SColors.color4
                               : SColors.color3,
@@ -258,6 +265,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       child: Text(
                         'Stellar Chat FAQ',
                         style: TextStyle(
+                          fontFamily: 'Inter',
                           color: themeController.isDarkTheme.value
                               ? SColors.color4
                               : SColors.color3,
@@ -277,6 +285,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       child: Text(
                         'Privacy Policy',
                         style: TextStyle(
+                          fontFamily: 'Inter',
                           color: themeController.isDarkTheme.value
                               ? SColors.color4
                               : SColors.color3,
@@ -297,6 +306,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       padding: const EdgeInsets.symmetric(horizontal: 45),
                       child: Text('Delete My Account ',
                           style: TextStyle(
+                            fontFamily: 'Inter',
                             color: SColors.color11,
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
@@ -314,6 +324,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         child: Text(
                           'LOG OUT',
                           style: TextStyle(
+                            fontFamily: 'Inter',
                             color: SColors.color17,
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -331,6 +342,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                           child: Text(
                             'Delete My Account',
                             style: TextStyle(
+                              fontFamily: 'Inter',
                               color: SColors.color17,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,

@@ -20,6 +20,7 @@ class _SignUpOptionsUiState extends State<SignUpOptionsUi> {
       child: Text(
         'or',
         style: TextStyle(
+          fontFamily: 'Inter',
           color: Colors.black,
           fontSize: 14,
           fontWeight: FontWeight.w500,

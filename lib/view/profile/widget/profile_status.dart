@@ -22,19 +22,21 @@ class _ProfileStatusState extends State<ProfileStatus> {
         Text(
           widget.count,
           style: TextStyle(
-             color: themeController.isDarkTheme.value
-                 ?  SColors.color26
-                 : SColors.color3,
+            fontFamily: 'Inter',
+            color: themeController.isDarkTheme.value
+                ? SColors.color26
+                : SColors.color3,
             fontSize: 15,
             fontWeight: FontWeight.w700,
           ),
         ),
         Text(
           widget.label,
-          style:  TextStyle(
-             color: themeController.isDarkTheme.value
-                 ?  SColors.color26
-                 : SColors.color3,
+          style: TextStyle(
+            fontFamily: 'Inter',
+            color: themeController.isDarkTheme.value
+                ? SColors.color26
+                : SColors.color3,
             fontSize: 11,
             fontWeight: FontWeight.w500,
           ),

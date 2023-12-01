@@ -118,7 +118,8 @@ class _AddFilesHomePageState extends State<AddFilesHomePage> {
                       child: Center(
                           child: Text(
                         formattedTime,
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(
+                            fontFamily: 'Inter', color: Colors.white),
                       )),
                     ),
                     //flash

@@ -10,7 +10,6 @@ import 'package:stellar_chat/controllers/theme_controller.dart';
 import '../../../controllers/user_controller.dart';
 
 class QRScreen extends StatefulWidget {
-
   final bool isFromSettings;
   const QRScreen({Key? key, this.isFromSettings = false}) : super(key: key);
   @override
@@ -20,27 +19,25 @@ class QRScreen extends StatefulWidget {
 class _QRScreenState extends State<QRScreen> {
   @override
   Widget build(BuildContext context) {
-        UserController controller = Get.find();
+    UserController controller = Get.find();
 
     ThemeController themeController = Get.find();
 
     return Scaffold(
-      backgroundColor: themeController.isDarkTheme.value
-          ?  SColors.darkmode
-          : SColors.color4,
+      backgroundColor:
+          themeController.isDarkTheme.value ? SColors.darkmode : SColors.color4,
       body: DefaultTabController(
         length: 2,
         child: Scaffold(
           appBar: AppBar(
             elevation: 0,
             backgroundColor: themeController.isDarkTheme.value
-                ?  SColors.darkmode
+                ? SColors.darkmode
                 : SColors.color4,
             leading: IconButton(
-              icon: Icon(
-                  Icons.arrow_back_ios,
+              icon: Icon(Icons.arrow_back_ios,
                   color: themeController.isDarkTheme.value
-                      ?  SColors.color4
+                      ? SColors.color4
                       : SColors.color3),
               onPressed: () {
                 Get.back();
@@ -55,8 +52,9 @@ class _QRScreenState extends State<QRScreen> {
             title: Text(
               'QR Code',
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: themeController.isDarkTheme.value
-                    ?  SColors.appbarTitleInDark
+                    ? SColors.appbarTitleInDark
                     : SColors.color12,
                 fontSize: 18,
                 fontWeight: FontWeight.w700,

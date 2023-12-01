@@ -49,238 +49,250 @@ class _EditProfileState extends State<EditProfile> {
     ThemeController themeController = Get.find();
     UserController controller = Get.find();
     return Scaffold(
-      backgroundColor:  themeController.isDarkTheme.value
-          ?  SColors.darkmode
-          : SColors.color4,
-      appBar: AppBar(
-        toolbarHeight: 70,
-        elevation: 0,
-        title: Text(
-          'Edit Profile',
-          style: TextStyle(
-            color: themeController.isDarkTheme.value ?  SColors.appbarTitleInDark : SColors.color11,
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
+        backgroundColor: themeController.isDarkTheme.value
+            ? SColors.darkmode
+            : SColors.color4,
+        appBar: AppBar(
+          toolbarHeight: 70,
+          elevation: 0,
+          title: Text(
+            'Edit Profile',
+            style: TextStyle(
+              fontFamily: 'Inter',
+              color: themeController.isDarkTheme.value
+                  ? SColors.appbarTitleInDark
+                  : SColors.color11,
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          backgroundColor: themeController.isDarkTheme.value
+              ? SColors.appbarbgInDark
+              : SColors.color12,
+          leading: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SvgPicture.asset(SSvgs.appLogo),
           ),
         ),
-        backgroundColor: themeController.isDarkTheme.value ?  SColors.appbarbgInDark : SColors.color12,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SvgPicture.asset(SSvgs.appLogo),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 30),
-                  width: 100,
-                  height: 100,
-                  decoration: ShapeDecoration(
-                    color: SColors.color4,
-                    shape: const CircleBorder(),
-                  ),
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      ClipOval(
-                        child: pickedImage != null
-                            ? Image.file(
-                          File(pickedImage!.path),
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        )
-                            : Image.network(
-                          controller.userDetailsModel.value!.strProfileUrl
-                              .isEmpty
-                              ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                              : controller
-                              .userDetailsModel.value!.strProfileUrl,
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(top: 30),
+                    width: 100,
+                    height: 100,
+                    decoration: ShapeDecoration(
+                      color: SColors.color4,
+                      shape: const CircleBorder(),
+                    ),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        ClipOval(
+                          child: pickedImage != null
+                              ? Image.file(
+                                  File(pickedImage!.path),
+                                  width: 100,
+                                  height: 100,
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.network(
+                                  controller.userDetailsModel.value!
+                                          .strProfileUrl.isEmpty
+                                      ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                      : controller.userDetailsModel.value!
+                                          .strProfileUrl,
+                                  width: 100,
+                                  height: 100,
+                                  fit: BoxFit.cover,
+                                ),
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          showModalBottomSheet<void>(
-                            context: context,
-                            shape: const RoundedRectangleBorder(
-                              // <-- SEE HERE
-                              borderRadius: BorderRadius.vertical(
-                                top: Radius.circular(25.0),
+                        GestureDetector(
+                          onTap: () {
+                            showModalBottomSheet<void>(
+                              context: context,
+                              shape: const RoundedRectangleBorder(
+                                // <-- SEE HERE
+                                borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(25.0),
+                                ),
                               ),
-                            ),
-                            backgroundColor:
-                            const Color.fromRGBO(159, 196, 232, 1),
-                            builder: (BuildContext context) {
-                              return Wrap(
-                                children: <Widget>[
-                                  const Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 80, vertical: 15),
-                                    child: Divider(
-                                      thickness: 2,
-                                      color: Color.fromRGBO(0, 51, 142, 0.5),
-                                    ),
-                                  ),
-                                  ListTile(
-                                    //leading:  Icon(Icons.photo_library,color: SColors.color12,),
-                                    title: Center(
-                                      child: Text(
-                                        'Upload Photo',
-                                        style: TextStyle(
-                                          color: SColors.color12,
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                              backgroundColor:
+                                  const Color.fromRGBO(159, 196, 232, 1),
+                              builder: (BuildContext context) {
+                                return Wrap(
+                                  children: <Widget>[
+                                    const Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 80, vertical: 15),
+                                      child: Divider(
+                                        thickness: 2,
+                                        color: Color.fromRGBO(0, 51, 142, 0.5),
                                       ),
                                     ),
-                                    onTap: () async {
-                                      Navigator.of(context)
-                                          .pop(); // Close the bottom sheet
-                                      pickedImage = await picker.pickImage(
-                                          source: ImageSource.gallery);
-                                      if (pickedImage != null) {
-                                        setState(() {});
-                                      }
-                                    },
-                                  ),
-                                  ListTile(
-                                    //leading:  Icon(Icons.photo_camera,color: SColors.color12,),
-                                    title: Center(
-                                      child: Text(
-                                        'Take a Photo',
-                                        style: TextStyle(
-                                          color: SColors.color12,
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w500,
+                                    ListTile(
+                                      //leading:  Icon(Icons.photo_library,color: SColors.color12,),
+                                      title: Center(
+                                        child: Text(
+                                          'Upload Photo',
+                                          style: TextStyle(
+                                            fontFamily: 'Inter',
+                                            color: SColors.color12,
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
                                       ),
+                                      onTap: () async {
+                                        Navigator.of(context)
+                                            .pop(); // Close the bottom sheet
+                                        pickedImage = await picker.pickImage(
+                                            source: ImageSource.gallery);
+                                        if (pickedImage != null) {
+                                          setState(() {});
+                                        }
+                                      },
                                     ),
-                                    onTap: () async {
-                                      Navigator.of(context)
-                                          .pop(); // Close the bottom sheet
-                                      pickedImage = await picker.pickImage(
-                                          source: ImageSource.camera);
-                                      if (pickedImage != null) {
-                                        setState(() {});
-                                      }
-                                    },
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        },
-                        child: Icon(
-                          Icons.camera_alt_outlined,
-                          color: SColors.color12,
-                          size: 35,
+                                    ListTile(
+                                      //leading:  Icon(Icons.photo_camera,color: SColors.color12,),
+                                      title: Center(
+                                        child: Text(
+                                          'Take a Photo',
+                                          style: TextStyle(
+                                            fontFamily: 'Inter',
+                                            color: SColors.color12,
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                      onTap: () async {
+                                        Navigator.of(context)
+                                            .pop(); // Close the bottom sheet
+                                        pickedImage = await picker.pickImage(
+                                            source: ImageSource.camera);
+                                        if (pickedImage != null) {
+                                          setState(() {});
+                                        }
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                          child: Icon(
+                            Icons.camera_alt_outlined,
+                            color: SColors.color12,
+                            size: 35,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Change Photo',
-                  style: TextStyle(
-                    color:  themeController.isDarkTheme.value ?  SColors.color4 : SColors.color3,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
+                  const SizedBox(
+                    height: 10,
                   ),
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            ProfileTextField(
-              keyboardType: TextInputType.text,
-              head: 'Name',
-              controller: nameController,
-            ),
-            ProfileTextField(
-              keyboardType: TextInputType.text,
-              head: 'Username',
-              controller: userNameController,
-            ),
-            ProfileTextField2(
-              keyboardType: TextInputType.multiline,
-              maxLines: 6,
-              head: 'About me',
-              controller: aboutMeController,
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Divider(
-                thickness: 0.8,
-                color: themeController.isDarkTheme.value ?  Color.fromRGBO(187, 187, 187, 1)
-                    : SColors.color3,
+                  Text(
+                    'Change Photo',
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      color: themeController.isDarkTheme.value
+                          ? SColors.color4
+                          : SColors.color3,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  )
+                ],
               ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 30),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [
-            //       Text(
-            //         'Privacy and Settings',
-            //         style: TextStyle(
-            //           color: SColors.color3,
-            //           fontSize: 15,
-            //           fontWeight: FontWeight.w500,
-            //         ),
-            //       ),
-            //       GestureDetector(
-            //           onTap: () {},
-            //           child: const Icon(
-            //             Icons.arrow_forward_ios,
-            //             size: 20,
-            //           ))
-            //     ],
-            //   ),
-            // ),
-            SizedBox(height: Get.height * 0.2,),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: ProfileUpdateButton(
-                  buttonText: isLoading ? "Updating..." : 'Update',
-                  onPressed: () async {
-                    setState(() {
-                      isLoading = true;
-                    });
-                    bool isSuccess = await AccountServices.updateUserProfile(
-                        uid: userController.userDetailsModel.value!.id,
-                        aboutMe: aboutMeController.text,
-                        name: nameController.text,
-                        username: userNameController.text,
-                        image: pickedImage);
+              const SizedBox(
+                height: 40,
+              ),
+              ProfileTextField(
+                keyboardType: TextInputType.text,
+                head: 'Name',
+                controller: nameController,
+              ),
+              ProfileTextField(
+                keyboardType: TextInputType.text,
+                head: 'Username',
+                controller: userNameController,
+              ),
+              ProfileTextField2(
+                keyboardType: TextInputType.multiline,
+                maxLines: 6,
+                head: 'About me',
+                controller: aboutMeController,
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Divider(
+                  thickness: 0.8,
+                  color: themeController.isDarkTheme.value
+                      ? Color.fromRGBO(187, 187, 187, 1)
+                      : SColors.color3,
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 30),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       Text(
+              //         'Privacy and Settings',
+              //         style: TextStyle(fontFamily: 'Inter',
+              //           color: SColors.color3,
+              //           fontSize: 15,
+              //           fontWeight: FontWeight.w500,
+              //         ),
+              //       ),
+              //       GestureDetector(
+              //           onTap: () {},
+              //           child: const Icon(
+              //             Icons.arrow_forward_ios,
+              //             size: 20,
+              //           ))
+              //     ],
+              //   ),
+              // ),
+              SizedBox(
+                height: Get.height * 0.2,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50),
+                child: ProfileUpdateButton(
+                    buttonText: isLoading ? "Updating..." : 'Update',
+                    onPressed: () async {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      bool isSuccess = await AccountServices.updateUserProfile(
+                          uid: userController.userDetailsModel.value!.id,
+                          aboutMe: aboutMeController.text,
+                          name: nameController.text,
+                          username: userNameController.text,
+                          image: pickedImage);
 
-                    if (isSuccess) {
-                      await getUserDetailsonRefresh();
-                      Get.back();
-                    }
+                      if (isSuccess) {
+                        await getUserDetailsonRefresh();
+                        Get.back();
+                      }
 
-                    // showBottomSheet(context, 'profile');
-                  }),
-            )
-          ],
-        ),
-      )
-    );
+                      // showBottomSheet(context, 'profile');
+                    }),
+              )
+            ],
+          ),
+        ));
   }
 }
 
@@ -301,8 +313,7 @@ void showBottomSheet(BuildContext context, String action) {
           children: <Widget>[
             if (action == 'profile')
               const Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 child: Divider(
                   thickness: 2,
                   color: Color.fromRGBO(0, 51, 142, 0.5),
@@ -313,6 +324,7 @@ void showBottomSheet(BuildContext context, String action) {
               child: Text(
                 'Profile Updated',
                 style: TextStyle(
+                  fontFamily: 'Inter',
                   color: SColors.color3,
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
@@ -333,6 +345,7 @@ void showBottomSheet(BuildContext context, String action) {
                     child: Text(
                       'Upload Photo',
                       style: TextStyle(
+                        fontFamily: 'Inter',
                         color: SColors.color12,
                         fontSize: 17,
                         fontWeight: FontWeight.w400,
@@ -345,6 +358,7 @@ void showBottomSheet(BuildContext context, String action) {
                     child: Text(
                       'Take Photo',
                       style: TextStyle(
+                        fontFamily: 'Inter',
                         color: SColors.color12,
                         fontSize: 17,
                         fontWeight: FontWeight.w400,

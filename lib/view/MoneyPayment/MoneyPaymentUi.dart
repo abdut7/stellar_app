@@ -24,6 +24,7 @@ class _MoneyPaymentUiState extends State<MoneyPaymentUi> {
       text,
       textAlign: TextAlign.center,
       style: TextStyle(
+        fontFamily: 'Inter',
         color: color,
         fontSize: fontSize,
         fontWeight: fontWeight,
@@ -46,6 +47,7 @@ class _MoneyPaymentUiState extends State<MoneyPaymentUi> {
         'MONEY',
         textAlign: TextAlign.center,
         style: TextStyle(
+          fontFamily: 'Inter',
           color: SColors.color3,
           fontSize: 12,
           fontWeight: FontWeight.w400,

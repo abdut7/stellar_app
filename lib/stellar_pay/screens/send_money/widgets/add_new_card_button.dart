@@ -39,6 +39,7 @@ class _AddNewCardButtonState extends State<AddNewCardButton> {
               Text(
                 widget.buttonText,
                 style: TextStyle(
+                  fontFamily: 'Inter',
                   color: Colors.black,
                   fontSize: 15,
                   fontWeight: FontWeight.w400,

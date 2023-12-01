@@ -63,15 +63,18 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
       children: [
         Text(
           "I have read and accept the Terms of Service",
-          style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
+          style: TextStyle(
+              fontFamily: 'Inter', fontSize: 10, fontWeight: FontWeight.w600),
         ),
         Text(
           "The information collected on this page is only used",
-          style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
+          style: TextStyle(
+              fontFamily: 'Inter', fontSize: 10, fontWeight: FontWeight.w600),
         ),
         Text(
           "for account registration.",
-          style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
+          style: TextStyle(
+              fontFamily: 'Inter', fontSize: 10, fontWeight: FontWeight.w600),
         ),
       ],
     );
@@ -111,6 +114,7 @@ class _SignUpWithMobileUiState extends State<SignUpWithMobileUi> {
                   Text(
                     'Sign Up with Mobile ',
                     style: TextStyle(
+                        fontFamily: 'Inter',
                         color: SColors.color3,
                         fontSize: 17,
                         fontWeight: FontWeight.w800,

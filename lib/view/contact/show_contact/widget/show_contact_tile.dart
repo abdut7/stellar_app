@@ -49,7 +49,7 @@ class _TileState extends State<Tile> {
                 Icons.add,
                 size: 15,
                 color: themeController.isDarkTheme.value
-                    ?  SColors.color3
+                    ? SColors.color3
                     : SColors.color4,
               ),
             )
@@ -60,6 +60,7 @@ class _TileState extends State<Tile> {
             return Text(
               widget.title,
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: themeController.isDarkTheme.value
                     ? Colors.white
                     : Colors.black,

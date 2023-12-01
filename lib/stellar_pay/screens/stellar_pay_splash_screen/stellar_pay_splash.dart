@@ -71,6 +71,7 @@ class _StellarPaySplashScreenState extends State<StellarPaySplashScreen> {
                   'Stellar Pay, a fast and easy way to\nsend or request money using just the phone\n number',
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    fontFamily: 'Inter',
                     color: Colors.white,
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
@@ -96,6 +97,7 @@ class _StellarPaySplashScreenState extends State<StellarPaySplashScreen> {
                     child: Text(
                       'Continue',
                       style: TextStyle(
+                          fontFamily: 'Inter',
                           fontSize: 17,
                           color: SColors.color19,
                           fontWeight: FontWeight.w400),

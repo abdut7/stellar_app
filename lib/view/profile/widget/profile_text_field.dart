@@ -27,6 +27,7 @@ class _ProfileTextFieldState extends State<ProfileTextField> {
     return Text(
       headingText!,
       style: TextStyle(
+        fontFamily: 'Inter',
         fontSize: 14,
         color:
             themeController.isDarkTheme.value ? SColors.color4 : SColors.color3,
@@ -72,6 +73,7 @@ class _ProfileTextFieldState extends State<ProfileTextField> {
         keyboardType: widget.keyboardType,
         cursorColor: SColors.color8,
         style: TextStyle(
+          fontFamily: 'Inter',
           color: themeController.isDarkTheme.value
               ? SColors.color4
               : SColors.color3,

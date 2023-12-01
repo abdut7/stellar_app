@@ -32,6 +32,7 @@ class _NewChatUiState extends State<NewChatUi> {
           Text(
             text,
             style: TextStyle(
+              fontFamily: 'Inter',
               color: SColors.color3,
               fontSize: 14,
               fontWeight: FontWeight.w500,
@@ -60,7 +61,8 @@ class _NewChatUiState extends State<NewChatUi> {
               onPressed: () {
                 Navigator.pushNamed(context, HomeChatUi.routeName);
               },
-              child: Text('DONE', style: TextStyle(color: SColors.color4)),
+              child: Text('DONE',
+                  style: TextStyle(fontFamily: 'Inter', color: SColors.color4)),
               style: ElevatedButton.styleFrom(
                 backgroundColor: SColors.color12,
                 foregroundColor: SColors.color4,
@@ -95,6 +97,7 @@ class _NewChatUiState extends State<NewChatUi> {
           Text(
             labelText,
             style: TextStyle(
+              fontFamily: 'Inter',
               color: SColors.color3,
               fontSize: 14,
               fontWeight: FontWeight.w500,
@@ -111,6 +114,7 @@ class _NewChatUiState extends State<NewChatUi> {
       child: Text(
         'SELECT ONE OR MORE CONTACTS',
         style: TextStyle(
+          fontFamily: 'Inter',
           color: SColors.color3,
           fontSize: 14,
           fontWeight: FontWeight.w500,

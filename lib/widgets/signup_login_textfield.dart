@@ -24,6 +24,7 @@ class _SignUpLoginTextFieldState extends State<SignUpLoginTextField> {
       child: Text(
         headingText!,
         style: TextStyle(
+          fontFamily: 'Inter',
           color: SColors.color3,
           fontSize: 14,
           fontWeight: FontWeight.w500,
@@ -40,6 +41,7 @@ class _SignUpLoginTextFieldState extends State<SignUpLoginTextField> {
       filled: true,
       //hintText: hText,
       hintStyle: TextStyle(
+        fontFamily: 'Inter',
         color: SColors.color3,
         fontSize: 12,
         fontWeight: FontWeight.w400,
@@ -85,6 +87,7 @@ class _SignUpLoginTextFieldState extends State<SignUpLoginTextField> {
           keyboardType: widget.keyboardType,
           cursorColor: SColors.color11,
           style: TextStyle(
+            fontFamily: 'Inter',
             color: SColors.color3,
             fontSize: 16,
             fontWeight: FontWeight.w400,

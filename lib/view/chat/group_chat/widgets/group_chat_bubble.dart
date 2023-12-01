@@ -46,7 +46,7 @@ class GroupChatBubble extends StatelessWidget {
           //     ? const SizedBox()
           //     : Text(
           //         senderName,
-          //         style: const TextStyle(
+          //         style: const TextStyle(fontFamily: 'Inter',
           //           fontSize: 12.0,
           //           color: Colors.grey,
           //         ),
@@ -63,6 +63,7 @@ class GroupChatBubble extends StatelessWidget {
                                 Text(
                                   "  ${message.strName}",
                                   style: const TextStyle(
+                                      fontFamily: 'Inter',
                                       fontWeight: FontWeight.w600),
                                 )
                               ],
@@ -85,8 +86,10 @@ class GroupChatBubble extends StatelessWidget {
                             bottom: 2.0, right: 5, left: 5),
                         child: Text(
                           message.strCreatedTime,
-                          style:
-                              const TextStyle(color: Colors.grey, fontSize: 10),
+                          style: const TextStyle(
+                              fontFamily: 'Inter',
+                              color: Colors.grey,
+                              fontSize: 10),
                         ),
                       ),
                     ],
@@ -158,6 +161,7 @@ class GroupChatBubble extends StatelessWidget {
                               child: Text(
                                 senderName,
                                 style: const TextStyle(
+                                  fontFamily: 'Inter',
                                   fontSize: 12.0,
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black,
@@ -206,7 +210,8 @@ class GroupChatBubble extends StatelessWidget {
                                               const SizedBox(
                                                 width: 10,
                                               ),
-                                              Text(message.strContactName)
+                                              Text(message.strContactName,style:TextStyle(
+          fontFamily: 'Inter',))
                                             ],
                                           ),
                                           Row(
@@ -222,6 +227,7 @@ class GroupChatBubble extends StatelessWidget {
                                                 child: Text(
                                                   message.strCreatedTime,
                                                   style: const TextStyle(
+                                                      fontFamily: 'Inter',
                                                       color: Colors.grey,
                                                       fontSize: 10),
                                                 ),
@@ -279,7 +285,8 @@ class GroupChatBubble extends StatelessWidget {
                                         child: Center(
                                           child: Text(message.strChatId.isEmpty
                                               ? "Invite"
-                                              : "Message"),
+                                              : "Message",style:TextStyle(
+          fontFamily: 'Inter',)),
                                         ),
                                       ),
                                     ),
@@ -302,6 +309,7 @@ class GroupChatBubble extends StatelessWidget {
                                               child: Text(
                                                 message.strMessage,
                                                 style: const TextStyle(
+                                                    fontFamily: 'Inter',
                                                     color: Colors.black),
                                               ),
                                             ),
@@ -312,6 +320,7 @@ class GroupChatBubble extends StatelessWidget {
                                                 Text(
                                                   message.strCreatedTime,
                                                   style: const TextStyle(
+                                                      fontFamily: 'Inter',
                                                       color: Color.fromRGBO(
                                                           87, 87, 87, 1),
                                                       fontSize: 6,
@@ -383,6 +392,7 @@ class GroupChatBubble extends StatelessWidget {
                                                   Text(
                                                     message.strCreatedTime,
                                                     style: const TextStyle(
+                                                        fontFamily: 'Inter',
                                                         color: Colors.grey,
                                                         fontSize: 6),
                                                   ),
@@ -443,6 +453,8 @@ class GroupChatBubble extends StatelessWidget {
                                                               message
                                                                   .strMessage,
                                                               style: const TextStyle(
+                                                                  fontFamily:
+                                                                      'Inter',
                                                                   fontSize: 9,
                                                                   fontWeight:
                                                                       FontWeight

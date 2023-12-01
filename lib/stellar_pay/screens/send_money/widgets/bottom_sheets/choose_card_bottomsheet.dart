@@ -26,53 +26,83 @@ void choosecardsheet(BuildContext context) {
           children: [
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 65, vertical: 5),
-              child: Divider(
-                  thickness: 3,
-                  color: Color.fromRGBO(1, 97, 14, 1)
-              ),
+              child: Divider(thickness: 3, color: Color.fromRGBO(1, 97, 14, 1)),
             ),
-            const SizedBox(height: 25,),
+            const SizedBox(
+              height: 25,
+            ),
             const Text(
               'Choose Card',
-              style: TextStyle(color: Colors.black, fontSize: 21, fontWeight: FontWeight.w700,),),
-            const SizedBox(height: 25,),
+              style: TextStyle(
+                fontFamily: 'Inter',
+                color: Colors.black,
+                fontSize: 21,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
             Row(
               children: [
-                SvgPicture.asset(SSvgs.circleWhite,),
+                SvgPicture.asset(
+                  SSvgs.circleWhite,
+                ),
                 const SizedBox(width: 10),
                 SvgPicture.asset(SSvgs.whiteVisaText),
                 const SizedBox(width: 15),
                 const Text(
-                  '**** 2356', style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w400,),),
+                  '**** 2356',
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ],
             ),
-            const SizedBox(height: 25,),
+            const SizedBox(
+              height: 25,
+            ),
             Row(
               children: [
-                SvgPicture.asset(SSvgs.circleWhite,),
+                SvgPicture.asset(
+                  SSvgs.circleWhite,
+                ),
                 const SizedBox(width: 10),
                 SvgPicture.asset(SSvgs.whiteVisaText),
                 const SizedBox(width: 15),
                 const Text(
-                  '**** 2356', style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w400,),),
+                  '**** 2356',
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ],
             ),
-
-            const SizedBox(height: 25,),
+            const SizedBox(
+              height: 25,
+            ),
             AddNewCardButton(
                 buttonText: 'Add New Card',
-                onTap: (){
+                onTap: () {
                   entercarddetailssheet(context);
-                }
+                }),
+            const SizedBox(
+              height: 40,
             ),
-            const SizedBox(height: 40,),
             SendButton(
-                onTap: (){
+                onTap: () {
                   sendmoneythroughvisasheet(context);
                 },
-                buttonText: 'Send'
+                buttonText: 'Send'),
+            const SizedBox(
+              height: 25,
             ),
-            const SizedBox(height: 25,),
           ],
         ),
       );

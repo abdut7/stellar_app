@@ -86,6 +86,7 @@ class _HomeChatListTileState extends State<HomeChatListTile> {
             Text(
               widget.title1,
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: Color(0xFF161616),
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
@@ -96,6 +97,7 @@ class _HomeChatListTileState extends State<HomeChatListTile> {
               widget.title2,
               textAlign: TextAlign.right,
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: getTitle2Color(),
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
@@ -109,6 +111,7 @@ class _HomeChatListTileState extends State<HomeChatListTile> {
             Text(
               widget.subtitle1,
               style: TextStyle(
+                fontFamily: 'Inter',
                 overflow: TextOverflow.ellipsis,
                 color: Color(0xFF5B5B5B),
                 fontSize: 13,
@@ -128,7 +131,7 @@ class _HomeChatListTileState extends State<HomeChatListTile> {
                 child: Center(
                   child: Text(
                     widget.subtitle2,
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(fontFamily: 'Inter', color: Colors.white),
                   ),
                 ),
               ),

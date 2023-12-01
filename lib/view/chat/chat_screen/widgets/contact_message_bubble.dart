@@ -46,7 +46,8 @@ class ContactMessageBubble extends StatelessWidget {
                   const SizedBox(
                     width: 10,
                   ),
-                  Text(message.strContactName)
+                  Text(message.strContactName,style:TextStyle(
+          fontFamily: 'Inter',))
                 ],
               ),
               ShowTimeWidgetChatBuble(
@@ -85,7 +86,8 @@ class ContactMessageBubble extends StatelessWidget {
                     ? const Color.fromRGBO(197, 229, 255, 1)
                     : const Color.fromRGBO(224, 224, 224, 1)),
             child: Center(
-              child: Text(message.strChatId.isEmpty ? "Invite" : "Message"),
+              child: Text(message.strChatId.isEmpty ? "Invite" : "Message",style:TextStyle(
+          fontFamily: 'Inter',)),
             ),
           ),
         ),

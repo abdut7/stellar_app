@@ -24,6 +24,7 @@ class _OtpVerificationUiState extends State<OtpVerificationUi> {
       'OTP VERIFICATION',
       textAlign: TextAlign.center,
       style: TextStyle(
+        fontFamily: 'Inter',
         color: SColors.color3,
         fontSize: 17,
         fontWeight: FontWeight.w600,
@@ -45,6 +46,7 @@ class _OtpVerificationUiState extends State<OtpVerificationUi> {
         controller: otp_controller,
         keyboardType: TextInputType.number,
         style: TextStyle(
+          fontFamily: 'Inter',
           color: SColors.color3,
           fontSize: 30,
           fontWeight: FontWeight.w600,

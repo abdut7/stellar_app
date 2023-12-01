@@ -102,6 +102,7 @@ class _SearchScreenState extends State<SearchScreen> {
             fillColor: Colors.grey[300],
             hintText: 'Search',
             hintStyle: TextStyle(
+              fontFamily: 'Inter',
               color: SColors.color9,
               fontSize: 13,
               fontWeight: FontWeight.w700,
@@ -111,7 +112,8 @@ class _SearchScreenState extends State<SearchScreen> {
               borderSide: BorderSide.none,
             ),
           ),
-          style: TextStyle(color: SColors.color3, fontSize: 15),
+          style: TextStyle(
+              fontFamily: 'Inter', color: SColors.color3, fontSize: 15),
           textAlign: TextAlign.center,
         ),
         centerTitle: true,
@@ -155,6 +157,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         child: Text(
                           'Chat',
                           style: TextStyle(
+                            fontFamily: 'Inter',
                             color: themeController.isDarkTheme.value
                                 ? SColors.color4
                                 : SColors.color3,
@@ -186,6 +189,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         child: Text(
                           'Media',
                           style: TextStyle(
+                            fontFamily: 'Inter',
                             color: themeController.isDarkTheme.value
                                 ? SColors.color4
                                 : SColors.color3,
@@ -217,6 +221,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         child: Text(
                           'Audio',
                           style: TextStyle(
+                            fontFamily: 'Inter',
                             color: themeController.isDarkTheme.value
                                 ? SColors.color4
                                 : SColors.color3,
@@ -248,6 +253,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         child: Text(
                           'Document',
                           style: TextStyle(
+                            fontFamily: 'Inter',
                             color: themeController.isDarkTheme.value
                                 ? SColors.color4
                                 : SColors.color3,

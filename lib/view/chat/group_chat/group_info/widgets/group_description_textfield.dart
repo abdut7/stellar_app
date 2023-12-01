@@ -29,9 +29,10 @@ class _GroupDescTextfieldState extends State<GroupDescTextfield> {
       child: Text(
         headingText!,
         style: TextStyle(
+          fontFamily: 'Inter',
           fontSize: 14,
           color: themeController.isDarkTheme.value
-              ?  SColors.color4
+              ? SColors.color4
               : SColors.color3,
           fontWeight: FontWeight.w600,
         ),
@@ -68,16 +69,19 @@ class _GroupDescTextfieldState extends State<GroupDescTextfield> {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 30),
       //height: 25,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(4),color: Colors.grey.withOpacity(0.1)),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+          color: Colors.grey.withOpacity(0.1)),
       child: TextFormField(
         controller: widget.controller,
         keyboardType: widget.keyboardType,
         cursorColor: themeController.isDarkTheme.value
-            ?  SColors.color26
+            ? SColors.color26
             : SColors.color8,
         style: TextStyle(
+          fontFamily: 'Inter',
           color: themeController.isDarkTheme.value
-              ?  SColors.color4
+              ? SColors.color4
               : SColors.color3,
           fontWeight: FontWeight.w500,
           fontSize: 15,
@@ -98,11 +102,14 @@ class _GroupDescTextfieldState extends State<GroupDescTextfield> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const SizedBox(height: 30,),
+          const SizedBox(
+            height: 30,
+          ),
           textFieldHeading(headingText: widget.head),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           textField(),
-
         ],
       ),
     );

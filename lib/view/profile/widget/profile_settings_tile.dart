@@ -29,10 +29,15 @@ class _CustomListTileeState extends State<CustomListTilee> {
         onTap: widget.onTap,
         child: ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 25),
-          leading: SvgPicture.asset(widget.svgAsset,width: 45,height: 45,),
+          leading: SvgPicture.asset(
+            widget.svgAsset,
+            width: 45,
+            height: 45,
+          ),
           title: Text(
             widget.text,
             style: TextStyle(
+              fontFamily: 'Inter',
               color: themeController.isDarkTheme.value
                   ? SColors.color4
                   : SColors.color3,
@@ -40,7 +45,6 @@ class _CustomListTileeState extends State<CustomListTilee> {
               fontWeight: FontWeight.w400,
             ),
           ),
-
         ),
       ),
     );

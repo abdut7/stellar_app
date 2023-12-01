@@ -11,10 +11,12 @@ class SendReceiveContactsListTile extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<SendReceiveContactsListTile> createState() => _SendReceiveContactsListTileState();
+  State<SendReceiveContactsListTile> createState() =>
+      _SendReceiveContactsListTileState();
 }
 
-class _SendReceiveContactsListTileState extends State<SendReceiveContactsListTile> {
+class _SendReceiveContactsListTileState
+    extends State<SendReceiveContactsListTile> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,13 +30,18 @@ class _SendReceiveContactsListTileState extends State<SendReceiveContactsListTil
             shape: BoxShape.circle,
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage('https://cdn.quotesgram.com/img/8/72/1135141999-074f6884b9f34be89538782d2fc98f8e.jpg'), // Replace with your avatar image URL
+              image: NetworkImage(
+                  'https://cdn.quotesgram.com/img/8/72/1135141999-074f6884b9f34be89538782d2fc98f8e.jpg'), // Replace with your avatar image URL
             ),
           ),
         ),
         title: Text(
           widget.name,
-          style: const TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.w400,
+          style: const TextStyle(
+            fontFamily: 'Inter',
+            color: Colors.black,
+            fontSize: 17,
+            fontWeight: FontWeight.w400,
           ),
         ),
       ),

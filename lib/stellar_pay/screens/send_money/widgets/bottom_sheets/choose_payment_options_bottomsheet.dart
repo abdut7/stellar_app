@@ -26,18 +26,25 @@ void choosepaymentoptionssheet(BuildContext context) {
           children: [
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 65, vertical: 5),
-              child: Divider(
-                  thickness: 3,
-                  color: Color.fromRGBO(1, 97, 14, 1)
-              ),
+              child: Divider(thickness: 3, color: Color.fromRGBO(1, 97, 14, 1)),
             ),
-            const SizedBox(height: 25,),
+            const SizedBox(
+              height: 25,
+            ),
             const Text(
               'Choose Payment Options',
-              style: TextStyle(color: Colors.black, fontSize: 21, fontWeight: FontWeight.w700,),),
-            const SizedBox(height: 25,),
+              style: TextStyle(
+                fontFamily: 'Inter',
+                color: Colors.black,
+                fontSize: 21,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
             Container(
-              width:  MediaQuery.of(context).size.width,
+              width: MediaQuery.of(context).size.width,
               height: 55,
               decoration: ShapeDecoration(
                 color: Colors.white,
@@ -49,7 +56,9 @@ void choosepaymentoptionssheet(BuildContext context) {
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
                   children: [
-                    SvgPicture.asset(SSvgs.walletLogo,),
+                    SvgPicture.asset(
+                      SSvgs.walletLogo,
+                    ),
                     const SizedBox(width: 10),
                     const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,10 +66,20 @@ void choosepaymentoptionssheet(BuildContext context) {
                       children: [
                         Text(
                           'Pay from Wallet',
-                          style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w400,),),
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
                         Text(
                           'Wallet Balance AED 200',
-                          style: TextStyle(color: Color(0xFF858282), fontSize: 11, fontWeight: FontWeight.w400,
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            color: Color(0xFF858282),
+                            fontSize: 11,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ],
@@ -78,45 +97,69 @@ void choosepaymentoptionssheet(BuildContext context) {
                 ),
               ),
             ),
-            const SizedBox(height: 25,),
-
+            const SizedBox(
+              height: 25,
+            ),
             Row(
               children: [
-                SvgPicture.asset(SSvgs.circleWhite,),
+                SvgPicture.asset(
+                  SSvgs.circleWhite,
+                ),
                 const SizedBox(width: 10),
                 SvgPicture.asset(SSvgs.whiteVisaText),
                 const SizedBox(width: 15),
                 const Text(
-                  '**** 2356', style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w400,),),
+                  '**** 2356',
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ],
             ),
-            const SizedBox(height: 25,),
+            const SizedBox(
+              height: 25,
+            ),
             Row(
               children: [
-                SvgPicture.asset(SSvgs.circleWhite,),
+                SvgPicture.asset(
+                  SSvgs.circleWhite,
+                ),
                 const SizedBox(width: 10),
                 SvgPicture.asset(SSvgs.whiteVisaText),
                 const SizedBox(width: 15),
                 const Text(
-                  '**** 2356', style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w400,),),
+                  '**** 2356',
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ],
             ),
-
-            const SizedBox(height: 25,),
+            const SizedBox(
+              height: 25,
+            ),
             AddNewCardButton(
                 buttonText: 'Add New Card',
-                onTap: (){
+                onTap: () {
                   entercarddetailssheet(context);
-                }
+                }),
+            const SizedBox(
+              height: 50,
             ),
-            const SizedBox(height: 50,),
             SendButton(
-                onTap: (){
-                 sendmoneythroughvisasheet(context);
+                onTap: () {
+                  sendmoneythroughvisasheet(context);
                 },
-                buttonText: 'Send'
+                buttonText: 'Send'),
+            const SizedBox(
+              height: 25,
             ),
-            const SizedBox(height: 25,),
           ],
         ),
       );

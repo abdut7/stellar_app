@@ -27,6 +27,7 @@ class _Tile1State extends State<Tile1> {
       title: Text(
         'Voice of Books',
         style: TextStyle(
+          fontFamily: 'Inter',
           color: SColors.color3,
           fontSize: 16,
           fontWeight: FontWeight.w400,
@@ -35,6 +36,7 @@ class _Tile1State extends State<Tile1> {
       subtitle: Text(
         '289K subscribers',
         style: TextStyle(
+          fontFamily: 'Inter',
           color: SColors.color9,
           fontSize: 12,
           fontWeight: FontWeight.w600,
@@ -53,7 +55,8 @@ class _Tile1State extends State<Tile1> {
               Expanded(
                 child: Text(
                   '25.6K',
-                  style: TextStyle(fontSize: 8, color: SColors.color8),
+                  style: TextStyle(
+                      fontFamily: 'Inter', fontSize: 8, color: SColors.color8),
                 ),
               ),
             ],
@@ -67,7 +70,8 @@ class _Tile1State extends State<Tile1> {
               Expanded(
                 child: Text(
                   '65',
-                  style: TextStyle(fontSize: 8, color: SColors.color8),
+                  style: TextStyle(
+                      fontFamily: 'Inter', fontSize: 8, color: SColors.color8),
                 ),
               ),
             ],

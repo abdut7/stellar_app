@@ -30,6 +30,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         title: Text(
           'Favorites',
           style: TextStyle(
+            fontFamily: 'Inter',
             color: themeController.isDarkTheme.value
                 ? SColors.appbarTitleInDark
                 : SColors.color11,

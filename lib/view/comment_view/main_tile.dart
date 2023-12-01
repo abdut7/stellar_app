@@ -61,6 +61,7 @@ class _MainTileState extends State<MainTile> {
       title: Text(
         widget.commenterName,
         style: TextStyle(
+          fontFamily: 'Inter',
           color: Get.find<ThemeController>().isDarkTheme.value
               ? Colors.white
               : SColors.color8,
@@ -74,6 +75,7 @@ class _MainTileState extends State<MainTile> {
           Text(
             widget.comment,
             style: TextStyle(
+              fontFamily: 'Inter',
               color: Get.find<ThemeController>().isDarkTheme.value
                   ? Colors.white
                   : SColors.color3,
@@ -85,7 +87,7 @@ class _MainTileState extends State<MainTile> {
           //   children: [
           //     Text(
           //       'View replies (4)',
-          //       style: TextStyle(
+          //       style: TextStyle(fontFamily: 'Inter',
           //         color: SColors.color9,
           //         fontSize: 11,
           //         fontWeight: FontWeight.w600,
@@ -107,6 +109,7 @@ class _MainTileState extends State<MainTile> {
           Text(
             formatTimeDifference(widget.time),
             style: TextStyle(
+              fontFamily: 'Inter',
               color: SColors.color9,
               fontSize: 13,
               fontWeight: FontWeight.w400,
@@ -139,6 +142,7 @@ class _MainTileState extends State<MainTile> {
                 child: Text(
                   likeCount.toString(),
                   style: TextStyle(
+                      fontFamily: 'Inter',
                       fontSize: 8,
                       color: Get.find<ThemeController>().isDarkTheme.value
                           ? Colors.white

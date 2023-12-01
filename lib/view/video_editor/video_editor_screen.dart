@@ -147,8 +147,9 @@ class _VideoEditorHomeScreenState extends State<VideoEditorHomeScreen> {
                       children: [
                         const Text(
                           "Next",
-                          style:
-                              TextStyle(color: Color.fromRGBO(0, 51, 142, 1)),
+                          style: TextStyle(
+                              fontFamily: 'Inter',
+                              color: Color.fromRGBO(0, 51, 142, 1)),
                         ),
                         const SizedBox(
                           width: 8,
@@ -235,6 +236,7 @@ class _VideoEditorHomeScreenState extends State<VideoEditorHomeScreen> {
                                             Text(
                                               'Trim',
                                               style: TextStyle(
+                                                  fontFamily: 'Inter',
                                                   color: Get.find<
                                                               ThemeController>()
                                                           .isDarkTheme
@@ -274,7 +276,8 @@ class _VideoEditorHomeScreenState extends State<VideoEditorHomeScreen> {
                                     builder: (_, double value, __) => Center(
                                       child: Text(
                                         "Processing video ${(value * 100).ceil()}%",
-                                        style: const TextStyle(fontSize: 12),
+                                        style: const TextStyle(
+                                            fontFamily: 'Inter', fontSize: 12),
                                       ),
                                     ),
                                   ),

@@ -56,7 +56,8 @@ class ChatAppBarTitleWidget extends StatelessWidget {
         Flexible(
           child: Text(
             name,
-            style: const TextStyle(fontSize: 16, color: Color(0xFF2E3192)),
+            style: const TextStyle(
+                fontFamily: 'Inter', fontSize: 16, color: Color(0xFF2E3192)),
             overflow: TextOverflow.ellipsis,
           ),
         ),

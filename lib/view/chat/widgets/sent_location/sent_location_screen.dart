@@ -63,6 +63,7 @@ class _SendLocationScreenState extends State<SendLocationScreen> {
           title: Text(
             'Your\nLocation',
             style: TextStyle(
+              fontFamily: 'Inter',
               color: SColors.color11,
               fontSize: 18,
               fontWeight: FontWeight.w700,
@@ -124,6 +125,7 @@ class _SendLocationScreenState extends State<SendLocationScreen> {
                       const Text(
                         "Send Selected Location",
                         style: TextStyle(
+                            fontFamily: 'Inter',
                             color: Colors.black,
                             fontSize: 13,
                             fontWeight: FontWeight.w600),
@@ -131,6 +133,7 @@ class _SendLocationScreenState extends State<SendLocationScreen> {
                       Text(
                         fetchedAddress,
                         style: const TextStyle(
+                            fontFamily: 'Inter',
                             color: Colors.black,
                             fontSize: 11,
                             fontWeight: FontWeight.w400),
@@ -165,6 +168,7 @@ class _SendLocationScreenState extends State<SendLocationScreen> {
                     child: Text(
                       "Confirm",
                       style: TextStyle(
+                          fontFamily: 'Inter',
                           color: Colors.white,
                           fontSize: 15,
                           fontWeight: FontWeight.w400),

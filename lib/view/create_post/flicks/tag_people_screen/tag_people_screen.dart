@@ -52,6 +52,7 @@ class _TagPeopleScreenState extends State<TagPeopleScreen> {
             child: Text(
               'Next',
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: SColors.color12,
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
@@ -94,6 +95,7 @@ class _TagPeopleScreenState extends State<TagPeopleScreen> {
             child: Text(
               'Tags',
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: SColors.color12,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,

@@ -25,6 +25,7 @@ class _TagSearchFieldState extends State<TagSearchField> {
           fillColor: Colors.grey[300],
           hintText: 'Search Users',
           hintStyle: TextStyle(
+            fontFamily: 'Inter',
             color: SColors.color9,
             fontSize: 13,
             fontWeight: FontWeight.w700,
@@ -34,7 +35,8 @@ class _TagSearchFieldState extends State<TagSearchField> {
             borderSide: BorderSide.none,
           ),
         ),
-        style: TextStyle(color: SColors.color3, fontSize: 15),
+        style:
+            TextStyle(fontFamily: 'Inter', color: SColors.color3, fontSize: 15),
         textAlign: TextAlign.center,
       ),
     );

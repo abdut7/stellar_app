@@ -25,9 +25,8 @@ class _MyQRCodeTabState extends State<MyQRCodeTab> {
     return Container(
       height: double.infinity,
       width: double.infinity,
-      color: themeController.isDarkTheme.value
-          ?  SColors.darkmode
-          : SColors.color4,
+      color:
+          themeController.isDarkTheme.value ? SColors.darkmode : SColors.color4,
       child: Stack(
         children: <Widget>[
           Padding(
@@ -63,6 +62,7 @@ class _MyQRCodeTabState extends State<MyQRCodeTab> {
                                 controller.userDetailsModel.value!.strName,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
+                                  fontFamily: 'Inter',
                                   color: SColors.color3,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
@@ -72,6 +72,7 @@ class _MyQRCodeTabState extends State<MyQRCodeTab> {
                                 'Stellar Chat Contact',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
+                                  fontFamily: 'Inter',
                                   color: SColors.color3,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400,

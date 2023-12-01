@@ -26,6 +26,7 @@ class _SettingsUiState extends State<SettingsUi> {
           child: Text(
             texts[i],
             style: TextStyle(
+              fontFamily: 'Inter',
               color: SColors.color3,
               fontSize: 14,
               fontWeight: FontWeight.w400,
@@ -58,6 +59,7 @@ class _SettingsUiState extends State<SettingsUi> {
       child: Text(
         head,
         style: TextStyle(
+          fontFamily: 'Inter',
           color: SColors.color3,
           fontSize: 16,
           fontWeight: FontWeight.w600,

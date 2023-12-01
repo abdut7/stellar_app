@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:stellar_chat/Settings/SSvgs.dart';
+
 class SendOrRequestMoneyButtons extends StatefulWidget {
   final Function() onSendMoneyTap;
   final Function() onRequestMoneyTap;
@@ -16,14 +17,15 @@ class SendOrRequestMoneyButtons extends StatefulWidget {
   });
 
   @override
-  _SendOrRequestMoneyButtonsState createState() => _SendOrRequestMoneyButtonsState();
+  _SendOrRequestMoneyButtonsState createState() =>
+      _SendOrRequestMoneyButtonsState();
 }
 
 class _SendOrRequestMoneyButtonsState extends State<SendOrRequestMoneyButtons> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.only(top: Get.height*0.35),
+      padding: EdgeInsets.only(top: Get.height * 0.35),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -36,7 +38,13 @@ class _SendOrRequestMoneyButtonsState extends State<SendOrRequestMoneyButtons> {
                 Text(
                   widget.sendMoneyText,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w500,),)
+                  style: const TextStyle(
+                    fontFamily: 'Inter',
+                    color: Colors.black,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                  ),
+                )
               ],
             ),
           ),
@@ -49,7 +57,13 @@ class _SendOrRequestMoneyButtonsState extends State<SendOrRequestMoneyButtons> {
                 Text(
                   widget.requestMoneyText,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w500,),),
+                  style: const TextStyle(
+                    fontFamily: 'Inter',
+                    color: Colors.black,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ],
             ),
           ),

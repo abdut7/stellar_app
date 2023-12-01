@@ -83,6 +83,7 @@ class GetNearbyContactsService {
                                     Text(
                                       element.strFullName,
                                       style: const TextStyle(
+                                        fontFamily: 'Inter',
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -102,7 +103,10 @@ class GetNearbyContactsService {
                                                         element.strFullName,
                                                   ));
                                             },
-                                            child: const Text('Chat')),
+                                            child: const Text('Chat',
+                                                style: TextStyle(
+                                                  fontFamily: 'Inter',
+                                                ))),
                                         const SizedBox(
                                           width: 20,
                                         ),
@@ -113,7 +117,8 @@ class GetNearbyContactsService {
                                                     uid: element.id),
                                               );
                                             },
-                                            child: const Text('View Profile')),
+                                            child: const Text('View Profile',style:TextStyle(
+          fontFamily: 'Inter',))),
                                       ],
                                     )
                                   ],

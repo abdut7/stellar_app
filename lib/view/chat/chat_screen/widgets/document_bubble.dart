@@ -60,6 +60,7 @@ class _DocumentBubbleState extends State<DocumentBubble> {
                   child: Text(
                     widget.isSent ? "" : widget.senterName,
                     style: TextStyle(
+                        fontFamily: 'Inter',
                         fontWeight: FontWeight.w600,
                         color: Get.find<ThemeController>().isDarkTheme.value
                             ? Colors.black
@@ -92,7 +93,8 @@ class _DocumentBubbleState extends State<DocumentBubble> {
                       child: Text(
                         widget.message,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(color: Colors.black),
+                        style:
+                            TextStyle(fontFamily: 'Inter', color: Colors.black),
                       ),
                     ),
                     const SizedBox(
@@ -118,7 +120,9 @@ class _DocumentBubbleState extends State<DocumentBubble> {
                               return snapshot.data!
                                   ? Text(
                                       "open",
-                                      style: TextStyle(color: colorPrimary),
+                                      style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          color: colorPrimary),
                                     )
                                   : GestureDetector(
                                       onTap: () async {
@@ -168,7 +172,8 @@ class _DocumentBubbleState extends State<DocumentBubble> {
                 padding: const EdgeInsets.only(bottom: 2.0, right: 5, left: 5),
                 child: Text(
                   widget.createdTime,
-                  style: const TextStyle(color: Colors.grey, fontSize: 10),
+                  style: const TextStyle(
+                      fontFamily: 'Inter', color: Colors.grey, fontSize: 10),
                 ),
               ),
               widget.isSent

@@ -7,8 +7,7 @@ class CustomPopupMenuItem<T> extends PopupMenuItem<T> {
   final VoidCallback ontap;
   final Color textColor;
 
-  CustomPopupMenuItem(
-        {
+  CustomPopupMenuItem({
     required this.ontap,
     required this.textColor,
     required T value,
@@ -17,18 +16,22 @@ class CustomPopupMenuItem<T> extends PopupMenuItem<T> {
   }) : super(
           value: value,
           child: GestureDetector(
-            onTap: ()=>ontap(),
+            onTap: () => ontap(),
             child: Row(
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(right: 16.0),
                   child: icon,
                 ),
-                Text(text,style: TextStyle(
-                  color:textColor,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w600,
-                ),),
+                Text(
+                  text,
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    color: textColor,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ],
             ),
           ),

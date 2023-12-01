@@ -56,7 +56,10 @@ class _VideoCardState extends State<VideoCard> {
                       // replace with duration
                       // widget.channelItem.,
                       widget.channelItem.duration,
-                      style: TextStyle(color: SColors.color4, fontSize: 10),
+                      style: TextStyle(
+                          fontFamily: 'Inter',
+                          color: SColors.color4,
+                          fontSize: 10),
                     ),
                   ),
                 ),
@@ -91,6 +94,7 @@ class _VideoCardState extends State<VideoCard> {
                     Text(
                       widget.channelItem.description,
                       style: TextStyle(
+                        fontFamily: 'Inter',
                         color: Get.find<ThemeController>().isDarkTheme.value
                             ? Colors.white
                             : SColors.color3,
@@ -107,6 +111,7 @@ class _VideoCardState extends State<VideoCard> {
                         DateTime.parse(widget.channelItem.createdTime),
                       )}',
                       style: TextStyle(
+                        fontFamily: 'Inter',
                         color: Get.find<ThemeController>().isDarkTheme.value
                             ? Colors.grey
                             : SColors.color8,

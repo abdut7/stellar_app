@@ -100,6 +100,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
               keyboardType: widget.keyboardType,
               cursorColor: SColors.color11,
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: SColors.color3,
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
@@ -121,6 +122,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
             child: Text(
               widget.labelText,
               style: TextStyle(
+                fontFamily: 'Inter',
                 color: SColors.color3,
                 fontSize: 11,
                 fontWeight: FontWeight.w600,

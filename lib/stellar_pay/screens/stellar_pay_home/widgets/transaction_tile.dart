@@ -42,15 +42,33 @@ class _TransactionTileState extends State<TransactionTile> {
         ),
         title: Text(
           widget.title,
-          style: const TextStyle(color: Colors.black, fontSize: 10, fontWeight: FontWeight.w600,),),
+          style: const TextStyle(
+            fontFamily: 'Inter',
+            color: Colors.black,
+            fontSize: 10,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               widget.id,
-              style: const TextStyle(color: Colors.black, fontSize: 10, fontWeight: FontWeight.w500,),),
+              style: const TextStyle(
+                fontFamily: 'Inter',
+                color: Colors.black,
+                fontSize: 10,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             Text(
-              widget.timestamp, style: const TextStyle(color: Colors.black, fontSize: 10, fontWeight: FontWeight.w500,),
+              widget.timestamp,
+              style: const TextStyle(
+                fontFamily: 'Inter',
+                color: Colors.black,
+                fontSize: 10,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ],
         ),
@@ -60,11 +78,23 @@ class _TransactionTileState extends State<TransactionTile> {
             Text(
               '+ AED ${widget.amount}',
               textAlign: TextAlign.right,
-              style: const TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w500,),),
+              style: const TextStyle(
+                fontFamily: 'Inter',
+                color: Colors.black,
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             Text(
               widget.status,
               textAlign: TextAlign.right,
-              style: const TextStyle(color: Color(0xFF19AA33), fontSize: 10, fontWeight: FontWeight.w700,),),
+              style: const TextStyle(
+                fontFamily: 'Inter',
+                color: Color(0xFF19AA33),
+                fontSize: 10,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
           ],
         ),
       ),

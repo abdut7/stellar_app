@@ -67,6 +67,7 @@ class _ChannelBottomSheetState extends State<ChannelBottomSheet> {
                 child: Text(
                   isFavorite ? "Remove from Favorites" : 'Save to Favorites',
                   style: const TextStyle(
+                    fontFamily: 'Inter',
                     fontSize: 16,
                     color: Color.fromRGBO(0, 51, 142, 1),
                   ),
@@ -84,6 +85,7 @@ class _ChannelBottomSheetState extends State<ChannelBottomSheet> {
                 child: const Text(
                   'Share',
                   style: TextStyle(
+                    fontFamily: 'Inter',
                     fontSize: 16,
                     color: Color.fromRGBO(0, 51, 142, 1),
                   ),
@@ -107,6 +109,7 @@ class _ChannelBottomSheetState extends State<ChannelBottomSheet> {
                       child: const Text(
                         'View Profile',
                         style: TextStyle(
+                          fontFamily: 'Inter',
                           fontSize: 16,
                           color: Color.fromRGBO(0, 51, 142, 1),
                         ),

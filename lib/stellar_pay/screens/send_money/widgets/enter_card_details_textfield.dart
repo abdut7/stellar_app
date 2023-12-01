@@ -10,7 +10,8 @@ class EnterCardDetailsTextField extends StatefulWidget {
   });
 
   @override
-  _EnterCardDetailsTextFieldState createState() => _EnterCardDetailsTextFieldState();
+  _EnterCardDetailsTextFieldState createState() =>
+      _EnterCardDetailsTextFieldState();
 }
 
 class _EnterCardDetailsTextFieldState extends State<EnterCardDetailsTextField> {
@@ -22,6 +23,7 @@ class _EnterCardDetailsTextFieldState extends State<EnterCardDetailsTextField> {
         Text(
           widget.headText,
           style: const TextStyle(
+            fontFamily: 'Inter',
             color: Colors.black,
             fontSize: 14,
             fontWeight: FontWeight.w500,
@@ -38,7 +40,11 @@ class _EnterCardDetailsTextFieldState extends State<EnterCardDetailsTextField> {
             ),
           ),
           style: const TextStyle(
-            color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500,),
+            fontFamily: 'Inter',
+            color: Colors.black,
+            fontSize: 15,
+            fontWeight: FontWeight.w500,
+          ),
           cursorColor: Colors.black,
         ),
       ],

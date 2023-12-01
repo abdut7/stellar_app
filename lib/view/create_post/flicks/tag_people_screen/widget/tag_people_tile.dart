@@ -31,6 +31,7 @@ class TagPeopleTile extends StatelessWidget {
         title: Text(
           username,
           style: TextStyle(
+            fontFamily: 'Inter',
             color: Get.find<ThemeController>().isDarkTheme.value
                 ? Colors.white
                 : Colors.black,
@@ -41,6 +42,7 @@ class TagPeopleTile extends StatelessWidget {
         subtitle: Text(
           name,
           style: TextStyle(
+            fontFamily: 'Inter',
             color: Get.find<ThemeController>().isDarkTheme.value
                 ? Colors.white
                 : Colors.black,
@@ -52,6 +54,7 @@ class TagPeopleTile extends StatelessWidget {
             ? Text(
                 "Tag",
                 style: TextStyle(
+                  fontFamily: 'Inter',
                   color: Get.find<ThemeController>().isDarkTheme.value
                       ? Colors.white
                       : Colors.black,

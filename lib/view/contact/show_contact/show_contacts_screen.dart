@@ -33,14 +33,13 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
     ThemeController themeController = Get.find();
     ContactsController contactsController = Get.put(ContactsController());
     return Scaffold(
-      backgroundColor: themeController.isDarkTheme.value
-          ?  SColors.darkmode
-          : SColors.color4,
+      backgroundColor:
+          themeController.isDarkTheme.value ? SColors.darkmode : SColors.color4,
       appBar: AppBar(
         toolbarHeight: 70,
         elevation: 0,
         backgroundColor: themeController.isDarkTheme.value
-            ?  SColors.appbarbgInDark
+            ? SColors.appbarbgInDark
             : SColors.color12,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -53,8 +52,9 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
           children: [
             Text('Select Contact',
                 style: TextStyle(
+                  fontFamily: 'Inter',
                   color: themeController.isDarkTheme.value
-                      ?  SColors.appbarTitleInDark
+                      ? SColors.appbarTitleInDark
                       : SColors.color11,
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
@@ -64,7 +64,7 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
             ),
             // Text(
             //   '675 Contacts',
-            //   style: TextStyle(
+            //   style: TextStyle(fontFamily: 'Inter',
             //     color: SColors.color11,
             //     fontSize: 12,
             //     fontWeight: FontWeight.w400,
@@ -76,9 +76,9 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
           PopupMenuButton<int>(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            color:  themeController.isDarkTheme.value
-          ?  SColors.darkmode
-              : SColors.color11,
+            color: themeController.isDarkTheme.value
+                ? SColors.darkmode
+                : SColors.color11,
             onSelected: (value) {
               // Handle the option selected
               switch (value) {
@@ -102,10 +102,11 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
                 child: Text(
                   'Invite Friend',
                   style: TextStyle(
+                    fontFamily: 'Inter',
                     fontSize: 14,
-                      color:  themeController.isDarkTheme.value
-                  ?  SColors.sheetItemColor
-                      : SColors.color12,
+                    color: themeController.isDarkTheme.value
+                        ? SColors.sheetItemColor
+                        : SColors.color12,
                   ),
                 ),
               ),
@@ -114,23 +115,24 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
                 child: Text(
                   'Contacts',
                   style: TextStyle(
+                    fontFamily: 'Inter',
                     fontSize: 14,
-                      color: themeController.isDarkTheme.value
-                          ?  SColors.sheetItemColor
-                          : SColors.color12,
+                    color: themeController.isDarkTheme.value
+                        ? SColors.sheetItemColor
+                        : SColors.color12,
                   ),
                 ),
               ),
               PopupMenuItem<int>(
                 value: 3,
                 child: Text(
-
                   'Refresh',
                   style: TextStyle(
+                    fontFamily: 'Inter',
                     fontSize: 14,
-                      color: themeController.isDarkTheme.value
-                          ?  SColors.sheetItemColor
-                          : SColors.color12,
+                    color: themeController.isDarkTheme.value
+                        ? SColors.sheetItemColor
+                        : SColors.color12,
                   ),
                 ),
               ),
@@ -139,10 +141,11 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
                 child: Text(
                   'Help',
                   style: TextStyle(
+                    fontFamily: 'Inter',
                     fontSize: 14,
-                      color: themeController.isDarkTheme.value
-                          ?  SColors.sheetItemColor
-                          : SColors.color12,
+                    color: themeController.isDarkTheme.value
+                        ? SColors.sheetItemColor
+                        : SColors.color12,
                   ),
                 ),
               ),
@@ -162,7 +165,7 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
               child: Tile(
                 svgAsset: SSvgs.sv20,
                 assetColor: themeController.isDarkTheme.value
-                    ?  SColors.appbarbgInDark
+                    ? SColors.appbarbgInDark
                     : SColors.color12,
                 circleAvatarBackgroundColor: SColors.color4,
                 title: 'New Group',
@@ -177,7 +180,7 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
                 svgAsset: SSvgs.sv06,
                 assetColor: SColors.color4,
                 circleAvatarBackgroundColor: themeController.isDarkTheme.value
-                    ?  SColors.appbarbgInDark
+                    ? SColors.appbarbgInDark
                     : SColors.color12,
                 title: 'New Contact',
                 trailingIcon: GestureDetector(
@@ -188,12 +191,10 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
                         ),
                       );
                     },
-                    child: Icon(
-                      Icons.qr_code,
-                      color: themeController.isDarkTheme.value
-                          ?  SColors.color4
-                          : SColors.color3
-                    )),
+                    child: Icon(Icons.qr_code,
+                        color: themeController.isDarkTheme.value
+                            ? SColors.color4
+                            : SColors.color3)),
               ),
             ),
             const SizedBox(
@@ -204,6 +205,7 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
               child: Text(
                 'Contacts On Phone',
                 style: TextStyle(
+                  fontFamily: 'Inter',
                   color: SColors.color9,
                   fontSize: 13,
                   fontWeight: FontWeight.w700,
@@ -220,7 +222,8 @@ class _ShowContactsScreenState extends State<ShowContactsScreen> {
                     )
                   : contactsController.phoneNumberUserList.isEmpty
                       ? const Center(
-                          child: Text("No Contacts added add now"),
+                          child: Text("No Contacts added add now",style:TextStyle(
+          fontFamily: 'Inter',)),
                         )
                       : ListContactsWidget(
                           contactsController: contactsController),

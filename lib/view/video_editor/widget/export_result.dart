@@ -162,7 +162,8 @@ class FileDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle(
-      style: const TextStyle(fontSize: 11),
+      fontFamily: 'Inter',
+      style: const TextStyle(fontFamily: 'Inter', fontSize: 11),
       child: Container(
         width: MediaQuery.of(context).size.width - 60,
         padding: const EdgeInsets.all(10),
@@ -176,11 +177,13 @@ class FileDescription extends StatelessWidget {
                     children: [
                       TextSpan(
                         text: '${entry.key}: ',
-                        style: const TextStyle(fontSize: 11),
+                        style:
+                            const TextStyle(fontFamily: 'Inter', fontSize: 11),
                       ),
                       TextSpan(
                         text: entry.value,
                         style: TextStyle(
+                          fontFamily: 'Inter',
                           fontSize: 10,
                           color: Colors.white.withOpacity(0.8),
                         ),

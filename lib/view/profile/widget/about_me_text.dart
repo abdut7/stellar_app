@@ -24,8 +24,9 @@ class _AboutMeTextState extends State<AboutMeText> {
                 TextSpan(
                   text: 'About Me\n',
                   style: TextStyle(
+                    fontFamily: 'Inter',
                     color: themeController.isDarkTheme.value
-                        ?  SColors.color4
+                        ? SColors.color4
                         : SColors.color3,
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
@@ -34,9 +35,10 @@ class _AboutMeTextState extends State<AboutMeText> {
                 TextSpan(
                   text: userController.userDetailsModel.value!.strAbout,
                   style: TextStyle(
-                     color:  themeController.isDarkTheme.value
-                         ?  SColors.color4
-                         : SColors.color3,
+                    fontFamily: 'Inter',
+                    color: themeController.isDarkTheme.value
+                        ? SColors.color4
+                        : SColors.color3,
                     fontSize: 11,
                     fontWeight: FontWeight.w400,
                   ),

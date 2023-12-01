@@ -101,8 +101,10 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                 child: Text(
                   widget.chatHistoryList.strName,
                   overflow: TextOverflow.ellipsis,
-                  style:
-                      const TextStyle(fontSize: 16, color: Color(0xFF2E3192)),
+                  style: const TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 16,
+                      color: Color(0xFF2E3192)),
                 ),
               ),
             ],
@@ -126,7 +128,8 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
             if (groupChatController.isErrorOccured.value) {
               return const Expanded(
                 child: Center(
-                  child: Text("Error occured while loading"),
+                  child: Text("Error occured while loading",style:TextStyle(
+          fontFamily: 'Inter',)),
                 ),
               );
             }

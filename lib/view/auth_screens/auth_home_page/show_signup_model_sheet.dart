@@ -48,15 +48,35 @@ Future<dynamic> showSignupModelBottomSheet(BuildContext context) {
             ),
             const SizedBox(height: 30),
             const Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 40), child: Row(mainAxisAlignment: MainAxisAlignment.center,
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(child: Divider(color: Colors.black, thickness: 1, height: 1,),),
-                  Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Text('or',
-                      style: TextStyle(fontSize: 12, color: Colors.black, fontWeight: FontWeight.w500,),),),
                   Expanded(
-                    child: Divider(color: Colors.black, height: 1, thickness: 1,),
+                    child: Divider(
+                      color: Colors.black,
+                      thickness: 1,
+                      height: 1,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Text(
+                      'or',
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 12,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Divider(
+                      color: Colors.black,
+                      height: 1,
+                      thickness: 1,
+                    ),
                   ),
                 ],
               ),

@@ -6,7 +6,10 @@ void entercarddetailssheet(BuildContext context) {
   showModalBottomSheet(
     backgroundColor: Colors.white,
     shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(15.0),),),
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(15.0),
+      ),
+    ),
     context: context,
     builder: (BuildContext context) {
       return SingleChildScrollView(
@@ -18,66 +21,90 @@ void entercarddetailssheet(BuildContext context) {
             children: [
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 60, vertical: 5),
-                child: Divider(thickness: 3, color: Color.fromRGBO(1, 97, 14, 1),),),
-              const SizedBox(height: 25,),
+                child: Divider(
+                  thickness: 3,
+                  color: Color.fromRGBO(1, 97, 14, 1),
+                ),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
               const Row(
                 children: <Widget>[
-                  Icon(Icons.arrow_back_ios, color: Colors.black, size: 15,),
-                  SizedBox(width: 8), // Add some space between the icon and text
-                  Text('Enter Card Details', style:  TextStyle(color: Colors.black, fontSize: 21, fontWeight: FontWeight.w900,),),],),
-              const SizedBox(height: 25,),
+                  Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.black,
+                    size: 15,
+                  ),
+                  SizedBox(
+                      width: 8), // Add some space between the icon and text
+                  Text(
+                    'Enter Card Details',
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      color: Colors.black,
+                      fontSize: 21,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 25,
+              ),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-
                     EnterCardDetailsTextField(
                       headText: 'Name on the Card',
                       keyboardInputType: TextInputType.text,
                     ),
-
-                    const SizedBox(height: 20,),
-
+                    const SizedBox(
+                      height: 20,
+                    ),
                     EnterCardDetailsTextField(
                       headText: 'Card Number',
                       keyboardInputType: TextInputType.number,
                     ),
-
-                    const SizedBox(height: 20,),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
-                          child:
-                          EnterCardDetailsTextField(
+                          child: EnterCardDetailsTextField(
                             headText: 'Expiry',
                             keyboardInputType: TextInputType.number,
                           ),
                         ),
-
-                        const SizedBox(width: 20,),
-
+                        const SizedBox(
+                          width: 20,
+                        ),
                         Expanded(
-                          child:
-                          EnterCardDetailsTextField(
+                          child: EnterCardDetailsTextField(
                             headText: 'CVV',
                             keyboardInputType: TextInputType.text,
                           ),
-
-                        ),],),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
-              const SizedBox(height: 30,),
-
+              const SizedBox(
+                height: 30,
+              ),
               SendButton(
-                  onTap: (){
+                  onTap: () {
                     Navigator.pop(context);
                   },
-                  buttonText: 'Add Card'
+                  buttonText: 'Add Card'),
+              const SizedBox(
+                height: 30,
               ),
-              const SizedBox(height: 30,),
             ],
           ),
         ),
@@ -85,9 +112,3 @@ void entercarddetailssheet(BuildContext context) {
     },
   );
 }
-
-
-
-
-
-

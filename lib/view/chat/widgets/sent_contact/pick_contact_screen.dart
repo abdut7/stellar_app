@@ -39,6 +39,7 @@ class _PickContactFromPhoneToSentState
       _filteredContacts = contacts.toList();
     });
   }
+
   void _toggleContactSelection(Contact contact) {
     setState(() {
       if (_selectedContacts.contains(contact)) {
@@ -59,27 +60,26 @@ class _PickContactFromPhoneToSentState
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor: themeController.isDarkTheme.value
-          ?  SColors.darkmode
-          : SColors.color4,
+      backgroundColor:
+          themeController.isDarkTheme.value ? SColors.darkmode : SColors.color4,
       appBar: AppBar(
         backgroundColor: themeController.isDarkTheme.value
-            ?  SColors.appbarbgInDark
+            ? SColors.appbarbgInDark
             : SColors.color12,
         elevation: 0,
         centerTitle: true,
         toolbarHeight: 70,
-        title:  Text(
+        title: Text(
           'Contacts',
           textAlign: TextAlign.center,
           style: TextStyle(
+            fontFamily: 'Inter',
             color: themeController.isDarkTheme.value
-                ?  SColors.appbarTitleInDark
+                ? SColors.appbarTitleInDark
                 : SColors.color11,
             fontSize: 12,
             fontWeight: FontWeight.w700,
@@ -91,15 +91,16 @@ class _PickContactFromPhoneToSentState
         ),
         actions: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(top: 40,right: 20),
+            padding: const EdgeInsets.only(top: 40, right: 20),
             child: GestureDetector(
-              onTap: (){},
+              onTap: () {},
               child: Text(
                 'Send',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color:themeController.isDarkTheme.value
-                      ?  SColors.appbarTitleInDark
+                  fontFamily: 'Inter',
+                  color: themeController.isDarkTheme.value
+                      ? SColors.appbarTitleInDark
                       : SColors.color11,
                   fontSize: 9,
                   fontWeight: FontWeight.w700,
@@ -109,52 +110,50 @@ class _PickContactFromPhoneToSentState
           ),
         ],
       ),
-
-
-        body: Column(
+      body: Column(
         children: <Widget>[
-        Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-      child: SizedBox(
-        height: 35,
-        child: TextFormField(
-          cursorColor: SColors.color12,
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(vertical: 8),
-            filled: true,
-            fillColor: Colors.grey[300],
-            hintText: 'Search',
-            hintStyle: TextStyle(
-              color: SColors.color9,
-              fontSize: 13,
-              fontWeight: FontWeight.w700,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(6.0),
-              borderSide: BorderSide.none,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+            child: SizedBox(
+              height: 35,
+              child: TextFormField(
+                  cursorColor: SColors.color12,
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(vertical: 8),
+                    filled: true,
+                    fillColor: Colors.grey[300],
+                    hintText: 'Search',
+                    hintStyle: TextStyle(
+                      fontFamily: 'Inter',
+                      color: SColors.color9,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6.0),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                  style: TextStyle(
+                      fontFamily: 'Inter', color: SColors.color3, fontSize: 15),
+                  textAlign: TextAlign.center,
+                  onChanged: _filterContacts),
             ),
           ),
-          style: TextStyle(color: SColors.color3, fontSize: 15),
-          textAlign: TextAlign.center,
-          onChanged: _filterContacts
-        ),
-      ),
-    ),
           _filteredContacts.isEmpty
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
               : Flexible(
-                child: AlphabetListScrollView(
-                  showPreview: true,
-                  strList: _filteredContacts
-                      .map((contact) => contact.displayName ?? "")
-                      .toList(),
-                  indexedHeight: (index) => 55,
-                  itemBuilder: (context, index) {
-                    final contact = _filteredContacts[index];
-                    return
-                      Padding(
+                  child: AlphabetListScrollView(
+                    showPreview: true,
+                    strList: _filteredContacts
+                        .map((contact) => contact.displayName ?? "")
+                        .toList(),
+                    indexedHeight: (index) => 55,
+                    itemBuilder: (context, index) {
+                      final contact = _filteredContacts[index];
+                      return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25),
                         child: Row(
                           children: [
@@ -164,9 +163,10 @@ class _PickContactFromPhoneToSentState
                               },
                               child: CircleAvatar(
                                 radius: 6,
-                                backgroundColor: _selectedContacts.contains(contact)
-                                    ? SColors.color12
-                                    : Colors.grey.withOpacity(0.4),
+                                backgroundColor:
+                                    _selectedContacts.contains(contact)
+                                        ? SColors.color12
+                                        : Colors.grey.withOpacity(0.4),
                               ),
                             ),
                             const SizedBox(
@@ -176,10 +176,10 @@ class _PickContactFromPhoneToSentState
                               onTap: () {
                                 if (contact.phones != null) {
                                   Get.to(() => ContactDetailsScreen(
-                                    chatId: widget.chatId,
-                                    isGroup: widget.isGroup,
-                                    contact: contact,
-                                  ));
+                                        chatId: widget.chatId,
+                                        isGroup: widget.isGroup,
+                                        contact: contact,
+                                      ));
                                 }
                               },
                               child: Row(
@@ -190,16 +190,20 @@ class _PickContactFromPhoneToSentState
                                     decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
                                       image: DecorationImage(
-                                        image: NetworkImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"),
+                                        image: NetworkImage(
+                                            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"),
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(width: 15,),
+                                  const SizedBox(
+                                    width: 15,
+                                  ),
                                   Text(
                                     contact.displayName ?? '',
-                                    style:  TextStyle(
+                                    style: TextStyle(
+                                      fontFamily: 'Inter',
                                       color: themeController.isDarkTheme.value
-                                          ?  SColors.color4
+                                          ? SColors.color4
                                           : SColors.color3,
                                       fontSize: 17,
                                       fontWeight: FontWeight.w500,
@@ -211,10 +215,9 @@ class _PickContactFromPhoneToSentState
                           ],
                         ),
                       );
-
-                  },
+                    },
+                  ),
                 ),
-              ),
         ],
       ),
     );

@@ -22,6 +22,7 @@ class _ResendButtonState extends State<ResendButton> {
                 'VERIFICATION OTP RESEND TO',
                 textAlign: TextAlign.center,
                 style: TextStyle(
+                  fontFamily: 'Inter',
                   color: SColors.color3,
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
@@ -31,6 +32,7 @@ class _ResendButtonState extends State<ResendButton> {
                 '+971 - ** *** **35',
                 textAlign: TextAlign.center,
                 style: TextStyle(
+                  fontFamily: 'Inter',
                   color: SColors.color3,
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
@@ -54,6 +56,7 @@ class _ResendButtonState extends State<ResendButton> {
                         child: Text(
                           'Continue',
                           style: TextStyle(
+                            fontFamily: 'Inter',
                             color: SColors.color4,
                             fontSize: 17,
                             fontWeight: FontWeight.w400,
@@ -71,6 +74,7 @@ class _ResendButtonState extends State<ResendButton> {
       child: Text(
         'Resend',
         style: TextStyle(
+          fontFamily: 'Inter',
           color: SColors.color4,
           fontSize: 12,
           fontWeight: FontWeight.w800,

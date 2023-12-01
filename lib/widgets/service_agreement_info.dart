@@ -19,6 +19,7 @@ class _ServiceAgreementState extends State<ServiceAgreement> {
             'QUICK PAY NOT ENABLED. AFTER ENABLING,\nDISPLAY CODE TO CASHIER TO QUICK PAY',
             textAlign: TextAlign.center,
             style: TextStyle(
+              fontFamily: 'Inter',
               color: SColors.color3,
               fontSize: 12,
               fontWeight: FontWeight.w400,
@@ -44,6 +45,7 @@ class _ServiceAgreementState extends State<ServiceAgreement> {
                   TextSpan(
                     text: 'YOU HAVE READ AND AGREE TO THE\n',
                     style: TextStyle(
+                      fontFamily: 'Inter',
                       color: SColors.color9,
                       fontSize: 10,
                       fontWeight: FontWeight.w400,
@@ -52,6 +54,7 @@ class _ServiceAgreementState extends State<ServiceAgreement> {
                   TextSpan(
                     text: 'PAYMENT USED SERVICE AGREEMENT',
                     style: TextStyle(
+                      fontFamily: 'Inter',
                       color: SColors.color9,
                       fontSize: 10,
                       fontWeight: FontWeight.w600,

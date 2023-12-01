@@ -81,22 +81,23 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                           const SizedBox(
                             height: 30,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: const Text(
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: Text(
                               "Login",
                               style: TextStyle(
+                                  fontFamily: 'Inter',
                                   color: Color.fromRGBO(0, 51, 142, 1),
                                   fontSize: 26,
-                                  fontWeight: FontWeight.w900
-                                ),
+                                  fontWeight: FontWeight.w900),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: const Text(
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: Text(
                               "with Mobile",
                               style: TextStyle(
+                                  fontFamily: 'Inter',
                                   color: Color.fromRGBO(0, 51, 142, 1),
                                   fontSize: 26,
                                   fontWeight: FontWeight.w900),
@@ -141,7 +142,7 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                               phone = val!;
                             },
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Center(
                             child: GestureDetector(
                               onTap: () async {
@@ -177,6 +178,7 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                                           : const Text(
                                               "OTP Verification",
                                               style: TextStyle(
+                                                fontFamily: 'Inter',
                                                 fontSize: 14,
                                                 color: Color.fromRGBO(
                                                     159, 196, 232, 1),
@@ -186,7 +188,7 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                         ],
                       ),
                     ),
@@ -194,7 +196,7 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                   Container(
                       height: 70,
                       width: Get.width * 0.7,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         boxShadow: [
                           BoxShadow(
                               color: Colors.white,
@@ -214,20 +216,22 @@ class LoginWithMobileNumberScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
+                            const Text(
                               "Don't have an account?",
                               style: TextStyle(
+                                fontFamily: 'Inter',
                                 color: Color(0xFF606060),
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
                             Text(
                               "Sign Up",
                               style: TextStyle(
+                                  fontFamily: 'Inter',
                                   fontSize: 16,
                                   color: SColors.color3,
                                   fontWeight: FontWeight.w800),

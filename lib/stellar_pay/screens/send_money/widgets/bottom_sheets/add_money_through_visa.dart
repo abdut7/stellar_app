@@ -25,36 +25,68 @@ void addmoneythroughvisasheet(BuildContext context) {
           children: [
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 65, vertical: 5),
-              child: Divider(thickness: 3, color: Color.fromRGBO(1, 97, 14, 1),),),
-            const SizedBox(height: 25,),
+              child: Divider(
+                thickness: 3,
+                color: Color.fromRGBO(1, 97, 14, 1),
+              ),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
             const Row(
               children: <Widget>[
-                Icon(Icons.arrow_back_ios, color: Colors.black, size: 15,),
+                Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.black,
+                  size: 15,
+                ),
                 SizedBox(width: 8), // Add some space between the icon and text
                 Text(
                   'Add Money',
-                  style:  TextStyle(color: Colors.black, fontSize: 21, fontWeight: FontWeight.w900,),),
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    color: Colors.black,
+                    fontSize: 21,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
               ],
             ),
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             ListTile(
-              leading: Padding(padding: const EdgeInsets.only(top: 12), child: SvgPicture.asset(SSvgs.logoVisa),),
-              title:const  Text(
+              leading: Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: SvgPicture.asset(SSvgs.logoVisa),
+              ),
+              title: const Text(
                 '**** 2356',
-                style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w400,),
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  color: Colors.black,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
               subtitle: const Text(
                 'AED 12.00 will be deducted from card',
-                style: TextStyle(color: Colors.black, fontSize: 8, fontWeight: FontWeight.w400,),),
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  color: Colors.black,
+                  fontSize: 8,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
               trailing: GestureDetector(
-                onTap: (){
+                onTap: () {
                   choosecardaddmoneysheet(context);
                 },
                 child: Container(
                   width: 75,
                   height: 33,
                   decoration: ShapeDecoration(
-                    color:SColors.color19,
+                    color: SColors.color19,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -62,21 +94,30 @@ void addmoneythroughvisasheet(BuildContext context) {
                   child: Center(
                     child: Text(
                       'Change',
-                      textAlign: TextAlign.center, style: TextStyle(color: SColors.color20, fontSize: 11, fontWeight: FontWeight.w400,
-                    ),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        color: SColors.color20,
+                        fontSize: 11,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             ProceedToPaymentButton(
               buttonText: 'Proceed to Add Money',
               onTap: () {
-                Get.to(()=>const MoneyAddedToWalletSuccessScreen());
+                Get.to(() => const MoneyAddedToWalletSuccessScreen());
               },
             ),
-            const SizedBox(height: 25,),
+            const SizedBox(
+              height: 25,
+            ),
           ],
         ),
       );
