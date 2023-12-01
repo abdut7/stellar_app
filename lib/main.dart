@@ -1,9 +1,9 @@
 import 'package:camera/camera.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stellar_chat/controllers/channel/channel_controller.dart';
 import 'package:stellar_chat/view/create_post/create_post_home.dart';
 import 'package:stellar_chat/view/splash/spalash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -40,16 +40,15 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Get.put(ChannelHomeController());
     SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
     );
     return GetMaterialApp(
-      theme: ThemeData.light().copyWith(
-          textTheme: GoogleFonts.interTextTheme(),
-          scaffoldBackgroundColor: Colors.white),
+      theme: ThemeData.light().copyWith(scaffoldBackgroundColor: Colors.white),
       darkTheme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: Colors.black,
-          textTheme: GoogleFonts.interTextTheme()),
+        scaffoldBackgroundColor: Colors.black,
+      ),
       themeMode: Get.find<ThemeController>().isDarkTheme.value
           ? ThemeMode.dark
           : ThemeMode.light,

@@ -21,15 +21,14 @@ class _FavoriteChannelGridView extends State<FavoriteChannelGridView> {
 
   @override
   Widget build(BuildContext context) {
-    ChannelHomeController channelHomeController =
-        Get.put(ChannelHomeController());
+    // ChannelHomeController channelHomeController = Get.find();
     return FutureBuilder(
         future: ChannelService().getFavoriteChannel(),
         builder: (context, AsyncSnapshot<List<ChannelItem>> snapshot) {
           if (!snapshot.hasData || snapshot.data == null) {
-            return LinearProgressIndicator();
+            return const LinearProgressIndicator();
           }
-          channelHomeController.channelItems(snapshot.data);
+          // channelHomeController.channelItems(snapshot.data);
           return Padding(
             padding: const EdgeInsets.all(15.0),
             child: GridView.builder(

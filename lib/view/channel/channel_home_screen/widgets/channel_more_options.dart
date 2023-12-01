@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:stellar_chat/controllers/user_controller.dart';
 import 'package:stellar_chat/models/api_models/channel_model.dart';
+import 'package:stellar_chat/services/api_services/channel_service.dart';
 import 'package:stellar_chat/view/profile/public_profile/public_profile.dart';
 
 Set<String> favoriteChannelList = {};
@@ -62,6 +64,8 @@ class _ChannelBottomSheetState extends State<ChannelBottomSheet> {
                     isFavorite = false;
                     favoriteChannelList.add(widget.channelItem.id);
                   }
+                  ChannelService()
+                      .favoriteChannel(channelId: widget.channelItem.id);
                   setState(() {});
                 },
                 child: Text(

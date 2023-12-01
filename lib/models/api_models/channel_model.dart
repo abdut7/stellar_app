@@ -46,33 +46,35 @@ class ChannelItem {
   final int followersCount;
   final List<dynamic> followingStatus;
   final bool isFollowing;
+  final bool isFavorite;
 
-  ChannelItem({
-    required this.id,
-    required this.isCommentEnabled,
-    required this.isLikeAndViews,
-    required this.fileUrl,
-    required this.description,
-    required this.location,
-    this.thumbnailUrl,
-    required this.duration,
-    required this.createdTime,
-    required this.commentsCount,
-    required this.likesCount,
-    required this.isLiked,
-    required this.userId,
-    required this.createdUserFullName,
-    required this.createdUserMobNo,
-    required this.userProfileUrl,
-    required this.viewsCount,
-    required this.followers,
-    required this.followersCount,
-    required this.followingStatus,
-    required this.isFollowing,
-  });
+  ChannelItem(
+      {required this.id,
+      required this.isCommentEnabled,
+      required this.isLikeAndViews,
+      required this.fileUrl,
+      required this.description,
+      required this.location,
+      this.thumbnailUrl,
+      required this.duration,
+      required this.createdTime,
+      required this.commentsCount,
+      required this.likesCount,
+      required this.isLiked,
+      required this.userId,
+      required this.createdUserFullName,
+      required this.createdUserMobNo,
+      required this.userProfileUrl,
+      required this.viewsCount,
+      required this.followers,
+      required this.followersCount,
+      required this.followingStatus,
+      required this.isFollowing,
+      required this.isFavorite});
 
   factory ChannelItem.fromJson(Map<String, dynamic> json) {
     return ChannelItem(
+      isFavorite: json['isFavorite'],
       duration: json['strDuration'] ?? "",
       id: json['_id'],
       isCommentEnabled: json['isCommentEnabled'],

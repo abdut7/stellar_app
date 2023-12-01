@@ -1,4 +1,3 @@
-import 'package:google_fonts/google_fonts.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/view/auth_screens/LoginWithMobile/widgets/login_phone_textfield.dart';
 import 'package:stellar_chat/view/auth_screens/LoginWithMobile/widgets/login_region_textfield.dart';
@@ -10,7 +9,6 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../Settings/SImages.dart';
 import '../../../controllers/api_controllers/login_with_phone_controller.dart';
-import '../../../widgets/login_signup_textfield.dart';
 
 // ignore: must_be_immutable
 class LoginWithMobileNumberScreen extends StatelessWidget {

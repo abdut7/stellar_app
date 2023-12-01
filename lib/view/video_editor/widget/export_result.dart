@@ -162,8 +162,10 @@ class FileDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle(
-      fontFamily: 'Inter',
-      style: const TextStyle(fontFamily: 'Inter', fontSize: 11),
+      style: const TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 11,
+      ),
       child: Container(
         width: MediaQuery.of(context).size.width - 60,
         padding: const EdgeInsets.all(10),
