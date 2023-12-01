@@ -11,10 +11,11 @@ import '../socket_service/sent_join_room_event_socket.dart';
 class ChatMessageService {
   static bool isBlocked = false;
   int pageCount = 0;
-  static Future<void> getMessages(
-      {required String chatId,
-      required String type,
-      bool isFirstLoading = false}) async {
+  static Future<void> getMessages({
+    required String chatId,
+    required String type,
+    bool isFirstLoading = false,
+  }) async {
     isBlocked = false;
     PrivateChatController chatController = Get.find();
     chatController.isLoadingFailed(false);

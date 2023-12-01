@@ -1,3 +1,4 @@
+import 'package:logger/logger.dart';
 import 'package:stellar_chat/controllers/contacts_controller.dart';
 import 'package:stellar_chat/controllers/group_chat_controller.dart';
 import 'package:stellar_chat/functions/image_to_base.dart';
@@ -72,16 +73,25 @@ class GroupServices {
 
   // get Group Messages
 
-  static Future<void> getGroupMessage({required String groupId}) async {
-    print("group id is $groupId");
+  static Future<void> getGroupMessage(
+      {required String groupId, bool isFirstLoading = true}) async {
     GroupChatController chatController = Get.put(GroupChatController());
     chatController.isErrorOccured(false);
-    chatController.groupMessageList.clear();
-    chatController.isLoading(true);
+
+    if (chatController.pageNumber == 0) {
+      chatController.isLoading(true);
+    }
+    int pageNumber = chatController.pageNumber + 1;
+    chatController.pageNumber = pageNumber;
+    Logger().i(pageNumber);
     Dio dio = Dio();
     String path = ApiRoutes.baseUrl + ApiRoutes.getGroupMessage;
     Map<String, dynamic> header = await getHeader();
-    Map<String, dynamic> body = {"strChatId": groupId, "strType": "group"};
+    Map<String, dynamic> body = {
+      "strChatId": groupId,
+      "strType": "group",
+      "page": pageNumber
+    };
     print(body);
     try {
       Response res =
@@ -89,7 +99,13 @@ class GroupServices {
       print(res);
       GroupMessageResponseModel model =
           GroupMessageResponseModel.fromJson(res.data);
-      chatController.groupMessageList(model.groupMessageModel);
+      if (model.groupMessageModel.isEmpty) {
+        chatController.isEnded = true;
+      }
+      if (pageNumber == 1) {
+        chatController.groupMessageList.clear();
+      }
+      chatController.groupMessageList.addAll(model.groupMessageModel);
       sentRoomJoinSocket(chatId: groupId, type: 'group');
     } catch (e) {
       print(e);

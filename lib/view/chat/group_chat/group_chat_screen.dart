@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:logger/logger.dart';
 import 'package:stellar_chat/view/chat/group_chat/widgets/group_chat_options_bottomsheet.dart';
 import 'package:stellar_chat/view/chat/chat_screen/widgets/show_attachment.dart';
 import 'package:stellar_chat/view/chat/group_chat/group_info/group_info_screen.dart';
@@ -34,13 +35,15 @@ class GroupChatScreen extends StatefulWidget {
 
 class _GroupChatScreenState extends State<GroupChatScreen> {
   TextEditingController messageConteroller = TextEditingController();
-
+  final ScrollController _scrollController = ScrollController();
   GroupChatController groupChatController = Get.put(GroupChatController());
 
   @override
   void initState() {
     super.initState();
-    GroupServices.getGroupMessage(groupId: widget.chatHistoryList.strChatId);
+    GroupServices.getGroupMessage(
+        groupId: widget.chatHistoryList.strChatId, isFirstLoading: true);
+    // _scrollController.addListener(_onScroll);
   }
 
   @override
@@ -48,6 +51,15 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
     groupChatController.groupMessageList.clear();
     sentRoomLeftSocket(chatId: widget.chatHistoryList.strChatId, type: "group");
     super.dispose();
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels ==
+            _scrollController.position.maxScrollExtent &&
+        groupChatController.isEnded == false) {
+      Logger().d("called");
+      GroupServices.getGroupMessage(groupId: widget.chatHistoryList.strChatId);
+    }
   }
 
   @override
@@ -126,10 +138,13 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
           // Chat messages
           Obx(() {
             if (groupChatController.isErrorOccured.value) {
+              Logger().e("Erroor");
               return const Expanded(
                 child: Center(
-                  child: Text("Error occured while loading",style:TextStyle(
-          fontFamily: 'Inter',)),
+                  child: Text("Error occured while loading",
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                      )),
                 ),
               );
             }
@@ -148,6 +163,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
             return Expanded(
               flex: 5,
               child: ListView.builder(
+                controller: _scrollController,
                 reverse: true, // Set reverse to true
                 itemCount: groupChatController.groupMessageList.length,
                 itemBuilder: (context, index) {
