@@ -26,7 +26,10 @@ class ChatMessageService {
     Dio dio = Dio();
     String url = ApiRoutes.baseUrl + ApiRoutes.getPrivateMessage;
     Map<String, dynamic> header = await getHeader();
-    Map<String, dynamic> body = {"strChatId": chatId, "page": pageNumber};
+    Map<String, dynamic> body = {
+      "strChatId": chatId,
+      "intPageCount": pageNumber
+    };
     try {
       Response response =
           await dio.post(url, data: body, options: Options(headers: header));

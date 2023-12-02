@@ -75,7 +75,10 @@ class GroupServices {
 
   static Future<void> getGroupMessage(
       {required String groupId, bool isFirstLoading = true}) async {
-    GroupChatController chatController = Get.put(GroupChatController());
+    GroupChatController chatController = Get.find();
+    if (chatController.isEnded) {
+      return;
+    }
     chatController.isErrorOccured(false);
 
     if (chatController.pageNumber == 0) {
@@ -90,22 +93,22 @@ class GroupServices {
     Map<String, dynamic> body = {
       "strChatId": groupId,
       "strType": "group",
-      "page": pageNumber
+      "intPageCount": pageNumber
     };
     print(body);
     try {
       Response res =
           await dio.post(path, options: Options(headers: header), data: body);
-      print(res);
       GroupMessageResponseModel model =
           GroupMessageResponseModel.fromJson(res.data);
+      Logger().e(model.groupMessageModel[0].strMessageType);
       if (model.groupMessageModel.isEmpty) {
         chatController.isEnded = true;
       }
       if (pageNumber == 1) {
         chatController.groupMessageList.clear();
       }
-      chatController.groupMessageList.addAll(model.groupMessageModel);
+      chatController.groupMessageList.insertAll(0, model.groupMessageModel);
       sentRoomJoinSocket(chatId: groupId, type: 'group');
     } catch (e) {
       print(e);
@@ -126,8 +129,8 @@ class GroupServices {
     try {
       Response response =
           await dio.post(path, options: Options(headers: header), data: body);
-      return true;
-    } on Exception catch (e) {
+      return response.statusCode == 200;
+    } on Exception {
       // TODO
       return false;
     }

@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:logger/logger.dart';
 import 'package:stellar_chat/view/chat/chat_screen/widgets/chat_appbar_title_widget.dart';
 import 'package:stellar_chat/view/chat/chat_screen/widgets/report_and_bloc_sheet_widget.dart';
 import 'package:stellar_chat/view/profile/public_profile/public_profile.dart';
@@ -52,12 +53,12 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
   }
 
   void _onScroll() {
-    // if (_scrollController.position.pixels ==
-    //         _scrollController.position.maxScrollExtent &&
-    //     chatController.isEnded == false) {
-    //   Logger().d("called");
-    //   ChatMessageService.getMessages(chatId: widget.chatId, type: "private");
-    // }
+    if (_scrollController.position.pixels ==
+            _scrollController.position.maxScrollExtent &&
+        chatController.isEnded == false) {
+      Logger().d("called");
+      ChatMessageService.getMessages(chatId: widget.chatId, type: "private");
+    }
   }
 
   @override

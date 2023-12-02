@@ -43,7 +43,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
     super.initState();
     GroupServices.getGroupMessage(
         groupId: widget.chatHistoryList.strChatId, isFirstLoading: true);
-    // _scrollController.addListener(_onScroll);
+    _scrollController.addListener(_onScroll);
   }
 
   @override
