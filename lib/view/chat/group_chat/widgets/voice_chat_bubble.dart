@@ -148,6 +148,10 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
                                 baseBarColor:
                                     const Color.fromRGBO(156, 156, 156, 1),
                                 thumbColor: const Color.fromRGBO(0, 51, 142, 1),
+                                timeLabelTextStyle: const TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: 'Inter',
+                                ),
                                 progress:
                                     isPlaying ? audioPosition : Duration.zero,
                                 total: totalDuration,
