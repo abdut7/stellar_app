@@ -31,7 +31,7 @@ class _ProfileTextFieldState extends State<ProfileTextField> {
         fontSize: 14,
         color:
             themeController.isDarkTheme.value ? SColors.color4 : SColors.color3,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w400,
       ),
     );
   }
