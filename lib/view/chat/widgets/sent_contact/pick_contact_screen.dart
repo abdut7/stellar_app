@@ -16,6 +16,7 @@ class PickContactFromPhoneToSent extends StatefulWidget {
   const PickContactFromPhoneToSent(
       {super.key, required this.chatId, required this.isGroup});
   @override
+  // ignore: library_private_types_in_public_api
   _PickContactFromPhoneToSentState createState() =>
       _PickContactFromPhoneToSentState();
 }

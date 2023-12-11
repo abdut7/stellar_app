@@ -87,4 +87,22 @@ class PrivateMessageModel {
     _data['strCreatedTime'] = strCreatedTime;
     return _data;
   }
+
+  @override
+  String toString() {
+    return 'PrivateMessageModel{'
+        'id: $id, '
+        'strUserId: $strUserId, '
+        'strType: $strType, '
+        'strMessageType: $strMessageType, '
+        'strMessage: $strMessage, '
+        'strName: $strName, '
+        'strContactNumbers: $strContactNumbers, '
+        'strContactName: $strContactName, '
+        'strCreatedTime: $strCreatedTime, '
+        'strUrl: $strUrl, '
+        'strChatId: $strChatId, '
+        'strLatitude: $strLatitude, '
+        'strLongitude: $strLongitude}';
+  }
 }

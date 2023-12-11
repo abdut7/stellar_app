@@ -320,16 +320,6 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                             isFromGroup: false,
                           ));
                     }
-                    //if index = 1 =>Camera
-                    // if (index == 1) {
-                    //   XFile? image = await pickImageFromGalleryOrCamera(
-                    //       source: ImageSource.camera);
-                    //   if (image != null) {
-                    //     PrivateChatService.sentPersonalImageMessage(
-                    //         widget.chatId, image);
-                    //   }
-                    // }
-                    //if index = 2 =>Gallary
 
                     if (index == 2) {
                       XFile? image = await pickImageFromGalleryOrCamera(
@@ -342,6 +332,7 @@ class _PrivateChatScreenState extends State<PrivateChatScreen> {
                       }
                     }
                     if (index == 4) {
+                      Get.back();
                       await Get.to(
                         () => PickContactFromPhoneToSent(
                           chatId: widget.chatId,
