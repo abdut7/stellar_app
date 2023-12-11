@@ -47,6 +47,8 @@ class _MainTileState extends State<MainTile> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      dense: false,
+      isThreeLine: true,
       leading: Container(
         width: 40,
         height: 40,
@@ -83,24 +85,6 @@ class _MainTileState extends State<MainTile> {
               fontWeight: FontWeight.w400,
             ),
           ),
-          // Row(
-          //   children: [
-          //     Text(
-          //       'View replies (4)',
-          //       style: TextStyle(fontFamily: 'Inter',
-          //         color: SColors.color9,
-          //         fontSize: 11,
-          //         fontWeight: FontWeight.w600,
-          //       ),
-          //     ),
-          //     IconButton(
-          //       icon: const Icon(Icons.arrow_drop_down, size: 20),
-          //       onPressed: () {
-          //         showCommentBottomSheet(context, 10, "");
-          //       },
-          //     ),
-          //   ],
-          // ),
         ],
       ),
       trailing: Row(
@@ -116,27 +100,32 @@ class _MainTileState extends State<MainTile> {
             ),
           ),
           Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              IconButton(
-                icon: isLiked
-                    ? const Icon(
-                        CupertinoIcons.heart_fill,
-                        size: 20,
-                        color: Colors.red,
-                      )
-                    : const Icon(CupertinoIcons.heart, size: 20),
-                onPressed: () {
-                  setState(() {
-                    isLiked = !isLiked;
-                    if (isLiked) {
-                      likeCount++;
-                    } else {
-                      likeCount--;
-                    }
-                  });
+              SizedBox(
+                height: 30,
+                child: IconButton(
+                  icon: isLiked
+                      ? const Icon(
+                          CupertinoIcons.heart_fill,
+                          size: 20,
+                          color: Colors.red,
+                        )
+                      : const Icon(CupertinoIcons.heart, size: 20),
+                  onPressed: () {
+                    setState(() {
+                      isLiked = !isLiked;
+                      if (isLiked) {
+                        likeCount++;
+                      } else {
+                        likeCount--;
+                      }
+                    });
 
-                  widget.onLiked(!isLiked);
-                },
+                    widget.onLiked(!isLiked);
+                  },
+                ),
               ),
               Expanded(
                 child: Text(
@@ -148,7 +137,7 @@ class _MainTileState extends State<MainTile> {
                           ? Colors.white
                           : SColors.color8),
                 ),
-              )
+              ),
             ],
           )
         ],
