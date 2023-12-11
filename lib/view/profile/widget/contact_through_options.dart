@@ -33,8 +33,8 @@ class _ContactThroughState extends State<ContactThrough> {
             color: themeController.isDarkTheme.value
                 ? SColors.color26
                 : SColors.color3,
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
+            fontSize: 11,
+            fontWeight: FontWeight.w400,
           ),
         ),
       ],

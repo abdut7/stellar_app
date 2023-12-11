@@ -123,8 +123,9 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Text(
-                                        capitalizeNames(
-                                            userDetailsModel!.strName),
+                                        capitalizeNames(userDetailsModel!
+                                            .strName
+                                            .toUpperCase()),
                                         style: TextStyle(
                                           fontFamily: 'Inter',
                                           color:
@@ -132,14 +133,14 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                                   ? SColors.color4
                                                   : SColors.color3,
                                           fontSize: 14,
-                                          fontWeight: FontWeight.w900,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                       ),
                                       const SizedBox(
                                         height: 10,
                                       ),
                                       Text(
-                                        'Phone Number : ${userDetailsModel!.strMobileNo}',
+                                        'PHONE NUMBER : ${userDetailsModel!.strMobileNo}',
                                         style: TextStyle(
                                           fontFamily: 'Inter',
                                           color:
@@ -147,7 +148,7 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
                                                   ? SColors.color4
                                                   : SColors.color3,
                                           fontSize: 11,
-                                          fontWeight: FontWeight.w800,
+                                          fontWeight: FontWeight.w400,
                                         ),
                                       ),
                                       const SizedBox(
