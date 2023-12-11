@@ -234,36 +234,16 @@ class _EditProfileState extends State<EditProfile> {
               child: Divider(
                 thickness: 0.8,
                 color: themeController.isDarkTheme.value
-                    ? Color.fromRGBO(187, 187, 187, 1)
+                    ? const Color.fromRGBO(187, 187, 187, 1)
                     : SColors.color3,
               ),
             ),
             const SizedBox(
               height: 15,
             ),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 30),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [
-            //       Text(
-            //         'Privacy and Settings',
-            //         style: TextStyle(fontFamily: 'Inter',
-            //           color: SColors.color3,
-            //           fontSize: 15,
-            //           fontWeight: FontWeight.w500,
-            //         ),
-            //       ),
-            //       GestureDetector(
-            //           onTap: () {},
-            //           child: const Icon(
-            //             Icons.arrow_forward_ios,
-            //             size: 20,
-            //           ))
-            //     ],
-            //   ),
-            // ),
-            Spacer(),
+            const Spacer(
+              flex: 4,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),
               child: ProfileUpdateButton(
