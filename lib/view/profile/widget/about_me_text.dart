@@ -28,8 +28,8 @@ class _AboutMeTextState extends State<AboutMeText> {
                     color: themeController.isDarkTheme.value
                         ? SColors.color4
                         : SColors.color3,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w800,
+                    fontSize: 11,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 TextSpan(

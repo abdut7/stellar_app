@@ -26,8 +26,8 @@ class _ProfileStatusState extends State<ProfileStatus> {
             color: themeController.isDarkTheme.value
                 ? SColors.color26
                 : SColors.color3,
-            fontSize: 15,
-            fontWeight: FontWeight.w700,
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
           ),
         ),
         Text(
@@ -38,7 +38,7 @@ class _ProfileStatusState extends State<ProfileStatus> {
                 ? SColors.color26
                 : SColors.color3,
             fontSize: 11,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w400,
           ),
         ),
       ],

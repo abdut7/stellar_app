@@ -37,10 +37,10 @@ class _ProfileButtonState extends State<ProfileButton> {
             widget.buttonText,
             style: TextStyle(
               fontFamily: 'Inter',
-              fontSize: 14,
+              fontSize: 12,
               color: themeController.isDarkTheme.value
                   ? SColors.color4
-                  : SColors.color11,
+                  : Colors.white,
             ),
           ),
         ),

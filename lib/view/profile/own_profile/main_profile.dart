@@ -89,28 +89,29 @@ class _MainProfileState extends State<MainProfile> {
                                 children: [
                                   Text(
                                     capitalizeNames(controller
-                                        .userDetailsModel.value!.strName),
+                                        .userDetailsModel.value!.strName
+                                        .toUpperCase()),
                                     style: TextStyle(
                                       fontFamily: 'Inter',
                                       color: themeController.isDarkTheme.value
                                           ? SColors.color4
                                           : SColors.color3,
                                       fontSize: 14,
-                                      fontWeight: FontWeight.w800,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                   const SizedBox(
                                     height: 10,
                                   ),
                                   Text(
-                                    'Phone Number : ${controller.userDetailsModel.value!.strMobileNo}',
+                                    'PHONE NUMBER: ${controller.userDetailsModel.value!.strMobileNo}',
                                     style: TextStyle(
                                       fontFamily: 'Inter',
                                       color: themeController.isDarkTheme.value
                                           ? SColors.color4
                                           : SColors.color3,
                                       fontSize: 11,
-                                      fontWeight: FontWeight.w700,
+                                      fontWeight: FontWeight.w400,
                                     ),
                                   ),
                                   const SizedBox(
