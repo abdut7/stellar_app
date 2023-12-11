@@ -95,15 +95,16 @@ class GroupServices {
       "strType": "group",
       "intPageCount": pageNumber
     };
-    print(body);
     try {
       Response res =
           await dio.post(path, options: Options(headers: header), data: body);
       GroupMessageResponseModel model =
           GroupMessageResponseModel.fromJson(res.data);
       Logger().e(model.groupMessageModel[0].strMessageType);
+      Logger().d(model.groupMessageModel.isEmpty);
       if (model.groupMessageModel.isEmpty) {
         chatController.isEnded = true;
+        return;
       }
       if (pageNumber == 1) {
         chatController.groupMessageList.clear();
@@ -112,7 +113,7 @@ class GroupServices {
       sentRoomJoinSocket(chatId: groupId, type: 'group');
     } catch (e) {
       print(e);
-      chatController.isErrorOccured(true);
+      // chatController.isErrorOccured(true);
     } finally {
       chatController.isLoading(false);
     }

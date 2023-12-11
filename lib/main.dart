@@ -45,10 +45,10 @@ class MyApp extends StatelessWidget {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
     );
     return GetMaterialApp(
-      theme: ThemeData.light().copyWith(scaffoldBackgroundColor: Colors.white),
-      darkTheme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Colors.black,
-      ),
+      theme: ThemeData.light()
+          .copyWith(scaffoldBackgroundColor: Colors.white, useMaterial3: false),
+      darkTheme: ThemeData.dark()
+          .copyWith(scaffoldBackgroundColor: Colors.black, useMaterial3: false),
       themeMode: Get.find<ThemeController>().isDarkTheme.value
           ? ThemeMode.dark
           : ThemeMode.light,

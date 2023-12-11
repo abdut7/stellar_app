@@ -64,7 +64,7 @@ class _ProfileTextFieldState extends State<ProfileTextField> {
     ThemeController themeController = Get.find();
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10),
-      height: 28,
+      height: 32,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),
           color: Colors.grey.withOpacity(0.1)),

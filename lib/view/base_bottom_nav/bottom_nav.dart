@@ -32,8 +32,8 @@ class _BaseBottomNavigationState extends State<BaseBottomNavigation> {
             .last,
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Get.find<ThemeController>().isInsideDarkScreens.value
-              ? Color.fromRGBO(79, 79, 79, 1)
-              : null,
+              ? const Color.fromRGBO(79, 79, 79, 1)
+              : Colors.white,
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: false, // Hide labels for selected items
           showUnselectedLabels: false, // Hide labels for unselected items

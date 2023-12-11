@@ -90,6 +90,7 @@ class ChatBubble extends StatelessWidget {
                               message.strMessage,
                               style: TextStyle(
                                   fontFamily: 'Inter',
+                                  fontSize: 12,
                                   color: themeController.isDarkTheme.value
                                       ? Colors.white
                                       : Colors.black),
