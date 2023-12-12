@@ -1,12 +1,6 @@
 import 'dart:io';
-
-import 'package:logger/logger.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/view/auth_screens/LoginWithMobile/login_with_mobile_screen.dart';
-import 'package:stellar_chat/view/auth_screens/LoginWithMobile/widgets/login_phone_textfield.dart';
-import 'package:stellar_chat/view/auth_screens/signup_with_mobile/widgets/phone_textfield.dart';
-import 'package:stellar_chat/view/auth_screens/signup_with_mobile/widgets/region_textfield.dart';
-import 'package:stellar_chat/view/auth_screens/signup_with_mobile/widgets/sign_up_text_field.dart';
 import 'package:stellar_chat/controllers/api_controllers/signup_controllers.dart';
 import 'package:stellar_chat/functions/location_permission.dart';
 import 'package:stellar_chat/services/api_services/auth_services.dart';
@@ -15,6 +9,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:stellar_chat/view/auth_screens/signup_with_mobile/widgets/region_selction_dropdown_widget.dart';
 import 'package:stellar_chat/view/auth_screens/signup_with_mobile/widgets/text_form_filed_widget.dart';
 
 import '../../../Settings/SImages.dart';
@@ -23,7 +18,7 @@ import '../../../functions/image_to_base.dart';
 import '../../../models/api_models/signup_model.dart';
 
 class SignUpWithMobileScreen extends StatefulWidget {
-  SignUpWithMobileScreen({super.key});
+  const SignUpWithMobileScreen({super.key});
 
   @override
   State<SignUpWithMobileScreen> createState() => _SignUpWithMobileScreenState();
@@ -53,6 +48,24 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
 
   @override
   void initState() {
+    phoneNumberController.addListener(() {
+      validateForm();
+    });
+    usernameController.addListener(() {
+      validateForm();
+    });
+    emailController.addListener(() {
+      validateForm();
+    });
+    regionController.addListener(() {
+      validateForm();
+    });
+    passwordController.addListener(() {
+      validateForm();
+    });
+    birthDayController.addListener(() {
+      validateForm();
+    });
     requestLocationPermission();
     super.initState();
   }
@@ -60,6 +73,9 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
   DateTime birthDate = DateTime.now();
 
   ImagePicker picker = ImagePicker();
+  List<String> regions = ['INDIA', 'UAE'];
+  String? selectedRegion;
+
   XFile? pickedImage;
 
   String? validateUserName(String? value) {
@@ -239,6 +255,12 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                               size: size,
                               validator: validateEmail,
                             ),
+                            RegionSelectionDropdownWidget(
+                                validator: validateRegion,
+                                controller: regionController,
+                                size: size,
+                                selectedRegion: selectedRegion,
+                                regions: regions),
                             InkWell(
                               onTap: () async {
                                 DateTime? pickedDate = await showDatePicker(
@@ -252,6 +274,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                                   birthDayController.text =
                                       "${birthDate.day}-${birthDate.month}-${birthDate.year}";
                                 }
+                                validateForm();
                               },
                               child: IgnorePointer(
                                 child: TextFormFieldWidget(
