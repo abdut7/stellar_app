@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:stellar_chat/view/chat/chat_screen/chat_screen.dart';
 import 'package:stellar_chat/view/chat/chat_screen/widgets/show_time_widget.dart';
@@ -48,7 +47,7 @@ class ContactMessageBubble extends StatelessWidget {
                     width: 10,
                   ),
                   Text(message.strContactName,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'Inter',
                       ))
                 ],
@@ -60,17 +59,20 @@ class ContactMessageBubble extends StatelessWidget {
             ],
           ),
         ),
-        GestureDetector(
+        InkWell(
           onTap: () {
-            if (message.strChatId.isEmpty) {
+            if (message.strContactId == null) {
               //show invite
               Share.share('check out stellar chat https://stellarchat.com',
                   subject: 'Come connect me on Stellar chat');
             } else {
-              Get.to(() => PrivateChatScreen(
-                  chatId: message.strChatId,
+              Get.to(
+                () => PrivateChatScreen(
+                  chatId: message.strContactId!,
                   fullName: message.strName,
-                  imageUrl: message.strUrl));
+                  imageUrl: message.strUrl,
+                ),
+              );
             }
           },
           child: Container(
@@ -89,8 +91,8 @@ class ContactMessageBubble extends StatelessWidget {
                     ? const Color.fromRGBO(197, 229, 255, 1)
                     : const Color.fromRGBO(224, 224, 224, 1)),
             child: Center(
-              child: Text(message.strUserId.isEmpty ? "Invite" : "Message",
-                  style: TextStyle(
+              child: Text(message.strContactId == null ? "Invite" : "Message",
+                  style: const TextStyle(
                     fontFamily: 'Inter',
                   )),
             ),

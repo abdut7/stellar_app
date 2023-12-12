@@ -27,7 +27,7 @@ class GroupChatService {
     });
   }
 
-    static void sentGroupStickerMessage(String chatId, String message) {
+  static void sentGroupStickerMessage(String chatId, String message) {
     Socket socket = SocketService().socket;
 
     socket.emit('send_message', {
@@ -74,7 +74,8 @@ class GroupChatService {
       "strUrl": fileUrl,
     });
   }
-    static void sentGroupAudioMessage(
+
+  static void sentGroupAudioMessage(
       {required String chatId, required String path}) async {
     Socket socket = SocketService().socket;
     //upload and take link
@@ -121,6 +122,7 @@ class GroupChatService {
     GroupChatController chatController = Get.find();
     int randomNumber = random.nextInt(1001);
     chatController.groupMessageList.add(GroupMessageModel(
+        strContactId: "",
         strLatitude: 0.0,
         strLongitude: 0.0,
         strIconURL: "",
@@ -166,6 +168,7 @@ class GroupChatService {
     String locationName = await getLocationName(longitude, latitude);
 
     chatController.groupMessageList.add(GroupMessageModel(
+        strContactId: "",
         strLatitude: 0.0,
         strLongitude: 0.0,
         id: "$randomNumber",

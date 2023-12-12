@@ -28,7 +28,7 @@ class PrivateChatService {
     });
   }
 
-    static void sentPersonalStickerMessage(String chatId, String message) {
+  static void sentPersonalStickerMessage(String chatId, String message) {
     print(chatId);
     print(message);
     Socket socket = SocketService().socket;
@@ -48,6 +48,7 @@ class PrivateChatService {
     //upload and take link
     PrivateChatController chatController = Get.put(PrivateChatController());
     chatController.messageList.add(PrivateMessageModel(
+        strContactId: "",
         id: "",
         strLatitude: 0.0,
         strLongitude: 0.0,
@@ -97,7 +98,7 @@ class PrivateChatService {
     // ChatMessageService.getMessages(chatId: chatId, type: "private");
   }
 
-    static Future<void> sentPersonalAudioMessage(
+  static Future<void> sentPersonalAudioMessage(
       {required String chatId, required String path}) async {
     Socket socket = SocketService().socket;
 
@@ -143,6 +144,7 @@ class PrivateChatService {
     int randomNumber = random.nextInt(1001);
     chatController.messageList.add(PrivateMessageModel(
         id: "$randomNumber",
+        strContactId: "",
         strLatitude: 0.0,
         strLongitude: 0.0,
         strCreatedTime: "",
@@ -184,6 +186,7 @@ class PrivateChatService {
     PrivateChatController chatController = Get.find();
     int randomNumber = random.nextInt(1001);
     chatController.messageList.add(PrivateMessageModel(
+        strContactId: "",
         strLatitude: 0.0,
         strLongitude: 0.0,
         id: "$randomNumber",
