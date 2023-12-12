@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:stellar_chat/view/chat/chat_screen/chat_screen.dart';
 import 'package:stellar_chat/view/chat/chat_screen/widgets/show_time_widget.dart';
@@ -61,18 +62,31 @@ class ContactMessageBubble extends StatelessWidget {
         ),
         InkWell(
           onTap: () {
-            if (message.strContactId == null) {
+            if (message.strContactId == null ||
+                message.strContactFullName == null ||
+                message.strContactUrl == null) {
               //show invite
               Share.share('check out stellar chat https://stellarchat.com',
                   subject: 'Come connect me on Stellar chat');
             } else {
-              Get.to(
-                () => PrivateChatScreen(
-                  chatId: message.strContactId!,
-                  fullName: message.strName,
-                  imageUrl: message.strUrl,
+              Logger().i(message.strContactId);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (builder) => PrivateChatScreen(
+                    chatId: message.strContactId!,
+                    fullName: message.strContactFullName!,
+                    imageUrl: message.strContactUrl!,
+                  ),
                 ),
               );
+              // Get.to(
+              //   () => PrivateChatScreen(
+              //     chatId: message.strContactId!,
+              //     fullName: message.strName,
+              //     imageUrl: message.strUrl,
+              //   ),
+              // );
             }
           },
           child: Container(
@@ -91,7 +105,12 @@ class ContactMessageBubble extends StatelessWidget {
                     ? const Color.fromRGBO(197, 229, 255, 1)
                     : const Color.fromRGBO(224, 224, 224, 1)),
             child: Center(
-              child: Text(message.strContactId == null ? "Invite" : "Message",
+              child: Text(
+                  message.strContactId == null ||
+                          message.strContactFullName == null ||
+                          message.strContactUrl == null
+                      ? "Invite"
+                      : "Message",
                   style: const TextStyle(
                     fontFamily: 'Inter',
                   )),

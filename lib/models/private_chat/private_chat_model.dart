@@ -46,6 +46,8 @@ class PrivateMessageModel {
       required this.strUrl,
       required this.strLatitude,
       required this.strContactId,
+      this.strContactUrl,
+      this.strContactFullName,
       required this.strLongitude});
   late final String id;
   late final String strUserId;
@@ -61,6 +63,8 @@ class PrivateMessageModel {
   late final double strLatitude;
   late final double strLongitude;
   late final String? strContactId;
+  late final String? strContactUrl;
+  late final String? strContactFullName;
 
   PrivateMessageModel.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
@@ -77,6 +81,8 @@ class PrivateMessageModel {
     strLongitude = json['strLongitude'] ?? 0.0;
     strLatitude = json['strLatitude'] ?? 0.0;
     strContactId = json['strContactId'];
+    strContactUrl = json['strContactUrl'];
+    strContactFullName = json['strContactFullName'];
   }
 
   Map<String, dynamic> toJson() {

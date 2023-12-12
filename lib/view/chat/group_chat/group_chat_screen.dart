@@ -138,7 +138,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
           // Chat messages
           Obx(() {
             if (groupChatController.isErrorOccured.value) {
-              Logger().e("Erroor");
+              Logger().e("Error");
               return const Expanded(
                 child: Center(
                   child: Text("Error occured while loading",

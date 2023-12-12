@@ -45,6 +45,8 @@ class GroupMessageModel {
       required this.strLatitude,
       required this.strLongitude,
       required this.strContactId,
+      this.strContactUrl,
+      this.strContactFullName,
       required this.strUrl});
   late final String id;
   late final String strUserId;
@@ -61,6 +63,8 @@ class GroupMessageModel {
   late final double strLatitude;
   late final double strLongitude;
   late final String? strContactId;
+  late final String? strContactUrl;
+  late final String? strContactFullName;
 
   GroupMessageModel.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
@@ -79,6 +83,8 @@ class GroupMessageModel {
     strLongitude = json['strLongitude'] ?? 0.0;
     strLatitude = json['strLatitude'] ?? 0.0;
     strContactId = json['strContactId'];
+    strContactUrl = json['strContactUrl'];
+    strContactFullName = json['strContactFullName'];
   }
 
   Map<String, dynamic> toJson() {

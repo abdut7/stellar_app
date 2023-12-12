@@ -21,6 +21,7 @@ class GroupChatBubble extends StatelessWidget {
   final BubbleAlignment alignment;
 
   const GroupChatBubble({
+    super.key,
     required this.senderName,
     // required this.message,
     required this.alignment,
@@ -252,7 +253,10 @@ class GroupChatBubble extends StatelessWidget {
                                     ),
                                     GestureDetector(
                                       onTap: () {
-                                        if (message.strContactId == null) {
+                                        if (message.strContactId == null ||
+                                            message.strContactFullName ==
+                                                null ||
+                                            message.strContactUrl == null) {
                                           //show invite
                                           Share.share(
                                               'check out stellar chat https://stellarchat.com',
@@ -262,8 +266,10 @@ class GroupChatBubble extends StatelessWidget {
                                           Get.to(
                                             () => PrivateChatScreen(
                                                 chatId: message.strContactId!,
-                                                fullName: message.strName,
-                                                imageUrl: message.strUrl),
+                                                fullName:
+                                                    message.strContactFullName!,
+                                                imageUrl:
+                                                    message.strContactUrl!),
                                           );
                                         }
                                       },
@@ -286,7 +292,11 @@ class GroupChatBubble extends StatelessWidget {
                                                     224, 224, 224, 1)),
                                         child: Center(
                                           child: Text(
-                                              message.strContactId == null
+                                              message.strContactId == null ||
+                                                      message.strContactFullName ==
+                                                          null ||
+                                                      message.strContactUrl ==
+                                                          null
                                                   ? "Invite"
                                                   : "Message",
                                               style: const TextStyle(
