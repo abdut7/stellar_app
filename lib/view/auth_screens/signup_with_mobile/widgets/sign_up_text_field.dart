@@ -51,7 +51,7 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
       hintStyle: TextStyle(
         fontFamily: 'Inter',
         color: SColors.color9,
-        fontSize: 12,
+        fontSize: 8,
         fontWeight: FontWeight.w600,
         height: containerHeight == 50 ? 4.8 : 1.0,
       ),
@@ -100,45 +100,48 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
       }
     }
 
-    return Container(
-      height: containerHeight,
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(8)),
-      child: widget.isBirthday
-          ? Container(
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(8)),
-              child: TextFormField(
-                  readOnly: true,
-                  onTap: () => selectDate(context),
-                  decoration: buildInputDecoration(),
-                  controller: controller),
-            )
-          : TextFormField(
-              onChanged: widget.onChanged,
-              onSaved: widget.onSaved,
-              validator: (val) {
-                final error = widget.validator!(val);
-                if (error != null) {
-                  _increaseContainerHeight();
-                } else {
-                  _resetContainerHeight();
-                }
-                return error;
-              },
-              obscureText: widget.isPassword,
-              controller: controller,
-              keyboardType: widget.keyboardType,
-              cursorColor: Colors.black,
-              style: TextStyle(
-                fontFamily: 'Inter',
-                color: SColors.color3,
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
+    return Center(
+      child: Container(
+        height: containerHeight,
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(8)),
+        child: widget.isBirthday
+            ? Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8)),
+                child: TextFormField(
+                    readOnly: true,
+                    onTap: () => selectDate(context),
+                    decoration: buildInputDecoration(),
+                    controller: controller),
+              )
+            : TextFormField(
+                onChanged: widget.onChanged,
+                onSaved: widget.onSaved,
+                // validator: (val) {
+                //   final error = widget.validator!(val);
+                //   if (error != null) {
+                //     _increaseContainerHeight();
+                //   } else {
+                //     _resetContainerHeight();
+                //   }
+                //   return error;
+                // },
+                obscureText: widget.isPassword,
+                controller: controller,
+                keyboardType: widget.keyboardType,
+                cursorColor: Colors.black,
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  color: SColors.color3,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),
+                autocorrect: true,
+                decoration: buildInputDecoration(),
               ),
-              autocorrect: true,
-              decoration: buildInputDecoration(),
-            ),
+      ),
     );
   }
 

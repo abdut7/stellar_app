@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:logger/logger.dart';
 import 'package:stellar_chat/Settings/SColors.dart';
 import 'package:stellar_chat/view/auth_screens/LoginWithMobile/login_with_mobile_screen.dart';
 import 'package:stellar_chat/view/auth_screens/LoginWithMobile/widgets/login_phone_textfield.dart';
@@ -14,12 +15,12 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:stellar_chat/view/auth_screens/signup_with_mobile/widgets/text_form_filed_widget.dart';
 
 import '../../../Settings/SImages.dart';
 import '../../../functions/get_current_location.dart';
 import '../../../functions/image_to_base.dart';
 import '../../../models/api_models/signup_model.dart';
-import '../../../widgets/login_signup_textfield.dart';
 
 class SignUpWithMobileScreen extends StatefulWidget {
   SignUpWithMobileScreen({super.key});
@@ -124,6 +125,7 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
   final _formKey = GlobalKey<FormState>();
 
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -220,51 +222,60 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                                 )
                               ],
                             ),
-                            const SizedBox(height: 45),
-                            SignUpTextField(
-                              controller: usernameController,
-                              keyboardType: TextInputType.text,
-                              validator: validateUserName,
-                              hintText: 'User name',
-                            ),
-                            SignUpTextField(
-                              controller: emailController,
-                              keyboardType: TextInputType.emailAddress,
-                              validator: validateEmail,
-                              hintText: 'Email',
-                            ),
-                            SignUpTextField(
-                              controller: birthDayController,
-                              keyboardType: TextInputType.text,
-                              isBirthday: true,
-                              validator: validateBirthday,
-                              hintText: 'Select DOB',
-                              prefixIcon: Icon(Icons.calendar_today),
-                            ),
-                            RegionTextField(
-                              controller: regionController,
-                              keyboardType: TextInputType.text,
-                              hintText: 'Region',
-                              //validator: validateRegion,
-                              suffixIcon: Icon(
-                                Icons.arrow_drop_down,
-                              ),
-                            ),
-                            PhoneTextField(
-                              controller: phoneNumberController,
-                              keyboardType: TextInputType.phone,
-                              hintText: 'Phone Number',
-                              validator: validatePhoneNumber,
-                            ),
-                            SignUpTextField(
-                              controller: passwordController,
-                              keyboardType: TextInputType.text,
-                              validator: validatePassword,
-                              isPassword: true,
-                              hintText: 'Password',
-                            ),
                             const SizedBox(
                               height: 20,
+                            ),
+                            TextFormFieldWidget(
+                              inputType: TextInputType.name,
+                              controller: usernameController,
+                              hintText: "User name",
+                              size: size,
+                              validator: validateUserName,
+                            ),
+                            TextFormFieldWidget(
+                              inputType: TextInputType.emailAddress,
+                              controller: emailController,
+                              hintText: "Email",
+                              size: size,
+                              validator: validateEmail,
+                            ),
+                            InkWell(
+                              onTap: () async {
+                                DateTime? pickedDate = await showDatePicker(
+                                  context: context,
+                                  initialDate: birthDate,
+                                  firstDate: DateTime(1900),
+                                  lastDate: DateTime.now(),
+                                );
+                                if (pickedDate != null) {
+                                  birthDate = pickedDate;
+                                  birthDayController.text =
+                                      "${birthDate.day}-${birthDate.month}-${birthDate.year}";
+                                }
+                              },
+                              child: IgnorePointer(
+                                child: TextFormFieldWidget(
+                                  inputType: TextInputType.text,
+                                  controller: birthDayController,
+                                  hintText: "Birthday",
+                                  size: size,
+                                  validator: validateBirthday,
+                                ),
+                              ),
+                            ),
+                            TextFormFieldWidget(
+                              inputType: TextInputType.phone,
+                              controller: phoneNumberController,
+                              hintText: "Phone",
+                              size: size,
+                              validator: validatePhoneNumber,
+                            ),
+                            TextFormFieldWidget(
+                              inputType: TextInputType.visiblePassword,
+                              controller: passwordController,
+                              hintText: "Password",
+                              size: size,
+                              validator: validatePassword,
                             ),
                             Padding(
                               padding: const EdgeInsets.all(10.0),
@@ -302,7 +313,6 @@ class _SignUpWithMobileScreenState extends State<SignUpWithMobileScreen> {
                                               birthday: birthDayController.text,
                                               region: regionController.text,
                                               phoneNumber:
-                                                  // "${publiccountryCode == null ? "+91" : publiccountryCode!.dialCode.toString()}${phoneNumberController.text}"
                                                   phoneNumberController.text,
                                               password: passwordController.text,
                                               coordinates: [
