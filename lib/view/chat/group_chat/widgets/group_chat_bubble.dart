@@ -210,8 +210,10 @@ class GroupChatBubble extends StatelessWidget {
                                               const SizedBox(
                                                 width: 10,
                                               ),
-                                              Text(message.strContactName,style:TextStyle(
-          fontFamily: 'Inter',))
+                                              Text(message.strContactName,
+                                                  style: const TextStyle(
+                                                    fontFamily: 'Inter',
+                                                  ))
                                             ],
                                           ),
                                           Row(
@@ -250,7 +252,7 @@ class GroupChatBubble extends StatelessWidget {
                                     ),
                                     GestureDetector(
                                       onTap: () {
-                                        if (message.strChatId.isEmpty) {
+                                        if (message.strContactId == null) {
                                           //show invite
                                           Share.share(
                                               'check out stellar chat https://stellarchat.com',
@@ -259,7 +261,7 @@ class GroupChatBubble extends StatelessWidget {
                                         } else {
                                           Get.to(
                                             () => PrivateChatScreen(
-                                                chatId: message.strChatId,
+                                                chatId: message.strContactId!,
                                                 fullName: message.strName,
                                                 imageUrl: message.strUrl),
                                           );
@@ -283,10 +285,13 @@ class GroupChatBubble extends StatelessWidget {
                                                 : const Color.fromRGBO(
                                                     224, 224, 224, 1)),
                                         child: Center(
-                                          child: Text(message.strChatId.isEmpty
-                                              ? "Invite"
-                                              : "Message",style:TextStyle(
-          fontFamily: 'Inter',)),
+                                          child: Text(
+                                              message.strContactId == null
+                                                  ? "Invite"
+                                                  : "Message",
+                                              style: const TextStyle(
+                                                fontFamily: 'Inter',
+                                              )),
                                         ),
                                       ),
                                     ),
