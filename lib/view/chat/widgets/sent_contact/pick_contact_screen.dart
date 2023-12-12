@@ -136,89 +136,91 @@ class _PickContactFromPhoneToSentState
                     ),
                   ),
                   style: TextStyle(
-                      fontFamily: 'Inter', color: SColors.color3, fontSize: 15),
+                    fontFamily: 'Inter',
+                    color: SColors.color3,
+                    fontSize: 15,
+                  ),
                   textAlign: TextAlign.center,
                   onChanged: _filterContacts),
             ),
           ),
           _filteredContacts.isEmpty
-              ? const Center(
-                  child: CircularProgressIndicator(),
+              ? const Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(),
+                    Text(
+                      "Fetching contact will take some time,\nPlease wait",
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                      ),
+                      textAlign: TextAlign.center,
+                    )
+                  ],
                 )
-              : Flexible(
-                  child: AlphabetListScrollView(
-                    showPreview: true,
-                    strList: _filteredContacts
-                        .map((contact) => contact.displayName ?? "")
-                        .toList(),
-                    indexedHeight: (index) => 55,
-                    itemBuilder: (context, index) {
-                      final contact = _filteredContacts[index];
-                      return Padding(
+              : Expanded(
+                  child: ListView.builder(
+                  itemCount: _filteredContacts.length,
+                  itemBuilder: (context, index) {
+                    final contact = _filteredContacts[index];
+
+                    return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: Row(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                _toggleContactSelection(contact);
-                              },
-                              child: CircleAvatar(
-                                radius: 6,
-                                backgroundColor:
-                                    _selectedContacts.contains(contact)
-                                        ? SColors.color12
-                                        : Colors.grey.withOpacity(0.4),
+                        child: ListTile(
+                          onTap: () {
+                            if (contact.phones != null) {
+                              Get.to(
+                                () => ContactDetailsScreen(
+                                  chatId: widget.chatId,
+                                  isGroup: widget.isGroup,
+                                  contact: contact,
+                                ),
+                              );
+                            }
+                          },
+                          leading: Container(
+                            width: 40,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"),
                               ),
                             ),
-                            const SizedBox(
-                              width: 15,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                if (contact.phones != null) {
-                                  Get.to(() => ContactDetailsScreen(
-                                        chatId: widget.chatId,
-                                        isGroup: widget.isGroup,
-                                        contact: contact,
-                                      ));
-                                }
-                              },
-                              child: Row(
-                                children: [
-                                  Container(
-                                    width: 40,
-                                    height: 40,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                        image: NetworkImage(
-                                            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 15,
-                                  ),
-                                  Text(
-                                    contact.displayName ?? '',
-                                    style: TextStyle(
+                          ),
+                          subtitle: contact.phones == null ||
+                                  contact.phones!.isEmpty
+                              ? null
+                              : Text(
+                                  contact.phones!.first.value ?? "",
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
                                       fontFamily: 'Inter',
                                       color: themeController.isDarkTheme.value
                                           ? SColors.color4
                                           : SColors.color3,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ),
+                                      fontSize: 12
+                                      // fontSize: 17,
+                                      // fontWeight: FontWeight.w500,
+                                      ),
+                                ),
+                          title: Text(
+                            contact.displayName ?? '',
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontFamily: 'Inter',
+                              color: themeController.isDarkTheme.value
+                                  ? SColors.color4
+                                  : SColors.color3,
+                              fontSize: 17,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ));
+                  },
+                ))
         ],
       ),
     );
